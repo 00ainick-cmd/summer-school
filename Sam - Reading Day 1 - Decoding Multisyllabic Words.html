@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Lab · Breaking Big Words Into Bites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a2e;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(32px,6vw,46px);line-height:1.02;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .beats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .beat{flex:1;min-width:150px;border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;text-align:center;}
+  .beat .w{font-family:'Fraunces';font-size:24px;font-weight:600;color:var(--ink);}
+  .beat .s{font-family:'Fraunces';font-size:18px;color:var(--accent);margin-top:4px;}
+  .beat .n{font-size:13px;color:var(--ink2);margin-top:6px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:14px;}
+  .card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;}
+  .card .lbl{font-family:'Fraunces';font-size:17px;font-weight:600;color:var(--accent-d);}
+  .card .sub{font-size:13px;color:var(--mute);font-style:italic;margin-top:2px;}
+  .card .ex{font-family:'Fraunces';font-size:15px;color:var(--ink);margin-top:8px;}
+  .worked{background:#fbf5ea;border:1px dashed var(--accent);border-radius:12px;padding:16px;margin-top:14px;}
+  .worked .step{padding:6px 0;border-bottom:1px dashed var(--line);font-size:16px;}
+  .worked .step:last-child{border-bottom:none;}
+  .worked .step b{color:var(--accent-d);}
+  .bench{margin-top:14px;}
+  .splitrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:14px 0;}
+  .splitrow .word{font-family:'Fraunces';font-size:28px;font-weight:600;letter-spacing:.04em;flex:1;min-width:160px;display:flex;align-items:center;gap:2px;}
+  .splitrow .word span.l{padding:2px 1px;border-radius:3px;cursor:pointer;border:2px solid transparent;}
+  .splitrow .word span.l.markpre{background:#f3ead9;}
+  .splitrow .word span.l.markpost{background:#e8efde;}
+  .splitrow .pp{font-family:'Fraunces';font-size:14px;color:var(--ink2);min-width:120px;}
+  .splitrow .pp b{color:var(--accent-d);}
+  .splitrow .pp.ok b{color:var(--good);}
+  .splitbtn{font:inherit;font-weight:600;font-size:14px;border:1.5px solid var(--alt);background:#fff;color:#3f5a32;border-radius:9px;padding:9px 14px;min-height:44px;cursor:pointer;}
+  .pred{border:1px dashed var(--alt);border-radius:12px;padding:14px 16px;margin-top:12px;background:#f3f6ee;}
+  .pred .q{font-weight:600;margin-bottom:8px;}
+  .pred .btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .pbtn{font:inherit;font-weight:600;font-size:15px;border:1.5px solid var(--alt);background:#fff;color:#3f5a32;border-radius:9px;padding:10px 16px;min-height:44px;cursor:pointer;}
+  .pred .ans{margin-top:10px;color:var(--ink2);}
+  .pred .ans b{color:var(--alt);}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+  .recap{background:#f3ead9;border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;margin-top:12px;}
+  .recap ul{margin:6px 0 0 20px;color:var(--ink2);}
+  .recap li{margin:4px 0;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .cta.go{background:var(--good);} .cta.go:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;font-family:'Fraunces';}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Fraunces';}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;font-family:'Fraunces';}
+  textarea{width:100%;min-height:90px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;resize:vertical;color:var(--ink);background:#fffdf8;}
+  .rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+  .rubric th,.rubric td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  .rubric th{background:#f3ead9;font-family:'Fraunces';font-size:13px;color:var(--accent-d);}
+  .gnote{background:#fbf5ea;border:1px dashed var(--alt);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--ink2);margin-top:10px;}
+  .gnote b{color:var(--accent-d);}
+  .delayBox{background:#f3ead9;border:1px solid var(--line);border-radius:10px;padding:14px;font-size:15px;color:var(--ink2);margin-top:10px;}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}*{animation:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> · <b>Grade 2</b><span class="chip">Standard 2.RF.3.A.a</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Chapter one</div>
+    <h1>Breaking Big Words Into Bites</h1>
+    <p class="opener"><span class="dropcap">A</span> long word looks scary at first, but it is really just little words stuck together. Every word is made of beats called <b>syllables</b>. Find the beats, read each one, and snap them back together. That is the whole trick.</p>
+    <p class="mission">By the end you will clap a word into its beats, split a long word between two consonants, and read each beat using the letter sounds you already know.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Decoding multisyllabic words in context by applying common letter-sound correspondences including single letters, consonant blends, consonant and vowel digraphs, and vowel diphthongs.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>One beat for every vowel sound</h2></div>
+      <p class="lead">A <b>syllable</b> is one beat. Every syllable has one vowel sound. Clap each word and listen.</p>
+      <div class="beats">
+        <div class="beat"><div class="w">cat</div><div class="s">cat</div><div class="n">1 beat</div></div>
+        <div class="beat"><div class="w">rabbit</div><div class="s">rab + bit</div><div class="n">2 beats</div></div>
+        <div class="beat"><div class="w">butterfly</div><div class="s">but + ter + fly</div><div class="n">3 beats</div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>The sounds you already know</h2></div>
+      <p class="lead">You will use these letter-sound friends to read each beat. Tap a card and say the example out loud.</p>
+      <div class="cards">
+        <div class="card"><div class="lbl">Single letters</div><div class="sub">one letter, one sound</div><div class="ex">m says /m/ in <i>map</i></div></div>
+        <div class="card"><div class="lbl">Blends</div><div class="sub">two consonants, both heard</div><div class="ex">bl in <i>blob</i>, st in <i>stop</i></div></div>
+        <div class="card"><div class="lbl">Digraphs</div><div class="sub">two letters, one new sound</div><div class="ex">sh in <i>shop</i>, ch in <i>chip</i></div></div>
+        <div class="card"><div class="lbl">Vowel teams</div><div class="sub">two vowels, one team sound</div><div class="ex">ai in <i>rain</i>, oa in <i>boat</i></div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Read picnic together</h2></div>
+      <p class="lead">Watch how a long word comes apart and back together.</p>
+      <div class="worked">
+        <div class="step">Look for two consonants in the middle: pi<b>cn</b>ic.</div>
+        <div class="step">Split between them: <b>pic</b> + <b>nic</b>.</div>
+        <div class="step">Beat one: p-i-c, <b>pic</b>.</div>
+        <div class="step">Beat two: n-i-c, <b>nic</b>.</div>
+        <div class="step">Snap them back: <b>pic-nic</b>, <i>picnic</i>.</div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Split it on the bench</h2></div>
+      <p class="lead">Tap a letter to drop the split line right after it. Try to land between the two middle consonants.</p>
+      <div class="bench" id="bench"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Predict the split</h2></div>
+      <p class="lead">Guess the split, then reveal.</p>
+      <div id="preds"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">06</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">Sound out every single letter, even in a long word.</div><div style="color:var(--ink2)">Letter-by-letter is slow and easy to forget. Find the <b>beats</b> first. Read each beat as a chunk. Then snap them back. Your eyes get to rest between the beats.</div></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">07</span><h2>The move</h2></div>
+      <div class="recap"><b>Remember:</b><ul><li>One vowel sound = one beat = one syllable.</li><li>In the middle of a long word, split between two consonants.</li><li>Use the letter sounds you already know to read each beat.</li><li>Snap the beats together to say the whole word.</li></ul></div>
+    </div>
+
+    <button class="cta" id="toCheck">I read it all. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="explainSec" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">EXPLAIN</span><h2>Say it in your own words</h2></div>
+      <p class="lead">Strong work on Form A. Now write one or two sentences: <b>how do you split a long word into beats, and why does that help you read it?</b></p>
+      <textarea id="explainText" placeholder="Type your sentences here..." aria-label="your explanation"></textarea>
+      <div class="gnote"><b>Grown-up note:</b> this part is not graded. A strong answer mentions finding two consonants in the middle, splitting between them, reading each beat, and snapping them back together.</div>
+      <button class="cta" id="toPT">Next: read out loud</button>
+    </div>
+  </section>
+
+  <section id="ptSec" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">PERFORMANCE</span><h2>Read these out loud</h2></div>
+      <p class="lead">Read each word out loud to an adult. Split it into beats first, then snap it together. <b>Words:</b> magnet, sandwich, hamster, fantastic.</p>
+      <table class="rubric"><tr><th>What to listen for</th><th>Strong</th><th>Not yet</th></tr>
+        <tr><td>Splitting</td><td>Pauses between beats (mag-net), not letter-by-letter.</td><td>Sounds out each letter.</td></tr>
+        <tr><td>Letter sounds</td><td>Uses blends and digraphs as chunks (sw, ch).</td><td>Misreads chunks as single letters.</td></tr>
+        <tr><td>Blending</td><td>Snaps beats back into the whole word.</td><td>Says beats but never blends them.</td></tr></table>
+      <div class="gnote"><b>Grown-up note:</b> the rubric is for your eyes only. Mark honestly in your head. If the reader stumbled on a word, have them try again after pointing at the split.</div>
+      <button class="cta go" id="ptDone">Done reading out loud</button>
+    </div>
+  </section>
+
+  <section id="formBSec" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">New questions on the same skill. This is best done <b>a day or two after Form A</b>, so the skill has time to settle.</p>
+      <div class="delayBox"><b>Spacing matters.</b> If you can, close this and come back tomorrow before starting Form B. If you are ready now, that is fine too.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="hide" id="bRunner">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try Form A again</button>
+    <button class="cta hide" id="toExplain">Next: explain in your own words</button>
+    <button class="cta hide" id="toFormB">Next: spaced retention check</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+
+  <footer>Sam · Reading · Day 1 · Standard 2.RF.3.A.a</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='sam', SUBJECT='reading', DAY='2.RF.3.A.a', SNAME='Sam';
+  var PASS=7, QTIME=25, FAST=12;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,formA:0,formB:0,ptDone:false,explainText:''};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,pt_done:!!rec.ptDone,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  // Bench: tap a letter, the split line drops after it
+  var BENCH=[{word:'napkin',ok:3},{word:'rabbit',ok:3},{word:'sunset',ok:3},{word:'chipmunk',ok:4}];
+  var bbox=document.getElementById('bench');
+  BENCH.forEach(function(it){
+    var row=document.createElement('div'); row.className='splitrow';
+    var w=document.createElement('div'); w.className='word';
+    var letters=it.word.split('');
+    var splitAt=-1;
+    var pp=document.createElement('div'); pp.className='pp'; pp.innerHTML='Split: <b>not yet</b>';
+    function paint(){
+      w.innerHTML='';
+      letters.forEach(function(ch,i){
+        var s=document.createElement('span'); s.className='l'; s.textContent=ch;
+        if(splitAt>=0 && i<splitAt) s.classList.add('markpre');
+        if(splitAt>=0 && i>=splitAt) s.classList.add('markpost');
+        s.addEventListener('click',function(){ splitAt=i+1; paint(); });
+        w.appendChild(s);
+      });
+      if(splitAt>=0){
+        var left=it.word.slice(0,splitAt), right=it.word.slice(splitAt);
+        var ok=(splitAt===it.ok);
+        pp.className='pp'+(ok?' ok':'');
+        pp.innerHTML=(ok?'Right on the beat: <b>':'Try again: <b>')+left+' + '+right+'</b>';
+      }
+    }
+    var reset=document.createElement('button'); reset.className='splitbtn'; reset.type='button'; reset.textContent='Clear';
+    reset.addEventListener('click',function(){ splitAt=-1; pp.className='pp'; pp.innerHTML='Split: <b>not yet</b>'; paint(); });
+    row.appendChild(w); row.appendChild(pp); row.appendChild(reset); bbox.appendChild(row); paint();
+  });
+
+  // Predict
+  var PRED=[{q:'Where do you split <b>muffin</b>?',a:'muf + fin',why:'Two consonants in the middle (ff), so split between them.'},
+            {q:'Where do you split <b>basket</b>?',a:'bas + ket',why:'Two consonants in the middle (sk), so split between them.'},
+            {q:'Where do you split <b>hello</b>?',a:'hel + lo',why:'Two consonants in the middle (ll), so split between them.'}];
+  var prbox=document.getElementById('preds');
+  PRED.forEach(function(p){ var d=document.createElement('div'); d.className='pred';
+    d.innerHTML='<div class="q">'+p.q+'</div><div class="btns"><button class="pbtn" type="button">'+p.a+'</button><button class="pbtn" type="button">Reveal</button></div><div class="ans hide">Answer: <b>'+p.a+'</b>. '+p.why+'</div>';
+    var ans=d.querySelector('.ans'); d.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){ans.classList.remove('hide');});}); prbox.appendChild(d); });
+
+  // Question banks
+  var FORM_A=[
+    {q:'A syllable is...',o:['one beat in a word','another name for letter','a punctuation mark'],a:0,why:'Every syllable has one vowel sound and is one beat.'},
+    {q:'How many syllables in <b>rabbit</b>?',o:['one','two','three'],a:1,why:'rab + bit = two beats.'},
+    {q:'Where do you split <b>napkin</b>?',o:['na + pkin','nap + kin','napk + in'],a:1,why:'Between the two middle consonants (p and k).'},
+    {q:'Where do you split <b>basket</b>?',o:['ba + sket','bas + ket','bask + et'],a:1,why:'Between s and k.'},
+    {q:'The <b>sh</b> in <i>shop</i> is a...',o:['digraph (two letters, one sound)','blend (two sounds you hear)','single letter'],a:0,why:'sh makes one new sound.'},
+    {q:'The <b>bl</b> in <i>blob</i> is a...',o:['digraph','blend (two sounds you hear)','vowel team'],a:1,why:'You hear both b and l, so it is a blend.'},
+    {q:'Beats <b>pic</b> and <b>nic</b> snap together to make...',o:['picnik','picnic','picnack'],a:1,why:'pic + nic = picnic.'},
+    {q:'How many syllables in <b>butterfly</b>?',o:['two','three','four'],a:1,why:'but + ter + fly = three beats.'}
+  ];
+  var FORM_B=[
+    {q:'Every syllable has exactly one...',o:['vowel sound','consonant','silent letter'],a:0,why:'One vowel sound = one beat = one syllable.'},
+    {q:'How many syllables in <b>sunset</b>?',o:['one','two','three'],a:1,why:'sun + set = two beats.'},
+    {q:'Where do you split <b>magnet</b>?',o:['ma + gnet','mag + net','magn + et'],a:1,why:'Between g and n, the two middle consonants.'},
+    {q:'Where do you split <b>tennis</b>?',o:['te + nnis','ten + nis','tenn + is'],a:1,why:'Between the two n\'s.'},
+    {q:'The <b>ch</b> in <i>chip</i> is a...',o:['blend','digraph (two letters, one sound)','vowel team'],a:1,why:'ch makes one new sound.'},
+    {q:'The <b>st</b> in <i>stop</i> is a...',o:['digraph','vowel team','blend (two sounds you hear)'],a:2,why:'You hear both s and t.'},
+    {q:'Beats <b>ham</b> and <b>ster</b> snap together to make...',o:['hamster','hampster','hamester'],a:0,why:'ham + ster = hamster.'},
+    {q:'How many syllables in <b>computer</b>?',o:['two','three','four'],a:1,why:'com + pu + ter = three beats.'}
+  ];
+
+  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'), secExplain=document.getElementById('explainSec'),
+      secPT=document.getElementById('ptSec'), secFormB=document.getElementById('formBSec'), secResult=document.getElementById('result');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'), elQwhy=document.getElementById('qwhy'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill');
+  var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A;
+
+  function startCheck(form){ commitTime(); phase=form; currentBank=(form==='A'?FORM_A:FORM_B); qi=0; correct=0;
+    if(form==='A'){ rec.attempts=(rec.attempts||0)+1; save(app); secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide'); }
+    else { secFormB.classList.add('hide'); document.getElementById('bRunner').classList.remove('hide'); }
+    window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=currentBank[qi];
+    var isA=(phase==='A');
+    var qtext=isA?elQtext:document.getElementById('qtextB');
+    var opts=isA?elOpts:document.getElementById('optsB');
+    var why=isA?elQwhy:document.getElementById('qwhyB');
+    var count=isA?elCount:document.getElementById('qcountB');
+    var label=isA?elTlabel:document.getElementById('tlabelB');
+    var fill=isA?elTfill:document.getElementById('tfillB');
+    count.textContent='Question '+(qi+1)+' of '+currentBank.length; qtext.innerHTML=item.q; opts.innerHTML=''; why.textContent='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b,opts,why,item);}); opts.appendChild(b); });
+    timeLeft=QTIME; fill.style.width='100%'; fill.classList.remove('low'); label.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; fill.style.width=(timeLeft/QTIME*100)+'%'; label.textContent=timeLeft+'s'; if(timeLeft<=8)fill.classList.add('low'); if(timeLeft===0){clearInterval(timer);autoAdvance(opts,why,item);} },1000);
+  }
+  function autoAdvance(opts,why,item){ if(locked)return; locked=true;
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); c.style.pointerEvents='none'; });
+    why.style.color='var(--accent-d)'; why.textContent='Time. '+item.why;
+    setTimeout(next,1100); }
+  function answer(i,btn,opts,why,item){ if(locked)return; locked=true; clearInterval(timer); var ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(ok){correct++; why.style.color='var(--good)'; why.textContent='Yes. '+item.why;} else { why.style.color='var(--accent-d)'; why.textContent='Not quite. '+item.why; }
+    setTimeout(next, ok?700:1200); }
+  function next(){ qi++; if(qi<currentBank.length)showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    if(phase==='A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed=(correct>=PASS), pct=Math.round(correct/FORM_A.length*100);
+      document.getElementById('scorebig').textContent=pct+'%';
+      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
+          retry=document.getElementById('retry'), toExplain=document.getElementById('toExplain'), toFormB=document.getElementById('toFormB');
+      retry.classList.add('hide'); toExplain.classList.add('hide'); toFormB.classList.add('hide');
+      if(passed){
+        rec.status='formA-passed'; save(app); syncCloud();
+        rtitle.textContent='Form A passed!'; rmsg.textContent='You got '+correct+' of '+FORM_A.length+' correct. Next, explain what you did and read a few words out loud.';
+        toExplain.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close!'; rmsg.textContent='You need 7 of 8 to pass Form A. You got '+correct+'. Look back at the stations, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      document.getElementById('bRunner').classList.add('hide'); secFormB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB=(correct>=PASS), pctB=Math.round(correct/FORM_B.length*100);
+      document.getElementById('scorebig').textContent=pctB+'%';
+      rec.formB=correct;
+      var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+      document.getElementById('retry').classList.add('hide'); document.getElementById('toExplain').classList.add('hide'); document.getElementById('toFormB').classList.add('hide');
+      if(passedB && rec.ptDone){ rec.status='mastered'; rec.passedAt=Date.now(); save(app); syncCloud();
+        rtitle.textContent='Mastered.'; rmsg.textContent='Form A and Form B both passed and the out-loud task is done. The 2.RF.3.A.a credential is yours.';
+      } else if(passedB){ rec.status='formB-passed'; save(app);
+        rtitle.textContent='Form B passed!'; rmsg.textContent='Strong work. Finish the out-loud reading task to lock in mastery.';
+      } else { rec.status='formB-tried'; save(app);
+        rtitle.textContent='Almost there.'; rmsg.textContent='You got '+correct+' of '+FORM_B.length+' on Form B. Reread the stations and try Form B again later.';
+      }
+      document.getElementById('donebox').classList.remove('hide');
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); startCheck('A'); });
+  document.getElementById('toExplain').addEventListener('click',function(){ secResult.classList.add('hide'); secExplain.classList.remove('hide'); window.scrollTo(0,0); });
+  document.getElementById('toPT').addEventListener('click',function(){ rec.explainText=document.getElementById('explainText').value||''; save(app); secExplain.classList.add('hide'); secPT.classList.remove('hide'); window.scrollTo(0,0); });
+  document.getElementById('ptDone').addEventListener('click',function(){ rec.ptDone=true; rec.status='pt-done'; save(app); syncCloud(); secPT.classList.add('hide'); secFormB.classList.remove('hide'); window.scrollTo(0,0); });
+  document.getElementById('startB').addEventListener('click',function(){startCheck('B');});
+  document.getElementById('toFormB').addEventListener('click',function(){ secResult.classList.add('hide'); secFormB.classList.remove('hide'); window.scrollTo(0,0); });
+})();
+</script>
+</body>
+</html>

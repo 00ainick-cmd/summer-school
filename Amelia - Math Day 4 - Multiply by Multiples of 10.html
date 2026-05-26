@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Lab · Multiply by Multiples of 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f2f0fb;--card:#fff;--ink:#1d1736;--ink2:#4a4566;--mute:#857ea3;--line:#e2def2;
+   --accent:#5a43d6;--accent-d:#3f2bb0;--red:#c2410c;--alt:#e0731a;--good:#1f9d6b;
+   --huns:#5a43d6;--tens:#1f9d6b;--ones:#e0731a;--gold:#b8860b;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Mulish',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(40vmax 40vmax at 90% -10%,rgba(90,67,214,.10),transparent 60%),radial-gradient(40vmax 40vmax at -5% 110%,rgba(31,157,107,.10),transparent 60%),linear-gradient(180deg,#faf9ff,var(--paper));}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 90px;}
+  h1,h2,h3,.disp{font-family:'Baloo 2',cursive;font-weight:700;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .progress{position:sticky;top:0;z-index:20;background:rgba(242,240,251,.95);backdrop-filter:blur(4px);display:flex;gap:6px;padding:10px 4px;flex-wrap:wrap;justify-content:center;border-bottom:2px solid var(--line);margin:0 -18px 18px;}
+  .pstep{font-family:'Baloo 2';font-size:13px;font-weight:600;color:var(--mute);background:#fff;border:2px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .pstep.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .pstep.done{background:#e8f7f0;border-color:var(--good);color:var(--good);}
+  .labbar{background:var(--ink);color:#e7e3fb;margin:0 -18px 20px;padding:12px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Baloo 2';font-size:13px;letter-spacing:.04em;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a4170;border-radius:6px;padding:3px 9px;color:#b9b2e0;font-size:12px;}
+  .labbar b{color:#fff;}
+  h1{font-size:clamp(28px,5.6vw,42px);line-height:1.02;margin:6px 0 8px;}
+  .mission{color:var(--ink2);max-width:56ch;}
+  .stdtag{margin-top:16px;background:#efeefb;border:1px solid var(--line);border-left:4px solid var(--ones);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+  .beat{font-family:'Baloo 2';font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:16px 0;box-shadow:0 16px 32px -28px rgba(63,43,176,.6);}
+  .station.hook{background:linear-gradient(160deg,#fff,#f3effe);border-color:#d9d0f5;}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Baloo 2';font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:7px;padding:3px 9px;letter-spacing:.04em;}
+  .station h2{font-size:22px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .objlist{list-style:none;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;}
+  .objlist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;}
+  .objlist .b{flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent);color:#fff;font-family:'Baloo 2';font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px;}
+  .why{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:15.5px;color:#13683a;}
+  .note{background:#fffbe9;border:2px solid #f0d97a;border-radius:12px;padding:13px 15px;font-size:15.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .hookcards{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+  .hookcard{flex:1;min-width:140px;text-align:center;border:2px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;background:#fff;min-height:60px;}
+  .hookcard:hover{border-color:var(--accent);}
+  .hookcard .big{font-family:'Baloo 2';font-size:30px;}
+  .hookcard .big .lit{color:var(--accent);}
+  .hookcard .rv{font-size:14px;color:var(--ink2);margin-top:6px;display:none;} .hookcard.open .rv{display:block;}
+  .hookcard.open{border-color:var(--accent);background:#f3effe;}
+  .reveal{margin-top:10px;font-size:15.5px;color:var(--ink2);display:none;} .reveal.show{display:block;}
+
+  .pattern{background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;display:grid;grid-template-columns:1fr;gap:8px;}
+  .pattern .row{display:flex;align-items:center;gap:10px;font-family:'Baloo 2';font-size:22px;flex-wrap:wrap;}
+  .pattern .row .lab{font-family:'Mulish';font-size:13px;color:var(--mute);min-width:78px;letter-spacing:.06em;text-transform:uppercase;}
+  .pattern .row .eq{flex:1;text-align:center;}
+  .pattern .row .ans{color:var(--accent-d);}
+  .pattern .row.r2 .ans{color:var(--tens);}
+  .pattern .row.r3 .ans{color:var(--ones);}
+  .pattern .zero{color:var(--alt);}
+
+  /* array builder */
+  .arr{background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;}
+  .arrnum{font-family:'Baloo 2';font-size:28px;text-align:center;color:var(--accent-d);margin-bottom:8px;}
+  .arrstage{display:flex;justify-content:center;min-height:170px;align-items:center;padding:8px;background:#fff;border:2px solid var(--line);border-radius:12px;overflow:auto;}
+  .arrgrid{display:grid;gap:4px;}
+  .arrgrid .cell{width:14px;height:14px;background:var(--ones);border-radius:3px;}
+  .arrgrid.strips .cell{width:14px;height:140px;border-radius:3px;background:var(--tens);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.45) 0 1px,transparent 1px 14px);}
+  .arrgrid.bigstrips .cell{width:140px;height:140px;background:var(--huns);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.4) 0 1px,transparent 1px 14px),repeating-linear-gradient(90deg,rgba(255,255,255,.4) 0 1px,transparent 1px 14px);border-radius:5px;}
+  .arrctrls{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+  .arrslider{display:flex;align-items:center;gap:10px;font-family:'Baloo 2';flex-wrap:wrap;}
+  .arrslider .lab{font-size:14px;color:var(--ink2);min-width:88px;}
+  .arrslider input[type=range]{flex:1;min-width:140px;height:36px;}
+  .arrslider .val{font-size:20px;color:var(--accent-d);min-width:42px;text-align:right;}
+  .modepill{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+  .modepill button{font:inherit;font-weight:700;font-size:13px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .modepill button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .arrout{text-align:center;font-family:'Baloo 2';font-size:24px;margin-top:10px;color:var(--ink);}
+  .arrout .a{color:var(--accent-d);}
+
+  .predict{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .pcard{flex:1;min-width:110px;font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:12px;padding:12px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .pcard:hover{border-color:var(--accent);} .pcard.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;} .pcard.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .tq{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:10px;background:#fff;}
+  .tqq{font-family:'Baloo 2';font-size:17px;margin-bottom:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:54px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);} .cta.go{background:var(--good);} .cta.alt{background:var(--alt);} .cta:disabled{opacity:.45;cursor:default;}
+  .qmeta{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;font-family:'Baloo 2';}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;} .tfill.low{background:var(--red);}
+  .qtext{font-size:20px;font-weight:700;line-height:1.3;margin-bottom:14px;font-family:'Baloo 2';}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt{font:inherit;font-size:17px;font-weight:600;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt:hover{border-color:var(--accent);} .opt.correct{border-color:var(--good);background:#e8f7f0;color:#13683a;} .opt.bad{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+  .reteach{margin-top:10px;font-size:14px;} .reteach a{color:var(--accent);font-weight:700;}
+  textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:2px solid var(--line);border-radius:12px;padding:12px;resize:vertical;color:var(--ink);}
+  .ratebtn{font:inherit;font-weight:600;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:11px 14px;min-height:46px;cursor:pointer;color:var(--ink);}
+  .rate{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .ratebtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+  .rubric th,.rubric td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;} .rubric th{background:#efeefb;font-family:'Baloo 2';font-size:13px;}
+  .critrow{background:#fdeee4;border:2px solid #f0c4ad;border-radius:10px;padding:10px 12px;margin-top:10px;font-weight:600;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Baloo 2';font-size:28px;}
+  .gateitem{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;font-size:15.5px;}
+  .gateitem .mk{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Baloo 2';}
+  .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
+  .gateitem .g2{flex:1;} .gateitem .gd{font-size:13px;color:var(--mute);}
+  .badge{display:none;text-align:center;padding:24px;border-radius:18px;background:linear-gradient(160deg,#f3eefe,#efe7fb);border:2px solid var(--accent);margin-top:14px;}
+  .badge.show{display:block;} .badge .gem{font-size:46px;color:var(--accent-d);} .badge h3{font-size:26px;color:var(--accent-d);margin:6px 0;}
+  .synth{background:#efeefb;border:2px solid #d4ccef;border-radius:14px;padding:16px 18px;margin-top:6px;}
+  .synth .rule{font-family:'Baloo 2';font-size:20px;color:var(--accent-d);text-align:center;margin:6px 0;}
+  footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="progress" role="navigation" aria-label="Module progress">
+  <span class="pstep on" id="ps-start">Warm up</span><span class="pstep" id="ps-learn">Learn</span>
+  <span class="pstep" id="ps-practice">Practice</span><span class="pstep" id="ps-mastery">Mastery</span>
+  <span class="pstep" id="ps-retention">Retention</span><span class="pstep" id="ps-wrap">Wrap up</span>
+</div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab &middot; <b>Grade 3</b><span class="chip">Standard 3.NBT.A.4</span></div>
+
+  <section id="start">
+    <div class="station hook"><div class="beat">Beat 1 &middot; Hook</div><h1>One fact, three answers</h1>
+      <p class="mission">Tap each card. The fact 4 x 3 = 12 unlocks two more: 4 x 30 and 40 x 30. The digits stay the same. Only the zeros change.</p>
+      <div class="hookcards">
+        <div class="hookcard"><div class="big">4 x 3 = <span class="lit">12</span></div><div class="rv">Four groups of three. Twelve.</div></div>
+        <div class="hookcard"><div class="big">4 x 30 = <span class="lit">120</span></div><div class="rv">Four groups of thirty. Same 12, one zero added.</div></div>
+        <div class="hookcard"><div class="big">40 x 30 = <span class="lit">1,200</span></div><div class="rv">Forty groups of thirty. Same 12, two zeros added.</div></div>
+      </div>
+      <div class="reveal" id="hookrv">Multiplying by 10 makes a number 10 times bigger, so every digit shifts one place to the left. That looks like adding a zero on the end.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 2 &middot; What you will be able to do</div><h2>Your goal today</h2>
+      <ul class="objlist">
+        <li><span class="b">1</span><span>Multiply a one-digit number by any multiple of 10 from 10 to 90.</span></li>
+        <li><span class="b">2</span><span>Use the basic fact, then attach the right number of zeros.</span></li>
+        <li><span class="b">3</span><span>Explain why this works using place value.</span></li>
+      </ul>
+      <div class="why"><b>Why it matters:</b> this trick turns hard-looking problems into easy ones you already know. Once 4 x 3 is in your head, 40 x 30 is just one move away.</div>
+      <div class="stdtag"><span class="l">The objective (verbatim standard)</span>Multiply whole numbers by multiples of 10 in the range 10-90.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 3 &middot; Warm up</div><h2>Two quick questions</h2>
+      <p class="lead">No grade here. Tap an answer; if it is off, try again.</p>
+      <div id="warm"></div>
+    </div>
+
+    <button class="cta" id="toLearn">Start learning</button>
+  </section>
+
+  <section id="learn" class="hide">
+
+    <div class="station"><div class="beat">Beat 4 &middot; Teach (the pattern)</div><div class="shead"><span class="sno">LEARN 1</span><h2>The zero pattern</h2></div>
+      <p class="lead">Watch what stays and what changes. The digits 1 and 2 stay the same. Only the zeros grow.</p>
+      <div class="pattern">
+        <div class="row r1"><span class="lab">basic fact</span><span class="eq">4 &times; 3 = <span class="ans">12</span></span></div>
+        <div class="row r2"><span class="lab">x by 30</span><span class="eq">4 &times; 30 = <span class="ans">12<span class="zero">0</span></span></span></div>
+        <div class="row r3"><span class="lab">40 x 30</span><span class="eq">40 &times; 30 = <span class="ans">12<span class="zero">00</span></span></span></div>
+      </div>
+      <div class="note"><b>Big idea:</b> use the basic fact first, then count the zeros on each number and attach that many zeros to the answer.</div>
+    </div>
+
+    <div class="station" id="c-why"><div class="beat">Beat 4 &middot; Teach (why it works)</div><div class="shead"><span class="sno">LEARN 2</span><h2>Why "add a zero" works</h2></div>
+      <p class="lead">Multiplying by 10 makes the value 10 times bigger. Every digit shifts one place to the left. So 12 becomes ...</p>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">120, because each digit moves one place left</button>
+        <button class="pcard" type="button" data-ok="false">112, because you just stick a 1 in front</button>
+        <button class="pcard" type="button" data-ok="false">21, because you flip it</button>
+      </div>
+      <div class="reveal">Each digit moves one place left, so the ones digit becomes a tens digit, the tens digit becomes hundreds, and a 0 fills the new ones spot. That looks like adding a zero.</div>
+    </div>
+
+    <div class="station" id="c-step"><div class="beat">Beat 4 &middot; Teach (one step or two)</div><div class="shead"><span class="sno">LEARN 3</span><h2>Count the zeros</h2></div>
+      <p class="lead">For 40 x 30, how many zeros end up in the answer?</p>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">Two zeros (one from 40, one from 30)</button>
+        <button class="pcard" type="button" data-ok="false">One zero only</button>
+        <button class="pcard" type="button" data-ok="false">Three zeros</button>
+      </div>
+      <div class="reveal">Each "by 10" step adds one zero. 40 x 30 = (4 x 3) x 10 x 10 = 12 x 100 = 1,200.</div>
+    </div>
+
+    <div class="station" id="c-trap"><div class="beat">Beat 4 &middot; Teach (watch out)</div><div class="shead"><span class="sno">LEARN 4</span><h2>Two zeros, not one</h2></div>
+      <p class="lead">For 6 x 70, the answer is 420 (one zero attached). For 60 x 70 the answer is ...</p>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">4,200 (two zeros attached)</button>
+        <button class="pcard" type="button" data-ok="false">420 (same as 6 x 70)</button>
+        <button class="pcard" type="button" data-ok="false">42 (just the basic fact)</button>
+      </div>
+      <div class="reveal">6 x 7 = 42. Then count zeros: 60 has one zero, 70 has one zero. Two zeros total. 4,200.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 5 &middot; The array tool</div><div class="shead"><span class="sno">MODEL</span><h2>Watch the value scale up</h2></div>
+      <p class="lead">Pick a mode. "Dots" shows 4 x 3. "Strips" shows 4 x 30 (each strip is a stick of 10). "Big strips" shows 40 x 30 (each big square is 100). The math underneath updates as you slide.</p>
+      <div class="arr">
+        <div class="arrnum" id="arrTitle">4 x 3</div>
+        <div class="arrstage"><div class="arrgrid" id="arrGrid"></div></div>
+        <div class="arrctrls">
+          <div class="modepill" role="tablist">
+            <button type="button" id="modeOnes" aria-pressed="true">Dots (4 x 3)</button>
+            <button type="button" id="modeTens" aria-pressed="false">Strips (4 x 30)</button>
+            <button type="button" id="modeHuns" aria-pressed="false">Big strips (40 x 30)</button>
+          </div>
+          <div class="arrslider"><span class="lab">Rows</span><input type="range" id="rngR" min="1" max="6" value="4" aria-label="rows"><span class="val" id="vR">4</span></div>
+          <div class="arrslider"><span class="lab">Columns</span><input type="range" id="rngC" min="1" max="6" value="3" aria-label="columns"><span class="val" id="vC">3</span></div>
+        </div>
+        <div class="arrout" id="arrOut"></div>
+      </div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 6 &middot; Guided practice</div><div class="shead"><span class="sno">GUIDED</span><h2>You try, with hints</h2></div>
+      <p class="lead">Use the basic fact, then count zeros. No score here.</p>
+      <div id="guided"></div>
+    </div>
+
+    <button class="cta" id="toPractice">Go to practice on my own</button>
+  </section>
+
+  <section id="practice" class="hide">
+    <div class="station"><div class="beat">Beat 7 &middot; Mixed independent practice</div><div class="shead"><span class="sno">PRACTICE</span><h2>The skill in different clothes</h2></div>
+      <p class="lead">Tap an answer; if it is off, try again.</p>
+      <div id="practiceSet"></div>
+    </div>
+    <div class="station"><div class="beat">Beat 8 &middot; Retrieval</div><div class="shead"><span class="sno">RETRIEVAL</span><h2>From memory</h2></div>
+      <p class="lead">No tool this time. Pull it back out from memory.</p>
+      <div id="retrievalSet"></div>
+    </div>
+    <button class="cta go" id="toMastery">I am ready for the mastery check</button>
+  </section>
+
+  <section id="mastery" class="hide">
+    <div class="station"><div class="beat">Beat 9 and 10 &middot; Prove it</div><div class="shead"><span class="sno">MASTERY &middot; FORM A</span><h2>Show what you know</h2></div>
+      <p class="lead">A set of questions, then explain one idea, then solve and explain out loud.</p></div>
+    <div class="station" id="mcA"><div class="qmeta"><span id="qcountA">Question 1</span><span class="timer" id="tlabelA">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillA"></div></div>
+      <div class="qtext" id="qtextA"></div><div class="opts" id="optsA"></div>
+      <div class="qwhy" id="qwhyA"></div><div class="reteach hide" id="reteachA"></div>
+    </div>
+    <div class="station hide" id="explainA"><div class="shead"><span class="sno">EXPLAIN</span><h2>Say why</h2></div>
+      <p class="lead" id="explainStem"></p>
+      <textarea id="explainText" placeholder="Type your explanation here..." aria-label="your explanation"></textarea>
+      <button class="opt" id="showModel" style="margin-top:10px;width:auto;padding:10px 16px;">Show a strong answer to compare</button>
+      <div class="reveal" id="modelBox"></div>
+      <p class="lead" style="margin-top:12px;">Compare honestly. Does the explanation use the basic fact AND count the zeros?</p>
+      <button class="cta" id="toPT">Next: solve and explain</button>
+    </div>
+    <div class="station hide" id="ptA"><div class="shead"><span class="sno">PERFORMANCE TASK</span><h2>Solve it and explain it</h2></div>
+      <p class="lead" id="ptStem"></p>
+      <textarea id="ptAns" placeholder="Write the answer here, then say it out loud" aria-label="your answer"></textarea>
+      <div class="note"><b>Grown-up check.</b> Best done with an adult listening. Have the learner say the basic fact, count the zeros, then state the final answer.</div>
+      <table class="rubric" id="ptRubric"></table>
+      <div class="critrow">Did the learner skip the basic fact, miscount the zeros, or give the wrong final answer?</div>
+      <button class="cta go" id="ptDone">Go to the retention check</button>
+    </div>
+    <div class="station hide" id="resultA"><div class="scoreband"><span>Form A</span><span class="s" id="scoreAtxt">0</span><span style="flex:1"></span><span id="aStatus" style="font-weight:700;"></span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to the retention check</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station"><div class="beat">Beat 8 &middot; Spaced retention</div><div class="shead"><span class="sno">RETENTION &middot; FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">New problems on the same ideas, meant for a <b>later session, at least a day after Form A</b>.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this and come back tomorrow before doing Form B.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="station hide" id="mcB"><div class="qmeta"><span id="qcountB">Question 1</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div><div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+    <div class="station hide" id="resultB"><div class="scoreband"><span>Form B</span><span class="s" id="scoreBtxt">0</span><span style="flex:1"></span><span id="bStatus" style="font-weight:700;"></span></div>
+      <button class="cta go" id="toWrap">Reflect and see the credential</button>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station"><div class="beat">Beat 11 &middot; Reflect</div><div class="shead"><span class="sno">REFLECT</span><h2>Look back</h2></div>
+      <p class="lead">How did that feel?</p>
+      <div class="rate" id="feelRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="easy">Easy</button><button class="ratebtn" type="button" aria-pressed="false" data-v="just">Just right</button><button class="ratebtn" type="button" aria-pressed="false" data-v="hard">Tricky</button></div>
+      <p class="lead" style="margin-top:12px;">How sure are you about counting the zeros?</p>
+      <div class="rate" id="confRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="1">Not yet sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="2">Mostly sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="3">Very sure</button></div>
+      <p class="lead" style="margin-top:12px;">One thing you will remember:</p>
+      <textarea id="planText" placeholder="For example: I will say the basic fact first and then count zeros." aria-label="your plan"></textarea>
+      <button class="cta" id="saveReflect">Save my reflection</button>
+    </div>
+    <div class="station"><div class="beat">Beat 12 &middot; The big takeaway</div><div class="shead"><span class="sno">SYNTHESIS</span><h2>The one rule to keep</h2></div>
+      <div class="synth"><div class="rule">Use the basic fact first, then attach one zero for every "x 10."</div>
+        <p style="text-align:center;color:var(--ink2);">40 x 30 = (4 x 3) x 10 x 10 = 12 x 100 = 1,200.</p></div></div>
+    <div class="station"><div class="beat">Beat 12 &middot; Credential</div><div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery rule</h2></div>
+      <p class="lead">The 3.NBT.A.4 micro-credential is awarded when <b>both checks</b> are met: a strong Form A and a strong delayed Form B on a later day.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge" aria-live="polite"><div class="gem">&#9670;</div><h3>3.NBT.A.4 Mastered</h3><p>You can multiply whole numbers by multiples of 10 from 10 to 90.</p><p style="margin-top:8px;color:var(--ink2);">Next up: <b>3.RA.A.1, interpreting products.</b></p></div>
+      <div id="notyetBox" class="note hide"><b>Not yet, and that is fine.</b> <span id="notyetMsg"></span></div>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can head back to your dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer>Amelia &middot; Math &middot; Verbatim Missouri Learning Standard 3.NBT.A.4 &middot; Twelve-beat module.</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='math', DAY='3.NBT.A.4', SNAME='Amelia';
+
+  var DATA={
+    WARM:[
+      {q:"What is 4 x 3?",o:["12","7","43"],a:0,why:"Four groups of three is twelve.",hint:"Three plus three plus three plus three."},
+      {q:"What does 30 mean in place value?",o:["3 tens","3 ones","3 hundreds"],a:0,why:"30 is three tens, or 3 in the tens place.",hint:"Count the zeros."}
+    ],
+    GUIDED:[
+      {q:"6 x 7 = 42. So 6 x 70 = ?",o:["420","42","4,200"],a:0,why:"One zero from 70, attach one zero to 42.",hint:"Count the zeros on the second number."},
+      {q:"5 x 4 = 20. So 50 x 40 = ?",o:["2,000","200","20"],a:0,why:"One zero from 50, one from 40. Two zeros on 20.",hint:"Each x 10 adds a zero."},
+      {q:"What is 3 x 80?",o:["240","24","2,400"],a:0,why:"3 x 8 = 24. One zero. 240.",hint:"Basic fact 3 x 8."},
+      {q:"60 x 20 = ?",o:["1,200","120","12"],a:0,why:"6 x 2 = 12. Two zeros. 1,200.",hint:"6 x 2, then two zeros."}
+    ],
+    PRACTICE:[
+      {q:"4 x 30 = ?",o:["120","12","1,200","43"],a:0,why:"4 x 3 = 12, attach one zero.",hint:"Basic fact then one zero."},
+      {q:"7 x 50 = ?",o:["350","35","3,500","75"],a:0,why:"7 x 5 = 35, attach one zero.",hint:"7 x 5 first."},
+      {q:"20 x 30 = ?",o:["600","60","6,000","23"],a:0,why:"2 x 3 = 6, attach two zeros.",hint:"Two zeros total."},
+      {q:"50 x 80 = ?",o:["4,000","400","40,000","58"],a:0,why:"5 x 8 = 40, attach two zeros.",hint:"Basic fact ends in 0, so the answer has 3 zeros total."},
+      {q:"9 x 60 = ?",o:["540","54","5,400","69"],a:0,why:"9 x 6 = 54, attach one zero.",hint:"9 x 6 then one zero."},
+      {q:"30 x 30 = ?",o:["900","90","9,000","33"],a:0,why:"3 x 3 = 9, attach two zeros.",hint:"Two zeros total."}
+    ],
+    RETRIEVAL:[
+      {q:"From memory: 8 x 40 = ?",o:["320","32","3,200","84"],a:0,why:"8 x 4 = 32, attach one zero.",hint:"8 x 4 then one zero."},
+      {q:"From memory: 40 x 70 = ?",o:["2,800","280","28","47"],a:0,why:"4 x 7 = 28, attach two zeros.",hint:"4 x 7 then two zeros."}
+    ],
+    FORMA:[
+      {id:"A1",stem:"4 x 30 = ?",o:["120","12","1,200","43"],a:0,why:"4 x 3 = 12, attach one zero.",concept:"step"},
+      {id:"A2",stem:"6 x 70 = ?",o:["420","42","4,200","67"],a:0,why:"6 x 7 = 42, attach one zero.",concept:"step"},
+      {id:"A3",stem:"20 x 30 = ?",o:["600","60","6,000","23"],a:0,why:"2 x 3 = 6, attach two zeros.",concept:"trap"},
+      {id:"A4",stem:"40 x 30 = ?",o:["1,200","120","12","43"],a:0,why:"4 x 3 = 12, attach two zeros.",concept:"trap"},
+      {id:"A5",stem:"50 x 80 = ?",o:["4,000","400","40","58"],a:0,why:"5 x 8 = 40, attach two more zeros for the 50 and 80.",concept:"trap"},
+      {id:"A6",stem:"Why does multiplying by 10 \"add a zero\"?",o:["Each digit shifts one place to the left.","Because you can write any number.","Because zero is a number.","Because the answer is always 10."],a:0,why:"x 10 makes the value 10 times bigger, so every digit moves one place left.",concept:"why"},
+      {id:"A7",stem:"3 x 90 = ?",o:["270","27","2,700","93"],a:0,why:"3 x 9 = 27, attach one zero.",concept:"step"},
+      {id:"A8",stem:"60 x 60 = ?",o:["3,600","360","36","66"],a:0,why:"6 x 6 = 36, attach two zeros.",concept:"trap"}
+    ],
+    FORMB:[
+      {id:"B1",stem:"5 x 40 = ?",o:["200","20","2,000","54"],a:0,why:"5 x 4 = 20, attach one zero.",concept:"step"},
+      {id:"B2",stem:"7 x 80 = ?",o:["560","56","5,600","78"],a:0,why:"7 x 8 = 56, attach one zero.",concept:"step"},
+      {id:"B3",stem:"30 x 40 = ?",o:["1,200","120","12","34"],a:0,why:"3 x 4 = 12, attach two zeros.",concept:"trap"},
+      {id:"B4",stem:"50 x 60 = ?",o:["3,000","300","30","56"],a:0,why:"5 x 6 = 30, attach two more zeros for the multiples of 10.",concept:"trap"},
+      {id:"B5",stem:"20 x 70 = ?",o:["1,400","140","14","27"],a:0,why:"2 x 7 = 14, attach two zeros.",concept:"trap"},
+      {id:"B6",stem:"Why does x 30 work the same as x 3 with a zero attached?",o:["Because 30 is 3 tens, so multiplying by 30 is multiplying by 3 then by 10.","Because 30 starts with 3.","Because there is a zero in 30.","Because numbers always grow."],a:0,why:"30 = 3 x 10, so x 30 = x 3 x 10.",concept:"why"},
+      {id:"B7",stem:"9 x 40 = ?",o:["360","36","3,600","49"],a:0,why:"9 x 4 = 36, attach one zero.",concept:"step"},
+      {id:"B8",stem:"80 x 20 = ?",o:["1,600","160","16","82"],a:0,why:"8 x 2 = 16, attach two zeros.",concept:"trap"}
+    ],
+    EXPLAIN:{
+      stem:"Eli says 60 x 70 = 420, the same as 6 x 70. Explain his mistake, and give the correct answer.",
+      model:"He only counted one zero. 60 has a zero and 70 has a zero, so there should be two zeros attached to the basic fact. 6 x 7 = 42, then two zeros makes 4,200. The correct answer is 4,200."
+    },
+    PT:{
+      prompt:"Solve <b>40 x 30</b>. Say the basic fact you used, count how many zeros to attach, then say the final answer out loud.",
+      rubric:[
+        ["Basic fact","Names 4 x 3 = 12.","Skips the fact or uses the wrong one."],
+        ["Zero count","Counts two zeros (one from 40, one from 30).","Counts only one zero, or none."],
+        ["Answer","States 1,200 clearly.","Off by one zero, or face-value mix-up."],
+        ["Explains","Says why each x 10 adds one zero (place shift).","Cannot explain why."]
+      ]
+    },
+    PASS:7,
+    RETEACH:{"step":"c-step","trap":"c-trap","why":"c-why"}
+  };
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var PHASES=['start','learn','practice','mastery','retention','wrap'];
+  function show(id){ PHASES.forEach(function(s){ document.getElementById(s).classList.toggle('hide',s!==id); }); window.scrollTo(0,0); }
+  function setStep(id,cls){ var e=document.getElementById(id); if(e)e.className='pstep '+cls; }
+
+  var hookCards=document.querySelectorAll('.hookcard');
+  Array.prototype.forEach.call(hookCards,function(c){ c.addEventListener('click',function(){ c.classList.add('open');
+    var all=true; Array.prototype.forEach.call(hookCards,function(x){ if(!x.classList.contains('open'))all=false; });
+    if(all){var r=document.getElementById('hookrv'); if(r)r.classList.add('show');}
+  }); });
+
+  function tapQuiz(containerId, items){ var c=document.getElementById(containerId); if(!c)return; c.innerHTML='';
+    items.forEach(function(it,qi){ var card=document.createElement('div'); card.className='tq';
+      var q=document.createElement('div'); q.className='tqq'; q.innerHTML=(qi+1)+'. '+it.q; card.appendChild(q);
+      var opts=document.createElement('div'); opts.className='opts'; var why=document.createElement('div'); why.className='qwhy';
+      it.o.forEach(function(t,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(b.dataset.l)return;
+          if(i===it.a){ Array.prototype.forEach.call(opts.children,function(x){x.dataset.l='1';x.style.pointerEvents='none';}); b.classList.add('correct'); why.style.color='var(--good)'; why.textContent='Correct. '+(it.why||''); }
+          else { b.classList.add('bad'); b.dataset.l='1'; b.style.pointerEvents='none'; why.style.color='var(--alt)'; why.textContent='Try again. '+(it.hint||''); }
+        }); opts.appendChild(b); });
+      card.appendChild(opts); card.appendChild(why); c.appendChild(card);
+    });
+  }
+  tapQuiz('warm', DATA.WARM);
+  tapQuiz('guided', DATA.GUIDED);
+
+  Array.prototype.forEach.call(document.querySelectorAll('.predict'),function(row){ var rev=row.nextElementSibling;
+    Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ if(b.dataset.done)return;
+      Array.prototype.forEach.call(row.children,function(c){c.dataset.done='1';});
+      if(b.getAttribute('data-ok')==='true')b.classList.add('ok'); else { b.classList.add('no'); Array.prototype.forEach.call(row.children,function(c){if(c.getAttribute('data-ok')==='true')c.classList.add('ok');}); }
+      if(rev)rev.classList.add('show');
+    }); }); });
+
+  // array builder
+  var arrMode='ones', rows=4, cols=3;
+  var grid=document.getElementById('arrGrid'), title=document.getElementById('arrTitle'), out=document.getElementById('arrOut');
+  var rngR=document.getElementById('rngR'), rngC=document.getElementById('rngC'), vR=document.getElementById('vR'), vC=document.getElementById('vC');
+  function multiplierForMode(){ return arrMode==='ones'?1:(arrMode==='tens'?10:100); }
+  function renderArr(){
+    grid.className='arrgrid'+(arrMode==='tens'?' strips':arrMode==='huns'?' bigstrips':'');
+    grid.style.gridTemplateColumns='repeat('+cols+', auto)';
+    grid.innerHTML='';
+    for(var i=0;i<rows*cols;i++){ var d=document.createElement('div'); d.className='cell'; grid.appendChild(d); }
+    var rDisp=arrMode==='huns'?rows*10:rows; var cDisp=arrMode==='ones'?cols:cols*10;
+    title.textContent=rDisp+' x '+cDisp;
+    vR.textContent=rows; vC.textContent=cols;
+    var fact=rows*cols, total=fact*multiplierForMode();
+    var explain;
+    if(arrMode==='ones'){ explain=rows+' x '+cols+' = '+fact; }
+    else if(arrMode==='tens'){ explain=rows+' x '+cols+' = '+fact+', then x 10 = <span class="a">'+total+'</span>'; }
+    else { explain=rows+' x '+cols+' = '+fact+', then x 100 = <span class="a">'+total.toLocaleString()+'</span>'; }
+    out.innerHTML=explain;
+    document.getElementById('modeOnes').setAttribute('aria-pressed',arrMode==='ones');
+    document.getElementById('modeTens').setAttribute('aria-pressed',arrMode==='tens');
+    document.getElementById('modeHuns').setAttribute('aria-pressed',arrMode==='huns');
+  }
+  document.getElementById('modeOnes').addEventListener('click',function(){arrMode='ones';renderArr();});
+  document.getElementById('modeTens').addEventListener('click',function(){arrMode='tens';renderArr();});
+  document.getElementById('modeHuns').addEventListener('click',function(){arrMode='huns';renderArr();});
+  rngR.addEventListener('input',function(){rows=parseInt(rngR.value,10);renderArr();});
+  rngC.addEventListener('input',function(){cols=parseInt(rngC.value,10);renderArr();});
+  renderArr();
+
+  tapQuiz('practiceSet', DATA.PRACTICE);
+  tapQuiz('retrievalSet', DATA.RETRIEVAL);
+
+  document.getElementById('toLearn').addEventListener('click',function(){ show('learn'); setStep('ps-start','done'); setStep('ps-learn','on'); });
+  document.getElementById('toPractice').addEventListener('click',function(){ show('practice'); setStep('ps-learn','done'); setStep('ps-practice','on'); });
+  document.getElementById('toMastery').addEventListener('click',function(){ show('mastery'); setStep('ps-practice','done'); setStep('ps-mastery','on'); startMC('A'); });
+
+  var QTIME=25, mcState={};
+  function ids(f){ return {q:'qtext'+f,o:'opts'+f,c:'qcount'+f,tl:'tlabel'+f,tf:'tfill'+f,why:'qwhy'+f,re:'reteach'+f}; }
+  function startMC(form){ mcState[form]={i:0,correct:0,wrong:[],timer:null,left:QTIME,locked:false}; rec.attempts=(rec.attempts||0)+1; save(app); showQ(form); }
+  function showQ(form){ var st=mcState[form],items=DATA['FORM'+form],it=items[st.i],el=ids(form); st.locked=false;
+    document.getElementById(el.c).textContent='Question '+(st.i+1)+' of '+items.length;
+    document.getElementById(el.q).innerHTML=it.stem;
+    var why=document.getElementById(el.why); why.textContent=''; var re=document.getElementById(el.re); if(re){re.classList.add('hide');re.innerHTML='';}
+    var opts=document.getElementById(el.o); opts.innerHTML='';
+    it.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.textContent=txt; b.addEventListener('click',function(){answer(form,i,b);}); opts.appendChild(b); });
+    st.left=QTIME; var tf=document.getElementById(el.tf),tl=document.getElementById(el.tl); tf.style.width='100%'; tf.classList.remove('low'); tl.textContent=QTIME+'s'; clearInterval(st.timer);
+    st.timer=setInterval(function(){ st.left--; if(st.left<0)st.left=0; tf.style.width=(st.left/QTIME*100)+'%'; tl.textContent=st.left+'s'; if(st.left<=8)tf.classList.add('low'); if(st.left===0)clearInterval(st.timer); },1000);
+  }
+  function answer(form,i,btn){ var st=mcState[form]; if(st.locked)return; st.locked=true; clearInterval(st.timer);
+    var items=DATA['FORM'+form],it=items[st.i],el=ids(form),ok=(i===it.a),opts=document.getElementById(el.o);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===it.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    var why=document.getElementById(el.why);
+    if(ok){ st.correct++; why.style.color='var(--good)'; why.textContent='Correct. '+it.why; }
+    else { st.wrong.push({stem:it.stem,picked:it.o[i],correct:it.o[it.a]}); why.style.color='var(--alt)'; why.textContent='Not quite. '+it.why;
+      var re=document.getElementById(el.re); if(re){ var loc=(DATA.RETEACH[it.concept]||'learn'); re.classList.remove('hide'); re.innerHTML='Want a quick reteach? <a href="#'+loc+'">Back to that idea</a>'; } }
+    setTimeout(function(){ st.i++; if(st.i<items.length) showQ(form); else finishMC(form); }, ok?700:1250);
+  }
+  function finishMC(form){ var st=mcState[form];
+    if(form==='A'){ rec.formA=st.correct; rec.best=Math.max(rec.best||0,Math.round(st.correct/DATA.FORMA.length*100)); rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcA').classList.add('hide'); document.getElementById('explainA').classList.remove('hide');
+      document.getElementById('explainStem').innerHTML=DATA.EXPLAIN.stem; window.scrollTo(0,0);
+    } else { rec.formB=st.correct; rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcB').classList.add('hide'); document.getElementById('resultB').classList.remove('hide');
+      document.getElementById('scoreBtxt').textContent=st.correct+' / '+DATA.FORMB.length;
+      var bs=document.getElementById('bStatus'),pass=st.correct>=DATA.PASS; bs.textContent=(pass?'Strong':'Needs another pass'); bs.style.color=(pass?'var(--good)':'var(--alt)');
+      if(pass){ rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud(); }
+      commitTime(); window.scrollTo(0,0);
+    }
+  }
+
+  document.getElementById('showModel').addEventListener('click',function(){ var m=document.getElementById('modelBox'); m.innerHTML='<b>A strong answer:</b> '+DATA.EXPLAIN.model; m.classList.add('show'); });
+  document.getElementById('toPT').addEventListener('click',function(){ document.getElementById('explainA').classList.add('hide'); document.getElementById('ptA').classList.remove('hide'); setupPT(); window.scrollTo(0,0); });
+
+  function setupPT(){ var p=DATA.PT; document.getElementById('ptStem').innerHTML=p.prompt;
+    var tb=document.getElementById('ptRubric'); tb.innerHTML='<tr><th>What strong work looks like</th><th>What to watch for</th></tr>';
+    p.rubric.forEach(function(c){ var tr=document.createElement('tr'); tr.innerHTML='<td><b>'+c[0]+'.</b> '+c[1]+'</td><td>'+c[2]+'</td>'; tb.appendChild(tr); });
+  }
+
+  document.getElementById('ptDone').addEventListener('click',function(){ var mc=rec.formA||0; save(app);
+    document.getElementById('ptA').classList.add('hide'); document.getElementById('resultA').classList.remove('hide');
+    document.getElementById('scoreAtxt').textContent=mc+' / '+DATA.FORMA.length;
+    var strong=(mc>=DATA.PASS), stt=document.getElementById('aStatus'); stt.textContent=strong?'Form A clear':'Reteach needed'; stt.style.color=strong?'var(--good)':'var(--alt)';
+    document.getElementById('aMsg').innerHTML = strong ? 'Form A is at the bar. The written explanation and the out-loud task are for you and an adult to talk through; the badge comes from Form A and the delayed Form B.' : 'Form A is not at the bar yet. Reteach, then run Form A again.';
+    document.getElementById('retryA').classList.toggle('hide',strong); document.getElementById('toRetention').classList.toggle('hide',!strong);
+    if(strong){ rec.status='formA-passed'; save(app); syncCloud(); }
+    commitTime(); window.scrollTo(0,0);
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show('learn'); setStep('ps-mastery','');setStep('ps-practice','on');setStep('ps-learn','done'); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show('retention'); setStep('ps-mastery','done'); setStep('ps-retention','on'); });
+  document.getElementById('startB').addEventListener('click',function(){ document.getElementById('mcB').classList.remove('hide'); this.classList.add('hide'); startMC('B'); });
+  document.getElementById('toWrap').addEventListener('click',function(){ show('wrap'); setStep('ps-retention','done'); setStep('ps-wrap','on'); decide(); });
+
+  var feel=null, conf=null;
+  function pickOne(rowId,setter){ var row=document.getElementById(rowId); Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ setter(b.getAttribute('data-v')); Array.prototype.forEach.call(row.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); }); }); }
+  pickOne('feelRate',function(v){feel=v;}); pickOne('confRate',function(v){conf=v;});
+  document.getElementById('saveReflect').addEventListener('click',function(){ rec.feedback={rating:feel||'just',tag:'clear',at:Date.now(),confidence:conf?parseInt(conf,10):null,plan:(document.getElementById('planText').value||'').slice(0,500)}; save(app); document.getElementById('donebox').classList.remove('hide'); window.scrollTo({top:document.getElementById('badge').offsetTop,behavior:'smooth'}); });
+
+  function decide(){ var mcA=rec.formA||0, mcB=rec.formB||0, PASS=DATA.PASS;
+    var rows=[ {ok:mcA>=PASS,t:'Form A check',d:'At least '+PASS+' of '+DATA.FORMA.length+'. You got '+mcA+'.'},
+               {ok:mcB>=PASS,t:'Delayed retention (Form B)',d:'At least '+PASS+' of '+DATA.FORMB.length+' on a later day. You got '+mcB+'.'} ];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'✓':'!')+'</span><span class="g2"><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    var all=rows.every(function(r){return r.ok;});
+    if(all){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); var b=document.getElementById('notyetBox'); b.classList.remove('hide'); document.getElementById('notyetMsg').textContent='Pass the Form A check and the delayed Form B check (on a later day) and the badge is yours.'; }
+    commitTime();
+  }
+})();
+</script>
+</body>
+</html>

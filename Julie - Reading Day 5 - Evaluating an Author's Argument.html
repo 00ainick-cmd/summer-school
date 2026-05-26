@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 05 &middot; Evaluating an Author's Argument</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--gold:#a8780d;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .fbline{margin-top:12px;font-size:15px;min-height:1.4em;}
+  .fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+  @media (max-width:640px){.threecol{grid-template-columns:1fr;}}
+  .vcard{background:#faf8f2;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .vcard h3{font-family:'Anton';font-size:15px;letter-spacing:.04em;color:var(--accent-d);margin-bottom:4px;}
+  .vcard p{font-size:14.5px;color:var(--ink2);}
+  .ftable{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+  .ftable th,.ftable td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  .ftable th{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
+  .ftable td b{color:var(--accent-d);}
+  .arg{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;}
+  .arg .atop{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;}
+  .arg .atop .num{color:var(--accent);}
+  .arg .abody{padding:14px 16px;}
+  .pas{font-size:15.5px;line-height:1.65;color:var(--ink);}
+  .sentence{cursor:pointer;padding:2px 4px;border-radius:4px;transition:background-color .15s;}
+  .sentence:hover{background:#fff2c0;}
+  .sentence.flagged{background:#fdecea;color:var(--red);outline:1.5px solid var(--red);}
+  .sentence.flagged.right{background:#e9f5ee;color:var(--good);outline-color:var(--good);}
+  .sentence.missed{outline:1.5px dashed var(--accent-d);background:#fff2c0;}
+  .qprompt{margin-top:14px;font-weight:700;font-size:15.5px;}
+  .evs{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+  .ev{font:inherit;font-size:15.5px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:12px 14px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .ev:hover{border-color:var(--accent);}
+  .ev.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+  .ev.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .ev:disabled{cursor:default;}
+  .flagrow{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .flagctl{font:inherit;font-size:13.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:9px 12px;min-height:40px;cursor:pointer;color:var(--ink2);font-family:'Spline Sans Mono';letter-spacing:.05em;text-transform:uppercase;}
+  .flagctl:hover{border-color:var(--accent);}
+  .flagctl:disabled{cursor:default;opacity:.55;}
+  .legend{font-size:13px;color:var(--mute);}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:10px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:16.5px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:10px;font-size:14.5px;min-height:1.3em;}
+  .scoreband{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;margin-top:14px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;line-height:1;color:var(--ink);}
+  .scoreband .lbl{font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .gateitem{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:#fff;}
+  .gateitem.met{border-color:var(--good);background:#eaf5ee;}
+  .gateitem.miss{border-color:#f3c2bd;background:#fdf0ee;}
+  .gateitem .mk{font-family:'Anton';font-size:20px;flex:none;width:28px;text-align:center;color:var(--ink);}
+  .gateitem.met .mk{color:var(--good);} .gateitem.miss .mk{color:var(--accent-d);}
+  .gateitem b{display:block;font-size:15px;}
+  .gateitem .gd{font-size:13.5px;color:var(--ink2);margin-top:2px;}
+  .badge{display:none;margin-top:16px;background:#14171c;color:#fff;border-radius:14px;padding:18px 18px;text-align:center;}
+  .badge.show{display:block;}
+  .badge .gem{font-family:'Anton';font-size:34px;color:var(--accent);}
+  .badge h3{font-family:'Anton';letter-spacing:.04em;font-size:22px;margin:6px 0;}
+  .badge p{color:#c7cad0;font-size:14.5px;}
+  .note{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:12px 14px;font-size:14.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;margin-top:8px;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} .sentence{transition:none;} html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.RI.2.D</span></div>
+  <section id="lesson">
+    <div class="kicker">Session 05</div>
+    <h1>Evaluating an Author's Argument</h1>
+    <p class="mission">An argument is not just a strong opinion stated loudly. It is a claim, supported by reasoning, supported by evidence. Your job as a reader is to take that structure apart and ask whether the pieces actually hold each other up, or whether something off-topic, fallacious, or emotional has been smuggled in.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Evaluate an author's argument, assessing whether the reasoning is sound and the evidence is relevant and sufficient; recognize when irrelevant evidence is introduced.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>The structure: claim, reasoning, evidence</h2></div>
+      <div class="threecol">
+        <div class="vcard"><h3>Claim</h3><p>The conclusion the author wants you to accept. Usually one sentence.</p></div>
+        <div class="vcard"><h3>Reasoning</h3><p>The logical bridge: why, if the evidence is true, the claim follows.</p></div>
+        <div class="vcard"><h3>Evidence</h3><p>The facts, data, examples, or sources offered as proof.</p></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">An argument is <b>sound</b> when the premises are true, the reasoning is valid, and the evidence is both relevant and sufficient. Take away any one of those and the argument leaks.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Four common fallacies to spot</h2></div>
+      <table class="ftable">
+        <tr><th>Fallacy</th><th>The move</th><th>Example</th></tr>
+        <tr><td><b>Hasty generalization</b></td><td>Drawing a broad claim from too few cases.</td><td>"Two of my classmates failed the test, so the test must be unfair to everyone."</td></tr>
+        <tr><td><b>Ad hominem</b></td><td>Attacking the person instead of the argument.</td><td>"You cannot trust her data on energy policy. She is barely thirty."</td></tr>
+        <tr><td><b>Appeal to popularity</b></td><td>Treating popularity as proof.</td><td>"Most people believe it, so it must be correct."</td></tr>
+        <tr><td><b>Red herring</b></td><td>Switching to a different issue to dodge the point.</td><td>"We should not raise the speed limit. The real problem is potholes."</td></tr>
+      </table>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Relevant vs irrelevant evidence</h2></div>
+      <p class="lead">Even true evidence can be off-topic.</p>
+      <table class="ftable">
+        <tr><th>Claim</th><th>Relevant</th><th>Irrelevant</th></tr>
+        <tr><td>The school should add an after-school engineering club.</td><td>A survey shows 60 percent of students would attend at least monthly.</td><td>The school's basketball team won regionals last year.</td></tr>
+        <tr><td>This brand of running shoe lasts longer.</td><td>Lab wear-tests show the sole lasts 30 percent more miles.</td><td>The brand's commercials are funny.</td></tr>
+      </table>
+      <p class="lead" style="margin-top:10px;">Evidence is <b>relevant</b> when it directly supports the specific claim. It is <b>sufficient</b> when there is enough of it to actually settle the question. Strong feelings are not evidence.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Take apart three short arguments</h2></div>
+      <p class="lead">For each passage: first identify the author's claim, then flag any sentences that are <b>irrelevant</b> or <b>fallacious</b>. Tap a sentence to flag it. Tap again to unflag.</p>
+      <div id="args"></div>
+    </div>
+
+    <button class="cta" id="ptDone">I worked through it. Start Form A (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">30s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="afterA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A &middot; RESULT</span><h2 id="aTitle">Result</h2></div>
+      <div class="scoreband"><span class="s" id="aScore">0 / 8</span><span class="lbl">PASS BAR 7 / 8</span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to the retention check (Form B)</button>
+      <button class="cta alt hide" id="retryA">Revisit the lesson and retry Form A</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RETENTION</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Same standard, new arguments. Best done <b>at least a day after Form A</b>: that delay is what proves the skill lasted.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this tab and come back tomorrow for Form B.</div>
+      <button class="cta" id="startB">Start Form B (8 questions)</button>
+    </div>
+    <div class="hide" id="mcB">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">30s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RESULT</span><h2>Retention result</h2></div>
+      <div class="scoreband"><span class="s" id="bScore">0 / 8</span><span class="lbl">PASS BAR 7 / 8</span></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">MASTERY</span><h2>Credential check</h2></div>
+      <p class="lead">The 8.RI.2.D credential is awarded when <b>both</b> Form A and the delayed Form B clear the bar.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge"><div class="gem">&#9670;</div><h3>8.RI.2.D mastered</h3><p>You can evaluate an author's argument, judge whether the evidence is sound and sufficient, and spot irrelevant or fallacious moves.</p></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">REFLECT</span><h2>One line in your own words</h2></div>
+      <p class="lead">Write one sentence: name a place you actually meet arguments (an article, a post, a video) and one move you will watch for the next time.</p>
+      <div class="reflectbox"><textarea id="reflectNote" placeholder="For example: On YouTube reviews, I am going to watch for hasty generalizations from a single test run." aria-label="reflection"></textarea></div>
+      <button class="cta" id="saveReflect">Save and finish</button>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. Head back to the dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie &middot; Reading &middot; Day 5 &middot; 8.RI.2.D</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='reading', DAY='8.RI.2.D', SNAME='Julie';
+  var QTIME=30, PASS=7;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,formA:rec.formA||0,formB:rec.formB||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var ARGS=[
+    {n:1,
+     sentences:[
+       {t:'Our school should add an after-school engineering club next semester.',kind:'claim',why:'This is the author\'s main claim.'},
+       {t:'In a recent survey, 62 percent of eighth graders said they would attend at least twice a month.',kind:'good',why:'Relevant survey evidence directly supporting demand for the club.'},
+       {t:'Two nearby schools that added clubs reported strong attendance over the full year.',kind:'good',why:'Relevant evidence from comparable schools.'},
+       {t:'Plus, our basketball team won regionals last year, so this is clearly a school that succeeds at extracurriculars.',kind:'bad',why:'Irrelevant. Basketball success has nothing to do with whether an engineering club will work.'},
+       {t:'A teacher has already volunteered to lead it for the first year.',kind:'good',why:'Relevant: the proposal has feasibility evidence.'}
+     ],
+     claimChoices:[
+       {t:'Our school should add an after-school engineering club next semester.',ok:true},
+       {t:'A teacher has volunteered to lead the club.',ok:false},
+       {t:'The basketball team is good.',ok:false},
+       {t:'Surveys are an important tool.',ok:false}
+     ],
+     claimWhy:'The first sentence states the position the author wants the reader to accept.'
+    },
+    {n:2,
+     sentences:[
+       {t:'The city should not raise the speed limit on Maple Avenue.',kind:'claim',why:'The author\'s main claim.'},
+       {t:'Two cyclists were hit there last year, and three pedestrians have been injured in the past five years.',kind:'good',why:'Relevant safety evidence directly tied to the road in question.'},
+       {t:'A traffic study found that current average speeds already exceed the posted limit by seven miles per hour.',kind:'good',why:'Relevant: shows the problem is already worse than the law allows.'},
+       {t:'Honestly, the council member proposing this change is barely thirty and has only lived here for a year.',kind:'bad',why:'Ad hominem. Attacks the person rather than the argument.'},
+       {t:'And anyway, the real problem with Maple Avenue is potholes, which the city has done nothing about.',kind:'bad',why:'Red herring. Switches the topic away from the speed limit question.'}
+     ],
+     claimChoices:[
+       {t:'The city should not raise the speed limit on Maple Avenue.',ok:true},
+       {t:'The council member is too young to be trusted.',ok:false},
+       {t:'Potholes are the biggest problem on Maple Avenue.',ok:false},
+       {t:'Cyclists should wear helmets.',ok:false}
+     ],
+     claimWhy:'The first sentence states the position the author is defending.'
+    },
+    {n:3,
+     sentences:[
+       {t:'The new study app is the best option for our class this year.',kind:'claim',why:'The author\'s main claim.'},
+       {t:'In a six-week trial with two classrooms, students using the app scored an average of 11 points higher on the unit test.',kind:'good',why:'Relevant, measured evidence from a direct trial.'},
+       {t:'My two friends tried it for a weekend and loved it, which already tells you everything you need to know.',kind:'bad',why:'Hasty generalization. Two people for a weekend is too small a sample to settle a class-wide claim.'},
+       {t:'Over a million students worldwide already use it, so it must be the right choice for us too.',kind:'bad',why:'Appeal to popularity. Lots of users does not, by itself, prove the app is best for this class.'},
+       {t:'The app is also free for schools, which removes the cost barrier.',kind:'good',why:'Relevant: removes a practical objection to adopting it.'}
+     ],
+     claimChoices:[
+       {t:'The new study app is the best option for our class this year.',ok:true},
+       {t:'My two friends like the app.',ok:false},
+       {t:'A million students cannot be wrong.',ok:false},
+       {t:'Free apps are always better.',ok:false}
+     ],
+     claimWhy:'The first sentence is the position the rest of the argument tries to defend.'
+    }
+  ];
+
+  var argsBox=document.getElementById('args');
+  ARGS.forEach(function(a){
+    var card=document.createElement('div'); card.className='arg';
+    card.innerHTML='<div class="atop"><span>Passage <span class="num">'+a.n+' of '+ARGS.length+'</span></span><span>Tap to flag irrelevant or fallacious sentences</span></div>';
+    var body=document.createElement('div'); body.className='abody';
+    var pas=document.createElement('div'); pas.className='pas';
+    a.sentences.forEach(function(s,i){
+      var sp=document.createElement('span'); sp.className='sentence'; sp.textContent=s.t+' '; sp.dataset.idx=i;
+      sp.setAttribute('role','button'); sp.setAttribute('tabindex','0');
+      sp.addEventListener('click',function(){ if(sp.dataset.locked) return; sp.classList.toggle('flagged'); });
+      sp.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); sp.click(); } });
+      pas.appendChild(sp);
+    });
+    body.appendChild(pas);
+    var legend=document.createElement('div'); legend.className='legend'; legend.style.marginTop='8px';
+    legend.textContent='Click a sentence to flag. Click again to unflag.';
+    body.appendChild(legend);
+
+    var ctrl=document.createElement('div'); ctrl.className='flagrow';
+    var chk=document.createElement('button'); chk.className='flagctl'; chk.type='button'; chk.textContent='Check flags';
+    ctrl.appendChild(chk);
+    body.appendChild(ctrl);
+    var flagFb=document.createElement('div'); flagFb.className='fbline'; body.appendChild(flagFb);
+
+    var q=document.createElement('div'); q.className='qprompt'; q.textContent='Now identify the author\'s claim.'; q.style.marginTop='14px'; body.appendChild(q);
+    var evs=document.createElement('div'); evs.className='evs';
+    a.claimChoices.forEach(function(c){
+      var b=document.createElement('button'); b.className='ev'; b.type='button'; b.textContent=c.t;
+      b.addEventListener('click',function(){
+        Array.prototype.forEach.call(evs.children,function(x){x.disabled=true;});
+        if(c.ok){ b.classList.add('ok'); claimFb.className='fbline ok'; claimFb.textContent=a.claimWhy; }
+        else { b.classList.add('no'); claimFb.className='fbline try'; claimFb.textContent='Not quite. '+a.claimWhy;
+          Array.prototype.forEach.call(evs.children,function(x,i){ if(a.claimChoices[i].ok)x.classList.add('ok'); }); }
+      });
+      evs.appendChild(b);
+    });
+    body.appendChild(evs);
+    var claimFb=document.createElement('div'); claimFb.className='fbline'; body.appendChild(claimFb);
+
+    chk.addEventListener('click',function(){
+      var sents=pas.querySelectorAll('.sentence'); var hits=0, misses=0, falseFlags=0;
+      Array.prototype.forEach.call(sents,function(sp){
+        var i=parseInt(sp.dataset.idx,10), s=a.sentences[i]; sp.dataset.locked='1';
+        if(sp.classList.contains('flagged')){
+          if(s.kind==='bad'){ sp.classList.add('right'); hits++; }
+          else { falseFlags++; }
+        } else if(s.kind==='bad'){
+          sp.classList.add('missed'); misses++;
+        }
+      });
+      var lines=[];
+      a.sentences.forEach(function(s){ if(s.kind==='bad') lines.push('<b>Bad evidence:</b> "'+s.t+'" '+s.why); });
+      var total=a.sentences.filter(function(s){return s.kind==='bad';}).length;
+      flagFb.className='fbline '+(hits===total&&falseFlags===0?'ok':'try');
+      flagFb.innerHTML=(hits===total&&falseFlags===0?'Clean read. ':'Caught '+hits+' of '+total+' weak sentences'+(falseFlags?' (and flagged '+falseFlags+' that were fine).':'.'))+'<br>'+lines.join('<br>');
+      chk.disabled=true;
+    });
+
+    argsBox.appendChild(card);
+  });
+
+  var FORMA=[
+    {q:'An author\'s <b>argument</b> is built from...',o:['mood, theme, and setting','claim, reasoning, and evidence','plot, conflict, and resolution','title, intro, and conclusion'],a:1,why:'These three parts are the bones of any argument.'},
+    {q:'A <b>claim</b> is best described as...',o:['a fact','the position the author wants the reader to accept','an opinion no one cares about','an introduction'],a:1,why:'The claim is the conclusion the rest of the argument is trying to defend.'},
+    {q:'<b>Sound reasoning</b> means...',o:['the writing sounds nice','if the premises are true, the conclusion follows','the writer is famous','the conclusion is popular'],a:1,why:'Sound reasoning is a valid logical bridge from premises to conclusion.'},
+    {q:'"My two cousins took the test and failed, so the test must be unfair to everyone." This is...',o:['ad hominem','hasty generalization','appeal to popularity','sound reasoning'],a:1,why:'A broad claim drawn from a tiny sample is a hasty generalization.'},
+    {q:'"You cannot trust her research. She is only nineteen." This is...',o:['relevant evidence','red herring','ad hominem','strong reasoning'],a:2,why:'Attacking the person instead of the argument is ad hominem.'},
+    {q:'"Most people think it is true, so it must be true." This is...',o:['appeal to popularity','hasty generalization','relevant evidence','sound reasoning'],a:0,why:'Treating popularity as proof is the appeal-to-popularity fallacy.'},
+    {q:'Claim: "Our city should add a new bike lane on Elm Street." Which evidence is <b>irrelevant</b>?',o:['A survey of 400 residents shows 70 percent want safer bike routes.','A traffic study shows Elm Street has the highest bike injury rate in the city.','The mayor of a different city has a nice haircut.','A nearby city saw a 30 percent drop in injuries after adding bike lanes.'],a:2,why:'A mayor\'s haircut has nothing to do with whether Elm Street should have a bike lane.'},
+    {q:'Evidence is <b>sufficient</b> when...',o:['there is at least one example','it is shown in color','there is enough of it to actually settle the question','it appears late in the text'],a:2,why:'Sufficient means there is enough evidence, in quantity and quality, to support the claim.'}
+  ];
+  var FORMB=[
+    {q:'Which is the clearest example of a <b>claim</b>?',o:['Many readers enjoy nonfiction.','Our school day should start thirty minutes later.','Last year was 2024.','The library has many books.'],a:1,why:'A claim is a position the author wants accepted. The others are facts or observations.'},
+    {q:'"My older brother tried the new lunch and hated it, so the new lunch will not work for our school." This is...',o:['sound reasoning','hasty generalization','red herring','appeal to popularity'],a:1,why:'One person\'s reaction is too small a sample to support a school-wide claim.'},
+    {q:'"That report is wrong because the author has bad handwriting." This is...',o:['ad hominem','red herring','hasty generalization','sound reasoning'],a:0,why:'Attacking the person, not the argument, is ad hominem.'},
+    {q:'"We should keep the curfew. The real issue is that the new bus schedule is terrible." This is...',o:['red herring','hasty generalization','sound reasoning','appeal to popularity'],a:0,why:'Switching to a different topic to avoid the original question is a red herring.'},
+    {q:'"Almost everyone in town agrees the proposal is good, so it must be good." This is...',o:['appeal to popularity','sound reasoning','red herring','relevant evidence'],a:0,why:'Popularity is not proof. This is the appeal-to-popularity fallacy.'},
+    {q:'Claim: "Our team should add a Saturday practice." Which evidence is most <b>relevant</b>?',o:['Last season\'s team had matching warm-ups.','Teams in our league that added Saturday practice improved their record by an average of 15 percent.','Our coach drives a red car.','The school has a strong band program.'],a:1,why:'Direct, comparable evidence linking Saturday practice to improved results is relevant.'},
+    {q:'Recognizing <b>irrelevant evidence</b> matters because...',o:['it is rude to use','it can make a weak argument look stronger than it is','it always uses big words','it is illegal'],a:1,why:'Irrelevant evidence pads an argument and can disguise weak reasoning.'},
+    {q:'An argument with a true claim but only one weak example for evidence is most accurately described as...',o:['sound and well supported','possibly true but not sufficiently supported','automatically false','an ad hominem'],a:1,why:'A true claim still needs sufficient evidence. One weak example is not enough to settle the question.'}
+  ];
+
+  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),
+      secAfter=document.getElementById('afterA'), secRet=document.getElementById('retention'), secWrap=document.getElementById('wrap');
+  function show(s){ [secLesson,secCheck,secAfter,secRet,secWrap].forEach(function(x){x.classList.add('hide');}); s.classList.remove('hide'); window.scrollTo(0,0); }
+
+  function runForm(form,items,onDone){
+    var elQ=document.getElementById(form==='A'?'qtext':'qtextB');
+    var elO=document.getElementById(form==='A'?'opts':'optsB');
+    var elC=document.getElementById(form==='A'?'qcount':'qcountB');
+    var elTL=document.getElementById(form==='A'?'tlabel':'tlabelB');
+    var elTF=document.getElementById(form==='A'?'tfill':'tfillB');
+    var elWhy=document.getElementById(form==='A'?'qwhy':'qwhyB');
+    var i=0, correct=0, wrong=[], left=QTIME, timer=null, locked=false;
+    function showQ(){
+      locked=false; var it=items[i];
+      elC.textContent='Question '+(i+1)+' of '+items.length;
+      elQ.innerHTML=it.q; elWhy.textContent=''; elWhy.style.color='var(--ink2)';
+      elO.innerHTML='';
+      it.o.forEach(function(t,idx){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(locked)return; locked=true; clearInterval(timer);
+          var ok=(idx===it.a);
+          Array.prototype.forEach.call(elO.children,function(c,j){ if(j===it.a)c.classList.add('correct'); if(j===idx&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+          if(ok){ correct++; elWhy.style.color='var(--good)'; elWhy.textContent='Correct. '+it.why; }
+          else { wrong.push({stem:it.q,picked:it.o[idx],correct:it.o[it.a]}); elWhy.style.color='var(--accent-d)'; elWhy.textContent='Not quite. '+it.why; }
+          setTimeout(function(){ i++; if(i<items.length) showQ(); else onDone(correct,wrong); }, ok?700:1300);
+        });
+        elO.appendChild(b);
+      });
+      left=QTIME; elTF.style.width='100%'; elTF.classList.remove('low'); elTL.textContent=QTIME+'s'; clearInterval(timer);
+      timer=setInterval(function(){ left--; if(left<0)left=0; elTF.style.width=(left/QTIME*100)+'%'; elTL.textContent=left+'s'; if(left<=8)elTF.classList.add('low'); if(left===0)clearInterval(timer); },1000);
+    }
+    showQ();
+  }
+
+  document.getElementById('ptDone').addEventListener('click',function(){
+    rec.attempts=(rec.attempts||0)+1; save(app);
+    show(secCheck);
+    runForm('A',FORMA,function(correct,wrong){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,Math.round(correct/FORMA.length*100));
+      rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secAfter);
+      document.getElementById('aScore').textContent=correct+' / '+FORMA.length;
+      var pass=correct>=PASS, t=document.getElementById('aTitle'), m=document.getElementById('aMsg');
+      t.textContent=pass?'Form A clear':'Reteach needed';
+      m.textContent=pass?'Strong. Come back at least a day later for Form B to lock in the credential.':'Not at the bar yet. Reread the three passages and the fallacy table, then run Form A again.';
+      document.getElementById('toRetention').classList.toggle('hide',!pass);
+      document.getElementById('retryA').classList.toggle('hide',pass);
+    });
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show(secLesson); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show(secRet); });
+  document.getElementById('startB').addEventListener('click',function(){
+    this.classList.add('hide'); document.getElementById('mcB').classList.remove('hide');
+    runForm('B',FORMB,function(correct,wrong){
+      rec.formB=correct; rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secWrap);
+      document.getElementById('bScore').textContent=correct+' / '+FORMB.length;
+      decide();
+    });
+  });
+
+  function decide(){
+    var a=rec.formA||0, b=rec.formB||0;
+    var rows=[{ok:a>=PASS,t:'Form A',d:'At least '+PASS+' of '+FORMA.length+'. You got '+a+'.'},
+              {ok:b>=PASS,t:'Delayed Form B',d:'At least '+PASS+' of '+FORMB.length+' on a later day. You got '+b+'.'}];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'&#10003;':'!')+'</span><span><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    if(rows.every(function(r){return r.ok;})){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); }
+    commitTime();
+  }
+
+  document.getElementById('saveReflect').addEventListener('click',function(){
+    var note=(document.getElementById('reflectNote').value||'').slice(0,400);
+    rec.feedback={note:note,at:Date.now()}; save(app); syncCloud();
+    document.getElementById('donebox').classList.remove('hide');
+  });
+})();
+</script>
+</body>
+</html>

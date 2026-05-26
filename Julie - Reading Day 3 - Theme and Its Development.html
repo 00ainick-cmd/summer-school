@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 03 &middot; Theme and Its Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--gold:#a8780d;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .fbline{margin-top:12px;font-size:15px;min-height:1.4em;}
+  .fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+  @media (max-width:640px){.threecol{grid-template-columns:1fr;}}
+  .vcard{background:#faf8f2;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .vcard h3{font-family:'Anton';font-size:15px;letter-spacing:.04em;color:var(--accent-d);margin-bottom:4px;}
+  .vcard p{font-size:14.5px;color:var(--ink2);}
+  .compare{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .compare .row{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid var(--line);}
+  .compare .row:last-child{border-bottom:none;}
+  .compare .lbl{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:10px 12px;display:flex;align-items:center;}
+  .compare .val{padding:10px 14px;font-size:15px;background:#fff;}
+  .compare .val.good{background:#eaf5ee;color:#0f5a36;}
+  .compare .val.bad{background:#fdf0ee;color:#82261a;}
+  .passage{background:#faf8f2;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:16px 18px;margin-top:12px;font-size:16px;color:var(--ink);line-height:1.65;}
+  .passage p{margin-bottom:10px;} .passage p:last-child{margin-bottom:0;}
+  .passage .pnum{display:inline-block;font-family:'Spline Sans Mono';font-size:11px;color:var(--accent-d);background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-right:8px;letter-spacing:.06em;vertical-align:middle;}
+  .markrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .markbtn{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;min-height:44px;cursor:pointer;color:var(--ink);font-family:'Spline Sans Mono';letter-spacing:.04em;text-transform:uppercase;}
+  .markbtn:hover{border-color:var(--accent);}
+  .markbtn.on{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .markbtn.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+  .markbtn.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .markbtn:disabled{cursor:default;}
+  .marknote{font-size:13.5px;color:var(--mute);margin-top:6px;}
+  .evs{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+  .ev{font:inherit;font-size:15.5px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:12px 14px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .ev:hover{border-color:var(--accent);}
+  .ev.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+  .ev.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .ev:disabled{cursor:default;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:10px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:16.5px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:10px;font-size:14.5px;min-height:1.3em;}
+  .scoreband{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;margin-top:14px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;line-height:1;color:var(--ink);}
+  .scoreband .lbl{font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .gateitem{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:#fff;}
+  .gateitem.met{border-color:var(--good);background:#eaf5ee;}
+  .gateitem.miss{border-color:#f3c2bd;background:#fdf0ee;}
+  .gateitem .mk{font-family:'Anton';font-size:20px;flex:none;width:28px;text-align:center;color:var(--ink);}
+  .gateitem.met .mk{color:var(--good);} .gateitem.miss .mk{color:var(--accent-d);}
+  .gateitem b{display:block;font-size:15px;}
+  .gateitem .gd{font-size:13.5px;color:var(--ink2);margin-top:2px;}
+  .badge{display:none;margin-top:16px;background:#14171c;color:#fff;border-radius:14px;padding:18px 18px;text-align:center;}
+  .badge.show{display:block;}
+  .badge .gem{font-family:'Anton';font-size:34px;color:var(--accent);}
+  .badge h3{font-family:'Anton';letter-spacing:.04em;font-size:22px;margin:6px 0;}
+  .badge p{color:#c7cad0;font-size:14.5px;}
+  .note{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:12px 14px;font-size:14.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;margin-top:8px;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.RL.1.D</span></div>
+  <section id="lesson">
+    <div class="kicker">Session 03</div>
+    <h1>Theme and Its Development</h1>
+    <p class="mission">A topic is what a story is about. A theme is what the story is <i>saying</i> about that topic. Skilled readers track theme the way an engineer tracks a load: where it gets introduced, where it gets stressed, where it gets resolved.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Using appropriate text, determine the theme(s) of a text and analyze its development over the course of a text; provide an objective summary of the text.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Topic vs theme vs plot</h2></div>
+      <p class="lead">Three things often get confused. Hold them separate.</p>
+      <div class="threecol">
+        <div class="vcard"><h3>Topic</h3><p>A noun. A subject. "Loyalty." "Power." "Grief." One or two words.</p></div>
+        <div class="vcard"><h3>Plot</h3><p>What happens, in order. The sequence of events.</p></div>
+        <div class="vcard"><h3>Theme</h3><p>A claim about life or human nature, built across the story. A complete sentence.</p></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">Most stories carry more than one theme. The strongest theme is the one the writer keeps returning to and pressing against.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>How theme develops across a text</h2></div>
+      <p class="lead">Theme is rarely stated outright. It develops through four moves.</p>
+      <ul style="list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+        <li><b style="color:var(--accent-d);">Motifs.</b> A repeated image, object, or phrase. When something keeps appearing, it is doing work.</li>
+        <li><b style="color:var(--accent-d);">Character arcs.</b> How a character changes (or refuses to change) reveals what the text values.</li>
+        <li><b style="color:var(--accent-d);">Conflicts.</b> What is at stake, and who or what is pushing back.</li>
+        <li><b style="color:var(--accent-d);">Resolutions.</b> How the conflict ends carries the writer's claim. A bitter ending and a triumphant ending state opposite themes about the same topic.</li>
+      </ul>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Objective summary vs personal reaction</h2></div>
+      <div class="compare">
+        <div class="row"><div class="lbl">Objective</div><div class="val good">A young runner trains alone for months, places third in the regional final, and decides to keep training for next year.</div></div>
+        <div class="row"><div class="lbl">Not objective</div><div class="val bad">The runner deserved to win, and the ending is sad and a little unfair, but at least she did not quit.</div></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">An objective summary reports what happened and what was decided. It leaves out opinion, judgment, and personal feeling. It can name the theme; it should not argue with it.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Track theme across a short excerpt</h2></div>
+      <p class="lead">Read the passage. Then tap the <b>three numbered moments</b> where the theme advances. Each tap explains why it counts.</p>
+      <div class="passage">
+        <p><span class="pnum">1</span>For two years, Iniko had run the same three-mile loop alone, before sunrise, before the city was awake to watch her. She was not training for anyone. She was training because the act of returning, day after day, was the only thing that felt entirely hers.</p>
+        <p><span class="pnum">2</span>At the regional invitational, the bleachers were full. Cameras lined the rail. Her coach pressed a note into her palm: <i>Run the way you run when no one is watching.</i> She read it twice and folded it small.</p>
+        <p><span class="pnum">3</span>She placed third. Two runners she had never raced before crossed the line ahead of her, neither of them looking back. A reporter asked if she felt cheated. Iniko thought about it for a long moment. "No," she said. "I came to find out what I could do today. Now I know."</p>
+        <p><span class="pnum">4</span>That night she laid out her shoes for the next morning. The loop was waiting. So was she.</p>
+      </div>
+      <p class="lead" style="margin-top:14px;">Which three numbered moments advance the theme most clearly?</p>
+      <div class="markrow" id="markrow"></div>
+      <div class="marknote" id="marknote">Pick three. Each correct tap explains its move.</div>
+      <div class="fbline" id="markfb"></div>
+
+      <div class="hide" id="themePickWrap">
+        <p class="lead" style="margin-top:14px;font-weight:700;color:var(--ink);">Now choose the strongest theme statement.</p>
+        <div class="evs" id="themePick"></div>
+        <div class="fbline" id="themefb"></div>
+      </div>
+    </div>
+
+    <button class="cta" id="ptDone">I worked through it. Start Form A (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">30s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="afterA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A &middot; RESULT</span><h2 id="aTitle">Result</h2></div>
+      <div class="scoreband"><span class="s" id="aScore">0 / 8</span><span class="lbl">PASS BAR 7 / 8</span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to the retention check (Form B)</button>
+      <button class="cta alt hide" id="retryA">Revisit the lesson and retry Form A</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RETENTION</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Same standard, different passages. Best done <b>at least a day after Form A</b>: the delay is what proves the skill lasted.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this tab and come back tomorrow for Form B.</div>
+      <button class="cta" id="startB">Start Form B (8 questions)</button>
+    </div>
+    <div class="hide" id="mcB">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">30s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RESULT</span><h2>Retention result</h2></div>
+      <div class="scoreband"><span class="s" id="bScore">0 / 8</span><span class="lbl">PASS BAR 7 / 8</span></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">MASTERY</span><h2>Credential check</h2></div>
+      <p class="lead">The 8.RL.1.D credential is awarded when <b>both</b> Form A and the delayed Form B clear the bar.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge"><div class="gem">&#9670;</div><h3>8.RL.1.D mastered</h3><p>You can determine the theme of a text, analyze how it develops, and produce an objective summary.</p></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">REFLECT</span><h2>One line in your own words</h2></div>
+      <p class="lead">Write one sentence: what is the difference between the topic of the next book you read and its theme?</p>
+      <div class="reflectbox"><textarea id="reflectNote" placeholder="For example: The topic of the book is grief; the theme is that grief shared aloud weighs less than grief carried alone." aria-label="reflection"></textarea></div>
+      <button class="cta" id="saveReflect">Save and finish</button>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. Head back to the dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie &middot; Reading &middot; Day 3 &middot; 8.RL.1.D</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='reading', DAY='8.RL.1.D', SNAME='Julie';
+  var QTIME=30, PASS=7;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,formA:rec.formA||0,formB:rec.formB||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var MOMENTS=[
+    {n:1, ok:true, why:'Introduces the motif of solitary effort and names the value: returning for its own sake. The theme is being seeded.'},
+    {n:2, ok:false, why:'Sets the scene of the race and pressure, but the theme has already been planted in moment 1. This is plot, not development.'},
+    {n:3, ok:true, why:'The conflict (placing third) tests the value from moment 1. Her reply, "I came to find out what I could do today," shows the theme holding under pressure.'},
+    {n:4, ok:true, why:'Resolution. Laying out the shoes proves the value was never about the medal. The character arc closes consistent with the theme.'}
+  ];
+  var picks=[], pickedCount=0, allMarked=false;
+  var markrow=document.getElementById('markrow'), markfb=document.getElementById('markfb'), marknote=document.getElementById('marknote');
+  MOMENTS.forEach(function(m){
+    var b=document.createElement('button'); b.className='markbtn'; b.type='button'; b.textContent='Moment '+m.n;
+    b.addEventListener('click',function(){
+      if(allMarked || b.disabled) return;
+      if(b.classList.contains('on')){ b.classList.remove('on'); pickedCount--; return; }
+      if(pickedCount>=3) return;
+      b.classList.add('on'); pickedCount++;
+      if(pickedCount===3){
+        allMarked=true;
+        var correct=0, told=[];
+        Array.prototype.forEach.call(markrow.children,function(btn,i){
+          var m2=MOMENTS[i]; btn.disabled=true;
+          if(btn.classList.contains('on')){
+            if(m2.ok){ btn.classList.remove('on'); btn.classList.add('ok'); correct++; told.push('<b>Moment '+m2.n+':</b> '+m2.why); }
+            else { btn.classList.remove('on'); btn.classList.add('no'); told.push('<b>Moment '+m2.n+' is plot, not theme.</b> '+m2.why); }
+          } else if(m2.ok){
+            btn.classList.add('ok'); told.push('<b>Missed moment '+m2.n+'.</b> '+m2.why);
+          }
+        });
+        markfb.className='fbline '+(correct===3?'ok':'try');
+        markfb.innerHTML=(correct===3?'All three. ':'Got '+correct+' of 3. ')+'<br>'+told.join('<br>');
+        marknote.textContent='';
+        document.getElementById('themePickWrap').classList.remove('hide');
+      }
+    });
+    markrow.appendChild(b);
+  });
+
+  var THEMES=[
+    {t:'Iniko trained hard and lost the race to better runners.',ok:false,why:'That is plot, not theme. It reports what happened without stating a claim about life.'},
+    {t:'Effort done for its own sake outlasts the result of any single test of it.',ok:true,why:'Strongest. It tracks the motif (the loop, returning), the conflict (placing third), and the resolution (laying out shoes again).'},
+    {t:'Hard work always pays off in the end.',ok:false,why:'Too generic, and the story actually pushes back: she did not win. The theme this text supports is subtler than the cliche.'},
+    {t:'Coaches give the best advice when they write it down.',ok:false,why:'A surface detail, not the underlying claim. The note matters because of what she does after, not because it was written.'}
+  ];
+  var themePick=document.getElementById('themePick'), themefb=document.getElementById('themefb');
+  THEMES.forEach(function(th){
+    var b=document.createElement('button'); b.className='ev'; b.type='button'; b.textContent=th.t;
+    b.addEventListener('click',function(){
+      Array.prototype.forEach.call(themePick.children,function(c){c.disabled=true;});
+      if(th.ok){ b.classList.add('ok'); themefb.className='fbline ok'; themefb.textContent=th.why; }
+      else { b.classList.add('no'); themefb.className='fbline try'; themefb.textContent=th.why+' Look for the option that names a claim about life that the text actually defends.';
+        Array.prototype.forEach.call(themePick.children,function(c,i){ if(THEMES[i].ok)c.classList.add('ok'); }); }
+    });
+    themePick.appendChild(b);
+  });
+
+  var FORMA=[
+    {q:'What is the difference between a <b>topic</b> and a <b>theme</b>?',o:['They are the same thing','A topic is a noun; a theme is a claim about life','A topic is in fiction; a theme is in nonfiction','A topic is short; a theme is long'],a:1,why:'A topic names a subject in a word or two. A theme states a claim about that subject across the text.'},
+    {q:'Which of these is a <b>theme</b>, not a topic?',o:['Loyalty','Family','Loyalty given without proof tends to be tested first','Friendship'],a:2,why:'Themes are full claims about life. The other three are subjects.'},
+    {q:'Which is the clearest <b>objective summary</b>?',o:['The ending was sad and Iniko deserved better.','Iniko trains alone, places third in the regional, and decides to keep going.','It is a story about how unfair running is.','The author wants us to feel bad for the runner.'],a:1,why:'Objective summary reports what happened and what was decided. It avoids judgment and opinion.'},
+    {q:'A repeated image or object that helps build theme is called a...',o:['plot point','motif','climax','setting'],a:1,why:'A motif is a recurring image or phrase that points the reader toward theme.'},
+    {q:'Theme develops most reliably through...',o:['the cover and title','motifs, character arcs, conflicts, and resolutions','the narrator\'s name','the longest paragraph in the text'],a:1,why:'Theme builds across the text through repeated images, character change, conflict, and how the conflict resolves.'},
+    {q:'A text can have...',o:['only one theme','exactly two themes','multiple themes, with one usually dominant','no themes if it is short'],a:2,why:'Most texts carry several themes; one is usually strongest because the writer keeps returning to it.'},
+    {q:'Which sentence is NOT objective and should be cut from a summary?',o:['The runner placed third.','The note told her to run as she usually does.','The runner clearly deserved to win the race.','She prepared for the next morning.'],a:2,why:'"Clearly deserved" is the reader\'s judgment, not a reported fact.'},
+    {q:'If a story builds toward loyalty and then ends with betrayal, the theme is most likely...',o:['Loyalty is always rewarded','Loyalty cannot be trusted in others','Loyalty given freely can leave you exposed','Loyalty is a topic only adults understand'],a:2,why:'The ending pushes against the value the story raised, so the theme makes a more guarded claim about loyalty.'}
+  ];
+  var FORMB=[
+    {q:'Which of these is a <b>topic</b>, not a theme?',o:['Courage','Courage usually costs the person who shows it','Showing courage in private matters more than showing it in public','Real courage is acting when you are still afraid'],a:0,why:'"Courage" by itself is a noun, a subject. The others state claims about courage.'},
+    {q:'Which of these is the strongest <b>theme statement</b>?',o:['Family','Family arguments','Family bonds bend without breaking when each side listens first','The story is set in a family kitchen'],a:2,why:'A theme is a full sentence that makes a claim. The others are topics or details.'},
+    {q:'The clearest <b>objective summary</b> of a story is one that...',o:['tells the reader what to feel','reports events and decisions without opinion','focuses on the writer\'s personal life','quotes the funniest lines'],a:1,why:'Objective summary reports what happened, plainly, without telling the reader what to think.'},
+    {q:'A character who refuses to change across a story usually shows...',o:['nothing about theme','a flaw the writer is critiquing or a value the writer is defending','that the writer ran out of ideas','that the story is unfinished'],a:1,why:'Refusal to change is a deliberate move that points to theme: the writer is making a claim about that trait.'},
+    {q:'How a conflict <b>ends</b> in a story tells the reader...',o:['only what the plot was','what the writer is claiming about the value at stake','the narrator\'s favorite color','nothing important'],a:1,why:'A bitter ending and a triumphant ending state opposite themes about the same topic.'},
+    {q:'In a story about a young inventor who finally gives up on her project after years of trying, the most defensible theme is...',o:['Inventors always succeed','Giving up is the same as failing','Walking away from a project you have outgrown can be a form of growth','Inventors should keep their work secret'],a:2,why:'This honors what actually happened (she walked away) and treats it as a claim, not a verdict.'},
+    {q:'Which sentence belongs in an <b>objective summary</b>?',o:['Honestly, I would have done the same thing.','The character makes the wrong choice, in my opinion.','After two failures, the character changes her plan and tries a third route.','This book is way better than the last one we read.'],a:2,why:'Only the third reports what happens without opinion.'},
+    {q:'The <b>motif</b> of an empty chair appearing in three scenes most likely supports a theme about...',o:['furniture','grief, absence, or a missing presence','the price of decor','school assemblies'],a:1,why:'A repeated image of an empty chair is doing work: it points to absence, which becomes a claim about grief or loss.'}
+  ];
+
+  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),
+      secAfter=document.getElementById('afterA'), secRet=document.getElementById('retention'), secWrap=document.getElementById('wrap');
+  function show(s){ [secLesson,secCheck,secAfter,secRet,secWrap].forEach(function(x){x.classList.add('hide');}); s.classList.remove('hide'); window.scrollTo(0,0); }
+
+  function runForm(form,items,onDone){
+    var elQ=document.getElementById(form==='A'?'qtext':'qtextB');
+    var elO=document.getElementById(form==='A'?'opts':'optsB');
+    var elC=document.getElementById(form==='A'?'qcount':'qcountB');
+    var elTL=document.getElementById(form==='A'?'tlabel':'tlabelB');
+    var elTF=document.getElementById(form==='A'?'tfill':'tfillB');
+    var elWhy=document.getElementById(form==='A'?'qwhy':'qwhyB');
+    var i=0, correct=0, wrong=[], left=QTIME, timer=null, locked=false;
+    function showQ(){
+      locked=false; var it=items[i];
+      elC.textContent='Question '+(i+1)+' of '+items.length;
+      elQ.innerHTML=it.q; elWhy.textContent=''; elWhy.style.color='var(--ink2)';
+      elO.innerHTML='';
+      it.o.forEach(function(t,idx){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(locked)return; locked=true; clearInterval(timer);
+          var ok=(idx===it.a);
+          Array.prototype.forEach.call(elO.children,function(c,j){ if(j===it.a)c.classList.add('correct'); if(j===idx&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+          if(ok){ correct++; elWhy.style.color='var(--good)'; elWhy.textContent='Correct. '+it.why; }
+          else { wrong.push({stem:it.q,picked:it.o[idx],correct:it.o[it.a]}); elWhy.style.color='var(--accent-d)'; elWhy.textContent='Not quite. '+it.why; }
+          setTimeout(function(){ i++; if(i<items.length) showQ(); else onDone(correct,wrong); }, ok?700:1300);
+        });
+        elO.appendChild(b);
+      });
+      left=QTIME; elTF.style.width='100%'; elTF.classList.remove('low'); elTL.textContent=QTIME+'s'; clearInterval(timer);
+      timer=setInterval(function(){ left--; if(left<0)left=0; elTF.style.width=(left/QTIME*100)+'%'; elTL.textContent=left+'s'; if(left<=8)elTF.classList.add('low'); if(left===0)clearInterval(timer); },1000);
+    }
+    showQ();
+  }
+
+  document.getElementById('ptDone').addEventListener('click',function(){
+    rec.attempts=(rec.attempts||0)+1; save(app);
+    show(secCheck);
+    runForm('A',FORMA,function(correct,wrong){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,Math.round(correct/FORMA.length*100));
+      rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secAfter);
+      document.getElementById('aScore').textContent=correct+' / '+FORMA.length;
+      var pass=correct>=PASS, t=document.getElementById('aTitle'), m=document.getElementById('aMsg');
+      t.textContent=pass?'Form A clear':'Reteach needed';
+      m.textContent=pass?'Strong. Come back at least a day later for Form B to lock in the credential.':'Not at the bar yet. Reread the excerpt and the development moves, then run Form A again.';
+      document.getElementById('toRetention').classList.toggle('hide',!pass);
+      document.getElementById('retryA').classList.toggle('hide',pass);
+    });
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show(secLesson); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show(secRet); });
+  document.getElementById('startB').addEventListener('click',function(){
+    this.classList.add('hide'); document.getElementById('mcB').classList.remove('hide');
+    runForm('B',FORMB,function(correct,wrong){
+      rec.formB=correct; rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secWrap);
+      document.getElementById('bScore').textContent=correct+' / '+FORMB.length;
+      decide();
+    });
+  });
+
+  function decide(){
+    var a=rec.formA||0, b=rec.formB||0;
+    var rows=[{ok:a>=PASS,t:'Form A',d:'At least '+PASS+' of '+FORMA.length+'. You got '+a+'.'},
+              {ok:b>=PASS,t:'Delayed Form B',d:'At least '+PASS+' of '+FORMB.length+' on a later day. You got '+b+'.'}];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'&#10003;':'!')+'</span><span><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    if(rows.every(function(r){return r.ok;})){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); }
+    commitTime();
+  }
+
+  document.getElementById('saveReflect').addEventListener('click',function(){
+    var note=(document.getElementById('reflectNote').value||'').slice(0,400);
+    rec.feedback={note:note,at:Date.now()}; save(app); syncCloud();
+    document.getElementById('donebox').classList.remove('hide');
+  });
+})();
+</script>
+</body>
+</html>

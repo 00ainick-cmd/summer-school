@@ -1,0 +1,1466 @@
+{
+  "project": "Mastery summer program: 3 students, 5 subjects, 14 weeks. One standard = one atom = one lesson to mastery.",
+  "generated": "2026-05-25",
+  "week_1_status": "Complete. All 45 Week 1 slots wired (3 students x 5 days x 3 subjects: math, reading, enrichment rotation Sci/SS/JP/Sci/SS). 25 new lessons authored in this build; 20 carryover from prior batch.",
+  "data_model": "localStorage key 'edu.app'; progress[studentId][subjectKey][STANDARDCODE]={status,best,attempts,formA,formB,explain,pt,...}. studentId in sam/amelia/julie. subjectKey in math/reading/science/social/japanese. Pass = 7/8 on Form A then Form B (delayed). Supabase sync baked, no-op until keys set.",
+  "hard_rules": [
+    "No em-dash or en-dash anywhere (grep U+2014 and U+2013 must be 0).",
+    "One self-contained HTML file per lesson; only external dependency is Google Fonts.",
+    "The static page must teach; interaction is layered on top.",
+    "Objectives are the verbatim standard; design choices (title, recipe, aesthetic) are labeled as choices.",
+    "AAA contrast, 44px tap targets, keyboard operable, honors reduced-motion.",
+    "No fixed viewport heights; flexbox with min-height. Geometric SVG only, no cartoons.",
+    "Mastery is gated on auto-graded Form A (>=7/8) plus a delayed Form B (>=7/8). No learner self-rating UI. The written explanation and out-loud performance task are ungated; the PT rubric shows read-only as adult guidance.",
+    "Save with a descriptive filename, no version numbers."
+  ],
+  "engine": {
+    "file": "module_engine.py",
+    "entry": "build_module(cfg)",
+    "fits": "Grade 2 (and grade-appropriate Grade 3) base-ten number work, via a hundreds/tens/ones block-builder manipulative.",
+    "does_not_fit": "Grade 8 math, reading, science, social studies, Japanese; these need their own builders.",
+    "cfg_template": "build_sam_a2.py is the canonical CFG (about 88 lines). Required keys: file, student, sname, subject, subject_label, day(=code), grade, code, pass_mark, title, standard(verbatim), objectives[3], why, hook, predicts[3], guided_seed, synth, badge_line, bridge, reteach, warm[2], practice[6], retrieval[2], fade, formA[8], formB[8], explain, pt."
+  },
+  "totals": {
+    "math_atoms": 132,
+    "math_built": 22,
+    "math_to_build": 110,
+    "reading_built": 15,
+    "reading_scoped_atoms": 26,
+    "science_built": 6,
+    "social_studies_built": 6,
+    "japanese_built": 3,
+    "subjects_with_week1_standards_pulled": [
+      "reading (G2 was already scoped; G3 + G8 pulled this build for D1-D5)",
+      "science (G2/G3/G8 D1+D2 pulled this build)",
+      "social_studies (G2/G3/G8 D1+D2 pulled this build)"
+    ],
+    "subjects_still_needing_full_ladder_standards": [
+      "reading (G3,G8) beyond Week 1",
+      "science (G2,G3,G8) beyond D1+D2",
+      "social_studies (G2,G3,G8) beyond D1+D2",
+      "japanese (shared) beyond D1"
+    ]
+  },
+  "students": {
+    "sam": {
+      "name": "Sam",
+      "grade": "Grade 2",
+      "interests": "hockey, anime, Mario Kart",
+      "math_grade": "g2",
+      "subjects": {
+        "math": {
+          "status": "in_progress",
+          "atoms": [
+            {
+              "code": "2.NBT.A.1",
+              "standard": "Understand three-digit numbers are composed of hundreds, tens and ones.",
+              "unit": "U1 Place Value to 1,000",
+              "status": "built",
+              "file": "Sam - Math - Place Value Mastery.html"
+            },
+            {
+              "code": "2.NBT.A.2",
+              "standard": "Understand that 100 can be thought of as 10 tens, called a \"hundred\".",
+              "unit": "U1 Place Value to 1,000",
+              "status": "built",
+              "file": "Sam - Math - Ten Tens Make a Hundred.html"
+            },
+            {
+              "code": "2.NBT.A.3",
+              "standard": "Count within 1000 by 1s, 10s and 100s starting with any number.",
+              "unit": "U1 Place Value to 1,000",
+              "status": "built",
+              "file": "Sam - Math - Counting Within 1000.html"
+            },
+            {
+              "code": "2.NBT.A.4",
+              "standard": "Read and write numbers to 1000 using number names, base-ten numerals and expanded form.",
+              "unit": "U1 Place Value to 1,000",
+              "status": "built",
+              "file": "Sam - Math - Reading and Writing Numbers to 1000.html"
+            },
+            {
+              "code": "2.NBT.A.5",
+              "standard": "Compare two three-digit numbers using the symbols &gt;, = or &lt;.",
+              "unit": "U1 Place Value to 1,000",
+              "status": "built",
+              "file": "Sam - Math - Comparing Three-Digit Numbers.html"
+            },
+            {
+              "code": "2.RA.A.1",
+              "standard": "Demonstrate fluency with addition and subtraction within 20.",
+              "unit": "U2 Fluency: Add & Subtract Within 20",
+              "status": "built",
+              "file": "Sam - Math - Fluency Within 20.html"
+            },
+            {
+              "code": "2.NBT.B.10",
+              "standard": "Add or subtract mentally 10 or 100 to or from a given number within 1000.",
+              "unit": "U3 Add & Subtract Within 100 and 1,000",
+              "status": "built",
+              "file": "Sam - Math - Plus and Minus 10 and 100.html"
+            },
+            {
+              "code": "2.NBT.B.6",
+              "standard": "Demonstrate fluency with addition and subtraction within 100.",
+              "unit": "U3 Add & Subtract Within 100 and 1,000",
+              "status": "built",
+              "file": "Sam - Math - Add and Subtract Within 100.html"
+            },
+            {
+              "code": "2.NBT.B.7",
+              "standard": "Add up to four two-digit numbers.",
+              "unit": "U3 Add & Subtract Within 100 and 1,000",
+              "status": "built",
+              "file": "Sam - Math - Add Up to Four Two-Digit Numbers.html"
+            },
+            {
+              "code": "2.NBT.B.8",
+              "standard": "Add or subtract within 1000, and justify the solution.",
+              "unit": "U3 Add & Subtract Within 100 and 1,000",
+              "status": "built",
+              "file": "Sam - Math - Add and Subtract Within 1000.html"
+            },
+            {
+              "code": "2.NBT.B.9",
+              "standard": "Use the relationship between addition and subtraction to solve problems.",
+              "unit": "U3 Add & Subtract Within 100 and 1,000",
+              "status": "built",
+              "file": "Sam - Math - Addition and Subtraction Are Linked.html"
+            },
+            {
+              "code": "2.NBT.C.11",
+              "standard": "Write and solve problems involving addition and subtraction within 100.",
+              "unit": "U3 Add & Subtract Within 100 and 1,000",
+              "status": "built",
+              "file": "Sam - Math - Word Problems Within 100.html"
+            },
+            {
+              "code": "2.RA.B.2a",
+              "standard": "Determine if a set of objects has an odd or even number of members.",
+              "unit": "U4 Foundations of Multiplication: Equal Groups & Arrays",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.RA.B.2b",
+              "standard": "Determine if a set of objects has an odd or even number of members.",
+              "unit": "U4 Foundations of Multiplication: Equal Groups & Arrays",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.RA.B.2c",
+              "standard": "Determine if a set of objects has an odd or even number of members.",
+              "unit": "U4 Foundations of Multiplication: Equal Groups & Arrays",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.RA.B.3",
+              "standard": "Find the total number of objects arranged in a rectangular array with up to 5 rows and 5 columns, and write an equation to represent the total as a sum of equal addends.",
+              "unit": "U4 Foundations of Multiplication: Equal Groups & Arrays",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.B.4",
+              "standard": "Measure the length of an object by selecting and using appropriate tools.",
+              "unit": "U5 Measuring Length",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.B.5",
+              "standard": "Analyze the results of measuring the same object with different units.",
+              "unit": "U5 Measuring Length",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.B.6",
+              "standard": "Estimate lengths using units of inches, feet, yards, centimeters and meters.",
+              "unit": "U5 Measuring Length",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.B.7",
+              "standard": "Measure to determine how much longer one object is than another.",
+              "unit": "U5 Measuring Length",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.C.8",
+              "standard": "Use addition and subtraction within 100 to solve problems involving lengths that are given in the same units.",
+              "unit": "U5 Measuring Length",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.C.9",
+              "standard": "Represent whole numbers as lengths on a number line, and represent whole-number sums and differences within 100 on a number line.",
+              "unit": "U5 Measuring Length",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.D.10",
+              "standard": "Tell and write time from analog and digital clocks to the nearest five minutes, using a.m. and p.m.",
+              "unit": "U6 Time & Money",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.D.11",
+              "standard": "Describe a time shown on a digital clock as representing hours and minutes, and relate a time shown on a digital clock to the same time on an analog clock.",
+              "unit": "U6 Time & Money",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.D.12",
+              "standard": "Find the value of combinations of dollar bills, quarters, dimes, nickels and pennies, using $ and ¢ appropriately.",
+              "unit": "U6 Time & Money",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.D.13",
+              "standard": "Find combinations of coins that equal a given amount.",
+              "unit": "U6 Time & Money",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.A.1a",
+              "standard": "Recognize and draw shapes having specified attributes, such as a given number of angles or sides.",
+              "unit": "U7 Geometry: Shapes & Equal Shares",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.A.1b",
+              "standard": "Recognize and draw shapes having specified attributes, such as a given number of angles or sides.",
+              "unit": "U7 Geometry: Shapes & Equal Shares",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.A.2",
+              "standard": "Partition a rectangle into rows and columns of same-size squares and count to find the total number of squares.",
+              "unit": "U7 Geometry: Shapes & Equal Shares",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.GM.A.3a",
+              "standard": "Partition circles and rectangles into two, three or four equal shares, and describe the shares and the whole.",
+              "unit": "U7 Geometry: Shapes & Equal Shares",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.DS.A.1",
+              "standard": "Create a line plot to represent a set of numeric data, given a horizontal scale marked in whole numbers.",
+              "unit": "U8 Data & Graphs",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.DS.A.2",
+              "standard": "Generate measurement data to the nearest whole unit, and display the data in a line plot.",
+              "unit": "U8 Data & Graphs",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.DS.A.3",
+              "standard": "Draw a picture graph or a bar graph to represent a data set with up to four categories.",
+              "unit": "U8 Data & Graphs",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.DS.A.4",
+              "standard": "Solve problems using information presented in line plots, picture graphs and bar graphs.",
+              "unit": "U8 Data & Graphs",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.DS.A.5",
+              "standard": "Draw conclusions from line plots, picture graphs and bar graphs.",
+              "unit": "U8 Data & Graphs",
+              "status": "to_build",
+              "file": null
+            }
+          ]
+        },
+        "reading": {
+          "status": "in_progress",
+          "note": "Week 1 (5 of 26 atoms) built. Remaining 21 atoms still to author down the G2 ELA ladder.",
+          "atoms": [
+            {
+              "code": "2.RF.3.A.a",
+              "standard": "decoding multisyllabic words in context by applying common letter-sound correspondences including: single letters, consonant blends, consonant and vowel digraphs and vowel diphthongs",
+              "unit": "E1 Decoding and Vowels",
+              "status": "built",
+              "file": "Sam - Reading Day 1 - Decoding Multisyllabic Words.html"
+            },
+            {
+              "code": "2.RF.3.A.b",
+              "standard": "distinguishing long and short vowels when reading regularly spelled one syllable words",
+              "unit": "E1 Decoding and Vowels",
+              "status": "built",
+              "file": "Sam - Reading Day 1 - Long and Short Vowels.html"
+            },
+            {
+              "code": "2.RF.1.A.a",
+              "standard": "understanding that sentences are organized into paragraphs to convey meaning",
+              "unit": "E1 Decoding and Vowels",
+              "status": "built",
+              "file": "Sam - Reading Day 3 - Sentences Into Paragraphs.html"
+            },
+            {
+              "code": "2.R.1.A.a",
+              "standard": "using text features to make and confirm predictions, explain why not confirmed",
+              "unit": "E2 The Reading Process",
+              "status": "built",
+              "file": "Sam - Reading Day 4 - Text Features and Predictions.html"
+            },
+            {
+              "code": "2.R.1.A.b",
+              "standard": "asking and responding to relevant questions",
+              "unit": "E2 The Reading Process",
+              "status": "built",
+              "file": "Sam - Reading Day 5 - Asking Good Questions.html"
+            },
+            {
+              "code": "2.R.1.A.c",
+              "standard": "seeking clarification, and using information/ facts and details about texts and supporting answers with evidence from text",
+              "unit": "E2 The Reading Process",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.R.1.A.d",
+              "standard": "retelling a story's beginning, middle, and end and determining their central message, lesson or moral",
+              "unit": "E2 The Reading Process",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.R.1.A.e",
+              "standard": "monitoring comprehension and making corrections and adjustments when understanding breaks down",
+              "unit": "E2 The Reading Process",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.R.1.B.a",
+              "standard": "using prefixes, root words, and suffixes to determine the meaning of words",
+              "unit": "E3 Word Meaning and Vocabulary",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.R.1.B.b",
+              "standard": "using knowledge of the meaning of individual words to determine the meaning of compound words",
+              "unit": "E3 Word Meaning and Vocabulary",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.R.1.B.c",
+              "standard": "using context to determine the meaning of a new word or multiple-meaning word in text",
+              "unit": "E3 Word Meaning and Vocabulary",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.R.1.B.d",
+              "standard": "using antonyms and synonyms",
+              "unit": "E3 Word Meaning and Vocabulary",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.a",
+              "standard": "use nouns and pronouns in writing",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.b",
+              "standard": "use collective nouns",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.c",
+              "standard": "use common irregular nouns",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.d",
+              "standard": "use reflexive pronouns",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.e",
+              "standard": "use regular verbs",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.f",
+              "standard": "use helping verbs with regular verbs",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.g",
+              "standard": "use adjectives and adverbs in sentences",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.A.h",
+              "standard": "produce simple declarative, imperative, exclamatory, and interrogative sentences",
+              "unit": "E4 Grammar in Speech and Writing",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.B.a",
+              "standard": "write legibly (print, cursive)",
+              "unit": "E5 Writing Conventions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.B.b",
+              "standard": "use dialogue that contains quotation marks",
+              "unit": "E5 Writing Conventions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.B.c",
+              "standard": "use apostrophes correctly for contractions",
+              "unit": "E5 Writing Conventions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.B.d",
+              "standard": "capitalize weeks, days, months, holidays",
+              "unit": "E5 Writing Conventions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.B.e",
+              "standard": "capitalize abbreviated titles of people",
+              "unit": "E5 Writing Conventions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "2.L.1.B.f",
+              "standard": "spell words using irregular spelling patterns",
+              "unit": "E5 Writing Conventions",
+              "status": "to_build",
+              "file": null
+            }
+          ]
+        },
+        "science": {
+          "status": "in_progress",
+          "note": "Week 1 D1+D2 built. Remaining G2 atoms (LS, ESS, PS4) still to author.",
+          "atoms": [
+            {
+              "code": "2.PS1.A.1",
+              "standard": "Plan and conduct an investigation to describe and classify different kinds of materials by their observable properties.",
+              "unit": "Matter and Its Interactions",
+              "status": "built",
+              "file": "Sam - Science Day 1 - Sorting Materials.html"
+            },
+            {
+              "code": "2.PS1.A.2",
+              "standard": "Analyze data obtained from testing different materials to determine which materials have the properties that are best suited for an intended purpose.",
+              "unit": "Matter and Its Interactions",
+              "status": "built",
+              "file": "Sam - Science Day 2 - Pick the Right Material.html"
+            }
+          ]
+        },
+        "social_studies": {
+          "status": "in_progress",
+          "note": "Week 1 D1+D2 built. Remaining G2 atoms (E4, GS2, PC1, RI6, TS7) still to author.",
+          "atoms": [
+            {
+              "code": "2.EG5.A.a",
+              "standard": "Read and construct maps with title and key",
+              "unit": "Geography: Reading and constructing maps",
+              "status": "built",
+              "file": "Sam - Social Studies Day 1 - Map Directions.html"
+            },
+            {
+              "code": "2.EG5.A.b",
+              "standard": "Identify the properties and use of different types of maps for a variety of purposes",
+              "unit": "Geography: Reading and constructing maps",
+              "status": "built",
+              "file": "Sam - Social Studies Day 2 - Different Kinds of Maps.html"
+            }
+          ]
+        },
+        "japanese": {
+          "status": "in_progress",
+          "note": "Day 1 built (Numbers 1-10). No verbatim Missouri standards exist for Japanese as a world-language ladder at this grade; using shared scope.",
+          "atoms": [
+            {
+              "code": "JP.G2.D1",
+              "standard": "Count from ichi to juu (1 to 10) in Japanese.",
+              "unit": "Numbers",
+              "status": "built",
+              "file": "Sam - Japanese Day 1 - Numbers 1 to 10.html"
+            }
+          ]
+        }
+      }
+    },
+    "amelia": {
+      "name": "Amelia",
+      "grade": "Grade 3",
+      "interests": "salon/makeup, sports",
+      "math_grade": "g3",
+      "subjects": {
+        "math": {
+          "status": "in_progress",
+          "note": "engine block builder fits Grade 3 number/within-1000 work; rounding, multiply-by-10s, and bigger numbers need their own tool",
+          "atoms": [
+            {
+              "code": "3.NBT.A.1",
+              "standard": "Round whole numbers to the nearest 10 or 100.",
+              "unit": "U1 Place Value, Rounding & Fluent Add/Subtract",
+              "status": "built",
+              "file": "Amelia - Math Day 1 - Rounding Numbers.html"
+            },
+            {
+              "code": "3.NBT.A.2",
+              "standard": "Read, write and identify whole numbers within 100,000 using base ten numerals, number names and expanded form.",
+              "unit": "U1 Place Value, Rounding & Fluent Add/Subtract",
+              "status": "built",
+              "file": "Amelia - Math Day 2 - Read and Write Numbers to 100,000.html"
+            },
+            {
+              "code": "3.NBT.A.3",
+              "standard": "Demonstrate fluency with addition and subtraction within 1000.",
+              "unit": "U1 Place Value, Rounding & Fluent Add/Subtract",
+              "status": "built",
+              "file": "Amelia - Math - Fluent Within 1000.html"
+            },
+            {
+              "code": "3.NBT.A.4",
+              "standard": "Multiply whole numbers by multiples of 10 in the range 10-90.",
+              "unit": "U1 Place Value, Rounding & Fluent Add/Subtract",
+              "status": "built",
+              "file": "Amelia - Math Day 4 - Multiply by Multiples of 10.html"
+            },
+            {
+              "code": "3.RA.A.1",
+              "standard": "Interpret products of whole numbers.",
+              "unit": "U2 Multiplication: Equal Groups, Arrays & Meaning",
+              "status": "built",
+              "file": "Amelia - Math Day 5 - Interpret Products.html"
+            },
+            {
+              "code": "3.RA.A.2",
+              "standard": "Interpret quotients of whole numbers.",
+              "unit": "U2 Multiplication: Equal Groups, Arrays & Meaning",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.A.3",
+              "standard": "Describe in words or drawings a problem that illustrates a multiplication or division situation.",
+              "unit": "U2 Multiplication: Equal Groups, Arrays & Meaning",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.A.4",
+              "standard": "Use multiplication and division within 100 to solve problems.",
+              "unit": "U2 Multiplication: Equal Groups, Arrays & Meaning",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.A.5",
+              "standard": "Determine the unknown number in a multiplication or division equation relating three whole numbers.",
+              "unit": "U2 Multiplication: Equal Groups, Arrays & Meaning",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.B.6",
+              "standard": "Apply properties of operations as strategies to multiply and divide.",
+              "unit": "U3 Division & the Multiplication-Division Relationship",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.C.7",
+              "standard": "Multiply and divide with numbers and results within 100 using strategies such as the relationship between multiplication and division or properties of operations. Know all products of two one-digit numbers.",
+              "unit": "U4 Multiply & Divide Within 100 Fluently",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.C.8",
+              "standard": "Demonstrate fluency with products within 100.",
+              "unit": "U4 Multiply & Divide Within 100 Fluently",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.D.10",
+              "standard": "Interpret the reasonableness of answers using mental computation and estimation strategies including rounding.",
+              "unit": "U5 Patterns & Multi-Step Word Problems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.D.9",
+              "standard": "Write and solve two-step problems involving variables using any of the four operations.",
+              "unit": "U5 Patterns & Multi-Step Word Problems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.RA.E.11",
+              "standard": "Identify arithmetic patterns and explain the patterns using properties of operations.",
+              "unit": "U5 Patterns & Multi-Step Word Problems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.1",
+              "standard": "Understand a unit fraction as the quantity formed by one part when a whole is partitioned into equal parts.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.2a",
+              "standard": "Understand that when a whole is partitioned equally, a fraction can be used to represent a portion of the whole.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.2b",
+              "standard": "Understand that when a whole is partitioned equally, a fraction can be used to represent a portion of the whole.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.3a",
+              "standard": "Represent fractions on a number line.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.3b",
+              "standard": "Represent fractions on a number line.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.3c",
+              "standard": "Represent fractions on a number line.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.4",
+              "standard": "Demonstrate that two fractions are equivalent if they are the same size, or the same point on a number line.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.5",
+              "standard": "Recognize and generate equivalent fractions using visual models, and justify why the fractions are equivalent.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.6",
+              "standard": "Compare two fractions with the same numerator or denominator using the symbols &gt;, = or &lt;, and justify the solution.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.NF.A.7",
+              "standard": "Explain why fraction comparisons are only valid when the two fractions refer to the same whole.",
+              "unit": "U6 Fractions as Numbers",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.C.10",
+              "standard": "Label area measurements with squared units.",
+              "unit": "U7 Area",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.C.11",
+              "standard": "Demonstrate that tiling a rectangle to find the area and multiplying the side lengths result in the same value.",
+              "unit": "U7 Area",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.C.12",
+              "standard": "Multiply whole-number side lengths to solve problems involving the area of rectangles.",
+              "unit": "U7 Area",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.C.13",
+              "standard": "Find rectangular arrangements that can be formed for a given area.",
+              "unit": "U7 Area",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.C.14",
+              "standard": "Decompose a rectangle into smaller rectangles to find the area of the original rectangle.",
+              "unit": "U7 Area",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.C.9",
+              "standard": "Calculate area by using unit squares to cover a plane figure with no gaps or overlaps.",
+              "unit": "U7 Area",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.D.15",
+              "standard": "Solve problems involving perimeters of polygons.",
+              "unit": "U8 Perimeter",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.D.16",
+              "standard": "Understand that rectangles can have equal perimeters but different areas, or rectangles can have equal areas but different perimeters.",
+              "unit": "U8 Perimeter",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.B.4",
+              "standard": "Tell and write time to the nearest minute.",
+              "unit": "U9 Measurement: Time, Liquid Volume & Mass",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.B.5",
+              "standard": "Estimate time intervals in minutes.",
+              "unit": "U9 Measurement: Time, Liquid Volume & Mass",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.B.6",
+              "standard": "Solve problems involving addition and subtraction of minutes.",
+              "unit": "U9 Measurement: Time, Liquid Volume & Mass",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.B.7",
+              "standard": "Measure or estimate length, liquid volume and weight of objects.",
+              "unit": "U9 Measurement: Time, Liquid Volume & Mass",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.B.8",
+              "standard": "Use the four operations to solve problems involving lengths, liquid volumes or weights given in the same units.",
+              "unit": "U9 Measurement: Time, Liquid Volume & Mass",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.A.1",
+              "standard": "Understand that shapes in different categories may share attributes and that the shared attributes can define a larger category.",
+              "unit": "U10 Geometry: Shapes & Attributes",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.A.2",
+              "standard": "Distinguish rhombuses and rectangles as examples of quadrilaterals, and draw examples of quadrilaterals that do not belong to these subcategories.",
+              "unit": "U10 Geometry: Shapes & Attributes",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.GM.A.3",
+              "standard": "Partition shapes into parts with equal areas, and express the area of each part as a unit fraction of the whole.",
+              "unit": "U10 Geometry: Shapes & Attributes",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.DS.A.1",
+              "standard": "Create frequency tables, scaled picture graphs and bar graphs to represent a data set with several categories.",
+              "unit": "U11 Represent & Analyze Data",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.DS.A.2",
+              "standard": "Solve one- and two-step problems using information presented in bar and/or picture graphs.",
+              "unit": "U11 Represent & Analyze Data",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.DS.A.3",
+              "standard": "Create a line plot to represent data.",
+              "unit": "U11 Represent & Analyze Data",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "3.DS.A.4",
+              "standard": "Use data shown in a line plot to answer questions.",
+              "unit": "U11 Represent & Analyze Data",
+              "status": "to_build",
+              "file": null
+            }
+          ]
+        },
+        "reading": {
+          "status": "in_progress",
+          "note": "Week 1 D1-D5 built (5 atoms). G3 ELA ladder beyond Week 1 still needs standards pulled.",
+          "atoms": [
+            {
+              "code": "3.R.1.B.a",
+              "standard": "Decoding and identifying the meaning of common prefixes and suffixes and knowing how they change the meaning of root words",
+              "unit": "Reading: Word Meaning",
+              "status": "built",
+              "file": "Amelia - Reading Day 1 - Prefixes and Suffixes.html"
+            },
+            {
+              "code": "3.RF.3.A.a",
+              "standard": "Decoding multisyllabic words in context, and independent of context, by applying common spelling patterns",
+              "unit": "Reading Foundations: Phonics",
+              "status": "built",
+              "file": "Amelia - Reading Day 2 - Decoding Multisyllabic Words.html"
+            },
+            {
+              "code": "3.R.1.A.b",
+              "standard": "Draw conclusions and support with textual evidence",
+              "unit": "Reading: Comprehension",
+              "status": "built",
+              "file": "Amelia - Reading Day 3 - Draw Conclusions with Evidence.html"
+            },
+            {
+              "code": "3.R.1.A.c",
+              "standard": "Summarizing a story's beginning, middle, and determining their central message, lesson or moral",
+              "unit": "Reading: Comprehension",
+              "status": "built",
+              "file": "Amelia - Reading Day 4 - Beginning, Middle, End, Central Message.html"
+            },
+            {
+              "code": "3.R.3.A.b",
+              "standard": "Identify the details or facts that support the main idea",
+              "unit": "Reading: Informational Text",
+              "status": "built",
+              "file": "Amelia - Reading Day 5 - Details That Support the Main Idea.html"
+            }
+          ]
+        },
+        "science": {
+          "status": "in_progress",
+          "note": "Week 1 D1+D2 built. Remaining G3 atoms (LS, ESS2.D, PS2.B electric/magnetic) still to author.",
+          "atoms": [
+            {
+              "code": "3.PS2.A.1",
+              "standard": "Plan and conduct an investigation to provide evidence of the effects of balanced and unbalanced forces on the motion of an object.",
+              "unit": "Forces and Motion",
+              "status": "built",
+              "file": "Amelia - Science Day 1 - Forces and Motion.html"
+            },
+            {
+              "code": "3.PS1.A.1",
+              "standard": "Predict and investigate that water can change from a liquid to a solid (freeze), and back again (melt), or from a liquid to a gas (evaporation), and back again (condensation) as the result of temperature changes.",
+              "unit": "Matter: States and Phase Changes",
+              "status": "built",
+              "file": "Amelia - Science Day 2 - Water Changes State.html"
+            }
+          ]
+        },
+        "social_studies": {
+          "status": "in_progress",
+          "note": "Week 1 D1+D2 built. Remaining G3 atoms (E4, GS2, H3.F Louisiana Purchase, PC1, TS7) still to author.",
+          "atoms": [
+            {
+              "code": "3.EG5.B.b",
+              "standard": "Describe and use absolute location using a grid system.",
+              "unit": "Geography: Location",
+              "status": "built",
+              "file": "Amelia - Social Studies Day 1 - Map Grids.html"
+            },
+            {
+              "code": "3.EG5.A.a",
+              "standard": "Read and construct historical and current maps.",
+              "unit": "Geography: Reading and constructing maps",
+              "status": "built",
+              "file": "Amelia - Social Studies Day 2 - Reading Historical and Current Maps.html"
+            }
+          ]
+        },
+        "japanese": {
+          "status": "in_progress",
+          "note": "Day 1 built (Colors). Shared scope with Sam/Julie.",
+          "atoms": [
+            {
+              "code": "JP.G3.D1",
+              "standard": "Name colors in Japanese (aka, ao, kiiro, midori, kuro, shiro).",
+              "unit": "Colors",
+              "status": "built",
+              "file": "Amelia - Japanese Day 1 - Colors.html"
+            }
+          ]
+        }
+      }
+    },
+    "julie": {
+      "name": "Julie",
+      "grade": "Grade 8",
+      "interests": "track, WNBA, engineering, Zelda, Rubik's; loves math, wants real numbers",
+      "math_grade": "g8",
+      "subjects": {
+        "math": {
+          "status": "in_progress",
+          "note": "Grade 8 math needs bespoke interactives (number line, exponent rules, slope, transformations); the Grade 2 block engine does not fit",
+          "atoms": [
+            {
+              "code": "8.NS.A.1a",
+              "standard": "Know the differences between rational and irrational numbers.",
+              "unit": "U1 Rational & Irrational Numbers",
+              "status": "built",
+              "file": "Julie - Math Day 1 - Rational vs Irrational.html"
+            },
+            {
+              "code": "8.NS.A.1b",
+              "standard": "Understand that all rational numbers have a decimal expansion that terminates or repeats.",
+              "unit": "U1 Rational & Irrational Numbers",
+              "status": "built",
+              "file": "Julie - Math Day 2 - Decimal Expansion Always Terminates or Repeats.html"
+            },
+            {
+              "code": "8.NS.A.1c",
+              "standard": "Convert decimals which repeat into fractions and fractions into repeating decimals.",
+              "unit": "U1 Rational & Irrational Numbers",
+              "status": "built",
+              "file": "Julie - Math Day 3 - Convert Repeating Decimals to Fractions.html"
+            },
+            {
+              "code": "8.NS.A.1d",
+              "standard": "Generate equivalent representations of rational numbers.",
+              "unit": "U1 Rational & Irrational Numbers",
+              "status": "built",
+              "file": "Julie - Math Day 4 - Equivalent Representations of Rationals.html"
+            },
+            {
+              "code": "8.NS.A.2",
+              "standard": "Estimate the value and compare the size of irrational numbers and approximate their locations on a number line.",
+              "unit": "U1 Rational & Irrational Numbers",
+              "status": "built",
+              "file": "Julie - Math Day 1 - Irrational Numbers.html",
+              "schedule_note": "Filename retains 'Day 1' for legacy reasons; wired as Week 1 Day 5 in the schedule (full 8.NS.A.1 a-d arc precedes it)."
+            },
+            {
+              "code": "8.EEI.A.1",
+              "standard": "Know and apply the properties of integer exponents to generate equivalent expressions.",
+              "unit": "U2 Integer Exponents & Scientific Notation",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.A.2a",
+              "standard": "Investigate concepts of square and cube roots.",
+              "unit": "U2 Integer Exponents & Scientific Notation",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.A.2b",
+              "standard": "Investigate concepts of square and cube roots.",
+              "unit": "U2 Integer Exponents & Scientific Notation",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.A.2c",
+              "standard": "Investigate concepts of square and cube roots.",
+              "unit": "U2 Integer Exponents & Scientific Notation",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.A.3",
+              "standard": "Express very large and very small quantities in scientific notation and approximate how many times larger one is than the other.",
+              "unit": "U2 Integer Exponents & Scientific Notation",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.A.4a",
+              "standard": "Use scientific notation to solve problems.",
+              "unit": "U2 Integer Exponents & Scientific Notation",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.A.4b",
+              "standard": "Use scientific notation to solve problems.",
+              "unit": "U2 Integer Exponents & Scientific Notation",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.B.5a",
+              "standard": "Graph proportional relationships.",
+              "unit": "U3 Proportional Relationships, Lines & Slope",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.B.5b",
+              "standard": "Graph proportional relationships.",
+              "unit": "U3 Proportional Relationships, Lines & Slope",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.B.6a",
+              "standard": "Apply concepts of slope and y-intercept to graphs, equations and proportional relationships.",
+              "unit": "U3 Proportional Relationships, Lines & Slope",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.B.6b",
+              "standard": "Apply concepts of slope and y-intercept to graphs, equations and proportional relationships.",
+              "unit": "U3 Proportional Relationships, Lines & Slope",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.C.7a",
+              "standard": "Solve linear equations and inequalities in one variable.",
+              "unit": "U4 Linear Equations & Systems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.C.7b",
+              "standard": "Solve linear equations and inequalities in one variable.",
+              "unit": "U4 Linear Equations & Systems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.C.8a",
+              "standard": "Analyze and solve systems of linear equations.",
+              "unit": "U4 Linear Equations & Systems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.C.8b",
+              "standard": "Analyze and solve systems of linear equations.",
+              "unit": "U4 Linear Equations & Systems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.C.8c",
+              "standard": "Analyze and solve systems of linear equations.",
+              "unit": "U4 Linear Equations & Systems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.EEI.C.8d",
+              "standard": "Analyze and solve systems of linear equations.",
+              "unit": "U4 Linear Equations & Systems",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.A.1a",
+              "standard": "Explore the concept of functions. (The use of function notation is not required.)",
+              "unit": "U5 Functions: Definition, Evaluation & Comparison",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.A.1b",
+              "standard": "Explore the concept of functions. (The use of function notation is not required.)",
+              "unit": "U5 Functions: Definition, Evaluation & Comparison",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.A.1c",
+              "standard": "Explore the concept of functions. (The use of function notation is not required.)",
+              "unit": "U5 Functions: Definition, Evaluation & Comparison",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.A.2",
+              "standard": "Compare characteristics of two functions each represented in a different way.",
+              "unit": "U5 Functions: Definition, Evaluation & Comparison",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.A.3a",
+              "standard": "Investigate the differences between linear and nonlinear functions.",
+              "unit": "U5 Functions: Definition, Evaluation & Comparison",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.A.3b",
+              "standard": "Investigate the differences between linear and nonlinear functions.",
+              "unit": "U5 Functions: Definition, Evaluation & Comparison",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.A.3c",
+              "standard": "Investigate the differences between linear and nonlinear functions.",
+              "unit": "U5 Functions: Definition, Evaluation & Comparison",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.B.4a",
+              "standard": "Use functions to model linear relationships between quantities.",
+              "unit": "U6 Modeling with Functions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.B.4b",
+              "standard": "Use functions to model linear relationships between quantities.",
+              "unit": "U6 Modeling with Functions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.B.4c",
+              "standard": "Use functions to model linear relationships between quantities.",
+              "unit": "U6 Modeling with Functions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.F.B.5",
+              "standard": "Describe the functional relationship between two quantities from a graph or a verbal description.",
+              "unit": "U6 Modeling with Functions",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.1a",
+              "standard": "Verify experimentally the congruence properties of rigid transformations.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.1b",
+              "standard": "Verify experimentally the congruence properties of rigid transformations.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.2a",
+              "standard": "Understand that two-dimensional figures are congruent if a series of rigid transformations can be performed to map the pre-image to the image.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.3",
+              "standard": "Describe the effect of dilations, translations, rotations and reflections on two-dimensional figures using coordinates.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.4a",
+              "standard": "Understand that two-dimensional figures are similar if a series of transformations (rotations, reflections, translations and dilations) can be performed to map the pre-image to the image.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.5a",
+              "standard": "Explore angle relationships and establish informal arguments.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.5b",
+              "standard": "Explore angle relationships and establish informal arguments.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.5c",
+              "standard": "Explore angle relationships and establish informal arguments.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.A.5d",
+              "standard": "Explore angle relationships and establish informal arguments.",
+              "unit": "U7 Transformations, Congruence & Similarity",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.B.6",
+              "standard": "Use models to demonstrate a proof of the Pythagorean Theorem and its converse.",
+              "unit": "U8 The Pythagorean Theorem",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.B.7",
+              "standard": "Use the Pythagorean Theorem to determine unknown side lengths in right triangles in problems in two- and three-dimensional contexts.",
+              "unit": "U8 The Pythagorean Theorem",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.B.8",
+              "standard": "Use the Pythagorean Theorem to find the distance between points in a Cartesian coordinate system.",
+              "unit": "U8 The Pythagorean Theorem",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.C.9a",
+              "standard": "Solve problems involving surface area and volume.",
+              "unit": "U9 Volume of Cones, Cylinders & Spheres",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.GM.C.9b",
+              "standard": "Solve problems involving surface area and volume.",
+              "unit": "U9 Volume of Cones, Cylinders & Spheres",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.DSP.A.1",
+              "standard": "Construct and interpret scatter plots of bivariate measurement data to investigate patterns of association between two quantities.",
+              "unit": "U10 Bivariate Data & Scatter Plots",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.DSP.A.2",
+              "standard": "Generate and use a trend line for bivariate data, and informally assess the fit of the line.",
+              "unit": "U10 Bivariate Data & Scatter Plots",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.DSP.A.3",
+              "standard": "Interpret the parameters of a linear model of bivariate measurement data to solve problems.",
+              "unit": "U10 Bivariate Data & Scatter Plots",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.DSP.A.4a",
+              "standard": "Understand the patterns of association in bivariate categorical data displayed in a two-way table.",
+              "unit": "U10 Bivariate Data & Scatter Plots",
+              "status": "to_build",
+              "file": null
+            },
+            {
+              "code": "8.DSP.A.4b",
+              "standard": "Understand the patterns of association in bivariate categorical data displayed in a two-way table.",
+              "unit": "U10 Bivariate Data & Scatter Plots",
+              "status": "to_build",
+              "file": null
+            }
+          ]
+        },
+        "reading": {
+          "status": "in_progress",
+          "note": "Week 1 D1-D5 built (5 atoms). G8 ELA ladder beyond Week 1 still needs standards pulled.",
+          "atoms": [
+            {
+              "code": "8.RL.1.A",
+              "standard": "Draw conclusions, infer and analyze by citing the textual evidence that most strongly supports an analysis of what the text says explicitly as well as inferences drawn from the text.",
+              "unit": "Reading Literary: Comprehension",
+              "status": "built",
+              "file": "Julie - Reading Day 1 - Citing Evidence.html"
+            },
+            {
+              "code": "8.RL.1.B",
+              "standard": "Determine the meaning of words and phrases as they are used in the text, including figurative and connotative meanings using context, affixes, or reference materials.",
+              "unit": "Reading Literary: Vocabulary",
+              "status": "built",
+              "file": "Julie - Reading Day 2 - Word Meaning in Context.html"
+            },
+            {
+              "code": "8.RL.1.D",
+              "standard": "Using appropriate text, determine the theme(s) of a text and analyze its development over the course of a text; provide an objective summary of the text.",
+              "unit": "Reading Literary: Theme",
+              "status": "built",
+              "file": "Julie - Reading Day 3 - Theme and Its Development.html"
+            },
+            {
+              "code": "8.RL.2.C",
+              "standard": "Analyze how specific word choices and sentence structures contribute to meaning and tone.",
+              "unit": "Reading Literary: Craft and Structure",
+              "status": "built",
+              "file": "Julie - Reading Day 4 - Word Choice and Sentence Structure.html"
+            },
+            {
+              "code": "8.RI.2.D",
+              "standard": "Evaluate an author's argument, assessing whether the reasoning is sound and the evidence is relevant and sufficient; recognize when irrelevant evidence is introduced.",
+              "unit": "Reading Informational: Argument Evaluation",
+              "status": "built",
+              "file": "Julie - Reading Day 5 - Evaluating an Author's Argument.html"
+            }
+          ]
+        },
+        "science": {
+          "status": "in_progress",
+          "note": "Week 1 D1+D2 built. Remaining G8 atoms (full PS/LS/ESS Performance Expectations) still to author.",
+          "atoms": [
+            {
+              "code": "6-8.PS2.A.2",
+              "standard": "Plan and conduct an investigation to provide evidence that the change in an object's motion depends on the sum of the forces on the object and the mass of the object.",
+              "unit": "Forces and Motion",
+              "status": "built",
+              "file": "Julie - Science Day 1 - Force Mass and Motion.html"
+            },
+            {
+              "code": "6-8.PS2.B.1",
+              "standard": "Analyze diagrams and collect data to determine factors affecting electric and magnetic force strength.",
+              "unit": "Forces and Motion: Electric and Magnetic",
+              "status": "built",
+              "file": "Julie - Science Day 2 - Electric and Magnetic Forces.html"
+            }
+          ]
+        },
+        "social_studies": {
+          "status": "in_progress",
+          "note": "Week 1 D1+D2 built (Three Branches + Declaration of Independence). G8 American History ladder (6-8.AH.1-5) and Geography/World History strands still to author.",
+          "atoms": [
+            {
+              "code": "6-8.AH.3.GS.E",
+              "standard": "Three Branches of Government and constitutional structure (legacy chip code on existing lesson).",
+              "unit": "American History: Constitutional Foundations",
+              "status": "built",
+              "file": "Julie - Social Studies Day 1 - Three Branches.html"
+            },
+            {
+              "code": "6-8.AH.3.CC.B",
+              "standard": "Analyze the Declaration of Independence to determine the historical context and political philosophies that influenced its creation.",
+              "unit": "American History: Revolution",
+              "status": "built",
+              "file": "Julie - Social Studies Day 2 - Declaration of Independence.html"
+            }
+          ]
+        },
+        "japanese": {
+          "status": "in_progress",
+          "note": "Day 1 built (Days of the Week). Shared scope with Sam/Amelia.",
+          "atoms": [
+            {
+              "code": "JP.G8.D1",
+              "standard": "Name the seven days of the week in Japanese (nichi, getsu, ka, sui, moku, kin, do).",
+              "unit": "Days of the Week",
+              "status": "built",
+              "file": "Julie - Japanese Day 1 - Days of the Week.html"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "builders": {
+    "module_engine.py": "the lesson engine (build_module).",
+    "hub_builder.py": "parse_math(grade_id), ELA_G2 data, SAM_MATH_BUILT map, build_subject_index() for gated index pages.",
+    "build_hub.py": "themed per-student Home Dashboards (Amelia Lookbook, Julie Training Console).",
+    "build_sam_dash.py": "Sam Quest Lab dashboard.",
+    "build_sam_a2.py / a4.py": "Sam engine lessons (canonical CFG templates).",
+    "build_sam_a3.py / a5.py": "Sam focused builders (own embedded JS).",
+    "build_sam_batch1.py / batch2.py": "Sam engine lesson batches.",
+    "build_amelia_a3.py": "Amelia Grade 3 engine lesson.",
+    "build_amelia.py / build_julie_math.py": "bespoke day-1 lessons (note: day var still 'd1' in source; shipped files were re-keyed).",
+    "build_schedule.py": "Week 1 daily schedule (Week 1 Schedule.html).",
+    "build_tracker.py": "build-status tracker (Build Tracker.html).",
+    "publish.py": "crawls from Start Here, slugifies, writes learning-site.zip.",
+    "generate_manifest.py": "this file: writes build-manifest.json and BUILD-PLAN.md."
+  },
+  "next_work_in_order": [
+    "Week 1 (45 slots) complete. Week 2 work below.",
+    "Pull next-atom Missouri standards for Science (G2/G3/G8 beyond D2), Social Studies (G2/G3/G8 beyond D2), Japanese full ladder, Reading G3/G8 beyond D5.",
+    "Sam math Week 2: enter U4 Foundations of Multiplication (2.RA.B.2a/b/c, 2.RA.B.3 arrays). Needs equal-groups + array tool.",
+    "Sam reading Week 2: continue E2 The Reading Process (2.R.1.A.c-e, 2.R.1.B.a-d).",
+    "Amelia math Week 2: enter U2 Multiplication (3.RA.A.2-5, 3.RA.B.6).",
+    "Amelia reading Week 2: continue 3.R.1.A.d (monitor comprehension), 3.R.2.A character/plot, 3.R.3.A.a author's purpose.",
+    "Julie math Week 2: U2 Exponents (8.EEI.A.1 integer exponents, A.2 roots, A.3 scientific notation).",
+    "Julie reading Week 2: 8.RI.1.A-D informational ladder, 8.RL.2.D literary devices."
+  ]
+}

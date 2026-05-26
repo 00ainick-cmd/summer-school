@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sam's Learning Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#f2f6fb;--ink:#172234;--ink2:#46566b;--mut:#8b9aad;--line:#e0e8f2;--paper:#ffffff;
+ --hero1:#2f6bd8;--hero2:#6a45d9;--gold:#e0a200;--goldbg:#fff6df;--go:#1f9d57;
+ --math:#e8731c;--read:#8a44c0;--sci:#0f9488;--soc:#d23f6b;--jp:#3b6fd6;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-size:17px;line-height:1.5;min-height:100vh;-webkit-text-size-adjust:100%;
+ background-image:radial-gradient(circle at 12% -5%,rgba(106,69,217,.10),transparent 42%),radial-gradient(circle at 92% 0%,rgba(232,115,28,.10),transparent 40%);}
+h1,h2,h3,.disp{font-family:'Fredoka',sans-serif;font-weight:700;letter-spacing:.01em;}
+a{color:inherit;text-decoration:none;}
+:focus-visible{outline:4px solid var(--hero1);outline-offset:3px;}
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 80px;display:flex;flex-direction:column;gap:18px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.back{font-family:'Fredoka';font-weight:600;font-size:14px;color:var(--ink2);background:#fff;border:2px solid var(--line);border-radius:999px;padding:8px 16px;min-height:42px;display:inline-flex;align-items:center;gap:6px;}
+.who{font-family:'Fredoka';font-weight:600;font-size:14px;color:#fff;background:linear-gradient(120deg,var(--hero1),var(--hero2));border-radius:999px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;}
+.who .av{width:22px;height:22px;border-radius:50%;background:#fff;color:var(--hero2);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+
+/* HERO MISSION */
+.mission{position:relative;overflow:hidden;border-radius:26px;padding:26px 24px;color:#fff;
+ background:linear-gradient(135deg,var(--hero1),var(--hero2));box-shadow:0 16px 40px rgba(47,107,216,.28);}
+.mission::after{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.10);}
+.mission::before{content:"";position:absolute;right:40px;bottom:-60px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.07);}
+.mission .hi{font-size:15px;font-weight:600;opacity:.9;font-family:'Fredoka';}
+.mission .lab{font-family:'Fredoka';font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;margin-top:10px;display:flex;align-items:center;gap:8px;}
+.mission h1{font-size:30px;line-height:1.08;margin-top:4px;max-width:18ch;position:relative;z-index:1;}
+.mission .enc{opacity:.92;margin-top:8px;font-size:15.5px;position:relative;z-index:1;}
+.start{margin-top:18px;position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--hero2);font-family:'Fredoka';font-weight:700;font-size:19px;border:none;border-radius:16px;padding:15px 26px;min-height:56px;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.12);transition:transform .12s;}
+.start:hover{transform:translateY(-2px);}
+.start:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.12);}
+.gem{width:22px;height:22px;display:inline-block;}
+
+/* STATS STRIP */
+.strip{display:grid;grid-template-columns:1fr 1.4fr;gap:14px;}
+@media(max-width:560px){.strip{grid-template-columns:1fr;}}
+.statcard{background:var(--paper);border:2px solid var(--line);border-radius:20px;padding:16px 18px;}
+.statcard .t{font-family:'Fredoka';font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);}
+.level{display:flex;align-items:center;gap:14px;margin-top:8px;}
+.lvlnum{font-family:'Fredoka';font-weight:700;font-size:40px;color:var(--gold);line-height:1;}
+.lvlbar{flex:1;}
+.lvlbar .track{background:#eef2f8;border-radius:999px;height:14px;overflow:hidden;border:1px solid var(--line);}
+.lvlbar .fill{height:100%;background:linear-gradient(90deg,var(--gold),#f6c64a);border-radius:999px;transition:width .6s;}
+.lvlbar .cap{font-family:'Fredoka';font-size:13px;color:var(--ink2);margin-top:5px;}
+.quest .dots{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+.qd{display:flex;flex-direction:column;align-items:center;gap:6px;width:54px;}
+.qd .ring{width:40px;height:40px;border-radius:50%;border:3px solid var(--line);display:flex;align-items:center;justify-content:center;background:#fff;color:#fff;}
+.qd.on .ring{border-color:var(--go);background:var(--go);}
+.qd .nm{font-family:'Fredoka';font-size:11px;color:var(--ink2);font-weight:600;text-align:center;line-height:1.1;}
+.qd svg{width:20px;height:20px;}
+
+/* SUBJECT GRID */
+.section-t{font-family:'Fredoka';font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:4px 2px -4px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:560px){.grid{grid-template-columns:1fr;}}
+.card{background:var(--paper);border:2px solid var(--line);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:12px;transition:transform .14s,box-shadow .14s;}
+.card.live:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(30,50,90,.12);}
+.card.soon{opacity:.7;}
+.cardtop{display:flex;align-items:center;gap:14px;}
+.ic{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;flex:none;}
+.ic svg{width:28px;height:28px;fill:#fff;}
+.cardtop h3{font-size:21px;}
+.cardtop .nx{font-size:13px;color:var(--mut);margin-top:1px;}
+.ring-wrap{margin-left:auto;position:relative;width:56px;height:56px;flex:none;}
+.ring-wrap svg{transform:rotate(-90deg);}
+.ring-wrap .pc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:14px;color:var(--ink);}
+.cbtn{margin-top:auto;font-family:'Fredoka';font-weight:700;font-size:16px;border:none;border-radius:14px;padding:13px 16px;min-height:50px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;}
+.cbtn.soon{background:#fff;color:var(--mut);border:2px solid var(--line);cursor:default;}
+
+/* WEEK 1 LAUNCHPAD */
+.lpad{background:var(--paper);border:2px solid var(--line);border-radius:22px;padding:18px 16px;}
+.lpad .lph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;padding:0 4px;}
+.lpad .lph h3{font-size:19px;color:var(--ink);}
+.lpad .lph .when{font-family:'Fredoka';font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);}
+.lpgrid{display:grid;grid-template-columns:54px 1fr 1fr 1fr;gap:8px;}
+@media(max-width:560px){.lpgrid{grid-template-columns:42px 1fr 1fr 1fr;gap:6px;}}
+.lpgrid .lph2{font-family:'Fredoka';font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);text-align:center;padding:4px 0;font-weight:700;}
+.lpgrid .lpd{font-family:'Fredoka';font-weight:700;color:var(--ink);font-size:14px;display:flex;align-items:center;justify-content:center;background:#f4f7fb;border-radius:12px;}
+.lpgrid .lpcell{background:#fafcff;border:2px solid var(--line);border-radius:12px;padding:9px 10px;display:flex;flex-direction:column;gap:5px;min-height:74px;text-decoration:none;color:var(--ink);position:relative;transition:transform .12s,box-shadow .12s;}
+.lpgrid .lpcell:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(30,50,90,.10);}
+.lpgrid .lpcell .lpsub{display:flex;align-items:center;gap:6px;font-family:'Fredoka';font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
+.lpgrid .lpcell .lpdot{width:10px;height:10px;border-radius:50%;flex:none;}
+.lpgrid .lpcell .lptitle{font-family:'Nunito';font-weight:700;font-size:13px;line-height:1.2;color:var(--ink);}
+.lpgrid .lpcell.today{border-color:var(--hero1);box-shadow:0 0 0 3px rgba(47,107,216,.14);background:#fff;}
+.lpgrid .lpcell.done{background:#e6f7ef;border-color:#9bd9b9;}
+.lpgrid .lpcell .lpcheck{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;background:var(--go);color:#fff;font-size:13px;font-weight:800;display:none;align-items:center;justify-content:center;font-family:'Fredoka';}
+.lpgrid .lpcell.done .lpcheck{display:flex;}
+.lpfull{margin-top:12px;text-align:center;}
+.lpfull a{font-family:'Fredoka';font-weight:700;font-size:14px;color:var(--hero1);border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;display:inline-flex;align-items:center;gap:6px;min-height:42px;}
+.lpfull a:hover{border-color:var(--hero1);}
+
+/* TROPHIES */
+.shelf{background:var(--goldbg);border:2px solid #f0dca0;border-radius:22px;padding:18px 20px;}
+.shelf .h{display:flex;align-items:center;gap:10px;}
+.shelf h3{font-size:19px;color:#7a5b00;}
+.shelf .count{margin-left:auto;font-family:'Fredoka';font-weight:700;color:var(--gold);font-size:15px;background:#fff;border:2px solid #f0dca0;border-radius:999px;padding:5px 12px;}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.badge{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #f0dca0;border-radius:14px;padding:9px 13px;font-family:'Fredoka';font-weight:600;font-size:13.5px;color:var(--ink);}
+.badge .bg{width:20px;height:20px;}
+.empty{color:#7a5b00;margin-top:10px;font-size:14.5px;}
+
+footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid var(--line);padding-top:16px;margin-top:6px;}
+.reveal{opacity:0;transform:translateY(14px);animation:rise .55s ease forwards;animation-delay:var(--d,0s);}
+@keyframes rise{to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}*{transition:none!important;}}
+</style></head><body>
+<div class="wrap">
+  <div class="topbar reveal" style="--d:0s">
+    <a class="back" href="Start Here.html">&#8592; Start Here</a>
+    <span class="who"><span class="av">S</span> Sam &middot; Grade 2</span>
+  </div>
+
+  <section class="mission reveal" style="--d:.05s">
+    <div class="hi">Hi Sam!</div>
+    <div class="lab"><svg class="gem" viewBox="0 0 24 24" fill="none"><path d="M5 9l3-5h8l3 5-7 11z" fill="#fff" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>Today's mission</div>
+    <h1 id="missionTitle">Loading your next adventure...</h1>
+    <p class="enc" id="missionEnc"></p>
+    <button class="start" id="startBtn">Start &#9654;</button>
+  </section>
+
+  <div class="strip">
+    <div class="statcard reveal" style="--d:.10s">
+      <div class="t">Power level</div>
+      <div class="level"><span class="lvlnum" id="lvlNum">1</span>
+        <div class="lvlbar"><div class="track"><div class="fill" id="lvlFill" style="width:0%"></div></div>
+        <div class="cap" id="lvlCap">0 badges earned</div></div></div>
+    </div>
+    <div class="statcard quest reveal" style="--d:.14s">
+      <div class="t">Your daily quest: a little in each subject</div>
+      <div class="dots"><div class="qd" id="qd_math"><span class="ring" style="border-color:#e8731c"><svg viewBox="0 0 27 27" fill="#e8731c"><rect x="3" y="3" width="9" height="9" rx="2"/><rect x="15" y="3" width="9" height="9" rx="2" opacity=".6"/><rect x="3" y="15" width="9" height="9" rx="2" opacity=".6"/><rect x="15" y="15" width="9" height="9" rx="2"/></svg></span><span class="nm">Math</span></div><div class="qd" id="qd_reading"><span class="ring" style="border-color:#8a44c0"><svg viewBox="0 0 27 27" fill="#8a44c0"><path d="M4 5h8v17H4z"/><path d="M15 5h8v17h-8z" opacity=".6"/></svg></span><span class="nm">Reading</span></div><div class="qd" id="qd_science"><span class="ring" style="border-color:#0f9488"><svg viewBox="0 0 27 27" fill="#0f9488"><path d="M10 3h7v6l5 12a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3l5-12z"/></svg></span><span class="nm">Science</span></div><div class="qd" id="qd_social"><span class="ring" style="border-color:#d23f6b"><svg viewBox="0 0 27 27" fill="#d23f6b"><circle cx="13.5" cy="13.5" r="10.5"/><path d="M3 13.5h21M13.5 3c4.5 4 4.5 17 0 21M13.5 3c-4.5 4-4.5 17 0 21" stroke="#fff" stroke-width="1.5" fill="none" opacity=".85"/></svg></span><span class="nm">Social</span></div><div class="qd" id="qd_japanese"><span class="ring" style="border-color:#3b6fd6"><svg viewBox="0 0 27 27" fill="#3b6fd6"><rect x="3" y="5" width="21" height="3.4" rx="1.2"/><rect x="6" y="8" width="3.2" height="14"/><rect x="17.8" y="8" width="3.2" height="14"/></svg></span><span class="nm">Japanese</span></div></div>
+    </div>
+  </div>
+
+  <section class="lpad reveal" style="--d:.15s">
+    <div class="lph"><h3>Week 1 launchpad</h3><span class="when">Mon to Fri &middot; one click to start</span></div>
+    <div class="lpgrid" id="lpgrid"></div>
+    <div class="lpfull"><a href="Week 1 Schedule.html">View full Week 1 Schedule &#8594;</a></div>
+  </section>
+
+  <div class="section-t reveal" style="--d:.17s">Your subjects</div>
+  <div class="grid"><div class="card live reveal" style="--d:0.04s"><div class="cardtop"><div class="ic" style="background:#e8731c"><svg viewBox="0 0 27 27"><rect x="3" y="3" width="9" height="9" rx="2"/><rect x="15" y="3" width="9" height="9" rx="2" opacity=".6"/><rect x="3" y="15" width="9" height="9" rx="2" opacity=".6"/><rect x="15" y="15" width="9" height="9" rx="2"/></svg></div><div><h3>Math</h3><div class="nx" id="nx_math">not started yet</div></div><div class="ring-wrap"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="#eef2f8" stroke-width="7"/><circle id="ring_math" cx="28" cy="28" r="24" fill="none" stroke="#e8731c" stroke-width="7" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><span class="pc" id="pc_math">0</span></div></div><a class="cbtn" style="background:#e8731c" href="Sam - Math Index.html">Let's go &#8594;</a></div><div class="card live reveal" style="--d:0.08s"><div class="cardtop"><div class="ic" style="background:#8a44c0"><svg viewBox="0 0 27 27"><path d="M4 5h8v17H4z"/><path d="M15 5h8v17h-8z" opacity=".6"/></svg></div><div><h3>Reading</h3><div class="nx" id="nx_reading">not started yet</div></div><div class="ring-wrap"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="#eef2f8" stroke-width="7"/><circle id="ring_reading" cx="28" cy="28" r="24" fill="none" stroke="#8a44c0" stroke-width="7" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><span class="pc" id="pc_reading">0</span></div></div><a class="cbtn" style="background:#8a44c0" href="Sam - Reading Index.html">Let's go &#8594;</a></div><div class="card live reveal" style="--d:0.12s"><div class="cardtop"><div class="ic" style="background:#0f9488"><svg viewBox="0 0 27 27"><path d="M10 3h7v6l5 12a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3l5-12z"/></svg></div><div><h3>Science</h3><div class="nx" id="nx_science">2 lessons this week</div></div><div class="ring-wrap"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="#eef2f8" stroke-width="7"/><circle id="ring_science" cx="28" cy="28" r="24" fill="none" stroke="#0f9488" stroke-width="7" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><span class="pc" id="pc_science">0</span></div></div><a class="cbtn" style="background:#0f9488" href="Sam - Science Day 1 - Sorting Materials.html">Let's go &#8594;</a></div><div class="card live reveal" style="--d:0.16s"><div class="cardtop"><div class="ic" style="background:#d23f6b"><svg viewBox="0 0 27 27"><circle cx="13.5" cy="13.5" r="10.5"/><path d="M3 13.5h21M13.5 3c4.5 4 4.5 17 0 21M13.5 3c-4.5 4-4.5 17 0 21" stroke="#fff" stroke-width="1.5" fill="none" opacity=".85"/></svg></div><div><h3>Social Studies</h3><div class="nx" id="nx_social">2 lessons this week</div></div><div class="ring-wrap"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="#eef2f8" stroke-width="7"/><circle id="ring_social" cx="28" cy="28" r="24" fill="none" stroke="#d23f6b" stroke-width="7" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><span class="pc" id="pc_social">0</span></div></div><a class="cbtn" style="background:#d23f6b" href="Sam - Social Studies Day 1 - Map Directions.html">Let's go &#8594;</a></div><div class="card live reveal" style="--d:0.2s"><div class="cardtop"><div class="ic" style="background:#3b6fd6"><svg viewBox="0 0 27 27"><rect x="3" y="5" width="21" height="3.4" rx="1.2"/><rect x="6" y="8" width="3.2" height="14"/><rect x="17.8" y="8" width="3.2" height="14"/></svg></div><div><h3>Japanese</h3><div class="nx" id="nx_japanese">1 lesson this week</div></div><div class="ring-wrap"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="#eef2f8" stroke-width="7"/><circle id="ring_japanese" cx="28" cy="28" r="24" fill="none" stroke="#3b6fd6" stroke-width="7" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><span class="pc" id="pc_japanese">0</span></div></div><a class="cbtn" style="background:#3b6fd6" href="Sam - Japanese Day 1 - Numbers 1 to 10.html">Let's go &#8594;</a></div></div>
+
+  <section class="shelf reveal" style="--d:.20s">
+    <div class="h"><svg class="gem" style="filter:none" viewBox="0 0 24 24" fill="none"><path d="M5 9l3-5h8l3 5-7 11z" fill="#e0a200" stroke="#e0a200" stroke-width="1.2" stroke-linejoin="round"/></svg><h3>Trophy shelf</h3><span class="count" id="trophyCount">0</span></div>
+    <div class="badges" id="badges"></div>
+    <div class="empty" id="trophyEmpty">Master your first lesson to earn a badge. It will show up right here!</div>
+  </section>
+
+  <footer>Sam's learning hub &middot; Grade 2 &middot; progress saves on this device and syncs to the cloud when turned on. Grown-ups: the full program overview lives in Start Here.</footer>
+</div>
+<script>
+(function(){
+ "use strict";
+ var MATH=[{"code": "2.NBT.A.1", "nice": "Place Value Mastery"}, {"code": "2.NBT.A.2", "nice": "Ten Tens Make a Hundred"}, {"code": "2.NBT.A.3", "nice": "Counting Within 1000"}, {"code": "2.NBT.A.4", "nice": "Reading and Writing Numbers to 1000"}, {"code": "2.NBT.A.5", "nice": "Comparing Three-Digit Numbers"}, {"code": "2.RA.A.1", "nice": "Fluency Within 20"}, {"code": "2.NBT.B.10", "nice": "Plus and Minus 10 and 100"}, {"code": "2.NBT.B.6", "nice": "Add and Subtract Within 100"}, {"code": "2.NBT.B.7", "nice": "Add Up to Four Two-Digit Numbers"}, {"code": "2.NBT.B.8", "nice": "Add and Subtract Within 1000"}, {"code": "2.NBT.B.9", "nice": "Addition and Subtraction Are Linked"}, {"code": "2.NBT.C.11", "nice": "Word Problems Within 100"}, {"code": "2.RA.B.2a", "nice": "Determine if a set of objects has..."}, {"code": "2.RA.B.2b", "nice": "Determine if a set of objects has..."}, {"code": "2.RA.B.2c", "nice": "Determine if a set of objects has..."}, {"code": "2.RA.B.3", "nice": "Find the total number of objects arranged..."}, {"code": "2.GM.B.4", "nice": "Measure the length of an object by..."}, {"code": "2.GM.B.5", "nice": "Analyze the results of measuring the same..."}, {"code": "2.GM.B.6", "nice": "Estimate lengths using units of inches, feet,..."}, {"code": "2.GM.B.7", "nice": "Measure to determine how much longer one..."}, {"code": "2.GM.C.8", "nice": "Use addition and subtraction within 100 to..."}, {"code": "2.GM.C.9", "nice": "Represent whole numbers as lengths on a..."}, {"code": "2.GM.D.10", "nice": "Tell and write time from analog and..."}, {"code": "2.GM.D.11", "nice": "Describe a time shown on a digital..."}, {"code": "2.GM.D.12", "nice": "Find the value of combinations of dollar..."}, {"code": "2.GM.D.13", "nice": "Find combinations of coins that equal a..."}, {"code": "2.GM.A.1a", "nice": "Recognize and draw shapes having specified attributes,..."}, {"code": "2.GM.A.1b", "nice": "Recognize and draw shapes having specified attributes,..."}, {"code": "2.GM.A.2", "nice": "Partition a rectangle into rows and columns..."}, {"code": "2.GM.A.3a", "nice": "Partition circles and rectangles into two, three..."}, {"code": "2.DS.A.1", "nice": "Create a line plot to represent a..."}, {"code": "2.DS.A.2", "nice": "Generate measurement data to the nearest whole..."}, {"code": "2.DS.A.3", "nice": "Draw a picture graph or a bar..."}, {"code": "2.DS.A.4", "nice": "Solve problems using information presented in line..."}, {"code": "2.DS.A.5", "nice": "Draw conclusions from line plots, picture graphs..."}], MATHTOTAL=35, BUILT={"2.NBT.A.1": "Sam - Math - Place Value Mastery.html", "2.NBT.A.2": "Sam - Math - Ten Tens Make a Hundred.html", "2.NBT.A.3": "Sam - Math - Counting Within 1000.html", "2.NBT.A.4": "Sam - Math - Reading and Writing Numbers to 1000.html", "2.NBT.A.5": "Sam - Math - Comparing Three-Digit Numbers.html", "2.RA.A.1": "Sam - Math - Fluency Within 20.html", "2.NBT.B.10": "Sam - Math - Plus and Minus 10 and 100.html", "2.NBT.B.6": "Sam - Math - Add and Subtract Within 100.html", "2.NBT.B.7": "Sam - Math - Add Up to Four Two-Digit Numbers.html", "2.NBT.B.8": "Sam - Math - Add and Subtract Within 1000.html", "2.NBT.B.9": "Sam - Math - Addition and Subtraction Are Linked.html", "2.NBT.C.11": "Sam - Math - Word Problems Within 100.html"};
+ var SUBS=[{"key": "math", "col": "#e8731c"}, {"key": "reading", "col": "#8a44c0"}, {"key": "science", "col": "#0f9488"}, {"key": "social", "col": "#d23f6b"}, {"key": "japanese", "col": "#3b6fd6"}];
+ var C=2*Math.PI*24; // ring circumference ~150.8
+ var app={}; try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+ app.activeStudent='sam'; app.students=app.students||{}; app.students.sam=app.students.sam||{name:'Sam'};
+ try{localStorage.setItem('edu.app',JSON.stringify(app));}catch(e){}
+ var P=(app.progress||{}).sam||{};
+ function rec(sub,code){return ((P[sub]||{})[code])||null;}
+ function isToday(ts){if(!ts)return false;var d=new Date(ts),n=new Date();return d.toDateString()===n.toDateString();}
+
+ // ---- math progress ----
+ var mathDone=0, firstNext=null, totalBadges=0, badgeList=[];
+ MATH.forEach(function(a){ var r=rec('math',a.code); if(r&&r.status==='passed'){mathDone++;totalBadges++;badgeList.push({sub:'math',name:a.nice});} else if(!firstNext){firstNext=a;} });
+
+ function setRing(key,done,total){ var c=document.getElementById('ring_'+key),pc=document.getElementById('pc_'+key);
+   if(!c)return; var p=total?done/total:0; c.setAttribute('stroke-dashoffset',(C*(1-p)).toFixed(1)); if(pc)pc.textContent=(total?done:'')+''; }
+ setRing('math',mathDone,MATHTOTAL);
+ var nm=document.getElementById('nx_math'); if(nm)nm.textContent= firstNext? ('Next: '+firstNext.nice) : 'All done, great work!';
+ document.getElementById('pc_math').textContent=mathDone;
+
+ // other subjects: rings stay 0, labels show week 1 count
+ SUBS.forEach(function(s){ if(s.key!=='math'){ var pc=document.getElementById('pc_'+s.key); if(pc)pc.textContent=''; } });
+
+ // ---- week 1 launchpad ----
+ var W1=[
+  {day:'Day 1', cells:[
+   {sub:'math', code:'2.NBT.A.1', title:'Place Value Mastery', file:'Sam - Math - Place Value Mastery.html', col:'#e8731c'},
+   {sub:'reading', code:'2.RF.3.A.a', title:'Decoding Multisyllabic Words', file:'Sam - Reading Day 1 - Decoding Multisyllabic Words.html', col:'#8a44c0'},
+   {sub:'science', code:'2.PS1.A.1', title:'Sorting Materials', file:'Sam - Science Day 1 - Sorting Materials.html', col:'#0f9488'}
+  ]},
+  {day:'Day 2', cells:[
+   {sub:'math', code:'2.NBT.A.2', title:'Ten Tens Make a Hundred', file:'Sam - Math - Ten Tens Make a Hundred.html', col:'#e8731c'},
+   {sub:'reading', code:'2.RF.3.A.b', title:'Long and Short Vowels', file:'Sam - Reading Day 1 - Long and Short Vowels.html', col:'#8a44c0'},
+   {sub:'social', code:'2.EG5.A.a', title:'Map Directions', file:'Sam - Social Studies Day 1 - Map Directions.html', col:'#d23f6b'}
+  ]},
+  {day:'Day 3', cells:[
+   {sub:'math', code:'2.NBT.A.3', title:'Counting Within 1000', file:'Sam - Math - Counting Within 1000.html', col:'#e8731c'},
+   {sub:'reading', code:'2.RF.1.A.a', title:'Sentences Into Paragraphs', file:'Sam - Reading Day 3 - Sentences Into Paragraphs.html', col:'#8a44c0'},
+   {sub:'japanese', code:'Numbers 1-10', title:'Numbers 1 to 10', file:'Sam - Japanese Day 1 - Numbers 1 to 10.html', col:'#3b6fd6'}
+  ]},
+  {day:'Day 4', cells:[
+   {sub:'math', code:'2.NBT.A.4', title:'Reading and Writing Numbers to 1000', file:'Sam - Math - Reading and Writing Numbers to 1000.html', col:'#e8731c'},
+   {sub:'reading', code:'2.R.1.A.a', title:'Text Features and Predictions', file:'Sam - Reading Day 4 - Text Features and Predictions.html', col:'#8a44c0'},
+   {sub:'science', code:'2.PS1.A.2', title:'Pick the Right Material', file:'Sam - Science Day 2 - Pick the Right Material.html', col:'#0f9488'}
+  ]},
+  {day:'Day 5', cells:[
+   {sub:'math', code:'2.NBT.A.5', title:'Comparing Three-Digit Numbers', file:'Sam - Math - Comparing Three-Digit Numbers.html', col:'#e8731c'},
+   {sub:'reading', code:'2.R.1.A.b', title:'Asking Good Questions', file:'Sam - Reading Day 5 - Asking Good Questions.html', col:'#8a44c0'},
+   {sub:'social', code:'2.EG5.A.b', title:'Different Kinds of Maps', file:'Sam - Social Studies Day 2 - Different Kinds of Maps.html', col:'#d23f6b'}
+  ]}
+ ];
+ var SUBLABEL={math:'Math',reading:'Reading',science:'Science',social:'Social',japanese:'Japanese'};
+ var lpg=document.getElementById('lpgrid');
+ if(lpg){
+   // header row
+   ['','Math','Reading','Enrichment'].forEach(function(h,i){ var d=document.createElement('div'); d.className=i===0?'lph2':'lph2'; d.textContent=h; lpg.appendChild(d); });
+   // find first un-mastered cell to highlight as 'today'
+   var todayCell=null;
+   for(var i=0;i<W1.length && !todayCell;i++){ for(var j=0;j<W1[i].cells.length && !todayCell;j++){ var c=W1[i].cells[j]; var r=rec(c.sub,c.code); if(!(r&&r.status==='passed')){ todayCell=c; } } }
+   W1.forEach(function(row){
+     var dlab=document.createElement('div'); dlab.className='lpd'; dlab.textContent=row.day; lpg.appendChild(dlab);
+     row.cells.forEach(function(c){
+       var a=document.createElement('a'); a.className='lpcell'; a.href=c.file;
+       var r=rec(c.sub,c.code); var mastered=r&&r.status==='passed';
+       if(mastered) a.className+=' done';
+       else if(c===todayCell) a.className+=' today';
+       a.innerHTML='<div class="lpsub"><span class="lpdot" style="background:'+c.col+'"></span>'+SUBLABEL[c.sub]+'</div><div class="lptitle">'+c.title+'</div><div class="lpcheck">&#10003;</div>';
+       lpg.appendChild(a);
+     });
+   });
+ }
+
+ // ---- mission ----
+ var encs=['You have got this!','One lesson at a time.','Let us build some numbers!','Ready when you are.'];
+ var mt=document.getElementById('missionTitle'), me=document.getElementById('missionEnc'), sb=document.getElementById('startBtn');
+ if(firstNext){ mt.textContent='Math: '+firstNext.nice; me.textContent=encs[mathDone%encs.length];
+   sb.onclick=function(){ location.href = BUILT[firstNext.code] || 'Sam - Math Index.html'; }; }
+ else { mt.textContent='You finished all your math lessons!'; me.textContent='Amazing work. More subjects are coming soon.'; sb.textContent='See my badges'; sb.onclick=function(){location.href='#';}; }
+
+ // ---- power level ---- (every 3 badges = 1 level)
+ var level=1+Math.floor(totalBadges/3), into=totalBadges%3;
+ document.getElementById('lvlNum').textContent=level;
+ document.getElementById('lvlFill').style.width=Math.round(into/3*100)+'%';
+ document.getElementById('lvlCap').textContent=totalBadges+(totalBadges===1?' badge earned':' badges earned')+' · '+(3-into)+' to level '+(level+1);
+
+ // ---- daily quest dots ----
+ SUBS.forEach(function(s){ var touched=false; var subP=P[s.key]||{};
+   for(var k in subP){ if(isToday((subP[k]||{}).lastAt)){touched=true;break;} }
+   if(touched){ var el=document.getElementById('qd_'+s.key); if(el)el.classList.add('on'); } });
+
+ // ---- trophy shelf ----
+ var colmap={}; SUBS.forEach(function(s){colmap[s.key]=s.col;});
+ document.getElementById('trophyCount').textContent=totalBadges;
+ var bw=document.getElementById('badges');
+ if(totalBadges>0){ document.getElementById('trophyEmpty').style.display='none';
+   badgeList.forEach(function(b){ var d=document.createElement('div'); d.className='badge';
+     d.innerHTML='<svg class="bg" viewBox="0 0 24 24"><path d="M5 9l3-5h8l3 5-7 11z" fill="'+colmap[b.sub]+'"/></svg>'+b.name; bw.appendChild(d); }); }
+})();
+</script></body></html>

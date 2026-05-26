@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sam's Reading Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef4fc;--paper:#fff;--ink:#16202e;--ink2:#46566a;--mut:#8493a6;--line:#d7e2f0;
+ --accent:#2f6fd6;--accent2:#1f57b5;--accentbg:#e7f0fd;--go:#1f9d57;--gobg:#e6f7ee;--gold:#b8860b;--lock:#9aa6b4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-size:17px;line-height:1.5;min-height:100vh;-webkit-text-size-adjust:100%;}
+h1,h2,h3{font-family:'Fredoka',sans-serif;font-weight:700;}
+.wrap{max-width:880px;margin:0 auto;padding:18px 16px 80px;display:flex;flex-direction:column;gap:18px;}
+:focus-visible{outline:4px solid var(--accent);outline-offset:3px;}
+a{color:inherit;text-decoration:none;}
+.crumb{display:flex;align-items:center;gap:8px;font-family:'Fredoka';font-size:14px;color:var(--accent2);font-weight:600;}
+.crumb a{background:#fff;border:2px solid var(--line);border-radius:999px;padding:6px 14px;min-height:40px;display:inline-flex;align-items:center;}
+.hero{background:linear-gradient(150deg,#ffffff,var(--accentbg));border:2px solid var(--line);border-radius:22px;padding:22px 22px;}
+.hero .tag{display:inline-block;font-family:'Fredoka';font-size:13px;font-weight:600;border-radius:999px;padding:5px 14px;margin-bottom:8px;color:var(--accent2);background:var(--accentbg);}
+.hero h1{font-size:32px;line-height:1.05;}
+.hero p{color:var(--ink2);margin-top:6px;}
+.meter{margin-top:16px;background:#eef2f8;border-radius:999px;height:18px;overflow:hidden;border:1px solid var(--line);}
+.meter > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--go));border-radius:999px;transition:width .5s;}
+.meterlab{font-family:'Fredoka';font-size:14px;color:var(--ink2);margin-top:6px;}
+.banner{background:var(--accentbg);border:2px dashed var(--accent);border-radius:16px;padding:14px 16px;color:var(--accent2);font-weight:600;}
+.cta{font-family:'Fredoka';font-weight:600;font-size:19px;border:none;border-radius:16px;padding:14px 22px;cursor:pointer;color:#fff;background:var(--accent);min-height:52px;display:inline-flex;align-items:center;gap:10px;}
+.cta:hover{background:var(--accent2);}
+.cta.dim{background:#fff;color:var(--mut);border:2px solid var(--line);cursor:default;}
+.unit{background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:8px 10px 12px;}
+.uhead{display:flex;align-items:center;gap:10px;padding:10px 8px;}
+.uid{font-family:'Fredoka';font-weight:700;color:var(--accent2);background:var(--accentbg);border-radius:10px;padding:4px 12px;font-size:15px;}
+.utitle{font-weight:800;font-size:18px;flex:1;}
+.ucount{font-family:'Fredoka';font-size:13px;color:var(--mut);}
+.atom{display:flex;align-items:center;gap:12px;padding:12px 12px;border-radius:14px;border:2px solid transparent;}
+.atom + .atom{border-top:1px solid var(--line);}
+.atom.now{background:var(--accentbg);border-color:var(--accent);}
+.st{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-weight:700;font-size:16px;border:2px solid;}
+.st.done{background:var(--gobg);border-color:var(--go);color:var(--go);}
+.st.open{background:#fff;border-color:var(--accent);color:var(--accent);}
+.st.soon{background:#fff;border-color:var(--line);color:var(--mut);}
+.st.lock{background:#f3f5f9;border-color:var(--line);color:var(--lock);}
+.abody{flex:1;min-width:0;}
+.acode{font-family:'Fredoka';font-weight:700;font-size:13px;color:var(--ink2);}
+.atext{font-size:14.5px;color:var(--ink);}
+.aact{flex:none;}
+.pill{font-family:'Fredoka';font-weight:600;font-size:13px;border-radius:999px;padding:8px 14px;min-height:40px;display:inline-flex;align-items:center;border:2px solid var(--line);}
+.pill.open{background:var(--accent);color:#fff;border-color:var(--accent);}
+.pill.done{background:var(--gobg);color:var(--go);border-color:var(--go);}
+.pill.soon{background:#fff;color:var(--mut);}
+.pill.lock{background:#f3f5f9;color:var(--lock);}
+footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid var(--line);padding-top:16px;margin-top:6px;}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+
+:root{--accent:#8a44c0;--accent2:#6f33a0;--accentbg:#f4eafb;}</style></head><body>
+<div class="wrap">
+  <div class="crumb"><a href="Sam - Home Dashboard (Grade 2).html">&#8592; Sam's hub</a><span>/</span><span>Reading</span></div>
+  <div class="hero">
+    <span class="tag">Grade 2 Reading &middot; mastery ladder</span>
+    <h1>Sam's Reading</h1>
+    <p>Work down the ladder. Each lesson unlocks when you master the one before it.</p>
+    <div class="meter"><span id="bar" style="width:0%"></span></div>
+    <div class="meterlab" id="mlab">0 of 26 mastered</div>
+    <div style="margin-top:14px"><button class="cta" id="continueBtn">Continue</button></div>
+  </div>
+  <div class="banner">5 of 26 lessons are ready. Work down the ladder; mastered ones get a badge.</div>
+  <div id="ladder"></div>
+  <footer>Objectives are verbatim state standards. Sequence is a curriculum-design choice. Progress saves on this device and syncs to the cloud when enabled.</footer>
+</div>
+<script>
+(function(){
+ "use strict";
+ var LADDER=[{"uid": "E1", "title": "Decoding and Vowels", "atoms": [{"code": "2.RF.3.A.a", "text": "decoding multisyllabic words in context by applying common letter-sound correspondences including: single letters, consonant blends, consonant and vowel digraphs and vowel diphthongs"}, {"code": "2.RF.3.A.b", "text": "distinguishing long and short vowels when reading regularly spelled one syllable words"}, {"code": "2.RF.1.A.a", "text": "understanding that sentences are organized into paragraphs to convey meaning"}]}, {"uid": "E2", "title": "The Reading Process", "atoms": [{"code": "2.R.1.A.a", "text": "using text features to make and confirm predictions, explain why not confirmed"}, {"code": "2.R.1.A.b", "text": "asking and responding to relevant questions"}, {"code": "2.R.1.A.c", "text": "seeking clarification, and using information/ facts and details about texts and supporting answers with evidence from text"}, {"code": "2.R.1.A.d", "text": "retelling a story's beginning, middle, and end and determining their central message, lesson or moral"}, {"code": "2.R.1.A.e", "text": "monitoring comprehension and making corrections and adjustments when understanding breaks down"}]}, {"uid": "E3", "title": "Word Meaning and Vocabulary", "atoms": [{"code": "2.R.1.B.a", "text": "using prefixes, root words, and suffixes to determine the meaning of words"}, {"code": "2.R.1.B.b", "text": "using knowledge of the meaning of individual words to determine the meaning of compound words"}, {"code": "2.R.1.B.c", "text": "using context to determine the meaning of a new word or multiple-meaning word in text"}, {"code": "2.R.1.B.d", "text": "using antonyms and synonyms"}]}, {"uid": "E4", "title": "Grammar in Speech and Writing", "atoms": [{"code": "2.L.1.A.a", "text": "use nouns and pronouns in writing"}, {"code": "2.L.1.A.b", "text": "use collective nouns"}, {"code": "2.L.1.A.c", "text": "use common irregular nouns"}, {"code": "2.L.1.A.d", "text": "use reflexive pronouns"}, {"code": "2.L.1.A.e", "text": "use regular verbs"}, {"code": "2.L.1.A.f", "text": "use helping verbs with regular verbs"}, {"code": "2.L.1.A.g", "text": "use adjectives and adverbs in sentences"}, {"code": "2.L.1.A.h", "text": "produce simple declarative, imperative, exclamatory, and interrogative sentences"}]}, {"uid": "E5", "title": "Writing Conventions", "atoms": [{"code": "2.L.1.B.a", "text": "write legibly (print, cursive)"}, {"code": "2.L.1.B.b", "text": "use dialogue that contains quotation marks"}, {"code": "2.L.1.B.c", "text": "use apostrophes correctly for contractions"}, {"code": "2.L.1.B.d", "text": "capitalize weeks, days, months, holidays"}, {"code": "2.L.1.B.e", "text": "capitalize abbreviated titles of people"}, {"code": "2.L.1.B.f", "text": "spell words using irregular spelling patterns"}]}], BUILT={"2.RF.3.A.a": "Sam - Reading Day 1 - Decoding Multisyllabic Words.html", "2.RF.3.A.b": "Sam - Reading Day 1 - Long and Short Vowels.html", "2.RF.1.A.a": "Sam - Reading Day 3 - Sentences Into Paragraphs.html", "2.R.1.A.a": "Sam - Reading Day 4 - Text Features and Predictions.html", "2.R.1.A.b": "Sam - Reading Day 5 - Asking Good Questions.html"}, TOTAL=26, STU='sam', SUB='reading';
+ var app={}; try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+ var prog=((app.progress||{})[STU]||{})[SUB]||{};
+ function mastered(code){var r=prog[code];return r&&r.status==='passed';}
+ var seq=[]; LADDER.forEach(function(u){u.atoms.forEach(function(a){seq.push(a.code);});});
+ var prevBuilt=true, states={}, firstOpen=null, doneCount=0;
+ seq.forEach(function(code){ var m=mastered(code), built=!!BUILT[code], st;
+   if(m){st='done';doneCount++;}
+   else if(!built){st='soon';}
+   else {st=prevBuilt?'open':'lock';}
+   states[code]=st; if(st==='open'&&!firstOpen)firstOpen=code; if(built)prevBuilt=m; });
+ var lad=document.getElementById('ladder');
+ LADDER.forEach(function(u){ var card=document.createElement('div');card.className='unit';
+   var done=u.atoms.filter(function(a){return states[a.code]==='done';}).length;
+   var head=document.createElement('div');head.className='uhead';
+   head.innerHTML='<span class="uid">'+u.uid+'</span><span class="utitle">'+u.title+'</span><span class="ucount">'+done+' / '+u.atoms.length+'</span>';
+   card.appendChild(head);
+   u.atoms.forEach(function(a){ var st=states[a.code], row=document.createElement('div'); row.className='atom'+(a.code===firstOpen?' now':'');
+     var icon=st==='done'?'✓':st==='lock'?'●':st==='open'?'▶':'…', act;
+     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
+     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]||'#')+'">Review</a>';
+     else if(st==='soon')act='<span class="pill soon">Coming soon</span>';
+     else act='<span class="pill lock">Locked</span>';
+     row.innerHTML='<span class="st '+st+'">'+icon+'</span><div class="abody"><div class="acode">'+a.code+'</div><div class="atext">'+a.text+'</div></div><div class="aact">'+act+'</div>';
+     card.appendChild(row); });
+   lad.appendChild(card); });
+ document.getElementById('bar').style.width=(TOTAL?Math.round(doneCount/TOTAL*100):0)+'%';
+ document.getElementById('mlab').textContent=doneCount+' of '+TOTAL+' mastered';
+ var btn=document.getElementById('continueBtn');
+ if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen];}; }
+ else { var soon=seq.filter(function(c){return states[c]==='soon';})[0];
+   btn.className='cta dim'; btn.disabled=true; btn.textContent= soon? 'Lessons coming soon':'All caught up'; }
+})();
+</script></body></html>

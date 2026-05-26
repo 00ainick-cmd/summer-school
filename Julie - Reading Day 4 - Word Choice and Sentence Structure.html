@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 04 &middot; Word Choice and Sentence Structure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--gold:#a8780d;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .fbline{margin-top:12px;font-size:15px;min-height:1.4em;}
+  .fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+  .swap{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .swap .r{display:grid;grid-template-columns:110px 1fr 130px;border-bottom:1px solid var(--line);font-size:15.5px;}
+  .swap .r:last-child{border-bottom:none;}
+  .swap .lbl{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:10px 12px;display:flex;align-items:center;}
+  .swap .sn{padding:10px 14px;background:#fff;color:var(--ink);}
+  .swap .tone{padding:10px 12px;background:#faf8f2;font-family:'Spline Sans Mono';font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-d);display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line);}
+  .synxbox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  @media (max-width:560px){.synxbox{grid-template-columns:1fr;}}
+  .synxcard{background:#faf8f2;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .synxcard h3{font-family:'Anton';font-size:15px;letter-spacing:.04em;color:var(--accent-d);margin-bottom:4px;}
+  .synxcard .ex{margin-top:6px;padding:8px 10px;background:#fff;border:1px solid var(--line);border-radius:7px;font-size:14.5px;color:var(--ink);font-style:italic;}
+  .pair{margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;}
+  .pair .ptop{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;}
+  .pair .ptop .num{color:var(--accent);}
+  .pair .body{padding:14px 16px;}
+  .pair .ab{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+  @media (max-width:560px){.pair .ab{grid-template-columns:1fr;}}
+  .pair .ab .sx{background:#faf8f2;border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:15.5px;color:var(--ink);}
+  .pair .ab .sx b{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.06em;color:var(--alt);display:block;margin-bottom:4px;text-transform:uppercase;}
+  .pair .qrow{margin-top:14px;}
+  .pair .qrow .qq{font-weight:700;font-size:15.5px;margin-bottom:8px;}
+  .pair .grp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+  @media (max-width:560px){.pair .grp{grid-template-columns:1fr;}}
+  .pair .grp .lab{font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;}
+  .tonerow{display:flex;flex-wrap:wrap;gap:8px;}
+  .tonebtn{font:inherit;font-size:13.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:9px 12px;min-height:44px;cursor:pointer;color:var(--ink2);font-family:'Spline Sans Mono';letter-spacing:.05em;text-transform:uppercase;flex:1;min-width:140px;text-align:center;}
+  .tonebtn:hover{border-color:var(--accent);}
+  .tonebtn.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+  .tonebtn.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .tonebtn:disabled{cursor:default;}
+  .pairfb{margin-top:6px;font-size:14.5px;min-height:1.2em;}
+  .pairfb.ok{color:var(--good);font-weight:600;} .pairfb.try{color:var(--accent-d);font-weight:600;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:10px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:16.5px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:10px;font-size:14.5px;min-height:1.3em;}
+  .scoreband{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;margin-top:14px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;line-height:1;color:var(--ink);}
+  .scoreband .lbl{font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .gateitem{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:#fff;}
+  .gateitem.met{border-color:var(--good);background:#eaf5ee;}
+  .gateitem.miss{border-color:#f3c2bd;background:#fdf0ee;}
+  .gateitem .mk{font-family:'Anton';font-size:20px;flex:none;width:28px;text-align:center;color:var(--ink);}
+  .gateitem.met .mk{color:var(--good);} .gateitem.miss .mk{color:var(--accent-d);}
+  .gateitem b{display:block;font-size:15px;}
+  .gateitem .gd{font-size:13.5px;color:var(--ink2);margin-top:2px;}
+  .badge{display:none;margin-top:16px;background:#14171c;color:#fff;border-radius:14px;padding:18px 18px;text-align:center;}
+  .badge.show{display:block;}
+  .badge .gem{font-family:'Anton';font-size:34px;color:var(--accent);}
+  .badge h3{font-family:'Anton';letter-spacing:.04em;font-size:22px;margin:6px 0;}
+  .badge p{color:#c7cad0;font-size:14.5px;}
+  .note{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:12px 14px;font-size:14.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;margin-top:8px;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.RL.2.C</span></div>
+  <section id="lesson">
+    <div class="kicker">Session 04</div>
+    <h1>Word Choice and Sentence Structure</h1>
+    <p class="mission">Two writers can report the exact same fact, and the reader will feel two completely different things. The fact does not change. Diction (word choice) and syntax (sentence structure) do the rest of the work. Hearing that work is what separates a casual reader from a sharp one.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Analyze how specific word choices and sentence structures contribute to meaning and tone.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Diction: the word the writer picked, and the words they did not</h2></div>
+      <p class="lead">Every word the writer chose is a quiet rejection of three or four close synonyms. The choice carries a register (formal or informal), a temperature (warm or cool), and a precision (specific or vague).</p>
+      <div class="swap">
+        <div class="r"><div class="lbl">Same fact</div><div class="sn">She walked into the room.</div><div class="tone">neutral</div></div>
+        <div class="r"><div class="lbl">Swap A</div><div class="sn">She strode into the room.</div><div class="tone">confident</div></div>
+        <div class="r"><div class="lbl">Swap B</div><div class="sn">She crept into the room.</div><div class="tone">cautious</div></div>
+        <div class="r"><div class="lbl">Swap C</div><div class="sn">She slunk into the room.</div><div class="tone">guilty</div></div>
+        <div class="r"><div class="lbl">Swap D</div><div class="sn">She made her entrance.</div><div class="tone">theatrical</div></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">One verb swap. Five different rooms. That is diction earning its keep.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Syntax: how the sentence is built changes how it lands</h2></div>
+      <div class="synxbox">
+        <div class="synxcard"><h3>Short clipped sentences</h3>Speed up the reader. Build urgency, tension, or a hard tone.<div class="ex">She ran. The door slammed. She did not look back.</div></div>
+        <div class="synxcard"><h3>Long flowing sentences</h3>Slow the reader. Build reflection, mood, or sweep.<div class="ex">She ran through the empty corridor, past the open lockers and the buzzing fluorescent lights, telling herself she would not look back, and then, halfway to the exit, she did.</div></div>
+        <div class="synxcard"><h3>Parallelism</h3>Repeated grammatical pattern. Builds emphasis and rhythm.<div class="ex">We trained, we lost, we trained harder, we lost again, we kept training.</div></div>
+        <div class="synxcard"><h3>Fragments</h3>Intentional incomplete sentences. Punch a single idea. Used sparingly.<div class="ex">Quiet at last. For the first time all year.</div></div>
+      </div>
+      <div class="note"><b>The test.</b> Read a passage aloud. If your voice naturally speeds up or slows down without you trying, the syntax is doing the work. If it stays flat, the syntax is neutral, and the diction is carrying everything.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / DO</span><h2>Four pairs, same fact, different tone</h2></div>
+      <p class="lead">Each pair reports the same event with different word choices or sentence structures. Match each version to the tone it produces.</p>
+      <div id="pairs"></div>
+    </div>
+
+    <button class="cta" id="ptDone">I worked through it. Start Form A (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">30s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="afterA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A &middot; RESULT</span><h2 id="aTitle">Result</h2></div>
+      <div class="scoreband"><span class="s" id="aScore">0 / 8</span><span class="lbl">PASS BAR 7 / 8</span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to the retention check (Form B)</button>
+      <button class="cta alt hide" id="retryA">Revisit the lesson and retry Form A</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RETENTION</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Same standard, new pairs. Best done <b>at least a day after Form A</b>: that delay is what proves the skill lasted.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this tab and come back tomorrow for Form B.</div>
+      <button class="cta" id="startB">Start Form B (8 questions)</button>
+    </div>
+    <div class="hide" id="mcB">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">30s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RESULT</span><h2>Retention result</h2></div>
+      <div class="scoreband"><span class="s" id="bScore">0 / 8</span><span class="lbl">PASS BAR 7 / 8</span></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">MASTERY</span><h2>Credential check</h2></div>
+      <p class="lead">The 8.RL.2.C credential is awarded when <b>both</b> Form A and the delayed Form B clear the bar.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge"><div class="gem">&#9670;</div><h3>8.RL.2.C mastered</h3><p>You can analyze how word choice and sentence structure shape meaning and tone.</p></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">REFLECT</span><h2>One line in your own words</h2></div>
+      <p class="lead">Write one sentence: pick a writer you read for fun and name one move (a word habit or a sentence habit) that gives their work its tone.</p>
+      <div class="reflectbox"><textarea id="reflectNote" placeholder="For example: Brandon Sanderson uses a lot of crisp short sentences in fight scenes, which makes them feel like a stopwatch is running." aria-label="reflection"></textarea></div>
+      <button class="cta" id="saveReflect">Save and finish</button>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. Head back to the dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie &middot; Reading &middot; Day 4 &middot; 8.RL.2.C</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='reading', DAY='8.RL.2.C', SNAME='Julie';
+  var QTIME=30, PASS=7;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,formA:rec.formA||0,formB:rec.formB||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var TONES=['urgent','contemplative','casual','formal'];
+  var PAIRS=[
+    {n:1, fact:'The lab notified the team that the test results were back.',
+      a:{label:'Version A',text:'Results in. Lab just called. We have ten minutes.'},
+      b:{label:'Version B',text:'Sitting with the report tonight, I keep returning to the slow weight of what these numbers might mean.'},
+      aTone:'urgent', bTone:'contemplative',
+      why:'A: clipped sentences and fragments speed the reader and signal time pressure. B: a long, layered sentence with words like "slow weight" and "returning" pulls the reader into reflection.'},
+    {n:2, fact:'A student finished a difficult assignment.',
+      a:{label:'Version A',text:'Yeah, no, I just powered through it and called it a night.'},
+      b:{label:'Version B',text:'The assignment, while demanding, was completed by the deadline and submitted for review.'},
+      aTone:'casual', bTone:'formal',
+      why:'A: contractions, filler ("yeah, no"), and a slangy phrase ("powered through") cue informal speech. B: passive voice, no contractions, and precise verbs ("submitted for review") cue formal register.'},
+    {n:3, fact:'A coach decided to make changes to the starting lineup.',
+      a:{label:'Version A',text:'Lineup changes. Now. Bench warm-ups in five.'},
+      b:{label:'Version B',text:'The coach reviewed the data, weighed three possible adjustments, and elected to revise the starting lineup before the next match.'},
+      aTone:'urgent', bTone:'formal',
+      why:'A: fragments and the command "Now" push tempo and pressure. B: parallel verbs ("reviewed, weighed, elected") and precise language give a measured, formal report.'},
+    {n:4, fact:'A character looked out a window at a long road.',
+      a:{label:'Version A',text:'Long road. Empty. Hers, for now.'},
+      b:{label:'Version B',text:'The road stretched out beyond the window in the way roads do when no one has driven them yet that morning, and she let her eyes travel along it without hurry.'},
+      aTone:'urgent', bTone:'contemplative',
+      why:'A: three short fragments hit like beats and lend possessive intensity ("Hers, for now."). B: a long, unhurried sentence with "without hurry" guides the reader into reflection.'}
+  ];
+
+  var pairsBox=document.getElementById('pairs');
+  PAIRS.forEach(function(p){
+    var card=document.createElement('div'); card.className='pair';
+    card.innerHTML='<div class="ptop"><span>Pair <span class="num">'+p.n+' of '+PAIRS.length+'</span></span><span>Same fact, different tone</span></div>';
+    var body=document.createElement('div'); body.className='body';
+    body.innerHTML='<div style="font-size:14px;color:var(--ink2);"><b style="color:var(--accent-d);">Shared fact:</b> '+p.fact+'</div>'+
+      '<div class="ab"><div class="sx"><b>'+p.a.label+'</b>'+p.a.text+'</div><div class="sx"><b>'+p.b.label+'</b>'+p.b.text+'</div></div>'+
+      '<div class="qrow"><div class="qq">Match each version to its tone.</div>'+
+      '<div class="grp"><div><div class="lab">Version A is...</div><div class="tonerow" data-side="a"></div></div>'+
+      '<div><div class="lab">Version B is...</div><div class="tonerow" data-side="b"></div></div></div>'+
+      '<div class="pairfb"></div></div>';
+    card.appendChild(body); pairsBox.appendChild(card);
+
+    var arows=card.querySelectorAll('.tonerow');
+    var picked={a:null,b:null};
+    var fb=card.querySelector('.pairfb');
+    arows.forEach(function(row){
+      var side=row.getAttribute('data-side');
+      TONES.forEach(function(t){
+        var b=document.createElement('button'); b.className='tonebtn'; b.type='button'; b.textContent=t;
+        b.addEventListener('click',function(){
+          if(picked[side]) return;
+          picked[side]=t;
+          Array.prototype.forEach.call(row.children,function(c){c.disabled=true;});
+          var correctTone=(side==='a'?p.aTone:p.bTone);
+          if(t===correctTone){ b.classList.add('ok'); }
+          else { b.classList.add('no'); Array.prototype.forEach.call(row.children,function(c){if(c.textContent===correctTone)c.classList.add('ok');}); }
+          if(picked.a && picked.b){
+            var ok=(picked.a===p.aTone && picked.b===p.bTone);
+            fb.className='pairfb '+(ok?'ok':'try');
+            fb.textContent=(ok?'Both right. ':'Look back at the moves: ')+p.why;
+          }
+        });
+        row.appendChild(b);
+      });
+    });
+  });
+
+  var FORMA=[
+    {q:'<b>Diction</b> refers to...',o:['the order of sentences in a paragraph','a writer\'s specific word choices','the topic of a text','the page count of a text'],a:1,why:'Diction is word choice: the writer picked these words and rejected the close synonyms.'},
+    {q:'<b>Syntax</b> refers to...',o:['the meaning of a word','how sentences are built and arranged','the writer\'s biography','the genre of a text'],a:1,why:'Syntax is sentence structure: length, order, rhythm, and pattern.'},
+    {q:'Short, clipped sentences usually create a tone that is...',o:['leisurely and warm','urgent, tense, or hard','dreamy and slow','academic and neutral'],a:1,why:'Clipped syntax speeds the reader and signals pressure or hardness.'},
+    {q:'"She walked in" vs "She crept in" differ mainly in...',o:['fact','diction','genre','length'],a:1,why:'The fact is the same. The verb (diction) changes the tone.'},
+    {q:'Which sentence is most likely <b>formal</b>?',o:['Yeah, anyway, we just kind of decided to go for it.','The committee elected to proceed with the proposal.','Honestly, no big deal, we did it.','Lol we just did it.'],a:1,why:'Precise verb, no contractions, no filler. Formal register.'},
+    {q:'Parallelism is when a writer...',o:['repeats a grammatical pattern for emphasis','uses two synonyms in a row','varies sentence length randomly','breaks a sentence into a fragment'],a:0,why:'Parallel structure repeats a pattern, which builds rhythm and emphasis.'},
+    {q:'A deliberate <b>fragment</b> ("Quiet at last.") is used to...',o:['signal a mistake','punch a single idea or moment','soften the tone','signal the start of dialogue'],a:1,why:'Used intentionally, a fragment isolates and emphasizes one beat.'},
+    {q:'If a passage is mostly long, layered sentences with reflective verbs, the most likely tone is...',o:['urgent','contemplative','sarcastic','panicked'],a:1,why:'Long syntax slows the reader. Reflective verbs cue contemplation.'}
+  ];
+  var FORMB=[
+    {q:'A writer\'s <b>tone</b> is shaped most directly by...',o:['the cover art','word choice and sentence structure','the publisher','the font'],a:1,why:'Diction and syntax are the two main tools a writer uses to shape tone.'},
+    {q:'"She strode in" vs "She slunk in" differ in...',o:['fact','setting','diction','length'],a:2,why:'Different verbs, same event. Diction shifts the tone from confident to guilty.'},
+    {q:'A run of long sentences with many clauses tends to...',o:['speed the reader up','slow the reader down','remove all tone','signal nonfiction'],a:1,why:'Long syntax slows pacing and invites reflection or mood.'},
+    {q:'Which is most likely <b>casual</b> in register?',o:['One must consider the implications of the decision.','Look, we just need to make a call and move on.','The decision warrants further analysis.','The committee will reconvene.'],a:1,why:'"Look," contractions, and "make a call" are casual speech.'},
+    {q:'"We tried, we failed, we tried again, we failed better." This is an example of...',o:['fragment','parallelism','hyperbole','idiom'],a:1,why:'Repeating the "we [verb]" structure creates parallelism.'},
+    {q:'A passage written almost entirely in three-word sentences signals what about the moment?',o:['It is leisurely and reflective.','It is high-pressure or high-impact.','It is academic.','It is unfinished.'],a:1,why:'Very short sentences speed the reader and intensify the moment.'},
+    {q:'Which choice would most shift the tone of "She entered the room" toward <b>menacing</b>?',o:['She walked into the room.','She stepped into the room.','She loomed into the room.','She went into the room.'],a:2,why:'"Loomed" carries threat: it connotes size, shadow, and danger.'},
+    {q:'Two paragraphs report the same fact. Paragraph 1 uses precise legal verbs and no contractions; paragraph 2 uses slang and contractions. The contrast is mostly a difference in...',o:['plot','register','genre','spelling'],a:1,why:'Register is the formal-vs-casual layer of diction. Same fact, different register.'}
+  ];
+
+  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),
+      secAfter=document.getElementById('afterA'), secRet=document.getElementById('retention'), secWrap=document.getElementById('wrap');
+  function show(s){ [secLesson,secCheck,secAfter,secRet,secWrap].forEach(function(x){x.classList.add('hide');}); s.classList.remove('hide'); window.scrollTo(0,0); }
+
+  function runForm(form,items,onDone){
+    var elQ=document.getElementById(form==='A'?'qtext':'qtextB');
+    var elO=document.getElementById(form==='A'?'opts':'optsB');
+    var elC=document.getElementById(form==='A'?'qcount':'qcountB');
+    var elTL=document.getElementById(form==='A'?'tlabel':'tlabelB');
+    var elTF=document.getElementById(form==='A'?'tfill':'tfillB');
+    var elWhy=document.getElementById(form==='A'?'qwhy':'qwhyB');
+    var i=0, correct=0, wrong=[], left=QTIME, timer=null, locked=false;
+    function showQ(){
+      locked=false; var it=items[i];
+      elC.textContent='Question '+(i+1)+' of '+items.length;
+      elQ.innerHTML=it.q; elWhy.textContent=''; elWhy.style.color='var(--ink2)';
+      elO.innerHTML='';
+      it.o.forEach(function(t,idx){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(locked)return; locked=true; clearInterval(timer);
+          var ok=(idx===it.a);
+          Array.prototype.forEach.call(elO.children,function(c,j){ if(j===it.a)c.classList.add('correct'); if(j===idx&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+          if(ok){ correct++; elWhy.style.color='var(--good)'; elWhy.textContent='Correct. '+it.why; }
+          else { wrong.push({stem:it.q,picked:it.o[idx],correct:it.o[it.a]}); elWhy.style.color='var(--accent-d)'; elWhy.textContent='Not quite. '+it.why; }
+          setTimeout(function(){ i++; if(i<items.length) showQ(); else onDone(correct,wrong); }, ok?700:1300);
+        });
+        elO.appendChild(b);
+      });
+      left=QTIME; elTF.style.width='100%'; elTF.classList.remove('low'); elTL.textContent=QTIME+'s'; clearInterval(timer);
+      timer=setInterval(function(){ left--; if(left<0)left=0; elTF.style.width=(left/QTIME*100)+'%'; elTL.textContent=left+'s'; if(left<=8)elTF.classList.add('low'); if(left===0)clearInterval(timer); },1000);
+    }
+    showQ();
+  }
+
+  document.getElementById('ptDone').addEventListener('click',function(){
+    rec.attempts=(rec.attempts||0)+1; save(app);
+    show(secCheck);
+    runForm('A',FORMA,function(correct,wrong){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,Math.round(correct/FORMA.length*100));
+      rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secAfter);
+      document.getElementById('aScore').textContent=correct+' / '+FORMA.length;
+      var pass=correct>=PASS, t=document.getElementById('aTitle'), m=document.getElementById('aMsg');
+      t.textContent=pass?'Form A clear':'Reteach needed';
+      m.textContent=pass?'Strong. Come back at least a day later for Form B to lock in the credential.':'Not at the bar yet. Reread the pairs and the syntax cards, then run Form A again.';
+      document.getElementById('toRetention').classList.toggle('hide',!pass);
+      document.getElementById('retryA').classList.toggle('hide',pass);
+    });
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show(secLesson); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show(secRet); });
+  document.getElementById('startB').addEventListener('click',function(){
+    this.classList.add('hide'); document.getElementById('mcB').classList.remove('hide');
+    runForm('B',FORMB,function(correct,wrong){
+      rec.formB=correct; rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secWrap);
+      document.getElementById('bScore').textContent=correct+' / '+FORMB.length;
+      decide();
+    });
+  });
+
+  function decide(){
+    var a=rec.formA||0, b=rec.formB||0;
+    var rows=[{ok:a>=PASS,t:'Form A',d:'At least '+PASS+' of '+FORMA.length+'. You got '+a+'.'},
+              {ok:b>=PASS,t:'Delayed Form B',d:'At least '+PASS+' of '+FORMB.length+' on a later day. You got '+b+'.'}];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'&#10003;':'!')+'</span><span><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    if(rows.every(function(r){return r.ok;})){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); }
+    commitTime();
+  }
+
+  document.getElementById('saveReflect').addEventListener('click',function(){
+    var note=(document.getElementById('reflectNote').value||'').slice(0,400);
+    rec.feedback={note:note,at:Date.now()}; save(app); syncCloud();
+    document.getElementById('donebox').classList.remove('hide');
+  });
+})();
+</script>
+</body>
+</html>

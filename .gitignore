@@ -1,0 +1,12 @@
+# OS junk
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editor backups
+*~
+*.swp
+*.bak
+
+# Claude Code local settings (not for public repo)
+.claude/

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 02 &middot; Word Meaning in Context</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--gold:#a8780d;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .fbline{margin-top:12px;font-size:15px;min-height:1.4em;}
+  .fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+  @media (max-width:540px){.twocol{grid-template-columns:1fr;}}
+  .defcard{background:#faf8f2;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .defcard h3{font-family:'Anton';font-size:16px;letter-spacing:.04em;color:var(--accent-d);margin-bottom:4px;}
+  .defcard .ex{font-size:14.5px;color:var(--ink2);margin-top:6px;font-style:italic;}
+  .ftable{width:100%;border-collapse:collapse;margin-top:10px;font-size:15px;}
+  .ftable th,.ftable td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  .ftable th{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
+  .ftable td b{color:var(--accent-d);}
+  .clue{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+  @media (max-width:540px){.clue{grid-template-columns:1fr;}}
+  .clue .cb{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px;}
+  .clue .cb b{display:block;color:var(--alt);font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+  .passage{background:#faf8f2;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:16px;color:var(--ink);line-height:1.6;}
+  .passage .key{background:#fff2c0;padding:0 4px;border-radius:3px;font-weight:700;}
+  .ptag{margin-top:12px;font-size:13px;color:var(--mute);font-family:'Spline Sans Mono';letter-spacing:.06em;text-transform:uppercase;}
+  .qprompt{margin-top:14px;font-weight:700;font-size:16px;}
+  .evs{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+  .ev{font:inherit;font-size:15.5px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:12px 14px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .ev:hover{border-color:var(--accent);}
+  .ev.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+  .ev.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .ev:disabled{cursor:default;}
+  .cluerow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .ctype{font:inherit;font-size:13.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:40px;cursor:pointer;color:var(--ink2);font-family:'Spline Sans Mono';letter-spacing:.05em;text-transform:uppercase;}
+  .ctype:hover{border-color:var(--accent);}
+  .ctype.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+  .ctype.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .ctype:disabled{cursor:default;}
+  .rnext{margin-top:12px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:10px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);} .cta.ghost:hover{border-color:var(--accent);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:16.5px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:10px;font-size:14.5px;min-height:1.3em;}
+  .scoreband{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;margin-top:14px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;line-height:1;color:var(--ink);}
+  .scoreband .lbl{font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .gateitem{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;background:#fff;}
+  .gateitem.met{border-color:var(--good);background:#eaf5ee;}
+  .gateitem.miss{border-color:#f3c2bd;background:#fdf0ee;}
+  .gateitem .mk{font-family:'Anton';font-size:20px;flex:none;width:28px;text-align:center;color:var(--ink);}
+  .gateitem.met .mk{color:var(--good);} .gateitem.miss .mk{color:var(--accent-d);}
+  .gateitem b{display:block;font-size:15px;}
+  .gateitem .gd{font-size:13.5px;color:var(--ink2);margin-top:2px;}
+  .badge{display:none;margin-top:16px;background:#14171c;color:#fff;border-radius:14px;padding:18px 18px;text-align:center;}
+  .badge.show{display:block;}
+  .badge .gem{font-family:'Anton';font-size:34px;color:var(--accent);}
+  .badge h3{font-family:'Anton';letter-spacing:.04em;font-size:22px;margin:6px 0;}
+  .badge p{color:#c7cad0;font-size:14.5px;}
+  .note{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:12px 14px;font-size:14.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .reflectbox{margin-top:10px;}
+  .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.RL.1.B</span></div>
+  <section id="lesson">
+    <div class="kicker">Session 02</div>
+    <h1>Word Meaning in Context</h1>
+    <p class="mission">Skilled readers do not stop reading every time they hit a word they do not know. They read like detectives: lean on the sentence, the affixes, and the figurative move the writer is making. Only after that, if it is still ambiguous, do they reach for a reference.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Determine the meaning of words and phrases as they are used in the text, including figurative and connotative meanings using context, affixes, or reference materials.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Denotation vs connotation</h2></div>
+      <p class="lead">Every word carries two things at once.</p>
+      <div class="twocol">
+        <div class="defcard"><h3>Denotation</h3>The literal, dictionary meaning. The thing the word points to.<div class="ex">"Childish" denotes: relating to a child.</div></div>
+        <div class="defcard"><h3>Connotation</h3>The emotional or cultural weight the word carries with it.<div class="ex">"Childish" connotes immaturity. "Childlike" connotes wonder. Same root, different feeling.</div></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">Writers pick words for both layers. If you only read the denotation, you miss the half of the meaning that is doing the actual work.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Figurative language, five common moves</h2></div>
+      <table class="ftable">
+        <tr><th>Type</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><b>Metaphor</b></td><td>Calls one thing another to claim a shared quality.</td><td>"The argument was a wildfire."</td></tr>
+        <tr><td><b>Simile</b></td><td>Compares using <i>like</i> or <i>as</i>.</td><td>"Her focus was like a laser."</td></tr>
+        <tr><td><b>Personification</b></td><td>Gives a nonhuman thing human action or feeling.</td><td>"The wind argued with the door."</td></tr>
+        <tr><td><b>Idiom</b></td><td>A fixed phrase whose meaning is not literal.</td><td>"Hit the books before finals."</td></tr>
+        <tr><td><b>Hyperbole</b></td><td>Deliberate overstatement for effect.</td><td>"I have asked her a million times."</td></tr>
+      </table>
+      <p class="lead" style="margin-top:10px;">If the literal reading sounds absurd or impossible, the writer is being figurative. Decode the comparison, then read for the point being made.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Four kinds of context clue</h2></div>
+      <div class="clue">
+        <div class="cb"><b>Definition</b>The sentence directly defines the word, often after a comma or dash.</div>
+        <div class="cb"><b>Example</b>The sentence lists examples that show the category.</div>
+        <div class="cb"><b>Contrast</b>The sentence sets up an opposite using <i>but</i>, <i>unlike</i>, <i>however</i>.</div>
+        <div class="cb"><b>Inference</b>No direct clue; the meaning has to be inferred from the action or tone.</div>
+      </div>
+      <div class="note"><b>The reference rule.</b> Context plus affixes (un-, -less, -able, re-, -tion, etc.) handles most words. Reach for a dictionary or reference when the word is still ambiguous after both, or when precision matters: scientific, legal, archaic, or technical vocabulary.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Decode four passages</h2></div>
+      <p class="lead">For each excerpt, the key word or phrase is highlighted. Choose the meaning, then name the clue you used to get there.</p>
+      <div id="round"></div>
+      <div class="fbline" id="rfb"></div>
+      <button class="cta rnext hide" id="rnext">Next passage</button>
+    </div>
+
+    <button class="cta" id="ptDone">I worked through it. Start Form A (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">30s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="afterA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A &middot; RESULT</span><h2 id="aTitle">Result</h2></div>
+      <div class="scoreband"><span class="s" id="aScore">0 / 8</span><span class="lbl" id="aBar">PASS BAR 7 / 8</span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to the retention check (Form B)</button>
+      <button class="cta alt hide" id="retryA">Revisit the lesson and retry Form A</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RETENTION</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Same standard, different words and phrases. Best done <b>at least a day after Form A</b>: that delay is what proves the skill lasted, not just that you remembered it from minutes ago.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this tab and come back tomorrow for Form B.</div>
+      <button class="cta" id="startB">Start Form B (8 questions)</button>
+    </div>
+    <div class="hide" id="mcB">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">30s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B &middot; RESULT</span><h2>Retention result</h2></div>
+      <div class="scoreband"><span class="s" id="bScore">0 / 8</span><span class="lbl">PASS BAR 7 / 8</span></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">MASTERY</span><h2>Credential check</h2></div>
+      <p class="lead">The 8.RL.1.B credential is awarded when <b>both</b> Form A and the delayed Form B clear the bar.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge"><div class="gem">&#9670;</div><h3>8.RL.1.B mastered</h3><p>You can determine word and phrase meanings using context, affixes, and references, including figurative and connotative meaning.</p></div>
+    </div>
+    <div class="station">
+      <div class="shead"><span class="sno">REFLECT</span><h2>One line in your own words</h2></div>
+      <p class="lead">Write one sentence: which clue type are you using most naturally, and which one do you still want to practice?</p>
+      <div class="reflectbox"><textarea id="reflectNote" placeholder="For example: I am quick on contrast clues. Affixes are still slow for me with science words." aria-label="reflection"></textarea></div>
+      <button class="cta" id="saveReflect">Save and finish</button>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. Head back to the dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie &middot; Reading &middot; Day 2 &middot; 8.RL.1.B</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='reading', DAY='8.RL.1.B', SNAME='Julie';
+  var QTIME=30, PASS=7;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,formA:rec.formA||0,formB:rec.formB||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var ROUNDS=[
+    {passage:'The diplomat answered every question with practiced ease, but her eyes kept darting to the back of the room, and her smile was <span class="key">brittle</span> by the time the cameras stopped flashing.',
+     key:'brittle',
+     meaning:'fragile and ready to break',
+     opts:[{t:'fragile and ready to break',ok:true},{t:'sharp and quick',ok:false},{t:'warm and welcoming',ok:false},{t:'rehearsed but confident',ok:false}],
+     clue:'inference', clueWhy:'No definition is given. The meaning is inferred from her darting eyes and the long camera flash, which signal strain under pressure.'},
+    {passage:'The training program was designed to be <span class="key">rigorous</span>, that is, demanding in workload, strict in standards, and unflinching in feedback.',
+     key:'rigorous',
+     meaning:'demanding and strict',
+     opts:[{t:'short and casual',ok:false},{t:'demanding and strict',ok:true},{t:'expensive to enter',ok:false},{t:'open to anyone',ok:false}],
+     clue:'definition', clueWhy:'The phrase "that is" introduces a direct definition: demanding, strict, unflinching.'},
+    {passage:'Most candidates stumbled on the technical round, but Priya was <span class="key">unflappable</span>, walking through each problem at the same steady pace.',
+     key:'unflappable',
+     meaning:'not easily upset or rattled',
+     opts:[{t:'inexperienced',ok:false},{t:'not easily upset or rattled',ok:true},{t:'unsure of the answer',ok:false},{t:'unwilling to try',ok:false}],
+     clue:'affix', clueWhy:'The prefix "un-" plus the root "flap" (to be agitated) plus "-able" yields "not able to be agitated." The contrast with stumbling candidates confirms it.'},
+    {passage:'By the third lap her legs had become <span class="key">lead pipes</span>, and every stride landed flat on the track with a thud she could feel in her teeth.',
+     key:'lead pipes',
+     meaning:'heavy and unresponsive',
+     opts:[{t:'sharp and painful',ok:false},{t:'cold and numb',ok:false},{t:'heavy and unresponsive',ok:true},{t:'broken and useless',ok:false}],
+     clue:'figurative', clueWhy:'Her legs are not literally lead pipes. The metaphor borrows the weight and dead feel of metal pipes to describe heavy, unresponsive muscles.'}
+  ];
+  var CLUE_TYPES=[['definition','Definition clue'],['example','Example clue'],['contrast','Contrast clue'],['inference','Inference clue'],['affix','Affix / word parts'],['figurative','Figurative move'],['reference','Reach for a reference']];
+
+  var rIdx=0, rbox=document.getElementById('round'), rfb=document.getElementById('rfb'), rnext=document.getElementById('rnext');
+  function loadRound(){
+    var r=ROUNDS[rIdx]; rfb.className='fbline'; rfb.textContent=''; rnext.classList.add('hide');
+    rbox.innerHTML='';
+    var p=document.createElement('div'); p.className='passage'; p.innerHTML=r.passage; rbox.appendChild(p);
+    var ptag=document.createElement('div'); ptag.className='ptag'; ptag.textContent='Passage '+(rIdx+1)+' of '+ROUNDS.length+' &middot; Key word: '+r.key; rbox.appendChild(ptag);
+    var q1=document.createElement('div'); q1.className='qprompt'; q1.textContent='1. What does the highlighted word or phrase mean here?'; rbox.appendChild(q1);
+    var evs=document.createElement('div'); evs.className='evs';
+    var pickedMeaning=false, pickedClue=false;
+    r.opts.forEach(function(o){ var b=document.createElement('button'); b.className='ev'; b.type='button'; b.textContent=o.t;
+      b.addEventListener('click',function(){
+        if(pickedMeaning)return; pickedMeaning=true;
+        Array.prototype.forEach.call(evs.children,function(c){c.disabled=true;});
+        if(o.ok){ b.classList.add('ok'); rfb.className='fbline ok'; rfb.textContent='Right. Now name the clue you used.'; }
+        else { b.classList.add('no'); rfb.className='fbline try'; rfb.textContent='Not the strongest read. The intended meaning is: '+r.meaning+'.';
+          Array.prototype.forEach.call(evs.children,function(c,i){ if(r.opts[i].ok)c.classList.add('ok'); }); }
+        showClue();
+      });
+      evs.appendChild(b);
+    });
+    rbox.appendChild(evs);
+    function showClue(){
+      var q2=document.createElement('div'); q2.className='qprompt'; q2.textContent='2. Which clue did you use?'; rbox.appendChild(q2);
+      var crow=document.createElement('div'); crow.className='cluerow';
+      CLUE_TYPES.forEach(function(ct){ var b=document.createElement('button'); b.className='ctype'; b.type='button'; b.textContent=ct[1];
+        b.addEventListener('click',function(){
+          if(pickedClue)return; pickedClue=true;
+          Array.prototype.forEach.call(crow.children,function(c){c.disabled=true;});
+          if(ct[0]===r.clue){ b.classList.add('ok'); rfb.className='fbline ok'; rfb.textContent=r.clueWhy; }
+          else { b.classList.add('no'); rfb.className='fbline try'; rfb.textContent='That was not the strongest clue. '+r.clueWhy;
+            Array.prototype.forEach.call(crow.children,function(c,i){ if(CLUE_TYPES[i][0]===r.clue)c.classList.add('ok'); }); }
+          if(rIdx<ROUNDS.length-1) rnext.classList.remove('hide');
+        });
+        crow.appendChild(b);
+      });
+      rbox.appendChild(crow);
+    }
+  }
+  rnext.addEventListener('click',function(){ rIdx++; loadRound(); window.scrollTo({top:rbox.offsetTop-60,behavior:'smooth'}); });
+  loadRound();
+
+  var FORMA=[
+    {q:'In "the diplomat\'s smile was brittle," the word <b>brittle</b> most nearly means...',o:['fragile and strained','wide and warm','quick and witty','formal and rehearsed'],a:0,why:'Brittle literally means easily broken. Applied to a smile, it carries the connotation of strain.'},
+    {q:'Which best describes <b>connotation</b>?',o:['The literal dictionary meaning of a word','The emotional or cultural weight a word carries','The opposite meaning of a word','The origin of a word in another language'],a:1,why:'Connotation is the feeling layer. Denotation is the literal definition.'},
+    {q:'"The argument was a wildfire" is an example of...',o:['simile','personification','metaphor','hyperbole'],a:2,why:'A direct comparison without "like" or "as" is a metaphor.'},
+    {q:'"The wind argued with the door all night" is an example of...',o:['hyperbole','personification','simile','idiom'],a:1,why:'Giving wind the human action of arguing is personification.'},
+    {q:'"He has told me a million times" is an example of...',o:['metaphor','hyperbole','idiom','simile'],a:1,why:'Deliberate overstatement for effect is hyperbole.'},
+    {q:'"She was so prepared that the test felt <b>trivial</b>, that is, simple and not worth worry." The clue type here is...',o:['contrast','inference','definition','affix'],a:2,why:'The phrase "that is, simple and not worth worry" directly defines trivial.'},
+    {q:'When should a reader reach for a dictionary or reference?',o:['Every time they see a new word','When context and affixes still leave the meaning ambiguous','Only for fiction','Only when the teacher requires it'],a:1,why:'Context plus affixes handles most words. References are for ambiguity and for precise technical, legal, or archaic meanings.'},
+    {q:'In "the candidate was <b>unflappable</b> under pressure," the prefix <b>un-</b> and the root <b>flap</b> together suggest...',o:['easily upset','not able to be rattled','willing to argue','unprepared'],a:1,why:'Un + flap (to be agitated) + able = not able to be agitated.'}
+  ];
+  var FORMB=[
+    {q:'In "her praise was <b>hollow</b>," the word hollow most nearly means...',o:['loud and echoing','empty of real meaning','quiet and shy','quick and sharp'],a:1,why:'Hollow connotes emptiness when applied to words: technically polite, but without sincerity.'},
+    {q:'<b>Denotation</b> is best described as...',o:['the dictionary meaning of a word','the feeling a word carries','the way a word sounds','a word\'s origin'],a:0,why:'Denotation is the literal, definable meaning.'},
+    {q:'"Her focus was like a laser" is an example of...',o:['metaphor','simile','personification','idiom'],a:1,why:'A comparison using "like" or "as" is a simile.'},
+    {q:'"Hit the books before finals" is an example of...',o:['hyperbole','personification','idiom','metaphor'],a:2,why:'A fixed phrase whose meaning is not literal is an idiom.'},
+    {q:'"The trees bowed to the storm" is an example of...',o:['metaphor','personification','simile','hyperbole'],a:1,why:'Trees do not literally bow. Giving them a human gesture is personification.'},
+    {q:'"Unlike his usual <b>terse</b> emails, this one ran for three paragraphs." Terse most nearly means...',o:['warm and friendly','short and to the point','angry and rude','long and detailed'],a:1,why:'Contrast clue: "unlike" sets up the opposite of "three paragraphs," so terse means short.'},
+    {q:'The best clue type for <b>preheat</b> (without context) is...',o:['contrast','affix','definition','figurative'],a:1,why:'The prefix pre- (before) plus heat gives "to heat in advance." Word parts decode it directly.'},
+    {q:'A reader meets <b>jurisprudence</b> in a legal article and is unsure. Best next move?',o:['Guess from the tone and read on','Skip the word entirely','Use context plus affixes, then a reference if still unclear','Substitute a simpler word that feels close'],a:2,why:'Technical and legal terms benefit from a reference when context plus affixes does not nail the precise meaning.'}
+  ];
+
+  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),
+      secAfter=document.getElementById('afterA'), secRet=document.getElementById('retention'), secWrap=document.getElementById('wrap');
+  function show(s){ [secLesson,secCheck,secAfter,secRet,secWrap].forEach(function(x){x.classList.add('hide');}); s.classList.remove('hide'); window.scrollTo(0,0); }
+
+  function runForm(form,items,onDone){
+    var elQ=document.getElementById(form==='A'?'qtext':'qtextB');
+    var elO=document.getElementById(form==='A'?'opts':'optsB');
+    var elC=document.getElementById(form==='A'?'qcount':'qcountB');
+    var elTL=document.getElementById(form==='A'?'tlabel':'tlabelB');
+    var elTF=document.getElementById(form==='A'?'tfill':'tfillB');
+    var elWhy=document.getElementById(form==='A'?'qwhy':'qwhyB');
+    var i=0, correct=0, wrong=[], left=QTIME, timer=null, locked=false;
+    function showQ(){
+      locked=false; var it=items[i];
+      elC.textContent='Question '+(i+1)+' of '+items.length;
+      elQ.innerHTML=it.q; elWhy.textContent=''; elWhy.style.color='var(--ink2)';
+      elO.innerHTML='';
+      it.o.forEach(function(t,idx){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(locked)return; locked=true; clearInterval(timer);
+          var ok=(idx===it.a);
+          Array.prototype.forEach.call(elO.children,function(c,j){ if(j===it.a)c.classList.add('correct'); if(j===idx&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+          if(ok){ correct++; elWhy.style.color='var(--good)'; elWhy.textContent='Correct. '+it.why; }
+          else { wrong.push({stem:it.q,picked:it.o[idx],correct:it.o[it.a]}); elWhy.style.color='var(--accent-d)'; elWhy.textContent='Not quite. '+it.why; }
+          setTimeout(function(){ i++; if(i<items.length) showQ(); else onDone(correct,wrong); }, ok?700:1300);
+        });
+        elO.appendChild(b);
+      });
+      left=QTIME; elTF.style.width='100%'; elTF.classList.remove('low'); elTL.textContent=QTIME+'s'; clearInterval(timer);
+      timer=setInterval(function(){ left--; if(left<0)left=0; elTF.style.width=(left/QTIME*100)+'%'; elTL.textContent=left+'s'; if(left<=8)elTF.classList.add('low'); if(left===0)clearInterval(timer); },1000);
+    }
+    showQ();
+  }
+
+  document.getElementById('ptDone').addEventListener('click',function(){
+    rec.attempts=(rec.attempts||0)+1; save(app);
+    show(secCheck);
+    runForm('A',FORMA,function(correct,wrong){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,Math.round(correct/FORMA.length*100));
+      rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secAfter);
+      document.getElementById('aScore').textContent=correct+' / '+FORMA.length;
+      var pass=correct>=PASS, t=document.getElementById('aTitle'), m=document.getElementById('aMsg');
+      t.textContent=pass?'Form A clear':'Reteach needed';
+      m.textContent=pass?'Strong. Come back at least a day later for Form B to lock in the credential.':'Not at the bar yet. Reread the four passages above, then run Form A again.';
+      document.getElementById('toRetention').classList.toggle('hide',!pass);
+      document.getElementById('retryA').classList.toggle('hide',pass);
+    });
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show(secLesson); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show(secRet); });
+  document.getElementById('startB').addEventListener('click',function(){
+    this.classList.add('hide'); document.getElementById('mcB').classList.remove('hide');
+    runForm('B',FORMB,function(correct,wrong){
+      rec.formB=correct; rec.lastWrong=wrong; rec.wrongCount=wrong.length; save(app); commitTime();
+      show(secWrap);
+      document.getElementById('bScore').textContent=correct+' / '+FORMB.length;
+      decide();
+    });
+  });
+
+  function decide(){
+    var a=rec.formA||0, b=rec.formB||0;
+    var rows=[{ok:a>=PASS,t:'Form A',d:'At least '+PASS+' of '+FORMA.length+'. You got '+a+'.'},
+              {ok:b>=PASS,t:'Delayed Form B',d:'At least '+PASS+' of '+FORMB.length+' on a later day. You got '+b+'.'}];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'&#10003;':'!')+'</span><span><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    if(rows.every(function(r){return r.ok;})){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); }
+    commitTime();
+  }
+
+  document.getElementById('saveReflect').addEventListener('click',function(){
+    var note=(document.getElementById('reflectNote').value||'').slice(0,400);
+    rec.feedback={note:note,at:Date.now()}; save(app); syncCloud();
+    document.getElementById('donebox').classList.remove('hide');
+  });
+})();
+</script>
+</body>
+</html>

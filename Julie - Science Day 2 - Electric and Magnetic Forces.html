@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 02 &middot; Electric and Magnetic Forces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+    --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;
+    --pos:#cf2c07;--neg:#1f6feb;--north:#cf2c07;--south:#1f3b54;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+    linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+    linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+    radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;} .station p.body{color:var(--ink);margin-top:9px;}
+
+  .eq{font-family:'Spline Sans Mono',monospace;background:#faf8f2;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px;margin-top:11px;font-size:15px;color:var(--ink);}
+  .eq b{color:var(--accent-d);}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:12px;}
+  @media (max-width:520px){.compare{grid-template-columns:1fr;}}
+  .ccol{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:#faf8f2;}
+  .ccol h3{font-family:'Anton';font-size:18px;text-transform:uppercase;letter-spacing:.02em;color:var(--accent-d);}
+  .ccol ul{margin:6px 0 0 18px;font-size:14.5px;color:var(--ink2);}
+
+  .simbox{margin-top:14px;border:1px solid var(--line);border-radius:11px;padding:14px;background:#faf8f2;}
+  .diag{height:160px;position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:14px;overflow:hidden;}
+  .ctrlgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:520px){.ctrlgrid{grid-template-columns:1fr;}}
+  .ctrlbox{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;}
+  .ctrlbox label{font-family:'Spline Sans Mono';font-size:13px;color:var(--ink2);display:flex;justify-content:space-between;align-items:center;}
+  .ctrlbox input[type=range]{width:100%;height:44px;accent-color:var(--accent);cursor:pointer;}
+  .ctrlbox .val{font-weight:700;color:var(--accent-d);}
+  .signbtns{display:flex;gap:6px;margin-top:6px;}
+  .sbtn{font:inherit;font-weight:700;font-size:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:8px 10px;min-height:44px;flex:1;cursor:pointer;}
+  .sbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .readout{margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff;}
+  .readNum{font-family:'Spline Sans Mono';font-size:26px;font-weight:600;color:var(--ink);text-align:center;}
+  .readBar{height:14px;background:#eceae2;border-radius:999px;overflow:hidden;margin-top:10px;}
+  .readFill{height:100%;width:30%;background:var(--accent);border-radius:999px;transition:width .35s ease,background .35s ease;}
+  @media (prefers-reduced-motion:reduce){.readFill,.charge,.magnet,.arrow{transition:none;}}
+  .readLine{margin-top:9px;font-size:14.5px;color:var(--ink2);min-height:1.4em;}
+  .readLine.attract{color:var(--good);font-weight:600;} .readLine.repel{color:var(--accent-d);font-weight:600;}
+
+  .charge{position:absolute;top:50%;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px;transform:translate(-50%,-50%);transition:left .25s ease,background .2s ease;border:2px solid #14171c;}
+  .charge.pos{background:var(--pos);} .charge.neg{background:var(--neg);}
+  .magnet{position:absolute;top:50%;height:46px;width:108px;display:flex;transform:translate(-50%,-50%);transition:left .25s ease;border:1.5px solid #14171c;border-radius:6px;overflow:hidden;}
+  .magnet .pole{flex:1;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Anton',sans-serif;font-size:18px;letter-spacing:.05em;}
+  .magnet .pn{background:var(--north);} .magnet .ps{background:var(--south);}
+  .arrow{position:absolute;height:3px;background:#14171c;top:50%;transform:translateY(-50%);transition:width .25s ease,background .2s ease;}
+  .arrow::after{content:'';position:absolute;top:-6px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;}
+  .arrow.right::after{right:-1px;border-left:9px solid #14171c;}
+  .arrow.left::after{left:-1px;border-right:9px solid #14171c;}
+  .arrow.attract{background:var(--good);} .arrow.attract::after{border-left-color:var(--good);border-right-color:var(--good);}
+  .arrow.repel{background:var(--accent-d);} .arrow.repel::after{border-left-color:var(--accent-d);border-right-color:var(--accent-d);}
+
+  .predrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+  .pbtn{font:inherit;font-weight:600;font-size:15px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:11px 15px;min-height:46px;cursor:pointer;color:var(--ink);}
+  .pbtn:hover{border-color:var(--accent);} .pbtn.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);} .pbtn.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .fbline{margin-top:11px;font-size:15px;min-height:1.4em;}
+  .fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+
+  .myth{border:1px solid var(--line);background:#faf8f2;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);font-weight:600;}
+  .myth .wrong{font-weight:700;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;margin:6px 0 2px;}
+  .myth .right{color:var(--ink2);}
+
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .expl{margin-top:14px;font-size:15px;color:var(--ink2);min-height:1.2em;}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .fb{margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
+  .fb .fl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:10px;}
+  .faces,.tags{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+  .tags{margin-top:9px;}
+  .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
+  .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 6-8.PS2.B.1</span></div>
+  <section id="lesson">
+    <div class="kicker">Session 02</div>
+    <h1>Electric and Magnetic Forces</h1>
+    <p class="mission">Two non-contact forces shape almost everything you build: charges that push and pull through empty space, and magnets that do the same with poles. Both follow patterns you can measure. Both fall off fast with distance.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Analyze diagrams and collect data to determine factors affecting electric and magnetic force strength.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / FRAME</span><h2>Forces without touching</h2></div>
+      <p class="body">A <b>contact force</b> needs the two objects to touch (your hand pushing a cart). An <b>electric force</b> and a <b>magnetic force</b> act across empty space. You can hold a magnet near a paperclip and lift it without ever touching. The space around a charge or a magnet is called a <b>field</b>. The force on a second object depends on how strong the field is at its location.</p>
+      <div class="compare">
+        <div class="ccol"><h3>Electric</h3>
+          <ul><li>Source: electric charge (+ or -)</li><li>Like charges <b>repel</b>; opposite charges <b>attract</b></li><li>Stronger charges, stronger force</li><li>Force drops fast as distance grows</li></ul></div>
+        <div class="ccol"><h3>Magnetic</h3>
+          <ul><li>Source: magnet poles (N and S)</li><li>Like poles <b>repel</b>; opposite poles <b>attract</b></li><li>Stronger magnet, stronger force</li><li>Force drops fast as distance grows</li></ul></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / MODEL</span><h2>The pattern: Coulomb's law</h2></div>
+      <p class="body">For two point charges, the electric force has a clean formula. Bigger charges scale the force linearly. Distance scales it as an inverse square: double the distance and the force drops to one quarter.</p>
+      <div class="eq">F = k &middot; <b>q1 &middot; q2</b> / <b>r&sup2;</b></div>
+      <p class="lead" style="margin-top:9px;">Read it: force is proportional to the product of the two charges, and inversely proportional to the distance squared. Magnets follow a similar shape: stronger poles or closer distance both pump up the force, and the drop-off with distance is steep.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / INVESTIGATE A</span><h2>Two charges, one force</h2></div>
+      <p class="lead">Set each charge's sign and magnitude, then change the distance between them. The arrow shows force direction (attract vs repel). The number is a relative strength index.</p>
+      <div class="simbox">
+        <div class="diag" id="eDiag" aria-hidden="true">
+          <div class="charge pos" id="cA" style="left:30%;">+</div>
+          <div class="arrow right" id="eArrL" style="left:33%;width:14%;"></div>
+          <div class="arrow left" id="eArrR" style="left:53%;width:14%;"></div>
+          <div class="charge pos" id="cB" style="left:70%;">+</div>
+        </div>
+        <div class="ctrlgrid">
+          <div class="ctrlbox"><label>Charge A magnitude <span class="val"><span id="qAval">2</span></span></label><input type="range" id="qA" min="1" max="5" step="1" value="2" aria-label="charge A magnitude"><div class="signbtns" role="group" aria-label="charge A sign"><button class="sbtn" id="qAp" type="button" aria-pressed="true">+ positive</button><button class="sbtn" id="qAn" type="button" aria-pressed="false">- negative</button></div></div>
+          <div class="ctrlbox"><label>Charge B magnitude <span class="val"><span id="qBval">2</span></span></label><input type="range" id="qB" min="1" max="5" step="1" value="2" aria-label="charge B magnitude"><div class="signbtns" role="group" aria-label="charge B sign"><button class="sbtn" id="qBp" type="button" aria-pressed="true">+ positive</button><button class="sbtn" id="qBn" type="button" aria-pressed="false">- negative</button></div></div>
+          <div class="ctrlbox" style="grid-column:1/-1;"><label>Distance r <span class="val"><span id="rval">3</span></span></label><input type="range" id="rE" min="1" max="6" step="1" value="3" aria-label="distance between charges"></div>
+        </div>
+        <div class="readout">
+          <div class="readNum" id="eNum">F = 0.22 (relative)</div>
+          <div class="readBar"><div class="readFill" id="eFill"></div></div>
+          <div class="readLine" id="eLine">Like charges (+ and +). Force is repulsive: charges push apart.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / INVESTIGATE B</span><h2>Two magnets, one force</h2></div>
+      <p class="lead">Each magnet has a north and south pole. Flip a magnet to swap which end faces the other. Slide them closer or farther.</p>
+      <div class="simbox">
+        <div class="diag" id="mDiag" aria-hidden="true">
+          <div class="magnet" id="mA" style="left:30%;"><div class="pole pn" id="mAleft">N</div><div class="pole ps" id="mAright">S</div></div>
+          <div class="arrow right" id="mArrL" style="left:42%;width:8%;"></div>
+          <div class="arrow left" id="mArrR" style="left:50%;width:8%;"></div>
+          <div class="magnet" id="mB" style="left:70%;"><div class="pole pn" id="mBleft">N</div><div class="pole ps" id="mBright">S</div></div>
+        </div>
+        <div class="ctrlgrid">
+          <div class="ctrlbox"><label>Magnet strength <span class="val"><span id="msval">3</span></span></label><input type="range" id="ms" min="1" max="5" step="1" value="3" aria-label="magnet strength"></div>
+          <div class="ctrlbox"><label>Distance r <span class="val"><span id="mrval">3</span></span></label><input type="range" id="mr" min="1" max="6" step="1" value="3" aria-label="distance between magnets"></div>
+          <div class="ctrlbox" style="grid-column:1/-1;"><label>Magnet B orientation</label><div class="signbtns" role="group" aria-label="magnet B orientation"><button class="sbtn" id="mBn" type="button" aria-pressed="true">N facing left</button><button class="sbtn" id="mBs" type="button" aria-pressed="false">S facing left</button></div></div>
+        </div>
+        <div class="readout">
+          <div class="readNum" id="mNum">F = 1.00 (relative)</div>
+          <div class="readBar"><div class="readFill" id="mFill"></div></div>
+          <div class="readLine" id="mLine">A's right pole (S) faces B's left pole (N). Opposite poles attract.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05 / PREDICT</span><h2>Test what the data shows</h2></div>
+      <p class="lead">If you <b>double the distance</b> between two point charges and change nothing else, the force becomes...</p>
+      <div class="predrow" id="pred1">
+        <button class="pbtn" type="button" data-ok="false">Twice as big</button>
+        <button class="pbtn" type="button" data-ok="false">Half as big</button>
+        <button class="pbtn" type="button" data-ok="true">One quarter as big</button>
+      </div>
+      <div class="fbline" id="pfb1"></div>
+      <p class="lead" style="margin-top:14px;">Two bar magnets attract each other. To get a <b>stronger</b> attraction without changing the magnets...</p>
+      <div class="predrow" id="pred2">
+        <button class="pbtn" type="button" data-ok="true">Move them closer</button>
+        <button class="pbtn" type="button" data-ok="false">Move them farther apart</button>
+        <button class="pbtn" type="button" data-ok="false">Flip one of them</button>
+      </div>
+      <div class="fbline" id="pfb2"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">06 / WATCH OUT</span><h2>Two common mix-ups</h2></div>
+      <div class="myth"><span class="tag">Mix-up 1</span>
+        <div class="wrong">Doubling the distance halves the force.</div>
+        <div class="right">Both Coulomb's law and magnetic force fall off as an <b>inverse square</b>, not a straight inverse. Doubling distance cuts the force to a quarter. Tripling cuts it to a ninth.</div></div>
+      <div class="myth"><span class="tag">Mix-up 2</span>
+        <div class="wrong">Like things always attract.</div>
+        <div class="right">For both forces it is the opposite: <b>like repels, opposite attracts</b>. Two north poles push apart. Two positive charges push apart.</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I analyzed the diagrams. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="expl" id="expl"></div>
+  </section>
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="ptsrow hide" id="ptsrow">
+        <div><div class="v" id="vbase">0</div><div class="k">Base</div></div>
+        <div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div>
+        <div><div class="v" id="vtotal">0</div><div class="k">Points</div></div>
+      </div>
+    </div>
+    <div class="fb hide" id="fbcard">
+      <div class="fl">How did that feel?</div>
+      <div class="faces" id="faces"></div>
+      <div class="tags" id="tags"></div>
+      <button class="cta hide" id="saveFb" style="margin-top:14px;">Save and finish</button>
+    </div>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+    <div id="ptDone" class="hide" aria-hidden="true"></div>
+  </section>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie &middot; Science &middot; Day 2</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='science', DAY='6-8.PS2.B.1', SNAME='Julie';
+  var PASS=7/8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  // Charge sim
+  var qA=document.getElementById('qA'), qB=document.getElementById('qB'), rE=document.getElementById('rE');
+  var qAval=document.getElementById('qAval'), qBval=document.getElementById('qBval'), rval=document.getElementById('rval');
+  var cA=document.getElementById('cA'), cB=document.getElementById('cB');
+  var eArrL=document.getElementById('eArrL'), eArrR=document.getElementById('eArrR');
+  var eNum=document.getElementById('eNum'), eFill=document.getElementById('eFill'), eLine=document.getElementById('eLine');
+  var qApBtn=document.getElementById('qAp'), qAnBtn=document.getElementById('qAn'), qBpBtn=document.getElementById('qBp'), qBnBtn=document.getElementById('qBn');
+  var signA=1, signB=1;
+  function setSign(which, val){ if(which==='A'){ signA=val; qApBtn.setAttribute('aria-pressed', val===1?'true':'false'); qAnBtn.setAttribute('aria-pressed', val===-1?'true':'false'); }
+    else { signB=val; qBpBtn.setAttribute('aria-pressed', val===1?'true':'false'); qBnBtn.setAttribute('aria-pressed', val===-1?'true':'false'); } eSim(); }
+  qApBtn.onclick=function(){setSign('A',1);}; qAnBtn.onclick=function(){setSign('A',-1);};
+  qBpBtn.onclick=function(){setSign('B',1);}; qBnBtn.onclick=function(){setSign('B',-1);};
+  function eSim(){
+    var a=parseInt(qA.value,10), b=parseInt(qB.value,10), r=parseInt(rE.value,10);
+    qAval.textContent=(signA===-1?'-':'+')+a; qBval.textContent=(signB===-1?'-':'+')+b; rval.textContent=r;
+    cA.className='charge '+(signA===1?'pos':'neg'); cA.textContent=signA===1?'+':'−';
+    cB.className='charge '+(signB===1?'pos':'neg'); cB.textContent=signB===1?'+':'−';
+    var center=50, half=4+r*3.5; var leftPct=center-half, rightPct=center+half;
+    cA.style.left=leftPct+'%'; cB.style.left=rightPct+'%';
+    var F=(a*b)/(r*r); var fmt=F.toFixed(2);
+    eNum.textContent='F = '+fmt+' (relative)';
+    var pct=Math.min(100, F/25*100); eFill.style.width=Math.max(4,pct)+'%';
+    var attract=(signA*signB)<0;
+    eFill.style.background= attract ? 'var(--good)' : 'var(--accent)';
+    if(attract){ eArrL.className='arrow right attract'; eArrR.className='arrow left attract'; eLine.className='readLine attract'; eLine.textContent='Opposite charges. Force is attractive: charges pull toward each other.'; }
+    else { eArrL.className='arrow left repel'; eArrR.className='arrow right repel'; eLine.className='readLine repel'; eLine.textContent='Like charges. Force is repulsive: charges push apart.'; }
+    var arrLen=Math.max(6, Math.min(18, F*3));
+    eArrL.style.width=arrLen+'%'; eArrR.style.width=arrLen+'%';
+    var aLeftRefPct=leftPct, aRightRefPct=rightPct;
+    if(attract){ eArrL.style.left=(aLeftRefPct+3)+'%'; eArrR.style.left=(aRightRefPct-3-arrLen)+'%'; }
+    else { eArrL.style.left=(aLeftRefPct-3-arrLen)+'%'; eArrR.style.left=(aRightRefPct+3)+'%'; }
+  }
+  qA.addEventListener('input',eSim); qB.addEventListener('input',eSim); rE.addEventListener('input',eSim); eSim();
+
+  // Magnet sim
+  var ms=document.getElementById('ms'), mr=document.getElementById('mr');
+  var msval=document.getElementById('msval'), mrval=document.getElementById('mrval');
+  var mA=document.getElementById('mA'), mB=document.getElementById('mB');
+  var mAleft=document.getElementById('mAleft'), mAright=document.getElementById('mAright');
+  var mBleft=document.getElementById('mBleft'), mBright=document.getElementById('mBright');
+  var mArrL=document.getElementById('mArrL'), mArrR=document.getElementById('mArrR');
+  var mNum=document.getElementById('mNum'), mFill=document.getElementById('mFill'), mLine=document.getElementById('mLine');
+  var mBnBtn=document.getElementById('mBn'), mBsBtn=document.getElementById('mBs');
+  var mBflip='N';
+  mBnBtn.onclick=function(){ mBflip='N'; mBnBtn.setAttribute('aria-pressed','true'); mBsBtn.setAttribute('aria-pressed','false'); mSim(); };
+  mBsBtn.onclick=function(){ mBflip='S'; mBnBtn.setAttribute('aria-pressed','false'); mBsBtn.setAttribute('aria-pressed','true'); mSim(); };
+  function mSim(){
+    var s=parseInt(ms.value,10), r=parseInt(mr.value,10);
+    msval.textContent=s; mrval.textContent=r;
+    if(mBflip==='N'){ mBleft.className='pole pn'; mBleft.textContent='N'; mBright.className='pole ps'; mBright.textContent='S'; }
+    else { mBleft.className='pole ps'; mBleft.textContent='S'; mBright.className='pole pn'; mBright.textContent='N'; }
+    var center=50, half=8+r*4; var leftPct=center-half, rightPct=center+half;
+    mA.style.left=leftPct+'%'; mB.style.left=rightPct+'%';
+    // A's right pole is always S. B's left pole is N when mBflip='N', S when 'S'.
+    var attract=(mBflip==='N');
+    var F=(s*s)/(r*r); var fmt=F.toFixed(2);
+    mNum.textContent='F = '+fmt+' (relative)';
+    var pct=Math.min(100, F/25*100); mFill.style.width=Math.max(4,pct)+'%';
+    mFill.style.background= attract ? 'var(--good)' : 'var(--accent)';
+    if(attract){ mArrL.className='arrow right attract'; mArrR.className='arrow left attract'; mLine.className='readLine attract'; mLine.textContent="A's right pole (S) faces B's left pole (N). Opposite poles attract."; }
+    else { mArrL.className='arrow left repel'; mArrR.className='arrow right repel'; mLine.className='readLine repel'; mLine.textContent="A's right pole (S) faces B's left pole (S). Like poles repel."; }
+    var arrLen=Math.max(5, Math.min(14, F*3));
+    mArrL.style.width=arrLen+'%'; mArrR.style.width=arrLen+'%';
+    if(attract){ mArrL.style.left=(leftPct+6)+'%'; mArrR.style.left=(rightPct-6-arrLen)+'%'; }
+    else { mArrL.style.left=(leftPct-6-arrLen)+'%'; mArrR.style.left=(rightPct+6)+'%'; }
+  }
+  ms.addEventListener('input',mSim); mr.addEventListener('input',mSim); mSim();
+
+  function wire(id,fb,msg){ var row=document.getElementById(id), f=document.getElementById(fb);
+    Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ if(b.disabled)return;
+      Array.prototype.forEach.call(row.children,function(c){c.disabled=true;});
+      if(b.getAttribute('data-ok')==='true'){ b.classList.add('ok'); f.className='fbline ok'; f.textContent='Correct. '+msg; }
+      else { b.classList.add('no'); f.className='fbline try'; f.textContent='Not quite. '+msg;
+        Array.prototype.forEach.call(row.children,function(c){ if(c.getAttribute('data-ok')==='true')c.classList.add('ok'); }); }
+    }); });
+  }
+  wire('pred1','pfb1','The force scales as 1 over r squared. Doubling r divides the force by 4. Try the distance slider at r=1 vs r=2.');
+  wire('pred2','pfb2','Distance has the biggest effect. Closer means much stronger because the force scales as 1 over r squared.');
+
+  var BANK={
+    q1:{q:'Electric and magnetic forces are different from a push from your hand because they...', o:['act without touching','only act on plastic','only act in water','need batteries'], a:0, ex:'Both are non-contact forces; they act through fields across empty space.'},
+    q2:{q:'Two positive point charges are placed near each other. The force between them is...', o:['attractive','repulsive','zero','only magnetic'], a:1, ex:'Like charges repel.'},
+    q3:{q:'In Coulomb’s law F = k q1 q2 / r&sup2;, if you triple the distance r, the force becomes...', o:['3 times bigger','3 times smaller','9 times smaller','9 times bigger'], a:2, ex:'Inverse square: tripling r divides the force by 3&sup2; = 9.'},
+    q4:{q:'A north pole is held near another north pole. They will...', o:['attract','repel','do nothing','swap poles'], a:1, ex:'Like poles repel, the same pattern as like charges.'},
+    q5:{q:'Which change will increase the electric force between two charges the most?', o:['Double one charge','Halve the distance','Double both charges','Move them farther apart'], a:1, ex:'Distance affects force the most because of the inverse-square relationship.'},
+    q6:{q:'A bar magnet is moved twice as far from a paperclip. The magnetic force the clip feels...', o:['doubles','halves','roughly drops to one quarter','stays the same'], a:2, ex:'Magnetic force on a small object also falls off roughly as the inverse square of distance.'},
+    q7:{q:'Which factors set the size of the electric force between two point charges?', o:['Mass of each charge','Color of each charge','Magnitude of each charge and distance between them','Temperature of the room'], a:2, ex:'Charge magnitudes (q1 and q2) and distance r are what set the force.'},
+    q8:{q:'A diagram shows two opposite charges with arrows pointing toward each other. What does that mean?', o:['The charges repel','The charges attract','The charges are equal','The charges have no force'], a:1, ex:'Arrows toward each other show an attractive force, which is what opposite charges produce.'},
+
+    q9:{q:'Two negative charges. The force between them is...', o:['attractive','repulsive','zero','gravitational'], a:1, ex:'Two like (both negative) charges repel each other.'},
+    q10:{q:'Two bar magnets are placed with N facing S. They will...', o:['repel','attract','do nothing','spin'], a:1, ex:'Opposite poles attract.'},
+    q11:{q:'If you double both charges and keep the distance the same, the electric force becomes...', o:['the same','twice as big','four times as big','one quarter as big'], a:2, ex:'F is proportional to q1 times q2. Doubling both multiplies the force by 2 x 2 = 4.'},
+    q12:{q:'Which pair of changes would DECREASE the force between two magnets?', o:['Stronger magnets, closer','Weaker magnets, farther apart','Stronger magnets, farther apart','Weaker magnets, closer'], a:1, ex:'Weaker and farther apart both reduce the force.'},
+    q13:{q:'A student measures the force between two charges at r=1 cm and gets F=16. At r=2 cm, predict F.', o:['8','4','2','32'], a:1, ex:'Doubling r divides F by 4. 16 / 4 = 4.'},
+    q14:{q:'Electric force can act across empty space because of...', o:['the air pushing the charges','an electric field around each charge','tiny wires you cannot see','gravity'], a:1, ex:'Each charge sets up an electric field; the other charge feels a force from that field.'},
+    q15:{q:'Which of these is the BEST evidence that the magnetic force depends on distance?', o:['A magnet is heavier than a paperclip','A magnet lifts more clips when it is closer','Magnets are made of iron','Magnets only work in air'], a:1, ex:'Closer distance = stronger force, which is the inverse-square pattern.'},
+    q16:{q:'In a diagram, two arrows of equal length point away from each charge in opposite directions. The forces are...', o:['attractive and weak','attractive and strong','repulsive and equal in magnitude','unbalanced'], a:2, ex:'Arrows pointing apart show repulsion; equal lengths show Newton’s third law: equal and opposite forces.'}
+  };
+  var FORMS={A:['q1','q2','q3','q4','q5','q6','q7','q8'], B:['q9','q10','q11','q12','q13','q14','q15','q16']};
+  var FORM_ORDER=['A','B'];
+
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false, QS=[];
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQ=document.getElementById('qtext'), elO=document.getElementById('opts'), elC=document.getElementById('qcount'),
+      elT=document.getElementById('tlabel'), elF=document.getElementById('tfill'), elE=document.getElementById('expl');
+  function startCheck(){
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    rec.attempts=(rec.attempts||0)+1; save(app);
+    var fname=FORM_ORDER[(rec.attempts-1)%FORM_ORDER.length];
+    QS=FORMS[fname].map(function(id){return BANK[id];});
+    qi=0; correct=0; runPts=0; runWrong=[]; window.scrollTo(0,0); showQ();
+  }
+  function showQ(){
+    locked=false; var item=QS[qi]; elC.textContent='Question '+(qi+1)+' of '+QS.length; elQ.innerHTML=item.q; elO.innerHTML=''; elE.textContent='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elO.appendChild(b); });
+    timeLeft=QTIME; elF.style.width='100%'; elF.classList.remove('low'); elT.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elF.style.width=(timeLeft/QTIME*100)+'%'; elT.textContent=timeLeft+'s'; if(timeLeft<=8)elF.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000);
+  }
+  function answer(i,btn){
+    if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(elO.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(item.ex) elE.innerHTML=(ok?'Correct. ':'')+item.ex;
+    if(ok){ correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4; } else { runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a]}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?900:1400);
+  }
+  function finish(){
+    secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    var ptsrow=document.getElementById('ptsrow'), fbcard=document.getElementById('fbcard'), retry=document.getElementById('retry'), rt=document.getElementById('rtitle'), rm=document.getElementById('rmsg');
+    if(passed){ var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+      rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+      rt.textContent='Session cleared.'; rm.textContent='You got '+correct+' of '+QS.length+' correct.';
+      document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      fbcard.classList.remove('hide'); retry.classList.add('hide');
+    } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+      rt.textContent='So close!'; rm.textContent='You need '+Math.ceil(PASS*QS.length)+' of '+QS.length+' to pass. You got '+correct+'. Look back at the stations, then try again.';
+      ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
+    commitTime();
+  }
+  document.getElementById('toCheck').addEventListener('click',startCheck);
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+  var fbRating=null, fbTag=null;
+  var faces=[['Easy','easy'],['Just right','just'],['Tricky','hard']]; var tags=[['Clear','clear'],['Confusing','confusing'],['Fun','fun']];
+  var fbox=document.getElementById('faces'), tbox=document.getElementById('tags'), saveBtn=document.getElementById('saveFb');
+  faces.forEach(function(f){ var b=document.createElement('button'); b.className='face'; b.type='button'; b.textContent=f[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbRating=f[1]; Array.prototype.forEach.call(fbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); fbox.appendChild(b); });
+  tags.forEach(function(t){ var b=document.createElement('button'); b.className='tagb'; b.type='button'; b.textContent=t[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbTag=t[1]; Array.prototype.forEach.call(tbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); tbox.appendChild(b); });
+  function maybeShowSave(){ if(fbRating&&fbTag)saveBtn.classList.remove('hide'); }
+  saveBtn.addEventListener('click',function(){ rec.feedback={rating:fbRating,tag:fbTag,at:Date.now()}; app.progress[STUDENT][SUBJECT][DAY]=rec; save(app); syncCloud(); document.getElementById('fbcard').classList.add('hide'); document.getElementById('donebox').classList.remove('hide'); });
+})();
+</script>
+</body>
+</html>

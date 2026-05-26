@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 02 &middot; The Declaration of Independence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--locke:#5a43d6;--rousseau:#1f9d6b;--monte:#cf2c07;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno,.stdtag .l{font-family:'Spline Sans Mono',monospace;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:60ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .timeline{position:relative;border-left:3px solid var(--ink);margin:14px 0 4px 8px;padding-left:18px;}
+  .tev{margin-bottom:14px;position:relative;}
+  .tev:before{content:'';position:absolute;left:-25px;top:6px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:2px solid var(--ink);}
+  .tev .yr{font-family:'Spline Sans Mono';font-size:13px;color:var(--accent-d);font-weight:600;}
+  .tev .ev{font-size:15.5px;color:var(--ink2);margin-top:2px;}
+  .philgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px;}
+  @media (max-width:620px){.philgrid{grid-template-columns:1fr;}}
+  .phil{border:1.5px solid var(--line);border-radius:11px;padding:12px;background:#fff;}
+  .phil.locke{border-top:4px solid var(--locke);} .phil.rousseau{border-top:4px solid var(--rousseau);} .phil.monte{border-top:4px solid var(--monte);}
+  .phil h3{font-family:'Anton';font-weight:400;text-transform:uppercase;font-size:16px;letter-spacing:.02em;margin-bottom:2px;}
+  .phil .who{font-family:'Spline Sans Mono';font-size:12px;color:var(--mute);margin-bottom:6px;}
+  .phil p{font-size:14px;color:var(--ink2);}
+  .phil.locke h3{color:var(--locke);} .phil.rousseau h3{color:var(--rousseau);} .phil.monte h3{color:var(--monte);}
+
+  .doc{background:#fbf6e8;border:1px solid #d8c98a;border-radius:10px;padding:16px 18px;font-family:'Hanken Grotesk';font-size:15.5px;color:#22201a;line-height:1.7;margin-top:14px;}
+  .doc h3{font-family:'Anton';color:#5a430c;font-weight:400;font-size:16px;letter-spacing:.04em;margin-bottom:8px;text-transform:uppercase;}
+  .tap{border-bottom:2px dotted var(--accent);cursor:pointer;font-weight:600;}
+  .tap[data-trace="locke"]{color:var(--locke);border-color:var(--locke);}
+  .tap[data-trace="rousseau"]{color:var(--rousseau);border-color:var(--rousseau);}
+  .tap[data-trace="monte"]{color:var(--monte);border-color:var(--monte);}
+  .tap.active{background:rgba(255,255,255,.7);}
+  .trbox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px;font-size:14.5px;color:var(--ink2);min-height:60px;}
+  .trbox b{color:var(--ink);}
+  .trbox.locke{border-left:4px solid var(--locke);} .trbox.rousseau{border-left:4px solid var(--rousseau);} .trbox.monte{border-left:4px solid var(--monte);}
+
+  .grievbox{margin-top:14px;}
+  .griev{border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:12px;margin-bottom:10px;}
+  .griev .quote{font-family:'Hanken Grotesk';font-style:italic;color:var(--ink);font-size:14.5px;margin-bottom:8px;}
+  .griev .opts{display:flex;flex-direction:column;gap:6px;}
+  .griev .opts button{font:inherit;font-size:14px;text-align:left;border:1.5px solid var(--line);background:#fbf6ea;border-radius:8px;padding:9px 11px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .griev .opts button:hover{border-color:var(--accent);}
+  .griev .opts button.ok{border-color:var(--good);background:#e9f5ee;color:#0e5634;}
+  .griev .opts button.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .griev .gfb{font-size:13.5px;margin-top:8px;color:var(--ink2);min-height:1em;}
+
+  .limit{background:#fdecea;border:1px solid var(--red);border-left:4px solid var(--red);border-radius:10px;padding:14px 16px;margin-top:14px;}
+  .limit h3{font-family:'Anton';color:var(--accent-d);font-weight:400;font-size:16px;letter-spacing:.04em;margin-bottom:4px;text-transform:uppercase;}
+  .limit p{font-size:14.5px;color:var(--ink2);}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .cta.go{background:var(--good);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:16.5px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e9f5ee;color:#0e5634;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+  .pt{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px;margin-top:10px;}
+  .pt h3{font-family:'Anton';font-weight:400;text-transform:uppercase;font-size:16px;color:var(--accent-d);margin-bottom:6px;}
+  .pt ul{margin:8px 0 0 22px;color:var(--ink2);font-size:14.5px;}
+  .pt ul li{margin-bottom:5px;}
+  .adultnote{background:#f3eedf;border:1px dashed var(--alt);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13.5px;color:var(--ink2);}
+  .adultnote b{color:var(--alt);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Anton';}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .gate{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+  .gateitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14.5px;background:#fff;}
+  .gateitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono';}
+  .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
+  .gateitem .g2{flex:1;text-align:left;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 6-8.AH.3.CC.B</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Session 02</div>
+    <h1>The Declaration of Independence</h1>
+    <p class="mission">In July of 1776, thirteen colonies announced they would no longer be ruled by Britain. The text they signed did more than declare a break; it argued a case, and the argument leaned on a small library of Enlightenment ideas. To read it well, you have to read the context, the philosophy, and the structure together.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Analyze the Declaration of Independence to determine the historical context and political philosophies that influenced its creation.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / CONTEXT</span><h2>How the colonies got to 1776</h2></div>
+      <p class="lead">The Declaration did not arrive out of nowhere. A decade of escalating taxes, troop occupations, and rejected petitions sat behind it. Walk the dates below to see the pressure build.</p>
+      <div class="timeline">
+        <div class="tev"><div class="yr">1763</div><div class="ev">The Seven Years War (French and Indian War) ends. Britain wins, but the war was expensive. Parliament looks to the colonies to help pay the bill.</div></div>
+        <div class="tev"><div class="yr">1765</div><div class="ev">The Stamp Act taxes printed paper in the colonies. Colonists protest under the slogan "no taxation without representation," because they had no members in Parliament.</div></div>
+        <div class="tev"><div class="yr">1770</div><div class="ev">The Boston Massacre. British soldiers fire into a crowd, killing five.</div></div>
+        <div class="tev"><div class="yr">1773</div><div class="ev">The Boston Tea Party. Colonists destroy chests of taxed tea in Boston Harbor.</div></div>
+        <div class="tev"><div class="yr">1774</div><div class="ev">Parliament passes the Coercive Acts, which colonists call the Intolerable Acts. Boston Harbor is closed and Massachusetts loses self-government.</div></div>
+        <div class="tev"><div class="yr">1775</div><div class="ev">Fighting begins at Lexington and Concord. The Second Continental Congress meets in Philadelphia.</div></div>
+        <div class="tev"><div class="yr">July 4, 1776</div><div class="ev">The Continental Congress adopts the Declaration of Independence, drafted mainly by Thomas Jefferson.</div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / PHILOSOPHY</span><h2>Three Enlightenment ideas, then the text</h2></div>
+      <p class="lead">Jefferson did not invent his argument; he borrowed from Enlightenment thinkers whose ideas were widely read in the colonies. Three matter most for this document.</p>
+      <div class="philgrid">
+        <div class="phil locke"><h3>Natural rights</h3><div class="who">John Locke &middot; England</div><p>People are born with rights that no government can give away or take, including life, liberty, and property. Governments exist to protect those rights.</p></div>
+        <div class="phil rousseau"><h3>Social contract</h3><div class="who">Jean-Jacques Rousseau &middot; France</div><p>Government holds its power because the people agree to it. If a government breaks the contract by abusing the people, the people may dissolve it and form a new one.</p></div>
+        <div class="phil monte"><h3>Separation of powers</h3><div class="who">Baron de Montesquieu &middot; France</div><p>Power concentrated in one ruler invites tyranny. Splitting power into separate branches is the structural defense against it.</p></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / TEXT</span><h2>Read the document, trace the ideas</h2></div>
+      <p class="lead">Tap any underlined phrase to see which Enlightenment idea it traces to. The color of the underline tells you whose idea before you tap.</p>
+      <div class="doc">
+        <h3>Preamble (excerpt)</h3>
+        <p>"We hold these truths to be <span class="tap" data-trace="locke">self-evident</span>, that <span class="tap" data-trace="locke">all men are created equal</span>, that they are endowed by their Creator with certain <span class="tap" data-trace="locke">unalienable Rights</span>, that among these are <span class="tap" data-trace="locke">Life, Liberty and the pursuit of Happiness</span>.</p>
+        <p style="margin-top:8px;">That to secure these rights, <span class="tap" data-trace="rousseau">Governments are instituted among Men, deriving their just powers from the consent of the governed</span>, that whenever any Form of Government becomes destructive of these ends, <span class="tap" data-trace="rousseau">it is the Right of the People to alter or to abolish it</span>, and to institute new Government."</p>
+        <h3 style="margin-top:14px;">List of grievances (paraphrased)</h3>
+        <p>"The history of the present King of Great Britain is a history of repeated injuries and usurpations, all having in direct object the establishment of an <span class="tap" data-trace="monte">absolute Tyranny</span> over these States."</p>
+      </div>
+      <div class="trbox" id="trbox">Tap an underlined phrase above to see what Enlightenment idea it traces to.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / GRIEVANCES</span><h2>Three grievances, three protests</h2></div>
+      <p class="lead">After the preamble, the document lists more than two dozen grievances against King George III. Each is evidence that the social contract has been broken. Match each one to what it was really protesting.</p>
+      <div class="grievbox" id="grievbox"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05 / LIMITS</span><h2>"All men are created equal," and the limits at the time</h2></div>
+      <p class="lead">The line is the most quoted in the document. It is also the line whose meaning the country has been arguing about ever since. In 1776, "all men" did not, in practice, include enslaved Africans, Indigenous peoples, or women. Jefferson himself owned enslaved people while writing it.</p>
+      <div class="limit">
+        <h3>What changed, what did not</h3>
+        <p>The principle was on paper, but slavery would not end until 1865, women would not get the federal vote until 1920, and Indigenous citizenship was not federally recognized until 1924. The Declaration set a standard the country had not yet met, and that gap drove later movements to demand the country live up to its own words.</p>
+      </div>
+    </div>
+
+    <button class="cta" id="toCheck">I read the document. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="ptphase" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">06 / EXPLAIN</span><h2>Out-loud analysis</h2></div>
+      <p class="lead">Walk an adult or peer through the document. Use the prompts below; do not read your answers, speak them.</p>
+      <div class="pt">
+        <h3>Three points to defend</h3>
+        <ul>
+          <li>Quote one line from the preamble. Say which Enlightenment thinker it traces to and what that thinker argued.</li>
+          <li>Name two events between 1763 and 1775 that made independence feel necessary. Explain how each one fits the pattern of "a broken social contract."</li>
+          <li>State the famous line "all men are created equal" and explain who it did not include in 1776, and one movement later in American history that pushed the country to live up to that line.</li>
+        </ul>
+        <div class="adultnote"><b>Adult listener:</b> the goal is not memorization. Listen for: a specific Enlightenment idea named, real events tied to real grievances, and a clear acknowledgment of who was excluded in 1776 with one example of later expansion (abolition, women's suffrage, civil rights movement, Indigenous citizenship).</div>
+      </div>
+      <button class="cta go" id="ptDone">I did the out-loud analysis. Go to the retention check</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">07 / RETENTION</span><h2>Form B, spaced</h2></div>
+      <p class="lead">This second check is meant for a <b>later day</b>, ideally at least 24 hours after Form A. The spacing is what proves the analysis stuck rather than the memory of the page.</p>
+      <div class="limit" style="background:#fff;border-color:var(--alt);border-left:4px solid var(--alt);"><h3 style="color:var(--alt);">Tip</h3><p>If today was Form A, close the tab and return tomorrow before clicking the button below.</p></div>
+      <button class="cta" id="startB">Start Form B now</button>
+    </div>
+    <div class="station hide" id="bbox">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:52ch;margin:0 auto;"></p>
+    </div>
+    <div class="gate" id="gate"></div>
+    <button class="cta alt hide" id="retry" style="margin-top:14px;">Reread and try Form A again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and return to your dashboard.</p></div>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie &middot; Social Studies &middot; Day 2</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='social', DAY='6-8.AH.3.CC.B', SNAME='Julie';
+  var PASS=7, QTIME=25;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',attempts:0,bestA:0,bestB:0,ptDone:false};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,bestA:rec.bestA||0,bestB:rec.bestB||0,attempts:rec.attempts||0,time_ms:rec.timeMs||0,wrong:rec.lastWrong||[],pt_done:!!rec.ptDone,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  // trace taps
+  var TRACE={
+    locke:{cls:'locke', label:'John Locke &middot; natural rights', body:'Locke argued that people are born with unalienable rights (life, liberty, property) that no government grants. Jefferson swapped "property" for "the pursuit of Happiness," but the structure is Locke\'s.'},
+    rousseau:{cls:'rousseau', label:'Rousseau &middot; social contract', body:'Rousseau argued that government holds its power only because the people agree to it. If a government betrays that contract, the people may legitimately dissolve it. The line "deriving their just powers from the consent of the governed" is the social contract in plain English.'},
+    monte:{cls:'monte', label:'Montesquieu &middot; tyranny and power', body:'Montesquieu warned that power concentrated in one person becomes tyranny. The Declaration\'s charge that George III sought "absolute Tyranny" frames the King as exactly the danger Montesquieu described.'}
+  };
+  var trbox=document.getElementById('trbox');
+  document.querySelectorAll('.tap').forEach(function(p){
+    p.addEventListener('click',function(){
+      document.querySelectorAll('.tap').forEach(function(x){x.classList.remove('active');});
+      p.classList.add('active');
+      var k=p.getAttribute('data-trace'); var t=TRACE[k];
+      trbox.className='trbox '+t.cls;
+      trbox.innerHTML='<b>'+t.label+'</b><br>'+t.body;
+    });
+  });
+
+  // grievances
+  var GRIEV=[
+    {q:'"For imposing Taxes on us without our Consent"', a:0, opts:['Taxation without representation in Parliament','Religious persecution','Trade with France'], why:'Refers to Stamp Act, Townshend Acts, and later taxes passed by Parliament with no colonial representatives.'},
+    {q:'"For quartering large bodies of armed troops among us"', a:1, opts:['Lack of roads','Forced housing of British soldiers in colonial homes (Quartering Acts)','Religious persecution'], why:'The Quartering Acts forced colonists to house and supply British soldiers.'},
+    {q:'"He has obstructed the Administration of Justice... by refusing his Assent to Laws for establishing Judiciary powers."', a:2, opts:['Boston Tea Party','Sugar Act','Royal interference with colonial courts and self-government'], why:'A grievance about the King blocking colonies from running their own courts and lawmaking, especially after the Intolerable Acts.'}
+  ];
+  var gb=document.getElementById('grievbox');
+  GRIEV.forEach(function(g,i){
+    var box=document.createElement('div'); box.className='griev';
+    var q=document.createElement('div'); q.className='quote'; q.innerHTML=(i+1)+'. '+g.q; box.appendChild(q);
+    var opts=document.createElement('div'); opts.className='opts';
+    var fb=document.createElement('div'); fb.className='gfb';
+    g.opts.forEach(function(t,idx){ var b=document.createElement('button'); b.type='button'; b.textContent=t;
+      b.addEventListener('click',function(){ if(b.dataset.done)return;
+        var ok=(idx===g.a);
+        if(ok){ b.classList.add('ok'); Array.prototype.forEach.call(opts.children,function(x){x.dataset.done='1';x.style.pointerEvents='none';}); fb.style.color='var(--good)'; fb.textContent='Correct. '+g.why; }
+        else { b.classList.add('no'); b.dataset.done='1'; b.style.pointerEvents='none'; fb.style.color='var(--red)'; fb.textContent='Not the closest match. Reread the quote and try again.'; }
+      });
+      opts.appendChild(b);
+    });
+    box.appendChild(opts); box.appendChild(fb); gb.appendChild(box);
+  });
+
+  var FORMA=[
+    {q:'In which year was the Declaration of Independence adopted?', o:['1763','1773','1776','1789'], a:2, why:'The Continental Congress adopted it on July 4, 1776.'},
+    {q:'Which Enlightenment thinker most directly shaped the line about unalienable rights to life, liberty, and the pursuit of happiness?', o:['Montesquieu','John Locke','Voltaire','Hobbes'], a:1, why:'Locke argued for natural rights to life, liberty, and property; Jefferson echoes that structure.'},
+    {q:'"Governments are instituted among Men, deriving their just powers from the consent of the governed" is the philosophy of ...', o:['mercantilism','social contract','divine right of kings','feudalism'], a:1, why:'This is Rousseau\'s social contract: legitimate government rests on the agreement of the people.'},
+    {q:'Which event is the BEST example of escalating tension after 1763?', o:['Magna Carta','Stamp Act protests','Battle of Hastings','Glorious Revolution'], a:1, why:'The Stamp Act of 1765 drew the "no taxation without representation" protests that built colonial unity.'},
+    {q:'Montesquieu\'s warning about concentrated power supports which part of the Declaration?', o:['The signature page','The charges that the King aimed at "absolute Tyranny"','The date','The list of states'], a:1, why:'Framing George III as a would-be tyrant uses Montesquieu\'s lens directly.'},
+    {q:'The phrase "all men are created equal," in 1776 practice, did NOT include ...', o:['White male property owners','Enslaved Africans, women, and Indigenous peoples','British loyalists','Members of Congress'], a:1, why:'Slavery, denial of women\'s rights, and removal of Indigenous peoples were all legal and ongoing.'},
+    {q:'The Declaration\'s structure moves from ...', o:['grievances to preamble to declaration','preamble of principles, to list of grievances, to formal declaration','only a list of names','only a list of taxes'], a:1, why:'Preamble of principles, then grievances as evidence, then the formal break.'},
+    {q:'The list of grievances mainly serves as ...', o:['decoration','evidence that George III broke the social contract','a tax code','a peace treaty'], a:1, why:'Each grievance is offered as evidence that the King\'s government no longer protected colonial rights.'}
+  ];
+  var FORMB=[
+    {q:'The Seven Years War (French and Indian War) mattered to the Declaration because ...', o:['it ended slavery','its costs pushed Parliament to tax the colonies','it was fought in 1776','colonists won independence in it'], a:1, why:'War debt led to new taxes (Stamp, Townshend, Tea), which lit the fuse.'},
+    {q:'Locke\'s "unalienable rights" are rights that ...', o:['only kings hold','cannot be given away or taken by government','expire after seven years','belong only to citizens'], a:1, why:'Unalienable means they cannot be surrendered or removed; they exist before government.'},
+    {q:'According to the social contract, the people may dissolve a government when ...', o:['the king dies','it becomes destructive of the rights it was made to protect','taxes fall','the army surrenders'], a:1, why:'That is Rousseau\'s core claim and the legal argument of the Declaration.'},
+    {q:'The Intolerable Acts of 1774 were a response to ...', o:['the Stamp Act protests','the Boston Tea Party','the Boston Massacre','the French and Indian War'], a:1, why:'Parliament passed the Coercive Acts to punish Massachusetts after the Tea Party.'},
+    {q:'Which best describes the relationship between Enlightenment philosophy and the Declaration?', o:['Jefferson invented every idea','Jefferson translated existing Enlightenment arguments into the colonial case','The ideas have nothing in common','The Declaration rejects Enlightenment ideas'], a:1, why:'Jefferson applied Enlightenment frameworks (rights, contract, tyranny) to a specific political moment.'},
+    {q:'Who was the primary drafter of the Declaration?', o:['George Washington','John Adams','Thomas Jefferson','Benjamin Franklin'], a:2, why:'Jefferson drafted; Adams and Franklin edited.'},
+    {q:'A historian arguing that the Declaration\'s ideals were not fully realized in 1776 would point to ...', o:['the Boston Tea Party','the continuation of slavery and denial of voting rights to women','the alliance with France','the end of the Stamp Act'], a:1, why:'Both are documented gaps between the language and the practice.'},
+    {q:'Which later movement explicitly held the country to the Declaration\'s words about equality?', o:['Mercantilism','The abolition and civil rights movements','The Stamp Act','The Coercive Acts'], a:1, why:'Abolition, women\'s suffrage, and civil rights leaders quoted the Declaration to demand expansion.'}
+  ];
+
+  var PHASES=['lesson','check','ptphase','retention','result'];
+  function show(id){ PHASES.forEach(function(s){ document.getElementById(s).classList.toggle('hide',s!==id); }); window.scrollTo(0,0); }
+
+  function runQuiz(items, qtxt, opts, qcount, tlabel, tfill, qwhy, onDone){
+    var qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, wrongs=[];
+    function go(){
+      locked=false; var it=items[qi]; qcount.textContent='Question '+(qi+1)+' of '+items.length;
+      qtxt.innerHTML=it.q; opts.innerHTML=''; qwhy.textContent='';
+      it.o.forEach(function(t,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(locked)return; locked=true; clearInterval(timer);
+          var ok=(i===it.a);
+          Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===it.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+          qwhy.textContent=(ok?'Correct. ':'Not quite. ')+it.why;
+          if(ok)correct++; else wrongs.push({stem:it.q,picked:it.o[i],correct:it.o[it.a]});
+          setTimeout(function(){ qi++; if(qi<items.length)go(); else { commitTime(); onDone(correct,wrongs); } }, ok?900:1300);
+        }); opts.appendChild(b); });
+      timeLeft=QTIME; tfill.style.width='100%'; tfill.classList.remove('low'); tlabel.textContent=QTIME+'s'; clearInterval(timer);
+      timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; tfill.style.width=(timeLeft/QTIME*100)+'%'; tlabel.textContent=timeLeft+'s'; if(timeLeft<=8)tfill.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000);
+    }
+    go();
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){
+    rec.attempts=(rec.attempts||0)+1; save(app); show('check');
+    runQuiz(FORMA, document.getElementById('qtext'), document.getElementById('opts'),
+      document.getElementById('qcount'), document.getElementById('tlabel'), document.getElementById('tfill'),
+      document.getElementById('qwhy'),
+      function(correct,wrongs){ rec.bestA=Math.max(rec.bestA||0,correct); rec.lastWrong=wrongs; save(app);
+        if(correct>=PASS) show('ptphase'); else renderResult(false,'Form A',correct);
+      });
+  });
+  document.getElementById('ptDone').addEventListener('click',function(){ rec.ptDone=true; save(app); show('retention'); });
+  document.getElementById('startB').addEventListener('click',function(){
+    document.getElementById('bbox').classList.remove('hide');
+    runQuiz(FORMB, document.getElementById('qtextB'), document.getElementById('optsB'),
+      document.getElementById('qcountB'), document.getElementById('tlabelB'), document.getElementById('tfillB'),
+      document.getElementById('qwhyB'),
+      function(correct,wrongs){ rec.bestB=Math.max(rec.bestB||0,correct); save(app);
+        renderResult(correct>=PASS,'Form B',correct);
+      });
+  });
+
+  function renderResult(passed,label,correct){
+    var aMet=(rec.bestA||0)>=PASS, bMet=(rec.bestB||0)>=PASS, ptMet=!!rec.ptDone;
+    var mastered=aMet&&bMet;
+    rec.status = mastered ? 'mastered' : (aMet ? 'partA' : 'tried');
+    save(app); syncCloud(); show('result');
+    document.getElementById('scorebig').textContent=(rec.bestA||0)+' + '+(rec.bestB||0);
+    document.getElementById('rtitle').textContent = mastered ? 'Mastered.' : (passed ? 'Form complete.' : 'Not yet.');
+    document.getElementById('rmsg').textContent = mastered ? 'Form A and Form B both met the bar. You can read the Declaration as a piece of Enlightenment argument set in its historical moment.' : (passed ? 'Strong work on '+label+'. The credential needs the other form on a later day.' : 'You need 7 of 8 on '+label+'. Reread the timeline, the philosophy cards, and the document, then try again.');
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    function row(met,txt,dets){ var d=document.createElement('div'); d.className='gateitem '+(met?'met':'miss'); d.innerHTML='<span class="mk">'+(met?'✓':'!')+'</span><span class="g2"><b>'+txt+'</b><br><span style="font-size:13px;color:var(--mute)">'+dets+'</span></span>'; gate.appendChild(d); }
+    row(aMet,'Form A: '+(rec.bestA||0)+' of 8','Need 7 of 8.');
+    row(ptMet,'Out-loud analysis done','Defended three points to a listener.');
+    row(bMet,'Form B: '+(rec.bestB||0)+' of 8','Need 7 of 8, on a later day.');
+    document.getElementById('retry').classList.toggle('hide', mastered);
+    document.getElementById('donebox').classList.toggle('hide', !mastered);
+  }
+  document.getElementById('retry').addEventListener('click',function(){ show('lesson'); });
+
+})();
+</script>
+</body>
+</html>

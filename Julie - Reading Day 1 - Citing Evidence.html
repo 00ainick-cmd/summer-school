@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 01 · Proving It With the Text</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .fbline{margin-top:12px;font-size:15px;min-height:1.4em;}
+  .fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+
+  .passage{background:#faf8f2;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:16px;color:var(--ink);}
+  .claim{margin-top:14px;font-weight:700;font-size:17px;}
+  .claim span{color:var(--accent-d);}
+  .evs{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+  .ev{font:inherit;font-size:16px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:14px 15px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .ev:hover{border-color:var(--accent);}
+  .ev.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+  .ev.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .ev:disabled{cursor:default;}
+  .rnext{margin-top:12px;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .fb{margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
+  .fb .fl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:10px;}
+  .faces,.tags{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+  .tags{margin-top:9px;}
+  .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
+  .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.RL.1.A</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Session 01</div>
+    <h1>Proving It With the Text</h1>
+    <p class="mission">A good claim about a text is only as strong as the evidence behind it. The skill is not just finding a quote that relates, it is finding the one that most directly proves the point and leaves the least doubt.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Draw conclusions, infer and analyze by citing the textual evidence that most strongly supports an analysis of what the text says explicitly as well as inferences drawn from the text.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Strong vs weak evidence</h2></div>
+      <p class="lead">Many quotes can relate to a claim. Strong evidence is <b>specific</b> and <b>directly</b> supports the exact point. Weak evidence is vague, off topic, or could back almost any claim.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / DO</span><h2>Pick the strongest evidence</h2></div>
+      <p class="lead">Read the short passage. Then choose the quote that <b>most strongly</b> supports the claim. Watch for quotes that are true but weak.</p>
+      <div class="passage" id="passage"></div>
+      <div class="claim" id="claim"></div>
+      <div class="evs" id="evs"></div>
+      <div class="fbline" id="evfb"></div>
+      <button class="cta rnext hide" id="rnext">Next passage</button>
+    </div>
+
+    <button class="cta" id="toCheck">I worked through it. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 5</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="ptsrow hide" id="ptsrow">
+        <div><div class="v" id="vbase">0</div><div class="k">Base</div></div>
+        <div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div>
+        <div><div class="v" id="vtotal">0</div><div class="k">Points</div></div>
+      </div>
+    </div>
+    <div class="fb hide" id="fbcard">
+      <div class="fl">How did that feel?</div>
+      <div class="faces" id="faces"></div>
+      <div class="tags" id="tags"></div>
+      <button class="cta hide" id="saveFb" style="margin-top:14px;">Save and finish</button>
+    </div>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie · Reading · Day 1</footer>
+</div>
+<script>
+(function(){
+
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='reading', DAY='d1', SNAME='Julie';
+  var PASS=0.8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var ROUNDS=[
+    {passage:'Maya read the list of names posted on the gym wall. She read it again. Then she walked to the corner, set down her bag, and stared at the floor for a long time without saying anything to anyone.',
+     claim:'Maya was disappointed by what she saw on the list.',
+     evs:[{t:'Maya read the list of names posted on the gym wall.',ok:false,why:'True, but this only sets the scene. It does not show how she felt.'},
+          {t:'She set down her bag and stared at the floor for a long time without saying anything.',ok:true,why:'Strongest. Her silence and staring directly show disappointment.'},
+          {t:'The list was posted on the gym wall.',ok:false,why:'A detail about the setting, not about Maya at all.'}]},
+    {passage:'Devon checked the recipe three times before he started. He measured each cup of flour and leveled it with a knife. He set a timer for the oven and wrote the finish time on a sticky note.',
+     claim:'Devon was being careful and precise.',
+     evs:[{t:'Devon checked the recipe three times and leveled each cup with a knife.',ok:true,why:'Strongest. Specific actions that directly show care and precision.'},
+          {t:'He set a timer for the oven.',ok:false,why:'Relates a little, but many cooks do this. It is weaker, less specific evidence.'},
+          {t:'Devon was making something in the kitchen.',ok:false,why:'Too general. It could support almost any claim.'}]}
+  ];
+  var rIdx=0, passage=document.getElementById('passage'), claim=document.getElementById('claim'),
+      evs=document.getElementById('evs'), evfb=document.getElementById('evfb'), rnext=document.getElementById('rnext');
+  function loadRound(){ var r=ROUNDS[rIdx]; passage.textContent=r.passage; claim.innerHTML='Claim: <span>'+r.claim+'</span>';
+    evfb.className='fbline'; evfb.textContent=''; rnext.classList.add('hide'); evs.innerHTML='';
+    r.evs.forEach(function(e){ var b=document.createElement('button'); b.className='ev'; b.type='button'; b.textContent='\u201c'+e.t+'\u201d';
+      b.addEventListener('click',function(){ Array.prototype.forEach.call(evs.children,function(c){c.disabled=true;});
+        if(e.ok){ b.classList.add('ok'); evfb.className='fbline ok'; evfb.textContent=e.why; }
+        else { b.classList.add('no'); evfb.className='fbline try'; evfb.textContent=e.why+' Look for the most specific, direct quote.';
+          Array.prototype.forEach.call(evs.children,function(c,i){ if(r.evs[i].ok)c.classList.add('ok'); }); }
+        if(rIdx<ROUNDS.length-1) rnext.classList.remove('hide');
+      }); evs.appendChild(b); });
+  }
+  rnext.addEventListener('click',function(){ rIdx++; loadRound(); });
+  loadRound();
+
+  var QS=[{"q": "An inference is best supported by evidence that is...", "o": ["interesting to read", "directly related to the claim and specific", "the longest quote in the text", "the writer's own opinion"], "a": 1}, {"q": "Claim: <b>The narrator is nervous.</b> Which quote supports it most strongly?", "o": ["\u201cThe sky was gray that morning.\u201d", "\u201cMy hands shook as I reached for the door.\u201d", "\u201cI had lived there for years.\u201d", "\u201cThe room was very large.\u201d"], "a": 1}, {"q": "Strong textual evidence is text that...", "o": ["restates the claim in different words", "could support many different claims", "most directly proves the specific point", "comes from a different book"], "a": 2}, {"q": "Claim: <b>The team was well prepared.</b> Which is the strongest evidence?", "o": ["\u201cThey had practiced the play a hundred times.\u201d", "\u201cThe gym was crowded that night.\u201d", "\u201cIt was a Friday in spring.\u201d", "\u201cEveryone liked the coach.\u201d"], "a": 0}, {"q": "When two quotes both relate to a claim, the stronger one is the one that...", "o": ["is longer", "is more specific and leaves less doubt", "sounds nicer", "appears first in the text"], "a": 1}];
+
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false;
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill');
+  function startCheck(){ secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; runPts=0; runWrong=[]; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi]; elCount.textContent='Question '+(qi+1)+' of '+QS.length; elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elOpts.appendChild(b); });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s'; if(timeLeft<=8)elTfill.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000); }
+  function answer(i,btn){ if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(ok){correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4;} else { runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a]}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?650:1100); }
+  function finish(){ secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    var ptsrow=document.getElementById('ptsrow'), fbcard=document.getElementById('fbcard'), retry=document.getElementById('retry'), rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    if(passed){ var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+      rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app);
+      rtitle.textContent='Session cleared.'; rmsg.textContent='You got '+correct+' of '+QS.length+' correct.';
+      document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      fbcard.classList.remove('hide'); retry.classList.add('hide');
+    } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Look back at the stations, then try again.';
+      ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
+    commitTime(); }
+  document.getElementById('toCheck').addEventListener('click',startCheck);
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+  var fbRating=null, fbTag=null;
+  var faces=[['Easy','easy'],['Just right','just'],['Tricky','hard']]; var tags=[['Clear','clear'],['Confusing','confusing'],['Fun','fun']];
+  var fbox=document.getElementById('faces'), tbox=document.getElementById('tags'), saveBtn=document.getElementById('saveFb');
+  faces.forEach(function(f){ var b=document.createElement('button'); b.className='face'; b.type='button'; b.textContent=f[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbRating=f[1]; Array.prototype.forEach.call(fbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); fbox.appendChild(b); });
+  tags.forEach(function(t){ var b=document.createElement('button'); b.className='tagb'; b.type='button'; b.textContent=t[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbTag=t[1]; Array.prototype.forEach.call(tbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); tbox.appendChild(b); });
+  function maybeShowSave(){ if(fbRating&&fbTag)saveBtn.classList.remove('hide'); }
+  saveBtn.addEventListener('click',function(){ rec.feedback={rating:fbRating,tag:fbTag,at:Date.now()}; app.progress[STUDENT][SUBJECT][DAY]=rec; save(app); syncCloud(); document.getElementById('fbcard').classList.add('hide'); document.getElementById('donebox').classList.remove('hide'); });
+
+})();
+</script>
+</body>
+</html>

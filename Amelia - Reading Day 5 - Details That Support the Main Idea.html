@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Lab, Details That Support the Main Idea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a32;--off:#a37c2a;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(30px,5.6vw,44px);line-height:1.04;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .umbrella{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:14px;}
+  .umb-main{background:var(--accent);color:#fff;font-family:'Fraunces';font-weight:600;font-size:19px;border-radius:12px;padding:14px 18px;text-align:center;max-width:520px;width:100%;}
+  .umb-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;width:100%;max-width:520px;}
+  .umb-cell{background:#fbf5ea;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--ink2);text-align:center;}
+  .umb-cell b{color:var(--ink);display:block;font-family:'Fraunces';font-weight:600;font-size:15px;margin-bottom:2px;}
+  .pgraph{background:#fbf5ea;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;margin-top:12px;}
+  .pgraph .ptitle{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--accent-d);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;}
+  .sline2{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line);}
+  .sline2:last-child{border-bottom:0;}
+  .sline2 .sx{flex:1;font-size:16px;color:var(--ink);}
+  .sline2 .pick{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;}
+  .sline2 .pick button{font:inherit;font-size:12px;font-weight:600;border:1.5px solid var(--line);background:#fff;color:var(--ink2);border-radius:6px;padding:5px 9px;min-height:32px;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;}
+  .sline2 .pick button:hover{border-color:var(--accent);}
+  .sline2.MI .pick button.MI{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .sline2.D .pick button.D{background:var(--alt);border-color:var(--alt);color:#fff;}
+  .sline2.O .pick button.O{background:var(--off);border-color:var(--off);color:#fff;}
+  .sline2.wrong{background:#fdecea;}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--ink2);margin-top:8px;}
+  .legend .li{display:inline-flex;align-items:center;gap:5px;}
+  .legend .sw{display:inline-block;width:12px;height:12px;border-radius:3px;}
+  .legend .sw.mi{background:var(--accent);} .legend .sw.d{background:var(--alt);} .legend .sw.o{background:var(--off);}
+  .progressline{margin-top:8px;font-size:14px;color:var(--ink2);font-weight:600;}
+  .progressline.win{color:var(--good);}
+  .pcontrol{margin-top:10px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;}
+  .mb{font:inherit;font-weight:600;font-size:14px;border:1.5px solid var(--accent);background:#fff;color:var(--accent-d);border-radius:8px;padding:7px 12px;min-height:36px;cursor:pointer;}
+  .mb.ghost{border-color:var(--line);color:var(--ink2);}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .cta.ghost{background:#fff;color:var(--accent-d);border:1.5px solid var(--accent);}
+  .cta.ghost:hover{background:#fbeee9;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .twocol{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;}
+  .panel h3{font-family:'Fraunces';font-size:19px;margin-bottom:8px;}
+  .panel p.small{color:var(--ink2);font-size:15px;margin-bottom:10px;}
+  textarea.write{width:100%;min-height:120px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;background:#fbf5ea;color:var(--ink);resize:vertical;}
+  textarea.write:focus{border-color:var(--accent);outline:none;}
+  .savedrow{font-size:13px;color:var(--good);margin-top:6px;min-height:1.2em;font-weight:600;}
+  .ptlist{list-style:none;margin-top:10px;}
+  .ptlist li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);}
+  .ptlist li:last-child{border-bottom:0;}
+  .ptlist .ck{flex:0 0 24px;width:24px;height:24px;border:2px solid var(--accent);border-radius:6px;display:inline-block;cursor:pointer;background:#fff;margin-top:2px;}
+  .ptlist .ck[aria-checked="true"]{background:var(--accent);position:relative;}
+  .ptlist .ck[aria-checked="true"]::after{content:"";position:absolute;left:6px;top:2px;width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg);}
+  .ptlist .lab{font-size:16px;color:var(--ink);}
+  .ptlist .lab b{color:var(--accent-d);}
+  .ptdone{margin-top:10px;font-size:14px;color:var(--ink2);font-weight:600;}
+  .ptdone.win{color:var(--good);}
+  .gateinfo{margin-top:10px;font-size:14px;color:var(--ink2);text-align:center;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.R.3.A.b</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Chapter five</div>
+    <h1>Details That Support the Main Idea</h1>
+    <p class="opener"><span class="dropcap">I</span>n a nonfiction paragraph, one sentence carries the whole point. The others are there to prove it. Once you can spot the main idea, the details either back it up or they wander off.</p>
+    <p class="mission">By the end you will find the main idea sentence in a short paragraph, tag the details that support it, and notice the off topic sentence that sneaks in.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Identify the details or facts that support the main idea.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>The umbrella idea</h2></div>
+      <p class="lead">Picture the <b>main idea</b> as an umbrella. The <b>supporting details</b> are the things standing under it. Each detail should fit under the umbrella, not point somewhere else.</p>
+      <div class="umbrella">
+        <div class="umb-main">Honeybees help plants grow.</div>
+        <div class="umb-row">
+          <div class="umb-cell"><b>Detail</b>They carry pollen from flower to flower.</div>
+          <div class="umb-cell"><b>Detail</b>Many crops need bee pollen to make fruit.</div>
+          <div class="umb-cell"><b>Detail</b>One bee can visit hundreds of flowers a day.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Detail vs off topic</h2></div>
+      <p class="lead">A <b>detail</b> proves the main idea. An <b>off topic</b> sentence is true, but it does not fit under the umbrella. Watch for these. They are the sneaky ones.</p>
+      <div class="myth">
+        <span class="tag">Spot it</span>
+        <div class="big">Main idea: Honeybees help plants grow.</div>
+        <div style="color:var(--ink2);margin-top:4px;"><b>Detail:</b> "They carry pollen from flower to flower." Fits under the umbrella.</div>
+        <div style="color:var(--ink2);margin-top:4px;"><b>Off topic:</b> "Honey tastes good on toast." True, but it is about toast, not plants growing.</div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Try it: tag the sentences</h2></div>
+      <p class="lead">For each paragraph, tag the <b>main idea</b> sentence, the <b>supporting details</b>, and any <b>off topic</b> sentence that sneaks in.</p>
+      <div class="legend"><span class="li"><span class="sw mi"></span>MI = main idea</span><span class="li"><span class="sw d"></span>D = detail</span><span class="li"><span class="sw o"></span>O = off topic</span></div>
+      <div id="paragraphs"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">The first sentence is always the main idea.</div><div style="color:var(--ink2)">Usually, but not always. The main idea is the one big thing the whole paragraph is about. Sometimes it shows up in the middle or even the end. Always ask: what is the umbrella all the other sentences fit under?</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I can spot the main idea. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span id="formlabel">Form A</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="ptsrow hide" id="ptsrow">
+        <div><div class="v" id="vbase">0</div><div class="k">Base</div></div>
+        <div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div>
+        <div><div class="v" id="vtotal">0</div><div class="k">Points</div></div>
+      </div>
+      <div class="gateinfo hide" id="gateinfo"></div>
+    </div>
+    <button class="cta hide" id="toFormB">Take Form B now</button>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+
+    <div class="twocol">
+      <div class="panel">
+        <h3>Write it in your own words</h3>
+        <p class="small">In your own words, how do you tell a detail apart from an off topic sentence?</p>
+        <textarea class="write" id="explainText" placeholder="A detail is when ... An off topic sentence is when ..."></textarea>
+        <button class="cta ghost" id="explainSave" type="button" style="margin-top:8px;width:auto;padding:10px 18px;font-size:15px;">Save my thinking</button>
+        <div class="savedrow" id="explainSaved"></div>
+      </div>
+      <div class="panel">
+        <h3>Show a grownup</h3>
+        <p class="small">Pick a short nonfiction paragraph from a book at home, a kids magazine, or a website. Read it to a grownup, then say what the main idea is and point to two details that support it. Check off what you did.</p>
+        <ul class="ptlist" id="ptlist"></ul>
+        <div class="ptdone" id="ptDone">0 of 4 checked.</div>
+      </div>
+    </div>
+
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Amelia &middot; Reading &middot; Day 5</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='reading', DAY='3.R.3.A.b', SNAME='Amelia';
+  var PASS=7/8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null,formA:null,formB:null,explain:'',pt:[]};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var PARAS=[
+    {title:'Paragraph 1, Honeybees', sentences:[
+      {t:'Honeybees help plants grow in many ways.', a:'MI'},
+      {t:'When a bee lands on a flower, pollen sticks to its fuzzy body.', a:'D'},
+      {t:'The bee then carries that pollen to the next flower it visits.', a:'D'},
+      {t:'Many farms keep beehives so the bees can pollinate their crops.', a:'D'},
+      {t:'Honey tastes good on toast.', a:'O'}
+    ]},
+    {title:'Paragraph 2, Sloths', sentences:[
+      {t:'Sloths are built to move slowly.', a:'MI'},
+      {t:'Their long claws and weak leg muscles make fast movement hard.', a:'D'},
+      {t:'They eat leaves, which give them very little energy.', a:'D'},
+      {t:'Tigers live in jungles too, on the other side of the world.', a:'O'},
+      {t:'A sloth can take a whole minute to move just one foot forward.', a:'D'}
+    ]},
+    {title:'Paragraph 3, Recycling', sentences:[
+      {t:'My favorite color this week is dark green.', a:'O'},
+      {t:'Recycling at home can save a lot of new material from being made.', a:'MI'},
+      {t:'One recycled aluminum can saves enough energy to power a TV for hours.', a:'D'},
+      {t:'Old paper can be turned into new paper, cardboard, or even napkins.', a:'D'},
+      {t:'Recycling glass cuts down on the sand that has to be mined for new bottles.', a:'D'}
+    ]}
+  ];
+  var pbox=document.getElementById('paragraphs'); var labelStore={};
+  PARAS.forEach(function(P,pi){
+    labelStore[pi]={};
+    var box=document.createElement('div'); box.className='pgraph';
+    var t=document.createElement('div'); t.className='ptitle'; t.textContent=P.title; box.appendChild(t);
+    P.sentences.forEach(function(s,si){
+      var row=document.createElement('div'); row.className='sline2';
+      var sx=document.createElement('span'); sx.className='sx'; sx.textContent=s.t; row.appendChild(sx);
+      var pk=document.createElement('span'); pk.className='pick';
+      ['MI','D','O'].forEach(function(L){
+        var b=document.createElement('button'); b.type='button'; b.className=L; b.textContent=L;
+        b.setAttribute('aria-label','Label this sentence as '+(L==='MI'?'main idea':L==='D'?'detail':'off topic'));
+        b.addEventListener('click',function(){
+          labelStore[pi][si]=L;
+          row.className='sline2 '+L;
+          if(L!==s.a) row.classList.add('wrong');
+          pk.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x.textContent===L); });
+          updP(pi, box);
+        });
+        pk.appendChild(b);
+      });
+      row.appendChild(pk); box.appendChild(row);
+    });
+    var pl=document.createElement('div'); pl.className='progressline'; pl.textContent='0 of '+P.sentences.length+' labeled.'; box.appendChild(pl);
+    var ctrl=document.createElement('div'); ctrl.className='pcontrol'; ctrl.innerHTML='<button class="mb ghost" type="button">Clear</button>';
+    ctrl.querySelector('button').addEventListener('click',function(){ labelStore[pi]={}; box.querySelectorAll('.sline2').forEach(function(r){ r.className='sline2'; r.querySelectorAll('button').forEach(function(b){b.classList.remove('on');}); }); updP(pi,box); });
+    box.appendChild(ctrl);
+    pbox.appendChild(box);
+  });
+  function updP(pi,box){
+    var P=PARAS[pi]; var n=0, ok=0;
+    P.sentences.forEach(function(s,si){ if(labelStore[pi][si]){ n++; if(labelStore[pi][si]===s.a) ok++; } });
+    var pl=box.querySelector('.progressline');
+    if(n<P.sentences.length){ pl.textContent=n+' of '+P.sentences.length+' labeled.'; pl.classList.remove('win'); }
+    else if(ok===P.sentences.length){ pl.textContent='All '+P.sentences.length+' correct!'; pl.classList.add('win'); }
+    else { pl.textContent=ok+' of '+P.sentences.length+' correct. Adjust the wrong ones.'; pl.classList.remove('win'); }
+  }
+
+  var FORMA=[
+    {q:'The <b>main idea</b> of a paragraph is ...',o:['the one big thing the paragraph is about','the longest word','the last sentence'],a:0},
+    {q:'A <b>supporting detail</b> is a sentence that ...',o:['proves the main idea','changes the subject','is off topic'],a:0},
+    {q:'Read: <i>Spiders are useful in a garden. They eat lots of pesty bugs. They spin webs that catch flies. They keep plants healthier.</i> The main idea is ...',o:['Spiders are useful in a garden.','They spin webs.','They eat bugs.'],a:0},
+    {q:'In that paragraph, which is a <b>detail</b>?',o:['Spiders are useful in a garden.','They eat lots of pesty bugs.','None of the sentences.'],a:1},
+    {q:'An <b>off topic</b> sentence in a paragraph is ...',o:['true but does not fit under the main idea','always false','the main idea itself'],a:0},
+    {q:'Read: <i>Bats help farmers. One bat can eat thousands of mosquitoes in a night. Bats also eat moths that damage crops. My cousin is scared of bats.</i> The off topic sentence is ...',o:['Bats help farmers.','One bat can eat thousands of mosquitoes in a night.','My cousin is scared of bats.'],a:2},
+    {q:'The main idea is sometimes called the ...',o:['umbrella idea','random idea','bonus idea'],a:0},
+    {q:'Where in a paragraph does the main idea usually show up?',o:['only at the very end','often near the beginning, but it can be anywhere','only at the very middle'],a:1}
+  ];
+  var FORMB=[
+    {q:'A detail "fits under the umbrella" when it ...',o:['proves the main idea','says something new and different','sounds nice'],a:0},
+    {q:'Read: <i>Owls hunt at night. Their large eyes help them see in low light. Soft feathers let them fly without a sound. My favorite color is purple.</i> The main idea is ...',o:['Owls hunt at night.','Their large eyes help them see.','My favorite color is purple.'],a:0},
+    {q:'In that paragraph, the off topic sentence is ...',o:['My favorite color is purple.','Their large eyes help them see in low light.','Owls hunt at night.'],a:0},
+    {q:'A sentence that is true but does not belong in the paragraph is ...',o:['off topic','a detail','the main idea'],a:0},
+    {q:'Read: <i>Trees do a lot for a neighborhood. They make shade on hot days. They clean some of the bad stuff out of the air. They give birds a place to nest.</i> Which is the main idea?',o:['Trees do a lot for a neighborhood.','They make shade on hot days.','They give birds a place to nest.'],a:0},
+    {q:'In that paragraph, how many supporting details are there?',o:['1','2','3'],a:2},
+    {q:'A good way to test if a sentence is a detail is to ask ...',o:['Does this prove the main idea?','Is it the longest one?','Does it start with a capital?'],a:0},
+    {q:'A paragraph can have ...',o:['only one main idea','three main ideas','no main idea'],a:0}
+  ];
+
+  var FORM='A', QS=FORMA;
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false;
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill'), elForm=document.getElementById('formlabel');
+  function startCheck(which){ FORM=which; QS=(which==='A')?FORMA:FORMB; elForm.textContent='Form '+which;
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; runPts=0; runWrong=[]; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi]; elCount.textContent='Question '+(qi+1)+' of '+QS.length; elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elOpts.appendChild(b); });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s'; if(timeLeft<=8)elTfill.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000); }
+  function answer(i,btn){ if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(ok){correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4;} else { runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a], form:FORM}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?650:1100); }
+  function finish(){ secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    if(FORM==='A') rec.formA={score:correct,total:QS.length,at:Date.now(),passed:passed}; else rec.formB={score:correct,total:QS.length,at:Date.now(),passed:passed};
+    var ptsrow=document.getElementById('ptsrow'), retry=document.getElementById('retry'), toB=document.getElementById('toFormB'), rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'), gate=document.getElementById('gateinfo');
+    toB.classList.add('hide'); retry.classList.add('hide'); gate.classList.add('hide');
+    if(FORM==='A'){
+      if(passed){
+        rec.best=Math.max(rec.best||0,pct); rec.status='formA_passed'; save(app);
+        rtitle.textContent='Form A passed!'; rmsg.textContent='You got '+correct+' of '+QS.length+'. Take Form B to lock it in.';
+        toB.classList.remove('hide');
+      } else {
+        rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+        rtitle.textContent='So close!'; rmsg.textContent='You need 7 of 8 to pass Form A. You got '+correct+'. Look back at the paragraphs, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      if(passed && rec.formA && rec.formA.passed){
+        var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+        rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app);
+        rtitle.textContent='Mastered!'; rmsg.textContent='You got '+correct+' of '+QS.length+' on Form B. Main idea locked in.';
+        document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      } else {
+        rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+        rtitle.textContent='So close!'; rmsg.textContent='You need 7 of 8 on Form B. You got '+correct+'. Look back at the paragraphs, then try again.';
+        retry.classList.remove('hide');
+      }
+    }
+    commitTime(); }
+  document.getElementById('toCheck').addEventListener('click',function(){ startCheck('A'); });
+  document.getElementById('toFormB').addEventListener('click',function(){ startCheck('B'); });
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+
+  var explainText=document.getElementById('explainText'), explainSave=document.getElementById('explainSave'), explainSaved=document.getElementById('explainSaved');
+  if(rec.explain){ explainText.value=rec.explain; }
+  explainSave.addEventListener('click',function(){ rec.explain=explainText.value||''; rec.explainAt=Date.now(); save(app); syncCloud(); explainSaved.textContent='Saved.'; setTimeout(function(){explainSaved.textContent='';},2500); });
+
+  var PT=[
+    'I picked a short nonfiction paragraph from a book, magazine, or website.',
+    'I read it out loud to a grownup.',
+    'I told them which sentence is the main idea.',
+    'I pointed to two details that support the main idea.'
+  ];
+  var ptlist=document.getElementById('ptlist'), ptDone=document.getElementById('ptDone');
+  rec.pt=rec.pt||[];
+  PT.forEach(function(text,i){
+    var li=document.createElement('li');
+    var ck=document.createElement('span'); ck.className='ck'; ck.setAttribute('role','checkbox'); ck.setAttribute('tabindex','0'); ck.setAttribute('aria-checked', rec.pt.indexOf(i)>=0?'true':'false');
+    var lab=document.createElement('span'); lab.className='lab'; lab.textContent=text;
+    function tog(){ var on=ck.getAttribute('aria-checked')==='true'; ck.setAttribute('aria-checked', on?'false':'true'); if(on){ var k=rec.pt.indexOf(i); if(k>=0) rec.pt.splice(k,1); } else { if(rec.pt.indexOf(i)<0) rec.pt.push(i); } save(app); syncCloud(); updPt(); }
+    ck.addEventListener('click',tog); ck.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); tog(); } });
+    li.appendChild(ck); li.appendChild(lab); ptlist.appendChild(li);
+  });
+  function updPt(){ var n=rec.pt.length; if(n===PT.length){ ptDone.textContent='All 4 done. Main idea spotter!'; ptDone.classList.add('win'); } else { ptDone.textContent=n+' of '+PT.length+' checked.'; ptDone.classList.remove('win'); } }
+  updPt();
+})();
+</script>
+</body>
+</html>

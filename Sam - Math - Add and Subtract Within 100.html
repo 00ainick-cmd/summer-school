@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Lab · Adding and Subtracting Within 100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{--paper:#f2f0fb;--card:#fff;--ink:#1d1736;--ink2:#4a4566;--mute:#857ea3;--line:#e2def2;
+   --accent:#5a43d6;--accent-d:#3f2bb0;--red:#c2410c;--alt:#e0731a;--good:#1f9d6b;
+   --huns:#5a43d6;--tens:#1f9d6b;--ones:#e0731a;--gold:#b8860b;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Mulish',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(40vmax 40vmax at 90% -10%,rgba(90,67,214,.10),transparent 60%),radial-gradient(40vmax 40vmax at -5% 110%,rgba(31,157,107,.10),transparent 60%),linear-gradient(180deg,#faf9ff,var(--paper));}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 90px;}
+  h1,h2,h3,.disp{font-family:'Baloo 2',cursive;font-weight:700;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .progress{position:sticky;top:0;z-index:20;background:rgba(242,240,251,.95);backdrop-filter:blur(4px);display:flex;gap:6px;padding:10px 4px;flex-wrap:wrap;justify-content:center;border-bottom:2px solid var(--line);margin:0 -18px 18px;}
+  .pstep{font-family:'Baloo 2';font-size:13px;font-weight:600;color:var(--mute);background:#fff;border:2px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .pstep.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .pstep.done{background:#e8f7f0;border-color:var(--good);color:var(--good);}
+  .labbar{background:var(--ink);color:#e7e3fb;margin:0 -18px 20px;padding:12px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Baloo 2';font-size:13px;letter-spacing:.04em;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a4170;border-radius:6px;padding:3px 9px;color:#b9b2e0;font-size:12px;}
+  .labbar b{color:#fff;}
+  .kicker{font-family:'Baloo 2';font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6vw,44px);line-height:1.02;margin:6px 0 8px;}
+  .mission{color:var(--ink2);max-width:56ch;}
+  .stdtag{margin-top:16px;background:#efeefb;border:1px solid var(--line);border-left:4px solid var(--ones);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+  .beat{font-family:'Baloo 2';font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:16px 0;box-shadow:0 16px 32px -28px rgba(63,43,176,.6);}
+  .station.hook{background:linear-gradient(160deg,#fff,#f3effe);border-color:#d9d0f5;}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Baloo 2';font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:7px;padding:3px 9px;letter-spacing:.04em;}
+  .station h2{font-size:22px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .objlist{list-style:none;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;}
+  .objlist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;}
+  .objlist .b{flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent);color:#fff;font-family:'Baloo 2';font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px;}
+  .why{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:15.5px;color:#13683a;}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px;}
+  .pl{display:flex;align-items:center;gap:8px;font-weight:700;border-radius:12px;padding:7px 12px;border:2px solid;font-size:15px;}
+  .pl.h{color:var(--huns);background:#efecfb;border-color:#d4ccef;} .pl.t{color:var(--tens);background:#e6f7f0;border-color:#bce6d8;} .pl.o{color:var(--ones);background:#fdeede;border-color:#f3d6b3;}
+  .dot{width:15px;height:15px;border-radius:4px;} .dot.h{background:var(--huns);} .dot.t{background:var(--tens);} .dot.o{background:var(--ones);}
+  .note{background:#fffbe9;border:2px solid #f0d97a;border-radius:12px;padding:13px 15px;font-size:15.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .hookcards{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+  .hookcard{flex:1;min-width:130px;text-align:center;border:2px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;background:#fff;}
+  .hookcard:hover{border-color:var(--accent);}
+  .hookcard .big{font-family:'Baloo 2';font-size:40px;}
+  .hookcard .big .lit{color:var(--accent);}
+  .hookcard .rv{font-size:14px;color:var(--ink2);margin-top:6px;display:none;} .hookcard.open .rv{display:block;}
+  .hookcard.open{border-color:var(--accent);background:#f3effe;}
+  .yard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px;}
+  .bin{border:2px dashed var(--line);border-radius:14px;padding:10px;}
+  .bin h3{font-family:'Baloo 2';font-size:15px;text-align:center;margin-bottom:6px;}
+  .bin.h h3{color:var(--huns);} .bin.t h3{color:var(--tens);} .bin.o h3{color:var(--ones);}
+  .bin.locked{background:#f6f4fd;border-style:solid;border-color:#d4ccef;}
+  .blocks{display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start;justify-content:center;min-height:70px;}
+  .blk-h{width:38px;height:38px;border-radius:5px;background:var(--huns);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0 1px,transparent 1px 3.8px),repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 1px,transparent 1px 3.8px);}
+  .blk-t{width:11px;height:38px;border-radius:3px;background:var(--tens);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.4) 0 1px,transparent 1px 3.8px);}
+  .blk-o{width:11px;height:11px;border-radius:3px;background:var(--ones);}
+  .ctrls{display:flex;justify-content:center;gap:6px;margin-top:8px;}
+  .mbtn{font-family:'Baloo 2';font-weight:700;font-size:20px;border:none;border-radius:10px;min-width:46px;min-height:46px;cursor:pointer;color:#fff;}
+  .mbtn.h{background:var(--huns);} .mbtn.t{background:var(--tens);} .mbtn.o{background:var(--ones);}
+  .mbtn.minus{background:#fff;border:2px solid var(--line);color:var(--ink2);}
+  .mbtn.ghost{background:#fff;border:2px solid var(--line);color:var(--ink);font-size:15px;padding:0 14px;}
+  .mbtn.go{background:var(--good);} .mbtn.sky{background:var(--accent);}
+  .lockpill{font-family:'Baloo 2';font-size:12px;color:var(--accent-d);text-align:center;margin-top:6px;}
+  .bundle{background:#e8f7f0;border:2px solid var(--good);border-radius:12px;padding:10px 12px;display:none;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:10px;}
+  .bundle.show{display:flex;} .bundle p{color:#13683a;font-weight:700;font-size:15px;}
+  .readout{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;}
+  .num{font-family:'Baloo 2';font-size:52px;line-height:1;font-weight:700;}
+  .num .nh{color:var(--huns);} .num .nt{color:var(--tens);} .num .no{color:var(--ones);}
+  .expanded{font-family:'Baloo 2';font-size:20px;color:var(--ink2);width:100%;text-align:center;}
+  .expanded .nh{color:var(--huns);} .expanded .nt{color:var(--tens);} .expanded .no{color:var(--ones);}
+  .wordform{width:100%;text-align:center;color:var(--ink2);font-size:16px;}
+  .pvc{width:100%;border-collapse:collapse;margin-top:10px;font-family:'Baloo 2';}
+  .pvc th,.pvc td{border:2px solid var(--line);text-align:center;padding:8px;font-size:20px;}
+  .pvc th{font-size:13px;color:#fff;} .pvc th.h{background:var(--huns);} .pvc th.t{background:var(--tens);} .pvc th.o{background:var(--ones);}
+  .pvc td.h{color:var(--huns);} .pvc td.t{color:var(--tens);} .pvc td.o{color:var(--ones);}
+  .demobox{background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;}
+  .demostep{font-size:16px;color:var(--ink);min-height:2.6em;margin-top:8px;font-weight:600;}
+  .target{font-family:'Baloo 2';font-size:38px;font-weight:700;color:var(--accent);text-align:center;margin:6px 0;}
+  .bfb{margin-top:10px;font-weight:700;text-align:center;min-height:1.4em;} .bfb.ok{color:var(--good);} .bfb.try{color:var(--alt);}
+  .predict{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .pcard{flex:1;min-width:110px;font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:12px;padding:12px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .pcard:hover{border-color:var(--accent);} .pcard.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;} .pcard.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .reveal{margin-top:10px;font-size:15.5px;color:var(--ink2);display:none;} .reveal.show{display:block;}
+  .tq{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:10px;background:#fff;}
+  .tqq{font-family:'Baloo 2';font-size:17px;margin-bottom:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:54px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);} .cta.go{background:var(--good);} .cta.alt{background:var(--alt);} .cta:disabled{opacity:.45;cursor:default;}
+  .qmeta{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;font-family:'Baloo 2';}
+  .timer{margin-left:auto;} .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;} .tfill.low{background:var(--red);}
+  .qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;font-family:'Baloo 2';}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt{font:inherit;font-size:18px;font-weight:600;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt:hover{border-color:var(--accent);} .opt.correct{border-color:var(--good);background:#e8f7f0;color:#13683a;} .opt.bad{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+  .reteach{margin-top:10px;font-size:14px;} .reteach a{color:var(--accent);font-weight:700;}
+  textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:2px solid var(--line);border-radius:12px;padding:12px;resize:vertical;color:var(--ink);}
+  .rate{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .ratebtn{font:inherit;font-weight:600;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:11px 14px;min-height:46px;cursor:pointer;color:var(--ink);}
+  .ratebtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .ratebtn[aria-pressed="true"].good{border-color:var(--good);background:var(--good);} .ratebtn[aria-pressed="true"].bad{border-color:var(--red);background:var(--red);}
+  .rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+  .rubric th,.rubric td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;} .rubric th{background:#efeefb;font-family:'Baloo 2';font-size:13px;}
+  .critrow{background:#fdeee4;border:2px solid #f0c4ad;border-radius:10px;padding:10px 12px;margin-top:10px;font-weight:600;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Baloo 2';font-size:28px;}
+  .gateitem{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;font-size:15.5px;}
+  .gateitem .mk{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Baloo 2';}
+  .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
+  .gateitem .g2{flex:1;} .gateitem .gd{font-size:13px;color:var(--mute);}
+  .badge{display:none;text-align:center;padding:24px;border-radius:18px;background:linear-gradient(160deg,#f3eefe,#efe7fb);border:2px solid var(--accent);margin-top:14px;}
+  .badge.show{display:block;} .badge .gem{font-size:46px;color:var(--accent-d);} .badge h3{font-size:26px;color:var(--accent-d);margin:6px 0;}
+  .synth{background:#efeefb;border:2px solid #d4ccef;border-radius:14px;padding:16px 18px;margin-top:6px;}
+  .synth .rule{font-family:'Baloo 2';font-size:21px;color:var(--accent-d);text-align:center;margin:6px 0;}
+  footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+  @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+<div class="progress" role="navigation" aria-label="Module progress">
+  <span class="pstep on" id="ps-start">Warm up</span><span class="pstep" id="ps-learn">Learn</span>
+  <span class="pstep" id="ps-practice">Practice</span><span class="pstep" id="ps-mastery">Mastery</span>
+  <span class="pstep" id="ps-retention">Retention</span><span class="pstep" id="ps-wrap">Wrap up</span>
+</div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.B.6</span></div>
+  <section id="start">
+    <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>Bundle when full, unbundle when short</h1>
+      <p class="mission">Two problems below. Tap each to see the move that makes it work: bundling ten ones, or unbundling a ten.</p>
+      <div class="hookcards"><div class="hookcard"><div class="big">27 + 15 = <span class="lit">?</span></div><div class="rv">Ones: 7 + 5 = 12, so write 2 and carry one ten. Tens: 2 + 1 + 1 = 4. Answer <b>42</b>.</div></div><div class="hookcard"><div class="big">42 - 15 = <span class="lit">?</span></div><div class="rv">Not enough ones, so unbundle a ten: 12 - 5 = 7. Tens: 3 - 1 = 2. Answer <b>27</b>.</div></div></div>
+      <div class="reveal" id="hookrv">Line up tens with tens and ones with ones. When the ones reach ten, bundle one ten. When the ones are too few to subtract, unbundle a ten.</div></div>
+    <div class="station"><div class="beat">Beat 2 · What you will be able to do</div><h2>Your goal today</h2>
+      <ul class="objlist"><li><span class="b">1</span><span>Add two-digit numbers within 100, regrouping when the ones pass ten.</span></li><li><span class="b">2</span><span>Subtract within 100, unbundling a ten when there are not enough ones.</span></li><li><span class="b">3</span><span>Keep tens lined up with tens and ones with ones.</span></li></ul>
+      <div class="why"><b>Why it matters:</b> adding and subtracting within 100 is everyday math: money, scores, and lengths, and it is the base for working within 1000.</div>
+      <div class="stdtag"><span class="l">The objective (verbatim standard)</span>Demonstrate fluency with addition and subtraction within 100.</div></div>
+    <div class="station"><div class="beat">Beat 3 · Warm up (what do you already know)</div><h2>Two quick questions</h2>
+      <p class="lead">No grade here. This just shows where you are starting. Tap an answer; if it is off, try again.</p>
+      <div id="warm"></div></div>
+    <button class="cta" id="toLearn">Start learning</button>
+  </section>
+  <section id="learn" class="hide">
+    <div class="station"><div class="beat">Beat 4 · Teach</div><div class="shead"><span class="sno">LEARN 1</span><h2>Three sizes of block</h2></div>
+      <p class="lead">Each place has its own color. Ten of a smaller block snap into one of the next size up.</p>
+      <div class="legend"><span class="pl o"><span class="dot o"></span> Ones = 1</span><span class="pl t"><span class="dot t"></span> Ten = 10 ones</span><span class="pl h"><span class="dot h"></span> Hundred = 10 tens</span></div>
+      <div class="note"><b>Big idea:</b> ten ones make one ten, and ten tens make one hundred. Bundling up is what place value is built on.</div></div>
+    <div class="station"><div class="beat">Beat 4 · Teach (the model)</div><div class="shead"><span class="sno">LEARN 2</span><h2>The number builder</h2></div>
+      <p class="lead">Add blocks and watch four ways of writing the number change together: the numeral, the chart, the expanded form, and the words. Snap ten of a kind into the next place.</p>
+      <div class="yard">
+        <div class="bin h"><h3>Hundreds</h3><div class="blocks" id="yh"></div><div class="ctrls"><button class="mbtn minus" data-d="h" data-v="-1" aria-label="remove hundred">−</button><button class="mbtn h" data-d="h" data-v="1" aria-label="add hundred">+</button></div></div>
+        <div class="bin t"><h3>Tens</h3><div class="blocks" id="yt"></div><div class="ctrls"><button class="mbtn minus" data-d="t" data-v="-1" aria-label="remove ten">−</button><button class="mbtn t" data-d="t" data-v="1" aria-label="add ten">+</button></div></div>
+        <div class="bin o"><h3>Ones</h3><div class="blocks" id="yo"></div><div class="ctrls"><button class="mbtn minus" data-d="o" data-v="-1" aria-label="remove one">−</button><button class="mbtn o" data-d="o" data-v="1" aria-label="add one">+</button></div></div></div>
+      <div class="bundle" id="bundleO"><p>10 ones make 1 ten.</p><button class="mbtn go" id="doBundleO">Snap into 1 ten</button></div>
+      <div class="bundle" id="bundleT"><p>10 tens make 1 hundred.</p><button class="mbtn go" id="doBundleT">Snap into 1 hundred</button></div>
+      <div class="readout" aria-live="polite"><div class="num" id="numBig"></div><div style="width:100%"></div><div class="expanded" id="expanded"></div><div class="wordform" id="wordform"></div></div>
+      <table class="pvc"><tr><th class="h">Hundreds</th><th class="t">Tens</th><th class="o">Ones</th></tr><tr><td class="h" id="cvh">0</td><td class="t" id="cvt">0</td><td class="o" id="cvo">0</td></tr></table>
+      <div style="text-align:center"><button class="mbtn ghost" id="resetB" style="margin-top:10px;">Start over</button></div></div>
+    <div class="station" id="c-add"><div class="beat">Beat 4 · Teach (carry a ten)</div><div class="shead"><span class="sno">LEARN 2</span><h2>When the ones pass ten</h2></div><p class="lead">28 + 14. Add the ones: 8 + 4 = 12. What do you do with the extra ten?</p><div class="predict"><button class="pcard" type="button" data-ok="false">Write 12 in the ones place</button><button class="pcard" type="button" data-ok="true">Carry one ten to the tens</button><button class="pcard" type="button" data-ok="false">Ignore it</button></div><div class="reveal">12 ones is 1 ten and 2 ones: write 2 and <b>carry the ten</b>. Tens: 2 + 1 + 1 = 4, so 42.</div></div><div class="station" id="c-sub"><div class="beat">Beat 4 · Teach (unbundle a ten)</div><div class="shead"><span class="sno">LEARN 3</span><h2>When there are not enough ones</h2></div><p class="lead">53 - 27. The ones are 3 - 7, which you cannot do yet. What next?</p><div class="predict"><button class="pcard" type="button" data-ok="false">Say the ones are 0</button><button class="pcard" type="button" data-ok="true">Unbundle a ten into ten ones</button><button class="pcard" type="button" data-ok="false">Flip it to 7 - 3</button></div><div class="reveal">Unbundle a ten: 13 - 7 = 6. Tens: 4 - 2 = 2. Answer <b>26</b>.</div></div><div class="station" id="c-line"><div class="beat">Beat 4 · Teach (line up the places)</div><div class="shead"><span class="sno">LEARN 4</span><h2>Line up the places</h2></div><p class="lead">To add 34 + 5, the 5 lines up under the ...</p><div class="predict"><button class="pcard" type="button" data-ok="false">tens</button><button class="pcard" type="button" data-ok="true">ones</button><button class="pcard" type="button" data-ok="false">hundreds</button></div><div class="reveal">5 is ones, so it lines up under the <b>ones</b>: 34 + 5 = 39.</div></div>
+    <div class="station"><div class="beat">Beat 5 · Worked examples that fade</div><div class="shead"><span class="sno">MODEL</span><h2>Watch one, then you take over</h2></div>
+      <p class="lead">First watch the number built step by step. Then you build with help. Then you build it all on your own.</p>
+      <div class="demobox" id="demobox"><div class="target" id="demoTarget"></div>
+        <div class="yard"><div class="bin h"><h3>Hundreds</h3><div class="blocks" id="dh"></div></div><div class="bin t"><h3>Tens</h3><div class="blocks" id="dt"></div></div><div class="bin o"><h3>Ones</h3><div class="blocks" id="do"></div></div></div>
+        <div class="demostep" id="demoStep"></div>
+        <div style="text-align:center"><button class="mbtn sky" id="demoNext" style="margin-top:6px;">Show first step</button></div></div>
+      <div id="fadeWrap" class="hide"><p class="lead" id="fadePrompt" style="margin-top:14px;"></p><div class="target" id="fadeTarget"></div>
+        <div class="yard" id="fadeYard"></div>
+        <div style="text-align:center;margin-top:6px;"><button class="mbtn ghost" id="fadeCheck">Check it</button></div>
+        <div class="bfb" id="fadeFb"></div><button class="cta hide" id="fadeNext" style="margin-top:10px;">Next one</button></div></div>
+    <div class="station"><div class="beat">Beat 6 · Guided practice</div><div class="shead"><span class="sno">GUIDED</span><h2>Build this number, with hints</h2></div>
+      <p class="lead">Match each place exactly, then check. Stuck? Tap for a hint. No score here.</p>
+      <div class="target" id="ptarget">34</div>
+      <div class="yard">
+        <div class="bin h"><h3>Hundreds</h3><div class="blocks" id="ph"></div><div class="ctrls"><button class="mbtn minus" data-pd="h" data-v="-1">−</button><button class="mbtn h" data-pd="h" data-v="1">+</button></div></div>
+        <div class="bin t"><h3>Tens</h3><div class="blocks" id="pt"></div><div class="ctrls"><button class="mbtn minus" data-pd="t" data-v="-1">−</button><button class="mbtn t" data-pd="t" data-v="1">+</button></div></div>
+        <div class="bin o"><h3>Ones</h3><div class="blocks" id="po"></div><div class="ctrls"><button class="mbtn minus" data-pd="o" data-v="-1">−</button><button class="mbtn o" data-pd="o" data-v="1">+</button></div></div></div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px;"><button class="mbtn ghost" id="checkBuild">Check it</button><button class="mbtn ghost" id="hintBuild">Hint</button><button class="mbtn ghost" id="newTarget">New number</button></div>
+      <div class="bfb" id="bfb"></div></div>
+    <button class="cta" id="toPractice">Go to practice on my own</button>
+  </section>
+  <section id="practice" class="hide">
+    <div class="station"><div class="beat">Beat 7 · Mixed independent practice</div><div class="shead"><span class="sno">PRACTICE</span><h2>The skill in different clothes</h2></div>
+      <p class="lead">These mix it up on purpose. Tap an answer; if it is off, try again.</p><div id="practiceSet"></div></div>
+    <div class="station"><div class="beat">Beat 8 · Retrieval</div><div class="shead"><span class="sno">RETRIEVAL</span><h2>From memory, no blocks</h2></div>
+      <p class="lead">Close the blocks in your mind and answer from memory. Pulling it back out is what makes it stick.</p><div id="retrievalSet"></div></div>
+    <button class="cta go" id="toMastery">I am ready for the mastery check</button>
+  </section>
+  <section id="mastery" class="hide">
+    <div class="station"><div class="beat">Beat 9 and 10 · Prove it</div><div class="shead"><span class="sno">MASTERY · FORM A</span><h2>Show what you know</h2></div>
+      <p class="lead">A set of questions, then explain one idea, then build and explain a number. This is the real check: a strong score and no face-value mistakes.</p></div>
+    <div class="station" id="mcA"><div class="qmeta"><span id="qcountA">Question 1</span><span class="timer" id="tlabelA">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillA"></div></div><div class="qtext" id="qtextA"></div><div class="opts" id="optsA"></div><div class="qwhy" id="qwhyA"></div><div class="reteach hide" id="reteachA"></div></div>
+    <div class="station hide" id="explainA"><div class="shead"><span class="sno">EXPLAIN</span><h2>Say why</h2></div>
+      <p class="lead" id="explainStem"></p><textarea id="explainText" placeholder="Type your explanation here..." aria-label="your explanation"></textarea>
+      <button class="mbtn ghost" id="showModel" style="margin-top:10px;">Show a strong answer to compare</button><div class="reveal" id="modelBox"></div>
+      <p class="lead" style="margin-top:12px;">Compare honestly. Does the explanation say to carry the extra ten, AND give 42?</p>
+      
+      <button class="cta" id="toPT">Next: build and explain</button></div>
+    <div class="station hide" id="ptA"><div class="shead"><span class="sno">PERFORMANCE TASK</span><h2>Build it and explain it</h2></div>
+      <p class="lead" id="ptStem"></p>
+      <div class="yard">
+        <div class="bin h"><h3>Hundreds</h3><div class="blocks" id="qh"></div><div class="ctrls"><button class="mbtn minus" data-qd="h" data-v="-1">−</button><button class="mbtn h" data-qd="h" data-v="1">+</button></div></div>
+        <div class="bin t"><h3>Tens</h3><div class="blocks" id="qt"></div><div class="ctrls"><button class="mbtn minus" data-qd="t" data-v="-1">−</button><button class="mbtn t" data-qd="t" data-v="1">+</button></div></div>
+        <div class="bin o"><h3>Ones</h3><div class="blocks" id="qo"></div><div class="ctrls"><button class="mbtn minus" data-qd="o" data-v="-1">−</button><button class="mbtn o" data-qd="o" data-v="1">+</button></div></div></div>
+      <div class="bfb" id="ptbfb"></div>
+      <div class="note"><b>Grown-up check.</b> This part is best done with an adult listening. Have the learner say what each digit is worth and <b>why</b>, then mark each row honestly.</div>
+      <table class="rubric" id="ptRubric"></table>
+      <div class="critrow">Did the learner forget to bundle ten ones into a ten (writing a run-on like 312), or misalign tens and ones?</div>
+      
+      <button class="cta go" id="ptDone">Go to the retention check</button></div>
+    <div class="station hide" id="resultA"><div class="scoreband"><span>Form A</span><span class="s" id="scoreAtxt">0</span><span style="flex:1"></span><span id="aStatus" style="font-weight:700;"></span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p><button class="cta" id="toRetention">Go to the retention check</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button></div>
+  </section>
+  <section id="retention" class="hide">
+    <div class="station"><div class="beat">Beat 8 · Spaced retention</div><div class="shead"><span class="sno">RETENTION · FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">New questions on the same ideas with different numbers, meant for a <b>later session, at least a day after Form A</b>. That delay is what proves it lasted.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this and come back tomorrow before doing Form B.</div>
+      <button class="cta" id="startB">Start Form B</button></div>
+    <div class="station hide" id="mcB"><div class="qmeta"><span id="qcountB">Question 1</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div><div class="qtext" id="qtextB"></div><div class="opts" id="optsB"></div><div class="qwhy" id="qwhyB"></div></div>
+    <div class="station hide" id="resultB"><div class="scoreband"><span>Form B</span><span class="s" id="scoreBtxt">0</span><span style="flex:1"></span><span id="bStatus" style="font-weight:700;"></span></div>
+      <button class="cta go" id="toWrap">Reflect and see the credential</button></div>
+  </section>
+  <section id="wrap" class="hide">
+    <div class="station"><div class="beat">Beat 11 · Reflect</div><div class="shead"><span class="sno">REFLECT</span><h2>Look back</h2></div>
+      <p class="lead">How did that feel, and how sure are you?</p>
+      <div class="rate" id="feelRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="easy">Easy</button><button class="ratebtn" type="button" aria-pressed="false" data-v="just">Just right</button><button class="ratebtn" type="button" aria-pressed="false" data-v="hard">Tricky</button></div>
+      <p class="lead" style="margin-top:12px;">How sure are you that you can explain why a digit is worth what it is?</p>
+      <div class="rate" id="confRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="1">Not yet sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="2">Mostly sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="3">Very sure</button></div>
+      <p class="lead" style="margin-top:12px;">One thing you will remember or do next time:</p>
+      <textarea id="planText" placeholder="For example: I will check which place a digit is in before I say its value." aria-label="your plan"></textarea>
+      <button class="cta" id="saveReflect">Save my reflection</button></div>
+    <div class="station"><div class="beat">Beat 12 · The big takeaway</div><div class="shead"><span class="sno">SYNTHESIS</span><h2>The one rule to keep</h2></div>
+      <div class="synth"><div class="rule">Bundle when the ones fill a ten; unbundle when the ones run short.</div><p style="text-align:center;color:var(--ink2);">Keep tens with tens and ones with ones. Ten ones bundle up into one ten when adding; one ten unbundles into ten ones when subtracting.</p></div></div>
+    <div class="station"><div class="beat">Beat 12 · Credential</div><div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery rule</h2></div>
+      <p class="lead">The 2.NBT.B.6 micro-credential is awarded when <b>both checks</b> are met: a strong Form A, and a strong delayed Form B on a later day. The written explanation and the out-loud task are for learning and for an adult to review, not for self-grading.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge" aria-live="polite"><div class="gem">◆</div><h3>2.NBT.B.6 Mastered</h3><p>You can add and subtract within 100 fluently, bundling and unbundling tens as needed.</p><p style="margin-top:8px;color:var(--ink2);">Next up: <b>2.NBT.B.8, adding and subtracting within 1000.</b></p></div>
+      <div id="notyetBox" class="note hide"><b>Not yet, and that is fine.</b> <span id="notyetMsg"></span></div>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can head back to your dashboard.</p></div></div>
+  </section>
+  <footer>Sam · Math · Verbatim Missouri Learning Standard 2.NBT.B.6 · Twelve-beat module. Summative items from the 2.NBT.B.6 competency package.</footer>
+</div>
+
+<script>
+
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='sam', SUBJECT='math', DAY='2.NBT.B.6', SNAME='Sam';
+  var DATA={"FORMA": [{"id": "A1", "stem": "34 + 28 = ?", "o": ["62", "52", "61", "512"], "a": 0, "why": "Ones 4 + 8 = 12, carry; tens 3 + 2 + 1 = 6.", "concept": "add"}, {"id": "A2", "stem": "45 + 37 = ?", "o": ["82", "72", "81", "712"], "a": 0, "why": "Ones 5 + 7 = 12, carry; tens 4 + 3 + 1 = 8.", "concept": "add"}, {"id": "A3", "stem": "60 - 24 = ?", "o": ["36", "44", "46", "34"], "a": 0, "why": "Unbundle: 10 - 4 = 6; tens 5 - 2 = 3.", "concept": "sub"}, {"id": "A4", "stem": "72 - 38 = ?", "o": ["34", "46", "44", "36"], "a": 0, "why": "Unbundle: 12 - 8 = 4; tens 6 - 3 = 3.", "concept": "sub"}, {"id": "A5", "stem": "19 + 19 = ?", "o": ["38", "28", "40", "39"], "a": 0, "why": "Ones 9 + 9 = 18, carry; tens 1 + 1 + 1 = 3.", "concept": "add"}, {"id": "A6", "stem": "53 - 27 = ?", "o": ["26", "34", "36", "24"], "a": 0, "why": "Unbundle: 13 - 7 = 6; tens 4 - 2 = 2.", "concept": "sub"}, {"id": "A7", "stem": "When the ones add to more than ten, you ...", "o": ["carry one ten", "drop the extra", "add a hundred", "do nothing"], "a": 0, "why": "Bundle ten ones into one ten and carry it.", "concept": "add"}, {"id": "A8", "stem": "When you cannot subtract the ones, you ...", "o": ["unbundle one ten", "skip the ones", "add a ten", "reverse the digits"], "a": 0, "why": "Unbundle a ten into ten ones.", "concept": "sub"}], "FORMB": [{"id": "B1", "stem": "26 + 47 = ?", "o": ["73", "63", "72", "713"], "a": 0, "why": "Ones 6 + 7 = 13, carry; tens 2 + 4 + 1 = 7.", "concept": "add"}, {"id": "B2", "stem": "58 + 25 = ?", "o": ["83", "73", "82", "713"], "a": 0, "why": "Ones 8 + 5 = 13, carry; tens 5 + 2 + 1 = 8.", "concept": "add"}, {"id": "B3", "stem": "50 - 23 = ?", "o": ["27", "33", "37", "23"], "a": 0, "why": "Unbundle: 10 - 3 = 7; tens 4 - 2 = 2.", "concept": "sub"}, {"id": "B4", "stem": "81 - 46 = ?", "o": ["35", "45", "47", "33"], "a": 0, "why": "Unbundle: 11 - 6 = 5; tens 7 - 4 = 3.", "concept": "sub"}, {"id": "B5", "stem": "28 + 28 = ?", "o": ["56", "46", "58", "55"], "a": 0, "why": "Ones 8 + 8 = 16, carry; tens 2 + 2 + 1 = 5.", "concept": "add"}, {"id": "B6", "stem": "62 - 35 = ?", "o": ["27", "33", "37", "23"], "a": 0, "why": "Unbundle: 12 - 5 = 7; tens 5 - 3 = 2.", "concept": "sub"}, {"id": "B7", "stem": "Twelve ones can be regrouped as ...", "o": ["1 ten and 2 ones", "12 tens", "2 tens", "1 hundred"], "a": 0, "why": "Twelve ones is one ten and two ones.", "concept": "add"}, {"id": "B8", "stem": "To compute 41 - 28 you must ...", "o": ["unbundle one ten", "add a ten", "skip the ones", "reverse the digits"], "a": 0, "why": "There are not enough ones, so unbundle a ten.", "concept": "sub"}], "EXPLAIN": {"stem": "Sam adds 27 + 15 and writes 312. He put 12 in the ones and 3 in the tens. Explain his mistake, and give the correct sum.", "model": "He forgot to carry. 7 + 5 = 12 ones, which is one ten and two ones, so write 2 and carry the ten. Tens: 2 + 1 + 1 = 4. The answer is 42, not 312.", "compare": "Compare honestly. Does the explanation say to carry the extra ten, AND give 42?", "yesLabel": "Yes, both ideas correct"}, "PT": {"num": 42, "h": 0, "t": 4, "o": 2, "prompt": "Build 27 with blocks. Add 15 by adding one ten and five ones. When the ones pass ten, bundle ten ones into a ten, and say the answer (42). Explain the carry out loud.", "critQuestion": "Did the learner forget to bundle ten ones into a ten (writing a run-on like 312), or misalign tens and ones?", "rubric": [["Lines up places", "Adds ones to ones and tens to tens.", "Mixes places, like adding a ones digit to a tens digit."], ["Regroups", "Bundles ten ones into a ten, or unbundles a ten when short.", "Forgets to carry or borrow."], ["Accuracy", "Reaches the correct total or difference.", "Off by ten or more, or writes a run-on like 312."], ["Explains", "Says the carry or borrow step out loud.", "Cannot explain the regrouping."]]}, "WARM": [{"q": "7 + 8 = ? Do the ones bundle a ten?", "o": ["15, yes", "14, no"], "a": 0, "why": "7 + 8 = 15, which is one ten and five ones.", "hint": "Past ten means bundle."}, {"q": "When the ones are too few to subtract, you ...", "o": ["unbundle a ten", "skip them"], "a": 0, "why": "Unbundle a ten into ten ones.", "hint": "Borrow from the tens."}], "PRACTICE": [{"q": "34 + 28 = ?", "o": ["62", "52", "61", "512"], "a": 0, "why": "Ones 4 + 8 = 12, carry; tens 3 + 2 + 1 = 6.", "hint": "Carry the ten."}, {"q": "60 - 24 = ?", "o": ["36", "44", "46", "34"], "a": 0, "why": "Unbundle: 10 - 4 = 6; tens 5 - 2 = 3.", "hint": "Borrow a ten."}, {"q": "45 + 37 = ?", "o": ["82", "72", "81", "712"], "a": 0, "why": "Ones 5 + 7 = 12, carry; tens 4 + 3 + 1 = 8.", "hint": "Carry the ten."}, {"q": "72 - 38 = ?", "o": ["34", "46", "44", "36"], "a": 0, "why": "Unbundle: 12 - 8 = 4; tens 6 - 3 = 3.", "hint": "Borrow a ten."}, {"q": "19 + 19 = ?", "o": ["38", "28", "40", "39"], "a": 0, "why": "Ones 9 + 9 = 18, carry; tens 1 + 1 + 1 = 3.", "hint": "Carry the ten."}, {"q": "53 - 27 = ?", "o": ["26", "34", "36", "24"], "a": 0, "why": "Unbundle: 13 - 7 = 6; tens 4 - 2 = 2.", "hint": "Borrow a ten."}], "RETRIEVAL": [{"q": "From memory: 26 + 47 = ?", "o": ["73", "63", "72", "713"], "a": 0, "why": "Ones 6 + 7 = 13, carry; tens 2 + 4 + 1 = 7.", "hint": "Carry the ten."}, {"q": "From memory: 50 - 23 = ?", "o": ["27", "33", "37", "23"], "a": 0, "why": "Unbundle: 10 - 3 = 7; tens 4 - 2 = 2.", "hint": "Borrow a ten."}], "FADE": [{"mode": "demo", "target": 42, "steps": [{"txt": "Build 27: 2 tens and 7 ones.", "h": 0, "t": 2, "o": 7}, {"txt": "Add 15. The ones 7 + 5 make 12, which is one ten and two ones, so carry the ten.", "h": 0, "t": 3, "o": 2}, {"txt": "Add the ten from 15 too: 4 tens and 2 ones is 42.", "h": 0, "t": 4, "o": 2}]}, {"mode": "build", "target": 46, "lock": {}, "prompt": "Build 46 as 4 tens and 6 ones."}, {"mode": "build", "target": 53, "lock": {}, "prompt": "Build 53. To take away 27, unbundle one ten into ten ones first."}], "GUIDED_SEED": 34, "PASS": 7, "RETEACH": {"add": "c-add", "sub": "c-sub", "line": "c-line", "learn": "learn"}};
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var ones=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
+  var tensW=["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"];
+  function words(n){ if(n<20)return ones[n]; if(n<100){var t=Math.floor(n/10),r=n%10;return tensW[t]+(r?"-"+ones[r]:"");} var h=Math.floor(n/100),r=n%100; return ones[h]+" hundred"+(r?" "+words(r):""); }
+  function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
+  function fill(el,cls,n){el.innerHTML='';for(var i=0;i<n;i++){var d=document.createElement('div');d.className=cls;el.appendChild(d);}}
+
+  var PHASES=['start','learn','practice','mastery','retention','wrap'];
+  function show(id){ PHASES.forEach(function(s){ document.getElementById(s).classList.toggle('hide',s!==id); }); window.scrollTo(0,0); }
+  function setStep(id,cls){ var e=document.getElementById(id); if(e)e.className='pstep '+cls; }
+
+  // hook: wire every card, reveal when all open
+  var hookCards=document.querySelectorAll('.hookcard');
+  Array.prototype.forEach.call(hookCards,function(c){ c.addEventListener('click',function(){ c.classList.add('open');
+    var all=true; Array.prototype.forEach.call(hookCards,function(x){ if(!x.classList.contains('open'))all=false; });
+    if(all){var r=document.getElementById('hookrv'); if(r)r.classList.add('show');}
+  }); });
+
+  function tapQuiz(containerId, items){ var c=document.getElementById(containerId); if(!c)return; c.innerHTML='';
+    items.forEach(function(it,qi){ var card=document.createElement('div'); card.className='tq';
+      var q=document.createElement('div'); q.className='tqq'; q.innerHTML=(qi+1)+'. '+it.q; card.appendChild(q);
+      var opts=document.createElement('div'); opts.className='opts'; var why=document.createElement('div'); why.className='qwhy';
+      it.o.forEach(function(t,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.textContent=t;
+        b.addEventListener('click',function(){ if(b.dataset.l)return;
+          if(i===it.a){ Array.prototype.forEach.call(opts.children,function(x){x.dataset.l='1';x.style.pointerEvents='none';}); b.classList.add('correct'); why.style.color='var(--good)'; why.textContent='Correct. '+(it.why||''); }
+          else { b.classList.add('bad'); b.dataset.l='1'; b.style.pointerEvents='none'; why.style.color='var(--alt)'; why.textContent='Try again. '+(it.hint||''); }
+        }); opts.appendChild(b); });
+      card.appendChild(opts); card.appendChild(why); c.appendChild(card);
+    });
+  }
+  tapQuiz('warm', DATA.WARM);
+
+  // predicts: auto-wire every .predict row to its sibling .reveal
+  Array.prototype.forEach.call(document.querySelectorAll('.predict'),function(row){ var rev=row.nextElementSibling;
+    Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ if(b.dataset.done)return;
+      Array.prototype.forEach.call(row.children,function(c){c.dataset.done='1';});
+      if(b.getAttribute('data-ok')==='true')b.classList.add('ok'); else { b.classList.add('no'); Array.prototype.forEach.call(row.children,function(c){if(c.getAttribute('data-ok')==='true')c.classList.add('ok');}); }
+      if(rev)rev.classList.add('show');
+    }); }); });
+
+  // main builder
+  var S={h:0,t:0,o:0};
+  var yh=document.getElementById('yh'),yt=document.getElementById('yt'),yo=document.getElementById('yo');
+  function renderMain(){ fill(yh,'blk-h',S.h);fill(yt,'blk-t',S.t);fill(yo,'blk-o',S.o);
+    var val=S.h*100+S.t*10+S.o, nb=document.getElementById('numBig');
+    if(S.h<=9&&S.t<=9&&S.o<=9) nb.innerHTML='<span class="nh">'+S.h+'</span><span class="nt">'+S.t+'</span><span class="no">'+S.o+'</span>'; else nb.textContent=val;
+    var p=[]; if(S.h>0)p.push('<span class="nh">'+(S.h*100)+'</span>'); if(S.t>0)p.push('<span class="nt">'+(S.t*10)+'</span>'); if(S.o>0)p.push('<span class="no">'+S.o+'</span>');
+    document.getElementById('expanded').innerHTML=p.length?p.join(' + '):'0';
+    document.getElementById('wordform').textContent=words(val);
+    document.getElementById('cvh').textContent=S.h;document.getElementById('cvt').textContent=S.t;document.getElementById('cvo').textContent=S.o;
+    document.getElementById('bundleO').classList.toggle('show',S.o>=10); document.getElementById('bundleT').classList.toggle('show',S.t>=10);
+  }
+  document.querySelectorAll('[data-d]').forEach(function(b){ b.addEventListener('click',function(){ var d=b.getAttribute('data-d'),v=parseInt(b.getAttribute('data-v'),10); S[d]=clamp(S[d]+v,0,18); renderMain(); }); });
+  document.getElementById('doBundleO').addEventListener('click',function(){ if(S.o>=10){S.o-=10;S.t=clamp(S.t+1,0,18);} renderMain(); });
+  document.getElementById('doBundleT').addEventListener('click',function(){ if(S.t>=10){S.t-=10;S.h=clamp(S.h+1,0,9);} renderMain(); });
+  document.getElementById('resetB').addEventListener('click',function(){S={h:0,t:0,o:0};renderMain();});
+  renderMain();
+
+  // worked example: demo stepper
+  var demo=DATA.FADE[0], dstep=-1;
+  var dh=document.getElementById('dh'),dt=document.getElementById('dt'),dgo=document.getElementById('do');
+  document.getElementById('demoTarget').textContent=demo.target;
+  function drawDemo(s){ fill(dh,'blk-h',s.h);fill(dt,'blk-t',s.t);fill(dgo,'blk-o',s.o); }
+  drawDemo({h:0,t:0,o:0});
+  document.getElementById('demoNext').addEventListener('click',function(){ dstep++; if(dstep>=demo.steps.length){ startFade(); return; }
+    var s=demo.steps[dstep]; drawDemo(s); document.getElementById('demoStep').textContent=s.txt;
+    this.textContent = dstep>=demo.steps.length-1 ? 'Now you try' : 'Next step';
+  });
+
+  // worked example: faded builds
+  var fadeRounds=[DATA.FADE[1],DATA.FADE[2]], fIdx=0, F={h:0,t:0,o:0}, fLock={};
+  function setupFade(){ var r=fadeRounds[fIdx]; fLock=r.lock||{}; F={h:fLock.h||0,t:fLock.t||0,o:fLock.o||0};
+    document.getElementById('fadePrompt').textContent=r.prompt; document.getElementById('fadeTarget').textContent=r.target;
+    document.getElementById('fadeFb').textContent=''; document.getElementById('fadeNext').classList.add('hide');
+    var yard=document.getElementById('fadeYard'); yard.innerHTML='';
+    [['h','Hundreds'],['t','Tens'],['o','Ones']].forEach(function(pl){ var k=pl[0];
+      var bin=document.createElement('div'); bin.className='bin '+k+(fLock[k]!==undefined?' locked':'');
+      bin.innerHTML='<h3>'+pl[1]+'</h3><div class="blocks" id="f'+k+'"></div>';
+      if(fLock[k]!==undefined){ bin.innerHTML+='<div class="lockpill">placed for you: '+fLock[k]+'</div>'; }
+      else { bin.innerHTML+='<div class="ctrls"><button class="mbtn minus" data-fd="'+k+'" data-v="-1">−</button><button class="mbtn '+k+'" data-fd="'+k+'" data-v="1">+</button></div>'; }
+      yard.appendChild(bin);
+    });
+    yard.querySelectorAll('[data-fd]').forEach(function(b){ b.addEventListener('click',function(){ var d=b.getAttribute('data-fd'),v=parseInt(b.getAttribute('data-v'),10); F[d]=clamp(F[d]+v,0,9); drawFade(); }); });
+    drawFade();
+  }
+  function drawFade(){ fill(document.getElementById('fh'),'blk-h',F.h);fill(document.getElementById('ft'),'blk-t',F.t);fill(document.getElementById('fo'),'blk-o',F.o); }
+  function startFade(){ document.getElementById('demobox').classList.add('hide'); document.getElementById('fadeWrap').classList.remove('hide'); fIdx=0; setupFade(); }
+  document.getElementById('fadeCheck').addEventListener('click',function(){ var r=fadeRounds[fIdx], th=Math.floor(r.target/100),tt=Math.floor((r.target%100)/10),to=r.target%10,fb=document.getElementById('fadeFb');
+    if(F.h===th&&F.t===tt&&F.o===to){ fb.className='bfb ok'; fb.textContent='Yes! '+r.target+' is '+th+' hundreds, '+tt+' tens, '+to+' ones.'; document.getElementById('fadeNext').classList.remove('hide'); }
+    else { fb.className='bfb try'; fb.textContent='Not yet. Make the blocks show '+r.target+'.'; } });
+  document.getElementById('fadeNext').addEventListener('click',function(){ fIdx++; if(fIdx<fadeRounds.length){ setupFade(); } else { this.classList.add('hide'); document.getElementById('fadeFb').className='bfb ok'; document.getElementById('fadeFb').textContent='Nice. You built one with help and one all alone.'; } });
+
+  // guided build
+  var P={h:0,t:0,o:0}, ptar=DATA.GUIDED_SEED;
+  function prender(){fill(document.getElementById('ph'),'blk-h',P.h);fill(document.getElementById('pt'),'blk-t',P.t);fill(document.getElementById('po'),'blk-o',P.o);}
+  document.querySelectorAll('[data-pd]').forEach(function(b){ b.addEventListener('click',function(){ var d=b.getAttribute('data-pd'),v=parseInt(b.getAttribute('data-v'),10); P[d]=clamp(P[d]+v,0,9); prender(); document.getElementById('bfb').textContent=''; }); });
+  function newTarget(){ var h=1+Math.floor(Math.random()*8),t=Math.floor(Math.random()*10),o=Math.floor(Math.random()*10); ptar=h*100+t*10+o; document.getElementById('ptarget').textContent=ptar; P={h:0,t:0,o:0};prender();document.getElementById('bfb').textContent=''; }
+  document.getElementById('checkBuild').addEventListener('click',function(){ var th=Math.floor(ptar/100),tt=Math.floor((ptar%100)/10),to=ptar%10,fb=document.getElementById('bfb');
+    if(P.h===th&&P.t===tt&&P.o===to){fb.className='bfb ok';fb.textContent='Yes! '+ptar+' is '+th+' hundreds, '+tt+' tens, '+to+' ones.';}
+    else {fb.className='bfb try';fb.textContent='Match each place: '+th+' hundreds, '+tt+' tens, '+to+' ones.';} });
+  document.getElementById('hintBuild').addEventListener('click',function(){ var th=Math.floor(ptar/100),tt=Math.floor((ptar%100)/10),to=ptar%10,fb=document.getElementById('bfb'); fb.className='bfb try'; fb.textContent='Hint: '+ptar+' has '+th+' in the hundreds place, '+tt+' in the tens, '+to+' in the ones. Read it left to right.'; });
+  document.getElementById('newTarget').addEventListener('click',newTarget); prender();
+
+  tapQuiz('practiceSet', DATA.PRACTICE);
+  tapQuiz('retrievalSet', DATA.RETRIEVAL);
+
+  document.getElementById('toLearn').addEventListener('click',function(){ show('learn'); setStep('ps-start','done'); setStep('ps-learn','on'); });
+  document.getElementById('toPractice').addEventListener('click',function(){ show('practice'); setStep('ps-learn','done'); setStep('ps-practice','on'); });
+  document.getElementById('toMastery').addEventListener('click',function(){ show('mastery'); setStep('ps-practice','done'); setStep('ps-mastery','on'); startMC('A'); });
+
+  var QTIME=25, mcState={};
+  function ids(f){ return {q:'qtext'+f,o:'opts'+f,c:'qcount'+f,tl:'tlabel'+f,tf:'tfill'+f,why:'qwhy'+f,re:'reteach'+f}; }
+  function startMC(form){ mcState[form]={i:0,correct:0,wrong:[],timer:null,left:QTIME,locked:false}; rec.attempts=(rec.attempts||0)+1; save(app); showQ(form); }
+  function showQ(form){ var st=mcState[form],items=DATA['FORM'+form],it=items[st.i],el=ids(form); st.locked=false;
+    document.getElementById(el.c).textContent='Question '+(st.i+1)+' of '+items.length;
+    document.getElementById(el.q).innerHTML=it.stem;
+    var why=document.getElementById(el.why); why.textContent=''; var re=document.getElementById(el.re); if(re){re.classList.add('hide');re.innerHTML='';}
+    var opts=document.getElementById(el.o); opts.innerHTML='';
+    it.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.textContent=txt; b.addEventListener('click',function(){answer(form,i,b);}); opts.appendChild(b); });
+    st.left=QTIME; var tf=document.getElementById(el.tf),tl=document.getElementById(el.tl); tf.style.width='100%'; tf.classList.remove('low'); tl.textContent=QTIME+'s'; clearInterval(st.timer);
+    st.timer=setInterval(function(){ st.left--; if(st.left<0)st.left=0; tf.style.width=(st.left/QTIME*100)+'%'; tl.textContent=st.left+'s'; if(st.left<=8)tf.classList.add('low'); if(st.left===0)clearInterval(st.timer); },1000);
+  }
+  function answer(form,i,btn){ var st=mcState[form]; if(st.locked)return; st.locked=true; clearInterval(st.timer);
+    var items=DATA['FORM'+form],it=items[st.i],el=ids(form),ok=(i===it.a),opts=document.getElementById(el.o);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===it.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    var why=document.getElementById(el.why);
+    if(ok){ st.correct++; why.style.color='var(--good)'; why.textContent='Correct. '+it.why; }
+    else { st.wrong.push({stem:it.stem,picked:it.o[i],correct:it.o[it.a]}); why.style.color='var(--alt)'; why.textContent='Not quite. '+it.why;
+      var re=document.getElementById(el.re); if(re){ var loc=(DATA.RETEACH[it.concept]||'learn'); re.classList.remove('hide'); re.innerHTML='Want a quick reteach? <a href="#'+loc+'">Back to that idea</a>'; } }
+    setTimeout(function(){ st.i++; if(st.i<items.length) showQ(form); else finishMC(form); }, ok?700:1250);
+  }
+  function finishMC(form){ var st=mcState[form];
+    if(form==='A'){ rec.formA=st.correct; rec.best=Math.max(rec.best||0,Math.round(st.correct/DATA.FORMA.length*100)); rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcA').classList.add('hide'); document.getElementById('explainA').classList.remove('hide');
+      document.getElementById('explainStem').innerHTML=DATA.EXPLAIN.stem; window.scrollTo(0,0);
+    } else { rec.formB=st.correct; rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcB').classList.add('hide'); document.getElementById('resultB').classList.remove('hide');
+      document.getElementById('scoreBtxt').textContent=st.correct+' / '+DATA.FORMB.length;
+      var bs=document.getElementById('bStatus'),pass=st.correct>=DATA.PASS; bs.textContent=(pass?'Strong':'Needs another pass'); bs.style.color=(pass?'var(--good)':'var(--alt)');
+      commitTime(); window.scrollTo(0,0);
+    }
+  }
+
+  
+  document.getElementById('showModel').addEventListener('click',function(){ var m=document.getElementById('modelBox'); m.innerHTML='<b>A strong answer:</b> '+DATA.EXPLAIN.model; m.classList.add('show'); });
+  
+  document.getElementById('toPT').addEventListener('click',function(){ document.getElementById('explainA').classList.add('hide'); document.getElementById('ptA').classList.remove('hide'); setupPT(); window.scrollTo(0,0); });
+
+  var Q={h:0,t:0,o:0};
+  function setupPT(){ var p=DATA.PT; document.getElementById('ptStem').innerHTML=p.prompt||('Build the number <b>'+p.num+'</b> with the blocks. Then say out loud what each digit is worth and <b>why</b>.');
+    var qh=document.getElementById('qh'),qt=document.getElementById('qt'),qo=document.getElementById('qo');
+    function qr(){fill(qh,'blk-h',Q.h);fill(qt,'blk-t',Q.t);fill(qo,'blk-o',Q.o);
+      var ok=(Q.h===p.h&&Q.t===p.t&&Q.o===p.o),fb=document.getElementById('ptbfb');
+      if(Q.h+Q.t+Q.o===0){fb.textContent='';} else if(ok){fb.className='bfb ok';fb.textContent='That is '+p.num+': '+p.h+' hundreds, '+p.t+' tens, '+p.o+' ones.';} else {fb.className='bfb try';fb.textContent='Keep going until the blocks show '+p.num+'.';}
+    }
+    document.querySelectorAll('[data-qd]').forEach(function(b){ if(b.dataset.w)return; b.dataset.w='1'; b.addEventListener('click',function(){ var d=b.getAttribute('data-qd'),v=parseInt(b.getAttribute('data-v'),10); Q[d]=clamp(Q[d]+v,0,9); qr(); }); });
+    qr();
+    var crit=DATA.PT.rubric||[['Quantity','Built the correct amount: '+p.h+' hundreds, '+p.t+' tens, '+p.o+' ones.','Wrong count, or a different number.'],
+             ['Place','Named each place correctly.','Reversed or mislabeled places.'],
+             ['Value','Stated each value: '+(p.h*100)+', '+(p.t*10)+', '+p.o+'.','Stated face value ('+p.h+', '+p.t+', '+p.o+') or wrong values.'],
+             ['Reasoning','Explained the value comes from the place.','Could not explain why.']];
+    var tb=document.getElementById('ptRubric'); tb.innerHTML='<tr><th>What strong work looks like</th><th>What to watch for</th></tr>';
+    p.rubric.forEach(function(c){ var tr=document.createElement('tr'); tr.innerHTML='<td><b>'+c[0]+'.</b> '+c[1]+'</td><td>'+c[2]+'</td>'; tb.appendChild(tr); });
+  }
+  document.getElementById('ptDone').addEventListener('click',function(){ var mc=rec.formA||0; save(app);
+    document.getElementById('ptA').classList.add('hide'); document.getElementById('resultA').classList.remove('hide');
+    document.getElementById('scoreAtxt').textContent=mc+' / '+DATA.FORMA.length;
+    var strong=(mc>=DATA.PASS), stt=document.getElementById('aStatus'); stt.textContent=strong?'Form A clear':'Reteach needed'; stt.style.color=strong?'var(--good)':'var(--alt)';
+    document.getElementById('aMsg').innerHTML = strong ? 'Form A is at the bar. The written explanation and the out-loud task are for you and an adult to talk through; the badge comes from Form A and the delayed Form B.' : 'Form A is not at the bar yet. Reteach, then run Form A again. This is not a penalty.';
+    document.getElementById('retryA').classList.toggle('hide',strong); document.getElementById('toRetention').classList.toggle('hide',!strong);
+    commitTime(); window.scrollTo(0,0);
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ Q={h:0,t:0,o:0}; show('learn'); setStep('ps-mastery','');setStep('ps-practice','on');setStep('ps-learn','done'); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show('retention'); setStep('ps-mastery','done'); setStep('ps-retention','on'); });
+  document.getElementById('startB').addEventListener('click',function(){ document.getElementById('mcB').classList.remove('hide'); this.classList.add('hide'); startMC('B'); });
+  document.getElementById('toWrap').addEventListener('click',function(){ show('wrap'); setStep('ps-retention','done'); setStep('ps-wrap','on'); decide(); });
+
+  var feel=null, conf=null;
+  function pickOne(rowId,setter){ var row=document.getElementById(rowId); Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ setter(b.getAttribute('data-v')); Array.prototype.forEach.call(row.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); }); }); }
+  pickOne('feelRate',function(v){feel=v;}); pickOne('confRate',function(v){conf=v;});
+  document.getElementById('saveReflect').addEventListener('click',function(){ rec.feedback={rating:feel||'just',tag:'clear',at:Date.now(),confidence:conf?parseInt(conf,10):null,plan:(document.getElementById('planText').value||'').slice(0,500)}; save(app); syncCloud(); document.getElementById('donebox').classList.remove('hide'); window.scrollTo({top:document.getElementById('badge').offsetTop,behavior:'smooth'}); });
+
+  function decide(){ var mcA=rec.formA||0, mcB=rec.formB||0, PASS=DATA.PASS;
+    var rows=[ {ok:mcA>=PASS,t:'Form A check',d:'At least '+PASS+' of '+DATA.FORMA.length+'. You got '+mcA+'.'},
+               {ok:mcB>=PASS,t:'Delayed retention (Form B)',d:'At least '+PASS+' of '+DATA.FORMB.length+' on a later day. You got '+mcB+'.'} ];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'✓':'!')+'</span><span class="g2"><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    var all=rows.every(function(r){return r.ok;});
+    if(all){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); var b=document.getElementById('notyetBox'); b.classList.remove('hide'); document.getElementById('notyetMsg').textContent = 'Pass the Form A check and the delayed Form B check (on a later day) and the badge is yours. Most learners just need a reteach and a fresh form.'; }
+    commitTime();
+  }
+})();
+
+</script>
+</body>
+</html>

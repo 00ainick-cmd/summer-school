@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Summer Learning Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+ :root{--bg:#f1ede4;--ink:#211c17;--ink2:#4f463c;--mute:#8c8275;--line:#e2dccf;--sam:#5a43d6;--amelia:#9a3a78;--julie:#d8341a;}
+ *{margin:0;padding:0;box-sizing:border-box;}
+ body{background:var(--bg);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased;}
+ body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(46vmax 36vmax at 90% -10%,rgba(90,67,214,.10),transparent 60%),radial-gradient(40vmax 34vmax at 8% 112%,rgba(216,52,26,.08),transparent 60%);}
+ h1,h2,.disp{font-family:'Fraunces',serif;}
+ a{text-decoration:none;color:inherit;}
+ :focus-visible{outline:3px solid var(--sam);outline-offset:3px;}
+ .wrap{max-width:920px;margin:0 auto;padding:42px 20px 80px;}
+ header{text-align:center;margin-bottom:8px;}
+ header .kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);}
+ header h1{font-size:clamp(36px,8vw,58px);font-weight:600;line-height:1;margin-top:6px;}
+ header p{color:var(--ink2);margin-top:10px;}
+ .kids{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px;}
+ @media(max-width:720px){.kids{grid-template-columns:1fr;}}
+ .kid{--c:#5a43d6;background:#fffdf8;border:2px solid var(--line);border-radius:22px;padding:24px 22px;display:flex;flex-direction:column;gap:6px;align-items:flex-start;transition:transform .15s,box-shadow .15s,border-color .15s;}
+ .kid:hover{transform:translateY(-5px);border-color:var(--c);box-shadow:0 22px 40px -26px var(--c);}
+ .kid .mark{width:54px;height:54px;border-radius:16px;background:var(--c);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fraunces';font-weight:700;font-size:26px;}
+ .kid h2{font-size:28px;font-weight:600;margin-top:10px;}
+ .kid .gr{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+ .kid .go{margin-top:14px;font-weight:700;font-size:16px;color:#fff;background:var(--c);border-radius:12px;padding:13px 20px;min-height:48px;display:inline-flex;align-items:center;align-self:stretch;justify-content:center;}
+ .grown{margin-top:34px;border-top:1px solid var(--line);padding-top:18px;}
+ .grown .lab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;}
+ .tools{display:flex;gap:10px;flex-wrap:wrap;}
+ .tool{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:46px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink2);}
+ .tool:hover{border-color:var(--ink);color:var(--ink);}
+ footer{margin-top:30px;text-align:center;color:var(--mute);font-size:12.5px;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><header><div class="kick">The Summer Learning Studio</div><h1>Welcome back</h1><p>Tap your name to open your lab. Master one thing at a time and watch it light up.</p></header><div class="kids"><a class="kid" style="--c:#5a43d6" href="Sam%20-%20Home%20Dashboard%20(Grade%202).html"><span class="mark">S</span><h2>Sam</h2><span class="gr">Grade 2</span><span class="go">Open Sam's lab</span></a><a class="kid" style="--c:#9a3a78" href="Amelia%20-%20Home%20Dashboard%20(Grade%203).html"><span class="mark">A</span><h2>Amelia</h2><span class="gr">Grade 3</span><span class="go">Open Amelia's lab</span></a><a class="kid" style="--c:#d8341a" href="Julie%20-%20Home%20Dashboard%20(Grade%208).html"><span class="mark">J</span><h2>Julie</h2><span class="gr">Grade 8</span><span class="go">Open Julie's lab</span></a></div><div class="grown"><div class="lab">Grown-up tools</div><div class="tools"><a class="tool" href="Program%20Index.html">Program Index, all weeks</a><a class="tool" href="Studio%20Audit%20Console.html">Audit console</a><a class="tool" href="Admin%20-%20Progress%20Report.html">Progress, this device</a><a class="tool" href="Admin%20-%20Cloud%20Progress.html">Progress, cross device</a></div></div><footer>Each learner opens their own lab. Grown-ups use the Program Index to plan and track every week.</footer></div>
+</body>
+</html>

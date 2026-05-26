@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Lab · Comparing Three-Digit Numbers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{--paper:#f2f0fb;--card:#fff;--ink:#1d1736;--ink2:#4a4566;--mute:#857ea3;--line:#e2def2;
+   --accent:#5a43d6;--accent-d:#3f2bb0;--red:#c2410c;--alt:#e0731a;--good:#1f9d6b;
+   --huns:#5a43d6;--tens:#1f9d6b;--ones:#e0731a;--gold:#b8860b;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Mulish',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(40vmax 40vmax at 90% -10%,rgba(90,67,214,.10),transparent 60%),radial-gradient(40vmax 40vmax at -5% 110%,rgba(31,157,107,.10),transparent 60%),linear-gradient(180deg,#faf9ff,var(--paper));}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 90px;}
+  h1,h2,h3,.disp{font-family:'Baloo 2',cursive;font-weight:700;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .progress{position:sticky;top:0;z-index:20;background:rgba(242,240,251,.95);backdrop-filter:blur(4px);display:flex;gap:6px;padding:10px 4px;flex-wrap:wrap;justify-content:center;border-bottom:2px solid var(--line);margin:0 -18px 18px;}
+  .pstep{font-family:'Baloo 2';font-size:13px;font-weight:600;color:var(--mute);background:#fff;border:2px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .pstep.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .pstep.done{background:#e8f7f0;border-color:var(--good);color:var(--good);}
+  .labbar{background:var(--ink);color:#e7e3fb;margin:0 -18px 20px;padding:12px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Baloo 2';font-size:13px;letter-spacing:.04em;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a4170;border-radius:6px;padding:3px 9px;color:#b9b2e0;font-size:12px;}
+  .labbar b{color:#fff;}
+  .kicker{font-family:'Baloo 2';font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6vw,44px);line-height:1.02;margin:6px 0 8px;}
+  .mission{color:var(--ink2);max-width:56ch;}
+  .stdtag{margin-top:16px;background:#efeefb;border:1px solid var(--line);border-left:4px solid var(--ones);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+  .beat{font-family:'Baloo 2';font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:16px 0;box-shadow:0 16px 32px -28px rgba(63,43,176,.6);}
+  .station.hook{background:linear-gradient(160deg,#fff,#f3effe);border-color:#d9d0f5;}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Baloo 2';font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:7px;padding:3px 9px;letter-spacing:.04em;}
+  .station h2{font-size:22px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .objlist{list-style:none;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;}
+  .objlist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;}
+  .objlist .b{flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent);color:#fff;font-family:'Baloo 2';font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px;}
+  .why{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:15.5px;color:#13683a;}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px;}
+  .pl{display:flex;align-items:center;gap:8px;font-weight:700;border-radius:12px;padding:7px 12px;border:2px solid;font-size:15px;}
+  .pl.h{color:var(--huns);background:#efecfb;border-color:#d4ccef;} .pl.t{color:var(--tens);background:#e6f7f0;border-color:#bce6d8;} .pl.o{color:var(--ones);background:#fdeede;border-color:#f3d6b3;}
+  .dot{width:15px;height:15px;border-radius:4px;} .dot.h{background:var(--huns);} .dot.t{background:var(--tens);} .dot.o{background:var(--ones);}
+  .note{background:#fffbe9;border:2px solid #f0d97a;border-radius:12px;padding:13px 15px;font-size:15.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .hookcards{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+  .hookcard{flex:1;min-width:130px;text-align:center;border:2px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;background:#fff;}
+  .hookcard:hover{border-color:var(--accent);}
+  .hookcard .big{font-family:'Baloo 2';font-size:40px;}
+  .hookcard .big .lit{color:var(--accent);}
+  .hookcard .rv{font-size:14px;color:var(--ink2);margin-top:6px;display:none;} .hookcard.open .rv{display:block;}
+  .hookcard.open{border-color:var(--accent);background:#f3effe;}
+  .yard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px;}
+  .bin{border:2px dashed var(--line);border-radius:14px;padding:10px;}
+  .bin h3{font-family:'Baloo 2';font-size:15px;text-align:center;margin-bottom:6px;}
+  .bin.h h3{color:var(--huns);} .bin.t h3{color:var(--tens);} .bin.o h3{color:var(--ones);}
+  .bin.locked{background:#f6f4fd;border-style:solid;border-color:#d4ccef;}
+  .blocks{display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start;justify-content:center;min-height:70px;}
+  .blk-h{width:38px;height:38px;border-radius:5px;background:var(--huns);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0 1px,transparent 1px 3.8px),repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 1px,transparent 1px 3.8px);}
+  .blk-t{width:11px;height:38px;border-radius:3px;background:var(--tens);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.4) 0 1px,transparent 1px 3.8px);}
+  .blk-o{width:11px;height:11px;border-radius:3px;background:var(--ones);}
+  .ctrls{display:flex;justify-content:center;gap:6px;margin-top:8px;}
+  .mbtn{font-family:'Baloo 2';font-weight:700;font-size:20px;border:none;border-radius:10px;min-width:46px;min-height:46px;cursor:pointer;color:#fff;}
+  .mbtn.h{background:var(--huns);} .mbtn.t{background:var(--tens);} .mbtn.o{background:var(--ones);}
+  .mbtn.minus{background:#fff;border:2px solid var(--line);color:var(--ink2);}
+  .mbtn.ghost{background:#fff;border:2px solid var(--line);color:var(--ink);font-size:15px;padding:0 14px;}
+  .mbtn.go{background:var(--good);} .mbtn.sky{background:var(--accent);}
+  .lockpill{font-family:'Baloo 2';font-size:12px;color:var(--accent-d);text-align:center;margin-top:6px;}
+  .bundle{background:#e8f7f0;border:2px solid var(--good);border-radius:12px;padding:10px 12px;display:none;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:10px;}
+  .bundle.show{display:flex;} .bundle p{color:#13683a;font-weight:700;font-size:15px;}
+  .readout{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;}
+  .num{font-family:'Baloo 2';font-size:52px;line-height:1;font-weight:700;}
+  .num .nh{color:var(--huns);} .num .nt{color:var(--tens);} .num .no{color:var(--ones);}
+  .expanded{font-family:'Baloo 2';font-size:20px;color:var(--ink2);width:100%;text-align:center;}
+  .expanded .nh{color:var(--huns);} .expanded .nt{color:var(--tens);} .expanded .no{color:var(--ones);}
+  .wordform{width:100%;text-align:center;color:var(--ink2);font-size:16px;}
+  .pvc{width:100%;border-collapse:collapse;margin-top:10px;font-family:'Baloo 2';}
+  .pvc th,.pvc td{border:2px solid var(--line);text-align:center;padding:8px;font-size:20px;}
+  .pvc th{font-size:13px;color:#fff;} .pvc th.h{background:var(--huns);} .pvc th.t{background:var(--tens);} .pvc th.o{background:var(--ones);}
+  .pvc td.h{color:var(--huns);} .pvc td.t{color:var(--tens);} .pvc td.o{color:var(--ones);}
+  .demobox{background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;}
+  .demostep{font-size:16px;color:var(--ink);min-height:2.6em;margin-top:8px;font-weight:600;}
+  .target{font-family:'Baloo 2';font-size:38px;font-weight:700;color:var(--accent);text-align:center;margin:6px 0;}
+  .bfb{margin-top:10px;font-weight:700;text-align:center;min-height:1.4em;} .bfb.ok{color:var(--good);} .bfb.try{color:var(--alt);}
+  .predict{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .pcard{flex:1;min-width:110px;font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:12px;padding:12px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .pcard:hover{border-color:var(--accent);} .pcard.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;} .pcard.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .reveal{margin-top:10px;font-size:15.5px;color:var(--ink2);display:none;} .reveal.show{display:block;}
+  .tq{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:10px;background:#fff;}
+  .tqq{font-family:'Baloo 2';font-size:17px;margin-bottom:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:54px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);} .cta.go{background:var(--good);} .cta.alt{background:var(--alt);} .cta:disabled{opacity:.45;cursor:default;}
+  .qmeta{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;font-family:'Baloo 2';}
+  .timer{margin-left:auto;} .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;} .tfill.low{background:var(--red);}
+  .qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;font-family:'Baloo 2';}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt{font:inherit;font-size:18px;font-weight:600;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt:hover{border-color:var(--accent);} .opt.correct{border-color:var(--good);background:#e8f7f0;color:#13683a;} .opt.bad{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+  .reteach{margin-top:10px;font-size:14px;} .reteach a{color:var(--accent);font-weight:700;}
+  textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:2px solid var(--line);border-radius:12px;padding:12px;resize:vertical;color:var(--ink);}
+  .rate{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .ratebtn{font:inherit;font-weight:600;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:11px 14px;min-height:46px;cursor:pointer;color:var(--ink);}
+  .ratebtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .ratebtn[aria-pressed="true"].good{border-color:var(--good);background:var(--good);} .ratebtn[aria-pressed="true"].bad{border-color:var(--red);background:var(--red);}
+  .rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+  .rubric th,.rubric td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;} .rubric th{background:#efeefb;font-family:'Baloo 2';font-size:13px;}
+  .critrow{background:#fdeee4;border:2px solid #f0c4ad;border-radius:10px;padding:10px 12px;margin-top:10px;font-weight:600;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Baloo 2';font-size:28px;}
+  .gateitem{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;font-size:15.5px;}
+  .gateitem .mk{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Baloo 2';}
+  .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
+  .gateitem .g2{flex:1;} .gateitem .gd{font-size:13px;color:var(--mute);}
+  .badge{display:none;text-align:center;padding:24px;border-radius:18px;background:linear-gradient(160deg,#f3eefe,#efe7fb);border:2px solid var(--accent);margin-top:14px;}
+  .badge.show{display:block;} .badge .gem{font-size:46px;color:var(--accent-d);} .badge h3{font-size:26px;color:var(--accent-d);margin:6px 0;}
+  .synth{background:#efeefb;border:2px solid #d4ccef;border-radius:14px;padding:16px 18px;margin-top:6px;}
+  .synth .rule{font-family:'Baloo 2';font-size:21px;color:var(--accent-d);text-align:center;margin:6px 0;}
+  footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+  @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+
+  .cmp{background:#faf9ff;border:2px solid var(--line);border-radius:16px;padding:20px 14px;margin-top:12px;}
+  .cmpgrid{display:flex;flex-direction:column;gap:10px;align-items:center;}
+  .cmpnum{display:flex;gap:8px;}
+  .cell{font-family:'Baloo 2';font-weight:700;font-size:44px;width:58px;height:72px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:#fff;border:2px solid var(--line);color:var(--ink);transition:transform .2s,box-shadow .2s,background .2s;}
+  .cell.p0{border-bottom:6px solid #6c4cd6;} .cell.p1{border-bottom:6px solid #0f9488;} .cell.p2{border-bottom:6px solid #e8731c;}
+  .cell.lit{transform:translateY(-5px) scale(1.06);box-shadow:0 7px 0 rgba(0,0,0,.06);background:#fff7ec;}
+  .cmpsym{font-family:'Baloo 2';font-weight:700;font-size:40px;color:var(--mute);min-height:46px;line-height:1;}
+  .symbtns{display:flex;gap:12px;justify-content:center;margin-top:16px;}
+  .symb{font-family:'Baloo 2';font-weight:700;font-size:30px;width:74px;height:62px;border-radius:14px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:transform .12s;}
+  .symb:hover{transform:translateY(-2px);} .symb.on{background:var(--good);color:#fff;border-color:var(--good);}
+  .symb.bad{background:#fde8e8;border-color:var(--alt);color:var(--alt);}
+  .cmpfb{margin-top:14px;text-align:center;font-weight:600;min-height:24px;}
+  .cmpfb.ok{color:var(--good);} .cmpfb.try{color:var(--alt);}
+  .placekey{display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:12px;color:var(--mute);font-family:'Baloo 2';}
+  .placekey span{display:inline-flex;align-items:center;gap:5px;} .placekey i{width:14px;height:4px;border-radius:2px;display:inline-block;}
+  .mrow{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap;}
+  .hookcard .lit{color:var(--ones);}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+<div class="progress" role="navigation" aria-label="Module progress">
+  <span class="pstep on" id="ps-start">Warm up</span><span class="pstep" id="ps-learn">Learn</span>
+  <span class="pstep" id="ps-practice">Practice</span><span class="pstep" id="ps-mastery">Mastery</span>
+  <span class="pstep" id="ps-retention">Retention</span><span class="pstep" id="ps-wrap">Wrap up</span>
+</div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Compare lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.A.5</span></div>
+
+  <section id="start">
+    <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>The biggest digit does not always win</h1>
+      <p class="mission">Which is bigger, 281 or 318? Tap each card to see the trap and the fix.</p>
+      <div class="hookcards">
+        <div class="hookcard"><div class="big">281 vs 3<span class="lit">1</span>8</div><div class="rv">Tempting: 281 has <b>8</b> tens and 318 has only <b>1</b> ten, so pick 281? No, that is the trap.</div></div>
+        <div class="hookcard"><div class="big"><span class="lit">3</span>00 beats 200</div><div class="rv">Compare hundreds first: 3 hundreds beats 2 hundreds, so <b>318</b> is greater.</div></div>
+      </div>
+      <div class="reveal" id="hookrv">Always compare from the left. Hundreds outrank tens, and tens outrank ones. A single big digit lower down cannot beat a bigger digit in a higher place.</div></div>
+
+    <div class="station"><div class="beat">Beat 2 · What you will be able to do</div><h2>Your goal today</h2>
+      <ul class="objlist"><li><span class="b">1</span><span>Compare two three-digit numbers and place &gt;, =, or &lt; between them.</span></li>
+      <li><span class="b">2</span><span>Compare <b>place by place</b>, starting at the hundreds.</span></li>
+      <li><span class="b">3</span><span>Resist the trap of picking the number with the biggest single digit.</span></li></ul>
+      <div class="why"><b>Why it matters:</b> comparing numbers is how you order scores, prices, and measurements, and it is the heart of rounding and estimation later on.</div>
+      <div class="stdtag"><span class="l">The objective (verbatim standard)</span>Compare two three-digit numbers using the symbols &gt;, = or &lt;.</div></div>
+
+    <div class="station"><div class="beat">Beat 3 · Warm up</div><h2>Two quick questions</h2>
+      <p class="lead">No grade here. Tap an answer; if it is off, try again.</p><div id="warm"></div></div>
+    <button class="cta" id="toLearn">Start learning</button>
+  </section>
+
+  <section id="learn" class="hide">
+    <div class="station"><div class="beat">Beat 4 · Teach</div><div class="shead"><span class="sno">LEARN 1</span><h2>The Compare-inator</h2></div>
+      <p class="lead">Tap a symbol to compare the two numbers. The tool lights up the place that decided it. Try the example pairs below.</p>
+      <div class="cmp" id="learnCompare"></div>
+      <div class="mrow"><button class="mbtn ghost" data-pair="318,281">318 and 281</button><button class="mbtn ghost" data-pair="627,672">627 and 672</button><button class="mbtn ghost" data-pair="453,459">453 and 459</button><button class="mbtn ghost" data-pair="500,500">500 and 500</button></div>
+      <div class="note"><b>Read from the left.</b> Find the first place where the digits differ. That place decides which number is larger.</div></div>
+
+    <div class="station" id="c-symbol"><div class="beat">Beat 4 · Teach (the symbols)</div><div class="shead"><span class="sno">LEARN 2</span><h2>What the symbols mean</h2></div>
+      <p class="lead">The open, wide side of the symbol always faces the larger number. The point faces the smaller one. So the open side of the greater-than symbol faces...</p>
+      <div class="predict"><button class="pcard" type="button" data-ok="true">the larger number</button><button class="pcard" type="button" data-ok="false">the smaller number</button><button class="pcard" type="button" data-ok="false">either one</button></div>
+      <div class="reveal">The wide mouth faces the bigger number, the point faces the smaller. Equals means both sides match exactly.</div></div>
+
+    <div class="station" id="c-hundreds"><div class="beat">Beat 4 · Teach (hundreds first)</div><div class="shead"><span class="sno">LEARN 3</span><h2>Start at the hundreds</h2></div>
+      <p class="lead">Compare 318 and 281. Which is greater?</p>
+      <div class="predict"><button class="pcard" type="button" data-ok="false">281</button><button class="pcard" type="button" data-ok="true">318</button><button class="pcard" type="button" data-ok="false">they are equal</button></div>
+      <div class="reveal">Compare the hundreds first: 3 hundreds beats 2 hundreds, so <b>318</b> is greater. The 8 tens in 281 cannot outrank the hundreds.</div></div>
+
+    <div class="station" id="c-decide"><div class="beat">Beat 4 · Teach (the deciding place)</div><div class="shead"><span class="sno">LEARN 4</span><h2>When a place ties, move over</h2></div>
+      <p class="lead">Compare 627 and 672. The hundreds tie at 6, so which is greater?</p>
+      <div class="predict"><button class="pcard" type="button" data-ok="false">627</button><button class="pcard" type="button" data-ok="true">672</button><button class="pcard" type="button" data-ok="false">they are equal</button></div>
+      <div class="reveal">When the hundreds tie, move to the tens: 2 tens is less than 7 tens, so 627 is less and <b>672</b> is greater.</div></div>
+
+    <div class="station"><div class="beat">Beat 5 · Worked examples that fade</div><div class="shead"><span class="sno">MODEL</span><h2>Watch one, then you take over</h2></div>
+      <p class="lead">First watch one comparison step by step. Then you compare pairs yourself and check.</p>
+      <div class="demobox" id="demobox"><div class="cmp" id="demoCompare"></div>
+        <div class="demostep" id="demoStep"></div>
+        <div style="text-align:center"><button class="mbtn sky" id="demoNext" style="margin-top:10px;">Show first step</button></div></div>
+      <div id="fadeWrap" class="hide"><p class="lead" id="fadePrompt" style="margin-top:14px;"></p>
+        <div class="cmp" id="fadeCompare"></div>
+        <button class="cta hide" id="fadeNext" style="margin-top:10px;">Next one</button></div></div>
+
+    <div class="station"><div class="beat">Beat 6 · Guided practice</div><div class="shead"><span class="sno">GUIDED</span><h2>Compare, with hints</h2></div>
+      <p class="lead" id="guidedPrompt"></p>
+      <div class="cmp" id="guidedCompare"></div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px;"><button class="mbtn ghost" id="guidedHint">Hint</button><button class="mbtn ghost" id="guidedNew">New pair</button></div>
+      <div class="bfb" id="guidedFb"></div></div>
+    <button class="cta" id="toPractice">Go to practice on my own</button>
+  </section>
+
+  <section id="practice" class="hide">
+    <div class="station"><div class="beat">Beat 7 · Mixed independent practice</div><div class="shead"><span class="sno">PRACTICE</span><h2>The skill in different clothes</h2></div>
+      <p class="lead">Different hundreds, ties that move to the tens or ones, equals, and two-digit versus three-digit.</p><div id="practiceSet"></div></div>
+    <div class="station"><div class="beat">Beat 8 · Retrieval</div><div class="shead"><span class="sno">RETRIEVAL</span><h2>From memory, no tool</h2></div>
+      <p class="lead">Picture the places in your head and answer.</p><div id="retrievalSet"></div></div>
+    <button class="cta go" id="toMastery">I am ready for the mastery check</button>
+  </section>
+
+  <section id="mastery" class="hide">
+    <div class="station"><div class="beat">Beat 9 and 10 · Prove it</div><div class="shead"><span class="sno">MASTERY · FORM A</span><h2>Show what you know</h2></div>
+      <p class="lead">Eight questions, then explain one idea, then compare out loud for an adult. The bar is a strong score with place-by-place reasoning.</p></div>
+    <div class="station" id="mcA"><div class="qmeta"><span id="qcountA">Question 1 of 8</span><span class="timer" id="tlabelA">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillA"></div></div><div class="qtext" id="qtextA"></div><div class="opts" id="optsA"></div><div class="qwhy" id="qwhyA"></div><div class="reteach hide" id="reteachA"></div></div>
+    <div class="station hide" id="explainA"><div class="shead"><span class="sno">EXPLAIN</span><h2>Say why</h2></div>
+      <p class="lead" id="explainStem"></p><textarea id="explainText" placeholder="Type your explanation here..." aria-label="your explanation"></textarea>
+      <button class="mbtn ghost" id="showModel" style="margin-top:10px;">Show a strong answer to compare</button><div class="reveal" id="modelBox"></div>
+      <p class="lead" style="margin-top:12px;" id="explainCompare"></p>
+      
+      <button class="cta" id="toPT">Next: compare for an adult</button></div>
+    <div class="station hide" id="ptA"><div class="shead"><span class="sno">PERFORMANCE TASK</span><h2>Compare it out loud</h2></div>
+      <p class="lead" id="ptStem"></p>
+      <div class="cmp" id="ptCompare"></div>
+      <div class="note"><b>Grown-up check.</b> Watch the child compare. Ask which place they checked first and which place decided it. Offer a pair that ties on the hundreds so the tens must decide. Mark each row honestly.</div>
+      <table class="rubric" id="ptRubric"></table>
+      <div class="critrow" id="critRow"></div>
+      
+      <button class="cta go" id="ptDone">Go to the retention check</button></div>
+    <div class="station hide" id="resultA"><div class="scoreband"><span>Form A</span><span class="s" id="scoreAtxt">0 / 8</span><span style="flex:1"></span><span id="aStatus" style="font-weight:700;"></span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p><button class="cta" id="toRetention">Go to the retention check</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button></div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station"><div class="beat">Beat 8 · Spaced retention</div><div class="shead"><span class="sno">RETENTION · FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new comparisons on the same ideas, meant for a <b>later session, at least a day after Form A</b>.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, come back tomorrow before doing Form B.</div>
+      <button class="cta" id="startB">Start Form B</button></div>
+    <div class="station hide" id="mcB"><div class="qmeta"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div><div class="qtext" id="qtextB"></div><div class="opts" id="optsB"></div><div class="qwhy" id="qwhyB"></div></div>
+    <div class="station hide" id="resultB"><div class="scoreband"><span>Form B</span><span class="s" id="scoreBtxt">0 / 8</span><span style="flex:1"></span><span id="bStatus" style="font-weight:700;"></span></div>
+      <p class="lead" id="bMsg" style="margin-top:10px;">If this is strong on a later day, the credential is yours.</p><button class="cta go" id="toWrap">Reflect and see the credential</button></div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station"><div class="beat">Beat 11 · Reflect</div><div class="shead"><span class="sno">REFLECT</span><h2>Look back</h2></div>
+      <p class="lead">How did that feel, and how sure are you?</p>
+      <div class="rate" id="feelRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="easy">Easy</button><button class="ratebtn" type="button" aria-pressed="false" data-v="just">Just right</button><button class="ratebtn" type="button" aria-pressed="false" data-v="hard">Tricky</button></div>
+      <p class="lead" style="margin-top:12px;">How sure are you that you can compare place by place without falling for the biggest-digit trap?</p>
+      <div class="rate" id="confRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="1">Not yet sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="2">Mostly sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="3">Very sure</button></div>
+      <p class="lead" style="margin-top:12px;">One thing you will remember or do next time:</p>
+      <textarea id="planText" placeholder="For example: I always start at the hundreds and find the first place that differs." aria-label="your plan"></textarea>
+      <button class="cta" id="saveReflect">Save my reflection</button></div>
+    <div class="station"><div class="beat">Beat 12 · The big takeaway</div><div class="shead"><span class="sno">SYNTHESIS</span><h2>The one rule to keep</h2></div>
+      <div class="synth"><div class="rule">Compare from the left. Hundreds first, then tens, then ones.</div><p style="text-align:center;color:var(--ink2);">Find the first place where the digits differ. That place decides which number is greater. A big digit in a lower place cannot beat a bigger digit in a higher place.</p></div></div>
+    <div class="station"><div class="beat">Beat 12 · Credential</div><div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery rule</h2></div>
+      <p class="lead">The 2.NBT.A.5 micro-credential is awarded when <b>both checks</b> are met: a strong Form A, and a strong delayed Form B on a later day. The written explanation and the out-loud task are for learning and for an adult to review, not for self-grading.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge" aria-live="polite"><div class="gem">◆</div><h3>2.NBT.A.5 Mastered</h3><p>You can compare three-digit numbers place by place and write the correct symbol, resisting the face-value trap.</p><p style="margin-top:8px;color:var(--ink2);">That completes the Place Value unit. Next up: the Unit 1 capstone, then Unit 2.</p></div>
+      <div id="notyetBox" class="note hide"><b>Not yet, and that is fine.</b> <span id="notyetMsg"></span></div>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can head back to your dashboard.</p></div></div>
+  </section>
+  <footer>Sam · Math · Verbatim Missouri Learning Standard 2.NBT.A.5 · Twelve-beat module. Summative items from the 2.NBT.A.5 competency package.</footer>
+</div>
+
+<script>
+
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='sam', SUBJECT='math', DAY='2.NBT.A.5', SNAME='Sam';
+  var DATA={"FORMA": [{"id": "A1", "stem": "Which symbol means \u201cgreater than\u201d?", "o": [">", "<", "=", "+"], "a": 0, "why": "The greater-than symbol is the one whose open side faces the larger number.", "concept": "symbol"}, {"id": "A2", "stem": "Which symbol makes this true?&nbsp; 318 ? 281", "o": [">", "=", "<"], "a": 0, "why": "Compare the hundreds first: 3 hundreds beats 2 hundreds, so 318 is greater.", "concept": "hundreds"}, {"id": "A3", "stem": "Which symbol makes this true?&nbsp; 627 ? 672", "o": [">", "=", "<"], "a": 2, "why": "Hundreds tie, so compare tens: 2 tens is less than 7 tens, so 627 is less.", "concept": "decide"}, {"id": "A4", "stem": "Which symbol makes this true?&nbsp; 453 ? 459", "o": [">", "=", "<"], "a": 2, "why": "Hundreds and tens tie, so the ones decide: 3 is less than 9.", "concept": "decide"}, {"id": "A5", "stem": "Which symbol makes this true?&nbsp; 500 ? 500", "o": [">", "=", "<"], "a": 1, "why": "Every place matches, so the numbers are equal.", "concept": "decide"}, {"id": "A6", "stem": "Which number is greater, 84 or 408?", "o": ["84", "408", "They are equal"], "a": 1, "why": "408 has a hundreds digit and 84 has none, so 408 is greater.", "concept": "trap"}, {"id": "A7", "stem": "Which number is the greatest?&nbsp; 390, 309, 93", "o": ["390", "309", "93"], "a": 0, "why": "309 and 390 tie at 3 hundreds; 9 tens beats 0 tens; 93 has no hundreds.", "concept": "trap"}, {"id": "A8", "stem": "To compare 463 and 459, which place decides the answer?", "o": ["hundreds", "tens", "ones"], "a": 1, "why": "Hundreds tie at 4, so the tens place, 6 against 5, decides it.", "concept": "decide"}], "FORMB": [{"id": "B1", "stem": "Which symbol means \u201cless than\u201d?", "o": ["<", ">", "=", "-"], "a": 0, "why": "The less-than symbol is the one whose open side faces the larger number on the right.", "concept": "symbol"}, {"id": "B2", "stem": "Which symbol makes this true?&nbsp; 540 ? 480", "o": [">", "=", "<"], "a": 0, "why": "Compare the hundreds first: 5 hundreds beats 4 hundreds.", "concept": "hundreds"}, {"id": "B3", "stem": "Which symbol makes this true?&nbsp; 239 ? 241", "o": [">", "=", "<"], "a": 2, "why": "Hundreds tie, so compare tens: 3 tens is less than 4 tens.", "concept": "decide"}, {"id": "B4", "stem": "Which symbol makes this true?&nbsp; 716 ? 712", "o": [">", "=", "<"], "a": 0, "why": "Hundreds and tens tie, so the ones decide: 6 is greater than 2.", "concept": "decide"}, {"id": "B5", "stem": "Which symbol makes this true?&nbsp; 730 ? 730", "o": [">", "=", "<"], "a": 1, "why": "Every place matches, so the numbers are equal.", "concept": "decide"}, {"id": "B6", "stem": "Which number is greater, 92 or 207?", "o": ["92", "207", "They are equal"], "a": 1, "why": "207 has a hundreds digit and 92 has none, so 207 is greater.", "concept": "trap"}, {"id": "B7", "stem": "Which number is the greatest?&nbsp; 405, 54, 450", "o": ["405", "54", "450"], "a": 2, "why": "405 and 450 tie at 4 hundreds; 5 tens beats 0 tens; 54 has no hundreds.", "concept": "trap"}, {"id": "B8", "stem": "To compare 826 and 829, which place decides the answer?", "o": ["ones", "hundreds", "tens"], "a": 0, "why": "Hundreds and tens tie, so the ones place, 6 against 9, decides it.", "concept": "decide"}], "EXPLAIN": {"stem": "Dana says 281 is greater than 318 because 8 is bigger than 1. Explain why Dana is wrong, and tell which number is actually greater.", "model": "You compare the hundreds first. 318 has 3 hundreds and 281 has only 2 hundreds, so 318 is greater. A larger tens digit cannot beat a larger hundreds digit, so the 8 in 281 does not win.", "compare": "Compare honestly. Does the explanation say to compare the hundreds first (3 beats 2, so 318 wins), AND that a bigger tens digit cannot outrank the hundreds?", "yesLabel": "Yes, both ideas correct"}, "PT": {"prompt": "An adult gives you two three-digit numbers. Start with 318 and 281. Use the tool: line them up, compare place by place starting at the hundreds, tap the symbol that makes it true, and say out loud which place decided it. Then try a pair that ties on the hundreds, like 463 and 459, so the tens must decide.", "critQuestion": "Did the learner ever compare by a single largest digit instead of by place, for example calling 281 greater than 318 because 8 is bigger than 1?", "rubric": [["Strategy", "Compares from the hundreds first, then tens, then ones.", "Compares by the ones, by a single largest digit, or by how many digits."], ["Symbol", "Chooses the correct symbol, with the open side toward the larger number.", "Chooses the reversed symbol or the wrong relation."], ["Place reasoning", "Names the place that decided the comparison.", "Cannot say which place decided it."], ["Resists the face-value trap", "Lines up places before deciding; does not pick the bigger single digit.", "Picks 281 over 318 because 8 is larger than 1."]]}, "WARM": [{"q": "The open side of a comparison symbol faces which number?", "o": ["the smaller one", "the larger one"], "a": 1, "why": "The open, wide side always faces the larger number.", "hint": "Wide mouth, big number."}, {"q": "To compare 318 and 281, which place do you check first?", "o": ["the ones", "the hundreds"], "a": 1, "why": "Always start at the hundreds, the biggest place.", "hint": "Start from the left."}], "PRACTICE": [{"q": "Which symbol makes it true?  742 ? 739", "o": [">", "=", "<"], "a": 0, "why": "Hundreds tie; 4 tens beats 3 tens, so 742 is greater.", "hint": "Hundreds tie, check the tens."}, {"q": "Which symbol makes it true?  605 ? 650", "o": [">", "=", "<"], "a": 2, "why": "Hundreds tie; 0 tens is less than 5 tens, so 605 is less.", "hint": "Compare the tens."}, {"q": "Which number is greater, 76 or 301?", "o": ["76", "301", "equal"], "a": 1, "why": "301 has hundreds; 76 has none.", "hint": "Count the digits, then the hundreds."}, {"q": "Which symbol makes it true?  488 ? 488", "o": [">", "=", "<"], "a": 1, "why": "Every place matches, so they are equal.", "hint": "Check each place."}, {"q": "Which is the greatest?  207, 270, 72", "o": ["207", "270", "72"], "a": 1, "why": "207 and 270 tie at 2 hundreds; 7 tens beats 0 tens.", "hint": "Hundreds tie, then tens."}, {"q": "To compare 836 and 834, which place decides?", "o": ["hundreds", "tens", "ones"], "a": 2, "why": "Hundreds and tens tie, so the ones decide.", "hint": "Find the first place that differs."}], "RETRIEVAL": [{"q": "From memory: which symbol makes it true?  519 ? 591", "o": [">", "=", "<"], "a": 2, "why": "Hundreds tie; 1 ten is less than 9 tens, so 519 is less.", "hint": "Hundreds tie, check the tens."}, {"q": "From memory: which is greater, 89 or 410?", "o": ["89", "410", "equal"], "a": 1, "why": "410 has a hundreds digit; 89 does not.", "hint": "A three-digit number beats a two-digit one."}], "DEMO": [{"hi": 0, "txt": "Line them up by place and compare the hundreds first: 318 has 3 hundreds, 281 has 2 hundreds."}, {"hi": 0, "sym": ">", "txt": "3 hundreds beats 2 hundreds, so 318 is greater: 318 is the bigger number. Watch the trap: 281 has more tens (8) than 318 (1), but tens never outrank hundreds. The hundreds decided it."}], "DEMO_PAIR": [318, 281], "FADE": [{"a": 318, "b": 281, "prompt": "Compare 318 and 281. Tap the symbol that makes it true."}, {"a": 627, "b": 672, "prompt": "Now 627 and 672. The hundreds tie, so look at the next place."}, {"a": 453, "b": 459, "prompt": "Now 453 and 459. The hundreds and tens tie, so the ones decide."}], "GUIDED": [463, 459], "GUIDED_POOL": [[618, 581], [744, 749], [326, 362], [907, 907], [480, 490], [235, 225], [560, 506], [719, 791]], "PASS": 7, "RETEACH": {"symbol": "c-symbol", "hundreds": "c-hundreds", "decide": "c-decide", "trap": "learn", "learn": "learn"}};
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var PHASES=['start','learn','practice','mastery','retention','wrap'];
+  function show(id){ PHASES.forEach(function(s){ document.getElementById(s).classList.toggle('hide',s!==id); }); window.scrollTo(0,0); }
+  function setStep(id,cls){ var e=document.getElementById(id); if(e)e.className='pstep '+cls; }
+
+  var hookCards=document.querySelectorAll('.hookcard');
+  Array.prototype.forEach.call(hookCards,function(c){ c.addEventListener('click',function(){ c.classList.add('open');
+    var all=true; Array.prototype.forEach.call(hookCards,function(x){ if(!x.classList.contains('open'))all=false; });
+    if(all){var r=document.getElementById('hookrv'); if(r)r.classList.add('show');} }); });
+
+  function tapQuiz(containerId, items){ var c=document.getElementById(containerId); if(!c)return; c.innerHTML='';
+    items.forEach(function(it,qi){ var card=document.createElement('div'); card.className='tq';
+      var q=document.createElement('div'); q.className='tqq'; q.innerHTML=(qi+1)+'. '+it.q; card.appendChild(q);
+      var opts=document.createElement('div'); opts.className='opts'; var why=document.createElement('div'); why.className='qwhy';
+      it.o.forEach(function(t,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.textContent=t;
+        b.addEventListener('click',function(){ if(b.dataset.l)return;
+          if(i===it.a){ Array.prototype.forEach.call(opts.children,function(x){x.dataset.l='1';x.style.pointerEvents='none';}); b.classList.add('correct'); why.style.color='var(--good)'; why.textContent='Correct. '+(it.why||''); }
+          else { b.classList.add('bad'); b.dataset.l='1'; b.style.pointerEvents='none'; why.style.color='var(--alt)'; why.textContent='Try again. '+(it.hint||''); }
+        }); opts.appendChild(b); });
+      card.appendChild(opts); card.appendChild(why); c.appendChild(card); });
+  }
+  tapQuiz('warm', DATA.WARM);
+
+  Array.prototype.forEach.call(document.querySelectorAll('.predict'),function(row){ var rev=row.nextElementSibling;
+    Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ if(b.dataset.done)return;
+      Array.prototype.forEach.call(row.children,function(c){c.dataset.done='1';});
+      if(b.getAttribute('data-ok')==='true')b.classList.add('ok'); else { b.classList.add('no'); Array.prototype.forEach.call(row.children,function(c){if(c.getAttribute('data-ok')==='true')c.classList.add('ok');}); }
+      if(rev)rev.classList.add('show'); }); }); });
+
+  
+function makeComparator(rootId,a,b,opts){opts=opts||{};
+  var root=document.getElementById(rootId); if(!root)return null;
+  var A=a,B=b,pickCb=null,locked=false;
+  function pad(n){return ('00'+n).slice(-3);}
+  function rel(){return A>B?'>':(A<B?'<':'=');}
+  function decideIdx(){var pa=pad(A),pb=pad(B);for(var i=0;i<3;i++){if(pa[i]!==pb[i])return i;}return -1;}
+  var NAMES=['hundreds','tens','ones'];
+  function row(s,id){return '<div class="cmpnum" id="'+id+'">'+s.split('').map(function(c,i){return '<span class="cell p'+i+'" data-i="'+i+'">'+c+'</span>';}).join('')+'</div>';}
+  function render(){
+    root.innerHTML='<div class="cmpgrid">'+row(pad(A),rootId+'_a')
+      +'<div class="cmpsym" id="'+rootId+'_sym">?</div>'+row(pad(B),rootId+'_b')+'</div>'
+      +'<div class="placekey"><span><i style="background:#6c4cd6"></i>hundreds</span><span><i style="background:#0f9488"></i>tens</span><span><i style="background:#e8731c"></i>ones</span></div>'
+      +(opts.buttons===false?'':'<div class="symbtns"><button class="symb" type="button" data-r="&gt;">&gt;</button><button class="symb" type="button" data-r="=">=</button><button class="symb" type="button" data-r="&lt;">&lt;</button></div>')
+      +'<div class="cmpfb" id="'+rootId+'_fb"></div>';
+    if(opts.buttons!==false){ root.querySelectorAll('.symb').forEach(function(btn){ btn.addEventListener('click',function(){ if(locked)return; choose(btn.getAttribute('data-r'),btn); }); }); }
+  }
+  function clearLight(){ root.querySelectorAll('.cell').forEach(function(c){c.classList.remove('lit');}); }
+  function lightPlace(i){ clearLight(); var ca=document.getElementById(rootId+'_a').children[i], cb=document.getElementById(rootId+'_b').children[i]; if(ca)ca.classList.add('lit'); if(cb)cb.classList.add('lit'); }
+  function lightDecider(){ var di=decideIdx(); if(di<0){ root.querySelectorAll('.cell').forEach(function(c){c.classList.add('lit');}); } else { lightPlace(di); } }
+  function setSym(r){ var s=document.getElementById(rootId+'_sym'); if(s)s.textContent=r; }
+  function choose(picked,btn){ var correct=rel(),fb=document.getElementById(rootId+'_fb'),di=decideIdx();
+    if(picked===correct){ locked=true; setSym(correct); lightDecider();
+      root.querySelectorAll('.symb').forEach(function(x){x.style.pointerEvents='none'; if(x.getAttribute('data-r')===correct)x.classList.add('on');});
+      fb.className='cmpfb ok'; fb.textContent = di<0 ? ('Equal. Every place matches, so '+A+' and '+B+' are the same.') : ('Yes. The '+NAMES[di]+' place decided it: '+A+' is '+(correct==='>'?'greater than':'less than')+' '+B+'.');
+      if(pickCb)pickCb(true,correct,di);
+    } else { if(btn)btn.classList.add('bad'); fb.className='cmpfb try';
+      fb.textContent='Not yet. Compare the hundreds first, then tens, then ones. The open side of the symbol points at the bigger number.';
+      if(pickCb)pickCb(false,picked,di); } }
+  render();
+  return {rel:rel,decideIdx:decideIdx,names:NAMES,setSym:setSym,light:lightDecider,lightPlace:lightPlace,clearLight:clearLight,
+    setPair:function(na,nb){A=na;B=nb;locked=false;render();},onPick:function(cb){pickCb=cb;}};
+}
+
+
+  // learn widget + example pairs
+  var learnComp=makeComparator('learnCompare',318,281);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pair]'),function(b){ b.addEventListener('click',function(){ var p=b.getAttribute('data-pair').split(','); learnComp.setPair(parseInt(p[0],10),parseInt(p[1],10)); }); });
+
+  // demo (scripted walkthrough)
+  var demo=DATA.DEMO, dstep=-1, demoComp=makeComparator('demoCompare',DATA.DEMO_PAIR[0],DATA.DEMO_PAIR[1],{buttons:false});
+  document.getElementById('demoNext').addEventListener('click',function(){ dstep++;
+    if(dstep>=demo.length){ document.getElementById('demobox').classList.add('hide'); document.getElementById('fadeWrap').classList.remove('hide'); startFade(); return; }
+    var s=demo[dstep]; if(s.hi!=null&&s.hi>=0)demoComp.lightPlace(s.hi); else demoComp.clearLight();
+    if(s.sym)demoComp.setSym(s.sym); document.getElementById('demoStep').textContent=s.txt;
+    this.textContent = dstep>=demo.length-1 ? 'Now you try' : 'Next step'; });
+
+  // fade (learner picks the symbol)
+  var fIdx=0, fadeComp=null;
+  function startFade(){ setupFade(); }
+  function setupFade(){ var r=DATA.FADE[fIdx]; document.getElementById('fadePrompt').textContent=r.prompt;
+    document.getElementById('fadeNext').classList.add('hide');
+    fadeComp=makeComparator('fadeCompare',r.a,r.b);
+    fadeComp.onPick(function(ok){ if(ok)document.getElementById('fadeNext').classList.remove('hide'); }); }
+  document.getElementById('fadeNext').addEventListener('click',function(){ fIdx++; if(fIdx<DATA.FADE.length){ setupFade(); } else { this.classList.add('hide'); document.getElementById('fadePrompt').textContent='Nice. You decided by the hundreds, then the tens, then the ones.'; } });
+
+  // guided
+  var guidedComp=null;
+  function setupGuided(p){ document.getElementById('guidedPrompt').innerHTML='Compare <b>'+p[0]+'</b> and <b>'+p[1]+'</b>. Tap the symbol, and notice which place lights up.';
+    guidedComp=makeComparator('guidedCompare',p[0],p[1]); document.getElementById('guidedFb').textContent=''; }
+  document.getElementById('guidedHint').addEventListener('click',function(){ var fb=document.getElementById('guidedFb'); fb.className='bfb try';
+    fb.textContent='Hint: compare the hundreds first. If they tie, move to the tens, then the ones. The first place that differs decides it.'; });
+  document.getElementById('guidedNew').addEventListener('click',function(){ var pool=DATA.GUIDED_POOL; setupGuided(pool[Math.floor(Math.random()*pool.length)]); });
+  setupGuided(DATA.GUIDED);
+
+  tapQuiz('practiceSet', DATA.PRACTICE);
+  tapQuiz('retrievalSet', DATA.RETRIEVAL);
+
+  document.getElementById('toLearn').addEventListener('click',function(){ show('learn'); setStep('ps-start','done'); setStep('ps-learn','on'); });
+  document.getElementById('toPractice').addEventListener('click',function(){ show('practice'); setStep('ps-learn','done'); setStep('ps-practice','on'); });
+  document.getElementById('toMastery').addEventListener('click',function(){ show('mastery'); setStep('ps-practice','done'); setStep('ps-mastery','on'); startMC('A'); });
+
+  var QTIME=25, mcState={};
+  function ids(f){ return {q:'qtext'+f,o:'opts'+f,c:'qcount'+f,tl:'tlabel'+f,tf:'tfill'+f,why:'qwhy'+f,re:'reteach'+f}; }
+  function startMC(form){ mcState[form]={i:0,correct:0,wrong:[],timer:null,left:QTIME,locked:false}; rec.attempts=(rec.attempts||0)+1; save(app); showQ(form); }
+  function showQ(form){ var st=mcState[form],items=DATA['FORM'+form],it=items[st.i],el=ids(form); st.locked=false;
+    document.getElementById(el.c).textContent='Question '+(st.i+1)+' of '+items.length;
+    document.getElementById(el.q).innerHTML=it.stem;
+    var why=document.getElementById(el.why); why.textContent=''; var re=document.getElementById(el.re); if(re){re.classList.add('hide');re.innerHTML='';}
+    var opts=document.getElementById(el.o); opts.innerHTML='';
+    it.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.textContent=txt; b.addEventListener('click',function(){answer(form,i,b);}); opts.appendChild(b); });
+    st.left=QTIME; var tf=document.getElementById(el.tf),tl=document.getElementById(el.tl); tf.style.width='100%'; tf.classList.remove('low'); tl.textContent=QTIME+'s'; clearInterval(st.timer);
+    st.timer=setInterval(function(){ st.left--; if(st.left<0)st.left=0; tf.style.width=(st.left/QTIME*100)+'%'; tl.textContent=st.left+'s'; if(st.left<=8)tf.classList.add('low'); if(st.left===0)clearInterval(st.timer); },1000);
+  }
+  function answer(form,i,btn){ var st=mcState[form]; if(st.locked)return; st.locked=true; clearInterval(st.timer);
+    var items=DATA['FORM'+form],it=items[st.i],el=ids(form),ok=(i===it.a),opts=document.getElementById(el.o);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===it.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    var why=document.getElementById(el.why);
+    if(ok){ st.correct++; why.style.color='var(--good)'; why.textContent='Correct. '+it.why; }
+    else { st.wrong.push({stem:it.stem,picked:it.o[i],correct:it.o[it.a]}); why.style.color='var(--alt)'; why.textContent='Not quite. '+it.why;
+      var re=document.getElementById(el.re); if(re){ var loc=(DATA.RETEACH[it.concept]||'learn'); re.classList.remove('hide'); re.innerHTML='Want a quick reteach? <a href="#'+loc+'">Back to that idea</a>'; } }
+    setTimeout(function(){ st.i++; if(st.i<items.length) showQ(form); else finishMC(form); }, ok?700:1250);
+  }
+  function finishMC(form){ var st=mcState[form];
+    if(form==='A'){ rec.formA=st.correct; rec.best=Math.max(rec.best||0,Math.round(st.correct/DATA.FORMA.length*100)); rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcA').classList.add('hide'); document.getElementById('explainA').classList.remove('hide');
+      document.getElementById('explainStem').innerHTML=DATA.EXPLAIN.stem;
+      document.getElementById('explainCompare').textContent=DATA.EXPLAIN.compare;
+      window.scrollTo(0,0);
+    } else { rec.formB=st.correct; rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcB').classList.add('hide'); document.getElementById('resultB').classList.remove('hide');
+      document.getElementById('scoreBtxt').textContent=st.correct+' / '+DATA.FORMB.length;
+      var bs=document.getElementById('bStatus'),pass=st.correct>=DATA.PASS; bs.textContent=(pass?'Strong':'Needs another pass'); bs.style.color=(pass?'var(--good)':'var(--alt)');
+      commitTime(); window.scrollTo(0,0);
+    }
+  }
+
+  
+  document.getElementById('showModel').addEventListener('click',function(){ var m=document.getElementById('modelBox'); m.innerHTML='<b>A strong answer:</b> '+DATA.EXPLAIN.model; m.classList.add('show'); });
+  
+  document.getElementById('toPT').addEventListener('click',function(){ document.getElementById('explainA').classList.add('hide'); document.getElementById('ptA').classList.remove('hide'); setupPT(); window.scrollTo(0,0); });
+
+  
+  function setupPT(){ var p=DATA.PT; document.getElementById('ptStem').innerHTML=p.prompt;
+    makeComparator('ptCompare',318,281);
+    document.getElementById('critRow').innerHTML='<b>For the adult:</b> the rubric above is a guide for your review together, not a grade. The badge comes from the two checks.';
+    var tb=document.getElementById('ptRubric'); tb.innerHTML='<tr><th>What strong work looks like</th><th>What to watch for</th></tr>';
+    p.rubric.forEach(function(c){ var tr=document.createElement('tr'); tr.innerHTML='<td><b>'+c[0]+'.</b> '+c[1]+'</td><td>'+c[2]+'</td>'; tb.appendChild(tr); });
+  }
+  document.getElementById('ptDone').addEventListener('click',function(){ var mc=rec.formA||0; save(app);
+    document.getElementById('ptA').classList.add('hide'); document.getElementById('resultA').classList.remove('hide');
+    document.getElementById('scoreAtxt').textContent=mc+' / '+DATA.FORMA.length;
+    var strong=(mc>=DATA.PASS), stt=document.getElementById('aStatus'); stt.textContent=strong?'Form A clear':'Reteach needed'; stt.style.color=strong?'var(--good)':'var(--alt)';
+    document.getElementById('aMsg').innerHTML = strong ? 'Form A is at the bar. The written explanation and the out-loud task are for you and an adult to talk through; the badge comes from Form A and the delayed Form B.' : 'Form A is not at the bar yet. Reteach, then run Form A again. This is not a penalty.';
+    document.getElementById('retryA').classList.toggle('hide',strong); document.getElementById('toRetention').classList.toggle('hide',!strong);
+    commitTime(); window.scrollTo(0,0);
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show('learn'); setStep('ps-mastery','');setStep('ps-practice','on');setStep('ps-learn','done'); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show('retention'); setStep('ps-mastery','done'); setStep('ps-retention','on'); });
+  document.getElementById('startB').addEventListener('click',function(){ document.getElementById('mcB').classList.remove('hide'); this.classList.add('hide'); startMC('B'); });
+  document.getElementById('toWrap').addEventListener('click',function(){ show('wrap'); setStep('ps-retention','done'); setStep('ps-wrap','on'); decide(); });
+
+  var feel=null, conf=null;
+  function pickOne(rowId,setter){ var row=document.getElementById(rowId); Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ setter(b.getAttribute('data-v')); Array.prototype.forEach.call(row.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); }); }); }
+  pickOne('feelRate',function(v){feel=v;}); pickOne('confRate',function(v){conf=v;});
+  document.getElementById('saveReflect').addEventListener('click',function(){ rec.feedback={rating:feel||'just',tag:'clear',at:Date.now(),confidence:conf?parseInt(conf,10):null,plan:(document.getElementById('planText').value||'').slice(0,500)}; save(app); syncCloud(); document.getElementById('donebox').classList.remove('hide'); window.scrollTo({top:document.getElementById('badge').offsetTop,behavior:'smooth'}); });
+
+  function decide(){ var mcA=rec.formA||0, mcB=rec.formB||0, PASS=DATA.PASS;
+    var rows=[ {ok:mcA>=PASS,t:'Form A check',d:'At least '+PASS+' of '+DATA.FORMA.length+'. You got '+mcA+'.'},
+               {ok:mcB>=PASS,t:'Delayed retention (Form B)',d:'At least '+PASS+' of '+DATA.FORMB.length+' on a later day. You got '+mcB+'.'} ];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'✓':'!')+'</span><span class="g2"><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    var all=rows.every(function(r){return r.ok;});
+    if(all){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); var b=document.getElementById('notyetBox'); b.classList.remove('hide'); document.getElementById('notyetMsg').textContent = 'Pass the Form A check and the delayed Form B check (on a later day) and the badge is yours. Most learners just need a reteach and a fresh form.'; }
+    commitTime();
+  }
+})();
+
+</script>
+</body>
+</html>

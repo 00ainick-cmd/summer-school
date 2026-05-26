@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Lab · Read and Write to 100,000</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f2f0fb;--card:#fff;--ink:#1d1736;--ink2:#4a4566;--mute:#857ea3;--line:#e2def2;
+   --accent:#5a43d6;--accent-d:#3f2bb0;--red:#c2410c;--alt:#e0731a;--good:#1f9d6b;
+   --huns:#5a43d6;--tens:#1f9d6b;--ones:#e0731a;--ths:#b8418a;--tths:#1f7aa8;--gold:#b8860b;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Mulish',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(40vmax 40vmax at 90% -10%,rgba(90,67,214,.10),transparent 60%),radial-gradient(40vmax 40vmax at -5% 110%,rgba(184,65,138,.10),transparent 60%),linear-gradient(180deg,#faf9ff,var(--paper));}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 90px;}
+  h1,h2,h3,.disp{font-family:'Baloo 2',cursive;font-weight:700;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .progress{position:sticky;top:0;z-index:20;background:rgba(242,240,251,.95);backdrop-filter:blur(4px);display:flex;gap:6px;padding:10px 4px;flex-wrap:wrap;justify-content:center;border-bottom:2px solid var(--line);margin:0 -18px 18px;}
+  .pstep{font-family:'Baloo 2';font-size:13px;font-weight:600;color:var(--mute);background:#fff;border:2px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .pstep.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .pstep.done{background:#e8f7f0;border-color:var(--good);color:var(--good);}
+  .labbar{background:var(--ink);color:#e7e3fb;margin:0 -18px 20px;padding:12px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Baloo 2';font-size:13px;letter-spacing:.04em;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a4170;border-radius:6px;padding:3px 9px;color:#b9b2e0;font-size:12px;}
+  .labbar b{color:#fff;}
+  h1{font-size:clamp(28px,5.6vw,42px);line-height:1.02;margin:6px 0 8px;}
+  .mission{color:var(--ink2);max-width:56ch;}
+  .stdtag{margin-top:16px;background:#efeefb;border:1px solid var(--line);border-left:4px solid var(--ones);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+  .beat{font-family:'Baloo 2';font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:16px 0;box-shadow:0 16px 32px -28px rgba(63,43,176,.6);}
+  .station.hook{background:linear-gradient(160deg,#fff,#f3effe);border-color:#d9d0f5;}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Baloo 2';font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:7px;padding:3px 9px;letter-spacing:.04em;}
+  .station h2{font-size:22px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .objlist{list-style:none;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;}
+  .objlist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;}
+  .objlist .b{flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent);color:#fff;font-family:'Baloo 2';font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px;}
+  .why{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:15.5px;color:#13683a;}
+  .note{background:#fffbe9;border:2px solid #f0d97a;border-radius:12px;padding:13px 15px;font-size:15.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .hookcards{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+  .hookcard{flex:1;min-width:140px;text-align:center;border:2px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;background:#fff;min-height:60px;}
+  .hookcard:hover{border-color:var(--accent);}
+  .hookcard .big{font-family:'Baloo 2';font-size:30px;}
+  .hookcard .big .lit{color:var(--accent);}
+  .hookcard .rv{font-size:14px;color:var(--ink2);margin-top:6px;display:none;} .hookcard.open .rv{display:block;}
+  .hookcard.open{border-color:var(--accent);background:#f3effe;}
+  .reveal{margin-top:10px;font-size:15.5px;color:var(--ink2);display:none;} .reveal.show{display:block;}
+
+  /* place value table 5 columns */
+  .pvc5{width:100%;border-collapse:collapse;margin-top:12px;font-family:'Baloo 2';table-layout:fixed;}
+  .pvc5 th,.pvc5 td{border:2px solid var(--line);text-align:center;padding:10px 4px;font-size:22px;}
+  .pvc5 th{font-size:11px;letter-spacing:.04em;color:#fff;line-height:1.15;padding:6px 2px;}
+  .pvc5 th.tt{background:var(--tths);} .pvc5 th.th{background:var(--ths);}
+  .pvc5 th.h{background:var(--huns);} .pvc5 th.t{background:var(--tens);} .pvc5 th.o{background:var(--ones);}
+  .pvc5 td.tt{color:var(--tths);} .pvc5 td.th{color:var(--ths);}
+  .pvc5 td.h{color:var(--huns);} .pvc5 td.t{color:var(--tens);} .pvc5 td.o{color:var(--ones);}
+  .commacell{border:none !important;width:14px;padding:0 !important;color:var(--mute);font-size:30px;background:transparent;}
+  .ttv .ones{color:var(--ones);} .ttv .tens{color:var(--tens);} .ttv .huns{color:var(--huns);} .ttv .ths{color:var(--ths);} .ttv .tths{color:var(--tths);}
+
+  /* translator card */
+  .trans{background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:16px;margin-top:12px;}
+  .transnum{font-family:'Baloo 2';font-size:42px;font-weight:700;text-align:center;line-height:1.05;margin:6px 0 10px;}
+  .transview{min-height:88px;text-align:center;font-size:18px;line-height:1.4;color:var(--ink);font-weight:600;}
+  .transview .tag{display:block;font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .tabsrow{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+  .tabsrow button{font:inherit;font-weight:700;font-size:14px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .tabsrow button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .navrow{display:flex;justify-content:space-between;gap:10px;margin-top:12px;align-items:center;}
+  .navrow .ix{font-family:'Baloo 2';color:var(--mute);font-size:13px;}
+
+  .comma{display:inline-block;background:#fdeede;color:var(--alt);font-weight:700;padding:2px 6px;border-radius:6px;font-size:14px;margin:0 2px;}
+
+  .predict{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .pcard{flex:1;min-width:110px;font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:12px;padding:12px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .pcard:hover{border-color:var(--accent);} .pcard.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;} .pcard.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .tq{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:10px;background:#fff;}
+  .tqq{font-family:'Baloo 2';font-size:17px;margin-bottom:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:54px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);} .cta.go{background:var(--good);} .cta.alt{background:var(--alt);} .cta:disabled{opacity:.45;cursor:default;}
+  .qmeta{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;font-family:'Baloo 2';}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;} .tfill.low{background:var(--red);}
+  .qtext{font-size:20px;font-weight:700;line-height:1.3;margin-bottom:14px;font-family:'Baloo 2';}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt{font:inherit;font-size:17px;font-weight:600;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt:hover{border-color:var(--accent);} .opt.correct{border-color:var(--good);background:#e8f7f0;color:#13683a;} .opt.bad{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+  .reteach{margin-top:10px;font-size:14px;} .reteach a{color:var(--accent);font-weight:700;}
+  textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:2px solid var(--line);border-radius:12px;padding:12px;resize:vertical;color:var(--ink);}
+  .ratebtn{font:inherit;font-weight:600;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:11px 14px;min-height:46px;cursor:pointer;color:var(--ink);}
+  .rate{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .ratebtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+  .rubric th,.rubric td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;} .rubric th{background:#efeefb;font-family:'Baloo 2';font-size:13px;}
+  .critrow{background:#fdeee4;border:2px solid #f0c4ad;border-radius:10px;padding:10px 12px;margin-top:10px;font-weight:600;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Baloo 2';font-size:28px;}
+  .gateitem{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;font-size:15.5px;}
+  .gateitem .mk{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Baloo 2';}
+  .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
+  .gateitem .g2{flex:1;} .gateitem .gd{font-size:13px;color:var(--mute);}
+  .badge{display:none;text-align:center;padding:24px;border-radius:18px;background:linear-gradient(160deg,#f3eefe,#efe7fb);border:2px solid var(--accent);margin-top:14px;}
+  .badge.show{display:block;} .badge .gem{font-size:46px;color:var(--accent-d);} .badge h3{font-size:26px;color:var(--accent-d);margin:6px 0;}
+  .synth{background:#efeefb;border:2px solid #d4ccef;border-radius:14px;padding:16px 18px;margin-top:6px;}
+  .synth .rule{font-family:'Baloo 2';font-size:20px;color:var(--accent-d);text-align:center;margin:6px 0;}
+  footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+  @media (max-width:560px){.pvc5 th,.pvc5 td{font-size:18px;} .transnum{font-size:32px;}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="progress" role="navigation" aria-label="Module progress">
+  <span class="pstep on" id="ps-start">Warm up</span><span class="pstep" id="ps-learn">Learn</span>
+  <span class="pstep" id="ps-practice">Practice</span><span class="pstep" id="ps-mastery">Mastery</span>
+  <span class="pstep" id="ps-retention">Retention</span><span class="pstep" id="ps-wrap">Wrap up</span>
+</div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 3</b><span class="chip">Standard 3.NBT.A.2</span></div>
+
+  <section id="start">
+    <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>Read big numbers like a pro</h1>
+      <p class="mission">Tap each card to see how a big number breaks into pieces. The comma is a tiny signal that tells you where the thousands start.</p>
+      <div class="hookcards">
+        <div class="hookcard"><div class="big">23<span class="comma">,</span>467</div><div class="rv">Twenty-three thousand, four hundred sixty-seven. The comma marks the thousands break.</div></div>
+        <div class="hookcard"><div class="big">87<span class="comma">,</span>205</div><div class="rv">Eighty-seven thousand, two hundred five. No tens part, so just "two hundred five" after the comma.</div></div>
+      </div>
+      <div class="reveal" id="hookrv">A comma after the thousands tells you to say "thousand" right there, then read the last three digits as a normal hundreds number.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 2 · What you will be able to do</div><h2>Your goal today</h2>
+      <ul class="objlist">
+        <li><span class="b">1</span><span>Name every place from ones up to ten thousands.</span></li>
+        <li><span class="b">2</span><span>Read any number up to 100,000 out loud.</span></li>
+        <li><span class="b">3</span><span>Write the same number in standard form, word form, and expanded form.</span></li>
+      </ul>
+      <div class="why"><b>Why it matters:</b> big numbers live everywhere, like ticket counts at a game or the views on a video. Once you know the places, you can read any of them.</div>
+      <div class="stdtag"><span class="l">The objective (verbatim standard)</span>Read, write and identify whole numbers within 100,000 using base ten numerals, number names and expanded form.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 3 · Warm up (what do you already know)</div><h2>Two quick questions</h2>
+      <p class="lead">No grade here. Tap an answer; if it is off, try again.</p>
+      <div id="warm"></div>
+    </div>
+
+    <button class="cta" id="toLearn">Start learning</button>
+  </section>
+
+  <section id="learn" class="hide">
+
+    <div class="station"><div class="beat">Beat 4 · Teach</div><div class="shead"><span class="sno">LEARN 1</span><h2>Five places, side by side</h2></div>
+      <p class="lead">Every digit sits in a place. The place tells you what the digit is worth. Read the table left to right.</p>
+      <table class="pvc5">
+        <tr><th class="tt">Ten<br>thousands</th><th class="th">Thousands</th><th class="commacell"></th><th class="h">Hundreds</th><th class="t">Tens</th><th class="o">Ones</th></tr>
+        <tr><td class="tt">2</td><td class="th">3</td><td class="commacell">,</td><td class="h">4</td><td class="t">6</td><td class="o">7</td></tr>
+      </table>
+      <div class="note"><b>Big idea:</b> each step left makes the place 10 times bigger. Ones to tens to hundreds to thousands to ten thousands.</div>
+    </div>
+
+    <div class="station" id="c-comma"><div class="beat">Beat 4 · Teach (the comma)</div><div class="shead"><span class="sno">LEARN 2</span><h2>What that little comma does</h2></div>
+      <p class="lead">In 23,467 the comma sits between the thousands and the hundreds. What does it tell you to say?</p>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">Say "thousand" right at the comma</button>
+        <button class="pcard" type="button" data-ok="false">Add the two halves together</button>
+        <button class="pcard" type="button" data-ok="false">Skip the digits after it</button>
+      </div>
+      <div class="reveal">The comma is a separator. Read the part before it as a normal number, then say "thousand," then read the last three digits.</div>
+    </div>
+
+    <div class="station" id="c-words"><div class="beat">Beat 4 · Teach (number names)</div><div class="shead"><span class="sno">LEARN 3</span><h2>Read 47,302 out loud</h2></div>
+      <p class="lead">Use the comma to split it: 47 then 302. Now say the whole thing.</p>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">forty-seven thousand, three hundred two</button>
+        <button class="pcard" type="button" data-ok="false">four thousand seven hundred three hundred two</button>
+        <button class="pcard" type="button" data-ok="false">forty-seven, three hundred two</button>
+      </div>
+      <div class="reveal">Split at the comma, name the front, say "thousand," then read the back three digits.</div>
+    </div>
+
+    <div class="station" id="c-expand"><div class="beat">Beat 4 · Teach (expanded form)</div><div class="shead"><span class="sno">LEARN 4</span><h2>Break 23,467 into its values</h2></div>
+      <p class="lead">Each digit, multiplied by what its place is worth, then added back up.</p>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">20,000 + 3,000 + 400 + 60 + 7</button>
+        <button class="pcard" type="button" data-ok="false">2 + 3 + 4 + 6 + 7</button>
+        <button class="pcard" type="button" data-ok="false">23,000 + 467</button>
+      </div>
+      <div class="reveal">Each digit times its place value: 2 ten-thousands, 3 thousands, 4 hundreds, 6 tens, 7 ones.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 5 · The translator</div><div class="shead"><span class="sno">MODEL</span><h2>The same number, three ways</h2></div>
+      <p class="lead">Tap a tab to switch between standard form, words, and expanded form. Then tap "next" to try another number.</p>
+      <div class="trans">
+        <div class="transnum" id="tn"></div>
+        <div class="transview" id="tv" aria-live="polite"></div>
+        <div class="tabsrow" role="tablist">
+          <button type="button" id="tabStd" aria-pressed="true">Standard</button>
+          <button type="button" id="tabWord" aria-pressed="false">Number name</button>
+          <button type="button" id="tabExp" aria-pressed="false">Expanded</button>
+        </div>
+        <div class="navrow">
+          <span class="ix" id="trIx">1 of 5</span>
+          <button class="opt" id="trNext" style="padding:10px 16px;min-height:46px;text-align:center;width:auto;">Next number</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 6 · Guided practice</div><div class="shead"><span class="sno">GUIDED</span><h2>You name it</h2></div>
+      <p class="lead">Look at the number. Pick the matching way of writing it. Stuck? Tap for a hint. No score here.</p>
+      <div id="guided"></div>
+    </div>
+
+    <button class="cta" id="toPractice">Go to practice on my own</button>
+  </section>
+
+  <section id="practice" class="hide">
+    <div class="station"><div class="beat">Beat 7 · Mixed independent practice</div><div class="shead"><span class="sno">PRACTICE</span><h2>The skill in different clothes</h2></div>
+      <p class="lead">These mix it up on purpose. Tap an answer; if it is off, try again.</p>
+      <div id="practiceSet"></div>
+    </div>
+    <div class="station"><div class="beat">Beat 8 · Retrieval</div><div class="shead"><span class="sno">RETRIEVAL</span><h2>From memory, no table</h2></div>
+      <p class="lead">No place value chart this time. Pull it from memory; that is what makes it stick.</p>
+      <div id="retrievalSet"></div>
+    </div>
+    <button class="cta go" id="toMastery">I am ready for the mastery check</button>
+  </section>
+
+  <section id="mastery" class="hide">
+    <div class="station"><div class="beat">Beat 9 and 10 · Prove it</div><div class="shead"><span class="sno">MASTERY · FORM A</span><h2>Show what you know</h2></div>
+      <p class="lead">A set of questions, then explain one idea, then write and read a number out loud. This is the real check: a strong score and no place-value mistakes.</p></div>
+    <div class="station" id="mcA"><div class="qmeta"><span id="qcountA">Question 1</span><span class="timer" id="tlabelA">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillA"></div></div>
+      <div class="qtext" id="qtextA"></div><div class="opts" id="optsA"></div>
+      <div class="qwhy" id="qwhyA"></div><div class="reteach hide" id="reteachA"></div>
+    </div>
+    <div class="station hide" id="explainA"><div class="shead"><span class="sno">EXPLAIN</span><h2>Say why</h2></div>
+      <p class="lead" id="explainStem"></p>
+      <textarea id="explainText" placeholder="Type your explanation here..." aria-label="your explanation"></textarea>
+      <button class="opt" id="showModel" style="margin-top:10px;width:auto;padding:10px 16px;">Show a strong answer to compare</button>
+      <div class="reveal" id="modelBox"></div>
+      <p class="lead" style="margin-top:12px;">Compare honestly. Does the explanation name the place AND give the right value?</p>
+      <button class="cta" id="toPT">Next: write and read</button>
+    </div>
+    <div class="station hide" id="ptA"><div class="shead"><span class="sno">PERFORMANCE TASK</span><h2>Write it and read it</h2></div>
+      <p class="lead" id="ptStem"></p>
+      <textarea id="ptWrite" placeholder="Write the number in standard form here (use a comma)" aria-label="your written number"></textarea>
+      <div class="note"><b>Grown-up check.</b> This part is best done with an adult listening. Have the learner write the number, then read it out loud, then name what each digit is worth.</div>
+      <table class="rubric" id="ptRubric"></table>
+      <div class="critrow">Did the learner skip the comma, swap a place, or read the thousands chunk wrong?</div>
+      <button class="cta go" id="ptDone">Go to the retention check</button>
+    </div>
+    <div class="station hide" id="resultA"><div class="scoreband"><span>Form A</span><span class="s" id="scoreAtxt">0</span><span style="flex:1"></span><span id="aStatus" style="font-weight:700;"></span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to the retention check</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station"><div class="beat">Beat 8 · Spaced retention</div><div class="shead"><span class="sno">RETENTION · FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">New numbers on the same ideas, meant for a <b>later session, at least a day after Form A</b>. That delay is what proves it lasted.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this and come back tomorrow before doing Form B.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="station hide" id="mcB"><div class="qmeta"><span id="qcountB">Question 1</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div><div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+    <div class="station hide" id="resultB"><div class="scoreband"><span>Form B</span><span class="s" id="scoreBtxt">0</span><span style="flex:1"></span><span id="bStatus" style="font-weight:700;"></span></div>
+      <button class="cta go" id="toWrap">Reflect and see the credential</button>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station"><div class="beat">Beat 11 · Reflect</div><div class="shead"><span class="sno">REFLECT</span><h2>Look back</h2></div>
+      <p class="lead">How did that feel?</p>
+      <div class="rate" id="feelRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="easy">Easy</button><button class="ratebtn" type="button" aria-pressed="false" data-v="just">Just right</button><button class="ratebtn" type="button" aria-pressed="false" data-v="hard">Tricky</button></div>
+      <p class="lead" style="margin-top:12px;">How sure are you that you can read any number up to 100,000?</p>
+      <div class="rate" id="confRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="1">Not yet sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="2">Mostly sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="3">Very sure</button></div>
+      <p class="lead" style="margin-top:12px;">One thing you will remember:</p>
+      <textarea id="planText" placeholder="For example: I will split at the comma and say thousand right there." aria-label="your plan"></textarea>
+      <button class="cta" id="saveReflect">Save my reflection</button>
+    </div>
+    <div class="station"><div class="beat">Beat 12 · The big takeaway</div><div class="shead"><span class="sno">SYNTHESIS</span><h2>The one rule to keep</h2></div>
+      <div class="synth"><div class="rule">Split at the comma, name the front, say "thousand," then read the back.</div>
+        <p style="text-align:center;color:var(--ink2);">The comma is the signal. Read 47,302 as "forty-seven thousand, three hundred two." Each digit is worth its place value.</p></div></div>
+    <div class="station"><div class="beat">Beat 12 · Credential</div><div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery rule</h2></div>
+      <p class="lead">The 3.NBT.A.2 micro-credential is awarded when <b>both checks</b> are met: a strong Form A, and a strong delayed Form B on a later day.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge" aria-live="polite"><div class="gem">&#9670;</div><h3>3.NBT.A.2 Mastered</h3><p>You can read, write and identify whole numbers within 100,000 in standard, word, and expanded form.</p><p style="margin-top:8px;color:var(--ink2);">Next up: <b>3.NBT.A.4, multiplying by multiples of 10.</b></p></div>
+      <div id="notyetBox" class="note hide"><b>Not yet, and that is fine.</b> <span id="notyetMsg"></span></div>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can head back to your dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer>Amelia &middot; Math &middot; Verbatim Missouri Learning Standard 3.NBT.A.2 &middot; Twelve-beat module.</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='math', DAY='3.NBT.A.2', SNAME='Amelia';
+
+  var DATA={
+    WARM:[
+      {q:"What place is the 4 in <b>23,467</b>?",o:["hundreds","tens","thousands"],a:0,why:"Reading right to left: ones, tens, hundreds. The 4 sits in hundreds.",hint:"Count places from the right."},
+      {q:"The comma in 47,302 separates ...",o:["thousands from hundreds","hundreds from tens","tens from ones"],a:0,why:"The comma marks where the thousands end.",hint:"Look at what is on each side."}
+    ],
+    TRANS:[
+      {n:23467, std:"23,467", words:"twenty-three thousand, four hundred sixty-seven", exp:"20,000 + 3,000 + 400 + 60 + 7"},
+      {n:47302, std:"47,302", words:"forty-seven thousand, three hundred two", exp:"40,000 + 7,000 + 300 + 2"},
+      {n:80050, std:"80,050", words:"eighty thousand, fifty", exp:"80,000 + 50"},
+      {n:65109, std:"65,109", words:"sixty-five thousand, one hundred nine", exp:"60,000 + 5,000 + 100 + 9"},
+      {n:12345, std:"12,345", words:"twelve thousand, three hundred forty-five", exp:"10,000 + 2,000 + 300 + 40 + 5"}
+    ],
+    GUIDED:[
+      {q:"Which is <b>34,506</b> in words?",o:["thirty-four thousand, five hundred six","three thousand four hundred fifty-six","thirty-four, five hundred six"],a:0,why:"Split at the comma: 34 then 506.",hint:"Say what is in front of the comma, then \"thousand,\" then read the back."},
+      {q:"Which is <b>twelve thousand, eighty</b> in standard form?",o:["12,080","12,800","1,280"],a:0,why:"Twelve goes in front of the comma. Eighty is just 8 tens, so 080 fills the back three.",hint:"Use 3 digits after the comma."},
+      {q:"Which is the expanded form of <b>50,217</b>?",o:["50,000 + 200 + 10 + 7","5,000 + 200 + 10 + 7","50,000 + 217"],a:0,why:"Each digit is multiplied by its place value, then added.",hint:"Skip the places where the digit is 0."},
+      {q:"In <b>87,205</b>, what is the 8 worth?",o:["80,000","8,000","800"],a:0,why:"The 8 sits in the ten-thousands place, so it is worth 80,000.",hint:"Count places from the right: ones, tens, hundreds, thousands, ten thousands."}
+    ],
+    PRACTICE:[
+      {q:"What is <b>23,467</b> in words?",o:["twenty-three thousand, four hundred sixty-seven","two thousand three hundred forty-six seven","twenty-three, four hundred sixty-seven","two hundred thirty-four thousand sixty-seven"],a:0,why:"Split at the comma. 23 then 467.",hint:"Front, then \"thousand,\" then back."},
+      {q:"Write <b>sixty-five thousand, one hundred nine</b> in standard form.",o:["65,109","65,019","6,519","60,519"],a:0,why:"65 in front, 109 in back.",hint:"3 digits after the comma."},
+      {q:"Expanded form of <b>47,302</b>?",o:["40,000 + 7,000 + 300 + 2","4,000 + 700 + 30 + 2","47,000 + 302","40,000 + 7,000 + 32"],a:0,why:"Each digit times its place; skip the tens (digit is 0).",hint:"Hundreds place has a 3."},
+      {q:"What place is the 2 in <b>92,400</b>?",o:["thousands","ten thousands","hundreds","ones"],a:0,why:"Going right to left: 0 ones, 0 tens, 4 hundreds, 2 thousands.",hint:"Count places from the right."},
+      {q:"What is <b>10,003</b> in words?",o:["ten thousand, three","one thousand three","one hundred thousand three","ten, three"],a:0,why:"10 in front, 003 in back: just three.",hint:"Read the back three digits."},
+      {q:"Which number is <b>40,000 + 800 + 6</b>?",o:["40,806","48,006","4,806","40,086"],a:0,why:"4 ten-thousands, 0 thousands, 8 hundreds, 0 tens, 6 ones.",hint:"Skip the place where there is no piece."}
+    ],
+    RETRIEVAL:[
+      {q:"From memory: which is <b>twenty thousand, fifty</b>?",o:["20,050","20,500","2,050","20,005"],a:0,why:"20 in front, 050 in back.",hint:"Three digits go after the comma."},
+      {q:"From memory: what is the 5 worth in <b>53,800</b>?",o:["50,000","5,000","500","5"],a:0,why:"The 5 is in the ten-thousands place.",hint:"Leftmost digit of a five-digit number."}
+    ],
+    FORMA:[
+      {id:"A1",stem:"What is <b>23,467</b> in words?",o:["twenty-three thousand, four hundred sixty-seven","two thousand three hundred forty-six","twenty-three, four hundred sixty-seven","twenty thousand three hundred sixty-seven"],a:0,why:"Split at the comma: 23 thousand, 467.",concept:"words"},
+      {id:"A2",stem:"In <b>87,205</b>, what is the 8 worth?",o:["80,000","8,000","800","8"],a:0,why:"8 is in the ten-thousands place.",concept:"place"},
+      {id:"A3",stem:"Which is <b>fifty thousand, four hundred two</b> in standard form?",o:["50,402","50,042","5,402","54,002"],a:0,why:"50 in front, 402 in back.",concept:"words"},
+      {id:"A4",stem:"Expanded form of <b>34,506</b>?",o:["30,000 + 4,000 + 500 + 6","3,000 + 400 + 50 + 6","34,000 + 506","30,000 + 4,000 + 56"],a:0,why:"3 ten-thousands, 4 thousands, 5 hundreds, 0 tens, 6 ones.",concept:"expand"},
+      {id:"A5",stem:"The comma in 47,302 separates ...",o:["the thousands from the hundreds","the hundreds from the tens","the tens from the ones","none of those"],a:0,why:"The comma marks the thousands break.",concept:"comma"},
+      {id:"A6",stem:"What is <b>10,090</b> in words?",o:["ten thousand, ninety","one thousand ninety","ten thousand, nine","ten, ninety"],a:0,why:"10 in front, 090 in back: just ninety.",concept:"words"},
+      {id:"A7",stem:"Which number is <b>60,000 + 200 + 4</b>?",o:["60,204","62,004","6,204","60,024"],a:0,why:"6 ten-thousands, 0 thousands, 2 hundreds, 0 tens, 4 ones.",concept:"expand"},
+      {id:"A8",stem:"What place is the 7 in <b>71,238</b>?",o:["ten thousands","thousands","hundreds","ones"],a:0,why:"Leftmost digit of a five-digit number is the ten-thousands.",concept:"place"}
+    ],
+    FORMB:[
+      {id:"B1",stem:"What is <b>45,608</b> in words?",o:["forty-five thousand, six hundred eight","four thousand five hundred sixty","forty-five, six hundred eight","forty thousand five hundred sixty-eight"],a:0,why:"Split at the comma: 45 thousand, 608.",concept:"words"},
+      {id:"B2",stem:"In <b>92,400</b>, what is the 9 worth?",o:["90,000","9,000","900","9"],a:0,why:"9 is in the ten-thousands place.",concept:"place"},
+      {id:"B3",stem:"Which is <b>thirty thousand, seven hundred fifteen</b> in standard form?",o:["30,715","30,075","3,715","37,015"],a:0,why:"30 in front, 715 in back.",concept:"words"},
+      {id:"B4",stem:"Expanded form of <b>52,043</b>?",o:["50,000 + 2,000 + 40 + 3","5,000 + 200 + 40 + 3","52,000 + 43","50,000 + 2,000 + 43"],a:0,why:"5 ten-thousands, 2 thousands, 0 hundreds, 4 tens, 3 ones.",concept:"expand"},
+      {id:"B5",stem:"In 65,109 the comma sits between which places?",o:["thousands and hundreds","hundreds and tens","tens and ones","ten thousands and thousands"],a:0,why:"The comma is always between thousands and hundreds in five-digit numbers.",concept:"comma"},
+      {id:"B6",stem:"What is <b>20,005</b> in words?",o:["twenty thousand, five","two thousand five","twenty thousand, fifty","twenty, five"],a:0,why:"20 in front, 005 in back: just five.",concept:"words"},
+      {id:"B7",stem:"Which number is <b>80,000 + 500 + 30</b>?",o:["80,530","85,030","8,530","80,053"],a:0,why:"8 ten-thousands, 0 thousands, 5 hundreds, 3 tens, 0 ones.",concept:"expand"},
+      {id:"B8",stem:"What place is the 3 in <b>13,824</b>?",o:["thousands","ten thousands","hundreds","tens"],a:0,why:"Second digit from the left of a 5-digit number is thousands.",concept:"place"}
+    ],
+    EXPLAIN:{
+      stem:"Eli wrote <b>sixty thousand, ninety</b> as 6,090. Explain his mistake, and write the correct number.",
+      model:"Sixty thousand needs two digits in front of the comma (60), and three digits after (090). Eli wrote only 6 in front. The correct number is 60,090."
+    },
+    PT:{
+      n:47302,
+      prompt:"Write the number <b>forty-seven thousand, three hundred two</b> in standard form (with a comma). Then read it out loud, then say what the 4 is worth and what the 3 is worth.",
+      rubric:[
+        ["Writes it","Writes 47,302 with the comma in the right spot.","Missing comma, or comma in the wrong place."],
+        ["Reads it","Says \"forty-seven thousand, three hundred two\" clearly.","Misreads the thousands or hundreds chunk."],
+        ["Names places","Says the 4 is worth 40,000 and the 3 is worth 300.","Names face value (4 or 3) instead of place value."],
+        ["Explains","Says the place is what gives each digit its value.","Cannot explain why."]
+      ]
+    },
+    PASS:7,
+    RETEACH:{"comma":"c-comma","words":"c-words","expand":"c-expand","place":"c-comma"}
+  };
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var PHASES=['start','learn','practice','mastery','retention','wrap'];
+  function show(id){ PHASES.forEach(function(s){ document.getElementById(s).classList.toggle('hide',s!==id); }); window.scrollTo(0,0); }
+  function setStep(id,cls){ var e=document.getElementById(id); if(e)e.className='pstep '+cls; }
+
+  // hook cards
+  var hookCards=document.querySelectorAll('.hookcard');
+  Array.prototype.forEach.call(hookCards,function(c){ c.addEventListener('click',function(){ c.classList.add('open');
+    var all=true; Array.prototype.forEach.call(hookCards,function(x){ if(!x.classList.contains('open'))all=false; });
+    if(all){var r=document.getElementById('hookrv'); if(r)r.classList.add('show');}
+  }); });
+
+  function tapQuiz(containerId, items){ var c=document.getElementById(containerId); if(!c)return; c.innerHTML='';
+    items.forEach(function(it,qi){ var card=document.createElement('div'); card.className='tq';
+      var q=document.createElement('div'); q.className='tqq'; q.innerHTML=(qi+1)+'. '+it.q; card.appendChild(q);
+      var opts=document.createElement('div'); opts.className='opts'; var why=document.createElement('div'); why.className='qwhy';
+      it.o.forEach(function(t,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(b.dataset.l)return;
+          if(i===it.a){ Array.prototype.forEach.call(opts.children,function(x){x.dataset.l='1';x.style.pointerEvents='none';}); b.classList.add('correct'); why.style.color='var(--good)'; why.textContent='Correct. '+(it.why||''); }
+          else { b.classList.add('bad'); b.dataset.l='1'; b.style.pointerEvents='none'; why.style.color='var(--alt)'; why.textContent='Try again. '+(it.hint||''); }
+        }); opts.appendChild(b); });
+      card.appendChild(opts); card.appendChild(why); c.appendChild(card);
+    });
+  }
+  tapQuiz('warm', DATA.WARM);
+  tapQuiz('guided', DATA.GUIDED);
+
+  // predicts auto-wire
+  Array.prototype.forEach.call(document.querySelectorAll('.predict'),function(row){ var rev=row.nextElementSibling;
+    Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ if(b.dataset.done)return;
+      Array.prototype.forEach.call(row.children,function(c){c.dataset.done='1';});
+      if(b.getAttribute('data-ok')==='true')b.classList.add('ok'); else { b.classList.add('no'); Array.prototype.forEach.call(row.children,function(c){if(c.getAttribute('data-ok')==='true')c.classList.add('ok');}); }
+      if(rev)rev.classList.add('show');
+    }); }); });
+
+  // translator
+  var trIdx=0, trMode='std', tn=document.getElementById('tn'), tv=document.getElementById('tv');
+  function renderTrans(){ var it=DATA.TRANS[trIdx]; tn.textContent=it.std;
+    var label,body; if(trMode==='std'){label='Standard form';body=it.std;} else if(trMode==='word'){label='Number name';body=it.words;} else {label='Expanded form';body=it.exp;}
+    tv.innerHTML='<span class="tag">'+label+'</span>'+body;
+    document.getElementById('trIx').textContent=(trIdx+1)+' of '+DATA.TRANS.length;
+    document.getElementById('tabStd').setAttribute('aria-pressed',trMode==='std');
+    document.getElementById('tabWord').setAttribute('aria-pressed',trMode==='word');
+    document.getElementById('tabExp').setAttribute('aria-pressed',trMode==='exp');
+  }
+  document.getElementById('tabStd').addEventListener('click',function(){trMode='std';renderTrans();});
+  document.getElementById('tabWord').addEventListener('click',function(){trMode='word';renderTrans();});
+  document.getElementById('tabExp').addEventListener('click',function(){trMode='exp';renderTrans();});
+  document.getElementById('trNext').addEventListener('click',function(){trIdx=(trIdx+1)%DATA.TRANS.length;trMode='std';renderTrans();});
+  renderTrans();
+
+  tapQuiz('practiceSet', DATA.PRACTICE);
+  tapQuiz('retrievalSet', DATA.RETRIEVAL);
+
+  document.getElementById('toLearn').addEventListener('click',function(){ show('learn'); setStep('ps-start','done'); setStep('ps-learn','on'); });
+  document.getElementById('toPractice').addEventListener('click',function(){ show('practice'); setStep('ps-learn','done'); setStep('ps-practice','on'); });
+  document.getElementById('toMastery').addEventListener('click',function(){ show('mastery'); setStep('ps-practice','done'); setStep('ps-mastery','on'); startMC('A'); });
+
+  var QTIME=25, mcState={};
+  function ids(f){ return {q:'qtext'+f,o:'opts'+f,c:'qcount'+f,tl:'tlabel'+f,tf:'tfill'+f,why:'qwhy'+f,re:'reteach'+f}; }
+  function startMC(form){ mcState[form]={i:0,correct:0,wrong:[],timer:null,left:QTIME,locked:false}; rec.attempts=(rec.attempts||0)+1; save(app); showQ(form); }
+  function showQ(form){ var st=mcState[form],items=DATA['FORM'+form],it=items[st.i],el=ids(form); st.locked=false;
+    document.getElementById(el.c).textContent='Question '+(st.i+1)+' of '+items.length;
+    document.getElementById(el.q).innerHTML=it.stem;
+    var why=document.getElementById(el.why); why.textContent=''; var re=document.getElementById(el.re); if(re){re.classList.add('hide');re.innerHTML='';}
+    var opts=document.getElementById(el.o); opts.innerHTML='';
+    it.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.textContent=txt; b.addEventListener('click',function(){answer(form,i,b);}); opts.appendChild(b); });
+    st.left=QTIME; var tf=document.getElementById(el.tf),tl=document.getElementById(el.tl); tf.style.width='100%'; tf.classList.remove('low'); tl.textContent=QTIME+'s'; clearInterval(st.timer);
+    st.timer=setInterval(function(){ st.left--; if(st.left<0)st.left=0; tf.style.width=(st.left/QTIME*100)+'%'; tl.textContent=st.left+'s'; if(st.left<=8)tf.classList.add('low'); if(st.left===0)clearInterval(st.timer); },1000);
+  }
+  function answer(form,i,btn){ var st=mcState[form]; if(st.locked)return; st.locked=true; clearInterval(st.timer);
+    var items=DATA['FORM'+form],it=items[st.i],el=ids(form),ok=(i===it.a),opts=document.getElementById(el.o);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===it.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    var why=document.getElementById(el.why);
+    if(ok){ st.correct++; why.style.color='var(--good)'; why.textContent='Correct. '+it.why; }
+    else { st.wrong.push({stem:it.stem,picked:it.o[i],correct:it.o[it.a]}); why.style.color='var(--alt)'; why.textContent='Not quite. '+it.why;
+      var re=document.getElementById(el.re); if(re){ var loc=(DATA.RETEACH[it.concept]||'learn'); re.classList.remove('hide'); re.innerHTML='Want a quick reteach? <a href="#'+loc+'">Back to that idea</a>'; } }
+    setTimeout(function(){ st.i++; if(st.i<items.length) showQ(form); else finishMC(form); }, ok?700:1250);
+  }
+  function finishMC(form){ var st=mcState[form];
+    if(form==='A'){ rec.formA=st.correct; rec.best=Math.max(rec.best||0,Math.round(st.correct/DATA.FORMA.length*100)); rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcA').classList.add('hide'); document.getElementById('explainA').classList.remove('hide');
+      document.getElementById('explainStem').innerHTML=DATA.EXPLAIN.stem; window.scrollTo(0,0);
+    } else { rec.formB=st.correct; rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcB').classList.add('hide'); document.getElementById('resultB').classList.remove('hide');
+      document.getElementById('scoreBtxt').textContent=st.correct+' / '+DATA.FORMB.length;
+      var bs=document.getElementById('bStatus'),pass=st.correct>=DATA.PASS; bs.textContent=(pass?'Strong':'Needs another pass'); bs.style.color=(pass?'var(--good)':'var(--alt)');
+      if(pass){ rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud(); }
+      commitTime(); window.scrollTo(0,0);
+    }
+  }
+
+  document.getElementById('showModel').addEventListener('click',function(){ var m=document.getElementById('modelBox'); m.innerHTML='<b>A strong answer:</b> '+DATA.EXPLAIN.model; m.classList.add('show'); });
+  document.getElementById('toPT').addEventListener('click',function(){ document.getElementById('explainA').classList.add('hide'); document.getElementById('ptA').classList.remove('hide'); setupPT(); window.scrollTo(0,0); });
+
+  function setupPT(){ var p=DATA.PT; document.getElementById('ptStem').innerHTML=p.prompt;
+    var tb=document.getElementById('ptRubric'); tb.innerHTML='<tr><th>What strong work looks like</th><th>What to watch for</th></tr>';
+    p.rubric.forEach(function(c){ var tr=document.createElement('tr'); tr.innerHTML='<td><b>'+c[0]+'.</b> '+c[1]+'</td><td>'+c[2]+'</td>'; tb.appendChild(tr); });
+  }
+
+  document.getElementById('ptDone').addEventListener('click',function(){ var mc=rec.formA||0; save(app);
+    document.getElementById('ptA').classList.add('hide'); document.getElementById('resultA').classList.remove('hide');
+    document.getElementById('scoreAtxt').textContent=mc+' / '+DATA.FORMA.length;
+    var strong=(mc>=DATA.PASS), stt=document.getElementById('aStatus'); stt.textContent=strong?'Form A clear':'Reteach needed'; stt.style.color=strong?'var(--good)':'var(--alt)';
+    document.getElementById('aMsg').innerHTML = strong ? 'Form A is at the bar. The written explanation and the out-loud task are for you and an adult to talk through; the badge comes from Form A and the delayed Form B.' : 'Form A is not at the bar yet. Reteach, then run Form A again. This is not a penalty.';
+    document.getElementById('retryA').classList.toggle('hide',strong); document.getElementById('toRetention').classList.toggle('hide',!strong);
+    if(strong){ rec.status='formA-passed'; save(app); syncCloud(); }
+    commitTime(); window.scrollTo(0,0);
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show('learn'); setStep('ps-mastery','');setStep('ps-practice','on');setStep('ps-learn','done'); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show('retention'); setStep('ps-mastery','done'); setStep('ps-retention','on'); });
+  document.getElementById('startB').addEventListener('click',function(){ document.getElementById('mcB').classList.remove('hide'); this.classList.add('hide'); startMC('B'); });
+  document.getElementById('toWrap').addEventListener('click',function(){ show('wrap'); setStep('ps-retention','done'); setStep('ps-wrap','on'); decide(); });
+
+  var feel=null, conf=null;
+  function pickOne(rowId,setter){ var row=document.getElementById(rowId); Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ setter(b.getAttribute('data-v')); Array.prototype.forEach.call(row.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); }); }); }
+  pickOne('feelRate',function(v){feel=v;}); pickOne('confRate',function(v){conf=v;});
+  document.getElementById('saveReflect').addEventListener('click',function(){ rec.feedback={rating:feel||'just',tag:'clear',at:Date.now(),confidence:conf?parseInt(conf,10):null,plan:(document.getElementById('planText').value||'').slice(0,500)}; save(app); document.getElementById('donebox').classList.remove('hide'); window.scrollTo({top:document.getElementById('badge').offsetTop,behavior:'smooth'}); });
+
+  function decide(){ var mcA=rec.formA||0, mcB=rec.formB||0, PASS=DATA.PASS;
+    var rows=[ {ok:mcA>=PASS,t:'Form A check',d:'At least '+PASS+' of '+DATA.FORMA.length+'. You got '+mcA+'.'},
+               {ok:mcB>=PASS,t:'Delayed retention (Form B)',d:'At least '+PASS+' of '+DATA.FORMB.length+' on a later day. You got '+mcB+'.'} ];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'✓':'!')+'</span><span class="g2"><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    var all=rows.every(function(r){return r.ok;});
+    if(all){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); var b=document.getElementById('notyetBox'); b.classList.remove('hide'); document.getElementById('notyetMsg').textContent='Pass the Form A check and the delayed Form B check (on a later day) and the badge is yours.'; }
+    commitTime();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 02 &middot; Rational vs Irrational</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno,.stdtag .l,.tick{font-family:'Spline Sans Mono',monospace;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .deftab{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+  .defc{border:1px solid var(--line);border-radius:11px;padding:14px;}
+  .defc h3{font-family:'Anton';font-weight:400;text-transform:uppercase;font-size:16px;letter-spacing:.02em;margin-bottom:4px;}
+  .defc.r h3{color:var(--blue);} .defc.i h3{color:var(--accent-d);}
+  .defc p{font-size:14.5px;color:var(--ink2);} .defc .ex{font-family:'Spline Sans Mono';font-size:14px;color:var(--ink);margin-top:8px;display:block;}
+  @media (max-width:520px){.deftab{grid-template-columns:1fr;}}
+  .bins{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+  @media (max-width:520px){.bins{grid-template-columns:1fr;}}
+  .bin{border:2px dashed var(--line);border-radius:12px;padding:12px;min-height:120px;}
+  .bin h4{font-family:'Anton';font-weight:400;text-transform:uppercase;font-size:14px;letter-spacing:.04em;margin-bottom:6px;}
+  .bin.r h4{color:var(--blue);} .bin.i h4{color:var(--accent-d);}
+  .bin .drop{display:flex;flex-wrap:wrap;gap:6px;min-height:60px;}
+  .tile{font:inherit;font-family:'Spline Sans Mono';font-size:15px;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px 10px;min-height:44px;color:var(--ink);cursor:pointer;}
+  .pool{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;justify-content:center;}
+  .pool .tile:hover{border-color:var(--accent);}
+  .tile.r{border-color:var(--blue);background:#eef4fe;color:var(--blue);}
+  .tile.i{border-color:var(--accent-d);background:#fdecea;color:var(--accent-d);}
+  .tile.ok{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+  .tile.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .twoact{display:flex;gap:6px;}
+  .twoact button{flex:1;font:inherit;font-weight:600;font-size:13px;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px;min-height:40px;cursor:pointer;color:var(--ink);}
+  .twoact button:hover{border-color:var(--accent);}
+  .scwhy{display:block;font-size:13px;color:var(--ink2);margin-top:8px;}
+  .scorerow{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-family:'Spline Sans Mono';font-size:14px;color:var(--ink2);}
+  .resetb{font:inherit;font-family:'Spline Sans Mono';font-size:12px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 10px;cursor:pointer;color:var(--ink2);min-height:32px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);} .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);} .cta:disabled{opacity:.5;cursor:default;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+  .ptask textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;resize:vertical;color:var(--ink);background:#fff;}
+  .gate{margin-top:10px;}
+  .gitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px;color:var(--ink2);}
+  .gitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono';font-size:13px;}
+  .gitem.ok .mk{background:var(--good);} .gitem.miss .mk{background:var(--accent-d);}
+  .cred{display:none;text-align:center;padding:20px;border-radius:14px;background:#fff;border:1px solid var(--good);margin-top:12px;}
+  .cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.NS.A.1a</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 02</div>
+    <h1>Rational vs Irrational</h1>
+    <p class="mission">Every real number falls into one of two camps. Today you build a sharp test for which is which, then sort a stack of suspects without flinching.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Know the differences between rational and irrational numbers.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>The test in one question</h2></div>
+      <p class="lead">A real number is <b>rational</b> if it can be written as a fraction p/q where p and q are integers and q is not zero. If no such fraction exists, the number is <b>irrational</b>.</p>
+      <div class="deftab">
+        <div class="defc r"><h3>Rational</h3><p>Includes integers, terminating decimals, and repeating decimals. All of these can be rewritten as p/q.</p><span class="ex">7 = 7/1 &middot; 0.25 = 1/4 &middot; 0.333... = 1/3 &middot; √25 = 5</span></div>
+        <div class="defc i"><h3>Irrational</h3><p>Decimal runs forever with no repeating block. Cannot be written as p/q.</p><span class="ex">√2 = 1.41421... &middot; pi = 3.14159... &middot; e = 2.71828... &middot; 0.101001000...</span></div>
+      </div>
+      <div class="note"><b>Engineering check.</b> Square roots are the common trap. If the number under the root is a <b>perfect square</b> (1, 4, 9, 16, 25, 36, 49, 64, 81, 100), the root is a whole number and rational. Anything else under a square root is irrational.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Why a fraction always behaves</h2></div>
+      <p class="lead">If a number is p/q, long-division has only finitely many possible remainders less than q. Eventually a remainder repeats, which forces the decimal to repeat (or stop). That guarantee fails for numbers like √2: no fraction can land it, so its decimal never settles into a pattern.</p>
+      <p class="lead" style="margin-top:8px;">The constructed decimal <span class="mono">0.101001000100001...</span> looks tame, but the gaps grow forever. No fixed block ever repeats, so no fraction can name it. Irrational.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / DO</span><h2>Sort the stack</h2></div>
+      <p class="lead">Tap each number, then send it to <b>Rational</b> or <b>Irrational</b>. You get instant feedback per item. Keep going until all 10 are placed.</p>
+      <div class="pool" id="pool"></div>
+      <div class="bins">
+        <div class="bin r"><h4>Rational bin</h4><div class="drop" id="binR"></div></div>
+        <div class="bin i"><h4>Irrational bin</h4><div class="drop" id="binI"></div></div>
+      </div>
+      <div class="scorerow"><span id="sortLine">0 of 10 placed</span><button class="resetb" id="sortReset" type="button">Reset</button></div>
+      <div id="sortWhy" class="scwhy"></div>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">04 / EXPLAIN</span><h2>Write the test in your own words</h2></div>
+      <p class="lead">In two or three sentences, write the rule you would tell a teammate so they could classify any number on sight. Include what to do with square roots.</p>
+      <textarea id="explainText" placeholder="My rule for rational vs irrational..." aria-label="your written explanation"></textarea>
+      <p class="lead" style="margin-top:10px;font-size:14px;">This is for thinking, not grading. Read it back. Did you mention the fraction test AND the perfect-square shortcut?</p>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">05 / SAY IT</span><h2>Out loud, to an adult</h2></div>
+      <p class="lead">Say why √36 is rational but √37 is not. Then give one example of an irrational number that is <b>not</b> a square root.</p>
+      <div class="note"><b>Adult listener.</b> Look for two things: (1) the learner names that 36 is a perfect square (6²) so √36 = 6, a rational whole number; (2) the learner gives pi, e, or a non-repeating constructed decimal as a non-root irrational.</div>
+      <button class="cta alt" id="ptDone" type="button">I said it out loud. Continue</button>
+    </div>
+
+    <button class="cta" id="toCheck">Start the Form A check (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="resultA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A RESULT</span><h2>How that landed</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="scoreA">0 / 8</span><span style="flex:1"></span><span id="statusA" style="font-weight:700;"></span></div>
+      <p class="lead" id="msgA" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to retention (Form B)</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new questions on the same idea, with different numbers. Best done <b>at least a day after Form A</b>. That delay is what proves the skill lasted.</p>
+      <div class="note"><b>Spacing.</b> If you can, close this and come back tomorrow before starting Form B.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="hide" id="bWrap">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="cred" id="cred"><div class="gem">◆</div><h3>8.NS.A.1a Mastered</h3><p>You can tell rational from irrational on sight, and explain why.</p></div>
+      <p class="lead" style="margin-top:10px;">Next session: why every rational number has a decimal that either terminates or repeats.</p>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can close this and head back to your dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer>Julie &middot; Math &middot; Day 1 &middot; Verbatim Missouri Learning Standard 8.NS.A.1a</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='math', DAY='8.NS.A.1a', SNAME='Julie';
+  var PASS=7, QTIME=25;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,formA:0,formB:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  // ---- sorter ----
+  var ITEMS=[
+    {t:'3/4', r:true, why:'3/4 is already a fraction of integers. Rational.'},
+    {t:'√2', r:false, why:'2 is not a perfect square, so √2 is irrational.'},
+    {t:'√49', r:true, why:'49 = 7², so √49 = 7. Rational.'},
+    {t:'pi', r:false, why:'pi never ends or repeats. Irrational.'},
+    {t:'0.875', r:true, why:'0.875 terminates: 875/1000 = 7/8. Rational.'},
+    {t:'0.‾6 (0.666...)', r:true, why:'A 1-digit repeating decimal: 0.666... = 2/3. Rational.'},
+    {t:'√17', r:false, why:'17 is not a perfect square. Irrational.'},
+    {t:'√100', r:true, why:'100 = 10², so √100 = 10. Rational.'},
+    {t:'e', r:false, why:'Eulers number e = 2.71828... never repeats. Irrational.'},
+    {t:'0.121221222...', r:false, why:'The gaps grow forever, no fixed block repeats. Irrational.'}
+  ];
+  var pool=document.getElementById('pool'), binR=document.getElementById('binR'), binI=document.getElementById('binI'),
+      sortLine=document.getElementById('sortLine'), sortWhy=document.getElementById('sortWhy');
+  var placed=0;
+  function renderPool(){ pool.innerHTML=''; placed=0; binR.innerHTML=''; binI.innerHTML=''; sortWhy.textContent='';
+    ITEMS.forEach(function(it,i){
+      var wrap=document.createElement('div'); wrap.style.cssText='display:flex;flex-direction:column;gap:4px;';
+      var t=document.createElement('button'); t.type='button'; t.className='tile'; t.textContent=it.t;
+      var row=document.createElement('div'); row.className='twoact';
+      var br=document.createElement('button'); br.type='button'; br.textContent='Rational';
+      var bi=document.createElement('button'); bi.type='button'; bi.textContent='Irrational';
+      function place(choice){ if(t.dataset.done) return; t.dataset.done='1'; var ok=(choice===it.r);
+        t.classList.add(ok?'ok':'no'); br.disabled=true; bi.disabled=true; br.style.opacity='.5'; bi.style.opacity='.5';
+        var dest = choice ? binR : binI; var clone=t.cloneNode(true); clone.disabled=true; dest.appendChild(clone);
+        placed++; sortLine.textContent=placed+' of '+ITEMS.length+' placed';
+        sortWhy.textContent=(ok?'Correct. ':'Off. ')+it.why;
+      }
+      br.addEventListener('click',function(){ place(true); });
+      bi.addEventListener('click',function(){ place(false); });
+      row.appendChild(br); row.appendChild(bi); wrap.appendChild(t); wrap.appendChild(row); pool.appendChild(wrap);
+    });
+    sortLine.textContent='0 of '+ITEMS.length+' placed';
+  }
+  document.getElementById('sortReset').addEventListener('click',renderPool);
+  renderPool();
+
+  // ---- Form A and Form B item banks ----
+  var FORMA=[
+    {q:'Which of these is <b>irrational</b>?', o:['√49','√50','0.25','7/8'], a:1, why:'50 is not a perfect square, so √50 is irrational.'},
+    {q:'Which of these is <b>rational</b>?', o:['pi','√2','0.333...','e'], a:2, why:'0.333... = 1/3, a fraction of integers.'},
+    {q:'√81 is ...', o:['rational because 81 = 9²','irrational because it has a root','irrational because the answer is messy','not a real number'], a:0, why:'√81 = 9, a whole number, so rational.'},
+    {q:'The number 22/7 is ...', o:['irrational because it looks like pi','rational because it is a ratio of integers','irrational because the decimal is long','equal to pi'], a:1, why:'22/7 is p/q with integers, so rational. It is only close to pi.'},
+    {q:'Which decimal is <b>irrational</b>?', o:['0.5','0.272727...','0.101001000100001...','0.875'], a:2, why:'The gaps grow forever with no repeating block.'},
+    {q:'√45 is between which two whole numbers?', o:['5 and 6','6 and 7','7 and 8','It is rational'], a:1, why:'6²=36 and 7²=49, and 45 is between. √45 is irrational.'},
+    {q:'A number can be written as p/q with integers and q≠0. It must be ...', o:['irrational','rational','undefined','a square root'], a:1, why:'That is the definition of rational.'},
+    {q:'Which set is <b>all rational</b>?', o:['{√16, 0.‾3, 5/2}','{√2, pi, e}','{√3, 0.875, 7}','{√25, pi, 1/2}'], a:0, why:'√16=4, 0.333...=1/3, 5/2 is a fraction. All rational.'}
+  ];
+  var FORMB=[
+    {q:'Which of these is <b>irrational</b>?', o:['√64','√72','0.5','3/8'], a:1, why:'72 is not a perfect square, so √72 is irrational.'},
+    {q:'Which of these is <b>rational</b>?', o:['pi','√5','0.‾6 (0.666...)','e'], a:2, why:'0.666... = 2/3, a fraction of integers.'},
+    {q:'√121 is ...', o:['irrational because it has a root','rational because 121 = 11²','irrational because 121 is big','not a real number'], a:1, why:'√121 = 11, a whole number, so rational.'},
+    {q:'The number 355/113 is ...', o:['irrational because it is close to pi','rational because it is a ratio of integers','irrational because the decimal is long','equal to pi'], a:1, why:'Integers on top and bottom means rational, even if it is close to pi.'},
+    {q:'Which decimal is <b>irrational</b>?', o:['0.4','0.142857142857...','0.202002000200002...','0.125'], a:2, why:'The pattern is not a fixed repeating block. The gaps grow.'},
+    {q:'√30 is between which two whole numbers?', o:['4 and 5','5 and 6','6 and 7','It is rational'], a:1, why:'5²=25 and 6²=36, so √30 sits between, and it is irrational.'},
+    {q:'A number whose decimal never ends and never repeats must be ...', o:['rational','irrational','an integer','a perfect square root'], a:1, why:'No fraction can capture a non-repeating endless decimal.'},
+    {q:'Which set is <b>all irrational</b>?', o:['{√9, pi, 0.5}','{√2, pi, e}','{√100, 0.‾3, 7}','{1/4, √8, e}'], a:1, why:'√2, pi, and e all have endless non-repeating decimals.'}
+  ];
+
+  // ---- check runner (drives both Form A and Form B) ----
+  var qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, runWrong=[];
+  var QS=FORMA, MODE='A';
+  var secL=document.getElementById('lesson'), secC=document.getElementById('check'),
+      secRA=document.getElementById('resultA'), secRT=document.getElementById('retention'),
+      secW=document.getElementById('wrap'), bWrap=document.getElementById('bWrap');
+  function el(id){return document.getElementById(id);}
+  function startA(){ MODE='A'; QS=FORMA; rec.attempts=(rec.attempts||0)+1; save(app);
+    secL.classList.add('hide'); secRA.classList.add('hide'); secC.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function startB(){ MODE='B'; QS=FORMB; el('startB').classList.add('hide'); bWrap.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi];
+    var ids = MODE==='A' ? {c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'} : {c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhy'};
+    el(ids.c).textContent='Question '+(qi+1)+' of '+QS.length;
+    el(ids.q).innerHTML=item.q;
+    var opts=el(ids.o); opts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,opts,ids);}); opts.appendChild(b); });
+    el(ids.w).textContent='';
+    timeLeft=QTIME; el(ids.f).style.width='100%'; el(ids.f).classList.remove('low'); el(ids.t).textContent=QTIME+'s';
+    clearInterval(timer); timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0;
+      el(ids.f).style.width=(timeLeft/QTIME*100)+'%'; el(ids.t).textContent=timeLeft+'s';
+      if(timeLeft<=8) el(ids.f).classList.add('low'); if(timeLeft===0) clearInterval(timer); }, 1000);
+  }
+  function answer(i,btn,opts,ids){ if(locked)return; locked=true; clearInterval(timer);
+    var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    el(ids.w).innerHTML=(ok?'Correct. ':'Not quite. ')+item.why;
+    if(ok)correct++; else runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a], mode:MODE});
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?700:1300); }
+  function finish(){
+    if(MODE==='A'){ secC.classList.add('hide'); secRA.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formA=correct; rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+      el('scoreA').textContent=correct+' / '+QS.length;
+      var passed=(correct>=PASS); el('statusA').textContent=passed?'PASS':'NOT YET'; el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
+      el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B waits at least a day.'):('You need '+PASS+' of '+QS.length+' to clear Form A. You got '+correct+'. Look back at the sort and the test, then try again.');
+      rec.best=Math.max(rec.best||0,Math.round(correct/QS.length*100));
+      rec.status=passed?'formA_passed':'tried';
+      if(passed) el('retryA').classList.add('hide'); else el('retryA').classList.remove('hide');
+      save(app); commitTime();
+    } else {
+      bWrap.classList.add('hide'); secRT.classList.add('hide'); secW.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formB=correct; el('finalA').textContent=(rec.formA||0)+' / 8'; el('finalB').textContent=correct+' / 8';
+      var aPass=(rec.formA||0)>=PASS, bPass=correct>=PASS, both=aPass&&bPass;
+      var gate=el('gate'); gate.innerHTML='';
+      function gline(ok,label){ var d=document.createElement('div'); d.className='gitem '+(ok?'ok':'miss'); d.innerHTML='<div class="mk">'+(ok?'✓':'!')+'</div><div>'+label+'</div>'; gate.appendChild(d); }
+      gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
+      gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
+      if(both){ el('cred').classList.add('show'); rec.status='mastered'; rec.points=Math.max(rec.points||0,100); rec.passedAt=Date.now(); }
+      else { rec.status='formB_tried'; }
+      save(app); commitTime(); syncCloud();
+      setTimeout(function(){ el('donebox').classList.remove('hide'); }, 600);
+    }
+  }
+  el('toCheck').addEventListener('click',startA);
+  el('toRetention').addEventListener('click',function(){ secRA.classList.add('hide'); secRT.classList.remove('hide'); window.scrollTo(0,0); });
+  el('retryA').addEventListener('click',function(){ secRA.classList.add('hide'); secL.classList.remove('hide'); window.scrollTo(0,0); });
+  el('startB').addEventListener('click',startB);
+  el('ptDone').addEventListener('click',function(){ this.disabled=true; this.textContent='Logged. Keep going.'; });
+})();
+</script>
+</body>
+</html>

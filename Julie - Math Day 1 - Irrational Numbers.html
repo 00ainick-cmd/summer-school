@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 01 · Real Numbers on the Line</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno,.stdtag .l,.nval,.nguess,.tick{font-family:'Spline Sans Mono',monospace;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .deftab{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+  .defc{border:1px solid var(--line);border-radius:11px;padding:14px;}
+  .defc h3{font-family:'Anton';font-weight:400;text-transform:uppercase;font-size:16px;letter-spacing:.02em;margin-bottom:4px;}
+  .defc.r h3{color:var(--blue);} .defc.i h3{color:var(--accent-d);}
+  .defc p{font-size:14.5px;color:var(--ink2);} .defc .ex{font-family:'Spline Sans Mono';font-size:14px;color:var(--ink);margin-top:8px;display:block;}
+  @media (max-width:520px){.deftab{grid-template-columns:1fr;}}
+  /* number line widget */
+  .nval{font-size:40px;font-weight:600;text-align:center;color:var(--accent-d);margin:4px 0 2px;}
+  .nsub{text-align:center;color:var(--ink2);font-size:14px;margin-bottom:12px;}
+  .picks{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:6px;}
+  .pick{font:inherit;font-family:'Spline Sans Mono';font-size:15px;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px 14px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .pick:hover{border-color:var(--accent);} .pick.ok{border-color:var(--blue);background:var(--blue);color:#fff;} .pick.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .nline{margin-top:16px;}
+  .ntrack{position:relative;height:46px;border-bottom:2px solid var(--ink);margin:0 6px;}
+  .tickrow{display:flex;justify-content:space-between;margin:0 6px;font-family:'Spline Sans Mono';font-size:12px;color:var(--mute);}
+  .nmark{position:absolute;top:2px;width:2px;height:30px;background:var(--accent);transform:translateX(-1px);}
+  .nmark .cap{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-family:'Spline Sans Mono';font-size:11px;color:var(--accent-d);white-space:nowrap;}
+  .ntrue{position:absolute;top:2px;width:2px;height:30px;background:var(--blue);transform:translateX(-1px);display:none;}
+  .ntrue .cap{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-family:'Spline Sans Mono';font-size:11px;color:var(--blue);white-space:nowrap;}
+  input[type=range]{width:100%;height:44px;margin-top:10px;accent-color:var(--accent);cursor:pointer;}
+  .nguess{text-align:center;font-size:15px;color:var(--ink2);margin-top:2px;}
+  .nbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+  .gbtn{font:inherit;font-weight:600;font-size:15px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:11px 16px;min-height:46px;cursor:pointer;color:var(--ink);}
+  .gbtn.go{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .nfb{margin-top:12px;font-size:15px;text-align:center;min-height:1.4em;color:var(--ink2);}
+  .nfb.ok{color:var(--blue);font-weight:600;} .nfb.try{color:var(--accent-d);font-weight:600;}
+  /* classifier */
+  .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  @media (max-width:520px){.sgrid{grid-template-columns:1fr;}}
+  .scard{border:1.5px solid var(--line);border-radius:12px;padding:12px;}
+  .scard .v{font-family:'Spline Sans Mono';font-size:20px;text-align:center;margin-bottom:8px;color:var(--ink);}
+  .scbtns{display:flex;gap:8px;}
+  .scbtns button{flex:1;font:inherit;font-weight:600;font-size:14px;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:10px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .scbtns button:hover{border-color:var(--accent);}
+  .scard.done .scbtns button{pointer-events:none;opacity:.55;}
+  .scard.right{border-color:var(--blue);background:#eef4fe;} .scard.wrong{border-color:var(--red);background:#fdecea;}
+  .scwhy{font-size:13px;color:var(--ink2);margin-top:8px;display:none;} .scard.done .scwhy{display:block;}
+  .sortscore{text-align:center;font-family:'Spline Sans Mono';margin-top:12px;color:var(--ink2);}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .fb{margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
+  .fb .fl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:10px;}
+  .faces,.tags{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+  .tags{margin-top:9px;}
+  .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
+  .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.NS.A.2</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Session 01</div>
+    <h1>Real Numbers on the Line</h1>
+    <p class="mission">Some numbers can be written as a clean fraction. Some never settle down, no matter how many decimals you write. You will learn to tell them apart, estimate the messy ones, and pin them to a number line.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Estimate the value and compare the size of irrational numbers and approximate their locations on a number line.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Two kinds of number</h2></div>
+      <p class="lead">Every number on the line is one of these two. The split comes down to one question: can it be written as a ratio of two integers?</p>
+      <div class="deftab">
+        <div class="defc r"><h3>Rational</h3><p>Can be written as a fraction of integers. Its decimal either stops or repeats forever in a pattern.</p><span class="ex">3/4 = 0.75 &middot; 1/3 = 0.333... &middot; √16 = 4 &middot; 22/7</span></div>
+        <div class="defc i"><h3>Irrational</h3><p>Cannot be written as a fraction. Its decimal runs forever with no repeating pattern.</p><span class="ex">√2 = 1.41421... &middot; √5 &middot; pi = 3.14159...</span></div>
+      </div>
+      <p class="lead" style="margin-top:14px;">Key move for square roots: if the number under the root is a <b>perfect square</b> (4, 9, 16, 25...), the root is a whole number, so it is rational. If it is not a perfect square, the root is irrational, and it lands <b>between</b> two whole numbers.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / DO</span><h2>Pin it to the line</h2></div>
+      <p class="lead">First predict which two whole numbers it sits between. Then slide the marker to your best estimate and check it against the real value.</p>
+      <div class="nval" id="nval"></div>
+      <div class="nsub" id="nsub">Which two whole numbers is it between?</div>
+      <div class="picks" id="picks"></div>
+      <div class="nline">
+        <div class="ntrack" id="ntrack">
+          <div class="nmark" id="nmark" style="left:50%"><span class="cap" id="ncap">your guess</span></div>
+          <div class="ntrue" id="ntrue"><span class="cap" id="tcap"></span></div>
+        </div>
+        <div class="tickrow" id="tickrow"></div>
+        <input type="range" id="nslider" min="0" max="10" step="0.01" value="5" aria-label="estimate position on the number line" disabled>
+        <div class="nguess" id="nguess">Pick the two integers first</div>
+      </div>
+      <div class="nbtns">
+        <button class="gbtn go" id="ncheck" disabled>Check my estimate</button>
+        <button class="gbtn" id="nnew">New value</button>
+      </div>
+      <div class="nfb" id="nfb"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / SORT</span><h2>Rational or irrational?</h2></div>
+      <p class="lead">Decide each one. Watch the traps: a root of a perfect square is rational, a repeating decimal is rational, and 22/7 only looks like pi.</p>
+      <div class="sgrid" id="sgrid"></div>
+      <div class="sortscore" id="sortscore">0 of 8 sorted</div>
+    </div>
+
+    <button class="cta" id="toCheck">I worked through it. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 5</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="ptsrow hide" id="ptsrow">
+        <div><div class="v" id="vbase">0</div><div class="k">Base</div></div>
+        <div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div>
+        <div><div class="v" id="vtotal">0</div><div class="k">Points</div></div>
+      </div>
+    </div>
+    <div class="fb hide" id="fbcard">
+      <div class="fl">How did that feel?</div>
+      <div class="faces" id="faces"></div>
+      <div class="tags" id="tags"></div>
+      <button class="cta hide" id="saveFb" style="margin-top:14px;">Save and finish</button>
+    </div>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Julie · Math · Day 1</footer>
+</div>
+<script>
+(function(){
+
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='math', DAY='8.NS.A.2', SNAME='Julie';
+  var PASS=0.8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  // ---- number line widget ----
+  var VALS=[
+    {lab:'\u221a7', v:Math.sqrt(7)},{lab:'\u221a2', v:Math.sqrt(2)},{lab:'\u221a5', v:Math.sqrt(5)},
+    {lab:'\u221a10', v:Math.sqrt(10)},{lab:'\u221a3', v:Math.sqrt(3)},{lab:'pi', v:Math.PI},{lab:'\u221a8', v:Math.sqrt(8)}
+  ];
+  var nIdx=0, nBoundOk=false;
+  var nval=document.getElementById('nval'), picks=document.getElementById('picks'), slider=document.getElementById('nslider'),
+      nmark=document.getElementById('nmark'), ntrue=document.getElementById('ntrue'), tcap=document.getElementById('tcap'),
+      nguess=document.getElementById('nguess'), ncheck=document.getElementById('ncheck'), nfb=document.getElementById('nfb');
+  (function ticks(){ var r=document.getElementById('tickrow'); var h=''; for(var i=0;i<=10;i++)h+='<span class="tick">'+i+'</span>'; r.innerHTML=h; })();
+  function setMark(val){ nmark.style.left=(val/10*100)+'%'; }
+  function loadVal(){ var item=VALS[nIdx]; nval.textContent=item.lab; nBoundOk=false;
+    ntrue.style.display='none'; nfb.className='nfb'; nfb.textContent=''; document.getElementById('ncap').textContent='your guess';
+    slider.disabled=true; ncheck.disabled=true; slider.value=5; setMark(5); nguess.textContent='Pick the two integers first';
+    var f=Math.floor(item.v); var starts=[]; for(var s=f-1;s<=f+2;s++){ if(s>=0&&s<=9) starts.push(s); }
+    while(starts.length<4 && starts[0]>0) starts.unshift(starts[0]-1);
+    picks.innerHTML=''; starts.forEach(function(st){ var b=document.createElement('button'); b.className='pick'; b.type='button';
+      b.textContent=st+' to '+(st+1);
+      b.addEventListener('click',function(){ if(nBoundOk)return;
+        if(st===f){ b.classList.add('ok'); nBoundOk=true; slider.disabled=false; ncheck.disabled=false;
+          nguess.textContent='Now slide to your estimate'; nfb.className='nfb ok'; nfb.textContent='Yes. '+item.lab+' is between '+f+' and '+(f+1)+', because '+f+'\u00b2='+(f*f)+' and '+(f+1)+'\u00b2='+((f+1)*(f+1))+'.';
+        } else { b.classList.add('no'); nfb.className='nfb try'; nfb.textContent='Not quite. Compare squares: which two squares does the number under the root fall between?'; }
+      }); picks.appendChild(b); });
+  }
+  slider.addEventListener('input',function(){ setMark(parseFloat(slider.value)); nguess.textContent='Your guess: '+parseFloat(slider.value).toFixed(2); });
+  ncheck.addEventListener('click',function(){ var item=VALS[nIdx]; var g=parseFloat(slider.value); var diff=Math.abs(g-item.v);
+    ntrue.style.left=(item.v/10*100)+'%'; tcap.textContent=item.lab+' \u2248 '+item.v.toFixed(2); ntrue.style.display='block';
+    if(diff<=0.15){ nfb.className='nfb ok'; nfb.textContent='Excellent. You were within '+diff.toFixed(2)+' of '+item.lab+' \u2248 '+item.v.toFixed(2)+'.'; }
+    else { nfb.className='nfb try'; nfb.textContent='Close. The true spot is the blue mark: '+item.lab+' \u2248 '+item.v.toFixed(2)+'. You were off by '+diff.toFixed(2)+'.'; }
+  });
+  document.getElementById('nnew').addEventListener('click',function(){ nIdx=(nIdx+1)%VALS.length; loadVal(); });
+  loadVal();
+
+  // ---- classifier ----
+  var CARDS=[
+    {t:'\u221a9', r:true, why:'\u221a9 = 3, a whole number, so rational.'},
+    {t:'\u221a2', r:false, why:'2 is not a perfect square, so \u221a2 is irrational.'},
+    {t:'pi', r:false, why:'pi never ends or repeats, so it is irrational.'},
+    {t:'1/3', r:true, why:'1/3 = 0.333..., a repeating decimal, so rational.'},
+    {t:'\u221a16', r:true, why:'\u221a16 = 4, so rational.'},
+    {t:'\u221a5', r:false, why:'5 is not a perfect square, so \u221a5 is irrational.'},
+    {t:'22/7', r:true, why:'22/7 is a ratio of integers, so rational. It only looks like pi.'},
+    {t:'0.1010010001...', r:false, why:'The pattern never repeats exactly, so it is irrational.'}
+  ];
+  var sgrid=document.getElementById('sgrid'), sortDone=0, sortScore=document.getElementById('sortscore');
+  CARDS.forEach(function(c){
+    var card=document.createElement('div'); card.className='scard';
+    var v=document.createElement('div'); v.className='v'; v.textContent=c.t; card.appendChild(v);
+    var row=document.createElement('div'); row.className='scbtns';
+    var why=document.createElement('div'); why.className='scwhy'; why.textContent=c.why;
+    [['Rational',true],['Irrational',false]].forEach(function(opt){
+      var b=document.createElement('button'); b.type='button'; b.textContent=opt[0];
+      b.addEventListener('click',function(){ if(card.classList.contains('done'))return;
+        card.classList.add('done'); var ok=(opt[1]===c.r);
+        card.classList.add(ok?'right':'wrong'); sortDone++; sortScore.textContent=sortDone+' of '+CARDS.length+' sorted';
+      });
+      row.appendChild(b);
+    });
+    card.appendChild(row); card.appendChild(why); sgrid.appendChild(card);
+  });
+
+  var QS=[{"q": "Which of these numbers is <b>irrational</b>?", "o": ["\u221a25", "\u221a10", "0.5", "3/4"], "a": 1}, {"q": "Between which two consecutive whole numbers does <b>\u221a20</b> lie?", "o": ["3 and 4", "4 and 5", "5 and 6", "6 and 7"], "a": 1}, {"q": "Which statement about <b>22/7</b> is true?", "o": ["It is irrational because it is close to pi", "It is rational because it is a ratio of two integers", "It is irrational because its decimal never ends", "It is not a real number"], "a": 1}, {"q": "Put these in order from <b>least to greatest</b>: \u221a2, 1.5, \u221a3.", "o": ["1.5, \u221a2, \u221a3", "\u221a2, 1.5, \u221a3", "\u221a3, 1.5, \u221a2", "\u221a2, \u221a3, 1.5"], "a": 1}, {"q": "What is the <b>best estimate</b> for <b>\u221a50</b>?", "o": ["About 6.5", "About 7.1", "About 8.0", "About 25"], "a": 1}];
+
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false;
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill');
+  function startCheck(){ secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; runPts=0; runWrong=[]; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi]; elCount.textContent='Question '+(qi+1)+' of '+QS.length; elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elOpts.appendChild(b); });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s'; if(timeLeft<=8)elTfill.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000); }
+  function answer(i,btn){ if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(ok){correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4;} else { runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a]}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?650:1100); }
+  function finish(){ secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    var ptsrow=document.getElementById('ptsrow'), fbcard=document.getElementById('fbcard'), retry=document.getElementById('retry'), rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    if(passed){ var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+      rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app);
+      rtitle.textContent='Session cleared.'; rmsg.textContent='You got '+correct+' of '+QS.length+' correct.';
+      document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      fbcard.classList.remove('hide'); retry.classList.add('hide');
+    } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Look back at the stations, then try again.';
+      ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
+    commitTime(); }
+  document.getElementById('toCheck').addEventListener('click',startCheck);
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+  var fbRating=null, fbTag=null;
+  var faces=[['Easy','easy'],['Just right','just'],['Tricky','hard']]; var tags=[['Clear','clear'],['Confusing','confusing'],['Fun','fun']];
+  var fbox=document.getElementById('faces'), tbox=document.getElementById('tags'), saveBtn=document.getElementById('saveFb');
+  faces.forEach(function(f){ var b=document.createElement('button'); b.className='face'; b.type='button'; b.textContent=f[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbRating=f[1]; Array.prototype.forEach.call(fbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); fbox.appendChild(b); });
+  tags.forEach(function(t){ var b=document.createElement('button'); b.className='tagb'; b.type='button'; b.textContent=t[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbTag=t[1]; Array.prototype.forEach.call(tbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); tbox.appendChild(b); });
+  function maybeShowSave(){ if(fbRating&&fbTag)saveBtn.classList.remove('hide'); }
+  saveBtn.addEventListener('click',function(){ rec.feedback={rating:fbRating,tag:fbTag,at:Date.now()}; app.progress[STUDENT][SUBJECT][DAY]=rec; save(app); syncCloud(); document.getElementById('fbcard').classList.add('hide'); document.getElementById('donebox').classList.remove('hide'); });
+
+})();
+</script>
+</body>
+</html>

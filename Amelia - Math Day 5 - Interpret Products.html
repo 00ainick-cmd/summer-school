@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Lab · Interpret Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f2f0fb;--card:#fff;--ink:#1d1736;--ink2:#4a4566;--mute:#857ea3;--line:#e2def2;
+   --accent:#5a43d6;--accent-d:#3f2bb0;--red:#c2410c;--alt:#e0731a;--good:#1f9d6b;
+   --huns:#5a43d6;--tens:#1f9d6b;--ones:#e0731a;--gold:#b8860b;--pink:#b8418a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Mulish',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(40vmax 40vmax at 90% -10%,rgba(90,67,214,.10),transparent 60%),radial-gradient(40vmax 40vmax at -5% 110%,rgba(184,65,138,.10),transparent 60%),linear-gradient(180deg,#faf9ff,var(--paper));}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 90px;}
+  h1,h2,h3,.disp{font-family:'Baloo 2',cursive;font-weight:700;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .progress{position:sticky;top:0;z-index:20;background:rgba(242,240,251,.95);backdrop-filter:blur(4px);display:flex;gap:6px;padding:10px 4px;flex-wrap:wrap;justify-content:center;border-bottom:2px solid var(--line);margin:0 -18px 18px;}
+  .pstep{font-family:'Baloo 2';font-size:13px;font-weight:600;color:var(--mute);background:#fff;border:2px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .pstep.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .pstep.done{background:#e8f7f0;border-color:var(--good);color:var(--good);}
+  .labbar{background:var(--ink);color:#e7e3fb;margin:0 -18px 20px;padding:12px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Baloo 2';font-size:13px;letter-spacing:.04em;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a4170;border-radius:6px;padding:3px 9px;color:#b9b2e0;font-size:12px;}
+  .labbar b{color:#fff;}
+  h1{font-size:clamp(28px,5.6vw,42px);line-height:1.02;margin:6px 0 8px;}
+  .mission{color:var(--ink2);max-width:56ch;}
+  .stdtag{margin-top:16px;background:#efeefb;border:1px solid var(--line);border-left:4px solid var(--ones);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+  .beat{font-family:'Baloo 2';font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:16px 0;box-shadow:0 16px 32px -28px rgba(63,43,176,.6);}
+  .station.hook{background:linear-gradient(160deg,#fff,#f3effe);border-color:#d9d0f5;}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Baloo 2';font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:7px;padding:3px 9px;letter-spacing:.04em;}
+  .station h2{font-size:22px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .objlist{list-style:none;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;}
+  .objlist li{display:flex;gap:10px;align-items:flex-start;font-size:16px;}
+  .objlist .b{flex:none;width:24px;height:24px;border-radius:7px;background:var(--accent);color:#fff;font-family:'Baloo 2';font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px;}
+  .why{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:15.5px;color:#13683a;}
+  .note{background:#fffbe9;border:2px solid #f0d97a;border-radius:12px;padding:13px 15px;font-size:15.5px;margin-top:10px;} .note b{color:var(--gold);}
+  .hookcards{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+  .hookcard{flex:1;min-width:140px;text-align:center;border:2px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;background:#fff;min-height:60px;}
+  .hookcard:hover{border-color:var(--accent);}
+  .hookcard .big{font-family:'Baloo 2';font-size:26px;}
+  .hookcard .big .lit{color:var(--accent);}
+  .hookcard .rv{font-size:14px;color:var(--ink2);margin-top:6px;display:none;} .hookcard.open .rv{display:block;}
+  .hookcard.open{border-color:var(--accent);background:#f3effe;}
+  .reveal{margin-top:10px;font-size:15.5px;color:var(--ink2);display:none;} .reveal.show{display:block;}
+
+  /* groups visual */
+  .grouprow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:12px;}
+  .group{border:2px dashed var(--accent);border-radius:14px;padding:10px;min-width:60px;min-height:60px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;justify-content:center;background:#faf9ff;}
+  .group .d{width:14px;height:14px;border-radius:50%;background:var(--ones);}
+  .grouplabel{text-align:center;font-family:'Baloo 2';font-size:18px;color:var(--accent-d);margin-top:6px;}
+
+  /* array sample */
+  .miniarr{display:grid;gap:4px;margin:10px auto;justify-content:center;}
+  .miniarr .c{width:18px;height:18px;background:var(--pink);border-radius:3px;}
+
+  /* match card */
+  .match{background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:16px;margin-top:12px;}
+  .matchsit{font-size:17px;font-weight:600;text-align:center;margin-bottom:10px;color:var(--ink);}
+  .matchstage{display:flex;justify-content:center;min-height:130px;align-items:center;padding:6px;background:#fff;border:2px solid var(--line);border-radius:12px;}
+  .matchopts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;justify-content:center;}
+  .matchopt{font:inherit;font-weight:700;font-size:18px;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 18px;min-height:54px;min-width:90px;cursor:pointer;color:var(--ink);font-family:'Baloo 2';}
+  .matchopt:hover{border-color:var(--accent);}
+  .matchopt.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;}
+  .matchopt.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .matchfb{text-align:center;font-weight:700;min-height:1.4em;margin-top:10px;}
+  .matchfb.ok{color:var(--good);} .matchfb.try{color:var(--alt);}
+  .navrow{display:flex;justify-content:space-between;gap:10px;margin-top:12px;align-items:center;}
+  .navrow .ix{font-family:'Baloo 2';color:var(--mute);font-size:13px;}
+  .navrow button.next{font:inherit;font-weight:700;border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 16px;min-height:46px;cursor:pointer;}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  .compare .box{background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px;}
+  .compare h4{font-family:'Baloo 2';font-size:15px;color:var(--accent-d);margin-bottom:6px;}
+  .compare p{font-size:14.5px;color:var(--ink2);}
+
+  .predict{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .pcard{flex:1;min-width:110px;font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:12px;padding:12px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .pcard:hover{border-color:var(--accent);} .pcard.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;} .pcard.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .tq{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:10px;background:#fff;}
+  .tqq{font-family:'Baloo 2';font-size:17px;margin-bottom:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:54px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);} .cta.go{background:var(--good);} .cta.alt{background:var(--alt);} .cta:disabled{opacity:.45;cursor:default;}
+  .qmeta{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;font-family:'Baloo 2';}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;} .tfill.low{background:var(--red);}
+  .qtext{font-size:20px;font-weight:700;line-height:1.3;margin-bottom:14px;font-family:'Baloo 2';}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt{font:inherit;font-size:17px;font-weight:600;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt:hover{border-color:var(--accent);} .opt.correct{border-color:var(--good);background:#e8f7f0;color:#13683a;} .opt.bad{border-color:var(--red);background:#fdeee4;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+  .reteach{margin-top:10px;font-size:14px;} .reteach a{color:var(--accent);font-weight:700;}
+  textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:2px solid var(--line);border-radius:12px;padding:12px;resize:vertical;color:var(--ink);}
+  .ratebtn{font:inherit;font-weight:600;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:10px;padding:11px 14px;min-height:46px;cursor:pointer;color:var(--ink);}
+  .rate{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .ratebtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+  .rubric th,.rubric td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;} .rubric th{background:#efeefb;font-family:'Baloo 2';font-size:13px;}
+  .critrow{background:#fdeee4;border:2px solid #f0c4ad;border-radius:10px;padding:10px 12px;margin-top:10px;font-weight:600;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#faf9ff;border:2px solid var(--line);border-radius:14px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Baloo 2';font-size:28px;}
+  .gateitem{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;font-size:15.5px;}
+  .gateitem .mk{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Baloo 2';}
+  .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
+  .gateitem .g2{flex:1;} .gateitem .gd{font-size:13px;color:var(--mute);}
+  .badge{display:none;text-align:center;padding:24px;border-radius:18px;background:linear-gradient(160deg,#f3eefe,#efe7fb);border:2px solid var(--accent);margin-top:14px;}
+  .badge.show{display:block;} .badge .gem{font-size:46px;color:var(--accent-d);} .badge h3{font-size:26px;color:var(--accent-d);margin:6px 0;}
+  .synth{background:#efeefb;border:2px solid #d4ccef;border-radius:14px;padding:16px 18px;margin-top:6px;}
+  .synth .rule{font-family:'Baloo 2';font-size:20px;color:var(--accent-d);text-align:center;margin:6px 0;}
+  footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="progress" role="navigation" aria-label="Module progress">
+  <span class="pstep on" id="ps-start">Warm up</span><span class="pstep" id="ps-learn">Learn</span>
+  <span class="pstep" id="ps-practice">Practice</span><span class="pstep" id="ps-mastery">Mastery</span>
+  <span class="pstep" id="ps-retention">Retention</span><span class="pstep" id="ps-wrap">Wrap up</span>
+</div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab &middot; <b>Grade 3</b><span class="chip">Standard 3.RA.A.1</span></div>
+
+  <section id="start">
+    <div class="station hook"><div class="beat">Beat 1 &middot; Hook</div><h1>What does 5 x 7 really mean?</h1>
+      <p class="mission">A times sign is a story. 5 x 7 means "5 groups of 7." Tap each card to see two stories that both come out to 35, and notice what makes them different.</p>
+      <div class="hookcards">
+        <div class="hookcard"><div class="big">5 bags, <span class="lit">7</span> apples each</div><div class="rv">5 groups of 7. The whole is 35 apples. Five bags on the counter.</div></div>
+        <div class="hookcard"><div class="big">7 bags, <span class="lit">5</span> apples each</div><div class="rv">7 groups of 5. Still 35 apples, but a different scene: seven smaller bags.</div></div>
+      </div>
+      <div class="reveal" id="hookrv">Both end at 35, but the situation is different. "5 x 7" tells the story: 5 groups of 7. Order matters when you read a problem.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 2 &middot; What you will be able to do</div><h2>Your goal today</h2>
+      <ul class="objlist">
+        <li><span class="b">1</span><span>Read a multiplication expression as "groups of."</span></li>
+        <li><span class="b">2</span><span>Match an expression to equal groups or to an array.</span></li>
+        <li><span class="b">3</span><span>Pick the right multiplication for a word problem.</span></li>
+      </ul>
+      <div class="why"><b>Why it matters:</b> multiplication shows up everywhere, like rows of seats, packs of snacks, or the squares on a checkerboard. Reading the story right tells you what the answer means.</div>
+      <div class="stdtag"><span class="l">The objective (verbatim standard)</span>Interpret products of whole numbers.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 3 &middot; Warm up</div><h2>Two quick questions</h2>
+      <p class="lead">No grade here. Tap an answer; if it is off, try again.</p>
+      <div id="warm"></div>
+    </div>
+
+    <button class="cta" id="toLearn">Start learning</button>
+  </section>
+
+  <section id="learn" class="hide">
+
+    <div class="station"><div class="beat">Beat 4 &middot; Teach (groups of)</div><div class="shead"><span class="sno">LEARN 1</span><h2>Read 3 x 4 as "three groups of four"</h2></div>
+      <p class="lead">The first number tells you how many groups. The second tells you how many in each group.</p>
+      <div class="grouprow" aria-hidden="true">
+        <div class="group"><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></div>
+        <div class="group"><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></div>
+        <div class="group"><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></div>
+      </div>
+      <div class="grouplabel">3 groups of 4 = 12</div>
+      <div class="note"><b>Big idea:</b> 3 x 4 is the same as 4 + 4 + 4. Multiplication is just a faster way to add equal groups.</div>
+    </div>
+
+    <div class="station" id="c-arr"><div class="beat">Beat 4 &middot; Teach (arrays)</div><div class="shead"><span class="sno">LEARN 2</span><h2>An array is also "groups of"</h2></div>
+      <p class="lead">Look at this array: 3 rows of 5 squares. That is 3 groups of 5, or 3 x 5 = 15. Each row is one group.</p>
+      <div class="miniarr" style="grid-template-columns:repeat(5,18px);" aria-hidden="true">
+        <div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div>
+        <div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div>
+        <div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div>
+      </div>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">3 x 5 (rows times columns)</button>
+        <button class="pcard" type="button" data-ok="false">15 x 1</button>
+        <button class="pcard" type="button" data-ok="false">3 + 5</button>
+      </div>
+      <div class="reveal">Rows are the groups; columns are how many in each group. 3 rows of 5 = 3 x 5 = 15.</div>
+    </div>
+
+    <div class="station" id="c-order"><div class="beat">Beat 4 &middot; Teach (order matters in the story)</div><div class="shead"><span class="sno">LEARN 3</span><h2>Same answer, different scene</h2></div>
+      <p class="lead">5 x 7 and 7 x 5 both equal 35. But in a word problem the order tells the story.</p>
+      <div class="compare">
+        <div class="box"><h4>5 x 7</h4><p>5 bags, 7 apples in each. 5 bags on the counter.</p></div>
+        <div class="box"><h4>7 x 5</h4><p>7 bags, 5 apples in each. 7 smaller bags.</p></div>
+      </div>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">"4 plates with 6 cookies on each" is 4 x 6</button>
+        <button class="pcard" type="button" data-ok="false">"4 plates with 6 cookies on each" is 6 x 4</button>
+        <button class="pcard" type="button" data-ok="false">"4 plates with 6 cookies on each" is 4 + 6</button>
+      </div>
+      <div class="reveal">"Plates" is the number of groups (4). "Cookies on each plate" is how many in each group (6). So 4 groups of 6, or 4 x 6.</div>
+    </div>
+
+    <div class="station" id="c-words"><div class="beat">Beat 4 &middot; Teach (read the word problem)</div><div class="shead"><span class="sno">LEARN 4</span><h2>Find the groups and the size</h2></div>
+      <p class="lead">"There are 6 nail polish bottles in each case. Amelia has 3 cases. How many bottles?"</p>
+      <div class="predict">
+        <button class="pcard" type="button" data-ok="true">3 x 6 (3 groups of 6)</button>
+        <button class="pcard" type="button" data-ok="false">3 + 6</button>
+        <button class="pcard" type="button" data-ok="false">6 minus 3</button>
+      </div>
+      <div class="reveal">"Cases" is the number of groups (3). "Bottles in each case" is how many in each group (6). 3 groups of 6 = 18.</div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 5 &middot; The matcher</div><div class="shead"><span class="sno">MODEL</span><h2>Match the expression to the picture</h2></div>
+      <p class="lead">Read each situation. Pick the multiplication expression that matches. Five situations.</p>
+      <div class="match">
+        <div class="matchsit" id="mSit"></div>
+        <div class="matchstage" id="mStage"></div>
+        <div class="matchopts" id="mOpts"></div>
+        <div class="matchfb" id="mFb"></div>
+        <div class="navrow">
+          <span class="ix" id="mIx">1 of 5</span>
+          <button class="next" id="mNext">Next situation</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="station"><div class="beat">Beat 6 &middot; Guided practice</div><div class="shead"><span class="sno">GUIDED</span><h2>You read it, you pick it</h2></div>
+      <p class="lead">No score here. Stuck? Tap for a hint.</p>
+      <div id="guided"></div>
+    </div>
+
+    <button class="cta" id="toPractice">Go to practice on my own</button>
+  </section>
+
+  <section id="practice" class="hide">
+    <div class="station"><div class="beat">Beat 7 &middot; Mixed independent practice</div><div class="shead"><span class="sno">PRACTICE</span><h2>The skill in different clothes</h2></div>
+      <p class="lead">Tap an answer; if it is off, try again.</p>
+      <div id="practiceSet"></div>
+    </div>
+    <div class="station"><div class="beat">Beat 8 &middot; Retrieval</div><div class="shead"><span class="sno">RETRIEVAL</span><h2>From memory, no picture</h2></div>
+      <p class="lead">No matching tool this time. Read the story and pick.</p>
+      <div id="retrievalSet"></div>
+    </div>
+    <button class="cta go" id="toMastery">I am ready for the mastery check</button>
+  </section>
+
+  <section id="mastery" class="hide">
+    <div class="station"><div class="beat">Beat 9 and 10 &middot; Prove it</div><div class="shead"><span class="sno">MASTERY &middot; FORM A</span><h2>Show what you know</h2></div>
+      <p class="lead">A set of questions, then explain one idea, then write your own story and read it out loud.</p></div>
+    <div class="station" id="mcA"><div class="qmeta"><span id="qcountA">Question 1</span><span class="timer" id="tlabelA">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillA"></div></div>
+      <div class="qtext" id="qtextA"></div><div class="opts" id="optsA"></div>
+      <div class="qwhy" id="qwhyA"></div><div class="reteach hide" id="reteachA"></div>
+    </div>
+    <div class="station hide" id="explainA"><div class="shead"><span class="sno">EXPLAIN</span><h2>Say why</h2></div>
+      <p class="lead" id="explainStem"></p>
+      <textarea id="explainText" placeholder="Type your explanation here..." aria-label="your explanation"></textarea>
+      <button class="opt" id="showModel" style="margin-top:10px;width:auto;padding:10px 16px;">Show a strong answer to compare</button>
+      <div class="reveal" id="modelBox"></div>
+      <p class="lead" style="margin-top:12px;">Compare honestly. Does the explanation name groups AND size?</p>
+      <button class="cta" id="toPT">Next: write and read a story</button>
+    </div>
+    <div class="station hide" id="ptA"><div class="shead"><span class="sno">PERFORMANCE TASK</span><h2>Write a story and read it</h2></div>
+      <p class="lead" id="ptStem"></p>
+      <textarea id="ptStory" placeholder="Write a short word problem that matches 4 x 6, then read it out loud" aria-label="your story"></textarea>
+      <div class="note"><b>Grown-up check.</b> Best done with an adult listening. Have the learner read the story out loud, point out the groups and the size, and say the total.</div>
+      <table class="rubric" id="ptRubric"></table>
+      <div class="critrow">Did the learner mix up groups and size, or skip the total?</div>
+      <button class="cta go" id="ptDone">Go to the retention check</button>
+    </div>
+    <div class="station hide" id="resultA"><div class="scoreband"><span>Form A</span><span class="s" id="scoreAtxt">0</span><span style="flex:1"></span><span id="aStatus" style="font-weight:700;"></span></div>
+      <p class="lead" id="aMsg" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to the retention check</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station"><div class="beat">Beat 8 &middot; Spaced retention</div><div class="shead"><span class="sno">RETENTION &middot; FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">New stories on the same ideas, meant for a <b>later session, at least a day after Form A</b>.</p>
+      <div class="note"><b>Spacing matters.</b> If you can, close this and come back tomorrow before doing Form B.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="station hide" id="mcB"><div class="qmeta"><span id="qcountB">Question 1</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div><div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+    <div class="station hide" id="resultB"><div class="scoreband"><span>Form B</span><span class="s" id="scoreBtxt">0</span><span style="flex:1"></span><span id="bStatus" style="font-weight:700;"></span></div>
+      <button class="cta go" id="toWrap">Reflect and see the credential</button>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station"><div class="beat">Beat 11 &middot; Reflect</div><div class="shead"><span class="sno">REFLECT</span><h2>Look back</h2></div>
+      <p class="lead">How did that feel?</p>
+      <div class="rate" id="feelRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="easy">Easy</button><button class="ratebtn" type="button" aria-pressed="false" data-v="just">Just right</button><button class="ratebtn" type="button" aria-pressed="false" data-v="hard">Tricky</button></div>
+      <p class="lead" style="margin-top:12px;">How sure are you about reading "groups of"?</p>
+      <div class="rate" id="confRate"><button class="ratebtn" type="button" aria-pressed="false" data-v="1">Not yet sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="2">Mostly sure</button><button class="ratebtn" type="button" aria-pressed="false" data-v="3">Very sure</button></div>
+      <p class="lead" style="margin-top:12px;">One thing you will remember:</p>
+      <textarea id="planText" placeholder="For example: I will find the groups first, then how many in each group." aria-label="your plan"></textarea>
+      <button class="cta" id="saveReflect">Save my reflection</button>
+    </div>
+    <div class="station"><div class="beat">Beat 12 &middot; The big takeaway</div><div class="shead"><span class="sno">SYNTHESIS</span><h2>The one rule to keep</h2></div>
+      <div class="synth"><div class="rule">Read a x b as "a groups of b."</div>
+        <p style="text-align:center;color:var(--ink2);">The first number is the count of groups. The second is the size of each group. The total is the product.</p></div></div>
+    <div class="station"><div class="beat">Beat 12 &middot; Credential</div><div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery rule</h2></div>
+      <p class="lead">The 3.RA.A.1 micro-credential is awarded when <b>both checks</b> are met: a strong Form A and a strong delayed Form B on a later day.</p>
+      <div id="gate"></div>
+      <div class="badge" id="badge" aria-live="polite"><div class="gem">&#9670;</div><h3>3.RA.A.1 Mastered</h3><p>You can interpret products of whole numbers as equal groups and as arrays.</p><p style="margin-top:8px;color:var(--ink2);">Next up: more multiplication standards.</p></div>
+      <div id="notyetBox" class="note hide"><b>Not yet, and that is fine.</b> <span id="notyetMsg"></span></div>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can head back to your dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer>Amelia &middot; Math &middot; Verbatim Missouri Learning Standard 3.RA.A.1 &middot; Twelve-beat module.</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='math', DAY='3.RA.A.1', SNAME='Amelia';
+
+  var DATA={
+    WARM:[
+      {q:"What is 3 + 3 + 3 + 3?",o:["12","9","7"],a:0,why:"Four threes is 12, same as 4 x 3.",hint:"Count by 3 four times."},
+      {q:"3 x 4 means ...",o:["3 groups of 4","3 plus 4","4 take away 3"],a:0,why:"The first number is the number of groups.",hint:"Groups of."}
+    ],
+    MATCH:[
+      {sit:"3 groups of 4 dots", render:function(){return groups(3,4);}, opts:["3 x 4","4 x 3","3 + 4"], a:0, why:"3 groups, 4 in each, so 3 x 4."},
+      {sit:"An array with 2 rows of 5 squares", render:function(){return arrSvg(2,5);}, opts:["2 x 5","5 x 2","2 + 5"], a:0, why:"Rows are groups; 2 rows of 5 is 2 x 5."},
+      {sit:"4 plates, 6 cookies on each plate", render:function(){return groups(4,6);}, opts:["4 x 6","6 x 4","4 + 6"], a:0, why:"4 groups (plates), 6 in each, so 4 x 6."},
+      {sit:"An array with 3 rows of 4 squares", render:function(){return arrSvg(3,4);}, opts:["3 x 4","4 x 3","3 + 4"], a:0, why:"3 rows of 4 is 3 x 4."},
+      {sit:"5 groups of 2 dots", render:function(){return groups(5,2);}, opts:["5 x 2","2 x 5","5 + 2"], a:0, why:"5 groups, 2 in each, so 5 x 2."}
+    ],
+    GUIDED:[
+      {q:"Which expression matches \"6 bags with 3 marbles in each\"?",o:["6 x 3","3 x 6","6 + 3"],a:0,why:"Bags are groups (6), marbles in each is the size (3). 6 x 3.",hint:"Groups first, then size."},
+      {q:"5 x 7 means ...",o:["5 groups of 7","7 groups of 5","5 plus 7"],a:0,why:"First number is the number of groups.",hint:"Read the first number as groups."},
+      {q:"An array shows 4 rows of 6 squares. Which expression?",o:["4 x 6","6 x 4","4 + 6"],a:0,why:"Rows are groups: 4 groups of 6.",hint:"Rows = groups."},
+      {q:"Which is \"3 groups of 8\"?",o:["3 x 8","8 x 3","3 + 8"],a:0,why:"Groups first, size second: 3 x 8.",hint:"3 in front."}
+    ],
+    PRACTICE:[
+      {q:"4 x 6 means ...",o:["4 groups of 6","6 groups of 4","4 plus 6","4 minus 6"],a:0,why:"First number is groups, second is size.",hint:"Groups of."},
+      {q:"Which expression matches \"3 cases of 5 nail polish bottles\"?",o:["3 x 5","5 x 3","3 + 5","8"],a:0,why:"Cases are groups (3), bottles in each is the size (5).",hint:"Cases first."},
+      {q:"An array has 2 rows of 7 squares. What is the expression?",o:["2 x 7","7 x 2","2 + 7","9"],a:0,why:"Rows are groups: 2 groups of 7.",hint:"Rows = groups."},
+      {q:"Which story matches 6 x 4?",o:["6 teams with 4 players on each","4 teams with 6 players on each","6 plus 4 players","6 take away 4"],a:0,why:"6 groups of 4: 6 teams, 4 in each.",hint:"6 is the number of groups."},
+      {q:"3 + 3 + 3 + 3 + 3 is the same as ...",o:["5 x 3","3 x 5 only","3 + 5","15 x 1"],a:0,why:"5 groups of 3 added together.",hint:"How many 3s?"},
+      {q:"Which is NOT a way to write \"4 groups of 5\"?",o:["4 + 5","4 x 5","5 + 5 + 5 + 5","an array of 4 rows of 5"],a:0,why:"4 + 5 is addition, not 4 groups of 5.",hint:"Adding once is not 4 groups."}
+    ],
+    RETRIEVAL:[
+      {q:"From memory: which expression matches \"7 shelves with 3 books on each\"?",o:["7 x 3","3 x 7","7 + 3","10"],a:0,why:"Shelves are groups (7), books in each is size (3).",hint:"Shelves first."},
+      {q:"From memory: 5 x 6 means ...",o:["5 groups of 6","6 groups of 5","5 plus 6","30 plus 1"],a:0,why:"First number is groups, second is size.",hint:"Groups of."}
+    ],
+    FORMA:[
+      {id:"A1",stem:"5 x 7 means ...",o:["5 groups of 7","7 groups of 5","5 plus 7","35 minus 1"],a:0,why:"First number is groups, second is size.",concept:"groups"},
+      {id:"A2",stem:"Which expression matches \"3 plates with 6 cookies on each\"?",o:["3 x 6","6 x 3","3 + 6","9"],a:0,why:"Plates are the groups (3), cookies in each is the size (6).",concept:"words"},
+      {id:"A3",stem:"An array shows 4 rows of 5 squares. Which expression?",o:["4 x 5","5 x 4","4 + 5","9"],a:0,why:"Rows are groups; 4 rows of 5 is 4 x 5.",concept:"arr"},
+      {id:"A4",stem:"Which is the same as 4 + 4 + 4?",o:["3 x 4","4 x 3 only","4 + 3","12 + 1"],a:0,why:"Three 4s is 3 groups of 4.",concept:"groups"},
+      {id:"A5",stem:"\"6 bags with 2 lip glosses in each bag.\" Which expression matches?",o:["6 x 2","2 x 6","6 + 2","8"],a:0,why:"Bags are groups (6), lip glosses in each is size (2).",concept:"words"},
+      {id:"A6",stem:"5 x 7 = 35 and 7 x 5 = 35. So in a word problem, the order ...",o:["tells the story but does not change the total","always changes the total","does not matter at all","makes the answer bigger"],a:0,why:"Same total, but the situation looks different.",concept:"order"},
+      {id:"A7",stem:"Which expression matches \"4 teams with 3 players on each team\"?",o:["4 x 3","3 x 4","4 + 3","7"],a:0,why:"Teams are groups (4), players in each is size (3).",concept:"words"},
+      {id:"A8",stem:"An array has 2 rows of 6 squares. Which expression?",o:["2 x 6","6 x 2","2 + 6","8"],a:0,why:"Rows are groups: 2 groups of 6.",concept:"arr"}
+    ],
+    FORMB:[
+      {id:"B1",stem:"6 x 3 means ...",o:["6 groups of 3","3 groups of 6","6 plus 3","18 minus 1"],a:0,why:"First number is groups, second is size.",concept:"groups"},
+      {id:"B2",stem:"Which expression matches \"4 baskets with 5 oranges in each\"?",o:["4 x 5","5 x 4","4 + 5","9"],a:0,why:"Baskets are groups (4), oranges in each is size (5).",concept:"words"},
+      {id:"B3",stem:"An array shows 3 rows of 7 squares. Which expression?",o:["3 x 7","7 x 3","3 + 7","10"],a:0,why:"Rows are groups; 3 rows of 7 is 3 x 7.",concept:"arr"},
+      {id:"B4",stem:"Which is the same as 5 + 5 + 5 + 5?",o:["4 x 5","5 x 4 only","5 + 4","20 + 1"],a:0,why:"Four 5s is 4 groups of 5.",concept:"groups"},
+      {id:"B5",stem:"\"8 shelves with 2 books on each shelf.\" Which expression matches?",o:["8 x 2","2 x 8","8 + 2","10"],a:0,why:"Shelves are groups (8), books in each is size (2).",concept:"words"},
+      {id:"B6",stem:"3 x 9 = 27 and 9 x 3 = 27. In a word problem, the order ...",o:["tells the story but does not change the total","always changes the total","does not matter at all","makes the answer smaller"],a:0,why:"Same total, but the situation is different.",concept:"order"},
+      {id:"B7",stem:"Which expression matches \"5 vans with 6 kids in each\"?",o:["5 x 6","6 x 5","5 + 6","11"],a:0,why:"Vans are groups (5), kids in each is size (6).",concept:"words"},
+      {id:"B8",stem:"An array has 4 rows of 4 squares. Which expression?",o:["4 x 4","4 + 4","4 - 4","8"],a:0,why:"4 groups of 4.",concept:"arr"}
+    ],
+    EXPLAIN:{
+      stem:"Mia wrote 3 + 6 to match \"3 plates with 6 cookies on each.\" Explain why that is wrong, and write the correct expression.",
+      model:"Adding 3 + 6 gives 9, but the story has 3 groups of 6 cookies, not 3 and 6 together. To find the total cookies, multiply: 3 x 6 = 18 cookies."
+    },
+    PT:{
+      prompt:"Write your own short word problem that matches <b>4 x 6</b>. The story must show 4 groups of 6. Then read it out loud and say what the 4 stands for, what the 6 stands for, and what the total is.",
+      rubric:[
+        ["Right structure","Story has 4 groups, 6 in each group.","Mixes up groups and size, or uses addition."],
+        ["Reads clearly","Reads the story aloud in full sentences.","Skips parts or mumbles."],
+        ["Names the parts","Says \"4 is the number of groups; 6 is how many in each.\"","Says only the numbers without meaning."],
+        ["States total","Says the total is 24.","Skips the total or says a wrong total."]
+      ]
+    },
+    PASS:7,
+    RETEACH:{"groups":"learn","words":"c-words","order":"c-order","arr":"c-arr"}
+  };
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  var PHASES=['start','learn','practice','mastery','retention','wrap'];
+  function show(id){ PHASES.forEach(function(s){ document.getElementById(s).classList.toggle('hide',s!==id); }); window.scrollTo(0,0); }
+  function setStep(id,cls){ var e=document.getElementById(id); if(e)e.className='pstep '+cls; }
+
+  function groups(g,n){ var html='<div class="grouprow">'; for(var i=0;i<g;i++){ html+='<div class="group">'; for(var j=0;j<n;j++)html+='<span class="d"></span>'; html+='</div>'; } html+='</div>'; return html; }
+  function arrSvg(rows,cols){ var html='<div class="miniarr" style="grid-template-columns:repeat('+cols+',18px);">'; for(var i=0;i<rows*cols;i++)html+='<div class="c"></div>'; html+='</div>'; return html; }
+
+  var hookCards=document.querySelectorAll('.hookcard');
+  Array.prototype.forEach.call(hookCards,function(c){ c.addEventListener('click',function(){ c.classList.add('open');
+    var all=true; Array.prototype.forEach.call(hookCards,function(x){ if(!x.classList.contains('open'))all=false; });
+    if(all){var r=document.getElementById('hookrv'); if(r)r.classList.add('show');}
+  }); });
+
+  function tapQuiz(containerId, items){ var c=document.getElementById(containerId); if(!c)return; c.innerHTML='';
+    items.forEach(function(it,qi){ var card=document.createElement('div'); card.className='tq';
+      var q=document.createElement('div'); q.className='tqq'; q.innerHTML=(qi+1)+'. '+it.q; card.appendChild(q);
+      var opts=document.createElement('div'); opts.className='opts'; var why=document.createElement('div'); why.className='qwhy';
+      it.o.forEach(function(t,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(b.dataset.l)return;
+          if(i===it.a){ Array.prototype.forEach.call(opts.children,function(x){x.dataset.l='1';x.style.pointerEvents='none';}); b.classList.add('correct'); why.style.color='var(--good)'; why.textContent='Correct. '+(it.why||''); }
+          else { b.classList.add('bad'); b.dataset.l='1'; b.style.pointerEvents='none'; why.style.color='var(--alt)'; why.textContent='Try again. '+(it.hint||''); }
+        }); opts.appendChild(b); });
+      card.appendChild(opts); card.appendChild(why); c.appendChild(card);
+    });
+  }
+  tapQuiz('warm', DATA.WARM);
+  tapQuiz('guided', DATA.GUIDED);
+
+  Array.prototype.forEach.call(document.querySelectorAll('.predict'),function(row){ var rev=row.nextElementSibling;
+    Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ if(b.dataset.done)return;
+      Array.prototype.forEach.call(row.children,function(c){c.dataset.done='1';});
+      if(b.getAttribute('data-ok')==='true')b.classList.add('ok'); else { b.classList.add('no'); Array.prototype.forEach.call(row.children,function(c){if(c.getAttribute('data-ok')==='true')c.classList.add('ok');}); }
+      if(rev)rev.classList.add('show');
+    }); }); });
+
+  // matcher
+  var mIdx=0;
+  function renderM(){ var it=DATA.MATCH[mIdx];
+    document.getElementById('mSit').textContent=it.sit;
+    document.getElementById('mStage').innerHTML=it.render();
+    var opts=document.getElementById('mOpts'); opts.innerHTML='';
+    document.getElementById('mFb').textContent=''; document.getElementById('mFb').className='matchfb';
+    it.opts.forEach(function(t,i){ var b=document.createElement('button'); b.className='matchopt'; b.type='button'; b.textContent=t;
+      b.addEventListener('click',function(){ if(b.dataset.l)return;
+        if(i===it.a){ Array.prototype.forEach.call(opts.children,function(x){x.dataset.l='1';x.style.pointerEvents='none';}); b.classList.add('ok'); var fb=document.getElementById('mFb'); fb.className='matchfb ok'; fb.textContent='Yes! '+it.why; }
+        else { b.classList.add('no'); b.dataset.l='1'; b.style.pointerEvents='none'; var fb=document.getElementById('mFb'); fb.className='matchfb try'; fb.textContent='Not quite. Look at the groups and the size in each group.'; }
+      }); opts.appendChild(b);
+    });
+    document.getElementById('mIx').textContent=(mIdx+1)+' of '+DATA.MATCH.length;
+  }
+  document.getElementById('mNext').addEventListener('click',function(){ mIdx=(mIdx+1)%DATA.MATCH.length; renderM(); });
+  renderM();
+
+  tapQuiz('practiceSet', DATA.PRACTICE);
+  tapQuiz('retrievalSet', DATA.RETRIEVAL);
+
+  document.getElementById('toLearn').addEventListener('click',function(){ show('learn'); setStep('ps-start','done'); setStep('ps-learn','on'); });
+  document.getElementById('toPractice').addEventListener('click',function(){ show('practice'); setStep('ps-learn','done'); setStep('ps-practice','on'); });
+  document.getElementById('toMastery').addEventListener('click',function(){ show('mastery'); setStep('ps-practice','done'); setStep('ps-mastery','on'); startMC('A'); });
+
+  var QTIME=25, mcState={};
+  function ids(f){ return {q:'qtext'+f,o:'opts'+f,c:'qcount'+f,tl:'tlabel'+f,tf:'tfill'+f,why:'qwhy'+f,re:'reteach'+f}; }
+  function startMC(form){ mcState[form]={i:0,correct:0,wrong:[],timer:null,left:QTIME,locked:false}; rec.attempts=(rec.attempts||0)+1; save(app); showQ(form); }
+  function showQ(form){ var st=mcState[form],items=DATA['FORM'+form],it=items[st.i],el=ids(form); st.locked=false;
+    document.getElementById(el.c).textContent='Question '+(st.i+1)+' of '+items.length;
+    document.getElementById(el.q).innerHTML=it.stem;
+    var why=document.getElementById(el.why); why.textContent=''; var re=document.getElementById(el.re); if(re){re.classList.add('hide');re.innerHTML='';}
+    var opts=document.getElementById(el.o); opts.innerHTML='';
+    it.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt'; b.type='button'; b.textContent=txt; b.addEventListener('click',function(){answer(form,i,b);}); opts.appendChild(b); });
+    st.left=QTIME; var tf=document.getElementById(el.tf),tl=document.getElementById(el.tl); tf.style.width='100%'; tf.classList.remove('low'); tl.textContent=QTIME+'s'; clearInterval(st.timer);
+    st.timer=setInterval(function(){ st.left--; if(st.left<0)st.left=0; tf.style.width=(st.left/QTIME*100)+'%'; tl.textContent=st.left+'s'; if(st.left<=8)tf.classList.add('low'); if(st.left===0)clearInterval(st.timer); },1000);
+  }
+  function answer(form,i,btn){ var st=mcState[form]; if(st.locked)return; st.locked=true; clearInterval(st.timer);
+    var items=DATA['FORM'+form],it=items[st.i],el=ids(form),ok=(i===it.a),opts=document.getElementById(el.o);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===it.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    var why=document.getElementById(el.why);
+    if(ok){ st.correct++; why.style.color='var(--good)'; why.textContent='Correct. '+it.why; }
+    else { st.wrong.push({stem:it.stem,picked:it.o[i],correct:it.o[it.a]}); why.style.color='var(--alt)'; why.textContent='Not quite. '+it.why;
+      var re=document.getElementById(el.re); if(re){ var loc=(DATA.RETEACH[it.concept]||'learn'); re.classList.remove('hide'); re.innerHTML='Want a quick reteach? <a href="#'+loc+'">Back to that idea</a>'; } }
+    setTimeout(function(){ st.i++; if(st.i<items.length) showQ(form); else finishMC(form); }, ok?700:1250);
+  }
+  function finishMC(form){ var st=mcState[form];
+    if(form==='A'){ rec.formA=st.correct; rec.best=Math.max(rec.best||0,Math.round(st.correct/DATA.FORMA.length*100)); rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcA').classList.add('hide'); document.getElementById('explainA').classList.remove('hide');
+      document.getElementById('explainStem').innerHTML=DATA.EXPLAIN.stem; window.scrollTo(0,0);
+    } else { rec.formB=st.correct; rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app);
+      document.getElementById('mcB').classList.add('hide'); document.getElementById('resultB').classList.remove('hide');
+      document.getElementById('scoreBtxt').textContent=st.correct+' / '+DATA.FORMB.length;
+      var bs=document.getElementById('bStatus'),pass=st.correct>=DATA.PASS; bs.textContent=(pass?'Strong':'Needs another pass'); bs.style.color=(pass?'var(--good)':'var(--alt)');
+      if(pass){ rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud(); }
+      commitTime(); window.scrollTo(0,0);
+    }
+  }
+
+  document.getElementById('showModel').addEventListener('click',function(){ var m=document.getElementById('modelBox'); m.innerHTML='<b>A strong answer:</b> '+DATA.EXPLAIN.model; m.classList.add('show'); });
+  document.getElementById('toPT').addEventListener('click',function(){ document.getElementById('explainA').classList.add('hide'); document.getElementById('ptA').classList.remove('hide'); setupPT(); window.scrollTo(0,0); });
+
+  function setupPT(){ var p=DATA.PT; document.getElementById('ptStem').innerHTML=p.prompt;
+    var tb=document.getElementById('ptRubric'); tb.innerHTML='<tr><th>What strong work looks like</th><th>What to watch for</th></tr>';
+    p.rubric.forEach(function(c){ var tr=document.createElement('tr'); tr.innerHTML='<td><b>'+c[0]+'.</b> '+c[1]+'</td><td>'+c[2]+'</td>'; tb.appendChild(tr); });
+  }
+
+  document.getElementById('ptDone').addEventListener('click',function(){ var mc=rec.formA||0; save(app);
+    document.getElementById('ptA').classList.add('hide'); document.getElementById('resultA').classList.remove('hide');
+    document.getElementById('scoreAtxt').textContent=mc+' / '+DATA.FORMA.length;
+    var strong=(mc>=DATA.PASS), stt=document.getElementById('aStatus'); stt.textContent=strong?'Form A clear':'Reteach needed'; stt.style.color=strong?'var(--good)':'var(--alt)';
+    document.getElementById('aMsg').innerHTML = strong ? 'Form A is at the bar. The written explanation and the out-loud task are for you and an adult to talk through; the badge comes from Form A and the delayed Form B.' : 'Form A is not at the bar yet. Reteach, then run Form A again.';
+    document.getElementById('retryA').classList.toggle('hide',strong); document.getElementById('toRetention').classList.toggle('hide',!strong);
+    if(strong){ rec.status='formA-passed'; save(app); syncCloud(); }
+    commitTime(); window.scrollTo(0,0);
+  });
+  document.getElementById('retryA').addEventListener('click',function(){ show('learn'); setStep('ps-mastery','');setStep('ps-practice','on');setStep('ps-learn','done'); });
+  document.getElementById('toRetention').addEventListener('click',function(){ show('retention'); setStep('ps-mastery','done'); setStep('ps-retention','on'); });
+  document.getElementById('startB').addEventListener('click',function(){ document.getElementById('mcB').classList.remove('hide'); this.classList.add('hide'); startMC('B'); });
+  document.getElementById('toWrap').addEventListener('click',function(){ show('wrap'); setStep('ps-retention','done'); setStep('ps-wrap','on'); decide(); });
+
+  var feel=null, conf=null;
+  function pickOne(rowId,setter){ var row=document.getElementById(rowId); Array.prototype.forEach.call(row.children,function(b){ b.addEventListener('click',function(){ setter(b.getAttribute('data-v')); Array.prototype.forEach.call(row.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); }); }); }
+  pickOne('feelRate',function(v){feel=v;}); pickOne('confRate',function(v){conf=v;});
+  document.getElementById('saveReflect').addEventListener('click',function(){ rec.feedback={rating:feel||'just',tag:'clear',at:Date.now(),confidence:conf?parseInt(conf,10):null,plan:(document.getElementById('planText').value||'').slice(0,500)}; save(app); document.getElementById('donebox').classList.remove('hide'); window.scrollTo({top:document.getElementById('badge').offsetTop,behavior:'smooth'}); });
+
+  function decide(){ var mcA=rec.formA||0, mcB=rec.formB||0, PASS=DATA.PASS;
+    var rows=[ {ok:mcA>=PASS,t:'Form A check',d:'At least '+PASS+' of '+DATA.FORMA.length+'. You got '+mcA+'.'},
+               {ok:mcB>=PASS,t:'Delayed retention (Form B)',d:'At least '+PASS+' of '+DATA.FORMB.length+' on a later day. You got '+mcB+'.'} ];
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    rows.forEach(function(r){ var d=document.createElement('div'); d.className='gateitem '+(r.ok?'met':'miss'); d.innerHTML='<span class="mk">'+(r.ok?'✓':'!')+'</span><span class="g2"><b>'+r.t+'</b><div class="gd">'+r.d+'</div></span>'; gate.appendChild(d); });
+    var all=rows.every(function(r){return r.ok;});
+    if(all){ rec.status='passed'; rec.passedAt=Date.now(); rec.points=Math.max(rec.points||0,150); save(app); document.getElementById('badge').classList.add('show'); }
+    else { rec.status='tried'; save(app); var b=document.getElementById('notyetBox'); b.classList.remove('hide'); document.getElementById('notyetMsg').textContent='Pass the Form A check and the delayed Form B check (on a later day) and the badge is yours.'; }
+    commitTime();
+  }
+})();
+</script>
+</body>
+</html>

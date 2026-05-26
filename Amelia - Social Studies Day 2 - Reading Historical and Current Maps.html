@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Station &middot; Historical and Current Maps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#ece3cf;--card:#fbf6ea;--ink:#21304a;--ink2:#46566e;--mute:#8a8472;--line:#d8cab0;
+   --accent:#1f4e79;--accent-d:#15375a;--red:#a23b2b;--alt:#9a6b1e;--good:#1f7a4d;}
+  body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:18px;line-height:1.55;}
+  .bg{position:fixed;inset:0;z-index:-1;background:repeating-linear-gradient(0deg,rgba(31,78,121,.05) 0 1px,transparent 1px 30px),repeating-linear-gradient(90deg,rgba(31,78,121,.05) 0 1px,transparent 1px 30px),radial-gradient(60vmax 50vmax at 100% 0,rgba(154,107,30,.10),transparent 60%),linear-gradient(180deg,#f1e8d6,var(--paper));}
+  h1,h2,.disp{font-family:'DM Serif Display',Georgia,serif;font-weight:400;}
+  .labbar{background:var(--ink);color:#e2e8f1;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'DM Sans';font-size:13px;letter-spacing:.04em;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--alt);}
+  .labbar .chip{margin-left:auto;border:1px solid #3a4a63;border-radius:6px;padding:3px 9px;color:#a9b6c9;font-size:12px;}
+  .labbar b{color:#fff;}
+  .kicker{font-family:'DM Sans';font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--alt);font-weight:700;}
+  h1{font-size:clamp(32px,6vw,46px);line-height:1.04;margin:6px 0 8px;}
+  .mission{color:var(--ink2);max-width:56ch;}
+  .stdtag{margin-top:16px;background:#f1e8d6;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'DM Sans';font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(33,48,74,.55);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-family:'DM Sans';font-weight:700;font-size:13px;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:24px;} .station p.lead{color:var(--ink2);}
+  .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:13.5px;}
+  .meta div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;}
+  .meta b{color:var(--accent);}
+  .cmaps{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+  @media (max-width:560px){.cmaps{grid-template-columns:1fr;}}
+  .cmap{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px;}
+  .cmap h3{font-family:'DM Serif Display';font-size:17px;color:var(--accent-d);margin-bottom:4px;text-align:center;}
+  .cmap .date{text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .cmap svg{width:100%;height:auto;display:block;}
+  .cmap svg .reg{stroke:#15375a;stroke-width:1.4;cursor:pointer;}
+  .cmap svg .reg:hover{stroke:#a23b2b;stroke-width:2;}
+  .cmap svg .reg.flash{stroke:#a23b2b;stroke-width:2.5;}
+  .legendrow{display:flex;flex-wrap:wrap;gap:8px;font-size:12.5px;margin-top:8px;justify-content:center;color:var(--ink2);}
+  .legendrow span{display:inline-flex;align-items:center;gap:4px;}
+  .legendrow span i{display:inline-block;width:14px;height:10px;border:1px solid #15375a;}
+  .compq{margin-top:14px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;}
+  .compq .qtxt{font-weight:700;color:var(--ink);margin-bottom:8px;}
+  .compq .hint{font-size:13.5px;color:var(--mute);}
+  .compopts{display:flex;flex-direction:column;gap:8px;margin-top:8px;}
+  .compopts button{font:inherit;font-size:15px;text-align:left;border:1.5px solid var(--line);background:#fbf6ea;border-radius:9px;padding:10px 12px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .compopts button:hover{border-color:var(--accent);}
+  .compopts button.ok{border-color:var(--good);background:#e9f5ee;color:#0e5634;}
+  .compopts button.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .cfb{font-size:14px;margin-top:8px;color:var(--ink2);min-height:1em;}
+  .myth{border:1px solid #d3c4a4;background:#f1e8d6;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'DM Sans';font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--alt);}
+  .myth .big{font-family:'DM Serif Display';font-size:20px;margin:4px 0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .cta.go{background:var(--good);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e9f5ee;color:#0e5634;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+  .pt{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px;margin-top:10px;}
+  .pt h3{font-family:'DM Serif Display';font-size:18px;color:var(--accent);margin-bottom:6px;}
+  .pt ul{margin:8px 0 0 22px;color:var(--ink2);font-size:14.5px;}
+  .pt ul li{margin-bottom:5px;}
+  .adultnote{background:#f1e8d6;border:1px dashed var(--alt);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13.5px;color:var(--ink2);}
+  .adultnote b{color:var(--alt);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .gate{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+  .gateitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14.5px;background:#fff;}
+  .gateitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'DM Sans';}
+  .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
+  .gateitem .g2{flex:1;text-align:left;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Atlas station &middot; <b>Grade 3</b><span class="chip">Standard 3.EG5.A.a</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Map plate 02</div>
+    <h1>Reading Historical and Current Maps</h1>
+    <p class="mission">A map is a <b>snapshot</b> of a place at one moment. A <b>historical</b> map shows that place a long time ago. A <b>current</b> map shows it today. Put the two beside each other and you can see what changed.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Read and construct historical and current maps.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>First, find the date and source</h2></div>
+      <p class="lead">Every good map tells you <b>when</b> it was made and <b>who</b> made it. That information lives in the corner: a date, a title, and a source. Without those, you cannot tell a historical map from a current one.</p>
+      <div class="meta">
+        <div><b>Title</b><br>What the map is showing.</div>
+        <div><b>Date</b><br>When the map was made.</div>
+        <div><b>Source</b><br>Who made it (cartographer or agency).</div>
+        <div><b>Legend</b><br>What the colors and marks mean.</div>
+      </div>
+      <p class="lead" style="margin-top:14px;">A <b>snapshot map</b> shows a place at one date. An <b>event map</b> shows what happened, like arrows for a battle or a journey. Both can be historical or current. The date in the corner tells you which.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Compare the two United States</h2></div>
+      <p class="lead">These two maps both show the United States. One was drawn near the year <b>1800</b>, when the country had only 16 states clinging to the east coast. The other shows the country today, all the way to the Pacific. Tap a region to see its label, then answer the comparison questions.</p>
+      <div class="cmaps">
+        <div class="cmap">
+          <h3>United States, about 1800</h3>
+          <div class="date">Historical &middot; 16 states</div>
+          <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-label="historical US map about 1800">
+            <rect width="200" height="130" fill="#f4ecda"/>
+            <!-- ocean to right -->
+            <rect x="115" y="0" width="85" height="130" fill="#cfe0eb"/>
+            <!-- 16 states blob along east -->
+            <polygon class="reg" data-r="east1800" points="78,15 115,12 118,40 95,55 80,45" fill="#cfe0b8"/>
+            <polygon class="reg" data-r="east1800" points="80,45 95,55 100,80 78,90 70,60" fill="#cfe0b8"/>
+            <polygon class="reg" data-r="east1800" points="78,90 100,80 105,110 80,118 68,100" fill="#cfe0b8"/>
+            <!-- unknown / unclaimed west -->
+            <polygon class="reg" data-r="unclaimed1800" points="10,15 78,15 80,45 70,60 78,90 68,100 80,118 10,118" fill="#e7d9b6"/>
+            <text x="40" y="68" font-size="8" fill="#9a6b1e" font-family="DM Serif Display">Unsettled / Unmapped</text>
+            <text x="95" y="75" font-size="7" fill="#15375a" font-family="DM Serif Display">16 states</text>
+            <text x="155" y="70" font-size="9" fill="#15375a" font-family="DM Serif Display">Atlantic</text>
+            <text x="6" y="125" font-size="7" fill="#46566e">Source: Carey atlas, c.1800</text>
+          </svg>
+        </div>
+        <div class="cmap">
+          <h3>United States, today</h3>
+          <div class="date">Current &middot; 50 states</div>
+          <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-label="current US map">
+            <rect width="200" height="130" fill="#f4ecda"/>
+            <rect x="170" y="0" width="30" height="130" fill="#cfe0eb"/>
+            <rect x="0" y="0" width="14" height="130" fill="#cfe0eb"/>
+            <!-- west region -->
+            <polygon class="reg" data-r="west" points="14,15 70,15 75,55 70,95 14,115" fill="#f3d6b3"/>
+            <!-- midwest -->
+            <polygon class="reg" data-r="midwest" points="70,15 130,15 132,60 75,55" fill="#cfe0b8"/>
+            <polygon class="reg" data-r="midwest" points="75,55 132,60 130,95 70,95" fill="#cfe0b8"/>
+            <!-- east region -->
+            <polygon class="reg" data-r="east" points="130,15 170,15 168,50 132,60" fill="#d4ccef"/>
+            <polygon class="reg" data-r="east" points="132,60 168,50 170,95 130,95" fill="#d4ccef"/>
+            <!-- south -->
+            <polygon class="reg" data-r="south" points="70,95 130,95 170,95 165,115 14,115" fill="#f0d97a"/>
+            <text x="35" y="65" font-size="8" fill="#15375a" font-family="DM Serif Display">West</text>
+            <text x="92" y="58" font-size="8" fill="#15375a" font-family="DM Serif Display">Midwest</text>
+            <text x="143" y="55" font-size="7" fill="#15375a" font-family="DM Serif Display">East</text>
+            <text x="80" y="110" font-size="8" fill="#15375a" font-family="DM Serif Display">South</text>
+            <text x="180" y="70" font-size="8" fill="#15375a" font-family="DM Serif Display">Atl.</text>
+            <text x="3" y="70" font-size="8" fill="#15375a" font-family="DM Serif Display">Pac.</text>
+            <text x="16" y="125" font-size="7" fill="#46566e">Source: US Census, 2020</text>
+          </svg>
+        </div>
+      </div>
+      <div class="legendrow"><span><i style="background:#cfe0b8"></i> Settled / state</span><span><i style="background:#e7d9b6"></i> Unmapped (1800)</span><span><i style="background:#cfe0eb"></i> Ocean</span></div>
+      <div id="cmpbox"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">An old map is not a wrong map.</div><div style="color:var(--ink2)">The 1800 map is correct <b>for 1800</b>. It does not include California because the United States did not include California yet. Always read the date before you judge a map.</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I can compare the two maps. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="ptphase" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Out-loud task</h2></div>
+      <p class="lead">Pretend an adult has never seen these two maps. Walk them through:</p>
+      <div class="pt">
+        <h3>Compare and explain</h3>
+        <ul>
+          <li>Point to the <b>date</b> on each map and read it.</li>
+          <li>Say <b>two things that are the same</b> on both maps.</li>
+          <li>Say <b>two things that changed</b> between 1800 and today.</li>
+          <li>Explain why an 1800 map of the United States is not "wrong" even though it leaves out California.</li>
+        </ul>
+        <div class="adultnote"><b>Adult listener:</b> the goal is that the learner uses the dates to compare, names a real similarity and a real change (border moved west, more states added), and understands that historical maps are snapshots of their own time.</div>
+      </div>
+      <button class="cta go" id="ptDone">I did the out-loud task. Go to the retention check</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Spaced retention</h2></div>
+      <p class="lead">This second check should be done on a <b>later day</b>, after at least one night of sleep. The delay is what proves the ideas stuck.</p>
+      <div class="myth"><span class="tag">Tip</span><div class="big">If today is the first attempt, close this tab and come back tomorrow.</div></div>
+      <button class="cta" id="startB">Start Form B now</button>
+    </div>
+    <div class="station hide" id="bbox">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:48ch;margin:0 auto;"></p>
+    </div>
+    <div class="gate" id="gate"></div>
+    <button class="cta alt hide" id="retry" style="margin-top:14px;">Try the check again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Amelia &middot; Social Studies &middot; Day 2</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='social', DAY='3.EG5.A.a', SNAME='Amelia';
+  var PASS=7, QTIME=25;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',attempts:0,bestA:0,bestB:0,ptDone:false};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,bestA:rec.bestA||0,bestB:rec.bestB||0,attempts:rec.attempts||0,time_ms:rec.timeMs||0,wrong:rec.lastWrong||[],pt_done:!!rec.ptDone,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  // region tap labels
+  var LBLS={
+    east1800:'In 1800, the United States only stretched from the Atlantic to about the Mississippi River. These were the 16 states.',
+    unclaimed1800:'In 1800, this huge area was unmapped or unsettled by the United States. Native nations lived here. Some parts were claimed by France or Spain.',
+    east:'Today: the East region. The original 16 states are inside this area, plus a few more.',
+    midwest:'Today: the Midwest. Added to the country across the 1800s, including states like Missouri, Iowa, and Illinois.',
+    west:'Today: the West. Added after 1800. California joined in 1850.',
+    south:'Today: the South. Some of these states existed in 1800, others were added later.'
+  };
+  document.querySelectorAll('.cmap svg .reg').forEach(function(p){
+    p.addEventListener('click',function(){
+      document.querySelectorAll('.cmap svg .reg').forEach(function(x){x.classList.remove('flash');});
+      p.classList.add('flash');
+      var key=p.getAttribute('data-r');
+      var box=document.getElementById('cmpbox');
+      box.innerHTML='<div class="compq"><div class="qtxt">Region note</div><div class="hint">'+LBLS[key]+'</div></div>';
+    });
+  });
+
+  // comparison questions inline
+  var COMP=[
+    {q:'How many states does the 1800 map show?', o:['50','16','13','30'], a:1, why:'The 1800 atlas showed 16 states along the east coast.'},
+    {q:'In 1800, the United States ended around which river?', o:['Mississippi','Missouri','Colorado','Rio Grande'], a:0, why:'The country reached only about as far west as the Mississippi River.'},
+    {q:'Which is true of the current map but NOT the 1800 map?', o:['Has the Atlantic Ocean','Includes California','Has rivers','Shows the East coast'], a:1, why:'California became a state in 1850 and is on the current map only.'},
+    {q:'The 1800 map is best called a ...', o:['fake map','historical map','weather map','treasure map'], a:1, why:'It shows the country at a moment in the past, so it is a historical map.'}
+  ];
+  // append comp questions to the second station
+  var cmpbox=document.getElementById('cmpbox');
+  COMP.forEach(function(it,i){
+    var box=document.createElement('div'); box.className='compq';
+    var q=document.createElement('div'); q.className='qtxt'; q.textContent=(i+1)+'. '+it.q; box.appendChild(q);
+    var opts=document.createElement('div'); opts.className='compopts';
+    var fb=document.createElement('div'); fb.className='cfb';
+    it.o.forEach(function(t,idx){ var b=document.createElement('button'); b.type='button'; b.textContent=t;
+      b.addEventListener('click',function(){ if(b.dataset.done)return;
+        var ok=(idx===it.a);
+        if(ok){ b.classList.add('ok'); Array.prototype.forEach.call(opts.children,function(x){x.dataset.done='1';x.style.pointerEvents='none';}); fb.textContent='Correct. '+it.why; fb.style.color='var(--good)'; }
+        else { b.classList.add('no'); b.dataset.done='1'; b.style.pointerEvents='none'; fb.textContent='Try again. Reread the date and look at the second map.'; fb.style.color='var(--red)'; }
+      });
+      opts.appendChild(b);
+    });
+    box.appendChild(opts); box.appendChild(fb); cmpbox.appendChild(box);
+  });
+
+  // Form A and B
+  var FORMA=[
+    {q:'What does a historical map show?', o:['What the place will look like','A place at a moment in the past','Only weather','Only roads'], a:1, why:'A historical map is a snapshot of a place at a date in the past.'},
+    {q:'To tell a historical map from a current one, read the ...', o:['title only','date','colors','size'], a:1, why:'The date is the fastest way to place a map in time.'},
+    {q:'Which feature is on the 1800 US map but NOT the current one?', o:['Atlantic Ocean','Large unmapped western area','East coast cities','Mississippi River'], a:1, why:'Much of the west was unmapped or unsettled by the US in 1800.'},
+    {q:'Comparing two maps of the same place from different dates shows ...', o:['what stayed the same and what changed','that one is wrong','that maps lie','the weather'], a:0, why:'That is the whole point of comparing historical and current maps.'},
+    {q:'On the 1800 map, the United States stretched roughly from the Atlantic to the ...', o:['Pacific','Mississippi','Rocky Mountains','Great Lakes only'], a:1, why:'About to the Mississippi River.'},
+    {q:'A current map of the US has how many states?', o:['16','25','48','50'], a:3, why:'Today there are 50 states.'},
+    {q:'A map\'s SOURCE tells you ...', o:['who made it','its color','its size','its smell'], a:0, why:'The source is the cartographer or agency that made the map.'},
+    {q:'An 1800 map missing California is ...', o:['wrong','correct for its date','a treasure map','useless'], a:1, why:'California was not a state in 1800. The map is correct for its time.'}
+  ];
+  var FORMB=[
+    {q:'A map showing the 13 colonies in 1776 is a ...', o:['current map','historical map','weather map','treasure map'], a:1, why:'It shows a place at a moment in the past.'},
+    {q:'Which corner item helps date the map fastest?', o:['Title','Legend','Date','Scale bar'], a:2, why:'The date is the direct answer.'},
+    {q:'You see two maps of Missouri, one from 1820 and one from today. The biggest difference is most likely ...', o:['the rivers','the borders and cities','the ocean','the language'], a:1, why:'Borders moved and cities grew between 1820 and today.'},
+    {q:'Why compare a historical map to a current one?', o:['To find out what changed over time','To pick a color','To make it pretty','To shrink it'], a:0, why:'Comparison shows what changed.'},
+    {q:'An EVENT map might show ...', o:['the weather forecast','arrows for a journey or battle','only state borders','only roads'], a:1, why:'Event maps use arrows or paths to show what happened.'},
+    {q:'A SNAPSHOT map shows ...', o:['a place at one date','sound waves','only the moon','only your room'], a:0, why:'A snapshot freezes the place at one date.'},
+    {q:'The country today reaches all the way to which ocean on the west side?', o:['Atlantic','Indian','Pacific','Arctic'], a:2, why:'The US reaches the Pacific Ocean on the west.'},
+    {q:'A map made today that shows the United States in 1865 is ...', o:['a current map','a historical map','a weather map','not a real map'], a:1, why:'If it shows a place in the past, it is historical, even if it was drawn today.'}
+  ];
+
+  var PHASES=['lesson','check','ptphase','retention','result'];
+  function show(id){ PHASES.forEach(function(s){ document.getElementById(s).classList.toggle('hide',s!==id); }); window.scrollTo(0,0); }
+
+  function runQuiz(items, qtxt, opts, qcount, tlabel, tfill, qwhy, onDone){
+    var qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, wrongs=[];
+    function go(){
+      locked=false; var it=items[qi]; qcount.textContent='Question '+(qi+1)+' of '+items.length;
+      qtxt.innerHTML=it.q; opts.innerHTML=''; qwhy.textContent='';
+      it.o.forEach(function(t,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=t;
+        b.addEventListener('click',function(){ if(locked)return; locked=true; clearInterval(timer);
+          var ok=(i===it.a);
+          Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===it.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+          qwhy.textContent=(ok?'Correct. ':'Not quite. ')+it.why;
+          if(ok)correct++; else wrongs.push({stem:it.q,picked:it.o[i],correct:it.o[it.a]});
+          setTimeout(function(){ qi++; if(qi<items.length)go(); else { commitTime(); onDone(correct,wrongs); } }, ok?900:1300);
+        }); opts.appendChild(b); });
+      timeLeft=QTIME; tfill.style.width='100%'; tfill.classList.remove('low'); tlabel.textContent=QTIME+'s'; clearInterval(timer);
+      timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; tfill.style.width=(timeLeft/QTIME*100)+'%'; tlabel.textContent=timeLeft+'s'; if(timeLeft<=8)tfill.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000);
+    }
+    go();
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){
+    rec.attempts=(rec.attempts||0)+1; save(app); show('check');
+    runQuiz(FORMA, document.getElementById('qtext'), document.getElementById('opts'),
+      document.getElementById('qcount'), document.getElementById('tlabel'), document.getElementById('tfill'),
+      document.getElementById('qwhy'),
+      function(correct,wrongs){ rec.bestA=Math.max(rec.bestA||0,correct); rec.lastWrong=wrongs; save(app);
+        if(correct>=PASS) show('ptphase'); else renderResult(false,'Form A',correct);
+      });
+  });
+  document.getElementById('ptDone').addEventListener('click',function(){ rec.ptDone=true; save(app); show('retention'); });
+  document.getElementById('startB').addEventListener('click',function(){
+    document.getElementById('bbox').classList.remove('hide');
+    runQuiz(FORMB, document.getElementById('qtextB'), document.getElementById('optsB'),
+      document.getElementById('qcountB'), document.getElementById('tlabelB'), document.getElementById('tfillB'),
+      document.getElementById('qwhyB'),
+      function(correct,wrongs){ rec.bestB=Math.max(rec.bestB||0,correct); save(app);
+        renderResult(correct>=PASS,'Form B',correct);
+      });
+  });
+
+  function renderResult(passed,label,correct){
+    var aMet=(rec.bestA||0)>=PASS, bMet=(rec.bestB||0)>=PASS, ptMet=!!rec.ptDone;
+    var mastered=aMet&&bMet;
+    rec.status = mastered ? 'mastered' : (aMet ? 'partA' : 'tried');
+    save(app); syncCloud(); show('result');
+    document.getElementById('scorebig').textContent=(rec.bestA||0)+' + '+(rec.bestB||0);
+    document.getElementById('rtitle').textContent = mastered ? 'Both maps read!' : (passed ? 'Form done.' : 'So close.');
+    document.getElementById('rmsg').textContent = mastered ? 'You passed Form A and Form B. You can read a historical map alongside a current one and tell what changed.' : (passed ? 'Strong work on '+label+'. Come back another day for the other form.' : 'You need 7 of 8 on '+label+'. Reread Station 01 and the two maps, then try again.');
+    var gate=document.getElementById('gate'); gate.innerHTML='';
+    function row(met,txt,dets){ var d=document.createElement('div'); d.className='gateitem '+(met?'met':'miss'); d.innerHTML='<span class="mk">'+(met?'✓':'!')+'</span><span class="g2"><b>'+txt+'</b><br><span style="font-size:13px;color:var(--mute)">'+dets+'</span></span>'; gate.appendChild(d); }
+    row(aMet,'Form A: '+(rec.bestA||0)+' of 8','Need 7 of 8.');
+    row(ptMet,'Out-loud comparison done','Walked an adult through dates, sameness, and change.');
+    row(bMet,'Form B: '+(rec.bestB||0)+' of 8','Need 7 of 8, on a later day.');
+    document.getElementById('retry').classList.toggle('hide', mastered);
+    document.getElementById('donebox').classList.toggle('hide', !mastered);
+  }
+  document.getElementById('retry').addEventListener('click',function(){ show('lesson'); });
+
+})();
+</script>
+</body>
+</html>

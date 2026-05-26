@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 03 &middot; Why Decimals Terminate or Repeat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno,.stdtag .l{font-family:'Spline Sans Mono',monospace;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+  @media (max-width:560px){.grid3{grid-template-columns:1fr;}}
+  .gcard{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff;}
+  .gcard h4{font-family:'Anton';font-weight:400;text-transform:uppercase;font-size:15px;letter-spacing:.02em;color:var(--alt);margin-bottom:4px;}
+  .gcard .v{font-family:'Spline Sans Mono';font-size:16px;color:var(--ink);}
+  .gcard .why{font-size:13px;color:var(--ink2);margin-top:6px;}
+  .lab{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px;margin-top:12px;}
+  .labrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;}
+  .labrow label{font-family:'Spline Sans Mono';font-size:13px;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;}
+  .labrow input[type=number]{font:inherit;font-family:'Spline Sans Mono';font-size:18px;width:80px;min-height:44px;padding:6px 10px;border:1.5px solid var(--line);border-radius:8px;text-align:center;color:var(--ink);background:#fff;}
+  .labrow .sep{font-family:'Spline Sans Mono';font-size:22px;color:var(--ink2);}
+  .labrow button{font:inherit;font-weight:600;font-size:14px;background:var(--ink);color:#fff;border:none;border-radius:8px;padding:10px 14px;min-height:44px;cursor:pointer;}
+  .labrow .pre{font:inherit;font-family:'Spline Sans Mono';font-size:13px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:7px;padding:8px 10px;min-height:36px;cursor:pointer;}
+  .labrow .pre:hover{border-color:var(--accent);}
+  .readout{font-family:'Spline Sans Mono';font-size:22px;background:#0d1014;color:#ecede7;border-radius:10px;padding:14px 16px;overflow-x:auto;white-space:nowrap;}
+  .readout .rep{background:#ff3b14;color:#fff;padding:1px 4px;border-radius:3px;}
+  .readout .term{color:#5be08a;}
+  .verd{margin-top:12px;font-size:14.5px;color:var(--ink2);}
+  .verd b.t{color:var(--good);} .verd b.r{color:var(--accent-d);}
+  .factrow{margin-top:8px;font-family:'Spline Sans Mono';font-size:13px;color:var(--mute);}
+  .pred{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .pcard{flex:1;min-width:170px;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:12px;cursor:pointer;}
+  .pcard:hover{border-color:var(--accent);}
+  .pcard .f{font-family:'Spline Sans Mono';font-size:18px;color:var(--ink);}
+  .pcard .ch{display:flex;gap:6px;margin-top:8px;}
+  .pcard .ch button{flex:1;font:inherit;font-weight:600;font-size:13px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px;min-height:40px;cursor:pointer;color:var(--ink);}
+  .pcard .ch button:hover{border-color:var(--accent);}
+  .pcard.ok{border-color:var(--good);background:#e9f6ee;} .pcard.no{border-color:var(--red);background:#fdecea;}
+  .pcard .why{font-size:13px;color:var(--ink2);margin-top:6px;display:none;}
+  .pcard.done .why{display:block;} .pcard.done .ch button{pointer-events:none;opacity:.55;}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);} .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);} .cta:disabled{opacity:.5;cursor:default;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;}
+  .ptask textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;resize:vertical;color:var(--ink);background:#fff;}
+  .gate{margin-top:10px;}
+  .gitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px;color:var(--ink2);}
+  .gitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono';font-size:13px;}
+  .gitem.ok .mk{background:var(--good);} .gitem.miss .mk{background:var(--accent-d);}
+  .cred{display:none;text-align:center;padding:20px;border-radius:14px;background:#fff;border:1px solid var(--good);margin-top:12px;}
+  .cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.NS.A.1b</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 03</div>
+    <h1>Decimals That Must Behave</h1>
+    <p class="mission">Every rational number, divided out, either stops or locks into a repeating block. There is a reason it has to. Today you watch it happen and learn to predict which fractions terminate and which repeat.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Understand that all rational numbers have a decimal expansion that terminates or repeats.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Three fractions, three behaviors</h2></div>
+      <p class="lead">Look at what long-division gives you for each.</p>
+      <div class="grid3">
+        <div class="gcard"><h4>1/4</h4><div class="v">0.25</div><div class="why">Stops. The remainder hits 0 and division ends.</div></div>
+        <div class="gcard"><h4>1/3</h4><div class="v">0.333...</div><div class="why">Repeats. The remainder 1 returns each step, so the digit 3 returns.</div></div>
+        <div class="gcard"><h4>1/7</h4><div class="v">0.142857142857...</div><div class="why">Repeats with a 6-digit block, because remainders cycle through 1, 3, 2, 6, 4, 5 before returning.</div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Why repetition is forced</h2></div>
+      <p class="lead">When you divide by q, every remainder must be one of <b>0, 1, 2, ..., q-1</b>. That is only q possibilities. After at most q steps a remainder has to repeat (or be 0). Once a remainder repeats, the next digit repeats, and the next, forever. That is the proof in a sentence.</p>
+      <div class="note"><b>Engineering shortcut.</b> Reduce p/q first. Then look at the prime factors of q. If the only primes are <b>2 and 5</b>, the decimal terminates. Anything else in q, and it repeats. So 7/40 terminates (40 = 2³·5), but 7/30 repeats (30 = 2·3·5, has a 3).</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / DO</span><h2>The expansion lab</h2></div>
+      <p class="lead">Type a fraction. The lab divides it out, highlights the repeating block in red, names whether it terminates or repeats, and shows the prime factors of the reduced denominator.</p>
+      <div class="lab">
+        <div class="labrow">
+          <label for="numIn">Numerator</label>
+          <input type="number" id="numIn" value="1" min="-999" max="999" step="1" inputmode="numeric">
+          <span class="sep">/</span>
+          <label for="denIn">Denominator</label>
+          <input type="number" id="denIn" value="7" min="1" max="999" step="1" inputmode="numeric">
+          <button type="button" id="runDiv">Divide</button>
+        </div>
+        <div class="labrow">
+          <span style="font-family:'Spline Sans Mono';font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;">Try:</span>
+          <button type="button" class="pre" data-p="1" data-q="4">1/4</button>
+          <button type="button" class="pre" data-p="1" data-q="3">1/3</button>
+          <button type="button" class="pre" data-p="1" data-q="7">1/7</button>
+          <button type="button" class="pre" data-p="3" data-q="11">3/11</button>
+          <button type="button" class="pre" data-p="7" data-q="40">7/40</button>
+          <button type="button" class="pre" data-p="5" data-q="6">5/6</button>
+          <button type="button" class="pre" data-p="1" data-q="13">1/13</button>
+        </div>
+        <div class="readout" id="readout" aria-live="polite">0.142857&hellip;</div>
+        <div class="verd" id="verd"></div>
+        <div class="factrow" id="factrow"></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Predict before you divide</h2></div>
+      <p class="lead">Use the prime-factor shortcut. Will the decimal terminate or repeat?</p>
+      <div class="pred" id="predGrid"></div>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">05 / EXPLAIN</span><h2>Write the proof in your own words</h2></div>
+      <p class="lead">In two or three sentences, explain why 1/q always either terminates or repeats. Use the phrase "finitely many remainders."</p>
+      <textarea id="explainText" placeholder="When you divide 1 by q..." aria-label="your written explanation"></textarea>
+      <p class="lead" style="margin-top:10px;font-size:14px;">For your thinking, not graded. Read it back. Did you name the finite-remainder argument?</p>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">06 / SAY IT</span><h2>Out loud, to an adult</h2></div>
+      <p class="lead">Predict whether 7/40 terminates or repeats <b>without dividing</b>, and say why. Then do the same for 5/12.</p>
+      <div class="note"><b>Adult listener.</b> Look for: (1) factors 40 = 2·2·2·5, only 2s and 5s, so terminates; (2) factors 12 = 2·2·3, the 3 forces repetition.</div>
+      <button class="cta alt" id="ptDone" type="button">I said it out loud. Continue</button>
+    </div>
+
+    <button class="cta" id="toCheck">Start the Form A check (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="resultA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A RESULT</span><h2>How that landed</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="scoreA">0 / 8</span><span style="flex:1"></span><span id="statusA" style="font-weight:700;"></span></div>
+      <p class="lead" id="msgA" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to retention (Form B)</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new questions on the same idea. Best done <b>at least a day after Form A</b>.</p>
+      <div class="note"><b>Spacing.</b> If you can, close this and come back tomorrow before starting Form B.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="hide" id="bWrap">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="cred" id="cred"><div class="gem">◆</div><h3>8.NS.A.1b Mastered</h3><p>You can predict whether a fractions decimal terminates or repeats, and explain the proof.</p></div>
+      <p class="lead" style="margin-top:10px;">Next session: the algebra trick that turns any repeating decimal back into a clean fraction.</p>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can close this and head back to your dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer>Julie &middot; Math &middot; Day 2 &middot; Verbatim Missouri Learning Standard 8.NS.A.1b</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='math', DAY='8.NS.A.1b', SNAME='Julie';
+  var PASS=7, QTIME=25;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,formA:0,formB:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  // ---- expansion lab ----
+  function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
+  function primeFactors(n){ var out=[]; var k=2; while(n>1){ while(n%k===0){out.push(k); n=Math.floor(n/k);} k++; if(k*k>n&&n>1){out.push(n);break;}} return out; }
+  function uniq(a){var s={};var r=[];a.forEach(function(x){if(!s[x]){s[x]=1;r.push(x);}});return r;}
+  function expand(p,q){
+    var sign=(p<0)!==(q<0)?'-':''; p=Math.abs(p); q=Math.abs(q);
+    var intPart=Math.floor(p/q), r=p-intPart*q;
+    if(r===0) return {sign:sign,whole:String(intPart),pre:'',rep:'',term:true};
+    var digits=[], remainders={}; var pre='', rep='', i=0;
+    while(r!==0 && i<200){
+      if(remainders.hasOwnProperty(r)){ var k=remainders[r]; pre=digits.slice(0,k).join(''); rep=digits.slice(k).join(''); return {sign:sign,whole:String(intPart),pre:pre,rep:rep,term:false}; }
+      remainders[r]=i; r*=10; var d=Math.floor(r/q); r-=d*q; digits.push(d); i++;
+    }
+    if(r===0) return {sign:sign,whole:String(intPart),pre:digits.join(''),rep:'',term:true};
+    return {sign:sign,whole:String(intPart),pre:digits.join(''),rep:'',term:false};
+  }
+  function render(p,q){
+    var ro=document.getElementById('readout'), verd=document.getElementById('verd'), fr=document.getElementById('factrow');
+    if(!q){ ro.textContent='undefined (denominator is 0)'; verd.innerHTML=''; fr.textContent=''; return; }
+    var g=gcd(p,q); var rp=p/g, rq=q/g;
+    var e=expand(rp,rq);
+    var text=e.sign+e.whole;
+    if(e.pre||e.rep) text+='.';
+    if(e.term){
+      ro.innerHTML=text+'<span class="term">'+e.pre+'</span>';
+    } else if(e.rep){
+      ro.innerHTML=text+e.pre+'<span class="rep">'+e.rep+'</span>'+e.pre+'<span class="rep">'+e.rep+'</span>&hellip;';
+    } else {
+      ro.textContent=text+e.pre+'...';
+    }
+    var pf=primeFactors(Math.abs(rq)), only25=uniq(pf).every(function(x){return x===2||x===5;});
+    if(rq===1){ verd.innerHTML='<b class="t">Terminates.</b> '+rp+'/'+rq+' is an integer.'; }
+    else if(e.term){ verd.innerHTML='<b class="t">Terminates.</b> Reduced denominator '+rq+' has only 2s and 5s.'; }
+    else { verd.innerHTML='<b class="r">Repeats.</b> The repeating block is '+e.rep.length+' digit'+(e.rep.length===1?'':'s')+' long.'; }
+    fr.textContent='Reduced: '+(e.sign?'-':'')+rp+'/'+rq+'  ·  prime factors of '+rq+': '+(pf.length?pf.join(' x '):'1')+'  ·  only 2 and 5? '+(only25?'yes':'no');
+  }
+  function readInputs(){ var p=parseInt(document.getElementById('numIn').value,10)||0; var q=parseInt(document.getElementById('denIn').value,10)||0; render(p,q); }
+  document.getElementById('runDiv').addEventListener('click',readInputs);
+  document.getElementById('numIn').addEventListener('change',readInputs);
+  document.getElementById('denIn').addEventListener('change',readInputs);
+  Array.prototype.forEach.call(document.querySelectorAll('.pre'),function(b){ b.addEventListener('click',function(){
+    document.getElementById('numIn').value=b.getAttribute('data-p');
+    document.getElementById('denIn').value=b.getAttribute('data-q');
+    readInputs();
+  }); });
+  readInputs();
+
+  // ---- predict grid ----
+  var PRED=[
+    {f:'3/8', t:true, why:'8 = 2³, only 2s. Terminates (0.375).'},
+    {f:'5/6', t:false, why:'6 = 2·3. The 3 forces it to repeat (0.8333...).'},
+    {f:'9/20', t:true, why:'20 = 2²·5. Only 2s and 5s. Terminates (0.45).'},
+    {f:'4/15', t:false, why:'15 = 3·5. The 3 forces it to repeat (0.2666...).'},
+    {f:'7/25', t:true, why:'25 = 5². Only 5s. Terminates (0.28).'},
+    {f:'2/9', t:false, why:'9 = 3². Repeats (0.222...).'}
+  ];
+  var pg=document.getElementById('predGrid');
+  PRED.forEach(function(it){
+    var c=document.createElement('div'); c.className='pcard';
+    var f=document.createElement('div'); f.className='f'; f.textContent=it.f; c.appendChild(f);
+    var ch=document.createElement('div'); ch.className='ch';
+    var bt=document.createElement('button'); bt.type='button'; bt.textContent='Terminates';
+    var br=document.createElement('button'); br.type='button'; br.textContent='Repeats';
+    var w=document.createElement('div'); w.className='why'; w.textContent=it.why;
+    function pick(choice){ if(c.classList.contains('done'))return; c.classList.add('done');
+      var ok=(choice===it.t); c.classList.add(ok?'ok':'no'); }
+    bt.addEventListener('click',function(){pick(true);});
+    br.addEventListener('click',function(){pick(false);});
+    ch.appendChild(bt); ch.appendChild(br); c.appendChild(ch); c.appendChild(w); pg.appendChild(c);
+  });
+
+  // ---- Form A and B ----
+  var FORMA=[
+    {q:'Why must 1/q always either terminate or repeat?', o:['Because every fraction reduces to an integer','Because there are only finitely many possible remainders when dividing by q','Because square roots are involved','Because q can be very large'], a:1, why:'Only q distinct nonzero remainders exist, so one must repeat.'},
+    {q:'1/3 as a decimal is ...', o:['0.3 exactly','0.3333... (repeating 3)','0.30303... (repeating 30)','irrational'], a:1, why:'The remainder 1 returns each step, so 3 repeats.'},
+    {q:'Which fraction <b>terminates</b>?', o:['1/6','5/12','7/40','2/9'], a:2, why:'40 = 2³·5, only 2s and 5s.'},
+    {q:'Which fraction <b>repeats</b>?', o:['3/8','9/20','7/16','5/6'], a:3, why:'6 = 2·3, the 3 forces repetition.'},
+    {q:'1/7 has a repeating block of length ...', o:['1','2','6','It does not repeat'], a:2, why:'Remainders cycle 1,3,2,6,4,5 then return to 1.'},
+    {q:'Which decimal could come from a rational number?', o:['3.14159265358979... (pi)','0.121221222... (gaps grow)','0.142857142857...','0.101001000100001...'], a:2, why:'A fixed 6-digit block repeats forever, so rational.'},
+    {q:'Reduce 6/8, then decide. Does its decimal terminate?', o:['Yes, reduces to 3/4 = 0.75','No, it repeats','Cannot tell','Only if multiplied'], a:0, why:'6/8 = 3/4, denominator 4 = 2², terminates.'},
+    {q:'For p/q in lowest terms, the decimal terminates exactly when q is built from ...', o:['only 2s and 5s','only 3s and 7s','any primes','only one prime'], a:0, why:'Powers of 10 are 2s and 5s, so q must share only those primes.'}
+  ];
+  var FORMB=[
+    {q:'Why does long-division of p/q force the decimal to repeat or stop?', o:['Because of pi','Because remainders can only be 0 to q-1, so they must cycle','Because the numerator is bounded','Because computers round'], a:1, why:'Finite possible remainders means one must return.'},
+    {q:'1/9 as a decimal is ...', o:['0.9 exactly','0.111... (repeating 1)','0.0909... (repeating 09)','irrational'], a:1, why:'Remainder 1 returns immediately.'},
+    {q:'Which fraction <b>terminates</b>?', o:['2/3','7/12','9/50','5/14'], a:2, why:'50 = 2·5², only 2s and 5s.'},
+    {q:'Which fraction <b>repeats</b>?', o:['7/8','3/16','11/20','5/12'], a:3, why:'12 = 2²·3, the 3 forces repetition.'},
+    {q:'1/11 has a repeating block of length ...', o:['1','2','3','It does not repeat'], a:1, why:'1/11 = 0.090909..., a 2-digit block.'},
+    {q:'Which decimal could come from a rational number?', o:['2.71828... (e)','0.202002000200002...','0.272727...','sqrt(2) decimal'], a:2, why:'A fixed 2-digit block 27 repeats forever, so rational.'},
+    {q:'Reduce 15/24, then decide. Does its decimal terminate?', o:['Yes, reduces to 5/8 = 0.625','No, it repeats','Cannot tell','Only sometimes'], a:0, why:'15/24 = 5/8, denominator 8 = 2³, terminates.'},
+    {q:'A reduced denominator equal to 30 produces a decimal that ...', o:['terminates','repeats, because 30 contains a 3','is irrational','equals 1/10'], a:1, why:'30 = 2·3·5; the 3 forces repetition.'}
+  ];
+
+  // ---- shared check runner ----
+  var qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, runWrong=[];
+  var QS=FORMA, MODE='A';
+  var secL=document.getElementById('lesson'), secC=document.getElementById('check'),
+      secRA=document.getElementById('resultA'), secRT=document.getElementById('retention'),
+      secW=document.getElementById('wrap'), bWrap=document.getElementById('bWrap');
+  function el(id){return document.getElementById(id);}
+  function startA(){ MODE='A'; QS=FORMA; rec.attempts=(rec.attempts||0)+1; save(app);
+    secL.classList.add('hide'); secRA.classList.add('hide'); secC.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function startB(){ MODE='B'; QS=FORMB; el('startB').classList.add('hide'); bWrap.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi];
+    var ids = MODE==='A' ? {c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'} : {c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhy'};
+    el(ids.c).textContent='Question '+(qi+1)+' of '+QS.length;
+    el(ids.q).innerHTML=item.q;
+    var opts=el(ids.o); opts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,opts,ids);}); opts.appendChild(b); });
+    el(ids.w).textContent='';
+    timeLeft=QTIME; el(ids.f).style.width='100%'; el(ids.f).classList.remove('low'); el(ids.t).textContent=QTIME+'s';
+    clearInterval(timer); timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0;
+      el(ids.f).style.width=(timeLeft/QTIME*100)+'%'; el(ids.t).textContent=timeLeft+'s';
+      if(timeLeft<=8) el(ids.f).classList.add('low'); if(timeLeft===0) clearInterval(timer); }, 1000);
+  }
+  function answer(i,btn,opts,ids){ if(locked)return; locked=true; clearInterval(timer);
+    var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    el(ids.w).innerHTML=(ok?'Correct. ':'Not quite. ')+item.why;
+    if(ok)correct++; else runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a], mode:MODE});
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?700:1300); }
+  function finish(){
+    if(MODE==='A'){ secC.classList.add('hide'); secRA.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formA=correct; rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+      el('scoreA').textContent=correct+' / '+QS.length;
+      var passed=(correct>=PASS); el('statusA').textContent=passed?'PASS':'NOT YET'; el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
+      el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B waits at least a day.'):('You need '+PASS+' of '+QS.length+' to clear Form A. You got '+correct+'. Re-run the lab on a few fractions, then try again.');
+      rec.best=Math.max(rec.best||0,Math.round(correct/QS.length*100));
+      rec.status=passed?'formA_passed':'tried';
+      if(passed) el('retryA').classList.add('hide'); else el('retryA').classList.remove('hide');
+      save(app); commitTime();
+    } else {
+      bWrap.classList.add('hide'); secRT.classList.add('hide'); secW.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formB=correct; el('finalA').textContent=(rec.formA||0)+' / 8'; el('finalB').textContent=correct+' / 8';
+      var aPass=(rec.formA||0)>=PASS, bPass=correct>=PASS, both=aPass&&bPass;
+      var gate=el('gate'); gate.innerHTML='';
+      function gline(ok,label){ var d=document.createElement('div'); d.className='gitem '+(ok?'ok':'miss'); d.innerHTML='<div class="mk">'+(ok?'✓':'!')+'</div><div>'+label+'</div>'; gate.appendChild(d); }
+      gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
+      gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
+      if(both){ el('cred').classList.add('show'); rec.status='mastered'; rec.points=Math.max(rec.points||0,100); rec.passedAt=Date.now(); }
+      else { rec.status='formB_tried'; }
+      save(app); commitTime(); syncCloud();
+      setTimeout(function(){ el('donebox').classList.remove('hide'); }, 600);
+    }
+  }
+  el('toCheck').addEventListener('click',startA);
+  el('toRetention').addEventListener('click',function(){ secRA.classList.add('hide'); secRT.classList.remove('hide'); window.scrollTo(0,0); });
+  el('retryA').addEventListener('click',function(){ secRA.classList.add('hide'); secL.classList.remove('hide'); window.scrollTo(0,0); });
+  el('startB').addEventListener('click',startB);
+  el('ptDone').addEventListener('click',function(){ this.disabled=true; this.textContent='Logged. Keep going.'; });
+})();
+</script>
+</body>
+</html>

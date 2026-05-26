@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 05 &middot; Equivalent Representations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno,.stdtag .l{font-family:'Spline Sans Mono',monospace;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .move{background:#0d1014;color:#ecede7;border-radius:10px;padding:14px 16px;margin-top:12px;font-family:'Spline Sans Mono';font-size:15px;line-height:1.7;}
+  .move .k{color:#ff7a55;} .move .v{color:#5be08a;}
+  /* wheel */
+  .wheel{margin-top:14px;border:1.5px solid var(--line);border-radius:14px;padding:16px;background:#fff;}
+  .picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .pbtn{font:inherit;font-family:'Spline Sans Mono';font-size:13px;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:8px 12px;min-height:40px;cursor:pointer;}
+  .pbtn:hover{border-color:var(--accent);}
+  .pbtn[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .hub{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media (max-width:560px){.hub{grid-template-columns:1fr;}}
+  .face{border:1.5px solid var(--line);border-radius:11px;padding:12px;background:#faf8f1;}
+  .face h4{font-family:'Spline Sans Mono';font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);margin-bottom:4px;}
+  .face .v{font-family:'Spline Sans Mono';font-size:22px;color:var(--ink);font-weight:600;}
+  .face .sub{font-size:13px;color:var(--ink2);margin-top:4px;}
+  .face.spotlight{border-color:var(--accent);background:#fff7f3;}
+  .face.spotlight .v{color:var(--accent-d);}
+  .convbox{margin-top:14px;border:1.5px solid var(--line);border-radius:12px;padding:14px;background:#fff;}
+  .cinp{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px;}
+  .cinp label{font-family:'Spline Sans Mono';font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;}
+  .cinp input[type=number]{font:inherit;font-family:'Spline Sans Mono';font-size:17px;width:80px;min-height:44px;padding:6px 10px;border:1.5px solid var(--line);border-radius:8px;text-align:center;color:var(--ink);background:#fff;}
+  .cinp .sep{font-family:'Spline Sans Mono';font-size:20px;color:var(--ink2);}
+  .cinp button{font:inherit;font-weight:600;font-size:14px;background:var(--ink);color:#fff;border:none;border-radius:8px;padding:10px 14px;min-height:44px;cursor:pointer;}
+  .cout{font-family:'Spline Sans Mono';font-size:15px;color:var(--ink2);background:#faf8f1;border-radius:8px;padding:10px 12px;}
+  .cout b{color:var(--ink);}
+  .equivlist{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .equivlist span{font-family:'Spline Sans Mono';font-size:14px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 9px;color:var(--ink);}
+  .matchpr{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+  .mline{display:flex;flex-wrap:wrap;gap:6px;align-items:center;border:1.5px solid var(--line);border-radius:11px;padding:10px 12px;background:#fff;}
+  .mline .targ{font-family:'Spline Sans Mono';font-weight:600;font-size:16px;margin-right:8px;color:var(--ink);}
+  .mline .pills{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+  .mline .pills button{font:inherit;font-family:'Spline Sans Mono';font-size:13.5px;border:1.5px solid var(--line);background:#fff;border-radius:7px;padding:8px 10px;min-height:40px;cursor:pointer;color:var(--ink);}
+  .mline .pills button:hover{border-color:var(--accent);}
+  .mline .pills button.ok{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+  .mline .pills button.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .mline .why{width:100%;font-size:13px;color:var(--ink2);margin-top:4px;display:none;}
+  .mline.done .why{display:block;}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);} .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);} .cta:disabled{opacity:.5;cursor:default;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;}
+  .ptask textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;resize:vertical;color:var(--ink);background:#fff;}
+  .gate{margin-top:10px;}
+  .gitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px;color:var(--ink2);}
+  .gitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono';font-size:13px;}
+  .gitem.ok .mk{background:var(--good);} .gitem.miss .mk{background:var(--accent-d);}
+  .cred{display:none;text-align:center;padding:20px;border-radius:14px;background:#fff;border:1px solid var(--good);margin-top:12px;}
+  .cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.NS.A.1d</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 05</div>
+    <h1>One Number, Five Faces</h1>
+    <p class="mission">The same rational number can wear a fraction, a reduced fraction, a decimal, a percent, or an equivalent fraction with a different denominator. Today you learn to move between them on demand and to spot the same number in disguise.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Generate equivalent representations of rational numbers.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Two moves cover everything</h2></div>
+      <p class="lead">A fraction never changes if you multiply <b>or</b> divide the top and the bottom by the <b>same nonzero number</b>. That single move generates every equivalent fraction. Then conversion between fraction, decimal, and percent is just three short rules.</p>
+      <div class="move">
+        <span class="k">Equivalent</span> &nbsp; multiply or divide both by the same nonzero n: <span class="v">1/2 = 2/4 = 5/10 = 50/100</span><br>
+        <span class="k">Simplify</span> &nbsp; divide top and bottom by their <span class="v">GCD</span>: 12/18 = 2/3<br>
+        <span class="k">Fraction to decimal</span> &nbsp; divide top by bottom: <span class="v">3/4 = 0.75</span><br>
+        <span class="k">Decimal to percent</span> &nbsp; multiply by 100 and add %: <span class="v">0.75 = 75%</span><br>
+        <span class="k">Percent to fraction</span> &nbsp; over 100, then reduce: <span class="v">40% = 40/100 = 2/5</span>
+      </div>
+      <div class="note"><b>Why it matters.</b> A track split listed as a fraction is the same idea as the percent on a scoreboard or the decimal on a stopwatch. Fluency between faces lets you read any of them as the same value.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Multiplying by 1 in disguise</h2></div>
+      <p class="lead">Multiplying 1/2 by 3/3 is multiplying by 1. The value cannot change. But the form does: 1/2 becomes 3/6. Every equivalent fraction is built by multiplying or dividing by some clever form of 1.</p>
+      <p class="lead" style="margin-top:8px;">Simplifying runs the move in reverse. 12/18 has 6 as the GCD of top and bottom; dividing both by 6/6 (another disguised 1) gives 2/3.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / DO</span><h2>The rational number wheel</h2></div>
+      <p class="lead">Pick a number. The wheel shows the same value in <b>five forms</b>: the reduced fraction, an equivalent fraction with a different denominator, the decimal, the percent, and another equivalent over 100.</p>
+      <div class="wheel">
+        <div class="picker" id="picker" role="tablist"></div>
+        <div class="hub" id="hub"></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Your own number, your own faces</h2></div>
+      <p class="lead">Type any fraction. The lab shows its simplest form, its decimal, its percent, and three more equivalents.</p>
+      <div class="convbox">
+        <div class="cinp">
+          <label for="cnum">Numerator</label>
+          <input type="number" id="cnum" value="3" min="-999" max="999" step="1" inputmode="numeric">
+          <span class="sep">/</span>
+          <label for="cden">Denominator</label>
+          <input type="number" id="cden" value="12" min="1" max="999" step="1" inputmode="numeric">
+          <button type="button" id="convGo">Convert</button>
+        </div>
+        <div class="cout" id="cout"></div>
+        <div class="equivlist" id="equivlist"></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05 / DO</span><h2>Same number, in disguise</h2></div>
+      <p class="lead">Each row shows a target on the left. Tap every pill that is equal to it. Wrong pills will mark red.</p>
+      <div class="matchpr" id="matchpr"></div>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">06 / EXPLAIN</span><h2>Write the move in your own words</h2></div>
+      <p class="lead">In two or three sentences, explain why multiplying the top and bottom of a fraction by the same nonzero number does not change the value. Use the phrase "multiplying by 1."</p>
+      <textarea id="explainText" placeholder="When you multiply top and bottom by the same number..." aria-label="your written explanation"></textarea>
+      <p class="lead" style="margin-top:10px;font-size:14px;">For your thinking, not graded. Read it back. Did you name the disguised 1?</p>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">07 / SAY IT</span><h2>Out loud, to an adult</h2></div>
+      <p class="lead">Give the simplest fraction, the decimal, and the percent for <b>15/20</b>. Then give two more equivalent fractions for the same number.</p>
+      <div class="note"><b>Adult listener.</b> Look for: (1) 15/20 reduces to 3/4 (divide both by 5), 3/4 = 0.75 = 75%; (2) two more equivalents such as 6/8, 9/12, 12/16, 30/40, or 75/100.</div>
+      <button class="cta alt" id="ptDone" type="button">I said it out loud. Continue</button>
+    </div>
+
+    <button class="cta" id="toCheck">Start the Form A check (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="resultA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A RESULT</span><h2>How that landed</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="scoreA">0 / 8</span><span style="flex:1"></span><span id="statusA" style="font-weight:700;"></span></div>
+      <p class="lead" id="msgA" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to retention (Form B)</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new questions on the same skill. Best done <b>at least a day after Form A</b>.</p>
+      <div class="note"><b>Spacing.</b> If you can, close this and come back tomorrow before starting Form B.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="hide" id="bWrap">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="cred" id="cred"><div class="gem">◆</div><h3>8.NS.A.1d Mastered</h3><p>You can switch between fractions, decimals, percents, and equivalent fractions on sight.</p></div>
+      <p class="lead" style="margin-top:10px;">Arc complete: you have explored the real number system. Next standard up: estimating and comparing irrationals on the number line (8.NS.A.2), which you already cleared on Day 1.</p>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can close this and head back to your dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer>Julie &middot; Math &middot; Day 4 &middot; Verbatim Missouri Learning Standard 8.NS.A.1d</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='math', DAY='8.NS.A.1d', SNAME='Julie';
+  var PASS=7, QTIME=25;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,formA:0,formB:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t;}return a||1;}
+  function reduce(p,q){var g=gcd(p,q);return [p/g,q/g];}
+  function toDec(p,q){var v=p/q; return Math.round(v*1000000)/1000000;}
+  function trim(n){return String(n).replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,'');}
+
+  // ---- wheel ----
+  var PICKS=[ [1,2], [3,4], [2,5], [3,8], [1,3], [7,10] ];
+  var picker=document.getElementById('picker'), hub=document.getElementById('hub');
+  function makeWheel(p,q){
+    var r=reduce(p,q), rp=r[0], rq=r[1];
+    var dec=toDec(rp,rq), pct=trim(Math.round(dec*10000)/100);
+    // equivalent 1: multiply by 2
+    var eq1p=rp*2, eq1q=rq*2;
+    // equivalent over 100 if possible
+    var over100p='-', over100q=100;
+    if(100%rq===0){ over100p=rp*(100/rq); }
+    else { over100p=Math.round(rp/rq*100); over100q='100 (approx)'; }
+    // equivalent 3: multiply by 5
+    var eq3p=rp*5, eq3q=rq*5;
+    hub.innerHTML='';
+    function f(label,val,sub,spot){
+      var d=document.createElement('div'); d.className='face'+(spot?' spotlight':'');
+      d.innerHTML='<h4>'+label+'</h4><div class="v">'+val+'</div>'+(sub?'<div class="sub">'+sub+'</div>':'');
+      hub.appendChild(d);
+    }
+    f('Reduced fraction', rp+' / '+rq, 'GCD reduced', true);
+    f('Decimal', trim(dec), 'divide top by bottom');
+    f('Percent', pct+' %', 'decimal x 100');
+    f('Equivalent (x2)', eq1p+' / '+eq1q, 'multiply top and bottom by 2');
+    f('Equivalent (x5)', eq3p+' / '+eq3q, 'multiply top and bottom by 5');
+    f('Over 100', over100p+' / '+over100q, 'the percent face as a fraction');
+  }
+  PICKS.forEach(function(pq,i){
+    var b=document.createElement('button'); b.className='pbtn'; b.type='button'; b.setAttribute('role','tab'); b.textContent=pq[0]+'/'+pq[1];
+    b.setAttribute('aria-selected', i===0?'true':'false');
+    b.addEventListener('click',function(){
+      Array.prototype.forEach.call(picker.children,function(x){x.setAttribute('aria-selected','false');});
+      b.setAttribute('aria-selected','true'); makeWheel(pq[0],pq[1]);
+    });
+    picker.appendChild(b);
+  });
+  makeWheel(PICKS[0][0], PICKS[0][1]);
+
+  // ---- convert lab ----
+  function runConv(){
+    var p=parseInt(document.getElementById('cnum').value,10)||0;
+    var q=parseInt(document.getElementById('cden').value,10)||0;
+    var cout=document.getElementById('cout'), list=document.getElementById('equivlist');
+    if(!q){ cout.innerHTML='Denominator cannot be 0.'; list.innerHTML=''; return; }
+    var r=reduce(p,q), rp=r[0], rq=r[1];
+    var dec=toDec(rp,rq), pct=trim(Math.round(dec*10000)/100);
+    cout.innerHTML='Simplest form: <b>'+rp+' / '+rq+'</b> &nbsp; · &nbsp; Decimal: <b>'+trim(dec)+'</b> &nbsp; · &nbsp; Percent: <b>'+pct+'%</b>';
+    list.innerHTML='';
+    [2,3,4,5,10].forEach(function(k){ var s=document.createElement('span'); s.textContent=(rp*k)+'/'+(rq*k); list.appendChild(s); });
+  }
+  document.getElementById('convGo').addEventListener('click',runConv);
+  document.getElementById('cnum').addEventListener('change',runConv);
+  document.getElementById('cden').addEventListener('change',runConv);
+  runConv();
+
+  // ---- match rows ----
+  var ROWS=[
+    {target:'3/4', pills:[
+      {t:'6/8', ok:true, why:'3/4 x 2/2 = 6/8.'},
+      {t:'0.75', ok:true, why:'3 divided by 4 is 0.75.'},
+      {t:'75%', ok:true, why:'0.75 x 100 = 75%.'},
+      {t:'4/3', ok:false, why:'4/3 is the reciprocal, not equal.'},
+      {t:'30/40', ok:true, why:'3/4 x 10/10 = 30/40.'}
+    ]},
+    {target:'2/5', pills:[
+      {t:'4/10', ok:true, why:'2/5 x 2/2 = 4/10.'},
+      {t:'0.4', ok:true, why:'2 divided by 5 is 0.4.'},
+      {t:'25%', ok:false, why:'25% would be 1/4, not 2/5.'},
+      {t:'40%', ok:true, why:'0.4 x 100 = 40%.'},
+      {t:'10/25', ok:true, why:'2/5 x 5/5 = 10/25.'}
+    ]},
+    {target:'1/8', pills:[
+      {t:'0.125', ok:true, why:'1 divided by 8 is 0.125.'},
+      {t:'12.5%', ok:true, why:'0.125 x 100 = 12.5%.'},
+      {t:'2/16', ok:true, why:'1/8 x 2/2 = 2/16.'},
+      {t:'1/4', ok:false, why:'1/4 is twice as large.'},
+      {t:'8%', ok:false, why:'8% would be 8/100, not 1/8.'}
+    ]}
+  ];
+  var mp=document.getElementById('matchpr');
+  ROWS.forEach(function(row){
+    var line=document.createElement('div'); line.className='mline';
+    var t=document.createElement('div'); t.className='targ'; t.textContent=row.target+' equals:'; line.appendChild(t);
+    var pills=document.createElement('div'); pills.className='pills';
+    var why=document.createElement('div'); why.className='why';
+    var picked=0, total=row.pills.length;
+    row.pills.forEach(function(pill){
+      var b=document.createElement('button'); b.type='button'; b.textContent=pill.t;
+      b.addEventListener('click',function(){ if(b.dataset.d)return; b.dataset.d='1';
+        b.classList.add(pill.ok?'ok':'no'); picked++;
+        why.innerHTML=(why.innerHTML?why.innerHTML+'<br>':'')+pill.t+': '+pill.why;
+        if(picked>=total){ line.classList.add('done'); }
+      });
+      pills.appendChild(b);
+    });
+    line.appendChild(pills); line.appendChild(why); mp.appendChild(line);
+  });
+
+  // ---- Form A and B ----
+  var FORMA=[
+    {q:'Which fraction is equivalent to <b>3/4</b>?', o:['4/3','6/8','3/8','12/15'], a:1, why:'Multiply top and bottom by 2.'},
+    {q:'<b>2/5</b> as a decimal is ...', o:['0.25','0.4','0.5','0.2'], a:1, why:'2 divided by 5 is 0.4.'},
+    {q:'<b>0.6</b> as a percent is ...', o:['0.6%','6%','60%','600%'], a:2, why:'Multiply by 100 to convert decimal to percent.'},
+    {q:'Simplify <b>12/18</b>.', o:['2/3','6/9','4/6','3/4'], a:0, why:'GCD is 6, so 12/18 = 2/3.'},
+    {q:'<b>40%</b> written as a fraction in lowest terms is ...', o:['40/100','4/10','2/5','1/4'], a:2, why:'40/100 reduces (divide by 20) to 2/5.'},
+    {q:'Which is <b>NOT</b> equal to 1/2?', o:['2/4','5/10','50%','5/8'], a:3, why:'5/8 is more than 1/2.'},
+    {q:'<b>7/10</b> equals which percent?', o:['7%','17%','70%','700%'], a:2, why:'7/10 = 0.7 = 70%.'},
+    {q:'You multiply 3/5 by 4/4. The new fraction is ...', o:['12/20, same value','12/5, larger','7/9, smaller','3/20, smaller'], a:0, why:'4/4 is 1, so the value stays. The form is 12/20.'}
+  ];
+  var FORMB=[
+    {q:'Which fraction is equivalent to <b>2/3</b>?', o:['3/2','4/6','2/6','8/9'], a:1, why:'Multiply top and bottom by 2.'},
+    {q:'<b>3/8</b> as a decimal is ...', o:['0.375','0.38','0.3','0.83'], a:0, why:'3 divided by 8 is 0.375.'},
+    {q:'<b>0.05</b> as a percent is ...', o:['0.05%','0.5%','5%','50%'], a:2, why:'Multiply by 100: 0.05 = 5%.'},
+    {q:'Simplify <b>20/24</b>.', o:['5/6','10/12','4/5','2/3'], a:0, why:'GCD is 4, so 20/24 = 5/6.'},
+    {q:'<b>25%</b> written as a fraction in lowest terms is ...', o:['25/100','5/20','1/4','1/5'], a:2, why:'25/100 reduces to 1/4.'},
+    {q:'Which is <b>NOT</b> equal to 3/4?', o:['6/8','75/100','0.75','7/10'], a:3, why:'7/10 = 0.7, less than 0.75.'},
+    {q:'<b>9/10</b> equals which percent?', o:['9%','19%','90%','910%'], a:2, why:'9/10 = 0.9 = 90%.'},
+    {q:'You divide 12/18 by 6/6 (a disguised 1). The new fraction is ...', o:['2/3, same value','6/3, larger','12/3, larger','2/12, smaller'], a:0, why:'6/6 = 1, so value stays; form simplifies to 2/3.'}
+  ];
+
+  // ---- check runner ----
+  var qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, runWrong=[];
+  var QS=FORMA, MODE='A';
+  var secL=document.getElementById('lesson'), secC=document.getElementById('check'),
+      secRA=document.getElementById('resultA'), secRT=document.getElementById('retention'),
+      secW=document.getElementById('wrap'), bWrap=document.getElementById('bWrap');
+  function el(id){return document.getElementById(id);}
+  function startA(){ MODE='A'; QS=FORMA; rec.attempts=(rec.attempts||0)+1; save(app);
+    secL.classList.add('hide'); secRA.classList.add('hide'); secC.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function startB(){ MODE='B'; QS=FORMB; el('startB').classList.add('hide'); bWrap.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi];
+    var ids = MODE==='A' ? {c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'} : {c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhy'};
+    el(ids.c).textContent='Question '+(qi+1)+' of '+QS.length;
+    el(ids.q).innerHTML=item.q;
+    var opts=el(ids.o); opts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,opts,ids);}); opts.appendChild(b); });
+    el(ids.w).textContent='';
+    timeLeft=QTIME; el(ids.f).style.width='100%'; el(ids.f).classList.remove('low'); el(ids.t).textContent=QTIME+'s';
+    clearInterval(timer); timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0;
+      el(ids.f).style.width=(timeLeft/QTIME*100)+'%'; el(ids.t).textContent=timeLeft+'s';
+      if(timeLeft<=8) el(ids.f).classList.add('low'); if(timeLeft===0) clearInterval(timer); }, 1000);
+  }
+  function answer(i,btn,opts,ids){ if(locked)return; locked=true; clearInterval(timer);
+    var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    el(ids.w).innerHTML=(ok?'Correct. ':'Not quite. ')+item.why;
+    if(ok)correct++; else runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a], mode:MODE});
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?700:1300); }
+  function finish(){
+    if(MODE==='A'){ secC.classList.add('hide'); secRA.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formA=correct; rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+      el('scoreA').textContent=correct+' / '+QS.length;
+      var passed=(correct>=PASS); el('statusA').textContent=passed?'PASS':'NOT YET'; el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
+      el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B waits at least a day.'):('You need '+PASS+' of '+QS.length+' to clear Form A. You got '+correct+'. Spin the wheel a few more times, then try again.');
+      rec.best=Math.max(rec.best||0,Math.round(correct/QS.length*100));
+      rec.status=passed?'formA_passed':'tried';
+      if(passed) el('retryA').classList.add('hide'); else el('retryA').classList.remove('hide');
+      save(app); commitTime();
+    } else {
+      bWrap.classList.add('hide'); secRT.classList.add('hide'); secW.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formB=correct; el('finalA').textContent=(rec.formA||0)+' / 8'; el('finalB').textContent=correct+' / 8';
+      var aPass=(rec.formA||0)>=PASS, bPass=correct>=PASS, both=aPass&&bPass;
+      var gate=el('gate'); gate.innerHTML='';
+      function gline(ok,label){ var d=document.createElement('div'); d.className='gitem '+(ok?'ok':'miss'); d.innerHTML='<div class="mk">'+(ok?'✓':'!')+'</div><div>'+label+'</div>'; gate.appendChild(d); }
+      gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
+      gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
+      if(both){ el('cred').classList.add('show'); rec.status='mastered'; rec.points=Math.max(rec.points||0,100); rec.passedAt=Date.now(); }
+      else { rec.status='formB_tried'; }
+      save(app); commitTime(); syncCloud();
+      setTimeout(function(){ el('donebox').classList.remove('hide'); }, 600);
+    }
+  }
+  el('toCheck').addEventListener('click',startA);
+  el('toRetention').addEventListener('click',function(){ secRA.classList.add('hide'); secRT.classList.remove('hide'); window.scrollTo(0,0); });
+  el('retryA').addEventListener('click',function(){ secRA.classList.add('hide'); secL.classList.remove('hide'); window.scrollTo(0,0); });
+  el('startB').addEventListener('click',startB);
+  el('ptDone').addEventListener('click',function(){ this.disabled=true; this.textContent='Logged. Keep going.'; });
+})();
+</script>
+</body>
+</html>

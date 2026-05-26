@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pick the Right Material</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f6f9f8;--card:#fff;--ink:#15211f;--ink2:#46564f;--mute:#7c8c85;--line:#dce6e1;
+    --accent:#0e9c8a;--accent-d:#0a6b5f;--red:#d2452f;--alt:#dd8a1c;--hfont:'IBM Plex Sans';--mono:'IBM Plex Mono';}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:repeating-linear-gradient(0deg,rgba(14,156,138,.07) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,rgba(14,156,138,.07) 0 1px,transparent 1px 26px),linear-gradient(180deg,#fbfdfc,var(--paper));}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  h1,h2{font-family:var(--hfont);}
+  .labbar{background:var(--ink);color:#fff;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:3px 9px;}
+  .kicker{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6vw,44px);line-height:1.05;font-weight:700;margin:8px 0 10px;}
+  .stdtag{margin-top:14px;background:rgba(0,0,0,.03);border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:18px 0;box-shadow:0 14px 30px -28px rgba(0,0,0,.4);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--accent);border-radius:6px;padding:4px 9px;}
+  .station h2{font-size:22px;font-weight:700;}
+  .station .intro,.station p{color:var(--ink2);margin-top:2px;}
+  .prose p{margin:9px 0;color:var(--ink);}
+  .ccards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px;}
+  .ccard{border:1px solid var(--line);border-radius:12px;padding:13px;background:rgba(0,0,0,.015);}
+  .ccard .lbl{font-family:var(--hfont);font-weight:700;color:var(--accent-d);font-size:16px;}
+  .ccard .sub{font-size:13px;color:var(--ink2);margin-top:2px;}
+  .ccard .eg{font-size:12.5px;color:var(--mute);margin-top:5px;}
+  .worked{border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin-top:8px;background:rgba(0,0,0,.015);}
+  .worked .prompt{font-weight:700;}
+  .worked ol{margin:9px 0 9px 18px;color:var(--ink2);}
+  .worked .ans{font-weight:700;color:var(--accent-d);}
+  .myth{border:1px solid var(--line);border-left:4px solid var(--alt);background:rgba(0,0,0,.02);border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-d);font-weight:600;}
+  .myth .wrong{font-weight:700;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;margin:6px 0 2px;}
+  .myth .right{color:var(--ink2);}
+  .recap ul{margin:6px 0 0 18px;color:var(--ink);}
+
+  .joblist{margin-top:14px;display:flex;flex-direction:column;gap:14px;}
+  .jobcard{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbfdfc;}
+  .jobtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .jobtag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-d);background:#e6f4f1;border:1px solid #c5e3dc;border-radius:6px;padding:3px 8px;}
+  .jobname{font-weight:700;font-size:17px;}
+  .jobwhy{font-size:13.5px;color:var(--ink2);margin-top:4px;}
+  .matrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;}
+  .matchip{font:inherit;font-weight:600;font-size:14px;text-align:left;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 12px;min-height:44px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;}
+  .matchip:hover{border-color:var(--accent);}
+  .matchip .props{font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:3px;letter-spacing:.04em;}
+  .matchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .matchip[aria-pressed="true"] .props{color:#dff5f1;}
+  .matchip.bad[aria-pressed="true"]{background:var(--red);border-color:var(--red);}
+  .matchip.bad[aria-pressed="true"] .props{color:#fde6e2;}
+  .jobfb{margin-top:10px;font-size:14px;min-height:1.3em;}
+  .jobfb.ok{color:var(--accent-d);font-weight:600;}
+  .jobfb.no{color:var(--red);font-weight:600;}
+  .labnote{margin-top:14px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  .labnote.win{color:var(--accent-d);font-weight:700;}
+
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);}
+  .progress{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .expl{margin-top:14px;font-size:15px;color:var(--ink2);min-height:1.2em;}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-family:var(--mono);font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .fb{margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
+  .fb .fl{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:10px;}
+  .faces,.tags{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+  .tags{margin-top:9px;}
+  .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
+  .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  footer{text-align:center;margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+<div class="labbar"><span class="dotg" aria-hidden="true"></span>Engineer station &middot; <b>Grade 2</b><span class="chip">Standard 2.PS1.A.2</span></div>
+<section id="lesson">
+  <div class="kicker">Lesson</div><h1>Pick the Right Material</h1>
+  <div class="stdtag"><span class="l">Standard 2.PS1.A.2</span>Analyze data obtained from testing different materials to determine which materials have the properties that are best suited for an intended purpose.</div>
+
+  <div class="station prose"><div class="shead"><span class="sno">01</span><h2>From sorting to picking</h2></div>
+    <p>Last time you sorted materials by their <b>properties</b>. A property is something you can observe: hard, soft, bendy, stiff, see-through, waterproof, magnetic. Today you do the next thing real engineers do. You <b>pick</b> a material for a job. You would not make a window from cardboard. You would not make a raincoat from paper. The match between job and material is the whole game.</p>
+  </div>
+
+  <div class="station"><div class="shead"><span class="sno">02</span><h2>Six properties to test</h2></div>
+    <p class="intro">Each material in the lab has property tags. Read the tags like clues.</p>
+    <div class="ccards">
+      <div class="ccard"><div class="lbl">Hard / Soft</div><div class="sub">does it squish</div><div class="eg">rock vs pillow</div></div>
+      <div class="ccard"><div class="lbl">Bendy / Stiff</div><div class="sub">does it change shape</div><div class="eg">rubber band vs ruler</div></div>
+      <div class="ccard"><div class="lbl">See-through</div><div class="sub">light passes through</div><div class="eg">glass vs wood</div></div>
+      <div class="ccard"><div class="lbl">Waterproof</div><div class="sub">water rolls off</div><div class="eg">plastic vs paper</div></div>
+      <div class="ccard"><div class="lbl">Magnetic</div><div class="sub">a magnet sticks</div><div class="eg">steel vs wood</div></div>
+      <div class="ccard"><div class="lbl">Strong</div><div class="sub">holds weight without breaking</div><div class="eg">metal vs foam</div></div>
+    </div>
+  </div>
+
+  <div class="station prose"><div class="shead"><span class="sno">03</span><h2>How engineers choose</h2></div>
+    <p>An engineer does three things, in order. First, they say the <b>job</b> out loud: what does this thing have to do. Next, they <b>test</b> the materials and write down the <b>data</b>: which materials are bendy, which are waterproof, which are strong. Last, they make a <b>choice</b>: pick the material whose properties match the job best.</p>
+  </div>
+
+  <div class="station"><div class="shead"><span class="sno">04</span><h2>One choice, all the way through</h2></div>
+    <div class="worked">
+      <div class="prompt">Job: build a spoon for hot soup.</div>
+      <ol>
+        <li>Job needs: stiff (so it scoops), strong, and not too soft.</li>
+        <li>Test the data: foam is soft, paper bends in soup, wood is stiff and strong, ice melts.</li>
+        <li>Choice: <b>wood or metal</b>. Both are stiff and strong. Foam and paper fail the test.</li>
+      </ol>
+      <div class="ans">The property tags tell you what fits the job. That is data driving the choice.</div>
+    </div>
+  </div>
+
+  <div class="station"><div class="shead"><span class="sno">05</span><h2>Material match lab</h2></div>
+    <p class="intro">Three jobs, six materials. For each job, tap the material whose properties fit best.</p>
+    <div class="joblist" id="joblist"></div>
+    <div class="labnote" id="labnote">0 of 3 jobs matched.</div>
+  </div>
+
+  <div class="station"><div class="shead"><span class="sno">06</span><h2>Watch out for this</h2></div>
+    <div class="myth"><span class="tag">Common mix-up</span>
+      <div class="wrong">The strongest material is always the best choice.</div>
+      <div class="right">A steel window would be strong, but you could not see through it. The best material is the one whose properties match the <b>job</b>, not the one that is strongest overall.</div></div>
+  </div>
+
+  <div class="station"><div class="shead"><span class="sno">07</span><h2>Watch out for this</h2></div>
+    <div class="myth"><span class="tag">Common mix-up</span>
+      <div class="wrong">If a material works for one job, it works for every job.</div>
+      <div class="right">Cardboard is great for a cereal box. It would be terrible for a raincoat. Each job has its own short list of properties that matter.</div></div>
+  </div>
+
+  <div class="station recap"><div class="shead"><span class="sno">08</span><h2>What you learned</h2></div>
+    <ul>
+      <li>A property is something you can observe and test.</li>
+      <li>Engineers say the job, test the materials, then pick.</li>
+      <li>The right material is the one whose properties match the job.</li>
+      <li>Strong is not always best. Match beats strong.</li>
+    </ul>
+  </div>
+
+  <button class="cta" id="toCheck">I picked the right materials. Start the check</button>
+</section>
+
+<section id="check" class="hide">
+  <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+  <div class="tbar"><div class="tfill" id="tfill"></div></div>
+  <div class="qtext" id="qtext"></div>
+  <div class="opts" id="opts"></div>
+  <div class="expl" id="expl"></div>
+</section>
+<section id="result" class="hide">
+  <div class="result">
+    <div class="scorebig" id="scorebig">0%</div>
+    <h2 id="rtitle">Done</h2>
+    <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    <div class="ptsrow hide" id="ptsrow"><div><div class="v" id="vbase">0</div><div class="k">Base</div></div><div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div><div><div class="v" id="vtotal">0</div><div class="k">Points</div></div></div>
+  </div>
+  <div class="fb hide" id="fbcard"><div class="fl">How did that feel?</div><div class="faces" id="faces"></div><div class="tags" id="tags"></div><button class="cta hide" id="saveFb" style="margin-top:14px;">Save and finish</button></div>
+  <button class="cta alt hide" id="retry">Try the check again</button>
+  <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  <div id="ptDone" class="hide" aria-hidden="true"></div>
+</section>
+
+<footer>Sam &middot; Science &middot; Day 2</footer>
+</div>
+<script>
+(function(){
+"use strict";
+  var KEY='edu.app', STUDENT='sam', SUBJECT='science', DAY='2.PS1.A.2', SNAME='Sam';
+  var PASS=7/8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50], PASS_TITLE='Lab passed!';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load(); app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{}; app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var JOBS=[
+    {job:'Build an umbrella', why:'It has to keep rain off your head and bend open and shut.', needs:['waterproof','bendy'], good:['plastic','rubber'], bad:['paper','cardboard','steel','foam'],
+     win:'Plastic and rubber are waterproof and bendy. Paper would soak through. Steel would be too stiff to fold.'},
+    {job:'Build a window', why:'It has to let light through and not break easily.', needs:['see-through','strong'], good:['glass','clearPlastic'], bad:['cardboard','wood','steel','foam'],
+     win:'Glass and clear plastic are see-through and strong. Wood and cardboard block all the light.'},
+    {job:'Build a fork', why:'It has to scoop food, stay stiff, and not soak up gravy.', needs:['stiff','waterproof'], good:['steel','plastic'], bad:['paper','foam','cardboard','rubber'],
+     win:'Steel and plastic are stiff and do not soak up liquid. Paper and foam would fall apart.'}
+  ];
+  var MATS={
+    plastic:{name:'Plastic', props:'bendy, waterproof, light'},
+    rubber:{name:'Rubber', props:'bendy, waterproof, stretchy'},
+    glass:{name:'Glass', props:'hard, see-through, smooth'},
+    clearPlastic:{name:'Clear plastic', props:'see-through, strong, light'},
+    cardboard:{name:'Cardboard', props:'stiff, soaks water, light'},
+    wood:{name:'Wood', props:'stiff, strong, not see-through'},
+    steel:{name:'Steel', props:'hard, stiff, magnetic, strong'},
+    foam:{name:'Foam', props:'soft, light, squishy'},
+    paper:{name:'Paper', props:'thin, bendy, soaks water'}
+  };
+  var jl=document.getElementById('joblist'), labnote=document.getElementById('labnote');
+  JOBS.forEach(function(j,idx){
+    var card=document.createElement('div'); card.className='jobcard';
+    var head='<div class="jobtop"><span class="jobtag">Job '+(idx+1)+'</span><span class="jobname">'+j.job+'</span></div><div class="jobwhy">'+j.why+'</div>';
+    var pool=j.good.concat(j.bad); pool.sort(function(){return Math.random()-0.5;});
+    var row='<div class="matrow">';
+    pool.forEach(function(k){ var m=MATS[k]; row+='<button class="matchip" type="button" data-key="'+k+'" aria-pressed="false"><span>'+m.name+'</span><span class="props">'+m.props+'</span></button>'; });
+    row+='</div><div class="jobfb" data-fb></div>';
+    card.innerHTML=head+row; jl.appendChild(card);
+    var fb=card.querySelector('.jobfb');
+    card.querySelectorAll('.matchip').forEach(function(b){
+      b.addEventListener('click',function(){
+        var k=b.getAttribute('data-key'); var ok=j.good.indexOf(k)>=0;
+        b.setAttribute('aria-pressed','true');
+        if(ok){ b.classList.remove('bad'); card.setAttribute('data-done','1'); fb.className='jobfb ok'; fb.textContent='Good pick. '+j.win; }
+        else { b.classList.add('bad'); fb.className='jobfb no'; fb.textContent='Not quite. This material is missing one of the needs ('+j.needs.join(', ')+'). Try again.'; setTimeout(function(){ b.setAttribute('aria-pressed','false'); b.classList.remove('bad'); },900); }
+        var n=0; document.querySelectorAll('.jobcard[data-done="1"]').forEach(function(){n++;});
+        if(n===JOBS.length){ labnote.textContent='All 3 jobs matched. You picked the right material every time.'; labnote.classList.add('win'); }
+        else { labnote.textContent=n+' of '+JOBS.length+' jobs matched.'; labnote.classList.remove('win'); }
+      });
+    });
+  });
+
+  var BANK={
+    q1:{stem:'A property is something you can ...',options:['observe','only smell','only taste','only hear'],answer:0,explain:'You observe properties by looking and feeling.'},
+    q2:{stem:'You want to build a raincoat. Which property matters most?',options:['Waterproof','Magnetic','See-through','Heavy'],answer:0,explain:'A raincoat has to keep water off you.'},
+    q3:{stem:'Why is paper a bad choice for an umbrella?',options:['It soaks up water','It is too shiny','It is magnetic','It is see-through'],answer:0,explain:'Paper is not waterproof. It would tear when wet.'},
+    q4:{stem:'A window needs to be ...',options:['See-through and strong','Soft and bendy','Magnetic and rough','Heavy and squishy'],answer:0,explain:'You need to see through it and it needs to not break.'},
+    q5:{stem:'Which material would work for a window?',options:['Cardboard','Glass','Foam','Wood'],answer:1,explain:'Glass is see-through and strong.'},
+    q6:{stem:'Engineers test materials so they can ...',options:['Pick the one that fits the job','Find the heaviest one','Color them all the same','Make them magnetic'],answer:0,explain:'The data from tests tells you which material fits the job.'},
+    q7:{stem:'Why is foam a bad choice for a fork?',options:['It is too soft to scoop food','It is too shiny','It is too heavy','It is see-through'],answer:0,explain:'A fork needs to be stiff. Foam squishes.'},
+    q8:{stem:'A bike helmet needs to be hard on the outside. Which material fits?',options:['Soft pillow','Hard plastic','Paper','Water'],answer:1,explain:'Hard plastic protects your head.'},
+
+    q9:{stem:'Which property does a magnet test?',options:['Magnetic','Bendy','See-through','Waterproof'],answer:0,explain:'A magnet sticks to magnetic materials like steel.'},
+    q10:{stem:'A bag has to carry heavy books. Which property matters most?',options:['Strong','See-through','Soft','Shiny'],answer:0,explain:'A strong bag will not rip.'},
+    q11:{stem:'Why would steel be a bad choice for a window?',options:['You cannot see through it','It is too soft','It melts in the sun','It is too light'],answer:0,explain:'Steel is not see-through, so a window made of steel would block the light.'},
+    q12:{stem:'A spoon for hot soup needs to be ...',options:['Stiff and strong','Soft and bendy','Light and shiny','Magnetic and rough'],answer:0,explain:'A spoon has to keep its shape and scoop without breaking.'},
+    q13:{stem:'Which job fits a bendy material best?',options:['A ruler','A rubber band toy','A window','A hammer'],answer:1,explain:'Bendy is good for things that need to stretch or twist.'},
+    q14:{stem:'You tested 4 materials. Only one is waterproof. For a raincoat you would pick ...',options:['The waterproof one','The heaviest one','The shiniest one','Any of them'],answer:0,explain:'The data points you to the waterproof one.'},
+    q15:{stem:'Which is NOT a property you can test by looking and feeling?',options:['Shiny','How it tastes','Hard','Bendy'],answer:1,explain:'Scientists do not taste materials. Properties are observed by looking and touching.'},
+    q16:{stem:'The best material for a job is the one that ...',options:['Matches the needed properties','Is the strongest in the world','Is the prettiest color','Costs the most'],answer:0,explain:'Match beats strong. Pick what fits the job.'}
+  };
+  var FORMS={A:['q1','q2','q3','q4','q5','q6','q7','q8'], B:['q9','q10','q11','q12','q13','q14','q15','q16']};
+  var FORM_ORDER=['A','B'];
+
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false, QS=[];
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQ=document.getElementById('qtext'), elO=document.getElementById('opts'), elC=document.getElementById('qcount'),
+      elT=document.getElementById('tlabel'), elF=document.getElementById('tfill'), elE=document.getElementById('expl');
+  function startCheck(){
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    rec.attempts=(rec.attempts||0)+1; save(app);
+    var fname=FORM_ORDER[(rec.attempts-1)%FORM_ORDER.length];
+    QS=FORMS[fname].map(function(id){return BANK[id];});
+    qi=0; correct=0; runPts=0; runWrong=[]; window.scrollTo(0,0); showQ();
+  }
+  function showQ(){
+    locked=false; var item=QS[qi]; elC.textContent='Question '+(qi+1)+' of '+QS.length; elQ.innerHTML=item.stem; elO.innerHTML=''; elE.textContent='';
+    item.options.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elO.appendChild(b); });
+    timeLeft=QTIME; elF.style.width='100%'; elF.classList.remove('low'); elT.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elF.style.width=(timeLeft/QTIME*100)+'%'; elT.textContent=timeLeft+'s'; if(timeLeft<=8)elF.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000);
+  }
+  function answer(i,btn){
+    if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.answer);
+    Array.prototype.forEach.call(elO.children,function(c,idx){ if(idx===item.answer)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(item.explain) elE.innerHTML=(ok?'Correct. ':'')+item.explain;
+    if(ok){ correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4; } else { runWrong.push({stem:item.stem, picked:item.options[i], correct:item.options[item.answer]}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?900:1400);
+  }
+  function finish(){
+    secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    var ptsrow=document.getElementById('ptsrow'), fbcard=document.getElementById('fbcard'), retry=document.getElementById('retry'), rt=document.getElementById('rtitle'), rm=document.getElementById('rmsg');
+    if(passed){ var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+      rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+      rt.textContent=PASS_TITLE; rm.textContent='You got '+correct+' of '+QS.length+' correct.';
+      document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      fbcard.classList.remove('hide'); retry.classList.add('hide');
+    } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+      rt.textContent='So close!'; rm.textContent='You need '+Math.ceil(PASS*QS.length)+' of '+QS.length+' to pass. You got '+correct+'. Look back, then try again for a fresh set.';
+      ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
+    commitTime();
+  }
+  document.getElementById('toCheck').addEventListener('click',startCheck);
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+  var fbRating=null, fbTag=null;
+  var faces=[['Easy','easy'],['Just right','just'],['Tricky','hard']]; var tags=[['Clear','clear'],['Confusing','confusing'],['Fun','fun']];
+  var fbox=document.getElementById('faces'), tbox=document.getElementById('tags'), saveBtn=document.getElementById('saveFb');
+  faces.forEach(function(f){ var b=document.createElement('button'); b.className='face'; b.type='button'; b.textContent=f[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbRating=f[1]; Array.prototype.forEach.call(fbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); mShow(); }); fbox.appendChild(b); });
+  tags.forEach(function(t){ var b=document.createElement('button'); b.className='tagb'; b.type='button'; b.textContent=t[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbTag=t[1]; Array.prototype.forEach.call(tbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); mShow(); }); tbox.appendChild(b); });
+  function mShow(){ if(fbRating&&fbTag)saveBtn.classList.remove('hide'); }
+  saveBtn.addEventListener('click',function(){ rec.feedback={rating:fbRating,tag:fbTag,at:Date.now()}; app.progress[STUDENT][SUBJECT][DAY]=rec; save(app); syncCloud(); document.getElementById('fbcard').classList.add('hide'); document.getElementById('donebox').classList.remove('hide'); });
+})();
+</script>
+</body>
+</html>

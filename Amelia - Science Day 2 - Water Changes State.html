@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Lab &middot; Water Changes State</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f6f9f8;--card:#fff;--ink:#15211f;--ink2:#46564f;--mute:#7c8c85;--line:#dce6e1;
+    --accent:#0e9c8a;--accent-d:#0a6b5f;--red:#d2452f;--alt:#dd8a1c;--amber-d:#a9650f;
+    --blue:#1f6feb;--blue-d:#1a55b8;--cold:#2c84d8;--hot:#d2452f;--grid:rgba(14,156,138,.08);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:repeating-linear-gradient(0deg,var(--grid) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 26px),linear-gradient(180deg,#fbfdfc,var(--paper));}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:var(--ink);color:#dfeae6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #3a4a45;border-radius:6px;padding:3px 9px;color:#9fb4ad;}
+  .labbar b{color:#fff;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6vw,44px);line-height:1.04;font-weight:700;letter-spacing:-.02em;margin:8px 0 10px;}
+  .mission{color:var(--ink2);max-width:54ch;}
+  .stdtag{margin-top:16px;background:#eef5f2;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-d);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:18px 0;box-shadow:0 14px 30px -26px rgba(10,107,95,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.1em;color:#fff;background:var(--accent);border-radius:6px;padding:4px 9px;}
+  .station h2{font-size:22px;font-weight:700;}
+  .station p.lead{color:var(--ink2);margin-top:2px;}
+  .station p.body{color:var(--ink);margin-top:9px;}
+
+  .states{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:14px;}
+  @media (max-width:520px){.states{grid-template-columns:1fr;}}
+  .state{border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;background:#fbfdfc;}
+  .state svg{width:64px;height:64px;display:block;margin:0 auto 8px;}
+  .state .nm{font-weight:700;font-size:16px;}
+  .state .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--accent-d);text-transform:uppercase;margin-top:3px;}
+  .state .eg{font-size:12.5px;color:var(--ink2);margin-top:5px;}
+
+  .trans{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  @media (max-width:520px){.trans{grid-template-columns:1fr;}}
+  .tcard{border:1px solid var(--line);border-radius:12px;padding:13px;background:#fbfdfc;}
+  .tcard .arrow{font-family:'IBM Plex Mono',monospace;color:var(--accent-d);font-weight:600;font-size:13px;letter-spacing:.06em;}
+  .tcard .nm{font-weight:700;font-size:17px;margin-top:4px;}
+  .tcard .ex{font-size:13.5px;color:var(--ink2);margin-top:5px;}
+
+  .thlab{margin-top:14px;background:#f3faf8;border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .thgrid{display:grid;grid-template-columns:90px 1fr;gap:18px;align-items:stretch;}
+  @media (max-width:480px){.thgrid{grid-template-columns:70px 1fr;gap:12px;}}
+  .therm{position:relative;height:230px;border:1.5px solid var(--line);border-radius:14px;background:#fff;padding:10px 0;}
+  .therm svg{display:block;width:100%;height:100%;}
+  .scene{border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px;display:flex;flex-direction:column;}
+  .scene .stateLine{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
+  .scene .stateBadge{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:6px;padding:3px 8px;}
+  .scene .stateBadge.gas{background:var(--alt);} .scene .stateBadge.liquid{background:var(--blue);} .scene .stateBadge.solid{background:var(--cold);}
+  .scene .stateLabel{font-weight:700;font-size:16px;}
+  .scene .vessel{flex:1;min-height:110px;border:1.5px solid var(--ink2);border-top:none;border-radius:0 0 12px 12px;position:relative;overflow:hidden;background:#f8fbfa;}
+  .scene .liquidFill,.scene .solidFill{position:absolute;left:0;right:0;bottom:0;transition:height .35s ease,background .35s ease;}
+  .scene .liquidFill{background:#bfdcf5;}
+  .scene .solidFill{background:#d6ecfb;border-top:2px solid #fff;}
+  .scene .gasDots{position:absolute;inset:0;}
+  .scene .gasDots span{position:absolute;width:6px;height:6px;background:var(--alt);border-radius:50%;opacity:.7;}
+  @media (prefers-reduced-motion: reduce){.scene .liquidFill,.scene .solidFill{transition:none;}}
+  .tempRow{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap;}
+  .tempRow input[type=range]{flex:1;min-width:160px;height:44px;accent-color:var(--accent);cursor:pointer;}
+  .tempRow .tval{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--accent-d);font-size:22px;min-width:84px;text-align:right;}
+  .transBanner{margin-top:12px;border:1px dashed var(--accent);border-radius:10px;padding:10px 12px;background:#f3faf8;color:var(--accent-d);font-weight:700;font-size:15px;min-height:1.4em;}
+  .transBanner.idle{color:var(--mute);border-style:solid;background:#fbfdfc;font-weight:500;}
+  .transLog{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;}
+  .lchip{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:#eef5f2;color:var(--accent-d);border:1px solid var(--line);border-radius:6px;padding:3px 7px;}
+
+  .pred{border:1px dashed var(--accent);border-radius:12px;padding:14px 16px;margin-top:12px;background:#f3faf8;}
+  .pred .q{font-weight:600;margin-bottom:10px;}
+  .pred .btns{display:flex;gap:9px;flex-wrap:wrap;}
+  .pbtn{font:inherit;font-weight:600;font-size:15px;border:1.5px solid var(--accent);background:#fff;color:var(--accent-d);border-radius:9px;padding:10px 16px;min-height:44px;cursor:pointer;}
+  .pbtn.ok{background:var(--accent);color:#fff;}
+  .pbtn.no{background:#fdecea;border-color:var(--red);color:var(--red);}
+  .pfb{margin-top:11px;font-size:15px;color:var(--ink2);min-height:1.3em;}
+  .pfb.ok{color:var(--accent-d);font-weight:600;} .pfb.no{color:var(--red);font-weight:600;}
+
+  .myth{border:1px solid #f0d9c6;background:#fdf4ea;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-d);font-weight:600;}
+  .myth .wrong{font-weight:700;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;margin:6px 0 2px;}
+  .myth .right{color:var(--ink2);}
+
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .expl{margin-top:14px;font-size:15px;color:var(--ink2);min-height:1.2em;}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .fb{margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
+  .fb .fl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:10px;}
+  .faces,.tags{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+  .tags{margin-top:9px;}
+  .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
+  .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Science station &middot; <b>Grade 3</b><span class="chip">Standard 3.PS1.A.1</span></div>
+  <section id="lesson">
+    <div class="kicker">Investigation 02</div>
+    <h1>Water Changes State</h1>
+    <p class="mission">The same water can be a hard solid, a flowing liquid, or an invisible gas. Temperature is the switch. Heat it up, the water climbs through the states. Cool it down, it climbs back.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Predict and investigate that water can change from a liquid to a solid (freeze), and back again (melt), or from a liquid to a gas (evaporation), and back again (condensation) as the result of temperature changes.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>Three states, one substance</h2></div>
+      <p class="lead">Water is water. It just wears three different outfits depending on the temperature.</p>
+      <div class="states" id="states"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Four transitions, four names</h2></div>
+      <p class="lead">A transition is a state change. Each one has a name, and each one happens at a specific temperature with water.</p>
+      <div class="trans">
+        <div class="tcard"><div class="arrow">solid &rarr; liquid</div><div class="nm">Melt</div><div class="ex">Happens at 0&deg;C. Ice cube on the counter turns into water.</div></div>
+        <div class="tcard"><div class="arrow">liquid &rarr; solid</div><div class="nm">Freeze</div><div class="ex">Happens at 0&deg;C. Water in the freezer turns into ice cubes.</div></div>
+        <div class="tcard"><div class="arrow">liquid &rarr; gas</div><div class="nm">Evaporate</div><div class="ex">Happens fast at 100&deg;C. A puddle in the sun slowly dries up.</div></div>
+        <div class="tcard"><div class="arrow">gas &rarr; liquid</div><div class="nm">Condense</div><div class="ex">Your warm breath fogs a cold window. Water gas turns back into drops.</div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Temperature is the cause</h2></div>
+      <p class="body">Temperature tells you how much heat energy the water has. Add heat, the water speeds up and changes to a less stuck state (solid into liquid, liquid into gas). Take heat away, the water slows down and changes back (gas into liquid, liquid into solid). At <b>0&deg;C</b> water freezes or melts. At <b>100&deg;C</b> water boils away as gas. Those two numbers are the doorways.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>The thermometer lab</h2></div>
+      <p class="lead">Drag the slider from below 0&deg;C up past 100&deg;C. Watch the sample change. The banner names the transition each time you cross a doorway.</p>
+      <div class="thlab">
+        <div class="thgrid">
+          <div class="therm" aria-hidden="true"><svg viewBox="0 0 60 230"><rect x="22" y="10" width="16" height="180" rx="8" fill="#f0f4f2" stroke="#46564f" stroke-width="1.5"/><circle cx="30" cy="200" r="16" fill="#d2452f" stroke="#46564f" stroke-width="1.5"/><rect id="mercury" x="25" y="100" width="10" height="90" fill="#d2452f"/><line x1="40" y1="40" x2="46" y2="40" stroke="#46564f" stroke-width="1.5"/><text x="48" y="44" font-family="monospace" font-size="9" fill="#46564f">100</text><line x1="40" y1="100" x2="46" y2="100" stroke="#46564f" stroke-width="1.5"/><text x="48" y="104" font-family="monospace" font-size="9" fill="#46564f">50</text><line x1="40" y1="160" x2="46" y2="160" stroke="#46564f" stroke-width="1.5"/><text x="48" y="164" font-family="monospace" font-size="9" fill="#46564f">0</text></svg></div>
+          <div class="scene">
+            <div class="stateLine"><span class="stateBadge" id="stBadge">LIQUID</span><span class="stateLabel" id="stLabel">Liquid water</span></div>
+            <div class="vessel" id="vessel"><div class="liquidFill" id="liquidFill" style="height:55%"></div><div class="solidFill hide" id="solidFill" style="height:55%"></div><div class="gasDots hide" id="gasDots"></div></div>
+          </div>
+        </div>
+        <div class="tempRow"><input type="range" id="temp" min="-10" max="110" step="1" value="22" aria-label="temperature in degrees Celsius"><span class="tval" id="tval">22&deg;C</span></div>
+        <div class="transBanner idle" id="transBan">Drag the slider to change the temperature.</div>
+        <div class="transLog" id="transLog" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Predict, then check</h2></div>
+      <p class="lead">Use what the lab showed you.</p>
+      <div class="pred"><div class="q">A glass of cold lemonade sits on the porch. Tiny water drops form on the outside of the glass. What just happened?</div>
+        <div class="btns" data-row="p1">
+          <button class="pbtn" type="button" data-ok="false">Evaporation</button>
+          <button class="pbtn" type="button" data-ok="true">Condensation</button>
+          <button class="pbtn" type="button" data-ok="false">Melting</button>
+        </div>
+        <div class="pfb" data-fb="p1"></div>
+      </div>
+      <div class="pred"><div class="q">A puddle on the sidewalk slowly disappears on a sunny day. What happened to the water?</div>
+        <div class="btns" data-row="p2">
+          <button class="pbtn" type="button" data-ok="false">It condensed</button>
+          <button class="pbtn" type="button" data-ok="false">It froze</button>
+          <button class="pbtn" type="button" data-ok="true">It evaporated into gas</button>
+        </div>
+        <div class="pfb" data-fb="p2"></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">06</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span>
+        <div class="wrong">Water gas means steam you can see.</div>
+        <div class="right">The cloud you see above a boiling pot is tiny <b>liquid</b> drops that already condensed in the cool air. True water gas (water vapor) is invisible. It is in the air around you right now.</div></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">07</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span>
+        <div class="wrong">Melting and evaporating are the same thing.</div>
+        <div class="right">Both add heat, but they are different transitions. <b>Melting</b> goes solid to liquid at 0&deg;C. <b>Evaporating</b> goes liquid to gas, fastest at 100&deg;C.</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I tested the changes. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="expl" id="expl"></div>
+  </section>
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="ptsrow hide" id="ptsrow">
+        <div><div class="v" id="vbase">0</div><div class="k">Base</div></div>
+        <div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div>
+        <div><div class="v" id="vtotal">0</div><div class="k">Points</div></div>
+      </div>
+    </div>
+    <div class="fb hide" id="fbcard">
+      <div class="fl">How did that feel?</div>
+      <div class="faces" id="faces"></div>
+      <div class="tags" id="tags"></div>
+      <button class="cta hide" id="saveFb" style="margin-top:14px;">Save and finish</button>
+    </div>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+    <div id="ptDone" class="hide" aria-hidden="true"></div>
+  </section>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Amelia &middot; Science &middot; Day 2</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='science', DAY='3.PS1.A.1', SNAME='Amelia';
+  var PASS=7/8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var AR='http://www.w3.org/2000/svg';
+  var ICONS={
+    solid:'<svg viewBox="0 0 64 64" xmlns="'+AR+'"><rect x="10" y="14" width="44" height="36" rx="4" fill="#d6ecfb" stroke="#1f6feb" stroke-width="2"/><line x1="10" y1="26" x2="54" y2="26" stroke="#1f6feb" stroke-width="1.5"/><line x1="10" y1="38" x2="54" y2="38" stroke="#1f6feb" stroke-width="1.5"/></svg>',
+    liquid:'<svg viewBox="0 0 64 64" xmlns="'+AR+'"><path d="M14 16 H50 V44 Q50 52 32 52 Q14 52 14 44 Z" fill="#bfdcf5" stroke="#1f6feb" stroke-width="2"/><path d="M14 28 Q23 26 32 28 Q41 30 50 28" fill="none" stroke="#fff" stroke-width="2"/></svg>',
+    gas:'<svg viewBox="0 0 64 64" xmlns="'+AR+'"><circle cx="20" cy="44" r="4" fill="#dd8a1c"/><circle cx="34" cy="34" r="5" fill="#dd8a1c"/><circle cx="46" cy="22" r="3.5" fill="#dd8a1c"/><circle cx="28" cy="18" r="3" fill="#dd8a1c"/><circle cx="44" cy="46" r="3" fill="#dd8a1c"/></svg>'
+  };
+  var STDATA=[
+    {key:'solid', nm:'Solid (ice)', tag:'below 0&deg;C', eg:'Ice cubes in the freezer'},
+    {key:'liquid', nm:'Liquid water', tag:'0&deg;C to 100&deg;C', eg:'Water in a glass'},
+    {key:'gas', nm:'Gas (vapor)', tag:'above 100&deg;C', eg:'Invisible vapor in the air'}
+  ];
+  var stContainer=document.getElementById('states');
+  STDATA.forEach(function(s){ var d=document.createElement('div'); d.className='state'; d.innerHTML=ICONS[s.key]+'<div class="nm">'+s.nm+'</div><div class="tag">'+s.tag+'</div><div class="eg">'+s.eg+'</div>'; stContainer.appendChild(d); });
+
+  var temp=document.getElementById('temp'), tval=document.getElementById('tval'),
+      mercury=document.getElementById('mercury'), banner=document.getElementById('transBan'),
+      logBox=document.getElementById('transLog'),
+      badge=document.getElementById('stBadge'), label=document.getElementById('stLabel'),
+      liq=document.getElementById('liquidFill'), sol=document.getElementById('solidFill'), gas=document.getElementById('gasDots');
+  var lastState='liquid', dotsBuilt=false;
+  function buildDots(){
+    if(dotsBuilt) return; dotsBuilt=true;
+    for(var i=0;i<14;i++){
+      var s=document.createElement('span');
+      s.style.left=(8+Math.random()*84)+'%';
+      s.style.top=(8+Math.random()*82)+'%';
+      gas.appendChild(s);
+    }
+  }
+  function logTrans(name){
+    var c=document.createElement('span'); c.className='lchip'; c.textContent=name; logBox.appendChild(c);
+    while(logBox.children.length>5) logBox.removeChild(logBox.firstChild);
+  }
+  function stateOf(t){ if(t<=0) return 'solid'; if(t>=100) return 'gas'; return 'liquid'; }
+  function render(){
+    var t=parseInt(temp.value,10); tval.textContent=t+'°C';
+    var pct=(t+10)/120; var y=190-(pct*150); if(y<40)y=40; if(y>190)y=190;
+    mercury.setAttribute('y', y); mercury.setAttribute('height', 200-y);
+    var st=stateOf(t);
+    liq.classList.toggle('hide', st!=='liquid');
+    sol.classList.toggle('hide', st!=='solid');
+    gas.classList.toggle('hide', st!=='gas');
+    if(st==='gas') buildDots();
+    badge.className='stateBadge '+st;
+    if(st==='solid'){ badge.textContent='SOLID'; label.textContent='Solid ice'; }
+    else if(st==='gas'){ badge.textContent='GAS'; label.textContent='Water vapor (invisible)'; }
+    else { badge.textContent='LIQUID'; label.textContent='Liquid water'; }
+    if(st!==lastState){
+      var name='';
+      if(lastState==='liquid'&&st==='solid') name='Freeze (liquid → solid)';
+      else if(lastState==='solid'&&st==='liquid') name='Melt (solid → liquid)';
+      else if(lastState==='liquid'&&st==='gas') name='Evaporate (liquid → gas)';
+      else if(lastState==='gas'&&st==='liquid') name='Condense (gas → liquid)';
+      else if(lastState==='solid'&&st==='gas') name='Heated all the way through';
+      else if(lastState==='gas'&&st==='solid') name='Cooled all the way through';
+      banner.classList.remove('idle'); banner.textContent=name+' at '+t+'°C.';
+      logTrans(name.split(' (')[0]);
+      lastState=st;
+    } else {
+      if(banner.classList.contains('idle')) banner.textContent='Drag the slider to change the temperature.';
+    }
+  }
+  temp.addEventListener('input',render); render();
+
+  function wirePred(row,fb,msg){
+    var btns=document.querySelectorAll('[data-row="'+row+'"] .pbtn'), f=document.querySelector('[data-fb="'+fb+'"]');
+    btns.forEach(function(b){
+      b.addEventListener('click',function(){
+        if(b.disabled)return;
+        btns.forEach(function(c){c.disabled=true;});
+        if(b.getAttribute('data-ok')==='true'){ b.classList.add('ok'); f.className='pfb ok'; f.textContent='Correct. '+msg; }
+        else { b.classList.add('no'); f.className='pfb no'; f.textContent='Not quite. '+msg; btns.forEach(function(c){ if(c.getAttribute('data-ok')==='true') c.classList.add('ok'); }); }
+      });
+    });
+  }
+  wirePred('p1','p1','Water vapor in the warm air touches the cold glass and condenses back into liquid drops.');
+  wirePred('p2','p2','The sun warmed the puddle until liquid water turned into invisible water vapor.');
+
+  var BANK={
+    q1:{q:'Water in the freezer turns into ice. This change is called ...', o:['melting','freezing','evaporating','condensing'], a:1, ex:'Liquid to solid is freezing. It happens at 0&deg;C.'},
+    q2:{q:'An ice cube on the counter slowly turns into water. This is ...', o:['melting','freezing','condensing','evaporating'], a:0, ex:'Solid to liquid is melting. It also happens at 0&deg;C.'},
+    q3:{q:'A puddle in the sun dries up. The water turned into ...', o:['ice','vapor (gas)','salt','dirt'], a:1, ex:'Liquid to gas is evaporation. The water is in the air now.'},
+    q4:{q:'Drops form on a cold glass on a warm day. What happened?', o:['Water vapor condensed','The glass leaked','Ice melted inside','Water evaporated'], a:0, ex:'Gas to liquid is condensation.'},
+    q5:{q:'What temperature does water freeze at?', o:['0&deg;C','50&deg;C','100&deg;C','-100&deg;C'], a:0, ex:'Zero degrees Celsius is the doorway between liquid and solid.'},
+    q6:{q:'At about what temperature does water boil and quickly evaporate?', o:['10&deg;C','100&deg;C','50&deg;C','0&deg;C'], a:1, ex:'One hundred degrees Celsius is the doorway between liquid and gas.'},
+    q7:{q:'Which of these IS a state of water?', o:['Gas (vapor)','Sand','Bubble','Color'], a:0, ex:'The three states are solid, liquid, and gas.'},
+    q8:{q:'What causes water to change state?', o:['A change in temperature','A change in color','A change in shape','A change in name'], a:0, ex:'Adding or removing heat is what moves water between states.'},
+
+    q9:{q:'Water goes from liquid to gas. The name of this change is ...', o:['Condensation','Evaporation','Melting','Freezing'], a:1, ex:'Liquid to gas is called evaporation.'},
+    q10:{q:'Your warm breath on a cold mirror makes the mirror foggy. This is ...', o:['evaporation','condensation','melting','freezing'], a:1, ex:'Water vapor in your breath cools and condenses into tiny drops.'},
+    q11:{q:'Ice cubes in a glass of soda slowly disappear. They are ...', o:['freezing','melting','evaporating','condensing'], a:1, ex:'Solid ice warms up and turns to liquid. That is melting.'},
+    q12:{q:'Predict: a tray of water put into a -5&deg;C freezer will ...', o:['boil','stay liquid','freeze into ice','disappear'], a:2, ex:'Below 0&deg;C, liquid water freezes into solid ice.'},
+    q13:{q:'Which two changes happen at 0&deg;C?', o:['Melt and freeze','Evaporate and condense','Melt and evaporate','Freeze and condense'], a:0, ex:'Zero degrees Celsius is the solid-liquid doorway, so melt and freeze both happen there.'},
+    q14:{q:'Water vapor (gas) is ...', o:['always white and cloudy','invisible in the air','only found in ice','heavier than ice'], a:1, ex:'True water vapor is invisible. The cloud you see above a pot is tiny liquid drops.'},
+    q15:{q:'To change ice into liquid water you must ...', o:['add heat','take heat away','add salt','add color'], a:0, ex:'Adding heat is what melts a solid.'},
+    q16:{q:'To change liquid water into ice you must ...', o:['add heat','take heat away','add light','shake it'], a:1, ex:'Taking heat away cools the water until it freezes.'}
+  };
+  var FORMS={A:['q1','q2','q3','q4','q5','q6','q7','q8'], B:['q9','q10','q11','q12','q13','q14','q15','q16']};
+  var FORM_ORDER=['A','B'];
+
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false, QS=[];
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQ=document.getElementById('qtext'), elO=document.getElementById('opts'), elC=document.getElementById('qcount'),
+      elT=document.getElementById('tlabel'), elF=document.getElementById('tfill'), elE=document.getElementById('expl');
+  function startCheck(){
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    rec.attempts=(rec.attempts||0)+1; save(app);
+    var fname=FORM_ORDER[(rec.attempts-1)%FORM_ORDER.length];
+    QS=FORMS[fname].map(function(id){return BANK[id];});
+    qi=0; correct=0; runPts=0; runWrong=[]; window.scrollTo(0,0); showQ();
+  }
+  function showQ(){
+    locked=false; var item=QS[qi]; elC.textContent='Question '+(qi+1)+' of '+QS.length; elQ.innerHTML=item.q; elO.innerHTML=''; elE.textContent='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elO.appendChild(b); });
+    timeLeft=QTIME; elF.style.width='100%'; elF.classList.remove('low'); elT.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elF.style.width=(timeLeft/QTIME*100)+'%'; elT.textContent=timeLeft+'s'; if(timeLeft<=8)elF.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000);
+  }
+  function answer(i,btn){
+    if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(elO.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(item.ex) elE.innerHTML=(ok?'Correct. ':'')+item.ex;
+    if(ok){ correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4; } else { runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a]}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?900:1400);
+  }
+  function finish(){
+    secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    var ptsrow=document.getElementById('ptsrow'), fbcard=document.getElementById('fbcard'), retry=document.getElementById('retry'), rt=document.getElementById('rtitle'), rm=document.getElementById('rmsg');
+    if(passed){ var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+      rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+      rt.textContent='Lab passed!'; rm.textContent='You got '+correct+' of '+QS.length+' correct.';
+      document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      fbcard.classList.remove('hide'); retry.classList.add('hide');
+    } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+      rt.textContent='So close!'; rm.textContent='You need '+Math.ceil(PASS*QS.length)+' of '+QS.length+' to pass. You got '+correct+'. Look back at the stations, then try again.';
+      ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
+    commitTime();
+  }
+  document.getElementById('toCheck').addEventListener('click',startCheck);
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+  var fbRating=null, fbTag=null;
+  var faces=[['Easy','easy'],['Just right','just'],['Tricky','hard']]; var tags=[['Clear','clear'],['Confusing','confusing'],['Fun','fun']];
+  var fbox=document.getElementById('faces'), tbox=document.getElementById('tags'), saveBtn=document.getElementById('saveFb');
+  faces.forEach(function(f){ var b=document.createElement('button'); b.className='face'; b.type='button'; b.textContent=f[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbRating=f[1]; Array.prototype.forEach.call(fbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); fbox.appendChild(b); });
+  tags.forEach(function(t){ var b=document.createElement('button'); b.className='tagb'; b.type='button'; b.textContent=t[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbTag=t[1]; Array.prototype.forEach.call(tbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); tbox.appendChild(b); });
+  function maybeShowSave(){ if(fbRating&&fbTag)saveBtn.classList.remove('hide'); }
+  saveBtn.addEventListener('click',function(){ rec.feedback={rating:fbRating,tag:fbTag,at:Date.now()}; app.progress[STUDENT][SUBJECT][DAY]=rec; save(app); syncCloud(); document.getElementById('fbcard').classList.add('hide'); document.getElementById('donebox').classList.remove('hide'); });
+})();
+</script>
+</body>
+</html>

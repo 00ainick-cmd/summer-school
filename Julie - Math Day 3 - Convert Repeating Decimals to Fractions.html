@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 04 &middot; Repeating Decimals to Fractions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno,.stdtag .l{font-family:'Spline Sans Mono',monospace;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:58ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .rule{background:#0d1014;color:#ecede7;border-radius:10px;padding:14px 16px;margin-top:12px;font-family:'Spline Sans Mono';font-size:15px;line-height:1.6;}
+  .rule .k{color:#ff7a55;}
+  .rule .v{color:#5be08a;}
+  .stepper{margin-top:14px;border:1.5px solid var(--line);border-radius:12px;padding:14px;background:#fff;}
+  .tabrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+  .tabb{font:inherit;font-family:'Spline Sans Mono';font-size:13px;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:8px 12px;min-height:40px;cursor:pointer;}
+  .tabb[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .work{font-family:'Spline Sans Mono';font-size:17px;line-height:1.9;color:var(--ink);}
+  .work .line{display:block;padding:4px 8px;border-left:3px solid transparent;}
+  .work .line.on{border-left-color:var(--accent);background:#fffaf6;}
+  .work .line.dim{color:var(--mute);}
+  .work .hi{background:#ffe4b3;padding:1px 3px;border-radius:3px;}
+  .work .res{color:var(--good);font-weight:600;}
+  .stepbtns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+  .stepbtns button{font:inherit;font-weight:600;font-size:14px;background:var(--ink);color:#fff;border:none;border-radius:8px;padding:10px 14px;min-height:44px;cursor:pointer;}
+  .stepbtns button.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .stepbtns button:disabled{opacity:.5;cursor:default;}
+  .annot{margin-top:10px;font-size:14.5px;color:var(--ink2);min-height:1.4em;}
+  .practice{margin-top:14px;}
+  .ptile{border:1.5px solid var(--line);border-radius:11px;padding:12px;margin-top:8px;background:#fff;}
+  .ptile .q{font-family:'Spline Sans Mono';font-size:16px;color:var(--ink);}
+  .ptile .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+  .ptile .row button{flex:1;min-width:90px;font:inherit;font-family:'Spline Sans Mono';font-weight:600;font-size:14px;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:10px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .ptile .row button:hover{border-color:var(--accent);}
+  .ptile.ok{border-color:var(--good);background:#e9f6ee;} .ptile.no{border-color:var(--red);background:#fdecea;}
+  .ptile .why{font-size:13.5px;color:var(--ink2);margin-top:8px;display:none;}
+  .ptile.done .why{display:block;} .ptile.done .row button{pointer-events:none;opacity:.55;}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);} .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);} .cta:disabled{opacity:.5;cursor:default;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+  .scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:8px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;}
+  .ptask textarea{width:100%;min-height:84px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;resize:vertical;color:var(--ink);background:#fff;}
+  .gate{margin-top:10px;}
+  .gitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px;color:var(--ink2);}
+  .gitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono';font-size:13px;}
+  .gitem.ok .mk{background:var(--good);} .gitem.miss .mk{background:var(--accent-d);}
+  .cred{display:none;text-align:center;padding:20px;border-radius:14px;background:#fff;border:1px solid var(--good);margin-top:12px;}
+  .cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.NS.A.1c</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 04</div>
+    <h1>Trap the Repeating Tail</h1>
+    <p class="mission">A repeating decimal looks slippery, but one algebra move pins it down as a clean fraction. You will run the move on three examples, then earn the right to do it from memory.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Convert decimals which repeat into fractions and fractions into repeating decimals.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>The subtraction trick</h2></div>
+      <p class="lead">Let x equal the repeating decimal. Multiply x by a power of 10 chosen so the repeating tails line up. Subtract. The infinite tail cancels, leaving a clean equation you can solve.</p>
+      <div class="rule">
+        <span class="k">Block length</span> <span class="v">1 digit</span> &nbsp; multiply by <span class="v">10</span><br>
+        <span class="k">Block length</span> <span class="v">2 digits</span> &nbsp; multiply by <span class="v">100</span><br>
+        <span class="k">Block length</span> <span class="v">3 digits</span> &nbsp; multiply by <span class="v">1000</span><br>
+        <span class="k">General</span> &nbsp; n-digit block, multiply by <span class="v">10^n</span>
+      </div>
+      <div class="note"><b>Quick consequence.</b> Any 1-digit repeat is some digit over 9. Any 2-digit repeat is some 2-digit number over 99. Any 3-digit repeat is over 999. That is the shortcut, and the algebra below is why.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / WALK THROUGH</span><h2>Three worked examples</h2></div>
+      <p class="lead">Step through each. Watch which factor of 10 you pick, and watch the infinite tail cancel.</p>
+      <div class="stepper">
+        <div class="tabrow" role="tablist">
+          <button class="tabb" type="button" role="tab" aria-selected="true" data-ex="0">0.333...</button>
+          <button class="tabb" type="button" role="tab" aria-selected="false" data-ex="1">0.272727...</button>
+          <button class="tabb" type="button" role="tab" aria-selected="false" data-ex="2">0.1666...</button>
+        </div>
+        <div class="work" id="work"></div>
+        <div class="annot" id="annot"></div>
+        <div class="stepbtns">
+          <button type="button" id="stepBack" class="ghost">Back</button>
+          <button type="button" id="stepFwd">Next step</button>
+          <button type="button" id="stepReset" class="ghost">Restart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / DO</span><h2>Match decimal to fraction</h2></div>
+      <p class="lead">Pick the fraction each repeating decimal collapses to. Reduce when you can.</p>
+      <div class="practice" id="practice"></div>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">04 / EXPLAIN</span><h2>Write the trick in your own words</h2></div>
+      <p class="lead">In three or four sentences, explain why subtracting x from 10x kills the infinite tail. Use the example 0.444... if it helps.</p>
+      <textarea id="explainText" placeholder="Let x = 0.444... Then 10x = ..." aria-label="your written explanation"></textarea>
+      <p class="lead" style="margin-top:10px;font-size:14px;">For your thinking, not graded. Read it back. Did you name <b>why</b> the tails cancel?</p>
+    </div>
+
+    <div class="station ptask">
+      <div class="shead"><span class="sno">05 / SAY IT</span><h2>Out loud, to an adult</h2></div>
+      <p class="lead">Convert 0.818181... to a fraction out loud, step by step. Then state the shortcut: every 2-digit repeat is what over what?</p>
+      <div class="note"><b>Adult listener.</b> Look for: (1) sets x = 0.818181..., multiplies by 100 to get 100x = 81.818181..., subtracts to get 99x = 81, solves to x = 81/99 = 9/11; (2) names "n-digit repeat over n nines."</div>
+      <button class="cta alt" id="ptDone" type="button">I said it out loud. Continue</button>
+    </div>
+
+    <button class="cta" id="toCheck">Start the Form A check (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="resultA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A RESULT</span><h2>How that landed</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="scoreA">0 / 8</span><span style="flex:1"></span><span id="statusA" style="font-weight:700;"></span></div>
+      <p class="lead" id="msgA" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to retention (Form B)</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new questions, same trick, different numbers. Best done <b>at least a day after Form A</b>.</p>
+      <div class="note"><b>Spacing.</b> If you can, close this and come back tomorrow before starting Form B.</div>
+      <button class="cta" id="startB">Start Form B</button>
+    </div>
+    <div class="hide" id="bWrap">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="cred" id="cred"><div class="gem">◆</div><h3>8.NS.A.1c Mastered</h3><p>You can convert repeating decimals to fractions and explain why the trick works.</p></div>
+      <p class="lead" style="margin-top:10px;">Next session: the same rational number wearing five different costumes (fraction, decimal, percent, equivalent forms).</p>
+      <div id="donebox" class="hide" style="text-align:center;margin-top:14px;"><p style="color:var(--accent-d);font-weight:700;">Saved. You can close this and head back to your dashboard.</p></div>
+    </div>
+  </section>
+
+  <footer>Julie &middot; Math &middot; Day 3 &middot; Verbatim Missouri Learning Standard 8.NS.A.1c</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app', STUDENT='julie', SUBJECT='math', DAY='8.NS.A.1c', SNAME='Julie';
+  var PASS=7, QTIME=25;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,formA:0,formB:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+
+  // ---- worked example stepper ----
+  var EX=[
+    {label:'0.333...', steps:[
+      {l:'Let x = 0.333...', n:'Name the repeating decimal x. The repeating block is 1 digit.'},
+      {l:'Multiply both sides by 10: 10x = 3.333...', n:'Multiply by 10 because the block is 1 digit long.'},
+      {l:'Subtract: 10x - x = 3.333... - 0.333...', n:'Line up the infinite tails. They will cancel.'},
+      {l:'9x = 3', n:'The infinite tail cancels exactly. A clean equation is left.'},
+      {l:'x = 3/9 = <span class="res">1/3</span>', n:'Divide and reduce. 0.333... is exactly 1/3.'}
+    ]},
+    {label:'0.272727...', steps:[
+      {l:'Let x = 0.272727...', n:'Name the repeating decimal x. The repeating block <span class="hi">27</span> is 2 digits.'},
+      {l:'Multiply both sides by 100: 100x = 27.272727...', n:'Multiply by 100 because the block is 2 digits long.'},
+      {l:'Subtract: 100x - x = 27.272727... - 0.272727...', n:'Line up the tails. They will cancel.'},
+      {l:'99x = 27', n:'The infinite tail cancels exactly.'},
+      {l:'x = 27/99 = <span class="res">3/11</span>', n:'Reduce by dividing top and bottom by 9.'}
+    ]},
+    {label:'0.1666... (mixed)', steps:[
+      {l:'Let x = 0.1666...', n:'Only the 6 repeats, after one non-repeating digit. Two multiplications will shift both.'},
+      {l:'10x = 1.666... (shift past the non-repeating part)', n:'Multiply by 10 first to move past the leading 1.'},
+      {l:'100x = 16.666...', n:'Then by 10 again so the tails of the two equations line up.'},
+      {l:'Subtract: 100x - 10x = 16.666... - 1.666...', n:'The 666... tail cancels on both sides.'},
+      {l:'90x = 15', n:'A clean equation, no tail.'},
+      {l:'x = 15/90 = <span class="res">1/6</span>', n:'Reduce by dividing top and bottom by 15.'}
+    ]}
+  ];
+  var exIdx=0, step=0;
+  var work=document.getElementById('work'), annot=document.getElementById('annot');
+  function renderEx(){
+    work.innerHTML=''; var ex=EX[exIdx];
+    ex.steps.forEach(function(s,i){
+      var div=document.createElement('span'); div.className='line';
+      if(i<step) div.classList.add('dim');
+      if(i===step) div.classList.add('on');
+      if(i>step) div.style.display='none';
+      div.innerHTML=s.l; work.appendChild(div);
+    });
+    annot.innerHTML = (step<ex.steps.length) ? ex.steps[step].n : 'Done. Pick another example or move on.';
+    document.getElementById('stepBack').disabled=(step===0);
+    document.getElementById('stepFwd').disabled=(step>=ex.steps.length-1);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.tabb'),function(b){ b.addEventListener('click',function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.tabb'),function(x){x.setAttribute('aria-selected','false');});
+    b.setAttribute('aria-selected','true'); exIdx=parseInt(b.getAttribute('data-ex'),10); step=0; renderEx();
+  }); });
+  document.getElementById('stepFwd').addEventListener('click',function(){ if(step<EX[exIdx].steps.length-1){step++; renderEx();} });
+  document.getElementById('stepBack').addEventListener('click',function(){ if(step>0){step--; renderEx();} });
+  document.getElementById('stepReset').addEventListener('click',function(){ step=0; renderEx(); });
+  renderEx();
+
+  // ---- match practice ----
+  var MATCH=[
+    {d:'0.555...', opts:['5/9','5/10','55/99','1/2'], a:0, why:'1-digit repeat: 5/9 in lowest terms.'},
+    {d:'0.181818...', opts:['18/99','2/11','18/100','1/5'], a:1, why:'18/99 = 2/11 after dividing by 9.'},
+    {d:'0.4444...', opts:['4/9','4/10','44/100','2/5'], a:0, why:'1-digit repeat: 4/9.'},
+    {d:'0.123123123...', opts:['123/1000','123/999 = 41/333','1/8','12/99'], a:1, why:'3-digit repeat: 123/999 = 41/333.'}
+  ];
+  var p=document.getElementById('practice');
+  MATCH.forEach(function(it){
+    var t=document.createElement('div'); t.className='ptile';
+    var q=document.createElement('div'); q.className='q'; q.innerHTML='Convert <b>'+it.d+'</b> to a fraction.'; t.appendChild(q);
+    var row=document.createElement('div'); row.className='row';
+    var why=document.createElement('div'); why.className='why'; why.textContent=it.why;
+    it.opts.forEach(function(o,i){ var b=document.createElement('button'); b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){ if(t.classList.contains('done'))return; t.classList.add('done');
+        var ok=(i===it.a); t.classList.add(ok?'ok':'no'); }); row.appendChild(b); });
+    t.appendChild(row); t.appendChild(why); p.appendChild(t);
+  });
+
+  // ---- Form A and B ----
+  var FORMA=[
+    {q:'You set x = 0.777... To use the subtraction trick, multiply by ...', o:['10','100','1000','9'], a:0, why:'1-digit block, multiply by 10.'},
+    {q:'0.777... as a fraction in lowest terms is ...', o:['7/9','7/10','77/99','77/100'], a:0, why:'9x = 7, so x = 7/9.'},
+    {q:'You set x = 0.353535... You should multiply by ...', o:['10','100','1000','35'], a:1, why:'2-digit block, multiply by 100.'},
+    {q:'0.353535... as a fraction in lowest terms is ...', o:['35/100','35/99','7/20','5/11'], a:1, why:'99x = 35, so x = 35/99, already in lowest terms.'},
+    {q:'A 3-digit repeating block gives a denominator of ...', o:['10','100','999','3'], a:2, why:'1000x - x = 999x, so the denominator is 999.'},
+    {q:'0.6666... is the same as ...', o:['6/9 = 2/3','3/5','6/10','60/99'], a:0, why:'1-digit repeat: 6/9 reduces to 2/3.'},
+    {q:'Why does subtracting x from 10x kill the repeating tail?', o:['Because multiplying by 10 shifts the digits one place, so the repeating tails line up and cancel','Because 10 is even','Because subtraction is faster than division','Because x is small'], a:0, why:'Lined-up tails subtract to zero.'},
+    {q:'Convert 1/3 to a decimal.', o:['0.3 exactly','0.333... repeating','0.33 then stops','0.13'], a:1, why:'1/3 = 0.333... (a 1-digit repeating block).'}
+  ];
+  var FORMB=[
+    {q:'You set x = 0.222... To use the trick, multiply by ...', o:['10','100','1000','2'], a:0, why:'1-digit block, multiply by 10.'},
+    {q:'0.222... as a fraction in lowest terms is ...', o:['2/9','2/10','22/99','22/100'], a:0, why:'9x = 2, so x = 2/9.'},
+    {q:'You set x = 0.818181... You should multiply by ...', o:['10','100','1000','81'], a:1, why:'2-digit block, multiply by 100.'},
+    {q:'0.818181... as a fraction in lowest terms is ...', o:['81/100','81/99','9/11','8/11'], a:2, why:'99x = 81, so x = 81/99 = 9/11.'},
+    {q:'A 4-digit repeating block gives a denominator of ...', o:['10000','9999','1000','4'], a:1, why:'10000x - x = 9999x.'},
+    {q:'0.4545... is the same as ...', o:['45/99 = 5/11','4/9','45/100','9/20'], a:0, why:'2-digit repeat: 45/99 = 5/11.'},
+    {q:'After multiplying 0.1666... by 10 and by 100, the next step is ...', o:['add the two equations','subtract: 100x - 10x to cancel the 666... tail','divide by 6','multiply again'], a:1, why:'Subtracting cancels the lined-up tails: 90x = 15.'},
+    {q:'Convert 2/11 to a decimal.', o:['0.2 exactly','0.181818... repeating','0.22 then stops','0.211'], a:1, why:'2/11 = 0.181818... (2-digit repeating block 18).'}
+  ];
+
+  // ---- check runner ----
+  var qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, runWrong=[];
+  var QS=FORMA, MODE='A';
+  var secL=document.getElementById('lesson'), secC=document.getElementById('check'),
+      secRA=document.getElementById('resultA'), secRT=document.getElementById('retention'),
+      secW=document.getElementById('wrap'), bWrap=document.getElementById('bWrap');
+  function el(id){return document.getElementById(id);}
+  function startA(){ MODE='A'; QS=FORMA; rec.attempts=(rec.attempts||0)+1; save(app);
+    secL.classList.add('hide'); secRA.classList.add('hide'); secC.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function startB(){ MODE='B'; QS=FORMB; el('startB').classList.add('hide'); bWrap.classList.remove('hide');
+    qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi];
+    var ids = MODE==='A' ? {c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'} : {c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhy'};
+    el(ids.c).textContent='Question '+(qi+1)+' of '+QS.length;
+    el(ids.q).innerHTML=item.q;
+    var opts=el(ids.o); opts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,opts,ids);}); opts.appendChild(b); });
+    el(ids.w).textContent='';
+    timeLeft=QTIME; el(ids.f).style.width='100%'; el(ids.f).classList.remove('low'); el(ids.t).textContent=QTIME+'s';
+    clearInterval(timer); timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0;
+      el(ids.f).style.width=(timeLeft/QTIME*100)+'%'; el(ids.t).textContent=timeLeft+'s';
+      if(timeLeft<=8) el(ids.f).classList.add('low'); if(timeLeft===0) clearInterval(timer); }, 1000);
+  }
+  function answer(i,btn,opts,ids){ if(locked)return; locked=true; clearInterval(timer);
+    var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    el(ids.w).innerHTML=(ok?'Correct. ':'Not quite. ')+item.why;
+    if(ok)correct++; else runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a], mode:MODE});
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?700:1300); }
+  function finish(){
+    if(MODE==='A'){ secC.classList.add('hide'); secRA.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formA=correct; rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+      el('scoreA').textContent=correct+' / '+QS.length;
+      var passed=(correct>=PASS); el('statusA').textContent=passed?'PASS':'NOT YET'; el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
+      el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B waits at least a day.'):('You need '+PASS+' of '+QS.length+' to clear Form A. You got '+correct+'. Re-step the three worked examples, then try again.');
+      rec.best=Math.max(rec.best||0,Math.round(correct/QS.length*100));
+      rec.status=passed?'formA_passed':'tried';
+      if(passed) el('retryA').classList.add('hide'); else el('retryA').classList.remove('hide');
+      save(app); commitTime();
+    } else {
+      bWrap.classList.add('hide'); secRT.classList.add('hide'); secW.classList.remove('hide'); window.scrollTo(0,0);
+      rec.formB=correct; el('finalA').textContent=(rec.formA||0)+' / 8'; el('finalB').textContent=correct+' / 8';
+      var aPass=(rec.formA||0)>=PASS, bPass=correct>=PASS, both=aPass&&bPass;
+      var gate=el('gate'); gate.innerHTML='';
+      function gline(ok,label){ var d=document.createElement('div'); d.className='gitem '+(ok?'ok':'miss'); d.innerHTML='<div class="mk">'+(ok?'✓':'!')+'</div><div>'+label+'</div>'; gate.appendChild(d); }
+      gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
+      gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
+      if(both){ el('cred').classList.add('show'); rec.status='mastered'; rec.points=Math.max(rec.points||0,100); rec.passedAt=Date.now(); }
+      else { rec.status='formB_tried'; }
+      save(app); commitTime(); syncCloud();
+      setTimeout(function(){ el('donebox').classList.remove('hide'); }, 600);
+    }
+  }
+  el('toCheck').addEventListener('click',startA);
+  el('toRetention').addEventListener('click',function(){ secRA.classList.add('hide'); secRT.classList.remove('hide'); window.scrollTo(0,0); });
+  el('retryA').addEventListener('click',function(){ secRA.classList.add('hide'); secL.classList.remove('hide'); window.scrollTo(0,0); });
+  el('startB').addEventListener('click',startB);
+  el('ptDone').addEventListener('click',function(){ this.disabled=true; this.textContent='Logged. Keep going.'; });
+})();
+</script>
+</body>
+</html>

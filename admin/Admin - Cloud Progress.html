@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Learning Admin - Cloud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0f1620;--panel:#16202c;--panel2:#1b2733;--ink:#eaf0f6;--ink2:#9fb1c2;--mute:#65788a;--line:#28384a;
+    --accent:#43c0a8;--accent2:#3a8ed6;--good:#3fb37a;--warn:#d9a441;--open:#5b6b7c;--bad:#e0654a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:16px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(40vmax 30vmax at 100% 0,rgba(58,142,214,.10),transparent 60%);}
+  .mono{font-family:'Spline Sans Mono',monospace;}
+  .wrap{max-width:1000px;margin:0 auto;padding:26px 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  a{color:var(--accent);}
+
+  header.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:16px;}
+  header.top h1{font-size:28px;font-weight:800;letter-spacing:-.01em;}
+  header.top .sub{color:var(--ink2);font-size:14px;margin-top:2px;}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;}
+  .seg button{font:inherit;font-size:13px;font-weight:600;background:transparent;color:var(--ink2);border:none;padding:9px 14px;min-height:40px;cursor:pointer;}
+  .seg button.on{background:var(--accent);color:#06231d;}
+  .btn{font:inherit;font-size:13px;font-weight:600;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px 14px;min-height:40px;cursor:pointer;}
+  .btn:hover{border-color:var(--accent);}
+
+  .banner{margin:16px 0 0;background:rgba(217,164,65,.10);border:1px solid #4a3f24;border-left:3px solid var(--warn);border-radius:10px;padding:12px 14px;font-size:13.5px;color:#e7d3a6;}
+  .banner b{color:#f1e2bd;}
+
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 8px;}
+  .scard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .scard .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  .scard .v{font-family:'Spline Sans Mono';font-size:26px;font-weight:600;margin-top:4px;}
+
+  .student{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px;}
+  .shead{display:flex;flex-wrap:wrap;align-items:center;gap:12px;}
+  .shead h2{font-size:21px;font-weight:800;}
+  .shead .grade{font-family:'Spline Sans Mono';font-size:12px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;}
+  .shead .right{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2);}
+  .shead .right b{font-family:'Spline Sans Mono';color:var(--ink);font-weight:600;}
+  .pbar{height:8px;background:var(--panel2);border-radius:999px;overflow:hidden;margin:12px 0 4px;border:1px solid var(--line);}
+  .pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;}
+  th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600;}
+  td.num{font-family:'Spline Sans Mono';}
+  .pill{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:3px 9px;display:inline-block;}
+  .pill.passed{background:rgba(63,179,122,.15);color:#7fe0ac;border:1px solid #2f6b4c;}
+  .pill.tried{background:rgba(217,164,65,.15);color:#f0cd84;border:1px solid #6b5526;}
+  .pill.open{background:rgba(91,107,124,.15);color:#9fb1c2;border:1px solid #3a4a5c;}
+  .fb{font-size:12.5px;color:var(--ink2);}
+  details.wrong{margin-top:6px;}
+  details.wrong summary{cursor:pointer;color:var(--bad);font-size:12.5px;font-weight:600;list-style:none;}
+  details.wrong summary::-webkit-details-marker{display:none;}
+  details.wrong summary::after{content:" \\25B8";}
+  details.wrong[open] summary::after{content:" \\25BE";}
+  .missq{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-top:6px;font-size:13px;}
+  .missq .stem{color:var(--ink);}
+  .missq .row{font-family:'Spline Sans Mono';font-size:12px;margin-top:3px;}
+  .missq .chose{color:var(--bad);} .missq .corr{color:var(--good);}
+  .empty{color:var(--mute);font-size:13px;padding:8px 0;}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-family:'Spline Sans Mono';font-size:11px;color:var(--mute);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Family Learning Admin &middot; Cloud</h1>
+      <div class="sub">Day 1 progress report: status, score, time on task, points, feedback, and every missed question.</div>
+    </div>
+    <div class="controls">
+      <span class="mono" style="font-size:12px;color:var(--mute)">Source</span>
+      <div class="seg" id="seg"><button data-src="cloud" class="on">Cloud (all devices)</button><button data-src="sample">Sample</button></div><button class="btn" id="refresh">Refresh</button>
+      <button class="btn" id="export">Export JSON</button>
+    </div>
+  </header>
+
+  <div class="banner" id="banner"></div>
+
+  <div class="summary" id="summary"></div>
+  <div id="students"></div>
+
+  <footer><span id="ftxt"></span></footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app';
+  var ROSTER=[{id:'sam',name:'Sam',grade:'Grade 2'},{id:'amelia',name:'Amelia',grade:'Grade 3'},{id:'julie',name:'Julie',grade:'Grade 8'}];
+  var SUBS=[['math','Math'],['reading','Reading'],['science','Science'],['social','Social Studies'],['japanese','Japanese']];
+
+  // ---------- sample data (in memory only, never written to storage) ----------
+  var SAMPLE={progress:{
+    sam:{
+      science:{d1:{status:'passed',best:100,attempts:1,points:128,timeMs:268000,lastAt:Date.now()-3600000,feedback:{rating:'just',tag:'fun'},wrongCount:0,lastWrong:[]}},
+      math:{d1:{status:'passed',best:83,attempts:2,points:92,timeMs:402000,lastAt:Date.now()-5400000,feedback:{rating:'hard',tag:'clear'},wrongCount:1,lastWrong:[{stem:'<b>10 tens</b> make one ...',picked:'Thousand',correct:'Hundred'}]}},
+      reading:{d1:{status:'tried',best:60,attempts:1,points:0,timeMs:188000,lastAt:Date.now()-7200000,feedback:null,wrongCount:2,lastWrong:[{stem:'Which word has a <b>long o</b>?',picked:'hop',correct:'hope'},{stem:'Add a magic e to <b>kit</b>. The new word is ...',picked:'keet',correct:'kite'}]}},
+      social:{d1:{status:'passed',best:100,attempts:1,points:124,timeMs:225000,lastAt:Date.now()-90000000,feedback:{rating:'easy',tag:'fun'},wrongCount:0,lastWrong:[]}},
+      japanese:{d1:{status:'open',best:0,attempts:0,points:0,timeMs:0}}
+    },
+    amelia:{
+      math:{d1:{status:'passed',best:100,attempts:1,points:130,timeMs:300000,lastAt:Date.now()-43000000,feedback:{rating:'just',tag:'clear'},wrongCount:0,lastWrong:[]}},
+      japanese:{d1:{status:'tried',best:50,attempts:2,points:0,timeMs:412000,lastAt:Date.now()-2000000,feedback:{rating:'hard',tag:'confusing'},wrongCount:3,lastWrong:[{stem:'Which word means <b>blue</b>?',picked:'\u9ed2 (kuro)',correct:'\u9752 (ao)'}]}},
+      reading:{d1:{status:'open',best:0,attempts:0,points:0,timeMs:0}},
+      science:{d1:{status:'open',best:0,attempts:0,points:0,timeMs:0}},
+      social:{d1:{status:'open',best:0,attempts:0,points:0,timeMs:0}}
+    },
+    julie:{}
+  }};
+
+  /* ===== PASTE YOUR SUPABASE VALUES HERE ===== */
+  var SUPA_URL='';   /* e.g. https://yourproject.supabase.co */
+  var SUPA_KEY='';   /* your anon public key */
+  /* =========================================== */
+  var srcMode='cloud';
+  var CLOUD={progress:{}};
+  function data(){ return srcMode==='sample' ? SAMPLE : CLOUD; }
+  function loadCloud(cb){
+    if(!SUPA_URL||!SUPA_KEY){ CLOUD={progress:{}}; if(cb)cb(false); return; }
+    fetch(SUPA_URL+'/rest/v1/lesson_results?select=*',{headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY}})
+      .then(function(r){ return r.json(); })
+      .then(function(rows){ var p={};
+        (rows||[]).forEach(function(row){
+          p[row.student]=p[row.student]||{};
+          p[row.student][row.subject]=p[row.student][row.subject]||{};
+          p[row.student][row.subject][row.day||'d1']={status:row.status,best:row.best,attempts:row.attempts,points:row.points,timeMs:row.time_ms,wrongCount:row.wrong_count,lastWrong:row.wrong||[],feedback:row.feedback,lastAt: row.updated_at? Date.parse(row.updated_at):0};
+        });
+        CLOUD={progress:p}; if(cb)cb(true);
+      }).catch(function(){ CLOUD={progress:{}}; if(cb)cb(false); });
+  }
+
+  function fmtTime(ms){ if(!ms) return '\u2014'; var m=Math.floor(ms/60000), s=Math.round((ms%60000)/1000); return m? (m+'m '+s+'s') : (s+'s'); }
+  function fmtWhen(ts){ if(!ts) return '\u2014'; var d=new Date(ts), now=Date.now(), diff=(now-ts)/3600000;
+    if(diff<1) return Math.max(1,Math.round(diff*60))+' min ago'; if(diff<24) return Math.round(diff)+'h ago'; return d.toLocaleDateString(); }
+  function rec(d,sid,sub){ try{return d.progress[sid][sub].d1;}catch(e){return null;} }
+  function esc(s){return (s==null?'':String(s));}
+
+  function render(){
+    var d=data();
+    document.getElementById('banner').innerHTML = srcMode==='sample'
+      ? 'Showing <b>sample data</b> so you can see a populated report. Switch to Cloud to load the real results from your shared database.'
+      : ((!SUPA_URL||!SUPA_KEY)
+          ? 'Cloud is <b>not configured yet</b>. Paste your Supabase Project URL and anon public key into the CONFIG block near the top of the script in this file, or send them to me and I will bake them in. Until then, use Sample.'
+          : 'Showing <b>live results from your shared database</b>, across every device the children use. Press Refresh to pull the latest.');
+
+    var totLessons=0, totPassed=0, totTime=0, totPoints=0, totMissed=0;
+    ROSTER.forEach(function(st){ SUBS.forEach(function(s){ var r=rec(d,st.id,s[0]); if(r){ if(r.status&&r.status!=='open')totLessons++; if(r.status==='passed')totPassed++; totTime+=r.timeMs||0; totPoints+=r.points||0; totMissed+=r.wrongCount||0; } }); });
+    document.getElementById('summary').innerHTML =
+      card('Lessons passed', totPassed+' / 15') + card('Lessons attempted', totLessons) +
+      card('Total time on task', fmtTime(totTime)) + card('Total points', totPoints) + card('Questions missed', totMissed);
+
+    var box=document.getElementById('students'); box.innerHTML='';
+    ROSTER.forEach(function(st){
+      var passed=0, attempted=0, pts=0, time=0, last=0;
+      SUBS.forEach(function(s){ var r=rec(d,st.id,s[0]); if(r){ if(r.status==='passed')passed++; if(r.status&&r.status!=='open')attempted++; pts+=r.points||0; time+=r.timeMs||0; if(r.lastAt&&r.lastAt>last)last=r.lastAt; } });
+      var rows=SUBS.map(function(s){
+        var r=rec(d,st.id,s[0]);
+        var status=(r&&r.status)||'open';
+        var miss='';
+        if(r&&r.wrongCount){ miss='<details class="wrong"><summary>'+r.wrongCount+' missed</summary>'+
+          (r.lastWrong||[]).map(function(w){return '<div class="missq"><div class="stem">'+esc(w.stem)+'</div><div class="row chose">chose: '+esc(w.picked)+'</div><div class="row corr">answer: '+esc(w.correct)+'</div></div>';}).join('')+'</details>'; }
+        else if(status==='passed'){ miss='<span class="empty">none</span>'; }
+        var fb = (r&&r.feedback)? ('<span class="fb">'+r.feedback.rating+' / '+r.feedback.tag+'</span>') : '<span class="empty">\u2014</span>';
+        return '<tr><td><b>'+s[1]+'</b></td><td><span class="pill '+status+'">'+status+'</span></td>'+
+          '<td class="num">'+(r&&r.status&&r.status!=='open'? (r.best||0)+'%':'\u2014')+'</td>'+
+          '<td class="num">'+((r&&r.attempts)||0)+'</td>'+
+          '<td class="num">'+((r&&r.points)||0)+'</td>'+
+          '<td class="num">'+fmtTime(r&&r.timeMs)+'</td>'+
+          '<td>'+fb+'</td>'+
+          '<td>'+(miss||'<span class="empty">\u2014</span>')+'</td></tr>';
+      }).join('');
+      box.insertAdjacentHTML('beforeend',
+        '<section class="student"><div class="shead"><h2>'+st.name+'</h2><span class="grade">'+st.grade+'</span>'+
+        '<div class="right"><span>points <b>'+pts+'</b></span><span>time <b>'+fmtTime(time)+'</b></span><span>last active <b>'+fmtWhen(last)+'</b></span></div></div>'+
+        '<div class="pbar"><i style="width:'+(passed/SUBS.length*100)+'%"></i></div>'+
+        '<div style="font-size:13px;color:var(--ink2)">'+passed+' of '+SUBS.length+' subjects passed</div>'+
+        '<table><thead><tr><th>Subject</th><th>Status</th><th>Best</th><th>Tries</th><th>Pts</th><th>Time</th><th>Felt</th><th>Missed questions</th></tr></thead><tbody>'+rows+'</tbody></table></section>');
+    });
+    document.getElementById('ftxt').textContent='SOURCE: '+srcMode.toUpperCase()+' \u00b7 read-only \u00b7 '+new Date().toLocaleString();
+  }
+  function card(k,v){ return '<div class="scard"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'; }
+
+  document.getElementById('seg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return;
+    srcMode=b.getAttribute('data-src'); Array.prototype.forEach.call(this.children,function(c){c.classList.toggle('on',c===b);});
+    if(srcMode==='cloud'){ loadCloud(render); } else { render(); } });
+  var rf=document.getElementById('refresh'); if(rf){ rf.addEventListener('click',function(){ var self=this;
+    if(srcMode==='cloud'){ self.textContent='Refreshing...'; loadCloud(function(){ self.textContent='Refresh'; render(); }); } else { render(); } }); }
+  document.getElementById('export').addEventListener('click',function(){
+    var blob=new Blob([JSON.stringify(data(),null,2)],{type:'application/json'}); var u=URL.createObjectURL(blob);
+    var a=document.createElement('a'); a.href=u; a.download='learning-progress.json'; a.click(); URL.revokeObjectURL(u); });
+  if(srcMode==='cloud'){ loadCloud(render); } else { render(); }
+})();
+</script>
+</body>
+</html>

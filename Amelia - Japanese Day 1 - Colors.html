@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本語 · Colors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{--paper:#f3eee4;--card:#fbf8f2;--ink:#1a1a1a;--ink2:#4a4641;--mute:#8c857a;--line:#e3dccd;
+   --accent:#b7282e;--accent-d:#8e1d22;--red:#b7282e;--alt:#1a1a1a;}
+  body{background:var(--paper);color:var(--ink);font-family:'Noto Sans JP',system-ui,sans-serif;font-size:18px;line-height:1.6;}
+  .bg{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,#f7f3ea,var(--paper));}
+  .bg::before{content:"";position:absolute;top:8%;right:7%;width:120px;height:120px;border-radius:50%;background:var(--accent);opacity:.10;}
+  h1,h2{font-family:'Noto Serif JP',serif;font-weight:700;}
+  .labbar{background:var(--ink);color:#efe9df;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px;letter-spacing:.06em;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #44403a;border-radius:6px;padding:3px 9px;color:#bdb4a6;font-size:12px;}
+  .labbar b{color:#fff;}
+  .titlewrap{display:flex;gap:16px;align-items:flex-start;}
+  .vbar{flex:none;width:6px;align-self:stretch;background:var(--accent);border-radius:3px;margin-top:6px;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(28px,5.5vw,42px);line-height:1.1;margin:6px 0 8px;}
+  .mission{color:var(--ink2);max-width:54ch;}
+  .stdtag{margin-top:16px;background:#f2ece0;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 16px 30px -30px rgba(0,0,0,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-size:13px;font-weight:700;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:22px;}
+  .station p.lead{color:var(--ink2);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px;margin-top:14px;}
+  .ncard{border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px 6px;text-align:center;cursor:pointer;min-height:120px;display:flex;flex-direction:column;justify-content:center;gap:4px;}
+  .ncard .kanji{font-family:'Noto Serif JP';font-size:40px;font-weight:700;line-height:1;color:var(--ink);}
+  .ncard .romaji{font-size:14px;color:var(--accent-d);font-weight:700;}
+  .ncard .meaning{font-size:22px;font-weight:700;color:var(--ink);}
+  .ncard .en{font-size:12px;color:var(--mute);}
+  .ncard .hint{font-size:11px;color:var(--mute);}
+  .pred{border:1px dashed var(--accent);border-radius:12px;padding:14px 16px;margin-top:12px;background:#f7efe3;}
+  .pred .big{font-family:'Noto Serif JP';font-size:46px;font-weight:700;text-align:center;}
+  .pred .btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
+  .pbtn{font:inherit;font-weight:700;font-size:15px;border:1.5px solid var(--accent);background:#fff;color:var(--accent-d);border-radius:9px;padding:10px 16px;min-height:44px;cursor:pointer;}
+  .pred .ans{margin-top:10px;color:var(--ink2);text-align:center;} .pred .ans b{color:var(--accent-d);}
+  .match{margin-top:14px;}
+  .matchq{text-align:center;} .matchq .big{font-family:'Noto Serif JP';font-size:60px;font-weight:700;line-height:1;}
+  .matchq .lab{font-size:14px;color:var(--mute);}
+  .numgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px;}
+  .nbtn{font:inherit;font-weight:700;font-size:20px;border:1.5px solid var(--line);background:#fff;border-radius:10px;min-height:50px;cursor:pointer;color:var(--ink);}
+  .nbtn:hover{border-color:var(--accent);}
+  .mfb{text-align:center;font-weight:700;margin-top:10px;min-height:1.3em;}
+  .mfb.ok{color:var(--accent);} .mfb.try{color:var(--mute);}
+  .myth{border:1px solid #ddd2bf;background:#f2ece0;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-d);font-weight:700;}
+  .myth .big{font-family:'Noto Serif JP';font-size:20px;margin:4px 0;}
+ 
+  .sw{display:inline-block;width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,.2);vertical-align:middle;margin-right:6px;}
+  .ncard .sw{width:34px;height:34px;display:block;margin:0 auto 6px;}
+  .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+  .cbtn{font:inherit;font-weight:700;font-size:16px;border:1.5px solid var(--line);background:#fff;border-radius:10px;min-height:50px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center;}
+  .cbtn:hover{border-color:var(--accent);}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .fb{margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
+  .fb .fl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:10px;}
+  .faces,.tags{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+  .tags{margin-top:9px;}
+  .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
+  .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>日本語 · <b>Grade 3</b><span class="chip">Novice · ACTFL</span></div>
+  <section id="lesson">
+
+    <div class="titlewrap"><div class="vbar" aria-hidden="true"></div><div>
+      <div class="kicker">Lesson 01</div>
+      <h1>Colors<br>いろ</h1>
+      <p class="mission">Learn to recognize color words in Japanese. Some are <b>kanji</b> (赤 = red) and some are borrowed words written in <b>katakana</b> (ピンク = pink).</p>
+    </div></div>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>I can identify the general topic and some basic information by recognizing practiced or memorized words, phrases, and simple sentences.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>The color cards</h2></div>
+      <p class="lead">Swatch, word, sound, meaning. Tap a card to flip between the word and the color.</p>
+      <div class="cards" id="cards"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Predict, then check</h2></div>
+      <p class="lead">Read the word. What color is it? Guess, then reveal.</p>
+      <div id="preds"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Match the color</h2></div>
+      <p class="lead">Read the Japanese word, then tap the color it means.</p>
+      <div class="match"><div class="matchq"><div class="big" id="mqbig"></div><div class="lab" id="mqlab"></div></div>
+        <div class="cgrid" id="cgrid"></div><div class="mfb" id="mfb"></div></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Good to know</h2></div>
+      <div class="myth"><span class="tag">Good to know</span><div class="big">Not every color is a kanji.</div><div style="color:var(--ink2)">Older color words use kanji: 赤 (aka, red), 青 (ao, blue). Newer ones borrowed from English are written in katakana: ピンク (pinku, pink), オレンジ (orenji, orange).</div></div>
+    </div>
+ 
+    <button class="cta" id="toCheck">I learned the colors. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 5</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="ptsrow hide" id="ptsrow">
+        <div><div class="v" id="vbase">0</div><div class="k">Base</div></div>
+        <div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div>
+        <div><div class="v" id="vtotal">0</div><div class="k">Points</div></div>
+      </div>
+    </div>
+    <div class="fb hide" id="fbcard">
+      <div class="fl">How did that feel?</div>
+      <div class="faces" id="faces"></div>
+      <div class="tags" id="tags"></div>
+      <button class="cta hide" id="saveFb" style="margin-top:14px;">Save and finish</button>
+    </div>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Amelia · Japanese · Day 1</footer>
+</div>
+<script>
+(function(){
+
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='japanese', DAY='d1', SNAME='Amelia';
+  var PASS=0.8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var C=[['赤','aka','Red','#d2352f'],['青','ao','Blue','#2f5fd0'],['黄色','kiiro','Yellow','#e6b800'],['緑','midori','Green','#2e9d5b'],['黒','kuro','Black','#1a1a1a'],['白','shiro','White','#f4f4f4'],['茶色','chairo','Brown','#7a4a22'],['ピンク','pinku','Pink','#e57aa6']];
+  function sw(col){ return '<span class="sw" style="background:'+col+'"></span>'; }
+  var cbox=document.getElementById('cards');
+  C.forEach(function(n){ var d=document.createElement('div'); d.className='ncard'; d.setAttribute('role','button'); d.setAttribute('tabindex','0');
+    function front(){ d.innerHTML='<div class="kanji">'+n[0]+'</div><div class="romaji">'+n[1]+'</div><div class="hint">tap to flip</div>'; }
+    function back(){ d.innerHTML='<span class="sw" style="background:'+n[3]+'"></span><div class="meaning">'+n[2]+'</div><div class="en">'+n[1]+'</div>'; }
+    var f=false; front(); function flip(){f=!f; f?back():front();}
+    d.addEventListener('click',flip); d.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip();}}); cbox.appendChild(d); });
+  var PRED=[{k:'青','c':'#2f5fd0',a:'Blue',why:'ao.'},{k:'緑','c':'#2e9d5b',a:'Green',why:'midori.'},{k:'黒','c':'#1a1a1a',a:'Black',why:'kuro.'}];
+  var prbox=document.getElementById('preds');
+  PRED.forEach(function(p){ var d=document.createElement('div'); d.className='pred'; d.innerHTML='<div class="big">'+p.k+'</div><div class="btns"><button class="pbtn" type="button">'+p.a+'</button><button class="pbtn" type="button">Reveal</button></div><div class="ans hide">It is '+sw(p.c)+' <b>'+p.a+'</b>. '+p.why+'</div>';
+    var ans=d.querySelector('.ans'); d.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){ans.classList.remove('hide');});}); prbox.appendChild(d); });
+  var rounds=C.slice().sort(function(){return Math.random()-0.5;}); var idx=0;
+  var mqbig=document.getElementById('mqbig'),mqlab=document.getElementById('mqlab'),mfb=document.getElementById('mfb'),cg=document.getElementById('cgrid');
+  function showR(){ var r=rounds[idx]; mqbig.textContent=r[0]; mqlab.textContent='Read it: '+r[1]; mfb.textContent=''; }
+  C.forEach(function(n){ var b=document.createElement('button'); b.className='cbtn'; b.type='button'; b.innerHTML=sw(n[3])+n[2];
+    b.addEventListener('click',function(){ var r=rounds[idx]; if(n[2]===r[2]){ mfb.className='mfb ok'; mfb.textContent='Correct! '+r[0]+' = '+r[2]+' ('+r[1]+').'; idx=(idx+1)%rounds.length; setTimeout(showR,1200);} else { mfb.className='mfb try'; mfb.textContent='Not quite. Look at the word and try again.'; } }); cg.appendChild(b); });
+  showR();
+ 
+  var QS=[{"q": "\u8d64 is which color?", "o": ["<span class='sw' style='background:#d2352f'></span> Red", "<span class='sw' style='background:#2f5fd0'></span> Blue", "<span class='sw' style='background:#2e9d5b'></span> Green"], "a": 0}, {"q": "Which word means <b>blue</b>?", "o": ["\u9752 (ao)", "\u9ed2 (kuro)", "\u767d (shiro)"], "a": 0}, {"q": "<b>midori</b> is which color?", "o": ["<span class='sw' style='background:#2e9d5b'></span> Green", "<span class='sw' style='background:#e6b800'></span> Yellow", "<span class='sw' style='background:#7a4a22'></span> Brown"], "a": 0}, {"q": "The word \u30d4\u30f3\u30af (pinku) comes from ...", "o": ["English", "a kanji", "nothing"], "a": 0}, {"q": "\u9ed2 is which color?", "o": ["<span class='sw' style='background:#1a1a1a'></span> Black", "<span class='sw' style='background:#f4f4f4;border:1px solid #ccc'></span> White", "<span class='sw' style='background:#7a4a22'></span> Brown"], "a": 0}];
+
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false;
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill');
+  function startCheck(){ secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; runPts=0; runWrong=[]; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi]; elCount.textContent='Question '+(qi+1)+' of '+QS.length; elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elOpts.appendChild(b); });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s'; if(timeLeft<=8)elTfill.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000); }
+  function answer(i,btn){ if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(ok){correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4;} else { runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a]}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?650:1100); }
+  function finish(){ secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    var ptsrow=document.getElementById('ptsrow'), fbcard=document.getElementById('fbcard'), retry=document.getElementById('retry'), rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    if(passed){ var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+      rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app);
+      rtitle.textContent='やった！ Passed!'; rmsg.textContent='You got '+correct+' of '+QS.length+' correct.';
+      document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      fbcard.classList.remove('hide'); retry.classList.add('hide');
+    } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Look back at the stations, then try again.';
+      ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
+    commitTime(); }
+  document.getElementById('toCheck').addEventListener('click',startCheck);
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+  var fbRating=null, fbTag=null;
+  var faces=[['Easy','easy'],['Just right','just'],['Tricky','hard']]; var tags=[['Clear','clear'],['Confusing','confusing'],['Fun','fun']];
+  var fbox=document.getElementById('faces'), tbox=document.getElementById('tags'), saveBtn=document.getElementById('saveFb');
+  faces.forEach(function(f){ var b=document.createElement('button'); b.className='face'; b.type='button'; b.textContent=f[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbRating=f[1]; Array.prototype.forEach.call(fbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); fbox.appendChild(b); });
+  tags.forEach(function(t){ var b=document.createElement('button'); b.className='tagb'; b.type='button'; b.textContent=t[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbTag=t[1]; Array.prototype.forEach.call(tbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); tbox.appendChild(b); });
+  function maybeShowSave(){ if(fbRating&&fbTag)saveBtn.classList.remove('hide'); }
+  saveBtn.addEventListener('click',function(){ rec.feedback={rating:fbRating,tag:fbTag,at:Date.now()}; app.progress[STUDENT][SUBJECT][DAY]=rec; save(app); syncCloud(); document.getElementById('fbcard').classList.add('hide'); document.getElementById('donebox').classList.remove('hide'); });
+
+})();
+</script>
+</body>
+</html>

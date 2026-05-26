@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Lab · Forces and Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{--paper:#f6f9f8;--card:#fff;--ink:#15211f;--ink2:#46564f;--mute:#7c8c85;--line:#dce6e1;
+   --accent:#0e9c8a;--accent-d:#0a6b5f;--red:#d2452f;--alt:#dd8a1c;--amber-d:#a9650f;--grid:rgba(14,156,138,.08);}
+  body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:18px;line-height:1.55;}
+  .bg{position:fixed;inset:0;z-index:-1;background:repeating-linear-gradient(0deg,var(--grid) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 26px),linear-gradient(180deg,#fbfdfc,var(--paper));}
+  .labbar{background:var(--ink);color:#dfeae6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #3a4a45;border-radius:6px;padding:3px 9px;color:#9fb4ad;}
+  .labbar b{color:#fff;}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6vw,44px);line-height:1.04;font-weight:700;letter-spacing:-.02em;margin:8px 0 10px;}
+  .mission{color:var(--ink2);max-width:54ch;}
+  .stdtag{margin-top:16px;background:#eef5f2;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+  .stdtag .l{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-d);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:18px 0;box-shadow:0 14px 30px -26px rgba(10,107,95,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.1em;color:#fff;background:var(--accent);border-radius:6px;padding:4px 9px;}
+  .station h2{font-size:22px;font-weight:700;}
+  .station p.lead{color:var(--ink2);margin-top:2px;}
+  .props{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:11px;margin-top:16px;}
+  .prop{border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center;background:#fbfdfc;}
+  .prop svg{width:42px;height:42px;display:block;margin:0 auto 8px;}
+  .prop .pair{font-weight:700;font-size:15px;}
+  .prop .eg{font-size:12.5px;color:var(--ink2);margin-top:4px;}
+  .pred{border:1px dashed var(--accent);border-radius:12px;padding:14px 16px;margin-top:12px;background:#f3faf8;}
+  .pred .q{font-weight:600;margin-bottom:10px;}
+  .pred .btns{display:flex;gap:9px;flex-wrap:wrap;}
+  .pbtn{font:inherit;font-weight:600;font-size:15px;border:1.5px solid var(--accent);background:#fff;color:var(--accent-d);border-radius:9px;padding:10px 16px;min-height:44px;cursor:pointer;}
+  .pred .ans{margin-top:11px;font-size:15px;color:var(--ink2);} .pred .ans b{color:var(--accent-d);}
+  .myth{border:1px solid #f0d9c6;background:#fdf4ea;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-d);font-weight:600;}
+  .myth .wrong{font-weight:700;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;margin:6px 0 2px;}
+  .myth .right{color:var(--ink2);}
+
+  .flab{margin-top:14px;background:#f3faf8;border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .farena{position:relative;height:88px;margin:6px 0 4px;}
+  .ftrack{position:absolute;top:50px;left:6%;right:6%;height:3px;background:var(--line);}
+  .fbox{position:absolute;top:34px;left:50%;transform:translateX(-50%);width:40px;height:34px;background:var(--accent);border-radius:6px;transition:left .5s ease;}
+  .farr{position:absolute;top:36px;font-weight:700;color:var(--amber-d);font-size:13px;font-family:'IBM Plex Mono',monospace;}
+  .fctrl{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+  .fside{text-align:center;}
+  .fside .lab{font-size:12px;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em;}
+  .fside .val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:24px;color:var(--accent-d);}
+  .fbtns{display:flex;gap:6px;justify-content:center;margin-top:4px;}
+  .fb2{font:inherit;font-weight:700;font-size:18px;border:1.5px solid var(--accent);background:#fff;color:var(--accent-d);border-radius:8px;min-width:44px;min-height:44px;cursor:pointer;}
+  .freadout{text-align:center;font-weight:700;margin-top:10px;min-height:1.4em;color:var(--accent-d);}
+  @media (prefers-reduced-motion: reduce){.fbox{transition:none;}}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .ptsrow{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+  .ptsrow div{padding:10px 16px;border-right:1px solid var(--line);}
+  .ptsrow div:last-child{border-right:0;}
+  .ptsrow .v{font-weight:700;font-size:20px;color:var(--ink);}
+  .ptsrow .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .fb{margin-top:20px;border-top:1px solid var(--line);padding-top:18px;}
+  .fb .fl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:10px;}
+  .faces,.tags{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;}
+  .tags{margin-top:9px;}
+  .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
+  .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Science station · <b>Grade 3</b><span class="chip">Standard 3-PS2-1</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Investigation 01</div>
+    <h1>Balanced and Unbalanced Forces</h1>
+    <p class="mission">A <b>force</b> is a push or a pull. When two forces are <b>balanced</b> they cancel and nothing moves. When they are <b>unbalanced</b>, the object moves toward the stronger side.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Plan and conduct an investigation to provide evidence of the effects of balanced and unbalanced forces on the motion of an object.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>Pushes, pulls, and balance</h2></div>
+      <p class="lead">Four ideas to hold in your head.</p>
+      <div class="props" id="props"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>The force lab</h2></div>
+      <p class="lead">Set how hard each side pushes the box. Then press Test it and watch what happens.</p>
+      <div class="flab">
+        <div class="farena"><div class="ftrack"></div><div class="fbox" id="fbox"></div><div class="farr" id="farrL" style="left:6%"></div><div class="farr" id="farrR" style="right:6%"></div></div>
+        <div class="fctrl">
+          <div class="fside"><div class="lab">Left push</div><div class="val" id="fLval">2</div><div class="fbtns"><button class="fb2" id="fLm" aria-label="less left">−</button><button class="fb2" id="fLp" aria-label="more left">+</button></div></div>
+          <div class="fside"><div class="lab">Right push</div><div class="val" id="fRval">2</div><div class="fbtns"><button class="fb2" id="fRm" aria-label="less right">−</button><button class="fb2" id="fRp" aria-label="more right">+</button></div></div>
+        </div>
+        <div style="text-align:center;margin-top:10px;"><button class="fb2" id="ftest" style="min-width:120px;font-size:16px;background:var(--accent);color:#fff;">Test it</button></div>
+        <div class="freadout" id="fread"></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Predict, then check</h2></div>
+      <p class="lead">Guess what the box will do, then reveal.</p>
+      <div id="preds"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="wrong">If the box does not move, there are no forces on it.</div><div class="right">Not true. With <b>balanced</b> forces, both pushes are still there. They are equal and point opposite ways, so they cancel out and the box stays still.</div></div>
+    </div>
+ 
+    <button class="cta" id="toCheck">I tested the forces. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 5</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="ptsrow hide" id="ptsrow">
+        <div><div class="v" id="vbase">0</div><div class="k">Base</div></div>
+        <div><div class="v" id="vbonus">0</div><div class="k">Speed</div></div>
+        <div><div class="v" id="vtotal">0</div><div class="k">Points</div></div>
+      </div>
+    </div>
+    <div class="fb hide" id="fbcard">
+      <div class="fl">How did that feel?</div>
+      <div class="faces" id="faces"></div>
+      <div class="tags" id="tags"></div>
+      <button class="cta hide" id="saveFb" style="margin-top:14px;">Save and finish</button>
+    </div>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+    <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);">Amelia · Science · Day 1</footer>
+</div>
+<script>
+(function(){
+
+  "use strict";
+  var KEY='edu.app', STUDENT='amelia', SUBJECT='science', DAY='d1', SNAME='Amelia';
+  var PASS=0.8, QTIME=25, FAST=12, ATTEMPT_POINTS=[100,80,60,50];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,points:rec.points||0,time_ms:rec.timeMs||0,wrong_count:rec.wrongCount||0,wrong:rec.lastWrong||[],feedback:rec.feedback||null,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var AR='http://www.w3.org/2000/svg';
+  var G={push:'<svg viewBox="0 0 40 40" xmlns="'+AR+'"><path d="M8 20 H30" stroke="#0e9c8a" stroke-width="4"/><path d="M24 13 L32 20 L24 27" fill="none" stroke="#0e9c8a" stroke-width="4"/></svg>',
+    pull:'<svg viewBox="0 0 40 40" xmlns="'+AR+'"><path d="M32 20 H10" stroke="#0e9c8a" stroke-width="4"/><path d="M16 13 L8 20 L16 27" fill="none" stroke="#0e9c8a" stroke-width="4"/></svg>',
+    bal:'<svg viewBox="0 0 40 40" xmlns="'+AR+'"><path d="M14 20 H4" stroke="#0e9c8a" stroke-width="4"/><path d="M9 15 L4 20 L9 25" fill="none" stroke="#0e9c8a" stroke-width="3"/><rect x="16" y="12" width="8" height="16" fill="#0e9c8a"/><path d="M26 20 H36" stroke="#0e9c8a" stroke-width="4"/><path d="M31 15 L36 20 L31 25" fill="none" stroke="#0e9c8a" stroke-width="3"/></svg>',
+    unbal:'<svg viewBox="0 0 40 40" xmlns="'+AR+'"><rect x="10" y="12" width="8" height="16" fill="#0e9c8a"/><path d="M20 20 H36" stroke="#0e9c8a" stroke-width="5"/><path d="M30 13 L37 20 L30 27" fill="none" stroke="#0e9c8a" stroke-width="5"/></svg>'};
+  var PROPS=[['push','Push','force away from you'],['pull','Pull','force toward you'],['bal','Balanced','equal forces, no motion'],['unbal','Unbalanced','one side wins, it moves']];
+  var pbox=document.getElementById('props');
+  PROPS.forEach(function(p){ var d=document.createElement('div'); d.className='prop'; d.innerHTML=G[p[0]]+'<div class="pair">'+p[1]+'</div><div class="eg">'+p[2]+'</div>'; pbox.appendChild(d); });
+  var L=2,R=2; var fL=document.getElementById('fLval'),fR=document.getElementById('fRval'),box=document.getElementById('fbox'),read=document.getElementById('fread'),arL=document.getElementById('farrL'),arR=document.getElementById('farrR');
+  function show(){ fL.textContent=L; fR.textContent=R; arL.textContent='>'.repeat(L); arR.textContent='<'.repeat(R); box.style.left='50%'; read.textContent=''; }
+  function clampv(v){return Math.max(1,Math.min(6,v));}
+  document.getElementById('fLp').onclick=function(){L=clampv(L+1);show();};
+  document.getElementById('fLm').onclick=function(){L=clampv(L-1);show();};
+  document.getElementById('fRp').onclick=function(){R=clampv(R+1);show();};
+  document.getElementById('fRm').onclick=function(){R=clampv(R-1);show();};
+  document.getElementById('ftest').onclick=function(){ if(L===R){ box.style.left='50%'; read.textContent='Balanced. The forces cancel, so the box stays still.'; } else if(L>R){ box.style.left='80%'; read.textContent='Unbalanced. The left push is stronger, so the box moves to the right.'; } else { box.style.left='20%'; read.textContent='Unbalanced. The right push is stronger, so the box moves to the left.'; } };
+  show();
+  var PRED=[{q:'Two kids push the box equally hard from both sides.',a:'It stays still',why:'Equal and opposite forces are balanced.'},{q:'One kid pushes from the left, no one pushes the right.',a:'It moves right',why:'The force is unbalanced, the box moves away from the push.'}];
+  var prbox=document.getElementById('preds');
+  PRED.forEach(function(p){ var d=document.createElement('div'); d.className='pred'; d.innerHTML='<div class="q">'+p.q+' What happens?</div><div class="btns"><button class="pbtn" type="button">'+p.a+'</button><button class="pbtn" type="button">Reveal</button></div><div class="ans hide">Answer: <b>'+p.a+'</b>. '+p.why+'</div>';
+    var ans=d.querySelector('.ans'); d.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){ans.classList.remove('hide');});}); prbox.appendChild(d); });
+ 
+  var QS=[{"q": "A <b>force</b> is a ...", "o": ["push or a pull", "color", "sound"], "a": 0}, {"q": "Two equal forces push a box from opposite sides. The box ...", "o": ["does not move", "speeds up", "spins"], "a": 0}, {"q": "Forces are <b>unbalanced</b> when ...", "o": ["one side is stronger", "both sides are equal", "there is no force at all"], "a": 0}, {"q": "A box is pushed harder from the left than the right. It moves ...", "o": ["to the right", "to the left", "straight up"], "a": 0}, {"q": "Balanced forces on an object make it ...", "o": ["stay still", "speed up", "fall down"], "a": 0}];
+
+  var qi=0, correct=0, runPts=0, timer=null, timeLeft=QTIME, locked=false;
+  var SEG=Date.now(), runWrong=[];
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); syncCloud(); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'), secResult=document.getElementById('result');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill');
+  function startCheck(){ secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; runPts=0; runWrong=[]; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ(); }
+  function showQ(){ locked=false; var item=QS[qi]; elCount.textContent='Question '+(qi+1)+' of '+QS.length; elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b);}); elOpts.appendChild(b); });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s'; if(timeLeft<=8)elTfill.classList.add('low'); if(timeLeft===0)clearInterval(timer); },1000); }
+  function answer(i,btn){ if(locked)return; locked=true; clearInterval(timer); var item=QS[qi], ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(ok){correct++; runPts+=2; if(timeLeft>=FAST)runPts+=4;} else { runWrong.push({stem:item.q, picked:item.o[i], correct:item.o[item.a]}); }
+    setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?650:1100); }
+  function finish(){ secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
+    rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+    var ptsrow=document.getElementById('ptsrow'), fbcard=document.getElementById('fbcard'), retry=document.getElementById('retry'), rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    if(passed){ var base=ATTEMPT_POINTS[Math.min(rec.attempts-1,ATTEMPT_POINTS.length-1)]; var total=base+runPts+10;
+      rec.best=Math.max(rec.best||0,pct); rec.points=Math.max(rec.points||0,total); rec.status='passed'; rec.passedAt=Date.now(); save(app);
+      rtitle.textContent='Lab passed!'; rmsg.textContent='You got '+correct+' of '+QS.length+' correct.';
+      document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
+      fbcard.classList.remove('hide'); retry.classList.add('hide');
+    } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
+      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Look back at the stations, then try again.';
+      ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
+    commitTime(); }
+  document.getElementById('toCheck').addEventListener('click',startCheck);
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
+  var fbRating=null, fbTag=null;
+  var faces=[['Easy','easy'],['Just right','just'],['Tricky','hard']]; var tags=[['Clear','clear'],['Confusing','confusing'],['Fun','fun']];
+  var fbox=document.getElementById('faces'), tbox=document.getElementById('tags'), saveBtn=document.getElementById('saveFb');
+  faces.forEach(function(f){ var b=document.createElement('button'); b.className='face'; b.type='button'; b.textContent=f[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbRating=f[1]; Array.prototype.forEach.call(fbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); fbox.appendChild(b); });
+  tags.forEach(function(t){ var b=document.createElement('button'); b.className='tagb'; b.type='button'; b.textContent=t[0]; b.setAttribute('aria-pressed','false'); b.addEventListener('click',function(){ fbTag=t[1]; Array.prototype.forEach.call(tbox.children,function(c){c.setAttribute('aria-pressed',c===b?'true':'false');}); maybeShowSave(); }); tbox.appendChild(b); });
+  function maybeShowSave(){ if(fbRating&&fbTag)saveBtn.classList.remove('hide'); }
+  saveBtn.addEventListener('click',function(){ rec.feedback={rating:fbRating,tag:fbTag,at:Date.now()}; app.progress[STUDENT][SUBJECT][DAY]=rec; save(app); syncCloud(); document.getElementById('fbcard').classList.add('hide'); document.getElementById('donebox').classList.remove('hide'); });
+
+})();
+</script>
+</body>
+</html>

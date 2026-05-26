@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELA Course Structure &middot; Grade 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f3f0ea;--paper:#fff;--ink:#1a1714;--ink2:#4a443c;--ink3:#7a7167;--line:#e2dccf;
+   --rust:#9a4a2b;--gold:#9c6b15;--green:#3a6b3a;--plum:#7a3a6b;--teal:#1f6b6b;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 20px 80px;display:flex;flex-direction:column;gap:24px;}
+  header.top{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 28px;}
+  header.top h1{font-family:'Fraunces',serif;font-size:33px;line-height:1.1;}
+  header.top p.sub{color:var(--ink2);margin-top:8px;max-width:66ch;}
+  .src{margin-top:14px;font-size:13px;color:var(--ink3);}
+  .flag{display:inline-block;font-size:12px;font-weight:700;color:var(--gold);background:#faf3e2;border:1px solid #ecdcb4;border-radius:999px;padding:5px 12px;margin-top:12px;}
+  .panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;}
+  .panel h3{font-family:'Fraunces',serif;font-size:20px;margin-bottom:6px;}
+  .panel p.lead{color:var(--ink2);max-width:72ch;margin-bottom:12px;}
+  .strandrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .sb{font-size:13px;font-weight:600;border-radius:999px;padding:6px 12px;border:1px solid var(--line);background:#faf7f1;color:var(--ink2);}
+  details.unit{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  details.unit[open]{box-shadow:0 4px 18px rgba(40,30,20,.06);}
+  summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 18px;}
+  summary::-webkit-details-marker{display:none;}
+  summary:hover{background:#faf7f1;}
+  summary:focus-visible{outline:3px solid var(--teal);outline-offset:-3px;}
+  .uid{font-family:'Fraunces',serif;font-weight:700;color:var(--rust);background:#f6e7df;border-radius:8px;padding:4px 10px;font-size:15px;}
+  .utitle{font-weight:700;font-size:17px;flex:1;min-width:200px;}
+  .umeta{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{font-size:12px;font-weight:600;border-radius:999px;padding:4px 10px;border:1px solid var(--line);color:var(--ink2);background:#fff;white-space:nowrap;}
+  .chip.strand{color:var(--rust);border-color:#e6c9bb;background:#faefe9;}
+  .chip.recipe{color:var(--teal);border-color:#bfe0e0;background:#eef8f8;}
+  .chip.aes{color:var(--gold);border-color:#e8d2a8;background:#fbf4e6;}
+  .uinner{padding:4px 18px 20px;border-top:1px solid var(--line);}
+  .builds{font-size:13.5px;color:var(--ink3);margin:12px 0 14px;}
+  ol.atoms{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  li.atom{display:flex;gap:12px;align-items:flex-start;background:#faf7f1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;}
+  .seq{flex:none;width:26px;height:26px;border-radius:50%;background:var(--rust);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .abody{flex:1;}
+  .atop{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px;}
+  .code{font-family:'Fraunces',serif;font-weight:700;font-size:14px;}
+  .parent{font-size:12.5px;color:var(--ink3);font-style:italic;margin-bottom:2px;}
+  .atext{font-size:14.5px;}
+  .cred{color:var(--gold);font-size:15px;margin-left:auto;}
+  footer{font-size:13px;color:var(--ink3);border-top:1px solid var(--line);padding-top:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>ELA Course Structure &middot; Grade 2</h1>
+    <p class="sub">A mastery-based scope for Sam's daily English Language Arts. Every objective below is a verbatim Missouri Learning Standard. Units, sequence, recipe, and aesthetic are curriculum-design choices, labeled as such, exactly like the math architecture.</p>
+    <p class="src">Source standards: Missouri Learning Standards for English Language Arts, Grade 2 (DESE, 2016 revision). Strands: Reading Foundations, Reading, Language.</p>
+    <span class="flag">Backbone v1 &middot; Reading Foundations, Reading, Language. The Writing strand (2.W) appends next.</span>
+  </header>
+
+  <section class="panel">
+    <h3>How this fits the program</h3>
+    <p class="lead">ELA runs daily across the fourteen-week summer. Unlike math, reading is not a single straight line: foundations and the reading process run alongside language and vocabulary work, spiraling all summer. Each atom below is one verbatim standard, taught to mastery with the same Diagnose, Learn, Practice, Mastery check, Advance cycle the math lessons use. Each earns a micro-credential.</p>
+    <div class="strandrow">
+      <span class="sb">2.RF Reading Foundations</span><span class="sb">2.R Reading</span><span class="sb">2.L Language</span><span class="sb">2.W Writing (next)</span>
+    </div>
+  </section>
+
+  <details class="unit" open>
+    <summary><span class="uid">E1</span><span class="utitle">Decoding and Vowels</span>
+      <span class="umeta"><span class="chip strand">2.RF</span><span class="chip recipe">Procedural</span><span class="chip aes">Storybook</span><span class="chip">3 objectives</span></span></summary>
+    <div class="uinner">
+      <p class="builds">The foundation of reading: turning letters into spoken words. Runs first and keeps spiraling as a daily warm up. Verbatim parent: <i>2.RF.1 Understand how English is written and read; 2.RF.3.A Develop phonics in the reading process by.</i></p>
+      <ol class="atoms">
+        <li class="atom"><span class="seq">1</span><div class="abody"><div class="atop"><span class="code">2.RF.3.A.a</span><span class="cred" title="micro-credential">&#9670;</span></div><div class="atext">decoding multisyllabic words in context by applying common letter-sound correspondences including: single letters, consonant blends, consonant and vowel digraphs and vowel diphthongs</div></div></li>
+        <li class="atom"><span class="seq">2</span><div class="abody"><div class="atop"><span class="code">2.RF.3.A.b</span><span class="cred">&#9670;</span></div><div class="atext">distinguishing long and short vowels when reading regularly spelled one syllable words</div></div></li>
+        <li class="atom"><span class="seq">3</span><div class="abody"><div class="atop"><span class="code">2.RF.1.A.a</span><span class="cred">&#9670;</span></div><div class="atext">understanding that sentences are organized into paragraphs to convey meaning</div></div></li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="unit">
+    <summary><span class="uid">E2</span><span class="utitle">The Reading Process</span>
+      <span class="umeta"><span class="chip strand">2.R</span><span class="chip recipe">Conceptual</span><span class="chip aes">Storybook</span><span class="chip">5 objectives</span></span></summary>
+    <div class="uinner">
+      <p class="builds">Making meaning from text: predicting, questioning, finding evidence, retelling, and self-monitoring. Verbatim parent: <i>2.R.1 Develop and apply skills to the reading process; 2.R.1.A Develop and demonstrate reading skills in response to text by.</i></p>
+      <ol class="atoms">
+        <li class="atom"><span class="seq">1</span><div class="abody"><div class="atop"><span class="code">2.R.1.A.a</span><span class="cred">&#9670;</span></div><div class="atext">using text features to make and confirm predictions, explain why not confirmed</div></div></li>
+        <li class="atom"><span class="seq">2</span><div class="abody"><div class="atop"><span class="code">2.R.1.A.b</span><span class="cred">&#9670;</span></div><div class="atext">asking and responding to relevant questions</div></div></li>
+        <li class="atom"><span class="seq">3</span><div class="abody"><div class="atop"><span class="code">2.R.1.A.c</span><span class="cred">&#9670;</span></div><div class="atext">seeking clarification, and using information/ facts and details about texts and supporting answers with evidence from text</div></div></li>
+        <li class="atom"><span class="seq">4</span><div class="abody"><div class="atop"><span class="code">2.R.1.A.d</span><span class="cred">&#9670;</span></div><div class="atext">retelling a story's beginning, middle, and end and determining their central message, lesson or moral</div></div></li>
+        <li class="atom"><span class="seq">5</span><div class="abody"><div class="atop"><span class="code">2.R.1.A.e</span><span class="cred">&#9670;</span></div><div class="atext">monitoring comprehension and making corrections and adjustments when understanding breaks down</div></div></li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="unit">
+    <summary><span class="uid">E3</span><span class="utitle">Word Meaning and Vocabulary</span>
+      <span class="umeta"><span class="chip strand">2.R</span><span class="chip recipe">Conceptual</span><span class="chip aes">Field guide</span><span class="chip">4 objectives</span></span></summary>
+    <div class="uinner">
+      <p class="builds">Figuring out what words mean from their parts and their context. Verbatim parent: <i>2.R.1.B Develop an understanding of vocabulary by.</i></p>
+      <ol class="atoms">
+        <li class="atom"><span class="seq">1</span><div class="abody"><div class="atop"><span class="code">2.R.1.B.a</span><span class="cred">&#9670;</span></div><div class="atext">using prefixes, root words, and suffixes to determine the meaning of words</div></div></li>
+        <li class="atom"><span class="seq">2</span><div class="abody"><div class="atop"><span class="code">2.R.1.B.b</span><span class="cred">&#9670;</span></div><div class="atext">using knowledge of the meaning of individual words to determine the meaning of compound words</div></div></li>
+        <li class="atom"><span class="seq">3</span><div class="abody"><div class="atop"><span class="code">2.R.1.B.c</span><span class="cred">&#9670;</span></div><div class="atext">using context to determine the meaning of a new word or multiple-meaning word in text</div></div></li>
+        <li class="atom"><span class="seq">4</span><div class="abody"><div class="atop"><span class="code">2.R.1.B.d</span><span class="cred">&#9670;</span></div><div class="atext">using antonyms and synonyms</div></div></li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="unit">
+    <summary><span class="uid">E4</span><span class="utitle">Grammar in Speech and Writing</span>
+      <span class="umeta"><span class="chip strand">2.L</span><span class="chip recipe">Procedural</span><span class="chip aes">Default (magazine)</span><span class="chip">8 objectives</span></span></summary>
+    <div class="uinner">
+      <p class="builds">The parts of a sentence and how they work. Verbatim parent: <i>2.L.1 Communicate using conventions of English language; 2.L.1.A In speech and written form, apply standard English grammar to.</i></p>
+      <ol class="atoms">
+        <li class="atom"><span class="seq">1</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.a</span><span class="cred">&#9670;</span></div><div class="atext">use nouns and pronouns in writing</div></div></li>
+        <li class="atom"><span class="seq">2</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.b</span><span class="cred">&#9670;</span></div><div class="atext">use collective nouns</div></div></li>
+        <li class="atom"><span class="seq">3</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.c</span><span class="cred">&#9670;</span></div><div class="atext">use common irregular nouns</div></div></li>
+        <li class="atom"><span class="seq">4</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.d</span><span class="cred">&#9670;</span></div><div class="atext">use reflexive pronouns</div></div></li>
+        <li class="atom"><span class="seq">5</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.e</span><span class="cred">&#9670;</span></div><div class="atext">use regular verbs</div></div></li>
+        <li class="atom"><span class="seq">6</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.f</span><span class="cred">&#9670;</span></div><div class="atext">use helping verbs with regular verbs</div></div></li>
+        <li class="atom"><span class="seq">7</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.g</span><span class="cred">&#9670;</span></div><div class="atext">use adjectives and adverbs in sentences</div></div></li>
+        <li class="atom"><span class="seq">8</span><div class="abody"><div class="atop"><span class="code">2.L.1.A.h</span><span class="cred">&#9670;</span></div><div class="atext">produce simple declarative, imperative, exclamatory, and interrogative sentences</div></div></li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="unit">
+    <summary><span class="uid">E5</span><span class="utitle">Writing Conventions</span>
+      <span class="umeta"><span class="chip strand">2.L</span><span class="chip recipe">Procedural</span><span class="chip aes">Lab notebook</span><span class="chip">6 objectives</span></span></summary>
+    <div class="uinner">
+      <p class="builds">The mechanics of putting words on the page correctly. Verbatim parent: <i>2.L.1.B In written text.</i></p>
+      <ol class="atoms">
+        <li class="atom"><span class="seq">1</span><div class="abody"><div class="atop"><span class="code">2.L.1.B.a</span><span class="cred">&#9670;</span></div><div class="atext">write legibly (print, cursive)</div></div></li>
+        <li class="atom"><span class="seq">2</span><div class="abody"><div class="atop"><span class="code">2.L.1.B.b</span><span class="cred">&#9670;</span></div><div class="atext">use dialogue that contains quotation marks</div></div></li>
+        <li class="atom"><span class="seq">3</span><div class="abody"><div class="atop"><span class="code">2.L.1.B.c</span><span class="cred">&#9670;</span></div><div class="atext">use apostrophes correctly for contractions</div></div></li>
+        <li class="atom"><span class="seq">4</span><div class="abody"><div class="atop"><span class="code">2.L.1.B.d</span><span class="cred">&#9670;</span></div><div class="atext">capitalize weeks, days, months, holidays</div></div></li>
+        <li class="atom"><span class="seq">5</span><div class="abody"><div class="atop"><span class="code">2.L.1.B.e</span><span class="cred">&#9670;</span></div><div class="atext">capitalize abbreviated titles of people</div></div></li>
+        <li class="atom"><span class="seq">6</span><div class="abody"><div class="atop"><span class="code">2.L.1.B.f</span><span class="cred">&#9670;</span></div><div class="atext">spell words using irregular spelling patterns</div></div></li>
+      </ol>
+    </div>
+  </details>
+
+  <footer>Objectives are verbatim Missouri Learning Standards for Grade 2 ELA. Unit titles, sequence, recipe, and aesthetic are curriculum-design choices. This is backbone v1 covering the Reading Foundations, Reading, and Language strands; the Writing strand (2.W) is the next addition, followed by the same scope for Grades 3 and 8.</footer>
+</div>
+</body>
+</html>

@@ -289,24 +289,24 @@
   });
 
   var FORMA=[
-    {q:'<b>Diction</b> refers to...',o:['the order of sentences in a paragraph','a writer\'s specific word choices','the topic of a text','the page count of a text'],a:1,why:'Diction is word choice: the writer picked these words and rejected the close synonyms.'},
-    {q:'<b>Syntax</b> refers to...',o:['the meaning of a word','how sentences are built and arranged','the writer\'s biography','the genre of a text'],a:1,why:'Syntax is sentence structure: length, order, rhythm, and pattern.'},
-    {q:'Short, clipped sentences usually create a tone that is...',o:['leisurely and warm','urgent, tense, or hard','dreamy and slow','academic and neutral'],a:1,why:'Clipped syntax speeds the reader and signals pressure or hardness.'},
-    {q:'"She walked in" vs "She crept in" differ mainly in...',o:['fact','diction','genre','length'],a:1,why:'The fact is the same. The verb (diction) changes the tone.'},
-    {q:'Which sentence is most likely <b>formal</b>?',o:['Yeah, anyway, we just kind of decided to go for it.','The committee elected to proceed with the proposal.','Honestly, no big deal, we did it.','Lol we just did it.'],a:1,why:'Precise verb, no contractions, no filler. Formal register.'},
+    {q:'<b>Diction</b> refers to...',o:['the order of sentences in a paragraph','the topic of a text','a writer\'s specific word choices','the page count of a text'],a:2,why:'Diction is word choice: the writer picked these words and rejected the close synonyms.'},
+    {q:'<b>Syntax</b> refers to...',o:['the meaning of a word','the writer\'s biography','the genre of a text','how sentences are built and arranged'],a:3,why:'Syntax is sentence structure: length, order, rhythm, and pattern.'},
+    {q:'Short, clipped sentences usually create a tone that is...',o:['urgent, tense, or hard','leisurely and warm','dreamy and slow','academic and neutral'],a:0,why:'Clipped syntax speeds the reader and signals pressure or hardness.'},
+    {q:'"She walked in" vs "She crept in" differ mainly in...',o:['fact','genre','diction','length'],a:2,why:'The fact is the same. The verb (diction) changes the tone.'},
+    {q:'Which sentence is most likely <b>formal</b>?',o:['Yeah, anyway, we just kind of decided to go for it.','Honestly, no big deal, we did it.','Lol we just did it.','The committee elected to proceed with the proposal.'],a:3,why:'Precise verb, no contractions, no filler. Formal register.'},
     {q:'Parallelism is when a writer...',o:['repeats a grammatical pattern for emphasis','uses two synonyms in a row','varies sentence length randomly','breaks a sentence into a fragment'],a:0,why:'Parallel structure repeats a pattern, which builds rhythm and emphasis.'},
     {q:'A deliberate <b>fragment</b> ("Quiet at last.") is used to...',o:['signal a mistake','punch a single idea or moment','soften the tone','signal the start of dialogue'],a:1,why:'Used intentionally, a fragment isolates and emphasizes one beat.'},
-    {q:'If a passage is mostly long, layered sentences with reflective verbs, the most likely tone is...',o:['urgent','contemplative','sarcastic','panicked'],a:1,why:'Long syntax slows the reader. Reflective verbs cue contemplation.'}
+    {q:'If a passage is mostly long, layered sentences with reflective verbs, the most likely tone is...',o:['urgent','sarcastic','contemplative','panicked'],a:2,why:'Long syntax slows the reader. Reflective verbs cue contemplation.'}
   ];
   var FORMB=[
-    {q:'A writer\'s <b>tone</b> is shaped most directly by...',o:['the cover art','word choice and sentence structure','the publisher','the font'],a:1,why:'Diction and syntax are the two main tools a writer uses to shape tone.'},
-    {q:'"She strode in" vs "She slunk in" differ in...',o:['fact','setting','diction','length'],a:2,why:'Different verbs, same event. Diction shifts the tone from confident to guilty.'},
-    {q:'A run of long sentences with many clauses tends to...',o:['speed the reader up','slow the reader down','remove all tone','signal nonfiction'],a:1,why:'Long syntax slows pacing and invites reflection or mood.'},
+    {q:'A writer\'s <b>tone</b> is shaped most directly by...',o:['word choice and sentence structure','the cover art','the publisher','the font'],a:0,why:'Diction and syntax are the two main tools a writer uses to shape tone.'},
+    {q:'"She strode in" vs "She slunk in" differ in...',o:['fact','setting','length','diction'],a:3,why:'Different verbs, same event. Diction shifts the tone from confident to guilty.'},
+    {q:'A run of long sentences with many clauses tends to...',o:['speed the reader up','remove all tone','slow the reader down','signal nonfiction'],a:2,why:'Long syntax slows pacing and invites reflection or mood.'},
     {q:'Which is most likely <b>casual</b> in register?',o:['One must consider the implications of the decision.','Look, we just need to make a call and move on.','The decision warrants further analysis.','The committee will reconvene.'],a:1,why:'"Look," contractions, and "make a call" are casual speech.'},
-    {q:'"We tried, we failed, we tried again, we failed better." This is an example of...',o:['fragment','parallelism','hyperbole','idiom'],a:1,why:'Repeating the "we [verb]" structure creates parallelism.'},
-    {q:'A passage written almost entirely in three-word sentences signals what about the moment?',o:['It is leisurely and reflective.','It is high-pressure or high-impact.','It is academic.','It is unfinished.'],a:1,why:'Very short sentences speed the reader and intensify the moment.'},
-    {q:'Which choice would most shift the tone of "She entered the room" toward <b>menacing</b>?',o:['She walked into the room.','She stepped into the room.','She loomed into the room.','She went into the room.'],a:2,why:'"Loomed" carries threat: it connotes size, shadow, and danger.'},
-    {q:'Two paragraphs report the same fact. Paragraph 1 uses precise legal verbs and no contractions; paragraph 2 uses slang and contractions. The contrast is mostly a difference in...',o:['plot','register','genre','spelling'],a:1,why:'Register is the formal-vs-casual layer of diction. Same fact, different register.'}
+    {q:'"We tried, we failed, we tried again, we failed better." This is an example of...',o:['fragment','hyperbole','parallelism','idiom'],a:2,why:'Repeating the "we [verb]" structure creates parallelism.'},
+    {q:'A passage written almost entirely in three-word sentences signals what about the moment?',o:['It is high-pressure or high-impact.','It is leisurely and reflective.','It is academic.','It is unfinished.'],a:0,why:'Very short sentences speed the reader and intensify the moment.'},
+    {q:'Which choice would most shift the tone of "She entered the room" toward <b>menacing</b>?',o:['She walked into the room.','She loomed into the room.','She stepped into the room.','She went into the room.'],a:1,why:'"Loomed" carries threat: it connotes size, shadow, and danger.'},
+    {q:'Two paragraphs report the same fact. Paragraph 1 uses precise legal verbs and no contractions; paragraph 2 uses slang and contractions. The contrast is mostly a difference in...',o:['plot','genre','spelling','register'],a:3,why:'Register is the formal-vs-casual layer of diction. Same fact, different register.'}
   ];
 
   var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),

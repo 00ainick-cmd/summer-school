@@ -276,24 +276,24 @@
   drawSword();
 
   var FORMA=[
-    {q:'How many syllables are in <b>fantastic</b>?',o:['2','3','4'],a:1},
-    {q:'A <b>closed</b> syllable like "cat" has a vowel sound that is ...',o:['long','short','silent'],a:1},
+    {q:'How many syllables are in <b>fantastic</b>?',o:['2','4','3'],a:2},
+    {q:'A <b>closed</b> syllable like "cat" has a vowel sound that is ...',o:['short','long','silent'],a:0},
     {q:'Where would you cut <b>basket</b>?',o:['ba/sket','bas/ket','bask/et'],a:1},
-    {q:'In a <b>magic e</b> syllable like "make", the e is ...',o:['loud','silent and makes the vowel long','silent and makes the vowel short'],a:1},
-    {q:'Which word has an <b>open</b> first syllable?',o:['rabbit','open','basket'],a:1},
+    {q:'In a <b>magic e</b> syllable like "make", the e is ...',o:['loud','silent and makes the vowel short','silent and makes the vowel long'],a:2},
+    {q:'Which word has an <b>open</b> first syllable?',o:['open','rabbit','basket'],a:0},
     {q:'How many syllables are in <b>important</b>?',o:['2','3','4'],a:1},
-    {q:'A <b>vowel team</b> syllable has ...',o:['two vowels making one sound','a silent e','an r after the vowel'],a:0},
-    {q:'Where would you cut <b>republic</b>?',o:['re/pu/blic','re/pub/lic','rep/ub/lic'],a:1}
+    {q:'A <b>vowel team</b> syllable has ...',o:['a silent e','an r after the vowel','two vowels making one sound'],a:2},
+    {q:'Where would you cut <b>republic</b>?',o:['re/pub/lic','re/pu/blic','rep/ub/lic'],a:0}
   ];
   var FORMB=[
     {q:'How many syllables are in <b>wonderful</b>?',o:['2','3','4'],a:1},
-    {q:'An <b>open</b> syllable like "he" ends in ...',o:['a consonant','a vowel','a silent e'],a:1},
-    {q:'Where would you cut <b>napkin</b>?',o:['na/pkin','nap/kin','napk/in'],a:1},
+    {q:'An <b>open</b> syllable like "he" ends in ...',o:['a consonant','a silent e','a vowel'],a:2},
+    {q:'Where would you cut <b>napkin</b>?',o:['nap/kin','na/pkin','napk/in'],a:0},
     {q:'In <b>r controlled</b> syllables like "car", the r ...',o:['is silent','changes the vowel sound','adds a syllable'],a:1},
-    {q:'Which word has 3 syllables?',o:['picnic','elephant','table'],a:1},
+    {q:'Which word has 3 syllables?',o:['picnic','table','elephant'],a:2},
     {q:'How many syllables are in <b>tablet</b>?',o:['1','2','3'],a:1},
     {q:'Which word ends with a <b>consonant + le</b> syllable?',o:['little','rabbit','open'],a:0},
-    {q:'When two consonants sit between two vowels, you usually cut ...',o:['before both','between them','after both'],a:1}
+    {q:'When two consonants sit between two vowels, you usually cut ...',o:['before both','after both','between them'],a:2}
   ];
 
   var FORM='A', QS=FORMA;

@@ -322,53 +322,53 @@
 
   var DATA={
     WARM:[
-      {q:"What is 3 + 3 + 3 + 3?",o:["12","9","7"],a:0,why:"Four threes is 12, same as 4 x 3.",hint:"Count by 3 four times."},
-      {q:"3 x 4 means ...",o:["3 groups of 4","3 plus 4","4 take away 3"],a:0,why:"The first number is the number of groups.",hint:"Groups of."}
+      {q:"What is 3 + 3 + 3 + 3?",o:["9","12","7"],a:1,why:"Four threes is 12, same as 4 x 3.",hint:"Count by 3 four times."},
+      {q:"3 x 4 means ...",o:["3 plus 4","4 take away 3","3 groups of 4"],a:2,why:"The first number is the number of groups.",hint:"Groups of."}
     ],
     MATCH:[
-      {sit:"3 groups of 4 dots", render:function(){return groups(3,4);}, opts:["3 x 4","4 x 3","3 + 4"], a:0, why:"3 groups, 4 in each, so 3 x 4."},
-      {sit:"An array with 2 rows of 5 squares", render:function(){return arrSvg(2,5);}, opts:["2 x 5","5 x 2","2 + 5"], a:0, why:"Rows are groups; 2 rows of 5 is 2 x 5."},
-      {sit:"4 plates, 6 cookies on each plate", render:function(){return groups(4,6);}, opts:["4 x 6","6 x 4","4 + 6"], a:0, why:"4 groups (plates), 6 in each, so 4 x 6."},
+      {sit:"3 groups of 4 dots", render:function(){return groups(3,4);}, opts:["4 x 3","3 + 4","3 x 4"], a:2, why:"3 groups, 4 in each, so 3 x 4."},
+      {sit:"An array with 2 rows of 5 squares", render:function(){return arrSvg(2,5);}, opts:["5 x 2","2 x 5","2 + 5"], a:1, why:"Rows are groups; 2 rows of 5 is 2 x 5."},
+      {sit:"4 plates, 6 cookies on each plate", render:function(){return groups(4,6);}, opts:["6 x 4","4 + 6","4 x 6"], a:2, why:"4 groups (plates), 6 in each, so 4 x 6."},
       {sit:"An array with 3 rows of 4 squares", render:function(){return arrSvg(3,4);}, opts:["3 x 4","4 x 3","3 + 4"], a:0, why:"3 rows of 4 is 3 x 4."},
-      {sit:"5 groups of 2 dots", render:function(){return groups(5,2);}, opts:["5 x 2","2 x 5","5 + 2"], a:0, why:"5 groups, 2 in each, so 5 x 2."}
+      {sit:"5 groups of 2 dots", render:function(){return groups(5,2);}, opts:["2 x 5","5 x 2","5 + 2"], a:1, why:"5 groups, 2 in each, so 5 x 2."}
     ],
     GUIDED:[
-      {q:"Which expression matches \"6 bags with 3 marbles in each\"?",o:["6 x 3","3 x 6","6 + 3"],a:0,why:"Bags are groups (6), marbles in each is the size (3). 6 x 3.",hint:"Groups first, then size."},
-      {q:"5 x 7 means ...",o:["5 groups of 7","7 groups of 5","5 plus 7"],a:0,why:"First number is the number of groups.",hint:"Read the first number as groups."},
+      {q:"Which expression matches \"6 bags with 3 marbles in each\"?",o:["3 x 6","6 + 3","6 x 3"],a:2,why:"Bags are groups (6), marbles in each is the size (3). 6 x 3.",hint:"Groups first, then size."},
+      {q:"5 x 7 means ...",o:["7 groups of 5","5 groups of 7","5 plus 7"],a:1,why:"First number is the number of groups.",hint:"Read the first number as groups."},
       {q:"An array shows 4 rows of 6 squares. Which expression?",o:["4 x 6","6 x 4","4 + 6"],a:0,why:"Rows are groups: 4 groups of 6.",hint:"Rows = groups."},
-      {q:"Which is \"3 groups of 8\"?",o:["3 x 8","8 x 3","3 + 8"],a:0,why:"Groups first, size second: 3 x 8.",hint:"3 in front."}
+      {q:"Which is \"3 groups of 8\"?",o:["8 x 3","3 + 8","3 x 8"],a:2,why:"Groups first, size second: 3 x 8.",hint:"3 in front."}
     ],
     PRACTICE:[
-      {q:"4 x 6 means ...",o:["4 groups of 6","6 groups of 4","4 plus 6","4 minus 6"],a:0,why:"First number is groups, second is size.",hint:"Groups of."},
-      {q:"Which expression matches \"3 cases of 5 nail polish bottles\"?",o:["3 x 5","5 x 3","3 + 5","8"],a:0,why:"Cases are groups (3), bottles in each is the size (5).",hint:"Cases first."},
-      {q:"An array has 2 rows of 7 squares. What is the expression?",o:["2 x 7","7 x 2","2 + 7","9"],a:0,why:"Rows are groups: 2 groups of 7.",hint:"Rows = groups."},
-      {q:"Which story matches 6 x 4?",o:["6 teams with 4 players on each","4 teams with 6 players on each","6 plus 4 players","6 take away 4"],a:0,why:"6 groups of 4: 6 teams, 4 in each.",hint:"6 is the number of groups."},
+      {q:"4 x 6 means ...",o:["6 groups of 4","4 plus 6","4 minus 6","4 groups of 6"],a:3,why:"First number is groups, second is size.",hint:"Groups of."},
+      {q:"Which expression matches \"3 cases of 5 nail polish bottles\"?",o:["5 x 3","3 + 5","3 x 5","8"],a:2,why:"Cases are groups (3), bottles in each is the size (5).",hint:"Cases first."},
+      {q:"An array has 2 rows of 7 squares. What is the expression?",o:["7 x 2","2 x 7","2 + 7","9"],a:1,why:"Rows are groups: 2 groups of 7.",hint:"Rows = groups."},
+      {q:"Which story matches 6 x 4?",o:["4 teams with 6 players on each","6 plus 4 players","6 take away 4","6 teams with 4 players on each"],a:3,why:"6 groups of 4: 6 teams, 4 in each.",hint:"6 is the number of groups."},
       {q:"3 + 3 + 3 + 3 + 3 is the same as ...",o:["5 x 3","3 x 5 only","3 + 5","15 x 1"],a:0,why:"5 groups of 3 added together.",hint:"How many 3s?"},
-      {q:"Which is NOT a way to write \"4 groups of 5\"?",o:["4 + 5","4 x 5","5 + 5 + 5 + 5","an array of 4 rows of 5"],a:0,why:"4 + 5 is addition, not 4 groups of 5.",hint:"Adding once is not 4 groups."}
+      {q:"Which is NOT a way to write \"4 groups of 5\"?",o:["4 x 5","5 + 5 + 5 + 5","4 + 5","an array of 4 rows of 5"],a:2,why:"4 + 5 is addition, not 4 groups of 5.",hint:"Adding once is not 4 groups."}
     ],
     RETRIEVAL:[
-      {q:"From memory: which expression matches \"7 shelves with 3 books on each\"?",o:["7 x 3","3 x 7","7 + 3","10"],a:0,why:"Shelves are groups (7), books in each is size (3).",hint:"Shelves first."},
-      {q:"From memory: 5 x 6 means ...",o:["5 groups of 6","6 groups of 5","5 plus 6","30 plus 1"],a:0,why:"First number is groups, second is size.",hint:"Groups of."}
+      {q:"From memory: which expression matches \"7 shelves with 3 books on each\"?",o:["3 x 7","7 x 3","7 + 3","10"],a:1,why:"Shelves are groups (7), books in each is size (3).",hint:"Shelves first."},
+      {q:"From memory: 5 x 6 means ...",o:["6 groups of 5","5 plus 6","30 plus 1","5 groups of 6"],a:3,why:"First number is groups, second is size.",hint:"Groups of."}
     ],
     FORMA:[
-      {id:"A1",stem:"5 x 7 means ...",o:["5 groups of 7","7 groups of 5","5 plus 7","35 minus 1"],a:0,why:"First number is groups, second is size.",concept:"groups"},
-      {id:"A2",stem:"Which expression matches \"3 plates with 6 cookies on each\"?",o:["3 x 6","6 x 3","3 + 6","9"],a:0,why:"Plates are the groups (3), cookies in each is the size (6).",concept:"words"},
-      {id:"A3",stem:"An array shows 4 rows of 5 squares. Which expression?",o:["4 x 5","5 x 4","4 + 5","9"],a:0,why:"Rows are groups; 4 rows of 5 is 4 x 5.",concept:"arr"},
+      {id:"A1",stem:"5 x 7 means ...",o:["7 groups of 5","5 plus 7","5 groups of 7","35 minus 1"],a:2,why:"First number is groups, second is size.",concept:"groups"},
+      {id:"A2",stem:"Which expression matches \"3 plates with 6 cookies on each\"?",o:["6 x 3","3 x 6","3 + 6","9"],a:1,why:"Plates are the groups (3), cookies in each is the size (6).",concept:"words"},
+      {id:"A3",stem:"An array shows 4 rows of 5 squares. Which expression?",o:["5 x 4","4 + 5","9","4 x 5"],a:3,why:"Rows are groups; 4 rows of 5 is 4 x 5.",concept:"arr"},
       {id:"A4",stem:"Which is the same as 4 + 4 + 4?",o:["3 x 4","4 x 3 only","4 + 3","12 + 1"],a:0,why:"Three 4s is 3 groups of 4.",concept:"groups"},
-      {id:"A5",stem:"\"6 bags with 2 lip glosses in each bag.\" Which expression matches?",o:["6 x 2","2 x 6","6 + 2","8"],a:0,why:"Bags are groups (6), lip glosses in each is size (2).",concept:"words"},
-      {id:"A6",stem:"5 x 7 = 35 and 7 x 5 = 35. So in a word problem, the order ...",o:["tells the story but does not change the total","always changes the total","does not matter at all","makes the answer bigger"],a:0,why:"Same total, but the situation looks different.",concept:"order"},
-      {id:"A7",stem:"Which expression matches \"4 teams with 3 players on each team\"?",o:["4 x 3","3 x 4","4 + 3","7"],a:0,why:"Teams are groups (4), players in each is size (3).",concept:"words"},
+      {id:"A5",stem:"\"6 bags with 2 lip glosses in each bag.\" Which expression matches?",o:["2 x 6","6 + 2","6 x 2","8"],a:2,why:"Bags are groups (6), lip glosses in each is size (2).",concept:"words"},
+      {id:"A6",stem:"5 x 7 = 35 and 7 x 5 = 35. So in a word problem, the order ...",o:["always changes the total","tells the story but does not change the total","does not matter at all","makes the answer bigger"],a:1,why:"Same total, but the situation looks different.",concept:"order"},
+      {id:"A7",stem:"Which expression matches \"4 teams with 3 players on each team\"?",o:["3 x 4","4 + 3","7","4 x 3"],a:3,why:"Teams are groups (4), players in each is size (3).",concept:"words"},
       {id:"A8",stem:"An array has 2 rows of 6 squares. Which expression?",o:["2 x 6","6 x 2","2 + 6","8"],a:0,why:"Rows are groups: 2 groups of 6.",concept:"arr"}
     ],
     FORMB:[
-      {id:"B1",stem:"6 x 3 means ...",o:["6 groups of 3","3 groups of 6","6 plus 3","18 minus 1"],a:0,why:"First number is groups, second is size.",concept:"groups"},
-      {id:"B2",stem:"Which expression matches \"4 baskets with 5 oranges in each\"?",o:["4 x 5","5 x 4","4 + 5","9"],a:0,why:"Baskets are groups (4), oranges in each is size (5).",concept:"words"},
+      {id:"B1",stem:"6 x 3 means ...",o:["3 groups of 6","6 groups of 3","6 plus 3","18 minus 1"],a:1,why:"First number is groups, second is size.",concept:"groups"},
+      {id:"B2",stem:"Which expression matches \"4 baskets with 5 oranges in each\"?",o:["5 x 4","4 + 5","9","4 x 5"],a:3,why:"Baskets are groups (4), oranges in each is size (5).",concept:"words"},
       {id:"B3",stem:"An array shows 3 rows of 7 squares. Which expression?",o:["3 x 7","7 x 3","3 + 7","10"],a:0,why:"Rows are groups; 3 rows of 7 is 3 x 7.",concept:"arr"},
-      {id:"B4",stem:"Which is the same as 5 + 5 + 5 + 5?",o:["4 x 5","5 x 4 only","5 + 4","20 + 1"],a:0,why:"Four 5s is 4 groups of 5.",concept:"groups"},
-      {id:"B5",stem:"\"8 shelves with 2 books on each shelf.\" Which expression matches?",o:["8 x 2","2 x 8","8 + 2","10"],a:0,why:"Shelves are groups (8), books in each is size (2).",concept:"words"},
-      {id:"B6",stem:"3 x 9 = 27 and 9 x 3 = 27. In a word problem, the order ...",o:["tells the story but does not change the total","always changes the total","does not matter at all","makes the answer smaller"],a:0,why:"Same total, but the situation is different.",concept:"order"},
+      {id:"B4",stem:"Which is the same as 5 + 5 + 5 + 5?",o:["5 x 4 only","5 + 4","4 x 5","20 + 1"],a:2,why:"Four 5s is 4 groups of 5.",concept:"groups"},
+      {id:"B5",stem:"\"8 shelves with 2 books on each shelf.\" Which expression matches?",o:["2 x 8","8 x 2","8 + 2","10"],a:1,why:"Shelves are groups (8), books in each is size (2).",concept:"words"},
+      {id:"B6",stem:"3 x 9 = 27 and 9 x 3 = 27. In a word problem, the order ...",o:["always changes the total","does not matter at all","makes the answer smaller","tells the story but does not change the total"],a:3,why:"Same total, but the situation is different.",concept:"order"},
       {id:"B7",stem:"Which expression matches \"5 vans with 6 kids in each\"?",o:["5 x 6","6 x 5","5 + 6","11"],a:0,why:"Vans are groups (5), kids in each is size (6).",concept:"words"},
-      {id:"B8",stem:"An array has 4 rows of 4 squares. Which expression?",o:["4 x 4","4 + 4","4 - 4","8"],a:0,why:"4 groups of 4.",concept:"arr"}
+      {id:"B8",stem:"An array has 4 rows of 4 squares. Which expression?",o:["4 + 4","4 - 4","4 x 4","8"],a:2,why:"4 groups of 4.",concept:"arr"}
     ],
     EXPLAIN:{
       stem:"Mia wrote 3 + 6 to match \"3 plates with 6 cookies on each.\" Explain why that is wrong, and write the correct expression.",

@@ -284,24 +284,24 @@
   }
 
   var FORMA=[
-    {q:'The <b>main idea</b> of a paragraph is ...',o:['the one big thing the paragraph is about','the longest word','the last sentence'],a:0},
-    {q:'A <b>supporting detail</b> is a sentence that ...',o:['proves the main idea','changes the subject','is off topic'],a:0},
+    {q:'The <b>main idea</b> of a paragraph is ...',o:['the longest word','the one big thing the paragraph is about','the last sentence'],a:1},
+    {q:'A <b>supporting detail</b> is a sentence that ...',o:['changes the subject','is off topic','proves the main idea'],a:2},
     {q:'Read: <i>Spiders are useful in a garden. They eat lots of pesty bugs. They spin webs that catch flies. They keep plants healthier.</i> The main idea is ...',o:['Spiders are useful in a garden.','They spin webs.','They eat bugs.'],a:0},
     {q:'In that paragraph, which is a <b>detail</b>?',o:['Spiders are useful in a garden.','They eat lots of pesty bugs.','None of the sentences.'],a:1},
-    {q:'An <b>off topic</b> sentence in a paragraph is ...',o:['true but does not fit under the main idea','always false','the main idea itself'],a:0},
+    {q:'An <b>off topic</b> sentence in a paragraph is ...',o:['always false','the main idea itself','true but does not fit under the main idea'],a:2},
     {q:'Read: <i>Bats help farmers. One bat can eat thousands of mosquitoes in a night. Bats also eat moths that damage crops. My cousin is scared of bats.</i> The off topic sentence is ...',o:['Bats help farmers.','One bat can eat thousands of mosquitoes in a night.','My cousin is scared of bats.'],a:2},
-    {q:'The main idea is sometimes called the ...',o:['umbrella idea','random idea','bonus idea'],a:0},
-    {q:'Where in a paragraph does the main idea usually show up?',o:['only at the very end','often near the beginning, but it can be anywhere','only at the very middle'],a:1}
+    {q:'The main idea is sometimes called the ...',o:['random idea','umbrella idea','bonus idea'],a:1},
+    {q:'Where in a paragraph does the main idea usually show up?',o:['often near the beginning, but it can be anywhere','only at the very end','only at the very middle'],a:0}
   ];
   var FORMB=[
-    {q:'A detail "fits under the umbrella" when it ...',o:['proves the main idea','says something new and different','sounds nice'],a:0},
+    {q:'A detail "fits under the umbrella" when it ...',o:['says something new and different','sounds nice','proves the main idea'],a:2},
     {q:'Read: <i>Owls hunt at night. Their large eyes help them see in low light. Soft feathers let them fly without a sound. My favorite color is purple.</i> The main idea is ...',o:['Owls hunt at night.','Their large eyes help them see.','My favorite color is purple.'],a:0},
-    {q:'In that paragraph, the off topic sentence is ...',o:['My favorite color is purple.','Their large eyes help them see in low light.','Owls hunt at night.'],a:0},
-    {q:'A sentence that is true but does not belong in the paragraph is ...',o:['off topic','a detail','the main idea'],a:0},
-    {q:'Read: <i>Trees do a lot for a neighborhood. They make shade on hot days. They clean some of the bad stuff out of the air. They give birds a place to nest.</i> Which is the main idea?',o:['Trees do a lot for a neighborhood.','They make shade on hot days.','They give birds a place to nest.'],a:0},
+    {q:'In that paragraph, the off topic sentence is ...',o:['Their large eyes help them see in low light.','My favorite color is purple.','Owls hunt at night.'],a:1},
+    {q:'A sentence that is true but does not belong in the paragraph is ...',o:['a detail','the main idea','off topic'],a:2},
+    {q:'Read: <i>Trees do a lot for a neighborhood. They make shade on hot days. They clean some of the bad stuff out of the air. They give birds a place to nest.</i> Which is the main idea?',o:['They make shade on hot days.','Trees do a lot for a neighborhood.','They give birds a place to nest.'],a:1},
     {q:'In that paragraph, how many supporting details are there?',o:['1','2','3'],a:2},
     {q:'A good way to test if a sentence is a detail is to ask ...',o:['Does this prove the main idea?','Is it the longest one?','Does it start with a capital?'],a:0},
-    {q:'A paragraph can have ...',o:['only one main idea','three main ideas','no main idea'],a:0}
+    {q:'A paragraph can have ...',o:['three main ideas','only one main idea','no main idea'],a:1}
   ];
 
   var FORM='A', QS=FORMA;

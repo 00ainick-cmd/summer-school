@@ -315,46 +315,46 @@
 
   var DATA={
     WARM:[
-      {q:"What is 4 x 3?",o:["12","7","43"],a:0,why:"Four groups of three is twelve.",hint:"Three plus three plus three plus three."},
-      {q:"What does 30 mean in place value?",o:["3 tens","3 ones","3 hundreds"],a:0,why:"30 is three tens, or 3 in the tens place.",hint:"Count the zeros."}
+      {q:"What is 4 x 3?",o:["7","43","12"],a:2,why:"Four groups of three is twelve.",hint:"Three plus three plus three plus three."},
+      {q:"What does 30 mean in place value?",o:["3 ones","3 tens","3 hundreds"],a:1,why:"30 is three tens, or 3 in the tens place.",hint:"Count the zeros."}
     ],
     GUIDED:[
-      {q:"6 x 7 = 42. So 6 x 70 = ?",o:["420","42","4,200"],a:0,why:"One zero from 70, attach one zero to 42.",hint:"Count the zeros on the second number."},
-      {q:"5 x 4 = 20. So 50 x 40 = ?",o:["2,000","200","20"],a:0,why:"One zero from 50, one from 40. Two zeros on 20.",hint:"Each x 10 adds a zero."},
+      {q:"6 x 7 = 42. So 6 x 70 = ?",o:["42","420","4,200"],a:1,why:"One zero from 70, attach one zero to 42.",hint:"Count the zeros on the second number."},
+      {q:"5 x 4 = 20. So 50 x 40 = ?",o:["200","20","2,000"],a:2,why:"One zero from 50, one from 40. Two zeros on 20.",hint:"Each x 10 adds a zero."},
       {q:"What is 3 x 80?",o:["240","24","2,400"],a:0,why:"3 x 8 = 24. One zero. 240.",hint:"Basic fact 3 x 8."},
-      {q:"60 x 20 = ?",o:["1,200","120","12"],a:0,why:"6 x 2 = 12. Two zeros. 1,200.",hint:"6 x 2, then two zeros."}
+      {q:"60 x 20 = ?",o:["120","12","1,200"],a:2,why:"6 x 2 = 12. Two zeros. 1,200.",hint:"6 x 2, then two zeros."}
     ],
     PRACTICE:[
-      {q:"4 x 30 = ?",o:["120","12","1,200","43"],a:0,why:"4 x 3 = 12, attach one zero.",hint:"Basic fact then one zero."},
-      {q:"7 x 50 = ?",o:["350","35","3,500","75"],a:0,why:"7 x 5 = 35, attach one zero.",hint:"7 x 5 first."},
+      {q:"4 x 30 = ?",o:["12","120","1,200","43"],a:1,why:"4 x 3 = 12, attach one zero.",hint:"Basic fact then one zero."},
+      {q:"7 x 50 = ?",o:["35","3,500","350","75"],a:2,why:"7 x 5 = 35, attach one zero.",hint:"7 x 5 first."},
       {q:"20 x 30 = ?",o:["600","60","6,000","23"],a:0,why:"2 x 3 = 6, attach two zeros.",hint:"Two zeros total."},
-      {q:"50 x 80 = ?",o:["4,000","400","40,000","58"],a:0,why:"5 x 8 = 40, attach two zeros.",hint:"Basic fact ends in 0, so the answer has 3 zeros total."},
-      {q:"9 x 60 = ?",o:["540","54","5,400","69"],a:0,why:"9 x 6 = 54, attach one zero.",hint:"9 x 6 then one zero."},
-      {q:"30 x 30 = ?",o:["900","90","9,000","33"],a:0,why:"3 x 3 = 9, attach two zeros.",hint:"Two zeros total."}
+      {q:"50 x 80 = ?",o:["400","40,000","58","4,000"],a:3,why:"5 x 8 = 40, attach two zeros.",hint:"Basic fact ends in 0, so the answer has 3 zeros total."},
+      {q:"9 x 60 = ?",o:["54","5,400","540","69"],a:2,why:"9 x 6 = 54, attach one zero.",hint:"9 x 6 then one zero."},
+      {q:"30 x 30 = ?",o:["90","900","9,000","33"],a:1,why:"3 x 3 = 9, attach two zeros.",hint:"Two zeros total."}
     ],
     RETRIEVAL:[
-      {q:"From memory: 8 x 40 = ?",o:["320","32","3,200","84"],a:0,why:"8 x 4 = 32, attach one zero.",hint:"8 x 4 then one zero."},
+      {q:"From memory: 8 x 40 = ?",o:["32","3,200","84","320"],a:3,why:"8 x 4 = 32, attach one zero.",hint:"8 x 4 then one zero."},
       {q:"From memory: 40 x 70 = ?",o:["2,800","280","28","47"],a:0,why:"4 x 7 = 28, attach two zeros.",hint:"4 x 7 then two zeros."}
     ],
     FORMA:[
-      {id:"A1",stem:"4 x 30 = ?",o:["120","12","1,200","43"],a:0,why:"4 x 3 = 12, attach one zero.",concept:"step"},
-      {id:"A2",stem:"6 x 70 = ?",o:["420","42","4,200","67"],a:0,why:"6 x 7 = 42, attach one zero.",concept:"step"},
-      {id:"A3",stem:"20 x 30 = ?",o:["600","60","6,000","23"],a:0,why:"2 x 3 = 6, attach two zeros.",concept:"trap"},
+      {id:"A1",stem:"4 x 30 = ?",o:["12","1,200","120","43"],a:2,why:"4 x 3 = 12, attach one zero.",concept:"step"},
+      {id:"A2",stem:"6 x 70 = ?",o:["42","420","4,200","67"],a:1,why:"6 x 7 = 42, attach one zero.",concept:"step"},
+      {id:"A3",stem:"20 x 30 = ?",o:["60","6,000","23","600"],a:3,why:"2 x 3 = 6, attach two zeros.",concept:"trap"},
       {id:"A4",stem:"40 x 30 = ?",o:["1,200","120","12","43"],a:0,why:"4 x 3 = 12, attach two zeros.",concept:"trap"},
-      {id:"A5",stem:"50 x 80 = ?",o:["4,000","400","40","58"],a:0,why:"5 x 8 = 40, attach two more zeros for the 50 and 80.",concept:"trap"},
-      {id:"A6",stem:"Why does multiplying by 10 \"add a zero\"?",o:["Each digit shifts one place to the left.","Because you can write any number.","Because zero is a number.","Because the answer is always 10."],a:0,why:"x 10 makes the value 10 times bigger, so every digit moves one place left.",concept:"why"},
-      {id:"A7",stem:"3 x 90 = ?",o:["270","27","2,700","93"],a:0,why:"3 x 9 = 27, attach one zero.",concept:"step"},
+      {id:"A5",stem:"50 x 80 = ?",o:["400","40","4,000","58"],a:2,why:"5 x 8 = 40, attach two more zeros for the 50 and 80.",concept:"trap"},
+      {id:"A6",stem:"Why does multiplying by 10 \"add a zero\"?",o:["Because you can write any number.","Each digit shifts one place to the left.","Because zero is a number.","Because the answer is always 10."],a:1,why:"x 10 makes the value 10 times bigger, so every digit moves one place left.",concept:"why"},
+      {id:"A7",stem:"3 x 90 = ?",o:["27","2,700","93","270"],a:3,why:"3 x 9 = 27, attach one zero.",concept:"step"},
       {id:"A8",stem:"60 x 60 = ?",o:["3,600","360","36","66"],a:0,why:"6 x 6 = 36, attach two zeros.",concept:"trap"}
     ],
     FORMB:[
-      {id:"B1",stem:"5 x 40 = ?",o:["200","20","2,000","54"],a:0,why:"5 x 4 = 20, attach one zero.",concept:"step"},
+      {id:"B1",stem:"5 x 40 = ?",o:["20","2,000","54","200"],a:3,why:"5 x 4 = 20, attach one zero.",concept:"step"},
       {id:"B2",stem:"7 x 80 = ?",o:["560","56","5,600","78"],a:0,why:"7 x 8 = 56, attach one zero.",concept:"step"},
-      {id:"B3",stem:"30 x 40 = ?",o:["1,200","120","12","34"],a:0,why:"3 x 4 = 12, attach two zeros.",concept:"trap"},
-      {id:"B4",stem:"50 x 60 = ?",o:["3,000","300","30","56"],a:0,why:"5 x 6 = 30, attach two more zeros for the multiples of 10.",concept:"trap"},
-      {id:"B5",stem:"20 x 70 = ?",o:["1,400","140","14","27"],a:0,why:"2 x 7 = 14, attach two zeros.",concept:"trap"},
-      {id:"B6",stem:"Why does x 30 work the same as x 3 with a zero attached?",o:["Because 30 is 3 tens, so multiplying by 30 is multiplying by 3 then by 10.","Because 30 starts with 3.","Because there is a zero in 30.","Because numbers always grow."],a:0,why:"30 = 3 x 10, so x 30 = x 3 x 10.",concept:"why"},
+      {id:"B3",stem:"30 x 40 = ?",o:["120","12","1,200","34"],a:2,why:"3 x 4 = 12, attach two zeros.",concept:"trap"},
+      {id:"B4",stem:"50 x 60 = ?",o:["300","3,000","30","56"],a:1,why:"5 x 6 = 30, attach two more zeros for the multiples of 10.",concept:"trap"},
+      {id:"B5",stem:"20 x 70 = ?",o:["140","14","27","1,400"],a:3,why:"2 x 7 = 14, attach two zeros.",concept:"trap"},
+      {id:"B6",stem:"Why does x 30 work the same as x 3 with a zero attached?",o:["Because 30 starts with 3.","Because there is a zero in 30.","Because 30 is 3 tens, so multiplying by 30 is multiplying by 3 then by 10.","Because numbers always grow."],a:2,why:"30 = 3 x 10, so x 30 = x 3 x 10.",concept:"why"},
       {id:"B7",stem:"9 x 40 = ?",o:["360","36","3,600","49"],a:0,why:"9 x 4 = 36, attach one zero.",concept:"step"},
-      {id:"B8",stem:"80 x 20 = ?",o:["1,600","160","16","82"],a:0,why:"8 x 2 = 16, attach two zeros.",concept:"trap"}
+      {id:"B8",stem:"80 x 20 = ?",o:["160","1,600","16","82"],a:1,why:"8 x 2 = 16, attach two zeros.",concept:"trap"}
     ],
     EXPLAIN:{
       stem:"Eli says 60 x 70 = 420, the same as 6 x 70. Explain his mistake, and give the correct answer.",

@@ -309,8 +309,8 @@
 
   var DATA={
     WARM:[
-      {q:"What place is the 4 in <b>23,467</b>?",o:["hundreds","tens","thousands"],a:0,why:"Reading right to left: ones, tens, hundreds. The 4 sits in hundreds.",hint:"Count places from the right."},
-      {q:"The comma in 47,302 separates ...",o:["thousands from hundreds","hundreds from tens","tens from ones"],a:0,why:"The comma marks where the thousands end.",hint:"Look at what is on each side."}
+      {q:"What place is the 4 in <b>23,467</b>?",o:["tens","hundreds","thousands"],a:1,why:"Reading right to left: ones, tens, hundreds. The 4 sits in hundreds.",hint:"Count places from the right."},
+      {q:"The comma in 47,302 separates ...",o:["hundreds from tens","tens from ones","thousands from hundreds"],a:2,why:"The comma marks where the thousands end.",hint:"Look at what is on each side."}
     ],
     TRANS:[
       {n:23467, std:"23,467", words:"twenty-three thousand, four hundred sixty-seven", exp:"20,000 + 3,000 + 400 + 60 + 7"},
@@ -320,41 +320,41 @@
       {n:12345, std:"12,345", words:"twelve thousand, three hundred forty-five", exp:"10,000 + 2,000 + 300 + 40 + 5"}
     ],
     GUIDED:[
-      {q:"Which is <b>34,506</b> in words?",o:["thirty-four thousand, five hundred six","three thousand four hundred fifty-six","thirty-four, five hundred six"],a:0,why:"Split at the comma: 34 then 506.",hint:"Say what is in front of the comma, then \"thousand,\" then read the back."},
+      {q:"Which is <b>34,506</b> in words?",o:["three thousand four hundred fifty-six","thirty-four, five hundred six","thirty-four thousand, five hundred six"],a:2,why:"Split at the comma: 34 then 506.",hint:"Say what is in front of the comma, then \"thousand,\" then read the back."},
       {q:"Which is <b>twelve thousand, eighty</b> in standard form?",o:["12,080","12,800","1,280"],a:0,why:"Twelve goes in front of the comma. Eighty is just 8 tens, so 080 fills the back three.",hint:"Use 3 digits after the comma."},
-      {q:"Which is the expanded form of <b>50,217</b>?",o:["50,000 + 200 + 10 + 7","5,000 + 200 + 10 + 7","50,000 + 217"],a:0,why:"Each digit is multiplied by its place value, then added.",hint:"Skip the places where the digit is 0."},
-      {q:"In <b>87,205</b>, what is the 8 worth?",o:["80,000","8,000","800"],a:0,why:"The 8 sits in the ten-thousands place, so it is worth 80,000.",hint:"Count places from the right: ones, tens, hundreds, thousands, ten thousands."}
+      {q:"Which is the expanded form of <b>50,217</b>?",o:["5,000 + 200 + 10 + 7","50,000 + 200 + 10 + 7","50,000 + 217"],a:1,why:"Each digit is multiplied by its place value, then added.",hint:"Skip the places where the digit is 0."},
+      {q:"In <b>87,205</b>, what is the 8 worth?",o:["8,000","800","80,000"],a:2,why:"The 8 sits in the ten-thousands place, so it is worth 80,000.",hint:"Count places from the right: ones, tens, hundreds, thousands, ten thousands."}
     ],
     PRACTICE:[
-      {q:"What is <b>23,467</b> in words?",o:["twenty-three thousand, four hundred sixty-seven","two thousand three hundred forty-six seven","twenty-three, four hundred sixty-seven","two hundred thirty-four thousand sixty-seven"],a:0,why:"Split at the comma. 23 then 467.",hint:"Front, then \"thousand,\" then back."},
-      {q:"Write <b>sixty-five thousand, one hundred nine</b> in standard form.",o:["65,109","65,019","6,519","60,519"],a:0,why:"65 in front, 109 in back.",hint:"3 digits after the comma."},
-      {q:"Expanded form of <b>47,302</b>?",o:["40,000 + 7,000 + 300 + 2","4,000 + 700 + 30 + 2","47,000 + 302","40,000 + 7,000 + 32"],a:0,why:"Each digit times its place; skip the tens (digit is 0).",hint:"Hundreds place has a 3."},
+      {q:"What is <b>23,467</b> in words?",o:["two thousand three hundred forty-six seven","twenty-three, four hundred sixty-seven","twenty-three thousand, four hundred sixty-seven","two hundred thirty-four thousand sixty-seven"],a:2,why:"Split at the comma. 23 then 467.",hint:"Front, then \"thousand,\" then back."},
+      {q:"Write <b>sixty-five thousand, one hundred nine</b> in standard form.",o:["65,019","65,109","6,519","60,519"],a:1,why:"65 in front, 109 in back.",hint:"3 digits after the comma."},
+      {q:"Expanded form of <b>47,302</b>?",o:["4,000 + 700 + 30 + 2","47,000 + 302","40,000 + 7,000 + 32","40,000 + 7,000 + 300 + 2"],a:3,why:"Each digit times its place; skip the tens (digit is 0).",hint:"Hundreds place has a 3."},
       {q:"What place is the 2 in <b>92,400</b>?",o:["thousands","ten thousands","hundreds","ones"],a:0,why:"Going right to left: 0 ones, 0 tens, 4 hundreds, 2 thousands.",hint:"Count places from the right."},
-      {q:"What is <b>10,003</b> in words?",o:["ten thousand, three","one thousand three","one hundred thousand three","ten, three"],a:0,why:"10 in front, 003 in back: just three.",hint:"Read the back three digits."},
-      {q:"Which number is <b>40,000 + 800 + 6</b>?",o:["40,806","48,006","4,806","40,086"],a:0,why:"4 ten-thousands, 0 thousands, 8 hundreds, 0 tens, 6 ones.",hint:"Skip the place where there is no piece."}
+      {q:"What is <b>10,003</b> in words?",o:["one thousand three","ten thousand, three","one hundred thousand three","ten, three"],a:1,why:"10 in front, 003 in back: just three.",hint:"Read the back three digits."},
+      {q:"Which number is <b>40,000 + 800 + 6</b>?",o:["48,006","4,806","40,806","40,086"],a:2,why:"4 ten-thousands, 0 thousands, 8 hundreds, 0 tens, 6 ones.",hint:"Skip the place where there is no piece."}
     ],
     RETRIEVAL:[
       {q:"From memory: which is <b>twenty thousand, fifty</b>?",o:["20,050","20,500","2,050","20,005"],a:0,why:"20 in front, 050 in back.",hint:"Three digits go after the comma."},
-      {q:"From memory: what is the 5 worth in <b>53,800</b>?",o:["50,000","5,000","500","5"],a:0,why:"The 5 is in the ten-thousands place.",hint:"Leftmost digit of a five-digit number."}
+      {q:"From memory: what is the 5 worth in <b>53,800</b>?",o:["5,000","500","5","50,000"],a:3,why:"The 5 is in the ten-thousands place.",hint:"Leftmost digit of a five-digit number."}
     ],
     FORMA:[
-      {id:"A1",stem:"What is <b>23,467</b> in words?",o:["twenty-three thousand, four hundred sixty-seven","two thousand three hundred forty-six","twenty-three, four hundred sixty-seven","twenty thousand three hundred sixty-seven"],a:0,why:"Split at the comma: 23 thousand, 467.",concept:"words"},
-      {id:"A2",stem:"In <b>87,205</b>, what is the 8 worth?",o:["80,000","8,000","800","8"],a:0,why:"8 is in the ten-thousands place.",concept:"place"},
+      {id:"A1",stem:"What is <b>23,467</b> in words?",o:["two thousand three hundred forty-six","twenty-three thousand, four hundred sixty-seven","twenty-three, four hundred sixty-seven","twenty thousand three hundred sixty-seven"],a:1,why:"Split at the comma: 23 thousand, 467.",concept:"words"},
+      {id:"A2",stem:"In <b>87,205</b>, what is the 8 worth?",o:["8,000","800","80,000","8"],a:2,why:"8 is in the ten-thousands place.",concept:"place"},
       {id:"A3",stem:"Which is <b>fifty thousand, four hundred two</b> in standard form?",o:["50,402","50,042","5,402","54,002"],a:0,why:"50 in front, 402 in back.",concept:"words"},
-      {id:"A4",stem:"Expanded form of <b>34,506</b>?",o:["30,000 + 4,000 + 500 + 6","3,000 + 400 + 50 + 6","34,000 + 506","30,000 + 4,000 + 56"],a:0,why:"3 ten-thousands, 4 thousands, 5 hundreds, 0 tens, 6 ones.",concept:"expand"},
-      {id:"A5",stem:"The comma in 47,302 separates ...",o:["the thousands from the hundreds","the hundreds from the tens","the tens from the ones","none of those"],a:0,why:"The comma marks the thousands break.",concept:"comma"},
-      {id:"A6",stem:"What is <b>10,090</b> in words?",o:["ten thousand, ninety","one thousand ninety","ten thousand, nine","ten, ninety"],a:0,why:"10 in front, 090 in back: just ninety.",concept:"words"},
-      {id:"A7",stem:"Which number is <b>60,000 + 200 + 4</b>?",o:["60,204","62,004","6,204","60,024"],a:0,why:"6 ten-thousands, 0 thousands, 2 hundreds, 0 tens, 4 ones.",concept:"expand"},
+      {id:"A4",stem:"Expanded form of <b>34,506</b>?",o:["3,000 + 400 + 50 + 6","34,000 + 506","30,000 + 4,000 + 56","30,000 + 4,000 + 500 + 6"],a:3,why:"3 ten-thousands, 4 thousands, 5 hundreds, 0 tens, 6 ones.",concept:"expand"},
+      {id:"A5",stem:"The comma in 47,302 separates ...",o:["the hundreds from the tens","the thousands from the hundreds","the tens from the ones","none of those"],a:1,why:"The comma marks the thousands break.",concept:"comma"},
+      {id:"A6",stem:"What is <b>10,090</b> in words?",o:["one thousand ninety","ten thousand, nine","ten thousand, ninety","ten, ninety"],a:2,why:"10 in front, 090 in back: just ninety.",concept:"words"},
+      {id:"A7",stem:"Which number is <b>60,000 + 200 + 4</b>?",o:["62,004","6,204","60,024","60,204"],a:3,why:"6 ten-thousands, 0 thousands, 2 hundreds, 0 tens, 4 ones.",concept:"expand"},
       {id:"A8",stem:"What place is the 7 in <b>71,238</b>?",o:["ten thousands","thousands","hundreds","ones"],a:0,why:"Leftmost digit of a five-digit number is the ten-thousands.",concept:"place"}
     ],
     FORMB:[
-      {id:"B1",stem:"What is <b>45,608</b> in words?",o:["forty-five thousand, six hundred eight","four thousand five hundred sixty","forty-five, six hundred eight","forty thousand five hundred sixty-eight"],a:0,why:"Split at the comma: 45 thousand, 608.",concept:"words"},
+      {id:"B1",stem:"What is <b>45,608</b> in words?",o:["four thousand five hundred sixty","forty-five, six hundred eight","forty-five thousand, six hundred eight","forty thousand five hundred sixty-eight"],a:2,why:"Split at the comma: 45 thousand, 608.",concept:"words"},
       {id:"B2",stem:"In <b>92,400</b>, what is the 9 worth?",o:["90,000","9,000","900","9"],a:0,why:"9 is in the ten-thousands place.",concept:"place"},
-      {id:"B3",stem:"Which is <b>thirty thousand, seven hundred fifteen</b> in standard form?",o:["30,715","30,075","3,715","37,015"],a:0,why:"30 in front, 715 in back.",concept:"words"},
-      {id:"B4",stem:"Expanded form of <b>52,043</b>?",o:["50,000 + 2,000 + 40 + 3","5,000 + 200 + 40 + 3","52,000 + 43","50,000 + 2,000 + 43"],a:0,why:"5 ten-thousands, 2 thousands, 0 hundreds, 4 tens, 3 ones.",concept:"expand"},
-      {id:"B5",stem:"In 65,109 the comma sits between which places?",o:["thousands and hundreds","hundreds and tens","tens and ones","ten thousands and thousands"],a:0,why:"The comma is always between thousands and hundreds in five-digit numbers.",concept:"comma"},
-      {id:"B6",stem:"What is <b>20,005</b> in words?",o:["twenty thousand, five","two thousand five","twenty thousand, fifty","twenty, five"],a:0,why:"20 in front, 005 in back: just five.",concept:"words"},
-      {id:"B7",stem:"Which number is <b>80,000 + 500 + 30</b>?",o:["80,530","85,030","8,530","80,053"],a:0,why:"8 ten-thousands, 0 thousands, 5 hundreds, 3 tens, 0 ones.",concept:"expand"},
+      {id:"B3",stem:"Which is <b>thirty thousand, seven hundred fifteen</b> in standard form?",o:["30,075","3,715","37,015","30,715"],a:3,why:"30 in front, 715 in back.",concept:"words"},
+      {id:"B4",stem:"Expanded form of <b>52,043</b>?",o:["5,000 + 200 + 40 + 3","50,000 + 2,000 + 40 + 3","52,000 + 43","50,000 + 2,000 + 43"],a:1,why:"5 ten-thousands, 2 thousands, 0 hundreds, 4 tens, 3 ones.",concept:"expand"},
+      {id:"B5",stem:"In 65,109 the comma sits between which places?",o:["hundreds and tens","tens and ones","thousands and hundreds","ten thousands and thousands"],a:2,why:"The comma is always between thousands and hundreds in five-digit numbers.",concept:"comma"},
+      {id:"B6",stem:"What is <b>20,005</b> in words?",o:["two thousand five","twenty thousand, fifty","twenty, five","twenty thousand, five"],a:3,why:"20 in front, 005 in back: just five.",concept:"words"},
+      {id:"B7",stem:"Which number is <b>80,000 + 500 + 30</b>?",o:["85,030","80,530","8,530","80,053"],a:1,why:"8 ten-thousands, 0 thousands, 5 hundreds, 3 tens, 0 ones.",concept:"expand"},
       {id:"B8",stem:"What place is the 3 in <b>13,824</b>?",o:["thousands","ten thousands","hundreds","tens"],a:0,why:"Second digit from the left of a 5-digit number is thousands.",concept:"place"}
     ],
     EXPLAIN:{

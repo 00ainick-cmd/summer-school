@@ -1,8 +1,8 @@
 {
   "project": "Mastery summer program: 3 students, 5 subjects, 14 weeks. One standard = one atom = one lesson to mastery.",
   "generated": "2026-05-25",
-  "week_1_status": "Complete. All 45 Week 1 slots wired (3 students x 5 days x 3 subjects: math, reading, enrichment rotation Sci/SS/JP/Sci/SS). 25 new lessons authored in this build; 20 carryover from prior batch.",
-  "data_model": "localStorage key 'edu.app'; progress[studentId][subjectKey][STANDARDCODE]={status,best,attempts,formA,formB,explain,pt,...}. studentId in sam/amelia/julie. subjectKey in math/reading/science/social/japanese. Pass = 7/8 on Form A then Form B (delayed). Supabase sync baked, no-op until keys set.",
+  "week_1_status": "Complete. All 45 Week 1 slots wired (3 students x 5 days x 3 subjects: math, reading, enrichment rotation Sci/SS/Spelling/Sci/SS). 25 new lessons authored in this build; 20 carryover from prior batch. Spelling replaces Japanese on Day 3 in the paid product; the 3 Japanese lesson files remain in the repo as a side project (not surfaced in product UI).",
+  "data_model": "localStorage key 'edu.app'; progress[studentId][subjectKey][STANDARDCODE]={status,best,attempts,formA,formB,explain,pt,application,formAPassedAt,...}. studentId in sam/amelia/julie. subjectKey in math/reading/science/social/spelling. Pass = 7/8 on Form A then Form B (delayed, gated 24h on spelling). Supabase sync baked, no-op until keys set.",
   "hard_rules": [
     "No em-dash or en-dash anywhere (grep U+2014 and U+2013 must be 0).",
     "One self-contained HTML file per lesson; only external dependency is Google Fonts.",
@@ -28,17 +28,20 @@
     "reading_scoped_atoms": 26,
     "science_built": 6,
     "social_studies_built": 6,
+    "spelling_built": 3,
     "japanese_built": 3,
+    "japanese_status": "side_project_not_in_paid_product",
     "subjects_with_week1_standards_pulled": [
       "reading (G2 was already scoped; G3 + G8 pulled this build for D1-D5)",
       "science (G2/G3/G8 D1+D2 pulled this build)",
-      "social_studies (G2/G3/G8 D1+D2 pulled this build)"
+      "social_studies (G2/G3/G8 D1+D2 pulled this build)",
+      "spelling (G2/G3/G8 Week 1 Day 3 pulled this build)"
     ],
     "subjects_still_needing_full_ladder_standards": [
       "reading (G3,G8) beyond Week 1",
       "science (G2,G3,G8) beyond D1+D2",
       "social_studies (G2,G3,G8) beyond D1+D2",
-      "japanese (shared) beyond D1"
+      "spelling (G2,G3,G8) beyond Week 1 Day 3"
     ]
   },
   "students": {
@@ -527,15 +530,29 @@
           ]
         },
         "japanese": {
-          "status": "in_progress",
-          "note": "Day 1 built (Numbers 1-10). No verbatim Missouri standards exist for Japanese as a world-language ladder at this grade; using shared scope.",
+          "status": "side_project_not_in_paid_product",
+          "note": "Day 1 built (Numbers 1-10). Japanese is a side project for the family's own kids accessible by direct URL bookmark; removed from product UI surfaces (welcome.html, Week 1 Schedule, dashboard launchpad). File remains in repo unchanged.",
           "atoms": [
             {
               "code": "JP.G2.D1",
               "standard": "Count from ichi to juu (1 to 10) in Japanese.",
               "unit": "Numbers",
-              "status": "built",
+              "status": "side_project_not_in_paid_product",
               "file": "Sam - Japanese Day 1 - Numbers 1 to 10.html"
+            }
+          ]
+        },
+        "spelling": {
+          "status": "in_progress",
+          "note": "Week 1 Day 3 built (irregular sight words). Replaces Japanese in the Day 3 enrichment slot.",
+          "atoms": [
+            {
+              "code": "2.L.1.B.f",
+              "standard": "spell words using irregular spelling patterns",
+              "unit": "E5 Writing Conventions",
+              "status": "built",
+              "file": "Sam - Spelling Day 3 - Week 1 Words.html",
+              "words": ["said","friend","because","school","family","water","mother","father","where","there"]
             }
           ]
         }
@@ -950,15 +967,29 @@
           ]
         },
         "japanese": {
-          "status": "in_progress",
-          "note": "Day 1 built (Colors). Shared scope with Sam/Julie.",
+          "status": "side_project_not_in_paid_product",
+          "note": "Day 1 built (Colors). Japanese is a side project for the family's own kids accessible by direct URL bookmark; removed from product UI surfaces. File remains in repo unchanged.",
           "atoms": [
             {
               "code": "JP.G3.D1",
               "standard": "Name colors in Japanese (aka, ao, kiiro, midori, kuro, shiro).",
               "unit": "Colors",
-              "status": "built",
+              "status": "side_project_not_in_paid_product",
               "file": "Amelia - Japanese Day 1 - Colors.html"
+            }
+          ]
+        },
+        "spelling": {
+          "status": "in_progress",
+          "note": "Week 1 Day 3 built (compound words). Replaces Japanese in the Day 3 enrichment slot.",
+          "atoms": [
+            {
+              "code": "3.L.1.B.h",
+              "standard": "use spelling patterns and generalizations to spell compound words",
+              "unit": "Writing Conventions: Spelling",
+              "status": "built",
+              "file": "Amelia - Spelling Day 3 - Week 1 Words.html",
+              "words": ["butterfly","sunshine","basketball","classroom","weekend","popcorn","snowball","rainbow","homework","birthday"]
             }
           ]
         }
@@ -1423,15 +1454,29 @@
           ]
         },
         "japanese": {
-          "status": "in_progress",
-          "note": "Day 1 built (Days of the Week). Shared scope with Sam/Amelia.",
+          "status": "side_project_not_in_paid_product",
+          "note": "Day 1 built (Days of the Week). Japanese is a side project for the family's own kids accessible by direct URL bookmark; removed from product UI surfaces. File remains in repo unchanged.",
           "atoms": [
             {
               "code": "JP.G8.D1",
               "standard": "Name the seven days of the week in Japanese (nichi, getsu, ka, sui, moku, kin, do).",
               "unit": "Days of the Week",
-              "status": "built",
+              "status": "side_project_not_in_paid_product",
               "file": "Julie - Japanese Day 1 - Days of the Week.html"
+            }
+          ]
+        },
+        "spelling": {
+          "status": "in_progress",
+          "note": "Week 1 Day 3 built (commonly misspelled academic words). Replaces Japanese in the Day 3 enrichment slot.",
+          "atoms": [
+            {
+              "code": "8.W.3.A.c",
+              "standard": "demonstrate a command of the conventions of standard English grammar and usage, including spelling and punctuation",
+              "unit": "Writing: Conventions",
+              "status": "built",
+              "file": "Julie - Spelling Day 3 - Week 1 Words.html",
+              "words": ["necessary","accommodate","occurrence","separate","definitely","embarrass","conscientious","perseverance","rhythm","license"]
             }
           ]
         }

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Lab &middot; Week 1 Compound Words</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a2e;--blue:#3a5a7a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(32px,6vw,46px);line-height:1.02;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px;}
+  .wcard{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fbf5ea;}
+  .wcard .w{font-family:'Fraunces';font-size:22px;font-weight:600;color:var(--accent);}
+  .wcard .parts{font-family:'Fraunces';font-size:13px;font-style:italic;color:var(--alt);margin-top:2px;}
+  .wcard .meaning{font-size:14.5px;color:var(--ink2);margin-top:4px;}
+  .wcard .ex{font-size:14px;color:var(--ink);margin-top:6px;font-style:italic;}
+  .wcard .ex b{font-style:normal;font-weight:600;color:var(--accent-d);}
+  .tipbox{margin-top:14px;background:#f3f6ee;border:1px dashed var(--alt);border-radius:12px;padding:14px 16px;}
+  .tipbox .tt{font-family:'Fraunces';font-style:italic;color:var(--alt);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+  .tipbox ul{margin:4px 0 0 22px;color:var(--ink2);}
+  .tipbox li{margin:4px 0;font-size:15.5px;}
+  .matchgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  @media (max-width:560px){.matchgrid{grid-template-columns:1fr;}}
+  .mtile{font:inherit;font-weight:600;font-size:15.5px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:11px 13px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .mtile:hover{border-color:var(--accent);}
+  .mtile.sel{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .mtile.ok{border-color:var(--good);background:#e8efde;color:var(--good);cursor:default;}
+  .mtile.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .matchnote{margin-top:10px;font-size:14px;color:var(--mute);}
+  .matchnote.win{color:var(--good);font-weight:600;}
+  .fillrow{margin-top:14px;display:flex;flex-direction:column;gap:10px;}
+  .fillitem{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbf5ea;}
+  .fillitem .stem{font-size:16px;color:var(--ink);}
+  .fillitem .stem .blank{display:inline-block;min-width:120px;border-bottom:2px solid var(--accent);text-align:center;font-family:'Fraunces';font-weight:600;color:var(--accent-d);padding:0 6px;}
+  .fillopts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .fop{font:inherit;font-size:14.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .fop:hover{border-color:var(--accent);}
+  .fop.ok{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .fop.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .fillwhy{margin-top:8px;font-size:14px;color:var(--ink2);min-height:1em;}
+  .findrow{margin-top:14px;display:flex;flex-direction:column;gap:10px;}
+  .finditem{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbf5ea;}
+  .finditem .stem{font-size:16px;color:var(--ink);margin-bottom:8px;}
+  .findopts{display:flex;flex-wrap:wrap;gap:6px;}
+  .findwhy{margin-top:8px;font-size:14px;color:var(--ink2);min-height:1em;}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+  .recap{background:#f3ead9;border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;margin-top:12px;}
+  .recap ul{margin:6px 0 0 20px;color:var(--ink2);}
+  .recap li{margin:4px 0;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);}.cta.alt:hover{filter:brightness(.92);}
+  .cta.go{background:var(--good);}.cta.go:hover{filter:brightness(.92);}
+  .cta:disabled{opacity:.55;cursor:not-allowed;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;}
+  .qstem{font-family:'Fraunces';font-size:22px;font-weight:600;line-height:1.25;margin-bottom:10px;}
+  .qctx{font-size:16px;color:var(--ink2);margin-bottom:14px;font-style:italic;}
+  .qctx .blank{display:inline-block;min-width:110px;border-bottom:2px solid var(--accent);text-align:center;font-family:'Fraunces';font-weight:600;color:var(--accent-d);padding:0 6px;font-style:normal;}
+  .qparts{font-family:'Fraunces';font-size:14px;font-style:italic;color:var(--alt);margin-bottom:10px;}
+  .typewrap{display:flex;flex-direction:column;gap:10px;}
+  .typewrap input[type=text]{font:inherit;font-family:'Fraunces',serif;font-size:24px;font-weight:600;border:1.5px solid var(--line);background:#fffdf8;border-radius:12px;padding:14px 16px;min-height:56px;color:var(--ink);text-align:center;letter-spacing:.02em;}
+  .typewrap input[type=text]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(181,70,47,.12);}
+  .typewrap input.ok{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .typewrap input.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .submitbtn{font:inherit;font-weight:700;font-size:16px;color:#fff;background:var(--accent);border:none;border-radius:10px;padding:13px;min-height:50px;cursor:pointer;}
+  .submitbtn:disabled{opacity:.55;cursor:not-allowed;}
+  .feedback{margin-top:8px;font-size:15px;min-height:1.4em;}
+  .feedback.ok{color:var(--good);font-weight:600;}
+  .feedback.no{color:var(--accent-d);font-weight:600;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Fraunces';text-align:center;}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;font-family:'Fraunces';text-align:center;}
+  .result p{text-align:center;color:var(--ink2);max-width:46ch;margin:0 auto;}
+  .gatebox{background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:16px;margin-top:14px;font-size:15px;color:var(--ink2);}
+  .gatebox b{color:var(--accent-d);}
+  .countdown{font-family:'Fraunces';font-size:24px;font-weight:600;color:var(--accent-d);text-align:center;margin-top:8px;}
+  .applyrow{margin-top:12px;display:flex;flex-direction:column;gap:12px;}
+  .applyitem{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbf5ea;}
+  .applyitem label{display:block;font-family:'Fraunces';font-weight:600;color:var(--accent-d);font-size:15px;margin-bottom:6px;}
+  .applyitem select{font:inherit;font-size:15px;border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;min-height:44px;background:#fff;color:var(--ink);margin-bottom:8px;max-width:240px;}
+  .applyitem textarea{width:100%;min-height:64px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--ink);background:#fffdf8;resize:vertical;}
+  .gnote{background:#fbf5ea;border:1px dashed var(--alt);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--ink2);margin-top:10px;}
+  .gnote b{color:var(--accent-d);}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.L.1.B.h</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Chapter three</div>
+    <h1>Week 1 Compound Words</h1>
+    <p class="opener"><span class="dropcap">A</span> compound word is two real words stuck together to make a new word. Each small word brings its meaning along, so when you read a compound you can often guess what it means by reading each part. Spelling them is just spelling each piece in order, with no letters added and none taken away.</p>
+    <p class="mission">By the end you will see the two parts in ten compound words and spell each one from memory.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Use spelling patterns and generalizations to spell compound words.</div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>This week's words</h2></div>
+      <p class="lead">Each card shows the compound and the two parts that build it. Notice how the parts keep their original spelling.</p>
+      <div class="wgrid" id="wgrid"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Strategy tips</h2></div>
+      <div class="tipbox">
+        <div class="tt">How to spell a compound word</div>
+        <ul>
+          <li>Find the two smaller words. Each one keeps every letter.</li>
+          <li>Say each part as you write it. <b>basket</b> + <b>ball</b> is basketball.</li>
+          <li>Do not add an extra letter at the join. There is no e between butter and fly.</li>
+          <li>Do not drop letters. Snowball has both the w in snow and the b in ball.</li>
+          <li>If a word does not split into two real words, it is probably not a compound.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Match the meaning</h2></div>
+      <p class="lead">Tap a word, then tap the meaning that fits. Five pairs to match.</p>
+      <div class="matchgrid">
+        <div id="matchWords"></div>
+        <div id="matchMeans"></div>
+      </div>
+      <div class="matchnote" id="matchNote">0 of 5 matched.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Fill in the blank</h2></div>
+      <p class="lead">Which compound word fits the sentence? Tap to choose.</p>
+      <div class="fillrow" id="fillrow"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Find the misspelled word</h2></div>
+      <p class="lead">One word in each sentence is spelled wrong. Tap it.</p>
+      <div class="findrow" id="findrow"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">06</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">"I drop a letter where the words meet."</div><div style="color:var(--ink2)">No. In a true compound, both small words keep every letter. <b>Sun</b> plus <b>shine</b> is sunshine, not sunshine without the n or with two n's. Spell each part fully and you will not lose letters.</div></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">07</span><h2>The move</h2></div>
+      <div class="recap"><b>Remember:</b><ul>
+        <li>A compound word is two real words joined into one.</li>
+        <li>Spell each part fully. Do not add or drop letters at the join.</li>
+        <li>If the parts give a hint about the meaning, use it.</li>
+      </ul></div>
+    </div>
+
+    <button class="cta" id="toCheck">I studied the words. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Word 1 of 8</span></div>
+    <div class="qstem" id="qstem"></div>
+    <div class="qparts" id="qparts"></div>
+    <div class="qctx" id="qctx"></div>
+    <div class="typewrap">
+      <input type="text" id="typeIn" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="type the compound word">
+      <button class="submitbtn" id="submitBtn">Check my spelling</button>
+      <div class="feedback" id="fb"></div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0 of 8</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try Form A again</button>
+    <button class="cta hide" id="toGate">See the spacing gate</button>
+    <button class="cta hide" id="toApply">Next: use your words</button>
+  </section>
+
+  <section id="gateSec" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">SPACING</span><h2>Form B unlocks in 24 hours</h2></div>
+      <p class="lead">You passed Form A. Form B opens a day from now. The wait helps the spellings move from short term memory into long term.</p>
+      <div class="gatebox"><b>Why wait?</b> Spaced practice means coming back after time has passed. It locks in spelling more than back-to-back tries do.</div>
+      <div class="countdown" id="countdown">--:--:--</div>
+      <button class="cta go hide" id="startB">Start Form B</button>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Word 1 of 8</span></div>
+    <div class="qstem" id="qstemB"></div>
+    <div class="qparts" id="qpartsB"></div>
+    <div class="qctx" id="qctxB"></div>
+    <div class="typewrap">
+      <button type="button" class="submitbtn" id="speakB" style="background:var(--alt);max-width:240px;align-self:center;">Listen to the word</button>
+      <input type="text" id="typeInB" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="type the compound word">
+      <button class="submitbtn" id="submitBtnB">Check my spelling</button>
+      <div class="feedback" id="fbB"></div>
+    </div>
+  </section>
+
+  <section id="applySec" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">USE THEM</span><h2>Pick 3 words and use them in a sentence</h2></div>
+      <p class="lead">Choose three of your Week 1 compound words. Write one sentence with each. Your sentences get saved for your family dashboard.</p>
+      <div class="applyrow" id="applyRow"></div>
+      <div class="gnote"><b>Grown-up note:</b> sentences are not auto-graded. Quick check: did each sentence use the compound correctly and make sense?</div>
+      <button class="cta go" id="ptDone">Done</button>
+    </div>
+  </section>
+
+  <section id="finalSec" class="hide">
+    <div class="result">
+      <div class="scorebig" style="font-size:34px;">All set.</div>
+      <h2>Your compound words are locked in.</h2>
+      <p>Form A and Form B passed and your sentences are saved. The 3.L.1.B.h credential is yours.</p>
+    </div>
+    <div id="donebox" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+
+  <footer><span id="__sname">Amelia</span> &middot; Spelling &middot; Day 3 &middot; Standard 3.L.1.B.h</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];if(!__rk&&__ks.length)__rk=__ks[0];if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};__ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}var KEY='edu.app',STUDENT=__rk.id,SUBJECT='spelling',DAY='3.L.1.B.h',SNAME=__rk.name;document.addEventListener('DOMContentLoaded',function(){var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;});
+
+  var PASS=7;
+  var GATE_MS=24*60*60*1000;
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,application:[],ptDone:false};
+  if(!rec.application) rec.application=[];
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,pt_done:!!rec.ptDone,application_count:(rec.application||[]).length,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  // ---- WORDS ----
+  var WORDS=[
+    {w:'butterfly', parts:'butter + fly',   meaning:'a colorful insect with large wings',          ex:'A blue <b>butterfly</b> landed on her hat.'},
+    {w:'sunshine',  parts:'sun + shine',    meaning:'the light and warmth from the sun',           ex:'The garden filled with <b>sunshine</b> after the rain.'},
+    {w:'basketball',parts:'basket + ball',  meaning:'a game played by shooting a ball into a hoop',ex:'Our <b>basketball</b> team practices on Tuesdays.'},
+    {w:'classroom', parts:'class + room',   meaning:'a room where lessons happen',                 ex:'The <b>classroom</b> smelled like new pencils.'},
+    {w:'weekend',   parts:'week + end',     meaning:'Saturday and Sunday',                          ex:'We go camping every <b>weekend</b> in June.'},
+    {w:'popcorn',   parts:'pop + corn',     meaning:'corn that bursts open when heated',           ex:'I ate hot <b>popcorn</b> at the movie.'},
+    {w:'snowball',  parts:'snow + ball',    meaning:'a ball of packed snow',                        ex:'He threw a <b>snowball</b> at the fence post.'},
+    {w:'rainbow',   parts:'rain + bow',     meaning:'an arc of colors after rain',                  ex:'A bright <b>rainbow</b> stretched over the lake.'},
+    {w:'homework',  parts:'home + work',    meaning:'school work to do at home',                    ex:'My <b>homework</b> is two math pages and a story.'},
+    {w:'birthday',  parts:'birth + day',    meaning:'the day a person was born',                    ex:'My <b>birthday</b> is in October.'}
+  ];
+
+  // ---- Static word grid ----
+  var wgrid=document.getElementById('wgrid');
+  WORDS.forEach(function(W){
+    var d=document.createElement('div'); d.className='wcard';
+    d.innerHTML='<div class="w">'+W.w+'</div><div class="parts">'+W.parts+'</div><div class="meaning">'+W.meaning+'</div><div class="ex">'+W.ex+'</div>';
+    wgrid.appendChild(d);
+  });
+
+  // ---- Match exercise (5 pairs) ----
+  var MATCH=[
+    {w:'butterfly',  m:'a colorful insect with wings'},
+    {w:'classroom',  m:'a room where lessons happen'},
+    {w:'rainbow',    m:'an arc of colors after rain'},
+    {w:'homework',   m:'school work done at home'},
+    {w:'birthday',   m:'the day a person was born'}
+  ];
+  var mw=document.getElementById('matchWords'), mm=document.getElementById('matchMeans');
+  var meansShuffled=MATCH.map(function(x){return x.m;}).sort(function(){return Math.random()-.5;});
+  var wordsShuffled=MATCH.map(function(x){return x.w;}).sort(function(){return Math.random()-.5;});
+  var pickedWord=null, matched={};
+  wordsShuffled.forEach(function(w){
+    var b=document.createElement('button'); b.type='button'; b.className='mtile'; b.textContent=w; b.style.marginBottom='8px';
+    b.addEventListener('click',function(){
+      if(matched[w]) return;
+      pickedWord=w;
+      Array.prototype.forEach.call(mw.children,function(c){c.classList.remove('sel');});
+      b.classList.add('sel');
+    });
+    mw.appendChild(b);
+  });
+  meansShuffled.forEach(function(m){
+    var b=document.createElement('button'); b.type='button'; b.className='mtile'; b.textContent=m; b.style.marginBottom='8px';
+    b.addEventListener('click',function(){
+      if(b.dataset.locked) return;
+      if(!pickedWord) return;
+      var target=MATCH.filter(function(x){return x.w===pickedWord;})[0];
+      if(target && target.m===m){
+        matched[pickedWord]=true;
+        Array.prototype.forEach.call(mw.children,function(c){ if(c.textContent===pickedWord){c.classList.remove('sel');c.classList.add('ok');c.dataset.locked='1';} });
+        b.classList.add('ok'); b.dataset.locked='1';
+        pickedWord=null;
+        var nm=document.getElementById('matchNote');
+        var n=Object.keys(matched).length;
+        if(n===MATCH.length){nm.textContent='All 5 matched. Great work!';nm.classList.add('win');}
+        else nm.textContent=n+' of '+MATCH.length+' matched.';
+      } else {
+        b.classList.add('no');
+        setTimeout(function(){b.classList.remove('no');},700);
+      }
+    });
+    mm.appendChild(b);
+  });
+
+  // ---- Fill in the blank (4) ----
+  var FILL=[
+    {stem:'On the ___ we drive out to my grandparents.', ans:'weekend', opts:['weekend','sunshine','homework']},
+    {stem:'A bright ___ arched across the sky after the storm.', ans:'rainbow', opts:['rainbow','popcorn','classroom']},
+    {stem:'I finished my math ___ before dinner.', ans:'homework', opts:['birthday','homework','snowball']},
+    {stem:'The orange ___ landed gently on the flower.', ans:'butterfly', opts:['basketball','butterfly','classroom']}
+  ];
+  var fr=document.getElementById('fillrow');
+  FILL.forEach(function(F){
+    var d=document.createElement('div'); d.className='fillitem';
+    var stem=F.stem.replace('___','<span class="blank">&nbsp;</span>');
+    d.innerHTML='<div class="stem">'+stem+'</div><div class="fillopts"></div><div class="fillwhy"></div>';
+    var opts=d.querySelector('.fillopts'), why=d.querySelector('.fillwhy');
+    F.opts.forEach(function(o){
+      var b=document.createElement('button'); b.type='button'; b.className='fop'; b.textContent=o;
+      b.addEventListener('click',function(){
+        if(b.dataset.locked)return;
+        Array.prototype.forEach.call(opts.children,function(c){c.dataset.locked='1';c.style.pointerEvents='none';});
+        if(o===F.ans){ b.classList.add('ok'); why.style.color='var(--good)'; why.textContent='Yes. "'+F.ans+'" fits.'; }
+        else { b.classList.add('no'); Array.prototype.forEach.call(opts.children,function(c){if(c.textContent===F.ans)c.classList.add('ok');}); why.style.color='var(--accent-d)'; why.textContent='Not quite. The right word is "'+F.ans+'".'; }
+      });
+      opts.appendChild(b);
+    });
+    fr.appendChild(d);
+  });
+
+  // ---- Find the misspelled word (3) ----
+  var FIND=[
+    {sent:['The','popcorm','smelled','great','at','the','movie.'], wrong:'popcorm', right:'popcorn'},
+    {sent:['Our','clasroom','has','a','big','reading','rug.'], wrong:'clasroom', right:'classroom'},
+    {sent:['She','threw','a','snoball','from','the','porch.'], wrong:'snoball', right:'snowball'}
+  ];
+  var fndr=document.getElementById('findrow');
+  FIND.forEach(function(F){
+    var d=document.createElement('div'); d.className='finditem';
+    d.innerHTML='<div class="stem">Tap the word that is misspelled.</div><div class="findopts"></div><div class="findwhy"></div>';
+    var opts=d.querySelector('.findopts'), why=d.querySelector('.findwhy');
+    F.sent.forEach(function(w){
+      var b=document.createElement('button'); b.type='button'; b.className='fop'; b.textContent=w; b.style.fontFamily="'Newsreader',serif"; b.style.textTransform='none';
+      b.addEventListener('click',function(){
+        if(b.dataset.locked)return;
+        Array.prototype.forEach.call(opts.children,function(c){c.dataset.locked='1';c.style.pointerEvents='none';});
+        if(w===F.wrong){ b.classList.add('ok'); why.style.color='var(--good)'; why.textContent='Yes! The right spelling is "'+F.right+'".'; }
+        else { b.classList.add('no'); Array.prototype.forEach.call(opts.children,function(c){if(c.textContent===F.wrong)c.classList.add('ok');}); why.style.color='var(--accent-d)'; why.textContent='Not that one. The misspelled word is "'+F.wrong+'", spelled correctly "'+F.right+'".'; }
+      });
+      opts.appendChild(b);
+    });
+    fndr.appendChild(d);
+  });
+
+  // ---- Form A and Form B (8 items each, rotated across 10 words) ----
+  // FORM_A uses words 0,1,2,3,4,5,6,8
+  var FORM_A=[
+    {wIdx:0, def:'a colorful insect with large wings',           ctx:'A blue ___ landed on the leaf.'},
+    {wIdx:1, def:'the light and warmth from the sun',            ctx:'The kittens napped in the warm ___.'},
+    {wIdx:2, def:'a game played with a ball and a hoop',         ctx:'My favorite sport is ___.'},
+    {wIdx:3, def:'a room where lessons happen',                  ctx:'Our ___ smells like new books.'},
+    {wIdx:4, def:'Saturday and Sunday',                          ctx:'We hike every ___.'},
+    {wIdx:5, def:'corn that bursts open when heated',            ctx:'I made ___ for movie night.'},
+    {wIdx:6, def:'a ball of packed snow',                        ctx:'She threw a small ___ at the tree.'},
+    {wIdx:8, def:'school work to do at home',                    ctx:'I finished my ___ before dinner.'}
+  ];
+  // FORM_B uses words 0,2,4,5,6,7,8,9
+  var FORM_B=[
+    {wIdx:0, def:'a colorful insect with large wings',           ctx:'The ___ rested on the daisy.'},
+    {wIdx:2, def:'a game played with a ball and a hoop',         ctx:'We play ___ in the driveway.'},
+    {wIdx:4, def:'Saturday and Sunday',                          ctx:'Next ___ we visit Grandma.'},
+    {wIdx:5, def:'corn that bursts open when heated',            ctx:'The ___ smelled like butter.'},
+    {wIdx:6, def:'a ball of packed snow',                        ctx:'I rolled a giant ___ for the snowman.'},
+    {wIdx:7, def:'an arc of colors after rain',                  ctx:'A double ___ appeared over the field.'},
+    {wIdx:8, def:'school work to do at home',                    ctx:'My ___ is two reading pages.'},
+    {wIdx:9, def:'the day a person was born',                    ctx:'Her ___ is in March.'}
+  ];
+
+  // ---- Form runner ----
+  var secLesson=document.getElementById('lesson'),
+      secCheck=document.getElementById('check'),
+      secResult=document.getElementById('result'),
+      secGate=document.getElementById('gateSec'),
+      secCheckB=document.getElementById('checkB'),
+      secApply=document.getElementById('applySec'),
+      secFinal=document.getElementById('finalSec');
+
+  var phase='A', qi=0, correct=0, currentBank=FORM_A, locked=false;
+  var elQcount, elQstem, elQparts, elQctx, elIn, elBtn, elFb;
+
+  function setupRefs(){
+    var isA=(phase==='A');
+    elQcount=document.getElementById(isA?'qcount':'qcountB');
+    elQstem=document.getElementById(isA?'qstem':'qstemB');
+    elQparts=document.getElementById(isA?'qparts':'qpartsB');
+    elQctx=document.getElementById(isA?'qctx':'qctxB');
+    elIn=document.getElementById(isA?'typeIn':'typeInB');
+    elBtn=document.getElementById(isA?'submitBtn':'submitBtnB');
+    elFb=document.getElementById(isA?'fb':'fbB');
+  }
+
+  function startCheck(form){
+    commitTime();
+    phase=form; currentBank=(form==='A'?FORM_A:FORM_B); qi=0; correct=0; locked=false;
+    if(form==='A'){
+      rec.attempts=(rec.attempts||0)+1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide');
+      secCheck.classList.remove('hide');
+    } else {
+      secGate.classList.add('hide');
+      secCheckB.classList.remove('hide');
+    }
+    window.scrollTo(0,0);
+    setupRefs();
+    showQ();
+  }
+
+  function showQ(){
+    var item=currentBank[qi];
+    var W=WORDS[item.wIdx];
+    elQcount.textContent='Word '+(qi+1)+' of '+currentBank.length;
+    elQstem.textContent=W.meaning;
+    elQparts.textContent='Two parts: '+W.parts;
+    elQctx.innerHTML=item.ctx.replace('___','<span class="blank">&nbsp;</span>');
+    elIn.value=''; elIn.classList.remove('ok','no'); elIn.disabled=false;
+    elFb.textContent=''; elFb.classList.remove('ok','no');
+    elBtn.disabled=false; elBtn.textContent='Check my spelling';
+    locked=false;
+    setTimeout(function(){elIn.focus();},80);
+  }
+
+  function checkAnswer(){
+    if(locked)return;
+    var item=currentBank[qi]; var W=WORDS[item.wIdx];
+    var v=(elIn.value||'').trim().toLowerCase();
+    var truth=W.w.toLowerCase();
+    var ok=(v===truth);
+    locked=true; elIn.disabled=true; elBtn.disabled=true;
+    if(ok){ correct++; elIn.classList.add('ok'); elFb.classList.add('ok'); elFb.textContent='Yes! "'+W.w+'" is right.'; }
+    else { elIn.classList.add('no'); elFb.classList.add('no'); elFb.textContent='Not quite. The word is "'+W.w+'".'; }
+    setTimeout(function(){
+      qi++;
+      if(qi<currentBank.length) showQ();
+      else finish();
+    }, ok?900:1500);
+  }
+
+  function finish(){
+    commitTime();
+    if(phase==='A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed=(correct>=PASS);
+      rec.formA=correct; rec.best=Math.max(rec.best||0, Math.round(correct/FORM_A.length*100));
+      document.getElementById('scorebig').textContent=correct+' of '+FORM_A.length;
+      var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
+          retry=document.getElementById('retry'), toGate=document.getElementById('toGate'), toApply=document.getElementById('toApply');
+      retry.classList.add('hide'); toGate.classList.add('hide'); toApply.classList.add('hide');
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of '+FORM_A.length+' right. Form B opens in 24 hours to lock these in.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close.';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Look back at the words, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB=(correct>=PASS);
+      rec.formB=correct;
+      document.getElementById('scorebig').textContent=correct+' of '+FORM_B.length;
+      var rtitleB=document.getElementById('rtitle'), rmsgB=document.getElementById('rmsg'),
+          retryB=document.getElementById('retry'), toGateB=document.getElementById('toGate'), toApplyB=document.getElementById('toApply');
+      retryB.classList.add('hide'); toGateB.classList.add('hide'); toApplyB.classList.add('hide');
+      if(passedB){
+        rec.status='formB-passed'; save(app); syncCloud();
+        rtitleB.textContent='Form B passed!';
+        rmsgB.textContent='Strong work. Now use three of your words in sentences to finish.';
+        toApplyB.classList.remove('hide');
+      } else {
+        rec.status='formB-tried'; save(app); syncCloud();
+        rtitleB.textContent='Almost there.';
+        rmsgB.textContent='You got '+correct+' of '+FORM_B.length+'. Reread the word list and try Form B again.';
+        retryB.classList.remove('hide');
+      }
+    }
+  }
+
+  // ---- Gate countdown ----
+  function showGate(){
+    secResult.classList.add('hide'); secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB');
+    var cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){
+        cd.textContent='Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else { startBtn.classList.add('hide'); }
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  // ---- Apply (use them in a sentence) ----
+  function buildApply(){
+    var ar=document.getElementById('applyRow'); ar.innerHTML='';
+    for(var i=0;i<3;i++){
+      var d=document.createElement('div'); d.className='applyitem';
+      var sel='<label>Sentence '+(i+1)+'</label><select aria-label="pick a word"><option value="">Pick a word...</option>';
+      WORDS.forEach(function(W){ sel+='<option value="'+W.w+'">'+W.w+'</option>'; });
+      sel+='</select>';
+      sel+='<textarea placeholder="Write your sentence here..." aria-label="your sentence"></textarea>';
+      d.innerHTML=sel;
+      ar.appendChild(d);
+    }
+    if(rec.application && rec.application.length){
+      var items=document.getElementById('applyRow').children;
+      rec.application.slice(0,3).forEach(function(a,idx){
+        if(items[idx]){
+          var sel=items[idx].querySelector('select'); var ta=items[idx].querySelector('textarea');
+          if(sel) sel.value=a.word||''; if(ta) ta.value=a.sentence||'';
+        }
+      });
+    }
+  }
+
+  // ---- Event wiring ----
+  document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
+  document.getElementById('submitBtn').addEventListener('click',checkAnswer);
+  document.getElementById('typeIn').addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();checkAnswer();} });
+  document.getElementById('submitBtnB').addEventListener('click',checkAnswer);
+  document.getElementById('typeInB').addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();checkAnswer();} });
+
+  document.getElementById('retry').addEventListener('click',function(){
+    secResult.classList.add('hide');
+    if(phase==='A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){startCheck('B');});
+
+  document.getElementById('toApply').addEventListener('click',function(){
+    secResult.classList.add('hide'); secApply.classList.remove('hide'); buildApply(); window.scrollTo(0,0);
+  });
+
+  document.getElementById('ptDone').addEventListener('click',function(){
+    var items=document.getElementById('applyRow').children;
+    var out=[];
+    Array.prototype.forEach.call(items,function(it){
+      var sel=it.querySelector('select'), ta=it.querySelector('textarea');
+      var w=sel?sel.value:''; var s=ta?(ta.value||'').trim():'';
+      if(w && s) out.push({word:w, sentence:s});
+    });
+    rec.application=out; rec.ptDone=true;
+    if((rec.formA||0)>=PASS && (rec.formB||0)>=PASS){ rec.status='passed'; rec.passedAt=Date.now(); }
+    save(app); syncCloud();
+    secApply.classList.add('hide'); secFinal.classList.remove('hide'); window.scrollTo(0,0);
+  });
+
+  // ---- Speech for Form B ----
+  document.getElementById('speakB').addEventListener('click',function(){
+    var item=currentBank[qi]; var W=WORDS[item.wIdx];
+    try{
+      if('speechSynthesis' in window){
+        var u=new SpeechSynthesisUtterance(W.w);
+        u.rate=.85; u.lang='en-US';
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(u);
+        return;
+      }
+    }catch(e){}
+    var fb=document.getElementById('fbB');
+    fb.classList.remove('no'); fb.style.color='var(--blue)';
+    fb.innerHTML='Hint: '+item.ctx.replace('___','<b>the word</b>');
+  });
+
+  // ---- Resume logic ----
+  (function resume(){
+    if(rec.status==='passed'){
+      secLesson.classList.add('hide'); secFinal.classList.remove('hide');
+      return;
+    }
+    if(rec.status==='formB-passed' && !rec.ptDone){
+      secLesson.classList.add('hide'); secApply.classList.remove('hide'); buildApply();
+      return;
+    }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && !(rec.formB>=PASS)){
+      secLesson.classList.add('hide');
+      showGate();
+      return;
+    }
+  })();
+
+})();
+</script>
+</body>
+</html>

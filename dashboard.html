@@ -14,7 +14,7 @@ a{color:inherit;text-decoration:none;}
 :root{
   --bg:#f4ece1;--paper:#fffdf9;--ink:#2b2230;--ink2:#6a5d68;--mut:#9a8c95;--line:#e6dccf;
   --accent:#b14a78;--accent2:#8a3460;--ringtrack:#efe6dc;--go:#3f8f6b;--gold:#b8860b;
-  --math:#e8731c;--read:#8a44c0;--sci:#0f9488;--soc:#c43c6b;--jp:#3b6fd6;
+  --math:#e8731c;--read:#8a44c0;--sci:#0f9488;--soc:#c43c6b;--spell:#3b6fd6;
 }
 body{background:var(--bg);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.55;min-height:100vh;
  background-image:radial-gradient(circle at 88% -8%,rgba(177,74,120,.10),transparent 44%);-webkit-text-size-adjust:100%;}
@@ -145,7 +145,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
         <div class="qd" id="qd_reading"><span class="ring" style="border-color:#8a44c0"><svg viewBox="0 0 27 27" fill="#8a44c0"><path d="M4 5h8v17H4z"/><path d="M15 5h8v17h-8z" opacity=".6"/></svg></span><span class="nm">Reading</span></div>
         <div class="qd" id="qd_science"><span class="ring" style="border-color:#0f9488"><svg viewBox="0 0 27 27" fill="#0f9488"><path d="M10 3h7v6l5 12a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3l5-12z"/></svg></span><span class="nm">Science</span></div>
         <div class="qd" id="qd_social"><span class="ring" style="border-color:#c43c6b"><svg viewBox="0 0 27 27" fill="#c43c6b"><circle cx="13.5" cy="13.5" r="10.5"/><path d="M3 13.5h21M13.5 3c4.5 4 4.5 17 0 21M13.5 3c-4.5 4-4.5 17 0 21" stroke="#fff" stroke-width="1.5" fill="none" opacity=".85"/></svg></span><span class="nm">Social</span></div>
-        <div class="qd" id="qd_japanese"><span class="ring" style="border-color:#3b6fd6"><svg viewBox="0 0 27 27" fill="#3b6fd6"><rect x="3" y="5" width="21" height="3.4" rx="1.2"/><rect x="6" y="8" width="3.2" height="14"/><rect x="17.8" y="8" width="3.2" height="14"/></svg></span><span class="nm">Japanese</span></div>
+        <div class="qd" id="qd_spelling"><span class="ring" style="border-color:#3b6fd6"><svg viewBox="0 0 27 27" fill="#3b6fd6"><path d="M5 4h17v3H5z"/><path d="M5 12h13v3H5z"/><path d="M5 20h15v3H5z"/></svg></span><span class="nm">Spelling</span></div>
       </div>
     </div>
   </div>
@@ -205,7 +205,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
       readingFirst:"Sam - Reading Day 1 - Decoding Multisyllabic Words.html",
       scienceFirst:"Sam - Science Day 1 - Sorting Materials.html",
       socialFirst:"Sam - Social Studies Day 1 - Map Directions.html",
-      japaneseFirst:"Sam - Japanese Day 1 - Numbers 1 to 10.html",
+      spellingFirst:"Sam - Spelling Day 3 - Week 1 Words.html",
       week1:[
         {day:'Day 1', cells:[
           {sub:'math', code:'2.NBT.A.1', title:'Place Value Mastery', file:'Sam - Math - Place Value Mastery.html'},
@@ -220,7 +220,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
         {day:'Day 3', cells:[
           {sub:'math', code:'2.NBT.A.3', title:'Counting Within 1000', file:'Sam - Math - Counting Within 1000.html'},
           {sub:'reading', code:'2.RF.1.A.a', title:'Sentences Into Paragraphs', file:'Sam - Reading Day 3 - Sentences Into Paragraphs.html'},
-          {sub:'japanese', code:'JP.G2.D1', title:'Numbers 1 to 10', file:'Sam - Japanese Day 1 - Numbers 1 to 10.html'}
+          {sub:'spelling', code:'2.L.1.B.f', title:'Week 1 Spelling Words', file:'Sam - Spelling Day 3 - Week 1 Words.html'}
         ]},
         {day:'Day 4', cells:[
           {sub:'math', code:'2.NBT.A.4', title:'Reading and Writing Numbers to 1000', file:'Sam - Math - Reading and Writing Numbers to 1000.html'},
@@ -249,7 +249,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
       readingFirst:"Amelia - Reading Day 1 - Prefixes and Suffixes.html",
       scienceFirst:"Amelia - Science Day 1 - Forces and Motion.html",
       socialFirst:"Amelia - Social Studies Day 1 - Map Grids.html",
-      japaneseFirst:"Amelia - Japanese Day 1 - Colors.html",
+      spellingFirst:"Amelia - Spelling Day 3 - Week 1 Words.html",
       week1:[
         {day:'Day 1', cells:[
           {sub:'math', code:'3.NBT.A.1', title:'Rounding Numbers', file:'Amelia - Math Day 1 - Rounding Numbers.html'},
@@ -264,7 +264,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
         {day:'Day 3', cells:[
           {sub:'math', code:'3.NBT.A.3', title:'Fluent Within 1000', file:'Amelia - Math - Fluent Within 1000.html'},
           {sub:'reading', code:'3.R.1.A.b', title:'Draw Conclusions with Evidence', file:'Amelia - Reading Day 3 - Draw Conclusions with Evidence.html'},
-          {sub:'japanese', code:'JP.G3.D1', title:'Colors', file:'Amelia - Japanese Day 1 - Colors.html'}
+          {sub:'spelling', code:'3.L.1.B.h', title:'Week 1 Compound Words', file:'Amelia - Spelling Day 3 - Week 1 Words.html'}
         ]},
         {day:'Day 4', cells:[
           {sub:'math', code:'3.NBT.A.4', title:'Multiply by Multiples of 10', file:'Amelia - Math Day 4 - Multiply by Multiples of 10.html'},
@@ -293,7 +293,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
       readingFirst:"Julie - Reading Day 1 - Citing Evidence.html",
       scienceFirst:"Julie - Science Day 1 - Force Mass and Motion.html",
       socialFirst:"Julie - Social Studies Day 1 - Three Branches.html",
-      japaneseFirst:"Julie - Japanese Day 1 - Days of the Week.html",
+      spellingFirst:"Julie - Spelling Day 3 - Week 1 Words.html",
       week1:[
         {day:'Day 1', cells:[
           {sub:'math', code:'8.NS.A.1a', title:'Rational vs Irrational', file:'Julie - Math Day 1 - Rational vs Irrational.html'},
@@ -308,7 +308,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
         {day:'Day 3', cells:[
           {sub:'math', code:'8.NS.A.1c', title:'Convert Repeating Decimals to Fractions', file:'Julie - Math Day 3 - Convert Repeating Decimals to Fractions.html'},
           {sub:'reading', code:'8.RL.1.D', title:'Theme and Its Development', file:'Julie - Reading Day 3 - Theme and Its Development.html'},
-          {sub:'japanese', code:'JP.G8.D1', title:'Days of the Week', file:'Julie - Japanese Day 1 - Days of the Week.html'}
+          {sub:'spelling', code:'8.W.3.A.c', title:'Week 1 Spelling Words', file:'Julie - Spelling Day 3 - Week 1 Words.html'}
         ]},
         {day:'Day 4', cells:[
           {sub:'math', code:'8.NS.A.1d', title:'Equivalent Representations of Rationals', file:'Julie - Math Day 4 - Equivalent Representations of Rationals.html'},
@@ -324,14 +324,14 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
     }
   };
 
-  var SUB_LABEL={math:'Math',reading:'Reading',science:'Science',social:'Social Studies',japanese:'Japanese'};
-  var SUB_COL={math:'#e8731c',reading:'#8a44c0',science:'#0f9488',social:'#c43c6b',japanese:'#3b6fd6'};
+  var SUB_LABEL={math:'Math',reading:'Reading',science:'Science',social:'Social Studies',spelling:'Spelling'};
+  var SUB_COL={math:'#e8731c',reading:'#8a44c0',science:'#0f9488',social:'#c43c6b',spelling:'#3b6fd6'};
   var SUB_ICON={
     math:'<svg viewBox="0 0 27 27"><rect x="3" y="3" width="9" height="9" rx="2"/><rect x="15" y="3" width="9" height="9" rx="2" opacity=".6"/><rect x="3" y="15" width="9" height="9" rx="2" opacity=".6"/><rect x="15" y="15" width="9" height="9" rx="2"/></svg>',
     reading:'<svg viewBox="0 0 27 27"><path d="M4 5h8v17H4z"/><path d="M15 5h8v17h-8z" opacity=".6"/></svg>',
     science:'<svg viewBox="0 0 27 27"><path d="M10 3h7v6l5 12a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3l5-12z"/></svg>',
     social:'<svg viewBox="0 0 27 27"><circle cx="13.5" cy="13.5" r="10.5"/><path d="M3 13.5h21M13.5 3c4.5 4 4.5 17 0 21M13.5 3c-4.5 4-4.5 17 0 21" stroke="#fff" stroke-width="1.5" fill="none" opacity=".85"/></svg>',
-    japanese:'<svg viewBox="0 0 27 27"><rect x="3" y="5" width="21" height="3.4" rx="1.2"/><rect x="6" y="8" width="3.2" height="14"/><rect x="17.8" y="8" width="3.2" height="14"/></svg>'
+    spelling:'<svg viewBox="0 0 27 27"><path d="M5 4h17v3H5z"/><path d="M5 12h13v3H5z"/><path d="M5 20h15v3H5z"/></svg>'
   };
   var C=2*Math.PI*24;
 
@@ -411,7 +411,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid va
     {key:'reading',  label:'Reading',        link:data.readingIndex || data.readingFirst},
     {key:'science',  label:'Science',        link:data.scienceFirst},
     {key:'social',   label:'Social Studies', link:data.socialFirst},
-    {key:'japanese', label:'Japanese',       link:data.japaneseFirst}
+    {key:'spelling', label:'Spelling',       link:data.spellingFirst}
   ];
   var grid=document.getElementById('subjectGrid');
   SUBJECTS.forEach(function(s,i){

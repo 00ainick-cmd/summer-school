@@ -277,12 +277,50 @@ section.band+section.band{border-top:1px solid var(--line);}
 .save-btn.loading .loading-label{display:inline;}
 .save-btn .loading-label{display:none;}
 @keyframes spin{to{transform:rotate(360deg);}}
+.setup-after{margin-top:18px;font-size:14.5px;color:var(--ink2);line-height:1.6;max-width:60ch;}
 
 /* footer */
 footer{margin-top:48px;padding:32px 0 56px;border-top:1px solid var(--line);text-align:center;}
 footer .ft-top{font-size:14.5px;color:var(--ink2);margin-bottom:8px;}
 footer .ft-bot{font-size:12.5px;color:var(--mut);max-width:60ch;margin:8px auto 0;line-height:1.6;}
 footer .sep{color:var(--line2);margin:0 8px;}
+
+/* =========================== STORYBRAND PROSE & LIST BLOCKS =========================== */
+.prose{max-width:62ch;}
+.prose p{font-size:17px;line-height:1.72;color:var(--ink2);margin-top:14px;}
+.prose p:first-child{margin-top:0;}
+.prose .prose-close{
+  font-family:'Fraunces',serif;font-style:italic;font-size:20px;
+  color:var(--ink);margin-top:22px;line-height:1.45;font-weight:500;
+}
+.band-problem{background:transparent;}
+.band-guide{background:transparent;}
+.band-stakes{background:rgba(19,40,74,.045);}
+.band-stakes .prose p{color:var(--ink);}
+.band-stakes .stakes-close{
+  font-family:'Fraunces',serif;font-style:italic;font-size:20px;
+  color:var(--ink);margin-top:20px;line-height:1.45;font-weight:600;
+}
+.band-success .success-list{list-style:none;display:flex;flex-direction:column;gap:18px;margin:8px 0 0;max-width:62ch;}
+.band-success .success-list li{
+  display:flex;gap:16px;align-items:flex-start;
+  font-size:17px;line-height:1.6;color:var(--ink);
+}
+.band-success .success-list .check{
+  flex:none;width:30px;height:30px;border-radius:50%;
+  background:var(--forest);color:#fffdf7;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;margin-top:1px;
+}
+.band-success .success-close{
+  font-family:'Fraunces',serif;font-style:italic;font-size:20px;
+  color:var(--terr2);margin-top:26px;line-height:1.5;max-width:62ch;font-weight:500;
+}
+@media(max-width:560px){
+  .prose p{font-size:16px;}
+  .prose .prose-close,.band-stakes .stakes-close,.band-success .success-close{font-size:18px;}
+  .band-success .success-list li{font-size:16px;}
+}
 
 /* =========================== ANIMATIONS =========================== */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
@@ -315,11 +353,11 @@ footer .sep{color:var(--line2);margin:0 8px;}
     <div class="hero-grid">
       <div class="hero-copy reveal">
         <div class="eyebrow"><span class="dot"></span>The Summer Learning Studio</div>
-        <h1>Summer learning your kid <span class="em">will actually do.</span></h1>
-        <p class="sub">A 10-week, mastery-based summer program aligned to Missouri State Standards. Built for kids in grades K through 8. Designed for short, focused sessions on a single device.</p>
+        <h1>Your kid is going to forget two months of school by August. <span class="em">Unless you do something about it.</span></h1>
+        <p class="sub">The Summer Learning Studio. A 10-week, mastery-based program for K through 8 kids, aligned to Missouri State Standards. Thirty minutes a day, Monday through Friday. By Labor Day, your kid is ahead.</p>
         <div class="hero-cta">
           <a href="#setup" class="btn primary large">Set up your family <span class="arr">&#8594;</span></a>
-          <a href="#how" class="btn ghost large">How it works</a>
+          <a href="#plan" class="btn ghost large">See how it works &#8595;</a>
         </div>
         <div class="hero-meta">
           <span>
@@ -449,79 +487,95 @@ footer .sep{color:var(--line2);margin:0 8px;}
   </div>
 </section>
 
-<!-- ============================================================== WHAT YOU BOUGHT -->
-<section class="band">
+<!-- ============================================================== PROBLEM -->
+<section class="band band-problem">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="dot"></span>What you bought</div>
-      <h2>A real curriculum, not a worksheet generator.</h2>
-      <p>Every lesson is built by hand. Aligned to Missouri State Standards. Designed to fit into a 30-minute slot after breakfast or before the pool.</p>
+      <div class="eyebrow"><span class="dot"></span>The problem</div>
+      <h2>Every summer, your kid forgets some of what they learned last year.</h2>
     </div>
-
-    <div class="props">
-      <div class="prop reveal">
-        <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3>10 weeks of content</h3>
-        <p>A new week unlocks every Sunday, June through August. No firehose. No bingeing the whole summer in one weekend.</p>
-      </div>
-
-      <div class="prop reveal">
-        <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <h3>Five subjects</h3>
-        <p>Math, reading, spelling, science, and social studies. Each one taught the way that subject is actually learned.</p>
-      </div>
-
-      <div class="prop reveal">
-        <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 11 13.03 19.97 8.79 15.73"/><polyline points="2 12 7 17"/></svg>
-        </div>
-        <h3>Mastery before moving on</h3>
-        <p>If a concept isn't sticking, the lesson stays open. We don't rush kids through standards they haven't earned yet.</p>
-      </div>
-
-      <div class="prop reveal">
-        <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <h3>Your data, your device</h3>
-        <p>Progress lives in your browser. Nothing uploaded. Nothing logged. Nothing for a breach to leak.</p>
-      </div>
+    <div class="prose reveal">
+      <p>It's called the summer slide. The average kid loses 1 to 3 months of academic progress between June and August. By the time school starts, they're behind themselves.</p>
+      <p>You've seen it. The frustration over the first homework assignment. The slow first weeks of fall. The teacher who says they're "getting back up to speed."</p>
+      <p>You've tried the obvious fixes. Workbooks gather dust. Drill apps train kids to click without thinking. Bribing them with screen time builds resentment.</p>
+      <p class="prose-close">There's a better way.</p>
     </div>
   </div>
 </section>
 
-<!-- ============================================================== HOW IT WORKS -->
-<section class="band" id="how">
+<!-- ============================================================== GUIDE -->
+<section class="band band-guide">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="dot"></span>How it works</div>
-      <h2>Three steps. Then 10 weeks.</h2>
-      <p>The setup below takes about two minutes. After that, your kid takes over.</p>
+      <div class="eyebrow"><span class="dot"></span>The guide</div>
+      <h2>Built by a parent. For parents.</h2>
+    </div>
+    <div class="prose reveal">
+      <p>The Summer Learning Studio was built for three real kids: a 2nd grader, a 3rd grader, and an 8th grader. Their dad couldn't find a summer program that taught actual mastery without becoming a daily fight. So he built one.</p>
+      <p>Every lesson is aligned to Missouri State Standards. Every concept gates on mastery, not seat time. Your kid doesn't finish a lesson by clicking through. They finish it by proving they understood it. Twice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== PLAN -->
+<section class="band band-plan" id="plan">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>The plan</div>
+      <h2>Three steps.</h2>
     </div>
 
     <div class="steps">
       <div class="step reveal">
         <div class="num">01</div>
         <div class="rule"></div>
-        <h3>You set up your family</h3>
-        <p>Add up to three kids and their grade levels. We'll route each kid to the right curriculum and remember who's who.</p>
+        <h3>Add your kids below</h3>
+        <p>Thirty seconds. Just name and grade for each one. Nothing else.</p>
       </div>
       <div class="step reveal">
         <div class="num">02</div>
         <div class="rule"></div>
-        <h3>Your kid does about 30 minutes a day</h3>
-        <p>One short lesson at a time. Most kids do two or three subjects a day. The dashboard tells them what's next.</p>
+        <h3>They do 30 minutes a day, Monday to Friday</h3>
+        <p>One short session. Math, reading, spelling, science, social studies. The dashboard tells them what's next.</p>
       </div>
       <div class="step reveal">
         <div class="num">03</div>
         <div class="rule"></div>
-        <h3>They show what they know</h3>
-        <p>A short mastery check ends each lesson. Pass it and the next one unlocks. The new week opens on Sunday.</p>
+        <h3>Mastery before they move on</h3>
+        <p>Each lesson ends with a check. Pass it and the next one unlocks. New content unlocks every Sunday.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== SUCCESS -->
+<section class="band band-success">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>By Labor Day</div>
+      <h2>Here's what's true.</h2>
+    </div>
+    <ul class="success-list reveal">
+      <li><span class="check">&#10003;</span> Your kid mastered 50 math standards aligned to next year's curriculum.</li>
+      <li><span class="check">&#10003;</span> They read and wrote every weekday for 10 weeks.</li>
+      <li><span class="check">&#10003;</span> They practiced real science thinking and real historical thinking.</li>
+      <li><span class="check">&#10003;</span> They built a spelling list of 100 words they actually know.</li>
+      <li><span class="check">&#10003;</span> They walk into the new grade ahead of their classmates, not catching up to them.</li>
+    </ul>
+    <p class="success-close reveal">You didn't have to teach. You didn't have to fight. You set them up. They did the work.</p>
+  </div>
+</section>
+
+<!-- ============================================================== STAKES -->
+<section class="band band-stakes">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>What's at stake</div>
+      <h2>What happens if you do nothing?</h2>
+    </div>
+    <div class="prose reveal">
+      <p>By August, your kid forgot 1 to 3 months of what they learned in May. They start the year behind their peers, then spend September scrambling to catch up while everyone else moves on. By October, they've started telling themselves "I'm just not good at math."</p>
+      <p class="stakes-close">That's the real cost of a summer off.</p>
     </div>
   </div>
 </section>
@@ -530,9 +584,9 @@ footer .sep{color:var(--line2);margin:0 8px;}
 <section class="band">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow"><span class="dot"></span>Before you set up your family</div>
-      <h2>Four things to know about how this works.</h2>
-      <p>Your kids' progress is saved on <b>this device, in this browser.</b> That's a feature, not a bug. Here's what it means for you:</p>
+      <div class="eyebrow"><span class="dot"></span>Privacy</div>
+      <h2>Your kids' data stays on your devices.</h2>
+      <p>Unlike every other learning program, The Summer Learning Studio doesn't store your kids' progress on our servers. It lives on your device, in your browser. Nothing to breach. Nothing to subscribe to. Nothing to log into.</p>
     </div>
 
     <div class="privacy-card reveal">
@@ -540,34 +594,34 @@ footer .sep{color:var(--line2);margin:0 8px;}
         <li>
           <div class="ck">&#10003;</div>
           <div class="body">
-            <b>Pick one device per kid and stick with it.</b>
-            <span>The iPad, the family laptop, whichever. Be consistent. Progress on Mom's phone does NOT show up on Dad's laptop.</span>
+            <b>Pick one device per kid and bookmark this page</b>
+            <span>The iPad, the family laptop, whichever. Be consistent. Progress on one device does not show up on another.</span>
           </div>
         </li>
         <li>
           <div class="ck">&#10003;</div>
           <div class="body">
-            <b>Bookmark this page right now.</b>
-            <span>This URL is how your family gets back in. There is no email reminder, because there is no account.</span>
+            <b>We'll remind you to back up weekly from your parent dashboard</b>
+            <span>One click downloads a backup file. Save it to your phone, drive, or email. If your device dies, the backup is your recovery.</span>
           </div>
         </li>
         <li>
           <div class="ck">&#10003;</div>
           <div class="body">
-            <b>Back up your progress weekly.</b>
-            <span>From your parent dashboard, click "Download backup." Save the file to your phone, drive, or email. If your iPad dies or you clear browser data, that backup is your recovery.</span>
+            <b>No accounts, no logins, no algorithms harvesting your kid's data</b>
+            <span>The Summer Learning Studio never asks for an email, password, or profile. There is nothing to log into because there is nothing on a server.</span>
           </div>
         </li>
         <li>
           <div class="ck">&#10003;</div>
           <div class="body">
-            <b>Switching devices? Just transfer the backup file.</b>
-            <span>Download from the old device, upload on the new one. Takes 30 seconds. No support ticket required.</span>
+            <b>10 weeks of access, all included</b>
+            <span>No subscriptions, no upsells, no ads. One flat program with everything in it.</span>
           </div>
         </li>
       </ul>
       <div class="privacy-quote">
-        Why so device-specific? Because your kids' data stays on YOUR devices, not on our servers. Better privacy, no logins, no risk of a data breach affecting your kids. Most online learning programs can't say that.
+        That's the whole maintenance.
       </div>
     </div>
   </div>
@@ -580,11 +634,11 @@ footer .sep{color:var(--line2);margin:0 8px;}
       <div class="setup-head">
         <div>
           <div class="eyebrow"><span class="dot"></span>Step 1 of 1</div>
-          <h2 style="margin-top:8px;">Add your kids</h2>
+          <h2 style="margin-top:8px;">Add your kids.</h2>
         </div>
         <div class="setup-progress"><span class="count" id="kidCount">1</span> of 3 added</div>
       </div>
-      <p class="intro">Name and grade for each kid. You can change these later from your parent dashboard.</p>
+      <p class="intro">Name and grade for each one. You can change these later from your parent dashboard.</p>
 
       <div id="migrationNotice" class="notice hide"></div>
 
@@ -608,6 +662,7 @@ footer .sep{color:var(--line2);margin:0 8px;}
             <span class="arr">&#8594;</span>
           </button>
         </div>
+        <p class="setup-after">Once you save, your family dashboard opens. Each kid gets their own page. Come back to this URL anytime to add another kid or check progress.</p>
       </form>
     </div>
   </div>
@@ -617,7 +672,7 @@ footer .sep{color:var(--line2);margin:0 8px;}
 <footer>
   <div class="wrap">
     <div class="ft-bot">
-      Self-paced curriculum.<span class="sep">&middot;</span>No subscriptions.<span class="sep">&middot;</span>No data leaves your device.<span class="sep">&middot;</span>10 weeks of access included.
+      The Summer Learning Studio.<span class="sep">&middot;</span>Self-paced.<span class="sep">&middot;</span>No subscriptions.<span class="sep">&middot;</span>10 weeks of access included.
     </div>
   </div>
 </footer>

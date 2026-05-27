@@ -4,133 +4,623 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Welcome to The Summer Learning Studio</title>
+<meta name="description" content="A 10-week, mastery-based summer learning program for kids in grades K through 8. Aligned to Missouri State Standards.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f3ec;--paper:#ffffff;--ink:#1d1a16;--ink2:#4f463c;--mut:#8c8275;
-  --line:#e2dccf;--accent:#2f5fd0;--accent2:#1f3d8a;--ok:#1f9d57;--warn:#a85d12;
-  --shade:#fbf8f1;
+  /* premium editorial palette: cream paper, deep navy as primary, terracotta accent, forest as success */
+  --bg:#f4eee2;
+  --paper:#fffdf7;
+  --ink:#15202b;
+  --ink2:#3d4a55;
+  --mut:#7a8189;
+  --line:#e4dccc;
+  --line2:#d4cab5;
+  --navy:#13284a;
+  --navy2:#0a1a30;
+  --terr:#b04a2e;
+  --terr2:#8b3820;
+  --terrSoft:#f1e0d7;
+  --gold:#b88a2d;
+  --forest:#2e6b46;
+  --shade:#fbf5e8;
+  --shade2:#f0e8d4;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;}
-body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(46vmax 36vmax at 90% -10%,rgba(47,95,208,.08),transparent 60%),radial-gradient(40vmax 34vmax at 8% 112%,rgba(31,157,87,.06),transparent 60%);}
-h1,h2,h3,.disp{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;}
-a{color:var(--accent);text-decoration:none;}
-a:hover{text-decoration:underline;}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
 
-.wrap{max-width:720px;margin:0 auto;padding:42px 20px 80px;}
-.kick{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);font-weight:600;}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:30px 28px;margin-top:18px;}
-.card h2{font-size:26px;margin-bottom:14px;}
-.card h3{font-size:20px;margin:18px 0 8px;}
-.card p{margin-bottom:12px;color:var(--ink2);}
-.checks{list-style:none;display:flex;flex-direction:column;gap:14px;margin:18px 0;}
-.checks li{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--shade);border:1px solid var(--line);border-radius:10px;}
-.checks .ck{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-top:1px;}
+/* layered atmospheric background: drifting gradients + paper noise */
+.bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.42;will-change:transform;}
+.bg-art .b1{width:60vmax;height:60vmax;top:-20vmax;right:-15vmax;background:radial-gradient(circle,rgba(19,40,74,.18),transparent 65%);animation:drift1 28s ease-in-out infinite;}
+.bg-art .b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,rgba(176,74,46,.13),transparent 65%);animation:drift2 34s ease-in-out infinite;}
+.bg-art .b3{width:35vmax;height:35vmax;top:40%;left:55%;background:radial-gradient(circle,rgba(184,138,45,.08),transparent 70%);animation:drift3 40s ease-in-out infinite;}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+
+h1,h2,h3,h4,.disp{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.015em;color:var(--ink);}
+p{color:var(--ink2);}
+a{color:var(--navy);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:rgba(19,40,74,.35);}
+a:hover{text-decoration-color:var(--navy);}
+:focus-visible{outline:3px solid var(--terr);outline-offset:3px;border-radius:4px;}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--terr);outline-offset:2px;}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+.eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--terr);font-weight:700;}
+.eyebrow .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--terr);vertical-align:middle;margin-right:8px;margin-top:-2px;}
+
+/* =========================== HERO =========================== */
+.hero{padding:56px 0 40px;position:relative;}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
+@media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:28px;}}
+
+.hero h1{
+  font-size:clamp(36px,5.8vw,56px);
+  line-height:1.02;
+  font-weight:700;
+  margin-top:14px;
+  color:var(--ink);
+}
+.hero h1 .em{font-style:italic;font-family:'Fraunces',serif;color:var(--terr);font-weight:500;}
+.hero .sub{
+  margin-top:18px;
+  font-size:clamp(17px,1.6vw,19.5px);
+  color:var(--ink2);
+  max-width:48ch;
+  line-height:1.55;
+}
+.hero-cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.hero-meta{margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;color:var(--mut);font-size:13.5px;font-weight:500;}
+.hero-meta span{display:inline-flex;align-items:center;gap:7px;}
+.hero-meta svg{flex:none;color:var(--forest);}
+
+/* CTA buttons */
+.btn{
+  font-family:'Inter',sans-serif;font-weight:600;font-size:16px;
+  border:none;border-radius:8px;padding:14px 24px;min-height:50px;
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  text-decoration:none;
+}
+.btn.primary{background:var(--navy);color:#fffdf7;box-shadow:0 1px 0 rgba(255,255,255,.15) inset, 0 4px 14px -4px rgba(19,40,74,.4);}
+.btn.primary:hover{background:var(--navy2);transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.15) inset, 0 8px 22px -6px rgba(19,40,74,.5);}
+.btn.primary:active{transform:translateY(0);}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line2);}
+.btn.ghost:hover{border-color:var(--navy);color:var(--navy);background:rgba(19,40,74,.04);}
+.btn.terra{background:var(--terr);color:#fffdf7;box-shadow:0 1px 0 rgba(255,255,255,.15) inset, 0 4px 14px -4px rgba(176,74,46,.45);}
+.btn.terra:hover{background:var(--terr2);transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.15) inset, 0 8px 22px -6px rgba(176,74,46,.55);}
+.btn.large{padding:17px 28px;font-size:17px;min-height:56px;}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.btn .arr{transition:transform .2s ease;}
+.btn:hover .arr{transform:translateX(3px);}
+
+/* hero SVG art */
+.hero-art{position:relative;display:flex;justify-content:center;align-items:center;}
+.hero-art svg{width:100%;max-width:480px;height:auto;display:block;}
+
+/* =========================== SECTIONS =========================== */
+section.band{padding:48px 0;position:relative;}
+section.band+section.band{border-top:1px solid var(--line);}
+.section-head{margin-bottom:32px;max-width:680px;}
+.section-head h2{font-size:clamp(28px,3.4vw,36px);line-height:1.1;margin-top:10px;font-weight:600;}
+.section-head p{margin-top:12px;font-size:17px;color:var(--ink2);max-width:55ch;}
+
+/* value props grid */
+.props{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media(max-width:880px){.props{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.props{grid-template-columns:1fr;}}
+.prop{
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:24px 22px;display:flex;flex-direction:column;gap:12px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  position:relative;overflow:hidden;
+}
+.prop:hover{transform:translateY(-3px);box-shadow:0 14px 32px -18px rgba(19,40,74,.25);border-color:var(--line2);}
+.prop .ic{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--shade);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--navy);flex:none;
+}
+.prop:nth-child(2) .ic{color:var(--terr);background:var(--terrSoft);border-color:#e4cdc1;}
+.prop:nth-child(3) .ic{color:var(--forest);background:#e3efe7;border-color:#c5dccd;}
+.prop:nth-child(4) .ic{color:var(--gold);background:#f4ead0;border-color:#e0d2ab;}
+.prop h3{font-size:18px;font-weight:600;line-height:1.25;}
+.prop p{font-size:14.5px;color:var(--ink2);line-height:1.55;}
+
+/* how-it-works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+@media(max-width:760px){.steps{grid-template-columns:1fr;}}
+.step{
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:28px 26px;position:relative;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.step:hover{transform:translateY(-3px);box-shadow:0 14px 32px -18px rgba(19,40,74,.22);}
+.step .num{
+  font-family:'Fraunces',serif;font-weight:600;font-size:48px;line-height:1;
+  color:var(--terr);opacity:.95;letter-spacing:-.03em;
+}
+.step h3{font-size:20px;margin-top:14px;font-weight:600;}
+.step p{margin-top:8px;font-size:15px;color:var(--ink2);}
+.step .rule{height:2px;width:36px;background:var(--terr);margin:14px 0 0;border-radius:2px;}
+
+/* device / privacy checks */
+.privacy-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:36px 32px;
+  position:relative;overflow:hidden;
+}
+@media(max-width:560px){.privacy-card{padding:26px 22px;}}
+.privacy-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,var(--navy),var(--terr),var(--gold));
+}
+.privacy-card h3{font-size:22px;font-weight:600;}
+.privacy-card>p{margin-top:8px;color:var(--ink2);}
+.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0 0;}
+@media(max-width:680px){.checks{grid-template-columns:1fr;}}
+.checks li{display:flex;gap:14px;align-items:flex-start;padding:18px 18px;background:var(--shade);border:1px solid var(--line);border-radius:12px;}
+.checks .ck{flex:none;width:30px;height:30px;border-radius:50%;background:var(--forest);color:#fffdf7;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;margin-top:1px;}
 .checks .body{flex:1;}
-.checks .body b{display:block;font-weight:700;color:var(--ink);margin-bottom:4px;}
-.checks .body span{color:var(--ink2);font-size:15.5px;}
-.why{font-style:italic;color:var(--ink2);background:#f0eee6;border-left:3px solid var(--mut);padding:12px 16px;border-radius:0 8px 8px 0;font-family:'Fraunces',serif;font-size:16px;}
+.checks .body b{display:block;font-weight:700;color:var(--ink);margin-bottom:5px;font-size:15.5px;line-height:1.35;}
+.checks .body span{color:var(--ink2);font-size:14.5px;line-height:1.5;}
+.privacy-quote{
+  margin-top:24px;padding:18px 22px;background:var(--shade2);
+  border-left:3px solid var(--terr);border-radius:0 10px 10px 0;
+  font-family:'Fraunces',serif;font-style:italic;font-size:16.5px;color:var(--ink2);line-height:1.55;
+}
 
-.cta-row{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
-.cta{font-family:'Inter',sans-serif;font-weight:700;font-size:17px;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:14px 24px;min-height:50px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
-.cta:hover{background:var(--accent2);}
-.cta.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
-.cta.ghost:hover{background:var(--shade);}
+/* =========================== SETUP FORM =========================== */
+.setup{padding:48px 0 24px;}
+.setup-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:40px 36px;position:relative;overflow:hidden;
+  box-shadow:0 30px 60px -40px rgba(19,40,74,.25);
+}
+@media(max-width:560px){.setup-card{padding:28px 22px;border-radius:14px;}}
+.setup-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,var(--terr),var(--navy));
+}
+.setup-head{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:6px;}
+.setup-head h2{font-size:clamp(24px,3vw,30px);font-weight:600;}
+.setup-progress{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600;}
+.setup-progress .count{color:var(--navy);font-weight:700;}
+.setup-card>p.intro{color:var(--ink2);margin-top:4px;font-size:15.5px;max-width:55ch;}
 
-.kids-form{margin-top:8px;}
-.notice{background:#fff8e0;border:1px solid #ecdcb4;border-left:4px solid var(--warn);border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:15.5px;color:#5a4310;}
-.kid-row{display:grid;grid-template-columns:1fr 200px 40px;gap:12px;align-items:end;margin-bottom:14px;}
-@media(max-width:560px){.kid-row{grid-template-columns:1fr 130px 40px;gap:8px;}}
-.field{display:flex;flex-direction:column;gap:5px;}
-.field label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);}
-.field input,.field select{font-family:'Inter',sans-serif;font-size:17px;padding:11px 13px;border:1px solid var(--line);background:#fff;border-radius:8px;color:var(--ink);min-height:46px;}
-.field input:hover,.field select:hover{border-color:var(--accent);}
-.remove-btn{background:#fff;border:1px solid var(--line);border-radius:8px;width:40px;height:46px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--mut);cursor:pointer;align-self:end;}
-.remove-btn:hover{border-color:#c33;color:#c33;}
-.add-btn{background:transparent;border:2px dashed var(--line);color:var(--accent);font-family:'Inter';font-weight:600;font-size:15px;padding:12px 16px;border-radius:10px;cursor:pointer;width:100%;min-height:46px;margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
-.add-btn:hover{border-color:var(--accent);background:#f0f5ff;}
-.errors{color:#c33;font-size:14px;margin-top:8px;min-height:18px;}
+.notice{background:#fff4d6;border:1px solid #e9d9a5;border-left:4px solid var(--gold);border-radius:8px;padding:14px 18px;margin:18px 0 0;font-size:15px;color:#5a4310;}
+.notice b{color:#3a2c0a;}
+.heads-up{display:flex;align-items:flex-start;gap:10px;margin-top:14px;padding:12px 14px;background:var(--shade);border:1px dashed var(--line2);border-radius:10px;font-size:14px;color:var(--ink2);}
+.heads-up b{color:var(--ink);}
+.heads-up svg{flex:none;color:var(--terr);margin-top:1px;}
 
+.kids-form{margin-top:22px;}
+.kid-card{
+  background:var(--shade);border:1px solid var(--line);border-radius:14px;
+  padding:22px 20px;margin-bottom:14px;
+  position:relative;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.kid-card:focus-within{border-color:var(--navy);box-shadow:0 0 0 4px rgba(19,40,74,.06);background:var(--paper);}
+.kid-card .row-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;}
+.kid-card .row-label{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--terr);font-weight:700;}
+.remove-btn{
+  background:transparent;border:1px solid transparent;border-radius:8px;
+  width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;
+  color:var(--mut);cursor:pointer;font-size:18px;line-height:1;
+  transition:all .15s ease;
+}
+.remove-btn:hover{background:#fbeceb;color:#b3261e;border-color:#f0c8c4;}
+.remove-btn:focus-visible{outline:3px solid var(--terr);outline-offset:2px;}
+
+.kid-grid{display:grid;grid-template-columns:1fr 220px;gap:14px;align-items:end;}
+@media(max-width:540px){.kid-grid{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ink2);}
+.field input,.field select{
+  font-family:'Inter',sans-serif;font-size:17px;
+  padding:13px 14px;border:1.5px solid var(--line2);background:#fffdf7;
+  border-radius:10px;color:var(--ink);min-height:50px;
+  transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.field input::placeholder{color:#a59f93;}
+.field input:hover,.field select:hover{border-color:var(--navy);}
+.field input:focus,.field select:focus{border-color:var(--navy);box-shadow:0 0 0 4px rgba(19,40,74,.1);outline:none;}
+.field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3 5l4 4 4-4' stroke='%2313284a' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;cursor:pointer;}
+
+.preview-chip{
+  display:none;margin-top:14px;padding:10px 14px;
+  background:var(--paper);border:1px dashed var(--terr);border-radius:999px;
+  font-family:'Fraunces',serif;font-style:italic;font-size:15.5px;color:var(--terr2);
+  align-items:center;gap:8px;width:fit-content;
+  animation:chip-in .3s ease;
+}
+.preview-chip.show{display:inline-flex;}
+.preview-chip svg{flex:none;}
+@keyframes chip-in{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+
+.add-btn{
+  background:transparent;border:1.5px dashed var(--line2);
+  color:var(--navy);font-family:'Inter';font-weight:600;font-size:15px;
+  padding:14px 18px;border-radius:12px;cursor:pointer;width:100%;min-height:50px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .15s ease;margin-top:6px;
+}
+.add-btn:hover:not(:disabled){border-color:var(--navy);background:rgba(19,40,74,.04);}
+.add-btn:disabled{opacity:.45;cursor:not-allowed;}
+.add-btn .plus{width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fffdf7;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;line-height:1;}
+
+.errors{color:#b3261e;font-size:14px;margin-top:14px;min-height:18px;font-weight:500;}
+
+.form-cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.save-btn{flex:1;min-width:200px;}
+@media(max-width:540px){.save-btn{width:100%;}}
+.save-btn.loading{pointer-events:none;}
+.save-btn .spinner{display:none;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fffdf7;border-radius:50%;animation:spin .7s linear infinite;}
+.save-btn.loading .spinner{display:inline-block;}
+.save-btn.loading .arr,.save-btn.loading .save-label{display:none;}
+.save-btn.loading .loading-label{display:inline;}
+.save-btn .loading-label{display:none;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* footer */
+footer{margin-top:48px;padding:32px 0 56px;border-top:1px solid var(--line);text-align:center;}
+footer .ft-top{font-size:14.5px;color:var(--ink2);margin-bottom:8px;}
+footer .ft-bot{font-size:12.5px;color:var(--mut);max-width:60ch;margin:8px auto 0;line-height:1.6;}
+footer .sep{color:var(--line2);margin:0 8px;}
+
+/* =========================== ANIMATIONS =========================== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* reduced motion fallback */
+@media (prefers-reduced-motion:reduce){
+  .bg-art .blob{animation:none!important;}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important;}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  .btn:hover,.prop:hover,.step:hover{transform:none!important;}
+}
+
+/* tiny utility */
 .hide{display:none!important;}
-footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
-
-.reveal{opacity:0;transform:translateY(10px);animation:rise .5s ease forwards;animation-delay:var(--d,0s);}
-@keyframes rise{to{opacity:1;transform:none;}}
-@media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}*{transition:none!important;}}
+.muted{color:var(--mut);}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="reveal" style="--d:0s">
-    <div class="kick">The Summer Learning Studio</div>
-    <h1 style="font-size:clamp(32px,6vw,46px);font-weight:600;line-height:1.05;margin-top:6px;">Welcome aboard.</h1>
-    <p style="color:var(--ink2);margin-top:10px;font-size:18px;">Two minutes to set up. Then your kids can start learning.</p>
-  </div>
 
-  <section id="step1" class="card reveal" style="--d:.05s">
-    <h2>Before you set up your family</h2>
-    <p>Your kids' progress is saved on <b>this device, in this browser</b>. Here's what you need to know:</p>
-    <ul class="checks">
-      <li>
-        <div class="ck">&#10003;</div>
-        <div class="body">
-          <b>Pick one device per kid and stick with it.</b>
-          <span>The iPad, the family laptop, whichever. Be consistent. Progress on Mom's phone does NOT show up on Dad's laptop.</span>
-        </div>
-      </li>
-      <li>
-        <div class="ck">&#10003;</div>
-        <div class="body">
-          <b>Bookmark this page right now.</b>
-          <span>This URL is how your family gets back in.</span>
-        </div>
-      </li>
-      <li>
-        <div class="ck">&#10003;</div>
-        <div class="body">
-          <b>Back up your progress weekly.</b>
-          <span>From your parent dashboard, click "Download backup." Save the file to your phone, drive, or email. If your iPad dies or you clear browser data, that backup is your recovery.</span>
-        </div>
-      </li>
-      <li>
-        <div class="ck">&#10003;</div>
-        <div class="body">
-          <b>Switching devices? Just transfer the backup file.</b>
-          <span>Download from the old device, upload on the new one. Takes 30 seconds.</span>
-        </div>
-      </li>
-    </ul>
-    <div class="why">Why so device-specific? Because your kids' data stays on YOUR devices, not on our servers. Better privacy, no logins, no risk of a data breach affecting your kids. Most online learning programs can't say that.</div>
-    <div class="cta-row">
-      <button class="cta" id="toStep2">Got it, let's add my kids &#8594;</button>
-    </div>
-  </section>
-
-  <section id="step2" class="card reveal hide" style="--d:0s">
-    <h2>Add your kids</h2>
-    <p>Name and grade for each one. You can change these later from your parent dashboard.</p>
-    <div id="migrationNotice" class="notice hide"></div>
-    <p style="font-size:14px;color:var(--mut);margin-top:6px;"><b>Heads up:</b> grades 2, 3, and 8 are ready to go right now. Other grades show as "coming soon" and will activate as we build them.</p>
-
-    <form class="kids-form" id="kidsForm" autocomplete="off">
-      <div id="kidsList"></div>
-      <button type="button" class="add-btn" id="addKid">+ Add another kid</button>
-      <div class="errors" id="formErr" role="alert"></div>
-      <div class="cta-row">
-        <button type="submit" class="cta">Save and start &#8594;</button>
-        <button type="button" class="cta ghost" id="backBtn">&#8592; Back</button>
-      </div>
-    </form>
-  </section>
-
-  <footer>Your data stays on this device. The Summer Learning Studio.</footer>
+<div class="bg-art" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
 </div>
+
+<!-- ============================================================== HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="dot"></span>The Summer Learning Studio</div>
+        <h1>Summer learning your kid <span class="em">will actually do.</span></h1>
+        <p class="sub">A 10-week, mastery-based summer program aligned to Missouri State Standards. Built for kids in grades K through 8. Designed for short, focused sessions on a single device.</p>
+        <div class="hero-cta">
+          <a href="#setup" class="btn primary large">Set up your family <span class="arr">&#8594;</span></a>
+          <a href="#how" class="btn ghost large">How it works</a>
+        </div>
+        <div class="hero-meta">
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            No accounts, no logins
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Lifetime access for this summer
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Data stays on your device
+          </span>
+        </div>
+      </div>
+
+      <!-- HERO ART: "Mastery Ladder" - geometric stacked cards rising at different heights, one per week -->
+      <div class="hero-art reveal" aria-hidden="true">
+        <svg viewBox="0 0 480 440" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="paperG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fffdf7"/>
+              <stop offset="1" stop-color="#f6eed9"/>
+            </linearGradient>
+            <linearGradient id="navyG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1c3a68"/>
+              <stop offset="1" stop-color="#13284a"/>
+            </linearGradient>
+            <linearGradient id="terrG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#c95a3e"/>
+              <stop offset="1" stop-color="#a34025"/>
+            </linearGradient>
+            <linearGradient id="goldG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d4a347"/>
+              <stop offset="1" stop-color="#b88a2d"/>
+            </linearGradient>
+            <linearGradient id="forestG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3d8a5c"/>
+              <stop offset="1" stop-color="#2e6b46"/>
+            </linearGradient>
+          </defs>
+
+          <!-- soft drifting ambient circle -->
+          <circle cx="380" cy="60" r="50" fill="#b88a2d" opacity=".10"/>
+          <circle cx="60" cy="370" r="65" fill="#13284a" opacity=".06"/>
+
+          <!-- ground rule -->
+          <line x1="30" y1="400" x2="450" y2="400" stroke="#d4cab5" stroke-width="1.5" stroke-dasharray="3 5"/>
+
+          <!-- WEEK COLUMNS rising in a staircase mastery ladder. 10 weeks. Heights tell the growth story. -->
+          <!-- Each column: paper bar with a colored "completed" cap. -->
+          <g>
+            <!-- W1 -->
+            <rect x="44" y="360" width="32" height="40" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="44" y="360" width="32" height="10" rx="3" fill="url(#terrG)"/>
+            <text x="60" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">1</text>
+
+            <!-- W2 -->
+            <rect x="84" y="335" width="32" height="65" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="84" y="335" width="32" height="10" rx="3" fill="url(#terrG)"/>
+            <text x="100" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">2</text>
+
+            <!-- W3 -->
+            <rect x="124" y="305" width="32" height="95" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="124" y="305" width="32" height="10" rx="3" fill="url(#goldG)"/>
+            <text x="140" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">3</text>
+
+            <!-- W4 -->
+            <rect x="164" y="275" width="32" height="125" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="164" y="275" width="32" height="10" rx="3" fill="url(#goldG)"/>
+            <text x="180" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">4</text>
+
+            <!-- W5 -->
+            <rect x="204" y="245" width="32" height="155" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="204" y="245" width="32" height="10" rx="3" fill="url(#forestG)"/>
+            <text x="220" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">5</text>
+
+            <!-- W6 -->
+            <rect x="244" y="215" width="32" height="185" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="244" y="215" width="32" height="10" rx="3" fill="url(#forestG)"/>
+            <text x="260" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">6</text>
+
+            <!-- W7 -->
+            <rect x="284" y="185" width="32" height="215" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="284" y="185" width="32" height="10" rx="3" fill="url(#navyG)"/>
+            <text x="300" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">7</text>
+
+            <!-- W8 -->
+            <rect x="324" y="155" width="32" height="245" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="324" y="155" width="32" height="10" rx="3" fill="url(#navyG)"/>
+            <text x="340" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">8</text>
+
+            <!-- W9 -->
+            <rect x="364" y="125" width="32" height="275" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="364" y="125" width="32" height="10" rx="3" fill="url(#navyG)"/>
+            <text x="380" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">9</text>
+
+            <!-- W10 - the peak, crowned -->
+            <rect x="404" y="90" width="32" height="310" rx="3" fill="url(#paperG)" stroke="#d4cab5" stroke-width="1"/>
+            <rect x="404" y="90" width="32" height="14" rx="3" fill="url(#navyG)"/>
+            <text x="420" y="418" font-family="Inter,sans-serif" font-size="9" font-weight="700" fill="#7a8189" text-anchor="middle" letter-spacing="1">10</text>
+
+            <!-- crown / star at the top of W10 -->
+            <g transform="translate(420 70)">
+              <polygon points="0,-14 4,-4 14,-4 6,3 9,13 0,7 -9,13 -6,3 -14,-4 -4,-4" fill="url(#terrG)"/>
+            </g>
+          </g>
+
+          <!-- subject dot legend in the upper-left -->
+          <g transform="translate(36 38)">
+            <text x="0" y="0" font-family="Fraunces,serif" font-size="13" font-weight="600" fill="#15202b" font-style="italic">10 weeks. Mastery before moving on.</text>
+            <g transform="translate(0 18)">
+              <circle cx="6" cy="0" r="4" fill="url(#terrG)"/>
+              <text x="16" y="3" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#3d4a55" letter-spacing="1">Foundations</text>
+              <circle cx="100" cy="0" r="4" fill="url(#goldG)"/>
+              <text x="110" y="3" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#3d4a55" letter-spacing="1">Build</text>
+              <circle cx="160" cy="0" r="4" fill="url(#forestG)"/>
+              <text x="170" y="3" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#3d4a55" letter-spacing="1">Apply</text>
+              <circle cx="225" cy="0" r="4" fill="url(#navyG)"/>
+              <text x="235" y="3" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#3d4a55" letter-spacing="1">Mastery</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== WHAT YOU BOUGHT -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>What you bought</div>
+      <h2>A real curriculum, not a worksheet generator.</h2>
+      <p>Every lesson is built by hand. Aligned to Missouri State Standards. Designed to fit into a 30-minute slot after breakfast or before the pool.</p>
+    </div>
+
+    <div class="props">
+      <div class="prop reveal">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>10 weeks of content</h3>
+        <p>A new week unlocks every Sunday, June through August. No firehose. No bingeing the whole summer in one weekend.</p>
+      </div>
+
+      <div class="prop reveal">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>Five subjects</h3>
+        <p>Math, reading, science, social studies, and a little Japanese. Each one taught the way that subject is actually learned.</p>
+      </div>
+
+      <div class="prop reveal">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 11 13.03 19.97 8.79 15.73"/><polyline points="2 12 7 17"/></svg>
+        </div>
+        <h3>Mastery before moving on</h3>
+        <p>If a concept isn't sticking, the lesson stays open. We don't rush kids through standards they haven't earned yet.</p>
+      </div>
+
+      <div class="prop reveal">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Your data, your device</h3>
+        <p>Progress lives in your browser. Nothing uploaded. Nothing logged. Nothing for a breach to leak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== HOW IT WORKS -->
+<section class="band" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>How it works</div>
+      <h2>Three steps. Then 10 weeks.</h2>
+      <p>The setup below takes about two minutes. After that, your kid takes over.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <div class="rule"></div>
+        <h3>You set up your family</h3>
+        <p>Add up to three kids and their grade levels. We'll route each kid to the right curriculum and remember who's who.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">02</div>
+        <div class="rule"></div>
+        <h3>Your kid does about 30 minutes a day</h3>
+        <p>One short lesson at a time. Most kids do two or three subjects a day. The dashboard tells them what's next.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03</div>
+        <div class="rule"></div>
+        <h3>They show what they know</h3>
+        <p>A short mastery check ends each lesson. Pass it and the next one unlocks. The new week opens on Sunday.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== PRIVACY / DEVICE -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Before you set up your family</div>
+      <h2>Four things to know about how this works.</h2>
+      <p>Your kids' progress is saved on <b>this device, in this browser.</b> That's a feature, not a bug. Here's what it means for you:</p>
+    </div>
+
+    <div class="privacy-card reveal">
+      <ul class="checks">
+        <li>
+          <div class="ck">&#10003;</div>
+          <div class="body">
+            <b>Pick one device per kid and stick with it.</b>
+            <span>The iPad, the family laptop, whichever. Be consistent. Progress on Mom's phone does NOT show up on Dad's laptop.</span>
+          </div>
+        </li>
+        <li>
+          <div class="ck">&#10003;</div>
+          <div class="body">
+            <b>Bookmark this page right now.</b>
+            <span>This URL is how your family gets back in. There is no email reminder, because there is no account.</span>
+          </div>
+        </li>
+        <li>
+          <div class="ck">&#10003;</div>
+          <div class="body">
+            <b>Back up your progress weekly.</b>
+            <span>From your parent dashboard, click "Download backup." Save the file to your phone, drive, or email. If your iPad dies or you clear browser data, that backup is your recovery.</span>
+          </div>
+        </li>
+        <li>
+          <div class="ck">&#10003;</div>
+          <div class="body">
+            <b>Switching devices? Just transfer the backup file.</b>
+            <span>Download from the old device, upload on the new one. Takes 30 seconds. No support ticket required.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="privacy-quote">
+        Why so device-specific? Because your kids' data stays on YOUR devices, not on our servers. Better privacy, no logins, no risk of a data breach affecting your kids. Most online learning programs can't say that.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== SETUP FORM -->
+<section class="setup" id="setup">
+  <div class="wrap">
+    <div class="setup-card reveal">
+      <div class="setup-head">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>Step 1 of 1</div>
+          <h2 style="margin-top:8px;">Add your kids</h2>
+        </div>
+        <div class="setup-progress"><span class="count" id="kidCount">1</span> of 3 added</div>
+      </div>
+      <p class="intro">Name and grade for each kid. You can change these later from your parent dashboard.</p>
+
+      <div id="migrationNotice" class="notice hide"></div>
+
+      <div class="heads-up">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div><b>Heads up:</b> grades 2, 3, and 8 are ready right now. Other grades show as "coming soon" and will activate as we finish building them.</div>
+      </div>
+
+      <form class="kids-form" id="kidsForm" autocomplete="off">
+        <div id="kidsList"></div>
+        <button type="button" class="add-btn" id="addKid">
+          <span class="plus">+</span> Add another kid
+        </button>
+        <div class="errors" id="formErr" role="alert" aria-live="polite"></div>
+
+        <div class="form-cta">
+          <button type="submit" class="btn terra large save-btn" id="saveBtn">
+            <span class="save-label">Save and start</span>
+            <span class="loading-label">Saving...</span>
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="arr">&#8594;</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">Questions? Email <a href="mailto:hello@summerlearningstudio.com">hello@summerlearningstudio.com</a></div>
+    <div class="ft-bot">
+      Self-paced curriculum.<span class="sep">&middot;</span>No subscriptions.<span class="sep">&middot;</span>No data leaves your device.<span class="sep">&middot;</span>Lifetime access for this summer.
+    </div>
+  </div>
+</footer>
 
 <script>
 (function(){
@@ -157,7 +647,7 @@ footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
 
   var app=load();
 
-  // ---- migration detection ----
+  // ---- legacy migration detection ----
   var legacy=[];
   var legacyMap={sam:{name:'Sam',grade:2},amelia:{name:'Amelia',grade:3},julie:{name:'Julie',grade:8}};
   ['sam','amelia','julie'].forEach(function(k){
@@ -165,37 +655,55 @@ footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
     if(hasProg){ legacy.push({legacyId:k,name:legacyMap[k].name,grade:legacyMap[k].grade}); }
   });
 
-  // ---- step navigation ----
-  var step1=document.getElementById('step1'), step2=document.getElementById('step2');
-  document.getElementById('toStep2').addEventListener('click',function(){
-    step1.classList.add('hide'); step2.classList.remove('hide');
-    window.scrollTo({top:0,behavior:'smooth'});
-  });
-  document.getElementById('backBtn').addEventListener('click',function(){
-    step2.classList.add('hide'); step1.classList.remove('hide');
-    window.scrollTo({top:0,behavior:'smooth'});
-  });
+  // ---- form state ----
+  var kids=[];
 
-  // ---- form ----
-  var kids=[];  // local working list
+  function updateCount(){
+    var filled=0;
+    kids.forEach(function(k){ if((k.name||'').trim()) filled++; });
+    var c=document.getElementById('kidCount');
+    if(c) c.textContent = Math.max(1, filled);
+  }
 
   function addRow(prefill){
     if(kids.length>=MAX_KIDS) return;
     var k=prefill||{name:'',grade:'',legacyId:null};
     kids.push(k); renderRows();
   }
-  function removeRow(i){ kids.splice(i,1); renderRows(); }
+  function removeRow(i){
+    if(kids.length<=1) return;
+    kids.splice(i,1); renderRows();
+  }
 
   function renderRows(){
     var box=document.getElementById('kidsList');
     box.innerHTML='';
     kids.forEach(function(k,i){
-      var row=document.createElement('div'); row.className='kid-row';
+      var card=document.createElement('div'); card.className='kid-card';
+
+      var head=document.createElement('div'); head.className='row-head';
+      var lbl=document.createElement('div'); lbl.className='row-label'; lbl.textContent='Kid '+(i+1);
+      head.appendChild(lbl);
+      if(kids.length>1){
+        var rm=document.createElement('button'); rm.type='button'; rm.className='remove-btn';
+        rm.setAttribute('aria-label','Remove kid '+(i+1));
+        rm.innerHTML='&times;';
+        rm.addEventListener('click',function(){ removeRow(i); });
+        head.appendChild(rm);
+      }
+      card.appendChild(head);
+
+      var grid=document.createElement('div'); grid.className='kid-grid';
+
       var nameField=document.createElement('div'); nameField.className='field';
-      var nameLabel=document.createElement('label'); nameLabel.textContent='Kid '+(i+1)+' name'; nameLabel.htmlFor='kn'+i;
+      var nameLabel=document.createElement('label'); nameLabel.textContent='First name'; nameLabel.htmlFor='kn'+i;
       var nameInput=document.createElement('input'); nameInput.type='text'; nameInput.id='kn'+i; nameInput.maxLength=24;
-      nameInput.placeholder='Their first name'; nameInput.value=k.name||'';
-      nameInput.addEventListener('input',function(){k.name=nameInput.value;});
+      nameInput.placeholder='First name only'; nameInput.value=k.name||'';
+      nameInput.addEventListener('input',function(){
+        k.name=nameInput.value;
+        updatePreview();
+        updateCount();
+      });
       nameField.appendChild(nameLabel); nameField.appendChild(nameInput);
 
       var gradeField=document.createElement('div'); gradeField.className='field';
@@ -214,15 +722,41 @@ footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
       sel.addEventListener('change',function(){k.grade=sel.value;});
       gradeField.appendChild(gradeLabel); gradeField.appendChild(sel);
 
-      var rm=document.createElement('button'); rm.type='button'; rm.className='remove-btn'; rm.setAttribute('aria-label','Remove kid '+(i+1));
-      rm.innerHTML='&times;';
-      rm.addEventListener('click',function(){ removeRow(i); });
+      grid.appendChild(nameField); grid.appendChild(gradeField);
+      card.appendChild(grid);
 
-      row.appendChild(nameField); row.appendChild(gradeField); row.appendChild(rm);
-      box.appendChild(row);
+      // live preview chip
+      var chip=document.createElement('div'); chip.className='preview-chip';
+      chip.id='chip'+i;
+      chip.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="chip-text"></span>';
+      card.appendChild(chip);
+
+      box.appendChild(card);
     });
-    document.getElementById('addKid').disabled=(kids.length>=MAX_KIDS);
-    document.getElementById('addKid').style.opacity=(kids.length>=MAX_KIDS)?'.5':'1';
+    var addBtn=document.getElementById('addKid');
+    addBtn.disabled=(kids.length>=MAX_KIDS);
+    addBtn.style.opacity=(kids.length>=MAX_KIDS)?'.5':'1';
+    if(kids.length>=MAX_KIDS){
+      addBtn.innerHTML='<span class="plus" style="background:var(--mut);">&#10003;</span> All 3 spots used';
+    } else {
+      addBtn.innerHTML='<span class="plus">+</span> Add another kid';
+    }
+    updatePreview();
+    updateCount();
+  }
+
+  function updatePreview(){
+    kids.forEach(function(k,i){
+      var chip=document.getElementById('chip'+i);
+      if(!chip) return;
+      var nm=(k.name||'').trim();
+      if(nm){
+        chip.classList.add('show');
+        chip.querySelector('.chip-text').textContent='Hi, '+nm+'! Ready for summer?';
+      } else {
+        chip.classList.remove('show');
+      }
+    });
   }
 
   // pre-populate from legacy data if found
@@ -255,6 +789,11 @@ footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
     if(errs.length){ errBox.textContent=errs.join(' '); return; }
     errBox.textContent='';
 
+    // Loading state on the button
+    var btn=document.getElementById('saveBtn');
+    btn.classList.add('loading');
+    btn.disabled=true;
+
     // Build new family structure
     var app=load();
     var now=new Date().toISOString();
@@ -262,7 +801,6 @@ footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
     var progressNew=app.progress||{};
     clean.forEach(function(k){
       var kid={id:makeKidId(k.name),name:k.name,grade:k.grade,addedAt:now};
-      // migrate legacy progress if applicable
       if(k.legacyId && app.progress && app.progress[k.legacyId]){
         progressNew[kid.id]=JSON.parse(JSON.stringify(app.progress[k.legacyId]));
       }
@@ -273,9 +811,29 @@ footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
     if(kidsOut.length>0) app.activeKid=kidsOut[0].id;
     save(app);
 
-    // Send to parent dashboard
-    location.href='parent.html';
+    // Brief delay so loading state is visible, then redirect
+    setTimeout(function(){
+      location.href='parent.html';
+    }, 380);
   });
+
+  // ---- intersection observer for scroll-reveal ----
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  } else if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
 })();
 </script>
 </body>

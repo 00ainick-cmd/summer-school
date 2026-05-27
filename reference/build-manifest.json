@@ -2,7 +2,7 @@
   "project": "Mastery summer program: 3 students, 5 subjects, 14 weeks. One standard = one atom = one lesson to mastery.",
   "generated": "2026-05-25",
   "week_1_status": "Complete. All 45 Week 1 slots wired (3 students x 5 days x 3 subjects: math, reading, enrichment rotation Sci/SS/Spelling/Sci/SS). 25 new lessons authored in this build; 20 carryover from prior batch. Spelling replaces Japanese on Day 3 in the paid product; the 3 Japanese lesson files remain in the repo as a side project (not surfaced in product UI).",
-  "data_model": "localStorage key 'edu.app'; progress[studentId][subjectKey][STANDARDCODE]={status,best,attempts,formA,formB,explain,pt,application,formAPassedAt,...}. studentId in sam/amelia/julie. subjectKey in math/reading/science/social/spelling. Pass = 7/8 on Form A then Form B (delayed, gated 24h on spelling). Supabase sync baked, no-op until keys set.",
+  "data_model": "localStorage key 'edu.app'; progress[studentId][subjectKey][STANDARDCODE]={status,best,attempts,formA,formB,formAPassedAt,passedAt,...}. The legacy 'explain' (free-text) and 'pt' / 'ptDone' / 'application' fields remain readable for backward compatibility but are no longer required and are not written by current lessons. studentId in sam/amelia/julie. subjectKey in math/reading/science/social/spelling. Pass = 7/8 on Form A then Form B (delayed, gated 24h on spelling). Status becomes 'passed' once both forms clear; the lesson then shows a mastery completion screen. Supabase sync baked, no-op until keys set.",
   "hard_rules": [
     "No em-dash or en-dash anywhere (grep U+2014 and U+2013 must be 0).",
     "One self-contained HTML file per lesson; only external dependency is Google Fonts.",
@@ -10,7 +10,7 @@
     "Objectives are the verbatim standard; design choices (title, recipe, aesthetic) are labeled as choices.",
     "AAA contrast, 44px tap targets, keyboard operable, honors reduced-motion.",
     "No fixed viewport heights; flexbox with min-height. Geometric SVG only, no cartoons.",
-    "Mastery is gated on auto-graded Form A (>=7/8) plus a delayed Form B (>=7/8). No learner self-rating UI. The written explanation and out-loud performance task are ungated; the PT rubric shows read-only as adult guidance.",
+    "Mastery is gated on auto-graded Form A (>=7/8) plus a delayed Form B (>=7/8). No learner self-rating UI. No open-ended free-text response, no parent-rubric performance task. The lesson is complete after Form B passes; show a 'mastery achieved' completion screen and return the kid to their dashboard.",
     "Save with a descriptive filename, no version numbers."
   ],
   "engine": {
@@ -18,7 +18,7 @@
     "entry": "build_module(cfg)",
     "fits": "Grade 2 (and grade-appropriate Grade 3) base-ten number work, via a hundreds/tens/ones block-builder manipulative.",
     "does_not_fit": "Grade 8 math, reading, science, social studies, Japanese; these need their own builders.",
-    "cfg_template": "build_sam_a2.py is the canonical CFG (about 88 lines). Required keys: file, student, sname, subject, subject_label, day(=code), grade, code, pass_mark, title, standard(verbatim), objectives[3], why, hook, predicts[3], guided_seed, synth, badge_line, bridge, reteach, warm[2], practice[6], retrieval[2], fade, formA[8], formB[8], explain, pt."
+    "cfg_template": "build_sam_a2.py is the canonical CFG (about 88 lines). Required keys: file, student, sname, subject, subject_label, day(=code), grade, code, pass_mark, title, standard(verbatim), objectives[3], why, hook, predicts[3], guided_seed, synth, badge_line, bridge, reteach, warm[2], practice[6], retrieval[2], fade, formA[8], formB[8]. (Legacy keys explain, pt are still accepted by older builders but the engine no longer emits Explain / Performance Task sections in lesson HTML.)"
   },
   "totals": {
     "math_atoms": 132,

@@ -97,6 +97,25 @@
   footer{text-align:center;margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
 </style>
+
+<!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
+<style id="mastery-done-styles">
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f9d6b); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Baloo 2', system-ui, sans-serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f9d6b); margin: 8px 0; }
+.mastery-msg { color: var(--ink2, #4a4566); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e8f7f0; border: 2px solid #bce6d8; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Baloo 2', system-ui, sans-serif; font-size: 32px; font-weight: 700; color: var(--good, #1f9d6b); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #4a4566); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #5a43d6); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #3f2bb0); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #5a43d6); outline-offset: 3px; }
+</style>
+
 </head>
 <body>
 <div class="bg" aria-hidden="true"></div>
@@ -137,6 +156,28 @@
   </section>
 
 <footer><span id="__sname">Sam</span> &middot; Science &middot; Day 1</footer>
+
+<!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
+<section id="masteryDone" class="mastery-complete" aria-live="polite">
+  <div class="mastery-card">
+    <div class="mastery-badge" aria-hidden="true">
+      <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+        <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>You did it!</h2>
+    <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+    <div class="mastery-stats">
+      <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+      <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+    </div>
+    <div class="mastery-cta">
+      <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+    </div>
+  </div>
+</section>
+
 </div>
 <script>
 (function(){
@@ -226,5 +267,20 @@
 
 })();
 </script>
+<!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
+<script id="mastery-done-wiring">
+(function(){
+  "use strict";
+  function getKidId(){ try { var qk = (location.search.match(/[?&]kid=([^&]+)/)||[])[1]; if (qk) return decodeURIComponent(qk); var ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); return ar.activeKid || ar.activeStudent || ''; } catch(e){} return ''; }
+  function setKidName(){ var src = document.getElementById('__sname'); if (!src) return; var name = (src.textContent||'').trim(); if (!name) return; document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent = name; }); }
+  function setBackHref(){ var a = document.getElementById('msBack'); if (!a) return; var kid = getKidId(); if (kid) a.href = 'dashboard.html?kid=' + encodeURIComponent(kid); }
+  function findRec(){ try { var ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); var prog = ar.progress || {}; var pick = null; for (var kid in prog) { var subs = prog[kid]; for (var subj in subs) { var byday = subs[subj]; for (var day in byday) { var r = byday[day]; if (!r || typeof r !== 'object') continue; if (!pick || (r.lastAt||0) >= (pick.lastAt||0)) pick = r; } } } return pick; } catch(e) { return null; } }
+  function passScore(v){ if (v == null) return 0; if (typeof v === 'number') return v; if (typeof v === 'object' && typeof v.score === 'number') return v.score; return 0; }
+  function showMastery(a, b){ var sec = document.getElementById('masteryDone'); if (!sec) return; setKidName(); setBackHref(); var ea = document.getElementById('msFormA'); if (ea && typeof a === 'number') ea.textContent = a + ' / 8'; var eb = document.getElementById('msFormB'); if (eb && typeof b === 'number') eb.textContent = b + ' / 8'; ['badge','donebox','notyetBox','cred','gateinfo','feelRate','confRate','planText','saveReflect','fbcard','ptsrow','rtitle','rmsg','retry','toFormB','scorebig','toWrap','finalSec','wrap','gate','aMsg','aStatus','bStatus','scoreAtxt','scoreBtxt','result'].forEach(function(id){ var e = document.getElementById(id); if (e) { e.classList && e.classList.add('hide'); e.style.display='none'; } }); sec.classList.add('show'); try { sec.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e) { window.scrollTo(0,0); } }
+  function poll(){ var r = findRec(); if (!r) return; var a = passScore(r.formA), b = passScore(r.formB); var aMet = a >= 7, bMet = b >= 7; if (aMet && bMet) { if (r.status !== 'passed') { try { var ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); var prog = ar.progress || {}; for (var k in prog) for (var s in prog[k]) for (var d in prog[k][s]) { var rr = prog[k][s][d]; if (rr && rr.lastAt === r.lastAt && passScore(rr.formA)===a && passScore(rr.formB)===b) { rr.status='passed'; rr.passedAt = rr.passedAt || Date.now(); } } localStorage.setItem('edu.app', JSON.stringify(ar)); } catch(e){} } showMastery(a, b); return; } if (r.status === 'passed' && a === 0 && b === 0) { var best = Math.round(((r.best||0)/100) * 8); showMastery(best, best); return; } var ba = r.bestA||0, bb = r.bestB||0; if (ba >= 7 && bb >= 7) { if (r.status !== 'passed') { try { var ar2 = JSON.parse(localStorage.getItem('edu.app')||'{}'); var prog2 = ar2.progress || {}; for (var k2 in prog2) for (var s2 in prog2[k2]) for (var d2 in prog2[k2][s2]) { var rr2 = prog2[k2][s2][d2]; if (rr2 && (rr2.bestA||0)===ba && (rr2.bestB||0)===bb) { rr2.status='passed'; rr2.passedAt = rr2.passedAt || Date.now(); } } localStorage.setItem('edu.app', JSON.stringify(ar2)); } catch(e){} } showMastery(ba, bb); } }
+  document.addEventListener('DOMContentLoaded', function(){ setKidName(); setBackHref(); setTimeout(poll, 60); setTimeout(poll, 400); document.addEventListener('click', function(){ setTimeout(poll, 200); }, true); document.addEventListener('visibilitychange', poll); window.addEventListener('storage', poll); });
+})();
+</script>
+
 </body>
 </html>

@@ -14,7 +14,7 @@ This bundle moves the e-learning build into Claude Code. It contains the lesson 
 - Objectives are the verbatim standard; design choices (title, recipe, aesthetic) are labeled as choices.
 - AAA contrast, 44px tap targets, keyboard operable, honors reduced-motion.
 - No fixed viewport heights; flexbox with min-height. Geometric SVG only, no cartoons.
-- Mastery is gated on auto-graded Form A (>=7/8) plus a delayed Form B (>=7/8). No learner self-rating UI. The written explanation and out-loud performance task are ungated; the PT rubric shows read-only as adult guidance.
+- Mastery is gated on auto-graded Form A (>=7/8) plus a delayed Form B (>=7/8). No learner self-rating UI. No open-ended free-text response, no parent-rubric performance task. The lesson is complete after Form B passes; show a "mastery achieved" completion screen and return the kid to their dashboard.
 - Save with a descriptive filename, no version numbers.
 ## The engine
 `module_engine.py` exposes `build_module(cfg)`. It fits Grade 2 and grade-appropriate Grade 3 base-ten number work (hundreds/tens/ones block builder). It does NOT fit Grade 8 math, reading, science, social studies, or Japanese; those need their own builders.
@@ -34,7 +34,7 @@ Note: `hub_builder.py` reads the curriculum at a hard-coded path. The source HTM
 - `node --check` on the concatenated `<script>` blocks parses.
 - Only external deps are Google Fonts.
 - `syncCloud()` appears 3 times; writes the correct `edu.app` slot.
-- No rating UI (`id="explainRate"|id="critRate"|>Met<|data-v="proficient"` all 0); `id="ptDone"` present.
+- No rating UI (`id="explainRate"|id="critRate"|>Met<|data-v="proficient"` all 0); `id="ptDone"` absent; `<textarea id="explainText"` absent; no rubric tables with parent-grading columns; no "Grown-up note" or "Parent note" callouts; a `#masteryDone` completion screen exists and is shown after Form A + Form B both pass.
 ## Next work, in order (Week 2 forward)
 1. Pull next-atom standards for the ladders Week 1 only scratched: Science D3+ each grade, Social Studies D3+ each grade, Japanese full ladder, Reading G3/G8 D6+.
 2. Sam math Week 2: enter U4 Foundations of Multiplication (2.RA.B.2a/b/c odd/even, 2.RA.B.3 arrays). Engine needs an equal-groups + array tool.

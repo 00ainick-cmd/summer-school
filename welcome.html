@@ -227,8 +227,9 @@ section.band+section.band{border-top:1px solid var(--line);}
 .remove-btn:hover{background:#fbeceb;color:#b3261e;border-color:#f0c8c4;}
 .remove-btn:focus-visible{outline:3px solid var(--terr);outline-offset:2px;}
 
-.kid-grid{display:grid;grid-template-columns:1fr 220px;gap:14px;align-items:end;}
-@media(max-width:540px){.kid-grid{grid-template-columns:1fr;}}
+.kid-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,200px);gap:14px;align-items:end;}
+.kid-grid > *{min-width:0;}
+@media(max-width:720px){.kid-grid{grid-template-columns:minmax(0,1fr);}}
 .field{display:flex;flex-direction:column;gap:6px;}
 .field label{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ink2);}
 .field input,.field select{
@@ -327,7 +328,7 @@ footer .sep{color:var(--line2);margin:0 8px;}
           </span>
           <span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Lifetime access for this summer
+            10 weeks of access, all included
           </span>
           <span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -615,9 +616,8 @@ footer .sep{color:var(--line2);margin:0 8px;}
 <!-- ============================================================== FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="ft-top">Questions? Email <a href="mailto:hello@summerlearningstudio.com">hello@summerlearningstudio.com</a></div>
     <div class="ft-bot">
-      Self-paced curriculum.<span class="sep">&middot;</span>No subscriptions.<span class="sep">&middot;</span>No data leaves your device.<span class="sep">&middot;</span>Lifetime access for this summer.
+      Self-paced curriculum.<span class="sep">&middot;</span>No subscriptions.<span class="sep">&middot;</span>No data leaves your device.<span class="sep">&middot;</span>10 weeks of access included.
     </div>
   </div>
 </footer>

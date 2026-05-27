@@ -179,7 +179,7 @@
         <tr><td>Find a paragraph</td><td>Points to a clear group of sentences.</td><td>Picks one sentence or a whole page.</td></tr>
         <tr><td>Topic sentence</td><td>Points to the sentence that tells the main idea.</td><td>Picks a detail sentence by mistake.</td></tr>
         <tr><td>Why they belong</td><td>Says all the sentences are about the same idea.</td><td>Cannot say why they are grouped.</td></tr></table>
-      <div class="gnote"><b>Grown-up note:</b> the rubric is for your eyes only. Pick a paragraph in a book about something Sam likes. Mark in your head, not on the page.</div>
+      <div class="gnote"><b>Grown-up note:</b> the rubric is for your eyes only. Pick a paragraph in a book about something <span class="__snameInline">Sam</span> likes. Mark in your head, not on the page.</div>
       <button class="cta go" id="ptDone">Done reading out loud</button>
     </div>
   </section>
@@ -212,13 +212,13 @@
     <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
   </section>
 
-  <footer>Sam · Reading · Day 3 · Standard 2.RF.1.A.a</footer>
+  <footer><span id="__sname">Sam</span> · Reading · Day 3 · Standard 2.RF.1.A.a</footer>
 </div>
 
 <script>
 (function(){
   "use strict";
-  var KEY='edu.app', STUDENT='sam', SUBJECT='reading', DAY='2.RF.1.A.a', SNAME='Sam';
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];if(!__rk)__rk=__ks.filter(function(x){return x.grade===2;})[0];if(!__rk&&__ks.length)__rk=__ks[0];if(!__rk)__rk={id:'sam',name:'Sam',grade:2};__ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='2.RF.1.A.a',SNAME=__rk.name,__LEGACY='Sam';document.addEventListener('DOMContentLoaded',function(){var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;var __ins=document.querySelectorAll('.__snameInline');for(var __i=0;__i<__ins.length;__i++){__ins[__i].textContent=SNAME;}});setTimeout(function(){try{if(typeof DATA==='object'&&DATA){if(DATA.EXPLAIN&&DATA.EXPLAIN.stem)DATA.EXPLAIN.stem=DATA.EXPLAIN.stem.replace(new RegExp('\\b'+__LEGACY+'\\b','g'),SNAME);}}catch(e){}},0);
   var PASS=7, QTIME=25;
   function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
   function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}

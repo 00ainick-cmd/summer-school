@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sam's Reading Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Reading Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -52,10 +52,10 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
 
 :root{--accent:#8a44c0;--accent2:#6f33a0;--accentbg:#f4eafb;}</style></head><body>
 <div class="wrap">
-  <div class="crumb"><a href="Sam - Home Dashboard (Grade 2).html">&#8592; Sam's hub</a><span>/</span><span>Reading</span></div>
+  <div class="crumb"><a id="__crumbLink" href="dashboard.html">&#8592; <span id="__crumbName">Sam</span>'s hub</a><span>/</span><span>Reading</span></div>
   <div class="hero">
     <span class="tag">Grade 2 Reading &middot; mastery ladder</span>
-    <h1>Sam's Reading</h1>
+    <h1><span id="__h1Name">Sam</span>'s Reading</h1>
     <p>Work down the ladder. Each lesson unlocks when you master the one before it.</p>
     <div class="meter"><span id="bar" style="width:0%"></span></div>
     <div class="meterlab" id="mlab">0 of 26 mastered</div>
@@ -70,6 +70,19 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  "use strict";
  var LADDER=[{"uid": "E1", "title": "Decoding and Vowels", "atoms": [{"code": "2.RF.3.A.a", "text": "decoding multisyllabic words in context by applying common letter-sound correspondences including: single letters, consonant blends, consonant and vowel digraphs and vowel diphthongs"}, {"code": "2.RF.3.A.b", "text": "distinguishing long and short vowels when reading regularly spelled one syllable words"}, {"code": "2.RF.1.A.a", "text": "understanding that sentences are organized into paragraphs to convey meaning"}]}, {"uid": "E2", "title": "The Reading Process", "atoms": [{"code": "2.R.1.A.a", "text": "using text features to make and confirm predictions, explain why not confirmed"}, {"code": "2.R.1.A.b", "text": "asking and responding to relevant questions"}, {"code": "2.R.1.A.c", "text": "seeking clarification, and using information/ facts and details about texts and supporting answers with evidence from text"}, {"code": "2.R.1.A.d", "text": "retelling a story's beginning, middle, and end and determining their central message, lesson or moral"}, {"code": "2.R.1.A.e", "text": "monitoring comprehension and making corrections and adjustments when understanding breaks down"}]}, {"uid": "E3", "title": "Word Meaning and Vocabulary", "atoms": [{"code": "2.R.1.B.a", "text": "using prefixes, root words, and suffixes to determine the meaning of words"}, {"code": "2.R.1.B.b", "text": "using knowledge of the meaning of individual words to determine the meaning of compound words"}, {"code": "2.R.1.B.c", "text": "using context to determine the meaning of a new word or multiple-meaning word in text"}, {"code": "2.R.1.B.d", "text": "using antonyms and synonyms"}]}, {"uid": "E4", "title": "Grammar in Speech and Writing", "atoms": [{"code": "2.L.1.A.a", "text": "use nouns and pronouns in writing"}, {"code": "2.L.1.A.b", "text": "use collective nouns"}, {"code": "2.L.1.A.c", "text": "use common irregular nouns"}, {"code": "2.L.1.A.d", "text": "use reflexive pronouns"}, {"code": "2.L.1.A.e", "text": "use regular verbs"}, {"code": "2.L.1.A.f", "text": "use helping verbs with regular verbs"}, {"code": "2.L.1.A.g", "text": "use adjectives and adverbs in sentences"}, {"code": "2.L.1.A.h", "text": "produce simple declarative, imperative, exclamatory, and interrogative sentences"}]}, {"uid": "E5", "title": "Writing Conventions", "atoms": [{"code": "2.L.1.B.a", "text": "write legibly (print, cursive)"}, {"code": "2.L.1.B.b", "text": "use dialogue that contains quotation marks"}, {"code": "2.L.1.B.c", "text": "use apostrophes correctly for contractions"}, {"code": "2.L.1.B.d", "text": "capitalize weeks, days, months, holidays"}, {"code": "2.L.1.B.e", "text": "capitalize abbreviated titles of people"}, {"code": "2.L.1.B.f", "text": "spell words using irregular spelling patterns"}]}], BUILT={"2.RF.3.A.a": "Sam - Reading Day 1 - Decoding Multisyllabic Words.html", "2.RF.3.A.b": "Sam - Reading Day 1 - Long and Short Vowels.html", "2.RF.1.A.a": "Sam - Reading Day 3 - Sentences Into Paragraphs.html", "2.R.1.A.a": "Sam - Reading Day 4 - Text Features and Predictions.html", "2.R.1.A.b": "Sam - Reading Day 5 - Asking Good Questions.html"}, TOTAL=26, STU='sam', SUB='reading';
  var app={}; try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+ var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+ var __ks=(app.family&&app.family.kids)||[];
+ var __rk=null;
+ if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+ if(!__rk&&app.activeKid)__rk=__ks.filter(function(x){return x.id===app.activeKid;})[0];
+ if(!__rk)__rk=__ks.filter(function(x){return x.grade===2;})[0];
+ if(!__rk&&__ks.length)__rk=__ks[0];
+ if(!__rk)__rk={id:'sam',name:'Sam',grade:2};
+ app.activeKid=__rk.id; try{localStorage.setItem('edu.app',JSON.stringify(app));}catch(e){}
+ STU=__rk.id;
+ var __cn=document.getElementById('__crumbName'); if(__cn)__cn.textContent=__rk.name;
+ var __h1=document.getElementById('__h1Name'); if(__h1)__h1.textContent=__rk.name;
+ var __cl=document.getElementById('__crumbLink'); if(__cl)__cl.href='dashboard.html?kid='+encodeURIComponent(__rk.id);
  var prog=((app.progress||{})[STU]||{})[SUB]||{};
  function mastered(code){var r=prog[code];return r&&r.status==='passed';}
  var seq=[]; LADDER.forEach(function(u){u.atoms.forEach(function(a){seq.push(a.code);});});
@@ -87,8 +100,9 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
    card.appendChild(head);
    u.atoms.forEach(function(a){ var st=states[a.code], row=document.createElement('div'); row.className='atom'+(a.code===firstOpen?' now':'');
      var icon=st==='done'?'✓':st==='lock'?'●':st==='open'?'▶':'…', act;
-     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
-     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]||'#')+'">Review</a>';
+     var __kq='?kid='+encodeURIComponent(__rk.id);
+     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+__kq+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
+     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]?BUILT[a.code]+__kq:'#')+'">Review</a>';
      else if(st==='soon')act='<span class="pill soon">Coming soon</span>';
      else act='<span class="pill lock">Locked</span>';
      row.innerHTML='<span class="st '+st+'">'+icon+'</span><div class="abody"><div class="acode">'+a.code+'</div><div class="atext">'+a.text+'</div></div><div class="aact">'+act+'</div>';
@@ -97,7 +111,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  document.getElementById('bar').style.width=(TOTAL?Math.round(doneCount/TOTAL*100):0)+'%';
  document.getElementById('mlab').textContent=doneCount+' of '+TOTAL+' mastered';
  var btn=document.getElementById('continueBtn');
- if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen];}; }
+ if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen]+'?kid='+encodeURIComponent(__rk.id);}; }
  else { var soon=seq.filter(function(c){return states[c]==='soon';})[0];
    btn.className='cta dim'; btn.disabled=true; btn.textContent= soon? 'Lessons coming soon':'All caught up'; }
 })();

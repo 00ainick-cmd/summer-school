@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to The Summer Learning Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec;--paper:#ffffff;--ink:#1d1a16;--ink2:#4f463c;--mut:#8c8275;
+  --line:#e2dccf;--accent:#2f5fd0;--accent2:#1f3d8a;--ok:#1f9d57;--warn:#a85d12;
+  --shade:#fbf8f1;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(46vmax 36vmax at 90% -10%,rgba(47,95,208,.08),transparent 60%),radial-gradient(40vmax 34vmax at 8% 112%,rgba(31,157,87,.06),transparent 60%);}
+h1,h2,h3,.disp{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+
+.wrap{max-width:720px;margin:0 auto;padding:42px 20px 80px;}
+.kick{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);font-weight:600;}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:30px 28px;margin-top:18px;}
+.card h2{font-size:26px;margin-bottom:14px;}
+.card h3{font-size:20px;margin:18px 0 8px;}
+.card p{margin-bottom:12px;color:var(--ink2);}
+.checks{list-style:none;display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+.checks li{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--shade);border:1px solid var(--line);border-radius:10px;}
+.checks .ck{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-top:1px;}
+.checks .body{flex:1;}
+.checks .body b{display:block;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.checks .body span{color:var(--ink2);font-size:15.5px;}
+.why{font-style:italic;color:var(--ink2);background:#f0eee6;border-left:3px solid var(--mut);padding:12px 16px;border-radius:0 8px 8px 0;font-family:'Fraunces',serif;font-size:16px;}
+
+.cta-row{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
+.cta{font-family:'Inter',sans-serif;font-weight:700;font-size:17px;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:14px 24px;min-height:50px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+.cta:hover{background:var(--accent2);}
+.cta.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+.cta.ghost:hover{background:var(--shade);}
+
+.kids-form{margin-top:8px;}
+.notice{background:#fff8e0;border:1px solid #ecdcb4;border-left:4px solid var(--warn);border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:15.5px;color:#5a4310;}
+.kid-row{display:grid;grid-template-columns:1fr 200px 40px;gap:12px;align-items:end;margin-bottom:14px;}
+@media(max-width:560px){.kid-row{grid-template-columns:1fr 130px 40px;gap:8px;}}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);}
+.field input,.field select{font-family:'Inter',sans-serif;font-size:17px;padding:11px 13px;border:1px solid var(--line);background:#fff;border-radius:8px;color:var(--ink);min-height:46px;}
+.field input:hover,.field select:hover{border-color:var(--accent);}
+.remove-btn{background:#fff;border:1px solid var(--line);border-radius:8px;width:40px;height:46px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--mut);cursor:pointer;align-self:end;}
+.remove-btn:hover{border-color:#c33;color:#c33;}
+.add-btn{background:transparent;border:2px dashed var(--line);color:var(--accent);font-family:'Inter';font-weight:600;font-size:15px;padding:12px 16px;border-radius:10px;cursor:pointer;width:100%;min-height:46px;margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
+.add-btn:hover{border-color:var(--accent);background:#f0f5ff;}
+.errors{color:#c33;font-size:14px;margin-top:8px;min-height:18px;}
+
+.hide{display:none!important;}
+footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;}
+
+.reveal{opacity:0;transform:translateY(10px);animation:rise .5s ease forwards;animation-delay:var(--d,0s);}
+@keyframes rise{to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="reveal" style="--d:0s">
+    <div class="kick">The Summer Learning Studio</div>
+    <h1 style="font-size:clamp(32px,6vw,46px);font-weight:600;line-height:1.05;margin-top:6px;">Welcome aboard.</h1>
+    <p style="color:var(--ink2);margin-top:10px;font-size:18px;">Two minutes to set up. Then your kids can start learning.</p>
+  </div>
+
+  <section id="step1" class="card reveal" style="--d:.05s">
+    <h2>Before you set up your family</h2>
+    <p>Your kids' progress is saved on <b>this device, in this browser</b>. Here's what you need to know:</p>
+    <ul class="checks">
+      <li>
+        <div class="ck">&#10003;</div>
+        <div class="body">
+          <b>Pick one device per kid and stick with it.</b>
+          <span>The iPad, the family laptop, whichever. Be consistent. Progress on Mom's phone does NOT show up on Dad's laptop.</span>
+        </div>
+      </li>
+      <li>
+        <div class="ck">&#10003;</div>
+        <div class="body">
+          <b>Bookmark this page right now.</b>
+          <span>This URL is how your family gets back in.</span>
+        </div>
+      </li>
+      <li>
+        <div class="ck">&#10003;</div>
+        <div class="body">
+          <b>Back up your progress weekly.</b>
+          <span>From your parent dashboard, click "Download backup." Save the file to your phone, drive, or email. If your iPad dies or you clear browser data, that backup is your recovery.</span>
+        </div>
+      </li>
+      <li>
+        <div class="ck">&#10003;</div>
+        <div class="body">
+          <b>Switching devices? Just transfer the backup file.</b>
+          <span>Download from the old device, upload on the new one. Takes 30 seconds.</span>
+        </div>
+      </li>
+    </ul>
+    <div class="why">Why so device-specific? Because your kids' data stays on YOUR devices, not on our servers. Better privacy, no logins, no risk of a data breach affecting your kids. Most online learning programs can't say that.</div>
+    <div class="cta-row">
+      <button class="cta" id="toStep2">Got it, let's add my kids &#8594;</button>
+    </div>
+  </section>
+
+  <section id="step2" class="card reveal hide" style="--d:0s">
+    <h2>Add your kids</h2>
+    <p>Name and grade for each one. You can change these later from your parent dashboard.</p>
+    <div id="migrationNotice" class="notice hide"></div>
+    <p style="font-size:14px;color:var(--mut);margin-top:6px;"><b>Heads up:</b> grades 2, 3, and 8 are ready to go right now. Other grades show as "coming soon" and will activate as we build them.</p>
+
+    <form class="kids-form" id="kidsForm" autocomplete="off">
+      <div id="kidsList"></div>
+      <button type="button" class="add-btn" id="addKid">+ Add another kid</button>
+      <div class="errors" id="formErr" role="alert"></div>
+      <div class="cta-row">
+        <button type="submit" class="cta">Save and start &#8594;</button>
+        <button type="button" class="cta ghost" id="backBtn">&#8592; Back</button>
+      </div>
+    </form>
+  </section>
+
+  <footer>Your data stays on this device. The Summer Learning Studio.</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app';
+  var MAX_KIDS=3;
+  var ACTIVE_GRADES=[2,3,8];
+  var ALL_GRADES=[
+    {v:'K',label:'Kindergarten'},
+    {v:'1',label:'Grade 1'},
+    {v:'2',label:'Grade 2'},
+    {v:'3',label:'Grade 3'},
+    {v:'4',label:'Grade 4'},
+    {v:'5',label:'Grade 5'},
+    {v:'6',label:'Grade 6'},
+    {v:'7',label:'Grade 7'},
+    {v:'8',label:'Grade 8'}
+  ];
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  function slugify(s){return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,24)||'kid';}
+  function shortId(){return Math.random().toString(36).slice(2,8);}
+  function makeKidId(name){return 'kid_'+slugify(name)+'_'+shortId();}
+
+  var app=load();
+
+  // ---- migration detection ----
+  var legacy=[];
+  var legacyMap={sam:{name:'Sam',grade:2},amelia:{name:'Amelia',grade:3},julie:{name:'Julie',grade:8}};
+  ['sam','amelia','julie'].forEach(function(k){
+    var hasProg=app.progress&&app.progress[k]&&Object.keys(app.progress[k]).length>0;
+    if(hasProg){ legacy.push({legacyId:k,name:legacyMap[k].name,grade:legacyMap[k].grade}); }
+  });
+
+  // ---- step navigation ----
+  var step1=document.getElementById('step1'), step2=document.getElementById('step2');
+  document.getElementById('toStep2').addEventListener('click',function(){
+    step1.classList.add('hide'); step2.classList.remove('hide');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  document.getElementById('backBtn').addEventListener('click',function(){
+    step2.classList.add('hide'); step1.classList.remove('hide');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  // ---- form ----
+  var kids=[];  // local working list
+
+  function addRow(prefill){
+    if(kids.length>=MAX_KIDS) return;
+    var k=prefill||{name:'',grade:'',legacyId:null};
+    kids.push(k); renderRows();
+  }
+  function removeRow(i){ kids.splice(i,1); renderRows(); }
+
+  function renderRows(){
+    var box=document.getElementById('kidsList');
+    box.innerHTML='';
+    kids.forEach(function(k,i){
+      var row=document.createElement('div'); row.className='kid-row';
+      var nameField=document.createElement('div'); nameField.className='field';
+      var nameLabel=document.createElement('label'); nameLabel.textContent='Kid '+(i+1)+' name'; nameLabel.htmlFor='kn'+i;
+      var nameInput=document.createElement('input'); nameInput.type='text'; nameInput.id='kn'+i; nameInput.maxLength=24;
+      nameInput.placeholder='Their first name'; nameInput.value=k.name||'';
+      nameInput.addEventListener('input',function(){k.name=nameInput.value;});
+      nameField.appendChild(nameLabel); nameField.appendChild(nameInput);
+
+      var gradeField=document.createElement('div'); gradeField.className='field';
+      var gradeLabel=document.createElement('label'); gradeLabel.textContent='Grade'; gradeLabel.htmlFor='kg'+i;
+      var sel=document.createElement('select'); sel.id='kg'+i;
+      var opt0=document.createElement('option'); opt0.value=''; opt0.textContent='Choose grade...'; sel.appendChild(opt0);
+      ALL_GRADES.forEach(function(g){
+        var num=(g.v==='K')?0:parseInt(g.v,10);
+        var isActive=ACTIVE_GRADES.indexOf(num)>=0;
+        var o=document.createElement('option'); o.value=g.v;
+        o.textContent=g.label+(isActive?'':' (coming soon)');
+        if(!isActive) o.disabled=true;
+        if(String(k.grade)===g.v) o.selected=true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change',function(){k.grade=sel.value;});
+      gradeField.appendChild(gradeLabel); gradeField.appendChild(sel);
+
+      var rm=document.createElement('button'); rm.type='button'; rm.className='remove-btn'; rm.setAttribute('aria-label','Remove kid '+(i+1));
+      rm.innerHTML='&times;';
+      rm.addEventListener('click',function(){ removeRow(i); });
+
+      row.appendChild(nameField); row.appendChild(gradeField); row.appendChild(rm);
+      box.appendChild(row);
+    });
+    document.getElementById('addKid').disabled=(kids.length>=MAX_KIDS);
+    document.getElementById('addKid').style.opacity=(kids.length>=MAX_KIDS)?'.5':'1';
+  }
+
+  // pre-populate from legacy data if found
+  if(legacy.length>0){
+    var notice=document.getElementById('migrationNotice');
+    notice.classList.remove('hide');
+    notice.innerHTML='<b>We found existing progress from a previous setup.</b> Confirm the names and grades below, or change them.';
+    legacy.forEach(function(L){ kids.push({name:L.name,grade:String(L.grade),legacyId:L.legacyId}); });
+  } else {
+    kids.push({name:'',grade:'',legacyId:null});
+  }
+  renderRows();
+
+  document.getElementById('addKid').addEventListener('click',function(){ addRow(); });
+
+  document.getElementById('kidsForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var errs=[]; var clean=[];
+    kids.forEach(function(k,i){
+      var name=(k.name||'').trim();
+      var grade=(k.grade||'').trim();
+      if(!name){ errs.push('Kid '+(i+1)+' needs a name.'); return; }
+      if(!grade){ errs.push('Kid '+(i+1)+' needs a grade.'); return; }
+      var gnum=(grade==='K')?0:parseInt(grade,10);
+      if(ACTIVE_GRADES.indexOf(gnum)<0){ errs.push('Kid '+(i+1)+' grade not available yet.'); return; }
+      clean.push({name:name,grade:gnum,legacyId:k.legacyId});
+    });
+    if(clean.length===0){ errs.push('Add at least one kid.'); }
+    var errBox=document.getElementById('formErr');
+    if(errs.length){ errBox.textContent=errs.join(' '); return; }
+    errBox.textContent='';
+
+    // Build new family structure
+    var app=load();
+    var now=new Date().toISOString();
+    var kidsOut=[];
+    var progressNew=app.progress||{};
+    clean.forEach(function(k){
+      var kid={id:makeKidId(k.name),name:k.name,grade:k.grade,addedAt:now};
+      // migrate legacy progress if applicable
+      if(k.legacyId && app.progress && app.progress[k.legacyId]){
+        progressNew[kid.id]=JSON.parse(JSON.stringify(app.progress[k.legacyId]));
+      }
+      kidsOut.push(kid);
+    });
+    app.family={setupComplete:true,setupDate:now,kids:kidsOut};
+    app.progress=progressNew;
+    if(kidsOut.length>0) app.activeKid=kidsOut[0].id;
+    save(app);
+
+    // Send to parent dashboard
+    location.href='parent.html';
+  });
+})();
+</script>
+</body>
+</html>

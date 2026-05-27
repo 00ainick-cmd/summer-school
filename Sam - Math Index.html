@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sam's Math Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Math Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -52,10 +52,10 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
 
 :root{--accent:#e8731c;--accent2:#b9560f;--accentbg:#fff1e3;}</style></head><body>
 <div class="wrap">
-  <div class="crumb"><a href="Sam - Home Dashboard (Grade 2).html">&#8592; Sam's hub</a><span>/</span><span>Math</span></div>
+  <div class="crumb"><a id="__crumbLink" href="dashboard.html">&#8592; <span id="__crumbName">Sam</span>'s hub</a><span>/</span><span>Math</span></div>
   <div class="hero">
     <span class="tag">Grade 2 Math &middot; mastery ladder</span>
-    <h1>Sam's Math</h1>
+    <h1><span id="__h1Name">Sam</span>'s Math</h1>
     <p>Work down the ladder. Each lesson unlocks when you master the one before it.</p>
     <div class="meter"><span id="bar" style="width:0%"></span></div>
     <div class="meterlab" id="mlab">0 of 35 mastered</div>
@@ -70,6 +70,21 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  "use strict";
  var LADDER=[{"uid": "U1", "title": "Place Value to 1,000", "atoms": [{"code": "2.NBT.A.1", "text": "Understand three-digit numbers are composed of hundreds, tens and ones."}, {"code": "2.NBT.A.2", "text": "Understand that 100 can be thought of as 10 tens, called a \"hundred\"."}, {"code": "2.NBT.A.3", "text": "Count within 1000 by 1s, 10s and 100s starting with any number."}, {"code": "2.NBT.A.4", "text": "Read and write numbers to 1000 using number names, base-ten numerals and expanded form."}, {"code": "2.NBT.A.5", "text": "Compare two three-digit numbers using the symbols &gt;, = or &lt;."}]}, {"uid": "U2", "title": "Fluency: Add & Subtract Within 20", "atoms": [{"code": "2.RA.A.1", "text": "Demonstrate fluency with addition and subtraction within 20."}]}, {"uid": "U3", "title": "Add & Subtract Within 100 and 1,000", "atoms": [{"code": "2.NBT.B.10", "text": "Add or subtract mentally 10 or 100 to or from a given number within 1000."}, {"code": "2.NBT.B.6", "text": "Demonstrate fluency with addition and subtraction within 100."}, {"code": "2.NBT.B.7", "text": "Add up to four two-digit numbers."}, {"code": "2.NBT.B.8", "text": "Add or subtract within 1000, and justify the solution."}, {"code": "2.NBT.B.9", "text": "Use the relationship between addition and subtraction to solve problems."}, {"code": "2.NBT.C.11", "text": "Write and solve problems involving addition and subtraction within 100."}]}, {"uid": "U4", "title": "Foundations of Multiplication: Equal Groups & Arrays", "atoms": [{"code": "2.RA.B.2a", "text": "Determine if a set of objects has an odd or even number of members."}, {"code": "2.RA.B.2b", "text": "Determine if a set of objects has an odd or even number of members."}, {"code": "2.RA.B.2c", "text": "Determine if a set of objects has an odd or even number of members."}, {"code": "2.RA.B.3", "text": "Find the total number of objects arranged in a rectangular array with up to 5 rows and 5 columns, and write an equation to represent the total as a sum of equal addends."}]}, {"uid": "U5", "title": "Measuring Length", "atoms": [{"code": "2.GM.B.4", "text": "Measure the length of an object by selecting and using appropriate tools."}, {"code": "2.GM.B.5", "text": "Analyze the results of measuring the same object with different units."}, {"code": "2.GM.B.6", "text": "Estimate lengths using units of inches, feet, yards, centimeters and meters."}, {"code": "2.GM.B.7", "text": "Measure to determine how much longer one object is than another."}, {"code": "2.GM.C.8", "text": "Use addition and subtraction within 100 to solve problems involving lengths that are given in the same units."}, {"code": "2.GM.C.9", "text": "Represent whole numbers as lengths on a number line, and represent whole-number sums and differences within 100 on a number line."}]}, {"uid": "U6", "title": "Time & Money", "atoms": [{"code": "2.GM.D.10", "text": "Tell and write time from analog and digital clocks to the nearest five minutes, using a.m. and p.m."}, {"code": "2.GM.D.11", "text": "Describe a time shown on a digital clock as representing hours and minutes, and relate a time shown on a digital clock to the same time on an analog clock."}, {"code": "2.GM.D.12", "text": "Find the value of combinations of dollar bills, quarters, dimes, nickels and pennies, using $ and \u00a2 appropriately."}, {"code": "2.GM.D.13", "text": "Find combinations of coins that equal a given amount."}]}, {"uid": "U7", "title": "Geometry: Shapes & Equal Shares", "atoms": [{"code": "2.GM.A.1a", "text": "Recognize and draw shapes having specified attributes, such as a given number of angles or sides."}, {"code": "2.GM.A.1b", "text": "Recognize and draw shapes having specified attributes, such as a given number of angles or sides."}, {"code": "2.GM.A.2", "text": "Partition a rectangle into rows and columns of same-size squares and count to find the total number of squares."}, {"code": "2.GM.A.3a", "text": "Partition circles and rectangles into two, three or four equal shares, and describe the shares and the whole."}]}, {"uid": "U8", "title": "Data & Graphs", "atoms": [{"code": "2.DS.A.1", "text": "Create a line plot to represent a set of numeric data, given a horizontal scale marked in whole numbers."}, {"code": "2.DS.A.2", "text": "Generate measurement data to the nearest whole unit, and display the data in a line plot."}, {"code": "2.DS.A.3", "text": "Draw a picture graph or a bar graph to represent a data set with up to four categories."}, {"code": "2.DS.A.4", "text": "Solve problems using information presented in line plots, picture graphs and bar graphs."}, {"code": "2.DS.A.5", "text": "Draw conclusions from line plots, picture graphs and bar graphs."}]}], BUILT={"2.NBT.A.1": "Sam - Math - Place Value Mastery.html", "2.NBT.A.2": "Sam - Math - Ten Tens Make a Hundred.html", "2.NBT.A.3": "Sam - Math - Counting Within 1000.html", "2.NBT.A.4": "Sam - Math - Reading and Writing Numbers to 1000.html", "2.NBT.A.5": "Sam - Math - Comparing Three-Digit Numbers.html", "2.RA.A.1": "Sam - Math - Fluency Within 20.html", "2.NBT.B.10": "Sam - Math - Plus and Minus 10 and 100.html", "2.NBT.B.6": "Sam - Math - Add and Subtract Within 100.html", "2.NBT.B.7": "Sam - Math - Add Up to Four Two-Digit Numbers.html", "2.NBT.B.8": "Sam - Math - Add and Subtract Within 1000.html", "2.NBT.B.9": "Sam - Math - Addition and Subtraction Are Linked.html", "2.NBT.C.11": "Sam - Math - Word Problems Within 100.html"}, TOTAL=35, STU='sam', SUB='math';
  var app={}; try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+ // Resolve kid from URL or family
+ var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+ var __ks=(app.family&&app.family.kids)||[];
+ var __rk=null;
+ if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+ if(!__rk&&app.activeKid)__rk=__ks.filter(function(x){return x.id===app.activeKid;})[0];
+ if(!__rk)__rk=__ks.filter(function(x){return x.grade===2;})[0];
+ if(!__rk&&__ks.length)__rk=__ks[0];
+ if(!__rk)__rk={id:'sam',name:'Sam',grade:2};
+ app.activeKid=__rk.id; try{localStorage.setItem('edu.app',JSON.stringify(app));}catch(e){}
+ STU=__rk.id;
+ // Patch names + crumb link with kid query
+ var __cn=document.getElementById('__crumbName'); if(__cn)__cn.textContent=__rk.name;
+ var __h1=document.getElementById('__h1Name'); if(__h1)__h1.textContent=__rk.name;
+ var __cl=document.getElementById('__crumbLink'); if(__cl)__cl.href='dashboard.html?kid='+encodeURIComponent(__rk.id);
  var prog=((app.progress||{})[STU]||{})[SUB]||{};
  function mastered(code){var r=prog[code];return r&&r.status==='passed';}
  var seq=[]; LADDER.forEach(function(u){u.atoms.forEach(function(a){seq.push(a.code);});});
@@ -87,8 +102,9 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
    card.appendChild(head);
    u.atoms.forEach(function(a){ var st=states[a.code], row=document.createElement('div'); row.className='atom'+(a.code===firstOpen?' now':'');
      var icon=st==='done'?'✓':st==='lock'?'●':st==='open'?'▶':'…', act;
-     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
-     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]||'#')+'">Review</a>';
+     var __kq='?kid='+encodeURIComponent(__rk.id);
+     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+__kq+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
+     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]?BUILT[a.code]+__kq:'#')+'">Review</a>';
      else if(st==='soon')act='<span class="pill soon">Coming soon</span>';
      else act='<span class="pill lock">Locked</span>';
      row.innerHTML='<span class="st '+st+'">'+icon+'</span><div class="abody"><div class="acode">'+a.code+'</div><div class="atext">'+a.text+'</div></div><div class="aact">'+act+'</div>';
@@ -97,7 +113,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  document.getElementById('bar').style.width=(TOTAL?Math.round(doneCount/TOTAL*100):0)+'%';
  document.getElementById('mlab').textContent=doneCount+' of '+TOTAL+' mastered';
  var btn=document.getElementById('continueBtn');
- if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen];}; }
+ if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen]+'?kid='+encodeURIComponent(__rk.id);}; }
  else { var soon=seq.filter(function(c){return states[c]==='soon';})[0];
    btn.className='cta dim'; btn.disabled=true; btn.textContent= soon? 'Lessons coming soon':'All caught up'; }
 })();

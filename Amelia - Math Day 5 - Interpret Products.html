@@ -200,7 +200,7 @@
     </div>
 
     <div class="station" id="c-words"><div class="beat">Beat 4 &middot; Teach (read the word problem)</div><div class="shead"><span class="sno">LEARN 4</span><h2>Find the groups and the size</h2></div>
-      <p class="lead">"There are 6 nail polish bottles in each case. Amelia has 3 cases. How many bottles?"</p>
+      <p class="lead">"There are 6 nail polish bottles in each case. <span class="__snameInline">Amelia</span> has 3 cases. How many bottles?"</p>
       <div class="predict">
         <button class="pcard" type="button" data-ok="true">3 x 6 (3 groups of 6)</button>
         <button class="pcard" type="button" data-ok="false">3 + 6</button>
@@ -312,13 +312,13 @@
     </div>
   </section>
 
-  <footer>Amelia &middot; Math &middot; Verbatim Missouri Learning Standard 3.RA.A.1 &middot; Twelve-beat module.</footer>
+  <footer><span id="__sname">Amelia</span> &middot; Math &middot; Verbatim Missouri Learning Standard 3.RA.A.1 &middot; Twelve-beat module.</footer>
 </div>
 
 <script>
 (function(){
   "use strict";
-  var KEY='edu.app', STUDENT='amelia', SUBJECT='math', DAY='3.RA.A.1', SNAME='Amelia';
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];if(!__rk&&__ks.length)__rk=__ks[0];if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};__ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}var KEY='edu.app',STUDENT=__rk.id,SUBJECT='math',DAY='3.RA.A.1',SNAME=__rk.name,__LEGACY='Amelia';document.addEventListener('DOMContentLoaded',function(){var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;var __ins=document.querySelectorAll('.__snameInline');for(var __i=0;__i<__ins.length;__i++){__ins[__i].textContent=SNAME;}});setTimeout(function(){try{if(typeof DATA==='object'&&DATA){if(DATA.EXPLAIN&&DATA.EXPLAIN.stem)DATA.EXPLAIN.stem=DATA.EXPLAIN.stem.replace(new RegExp('\\b'+__LEGACY+'\\b','g'),SNAME);}}catch(e){}},0);
 
   var DATA={
     WARM:[

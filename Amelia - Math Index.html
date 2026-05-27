@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Amelia's Math Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Math Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -52,10 +52,10 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
 
 :root{--accent:#e8731c;--accent2:#b9560f;--accentbg:#fff1e3;}</style></head><body>
 <div class="wrap">
-  <div class="crumb"><a href="Amelia - Home Dashboard (Grade 3).html">&#8592; Amelia's hub</a><span>/</span><span>Math</span></div>
+  <div class="crumb"><a id="__crumbLink" href="dashboard.html">&#8592; <span id="__crumbName">Amelia</span>'s hub</a><span>/</span><span>Math</span></div>
   <div class="hero">
     <span class="tag">Grade 3 Math &middot; mastery ladder</span>
-    <h1>Amelia's Math</h1>
+    <h1><span id="__h1Name">Amelia</span>'s Math</h1>
     <p>Work down the ladder. Each lesson unlocks when you master the one before it.</p>
     <div class="meter"><span id="bar" style="width:0%"></span></div>
     <div class="meterlab" id="mlab">0 of 45 mastered</div>
@@ -70,6 +70,19 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  "use strict";
  var LADDER=[{"uid": "U1", "title": "Place Value, Rounding & Fluent Add/Subtract", "atoms": [{"code": "3.NBT.A.1", "text": "Round whole numbers to the nearest 10 or 100."}, {"code": "3.NBT.A.2", "text": "Read, write and identify whole numbers within 100,000 using base ten numerals, number names and expanded form."}, {"code": "3.NBT.A.3", "text": "Demonstrate fluency with addition and subtraction within 1000."}, {"code": "3.NBT.A.4", "text": "Multiply whole numbers by multiples of 10 in the range 10-90."}]}, {"uid": "U2", "title": "Multiplication: Equal Groups, Arrays & Meaning", "atoms": [{"code": "3.RA.A.1", "text": "Interpret products of whole numbers."}, {"code": "3.RA.A.2", "text": "Interpret quotients of whole numbers."}, {"code": "3.RA.A.3", "text": "Describe in words or drawings a problem that illustrates a multiplication or division situation."}, {"code": "3.RA.A.4", "text": "Use multiplication and division within 100 to solve problems."}, {"code": "3.RA.A.5", "text": "Determine the unknown number in a multiplication or division equation relating three whole numbers."}]}, {"uid": "U3", "title": "Division & the Multiplication-Division Relationship", "atoms": [{"code": "3.RA.B.6", "text": "Apply properties of operations as strategies to multiply and divide."}]}, {"uid": "U4", "title": "Multiply & Divide Within 100 Fluently", "atoms": [{"code": "3.RA.C.7", "text": "Multiply and divide with numbers and results within 100 using strategies such as the relationship between multiplication and division or properties of operations. Know all products of two one-digit numbers."}, {"code": "3.RA.C.8", "text": "Demonstrate fluency with products within 100."}]}, {"uid": "U5", "title": "Patterns & Multi-Step Word Problems", "atoms": [{"code": "3.RA.D.10", "text": "Interpret the reasonableness of answers using mental computation and estimation strategies including rounding."}, {"code": "3.RA.D.9", "text": "Write and solve two-step problems involving variables using any of the four operations."}, {"code": "3.RA.E.11", "text": "Identify arithmetic patterns and explain the patterns using properties of operations."}]}, {"uid": "U6", "title": "Fractions as Numbers", "atoms": [{"code": "3.NF.A.1", "text": "Understand a unit fraction as the quantity formed by one part when a whole is partitioned into equal parts."}, {"code": "3.NF.A.2a", "text": "Understand that when a whole is partitioned equally, a fraction can be used to represent a portion of the whole."}, {"code": "3.NF.A.2b", "text": "Understand that when a whole is partitioned equally, a fraction can be used to represent a portion of the whole."}, {"code": "3.NF.A.3a", "text": "Represent fractions on a number line."}, {"code": "3.NF.A.3b", "text": "Represent fractions on a number line."}, {"code": "3.NF.A.3c", "text": "Represent fractions on a number line."}, {"code": "3.NF.A.4", "text": "Demonstrate that two fractions are equivalent if they are the same size, or the same point on a number line."}, {"code": "3.NF.A.5", "text": "Recognize and generate equivalent fractions using visual models, and justify why the fractions are equivalent."}, {"code": "3.NF.A.6", "text": "Compare two fractions with the same numerator or denominator using the symbols &gt;, = or &lt;, and justify the solution."}, {"code": "3.NF.A.7", "text": "Explain why fraction comparisons are only valid when the two fractions refer to the same whole."}]}, {"uid": "U7", "title": "Area", "atoms": [{"code": "3.GM.C.10", "text": "Label area measurements with squared units."}, {"code": "3.GM.C.11", "text": "Demonstrate that tiling a rectangle to find the area and multiplying the side lengths result in the same value."}, {"code": "3.GM.C.12", "text": "Multiply whole-number side lengths to solve problems involving the area of rectangles."}, {"code": "3.GM.C.13", "text": "Find rectangular arrangements that can be formed for a given area."}, {"code": "3.GM.C.14", "text": "Decompose a rectangle into smaller rectangles to find the area of the original rectangle."}, {"code": "3.GM.C.9", "text": "Calculate area by using unit squares to cover a plane figure with no gaps or overlaps."}]}, {"uid": "U8", "title": "Perimeter", "atoms": [{"code": "3.GM.D.15", "text": "Solve problems involving perimeters of polygons."}, {"code": "3.GM.D.16", "text": "Understand that rectangles can have equal perimeters but different areas, or rectangles can have equal areas but different perimeters."}]}, {"uid": "U9", "title": "Measurement: Time, Liquid Volume & Mass", "atoms": [{"code": "3.GM.B.4", "text": "Tell and write time to the nearest minute."}, {"code": "3.GM.B.5", "text": "Estimate time intervals in minutes."}, {"code": "3.GM.B.6", "text": "Solve problems involving addition and subtraction of minutes."}, {"code": "3.GM.B.7", "text": "Measure or estimate length, liquid volume and weight of objects."}, {"code": "3.GM.B.8", "text": "Use the four operations to solve problems involving lengths, liquid volumes or weights given in the same units."}]}, {"uid": "U10", "title": "Geometry: Shapes & Attributes", "atoms": [{"code": "3.GM.A.1", "text": "Understand that shapes in different categories may share attributes and that the shared attributes can define a larger category."}, {"code": "3.GM.A.2", "text": "Distinguish rhombuses and rectangles as examples of quadrilaterals, and draw examples of quadrilaterals that do not belong to these subcategories."}, {"code": "3.GM.A.3", "text": "Partition shapes into parts with equal areas, and express the area of each part as a unit fraction of the whole."}]}, {"uid": "U11", "title": "Represent & Analyze Data", "atoms": [{"code": "3.DS.A.1", "text": "Create frequency tables, scaled picture graphs and bar graphs to represent a data set with several categories."}, {"code": "3.DS.A.2", "text": "Solve one- and two-step problems using information presented in bar and/or picture graphs."}, {"code": "3.DS.A.3", "text": "Create a line plot to represent data."}, {"code": "3.DS.A.4", "text": "Use data shown in a line plot to answer questions."}]}], BUILT={"3.NBT.A.1": "Amelia - Math Day 1 - Rounding Numbers.html", "3.NBT.A.3": "Amelia - Math - Fluent Within 1000.html"}, TOTAL=45, STU='amelia', SUB='math';
  var app={}; try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+ var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+ var __ks=(app.family&&app.family.kids)||[];
+ var __rk=null;
+ if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+ if(!__rk&&app.activeKid)__rk=__ks.filter(function(x){return x.id===app.activeKid;})[0];
+ if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];
+ if(!__rk&&__ks.length)__rk=__ks[0];
+ if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};
+ app.activeKid=__rk.id; try{localStorage.setItem('edu.app',JSON.stringify(app));}catch(e){}
+ STU=__rk.id;
+ var __cn=document.getElementById('__crumbName'); if(__cn)__cn.textContent=__rk.name;
+ var __h1=document.getElementById('__h1Name'); if(__h1)__h1.textContent=__rk.name;
+ var __cl=document.getElementById('__crumbLink'); if(__cl)__cl.href='dashboard.html?kid='+encodeURIComponent(__rk.id);
  var prog=((app.progress||{})[STU]||{})[SUB]||{};
  function mastered(code){var r=prog[code];return r&&r.status==='passed';}
  var seq=[]; LADDER.forEach(function(u){u.atoms.forEach(function(a){seq.push(a.code);});});
@@ -87,8 +100,9 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
    card.appendChild(head);
    u.atoms.forEach(function(a){ var st=states[a.code], row=document.createElement('div'); row.className='atom'+(a.code===firstOpen?' now':'');
      var icon=st==='done'?'✓':st==='lock'?'●':st==='open'?'▶':'…', act;
-     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
-     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]||'#')+'">Review</a>';
+     var __kq='?kid='+encodeURIComponent(__rk.id);
+     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+__kq+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
+     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]?BUILT[a.code]+__kq:'#')+'">Review</a>';
      else if(st==='soon')act='<span class="pill soon">Coming soon</span>';
      else act='<span class="pill lock">Locked</span>';
      row.innerHTML='<span class="st '+st+'">'+icon+'</span><div class="abody"><div class="acode">'+a.code+'</div><div class="atext">'+a.text+'</div></div><div class="aact">'+act+'</div>';
@@ -97,7 +111,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  document.getElementById('bar').style.width=(TOTAL?Math.round(doneCount/TOTAL*100):0)+'%';
  document.getElementById('mlab').textContent=doneCount+' of '+TOTAL+' mastered';
  var btn=document.getElementById('continueBtn');
- if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen];}; }
+ if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen]+'?kid='+encodeURIComponent(__rk.id);}; }
  else { var soon=seq.filter(function(c){return states[c]==='soon';})[0];
    btn.className='cta dim'; btn.disabled=true; btn.textContent= soon? 'Lessons coming soon':'All caught up'; }
 })();

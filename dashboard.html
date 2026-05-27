@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+a{color:inherit;text-decoration:none;}
+:root{
+  --bg:#f4ece1;--paper:#fffdf9;--ink:#2b2230;--ink2:#6a5d68;--mut:#9a8c95;--line:#e6dccf;
+  --accent:#b14a78;--accent2:#8a3460;--ringtrack:#efe6dc;--go:#3f8f6b;--gold:#b8860b;
+  --math:#e8731c;--read:#8a44c0;--sci:#0f9488;--soc:#c43c6b;--jp:#3b6fd6;
+}
+body{background:var(--bg);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.55;min-height:100vh;
+ background-image:radial-gradient(circle at 88% -8%,rgba(177,74,120,.10),transparent 44%);-webkit-text-size-adjust:100%;}
+h1,h2,h3,.lvlnum,.disp{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 80px;display:flex;flex-direction:column;gap:18px;}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.back{font-size:14px;font-weight:600;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 16px;min-height:42px;display:inline-flex;align-items:center;}
+.who{font-size:14px;font-weight:600;color:var(--paper);background:var(--accent);border-radius:999px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;}
+.who .av{width:22px;height:22px;border-radius:50%;background:var(--paper);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;font-family:'Fraunces';}
+.parentlink{font-size:13px;color:var(--ink2);text-decoration:underline;text-decoration-color:var(--line);}
+.parentlink:hover{text-decoration-color:var(--accent);color:var(--accent);}
+
+.mission{position:relative;overflow:hidden;border-radius:4px;padding:30px 28px;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--accent);}
+.mission .hi{font-family:'Fraunces';font-style:italic;font-size:18px;color:var(--accent2);}
+.mission .lab{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-top:14px;font-weight:700;}
+.mission h1{font-size:33px;line-height:1.1;margin-top:6px;max-width:20ch;}
+.mission .enc{color:var(--ink2);margin-top:8px;font-style:italic;font-family:'Fraunces';}
+.start{margin-top:18px;background:var(--ink);color:var(--paper);font-family:'Fraunces';font-weight:600;font-size:18px;border:none;cursor:pointer;border-radius:2px;padding:14px 28px;min-height:54px;display:inline-flex;align-items:center;gap:10px;}
+.start:hover{background:var(--accent2);}
+.gem{width:22px;height:22px;display:inline-block;vertical-align:middle;margin-right:7px;}
+
+.strip{display:grid;grid-template-columns:1fr 1.4fr;gap:14px;}
+@media(max-width:560px){.strip{grid-template-columns:1fr;}}
+.statcard{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px 20px;}
+.statcard .t{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:700;}
+.level{display:flex;align-items:center;gap:14px;margin-top:8px;}
+.lvlnum{font-size:40px;line-height:1;color:var(--accent);}
+.lvlbar{flex:1;}.lvlbar .track{background:#efe6dc;border:1px solid var(--line);border-radius:999px;height:14px;overflow:hidden;}
+.lvlbar .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .6s;}
+.lvlbar .cap{font-size:13px;color:var(--ink2);margin-top:5px;}
+.quest .dots{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+.qd{display:flex;flex-direction:column;align-items:center;gap:6px;width:54px;}
+.qd .ring{width:40px;height:40px;border-radius:50%;border:3px solid;display:flex;align-items:center;justify-content:center;}
+.qd.on .ring{background:var(--go);border-color:var(--go)!important;}
+.qd .nm{font-size:11px;font-weight:600;text-align:center;line-height:1.1;color:var(--ink2);}
+.qd svg{width:20px;height:20px;}
+
+.section-t{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin:4px 2px -4px;font-weight:700;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:560px){.grid{grid-template-columns:1fr;}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px;display:flex;flex-direction:column;gap:12px;transition:transform .14s;}
+.card.live:hover{transform:translateY(-3px);}.card.soon{opacity:.62;}
+.cardtop{display:flex;align-items:center;gap:14px;}
+.ic{width:52px;height:52px;border-radius:3px;display:flex;align-items:center;justify-content:center;flex:none;}
+.ic svg{width:28px;height:28px;fill:#fff;}
+.cardtop h3{font-size:22px;}
+.cardtop .nx{font-size:13px;margin-top:1px;color:var(--ink2);}
+.ring-wrap{margin-left:auto;position:relative;width:56px;height:56px;flex:none;}
+.ring-wrap svg{transform:rotate(-90deg);}
+.ring-wrap .pc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--ink);font-family:'Fraunces';}
+.cbtn{margin-top:auto;font-weight:700;font-size:16px;border:none;border-radius:2px;padding:13px 16px;min-height:50px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Fraunces';}
+.cbtn.soon{background:var(--paper);color:var(--mut);border:1px solid var(--line);cursor:default;}
+
+.lpad{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px 18px;}
+.lpad .lph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.lpad .lph h3{font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--ink);}
+.lpad .lph .when{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);font-weight:700;}
+.lpgrid{display:grid;grid-template-columns:54px 1fr 1fr 1fr;gap:8px;}
+@media(max-width:560px){.lpgrid{grid-template-columns:42px 1fr 1fr 1fr;gap:6px;}}
+.lpgrid .lph2{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);text-align:center;padding:4px 0;font-weight:700;}
+.lpgrid .lpd{font-family:'Fraunces',serif;font-weight:600;color:var(--accent2);font-size:14px;display:flex;align-items:center;justify-content:center;background:#f5ecdc;border:1px solid var(--line);border-radius:3px;}
+.lpgrid .lpcell{background:#fbf6ed;border:1px solid var(--line);border-radius:3px;padding:9px 10px;display:flex;flex-direction:column;gap:5px;min-height:74px;text-decoration:none;color:var(--ink);position:relative;transition:transform .12s;}
+.lpgrid .lpcell:hover{transform:translateY(-2px);border-color:var(--accent);}
+.lpgrid .lpcell .lpsub{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.10em;text-transform:uppercase;font-weight:700;color:var(--ink2);}
+.lpgrid .lpcell .lpdot{width:9px;height:9px;border-radius:50%;flex:none;}
+.lpgrid .lpcell .lptitle{font-family:'Fraunces',serif;font-weight:500;font-size:13.5px;line-height:1.22;color:var(--ink);}
+.lpgrid .lpcell.today{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent);background:#fff;}
+.lpgrid .lpcell.done{background:#eef7f1;border-color:#bfddc8;}
+.lpgrid .lpcell .lpcheck{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:var(--go);color:#fff;font-size:11px;font-weight:800;display:none;align-items:center;justify-content:center;font-family:'Hanken Grotesk';}
+.lpgrid .lpcell.done .lpcheck{display:flex;}
+.lpfull{margin-top:12px;text-align:right;}
+.lpfull a{font-family:'Fraunces',serif;font-weight:600;font-size:13.5px;color:var(--accent2);border-bottom:1px solid var(--accent2);padding-bottom:1px;}
+
+.shelf{background:#fbf3df;border:1px solid #ecdcb4;border-radius:4px;padding:18px 20px;}
+.shelf .h{display:flex;align-items:center;gap:6px;}
+.shelf h3{font-size:20px;color:#7a5b00;}
+.shelf .count{margin-left:auto;font-weight:700;color:var(--gold);background:var(--paper);border:1px solid #ecdcb4;border-radius:999px;padding:5px 12px;font-size:15px;}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.badge{display:flex;align-items:center;gap:8px;border-radius:14px;padding:9px 13px;font-weight:600;font-size:13.5px;background:var(--paper);border:1px solid #ecdcb4;color:var(--ink);}
+.badge .bg{width:20px;height:20px;}
+.empty{color:#7a5b00;margin-top:10px;font-style:italic;font-family:'Fraunces';}
+footer{font-size:13px;color:var(--mut);text-align:center;border-top:1px solid var(--line);padding-top:16px;}
+
+#kidPicker{position:fixed;inset:0;background:rgba(43,34,48,.6);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
+#kidPicker.show{display:flex;}
+#kidPicker .picker{background:var(--paper);border-radius:14px;padding:28px;max-width:440px;width:100%;}
+#kidPicker h3{font-size:22px;margin-bottom:16px;}
+#kidPicker .pkid{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;margin-bottom:8px;cursor:pointer;background:var(--paper);text-decoration:none;color:var(--ink);}
+#kidPicker .pkid:hover{border-color:var(--accent);background:#fdf6f9;}
+#kidPicker .pmark{width:38px;height:38px;border-radius:8px;background:var(--accent);color:#fff;font-family:'Fraunces';font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;flex:none;}
+#kidPicker .pname{font-family:'Fraunces';font-weight:600;font-size:18px;}
+#kidPicker .pgrade{font-size:12px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+
+.reveal{opacity:0;transform:translateY(14px);animation:rise .55s ease forwards;animation-delay:var(--d,0s);}
+@keyframes rise{to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar reveal" style="--d:0s">
+    <a class="back" href="parent.html">&#8592; Family</a>
+    <span class="who"><span class="av" id="avLetter">?</span><span id="kidLabel">Loading...</span></span>
+    <a class="parentlink" href="parent.html">Parent view &#8594;</a>
+  </div>
+
+  <section class="mission reveal" style="--d:.05s">
+    <div class="hi" id="missionHi">Hello</div>
+    <div class="lab"><svg class="gem" viewBox="0 0 24 24"><path d="M5 9l3-5h8l3 5-7 11z" fill="#b14a78"/></svg>Today's Feature</div>
+    <h1 id="missionTitle">Loading...</h1>
+    <p class="enc" id="missionEnc"></p>
+    <button class="start" id="startBtn">Begin &#9654;</button>
+  </section>
+
+  <div class="strip">
+    <div class="statcard reveal" style="--d:.10s">
+      <div class="t">Progress</div>
+      <div class="level"><span class="lvlnum" id="lvlNum">1</span>
+        <div class="lvlbar"><div class="track"><div class="fill" id="lvlFill" style="width:0%"></div></div>
+        <div class="cap" id="lvlCap"></div></div></div>
+    </div>
+    <div class="statcard quest reveal" style="--d:.14s">
+      <div class="t">Daily mix: a little of each</div>
+      <div class="dots">
+        <div class="qd" id="qd_math"><span class="ring" style="border-color:#e8731c"><svg viewBox="0 0 27 27" fill="#e8731c"><rect x="3" y="3" width="9" height="9" rx="2"/><rect x="15" y="3" width="9" height="9" rx="2" opacity=".6"/><rect x="3" y="15" width="9" height="9" rx="2" opacity=".6"/><rect x="15" y="15" width="9" height="9" rx="2"/></svg></span><span class="nm">Math</span></div>
+        <div class="qd" id="qd_reading"><span class="ring" style="border-color:#8a44c0"><svg viewBox="0 0 27 27" fill="#8a44c0"><path d="M4 5h8v17H4z"/><path d="M15 5h8v17h-8z" opacity=".6"/></svg></span><span class="nm">Reading</span></div>
+        <div class="qd" id="qd_science"><span class="ring" style="border-color:#0f9488"><svg viewBox="0 0 27 27" fill="#0f9488"><path d="M10 3h7v6l5 12a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3l5-12z"/></svg></span><span class="nm">Science</span></div>
+        <div class="qd" id="qd_social"><span class="ring" style="border-color:#c43c6b"><svg viewBox="0 0 27 27" fill="#c43c6b"><circle cx="13.5" cy="13.5" r="10.5"/><path d="M3 13.5h21M13.5 3c4.5 4 4.5 17 0 21M13.5 3c-4.5 4-4.5 17 0 21" stroke="#fff" stroke-width="1.5" fill="none" opacity=".85"/></svg></span><span class="nm">Social</span></div>
+        <div class="qd" id="qd_japanese"><span class="ring" style="border-color:#3b6fd6"><svg viewBox="0 0 27 27" fill="#3b6fd6"><rect x="3" y="5" width="21" height="3.4" rx="1.2"/><rect x="6" y="8" width="3.2" height="14"/><rect x="17.8" y="8" width="3.2" height="14"/></svg></span><span class="nm">Japanese</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="lpad reveal" style="--d:.15s">
+    <div class="lph"><h3>Week 1 launchpad</h3><span class="when">Mon to Fri</span></div>
+    <div class="lpgrid" id="lpgrid"></div>
+    <div class="lpfull"><a href="Week 1 Schedule.html">View full Week 1 Schedule &#8594;</a></div>
+  </section>
+
+  <div class="section-t reveal" style="--d:.17s">Your Subjects</div>
+  <div class="grid" id="subjectGrid"></div>
+
+  <section class="shelf reveal" style="--d:.20s">
+    <div class="h"><svg class="gem" viewBox="0 0 24 24"><path d="M5 9l3-5h8l3 5-7 11z" fill="#b14a78"/></svg><h3>Collection</h3><span class="count" id="trophyCount">0</span></div>
+    <div class="badges" id="badges"></div>
+    <div class="empty" id="trophyEmpty">Master your first lesson to start your collection.</div>
+  </section>
+
+  <footer id="footLine">Local progress on this device. Grown-ups: open Parent view for the full family.</footer>
+</div>
+
+<div id="kidPicker" role="dialog" aria-modal="true" aria-labelledby="pkTitle">
+  <div class="picker">
+    <h3 id="pkTitle">Which kid is this?</h3>
+    <p style="color:var(--ink2);margin-bottom:14px;font-size:15px;">Pick a kid to open their dashboard.</p>
+    <div id="pkList"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app';
+
+  // ---- per-grade Week 1 + math ladder data ----
+  var GRADE_DATA={
+    2:{
+      mathTotal:35,
+      mathBuilt:{
+        "2.NBT.A.1":{file:"Sam - Math - Place Value Mastery.html",nice:"Place Value Mastery"},
+        "2.NBT.A.2":{file:"Sam - Math - Ten Tens Make a Hundred.html",nice:"Ten Tens Make a Hundred"},
+        "2.NBT.A.3":{file:"Sam - Math - Counting Within 1000.html",nice:"Counting Within 1000"},
+        "2.NBT.A.4":{file:"Sam - Math - Reading and Writing Numbers to 1000.html",nice:"Reading and Writing Numbers to 1000"},
+        "2.NBT.A.5":{file:"Sam - Math - Comparing Three-Digit Numbers.html",nice:"Comparing Three-Digit Numbers"},
+        "2.RA.A.1":{file:"Sam - Math - Fluency Within 20.html",nice:"Fluency Within 20"},
+        "2.NBT.B.10":{file:"Sam - Math - Plus and Minus 10 and 100.html",nice:"Plus and Minus 10 and 100"},
+        "2.NBT.B.6":{file:"Sam - Math - Add and Subtract Within 100.html",nice:"Add and Subtract Within 100"},
+        "2.NBT.B.7":{file:"Sam - Math - Add Up to Four Two-Digit Numbers.html",nice:"Add Up to Four Two-Digit Numbers"},
+        "2.NBT.B.8":{file:"Sam - Math - Add and Subtract Within 1000.html",nice:"Add and Subtract Within 1000"},
+        "2.NBT.B.9":{file:"Sam - Math - Addition and Subtraction Are Linked.html",nice:"Addition and Subtraction Are Linked"},
+        "2.NBT.C.11":{file:"Sam - Math - Word Problems Within 100.html",nice:"Word Problems Within 100"}
+      },
+      mathSeq:["2.NBT.A.1","2.NBT.A.2","2.NBT.A.3","2.NBT.A.4","2.NBT.A.5","2.RA.A.1","2.NBT.B.10","2.NBT.B.6","2.NBT.B.7","2.NBT.B.8","2.NBT.B.9","2.NBT.C.11"],
+      mathIndex:"Sam - Math Index.html",
+      readingIndex:"Sam - Reading Index.html",
+      readingFirst:"Sam - Reading Day 1 - Decoding Multisyllabic Words.html",
+      scienceFirst:"Sam - Science Day 1 - Sorting Materials.html",
+      socialFirst:"Sam - Social Studies Day 1 - Map Directions.html",
+      japaneseFirst:"Sam - Japanese Day 1 - Numbers 1 to 10.html",
+      week1:[
+        {day:'Day 1', cells:[
+          {sub:'math', code:'2.NBT.A.1', title:'Place Value Mastery', file:'Sam - Math - Place Value Mastery.html'},
+          {sub:'reading', code:'2.RF.3.A.a', title:'Decoding Multisyllabic Words', file:'Sam - Reading Day 1 - Decoding Multisyllabic Words.html'},
+          {sub:'science', code:'2.PS1.A.1', title:'Sorting Materials', file:'Sam - Science Day 1 - Sorting Materials.html'}
+        ]},
+        {day:'Day 2', cells:[
+          {sub:'math', code:'2.NBT.A.2', title:'Ten Tens Make a Hundred', file:'Sam - Math - Ten Tens Make a Hundred.html'},
+          {sub:'reading', code:'2.RF.3.A.b', title:'Long and Short Vowels', file:'Sam - Reading Day 1 - Long and Short Vowels.html'},
+          {sub:'social', code:'2.EG5.A.a', title:'Map Directions', file:'Sam - Social Studies Day 1 - Map Directions.html'}
+        ]},
+        {day:'Day 3', cells:[
+          {sub:'math', code:'2.NBT.A.3', title:'Counting Within 1000', file:'Sam - Math - Counting Within 1000.html'},
+          {sub:'reading', code:'2.RF.1.A.a', title:'Sentences Into Paragraphs', file:'Sam - Reading Day 3 - Sentences Into Paragraphs.html'},
+          {sub:'japanese', code:'JP.G2.D1', title:'Numbers 1 to 10', file:'Sam - Japanese Day 1 - Numbers 1 to 10.html'}
+        ]},
+        {day:'Day 4', cells:[
+          {sub:'math', code:'2.NBT.A.4', title:'Reading and Writing Numbers to 1000', file:'Sam - Math - Reading and Writing Numbers to 1000.html'},
+          {sub:'reading', code:'2.R.1.A.a', title:'Text Features and Predictions', file:'Sam - Reading Day 4 - Text Features and Predictions.html'},
+          {sub:'science', code:'2.PS1.A.2', title:'Pick the Right Material', file:'Sam - Science Day 2 - Pick the Right Material.html'}
+        ]},
+        {day:'Day 5', cells:[
+          {sub:'math', code:'2.NBT.A.5', title:'Comparing Three-Digit Numbers', file:'Sam - Math - Comparing Three-Digit Numbers.html'},
+          {sub:'reading', code:'2.R.1.A.b', title:'Asking Good Questions', file:'Sam - Reading Day 5 - Asking Good Questions.html'},
+          {sub:'social', code:'2.EG5.A.b', title:'Different Kinds of Maps', file:'Sam - Social Studies Day 2 - Different Kinds of Maps.html'}
+        ]}
+      ]
+    },
+    3:{
+      mathTotal:45,
+      mathBuilt:{
+        "3.NBT.A.1":{file:"Amelia - Math Day 1 - Rounding Numbers.html",nice:"Rounding Numbers"},
+        "3.NBT.A.2":{file:"Amelia - Math Day 2 - Read and Write Numbers to 100,000.html",nice:"Read and Write Numbers to 100,000"},
+        "3.NBT.A.3":{file:"Amelia - Math - Fluent Within 1000.html",nice:"Fluent Within 1000"},
+        "3.NBT.A.4":{file:"Amelia - Math Day 4 - Multiply by Multiples of 10.html",nice:"Multiply by Multiples of 10"},
+        "3.RA.A.1":{file:"Amelia - Math Day 5 - Interpret Products.html",nice:"Interpret Products"}
+      },
+      mathSeq:["3.NBT.A.1","3.NBT.A.2","3.NBT.A.3","3.NBT.A.4","3.RA.A.1"],
+      mathIndex:"Amelia - Math Index.html",
+      readingIndex:null,
+      readingFirst:"Amelia - Reading Day 1 - Prefixes and Suffixes.html",
+      scienceFirst:"Amelia - Science Day 1 - Forces and Motion.html",
+      socialFirst:"Amelia - Social Studies Day 1 - Map Grids.html",
+      japaneseFirst:"Amelia - Japanese Day 1 - Colors.html",
+      week1:[
+        {day:'Day 1', cells:[
+          {sub:'math', code:'3.NBT.A.1', title:'Rounding Numbers', file:'Amelia - Math Day 1 - Rounding Numbers.html'},
+          {sub:'reading', code:'3.R.1.B.a', title:'Prefixes and Suffixes', file:'Amelia - Reading Day 1 - Prefixes and Suffixes.html'},
+          {sub:'science', code:'3.PS2.A.1', title:'Forces and Motion', file:'Amelia - Science Day 1 - Forces and Motion.html'}
+        ]},
+        {day:'Day 2', cells:[
+          {sub:'math', code:'3.NBT.A.2', title:'Read and Write Numbers to 100,000', file:'Amelia - Math Day 2 - Read and Write Numbers to 100,000.html'},
+          {sub:'reading', code:'3.RF.3.A.a', title:'Decoding Multisyllabic Words', file:'Amelia - Reading Day 2 - Decoding Multisyllabic Words.html'},
+          {sub:'social', code:'3.EG5.B.b', title:'Map Grids', file:'Amelia - Social Studies Day 1 - Map Grids.html'}
+        ]},
+        {day:'Day 3', cells:[
+          {sub:'math', code:'3.NBT.A.3', title:'Fluent Within 1000', file:'Amelia - Math - Fluent Within 1000.html'},
+          {sub:'reading', code:'3.R.1.A.b', title:'Draw Conclusions with Evidence', file:'Amelia - Reading Day 3 - Draw Conclusions with Evidence.html'},
+          {sub:'japanese', code:'JP.G3.D1', title:'Colors', file:'Amelia - Japanese Day 1 - Colors.html'}
+        ]},
+        {day:'Day 4', cells:[
+          {sub:'math', code:'3.NBT.A.4', title:'Multiply by Multiples of 10', file:'Amelia - Math Day 4 - Multiply by Multiples of 10.html'},
+          {sub:'reading', code:'3.R.1.A.c', title:'Beginning, Middle, End, Central Message', file:'Amelia - Reading Day 4 - Beginning, Middle, End, Central Message.html'},
+          {sub:'science', code:'3.PS1.A.1', title:'Water Changes State', file:'Amelia - Science Day 2 - Water Changes State.html'}
+        ]},
+        {day:'Day 5', cells:[
+          {sub:'math', code:'3.RA.A.1', title:'Interpret Products', file:'Amelia - Math Day 5 - Interpret Products.html'},
+          {sub:'reading', code:'3.R.3.A.b', title:'Details That Support the Main Idea', file:'Amelia - Reading Day 5 - Details That Support the Main Idea.html'},
+          {sub:'social', code:'3.EG5.A.a', title:'Reading Historical and Current Maps', file:'Amelia - Social Studies Day 2 - Reading Historical and Current Maps.html'}
+        ]}
+      ]
+    },
+    8:{
+      mathTotal:52,
+      mathBuilt:{
+        "8.NS.A.1a":{file:"Julie - Math Day 1 - Rational vs Irrational.html",nice:"Rational vs Irrational"},
+        "8.NS.A.1b":{file:"Julie - Math Day 2 - Decimal Expansion Always Terminates or Repeats.html",nice:"Decimal Expansion Terminates or Repeats"},
+        "8.NS.A.1c":{file:"Julie - Math Day 3 - Convert Repeating Decimals to Fractions.html",nice:"Convert Repeating Decimals to Fractions"},
+        "8.NS.A.1d":{file:"Julie - Math Day 4 - Equivalent Representations of Rationals.html",nice:"Equivalent Representations of Rationals"},
+        "8.NS.A.2":{file:"Julie - Math Day 1 - Irrational Numbers.html",nice:"Irrational Numbers"}
+      },
+      mathSeq:["8.NS.A.1a","8.NS.A.1b","8.NS.A.1c","8.NS.A.1d","8.NS.A.2"],
+      mathIndex:"Julie - Math Index.html",
+      readingIndex:null,
+      readingFirst:"Julie - Reading Day 1 - Citing Evidence.html",
+      scienceFirst:"Julie - Science Day 1 - Force Mass and Motion.html",
+      socialFirst:"Julie - Social Studies Day 1 - Three Branches.html",
+      japaneseFirst:"Julie - Japanese Day 1 - Days of the Week.html",
+      week1:[
+        {day:'Day 1', cells:[
+          {sub:'math', code:'8.NS.A.1a', title:'Rational vs Irrational', file:'Julie - Math Day 1 - Rational vs Irrational.html'},
+          {sub:'reading', code:'8.RL.1.A', title:'Citing Evidence', file:'Julie - Reading Day 1 - Citing Evidence.html'},
+          {sub:'science', code:'6-8.PS2.A.2', title:'Force, Mass and Motion', file:'Julie - Science Day 1 - Force Mass and Motion.html'}
+        ]},
+        {day:'Day 2', cells:[
+          {sub:'math', code:'8.NS.A.1b', title:'Decimal Expansion Terminates or Repeats', file:'Julie - Math Day 2 - Decimal Expansion Always Terminates or Repeats.html'},
+          {sub:'reading', code:'8.RL.1.B', title:'Word Meaning in Context', file:'Julie - Reading Day 2 - Word Meaning in Context.html'},
+          {sub:'social', code:'6-8.AH.3', title:'Three Branches', file:'Julie - Social Studies Day 1 - Three Branches.html'}
+        ]},
+        {day:'Day 3', cells:[
+          {sub:'math', code:'8.NS.A.1c', title:'Convert Repeating Decimals to Fractions', file:'Julie - Math Day 3 - Convert Repeating Decimals to Fractions.html'},
+          {sub:'reading', code:'8.RL.1.D', title:'Theme and Its Development', file:'Julie - Reading Day 3 - Theme and Its Development.html'},
+          {sub:'japanese', code:'JP.G8.D1', title:'Days of the Week', file:'Julie - Japanese Day 1 - Days of the Week.html'}
+        ]},
+        {day:'Day 4', cells:[
+          {sub:'math', code:'8.NS.A.1d', title:'Equivalent Representations of Rationals', file:'Julie - Math Day 4 - Equivalent Representations of Rationals.html'},
+          {sub:'reading', code:'8.RL.2.C', title:'Word Choice and Sentence Structure', file:'Julie - Reading Day 4 - Word Choice and Sentence Structure.html'},
+          {sub:'science', code:'6-8.PS2.B.1', title:'Electric and Magnetic Forces', file:'Julie - Science Day 2 - Electric and Magnetic Forces.html'}
+        ]},
+        {day:'Day 5', cells:[
+          {sub:'math', code:'8.NS.A.2', title:'Irrational Numbers', file:'Julie - Math Day 1 - Irrational Numbers.html'},
+          {sub:'reading', code:'8.RI.2.D', title:"Evaluating an Author's Argument", file:"Julie - Reading Day 5 - Evaluating an Author's Argument.html"},
+          {sub:'social', code:'6-8.AH.3.CC.B', title:'Declaration of Independence', file:'Julie - Social Studies Day 2 - Declaration of Independence.html'}
+        ]}
+      ]
+    }
+  };
+
+  var SUB_LABEL={math:'Math',reading:'Reading',science:'Science',social:'Social Studies',japanese:'Japanese'};
+  var SUB_COL={math:'#e8731c',reading:'#8a44c0',science:'#0f9488',social:'#c43c6b',japanese:'#3b6fd6'};
+  var SUB_ICON={
+    math:'<svg viewBox="0 0 27 27"><rect x="3" y="3" width="9" height="9" rx="2"/><rect x="15" y="3" width="9" height="9" rx="2" opacity=".6"/><rect x="3" y="15" width="9" height="9" rx="2" opacity=".6"/><rect x="15" y="15" width="9" height="9" rx="2"/></svg>',
+    reading:'<svg viewBox="0 0 27 27"><path d="M4 5h8v17H4z"/><path d="M15 5h8v17h-8z" opacity=".6"/></svg>',
+    science:'<svg viewBox="0 0 27 27"><path d="M10 3h7v6l5 12a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3l5-12z"/></svg>',
+    social:'<svg viewBox="0 0 27 27"><circle cx="13.5" cy="13.5" r="10.5"/><path d="M3 13.5h21M13.5 3c4.5 4 4.5 17 0 21M13.5 3c-4.5 4-4.5 17 0 21" stroke="#fff" stroke-width="1.5" fill="none" opacity=".85"/></svg>',
+    japanese:'<svg viewBox="0 0 27 27"><rect x="3" y="5" width="21" height="3.4" rx="1.2"/><rect x="6" y="8" width="3.2" height="14"/><rect x="17.8" y="8" width="3.2" height="14"/></svg>'
+  };
+  var C=2*Math.PI*24;
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  function qs(name){var m=location.search.match(new RegExp('[?&]'+name+'=([^&]*)'));return m?decodeURIComponent(m[1]):null;}
+  function escapeHtml(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+  function isToday(ts){if(!ts)return false;var d=new Date(ts),n=new Date();return d.toDateString()===n.toDateString();}
+
+  var app=load();
+
+  // No family set up? Go to welcome.
+  if(!app.family || !app.family.setupComplete || !(app.family.kids||[]).length){
+    location.replace('welcome.html'); return;
+  }
+
+  var kids=app.family.kids;
+  var kidId=qs('kid')||app.activeKid||null;
+  var kid=kids.filter(function(k){return k.id===kidId;})[0];
+
+  if(!kid){
+    // Show picker
+    var pk=document.getElementById('kidPicker');
+    var pkl=document.getElementById('pkList');
+    kids.forEach(function(k){
+      var a=document.createElement('a'); a.className='pkid'; a.href='dashboard.html?kid='+encodeURIComponent(k.id);
+      var initial=(k.name||'?').charAt(0).toUpperCase();
+      var gradeLabel=(k.grade===0?'Kindergarten':'Grade '+k.grade);
+      a.innerHTML='<div class="pmark">'+escapeHtml(initial)+'</div>'+
+                  '<div><div class="pname">'+escapeHtml(k.name)+'</div>'+
+                  '<div class="pgrade">'+escapeHtml(gradeLabel)+'</div></div>';
+      pkl.appendChild(a);
+    });
+    pk.classList.add('show');
+    return;
+  }
+
+  // Set active kid
+  app.activeKid=kid.id;
+  save(app);
+
+  var grade=kid.grade;
+  var data=GRADE_DATA[grade];
+  if(!data){
+    document.getElementById('missionTitle').textContent='Lessons for this grade are coming soon.';
+    document.getElementById('missionEnc').textContent='Your dashboard will fill in as we build them.';
+    document.getElementById('startBtn').style.display='none';
+    document.getElementById('lpgrid').innerHTML='<div style="grid-column:1/-1;padding:24px;color:var(--mut);font-style:italic;text-align:center;">No Week 1 lessons available for this grade yet.</div>';
+    document.getElementById('kidLabel').textContent=kid.name+' · '+(grade===0?'Kindergarten':'Grade '+grade);
+    document.getElementById('avLetter').textContent=(kid.name||'?').charAt(0).toUpperCase();
+    document.getElementById('missionHi').textContent='Hello, '+kid.name;
+    document.getElementById('footLine').textContent='Local progress on this device.';
+    return;
+  }
+
+  // ---- header ----
+  document.getElementById('kidLabel').textContent=kid.name+' · Grade '+grade;
+  document.getElementById('avLetter').textContent=(kid.name||'?').charAt(0).toUpperCase();
+  document.getElementById('missionHi').textContent='Hello, '+kid.name;
+  document.getElementById('footLine').textContent='Local progress on this device. Grown-ups: open Parent view for the full family.';
+
+  // ---- progress lookup ----
+  var P=(app.progress||{})[kid.id]||{};
+  function rec(sub,code){return ((P[sub]||{})[code])||null;}
+  function mastered(sub,code){var r=rec(sub,code);return r&&r.status==='passed';}
+
+  // ---- math ladder ----
+  var mathDone=0, firstOpen=null, badges=[];
+  data.mathSeq.forEach(function(code){
+    if(mastered('math',code)){ mathDone++; badges.push({sub:'math',name:data.mathBuilt[code].nice}); }
+    else if(!firstOpen && data.mathBuilt[code]){ firstOpen={code:code, nice:data.mathBuilt[code].nice, file:data.mathBuilt[code].file}; }
+  });
+
+  // ---- subject cards ----
+  var SUBJECTS=[
+    {key:'math',     label:'Math',           link:data.mathIndex || '#'},
+    {key:'reading',  label:'Reading',        link:data.readingIndex || data.readingFirst},
+    {key:'science',  label:'Science',        link:data.scienceFirst},
+    {key:'social',   label:'Social Studies', link:data.socialFirst},
+    {key:'japanese', label:'Japanese',       link:data.japaneseFirst}
+  ];
+  var grid=document.getElementById('subjectGrid');
+  SUBJECTS.forEach(function(s,i){
+    var done=(s.key==='math')?mathDone:0;
+    var total=(s.key==='math')?data.mathTotal:0;
+    var nx=(s.key==='math')?(firstOpen?('Next: '+firstOpen.nice):(mathDone?'All caught up':'Ready to start'))
+         : 'Week 1 lessons ready';
+    var pcText=(s.key==='math')?String(done):'';
+    var off=total?(C*(1-done/total)):C;
+    var card=document.createElement('div'); card.className='card live reveal'; card.style.setProperty('--d',(0.04+0.04*i)+'s');
+    var linkHref=s.link?('"'+escapeHtml(s.link)+'?kid='+encodeURIComponent(kid.id)+'"'):'"#"';
+    card.innerHTML=
+      '<div class="cardtop">'+
+        '<div class="ic" style="background:'+SUB_COL[s.key]+'">'+SUB_ICON[s.key]+'</div>'+
+        '<div><h3>'+escapeHtml(s.label)+'</h3><div class="nx">'+escapeHtml(nx)+'</div></div>'+
+        '<div class="ring-wrap"><svg width="56" height="56" viewBox="0 0 56 56">'+
+          '<circle cx="28" cy="28" r="24" fill="none" stroke="var(--ringtrack)" stroke-width="7"/>'+
+          '<circle cx="28" cy="28" r="24" fill="none" stroke="'+SUB_COL[s.key]+'" stroke-width="7" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="'+off.toFixed(1)+'"/>'+
+        '</svg><span class="pc">'+pcText+'</span></div>'+
+      '</div>'+
+      '<a class="cbtn" style="background:'+SUB_COL[s.key]+'" href='+linkHref+'>Open &#8594;</a>';
+    grid.appendChild(card);
+  });
+
+  // ---- mission ----
+  var mt=document.getElementById('missionTitle'), me=document.getElementById('missionEnc'), sb=document.getElementById('startBtn');
+  var encs=['You have got this.','One step at a time.','Lets get after it.','Ready when you are.'];
+  if(firstOpen){
+    mt.textContent='Math: '+firstOpen.nice;
+    me.textContent=encs[mathDone%encs.length];
+    sb.onclick=function(){ location.href=firstOpen.file+'?kid='+encodeURIComponent(kid.id); };
+  } else {
+    mt.textContent= mathDone?'Math complete. Outstanding.':'Your plan is ready.';
+    me.textContent= mathDone?'More subjects are coming.':'Open Math to begin.';
+    sb.onclick=function(){ location.href=(data.mathIndex||'#')+(data.mathIndex?'?kid='+encodeURIComponent(kid.id):''); };
+  }
+
+  // ---- power level ----
+  var lvl=1+Math.floor(badges.length/3), into=badges.length%3;
+  document.getElementById('lvlNum').textContent=lvl;
+  document.getElementById('lvlFill').style.width=Math.round(into/3*100)+'%';
+  document.getElementById('lvlCap').textContent=badges.length+(badges.length===1?' badge':' badges')+', '+(3-into)+' to level '+(lvl+1);
+
+  // ---- daily quest dots ----
+  Object.keys(SUB_LABEL).forEach(function(k){
+    var sp=P[k]||{}, touched=false;
+    for(var c in sp){ if(isToday((sp[c]||{}).lastAt)){touched=true;break;} }
+    if(touched){ var el=document.getElementById('qd_'+k); if(el)el.classList.add('on'); }
+  });
+
+  // ---- trophies ----
+  document.getElementById('trophyCount').textContent=badges.length;
+  var bw=document.getElementById('badges');
+  if(badges.length){
+    document.getElementById('trophyEmpty').style.display='none';
+    badges.forEach(function(b){
+      var d=document.createElement('div'); d.className='badge';
+      d.innerHTML='<svg class="bg" viewBox="0 0 24 24"><path d="M5 9l3-5h8l3 5-7 11z" fill="'+SUB_COL[b.sub]+'"/></svg>'+escapeHtml(b.name);
+      bw.appendChild(d);
+    });
+  }
+
+  // ---- week 1 launchpad ----
+  var lpg=document.getElementById('lpgrid');
+  ['','Math','Reading','Enrichment'].forEach(function(h){
+    var d=document.createElement('div'); d.className='lph2'; d.textContent=h; lpg.appendChild(d);
+  });
+  // find first un-mastered cell as "today"
+  var todayCell=null;
+  for(var i=0;i<data.week1.length && !todayCell;i++){
+    for(var j=0;j<data.week1[i].cells.length && !todayCell;j++){
+      var c=data.week1[i].cells[j];
+      if(!mastered(c.sub,c.code)) todayCell=c;
+    }
+  }
+  data.week1.forEach(function(row){
+    var dlab=document.createElement('div'); dlab.className='lpd'; dlab.textContent=row.day; lpg.appendChild(dlab);
+    row.cells.forEach(function(c){
+      var a=document.createElement('a'); a.className='lpcell'; a.href=c.file+'?kid='+encodeURIComponent(kid.id);
+      var mast=mastered(c.sub,c.code);
+      if(mast) a.className+=' done';
+      else if(c===todayCell) a.className+=' today';
+      a.innerHTML='<div class="lpsub"><span class="lpdot" style="background:'+SUB_COL[c.sub]+'"></span>'+SUB_LABEL[c.sub]+'</div>'+
+                  '<div class="lptitle">'+escapeHtml(c.title)+'</div>'+
+                  '<div class="lpcheck">&#10003;</div>';
+      lpg.appendChild(a);
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

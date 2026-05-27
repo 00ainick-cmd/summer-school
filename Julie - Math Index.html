@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Julie's Math Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Math Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -52,10 +52,10 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
 
 :root{--accent:#e8731c;--accent2:#b9560f;--accentbg:#fff1e3;}</style></head><body>
 <div class="wrap">
-  <div class="crumb"><a href="Julie - Home Dashboard (Grade 8).html">&#8592; Julie's hub</a><span>/</span><span>Math</span></div>
+  <div class="crumb"><a id="__crumbLink" href="dashboard.html">&#8592; <span id="__crumbName">Julie</span>'s hub</a><span>/</span><span>Math</span></div>
   <div class="hero">
     <span class="tag">Grade 8 Math &middot; mastery ladder</span>
-    <h1>Julie's Math</h1>
+    <h1><span id="__h1Name">Julie</span>'s Math</h1>
     <p>Work down the ladder. Each lesson unlocks when you master the one before it.</p>
     <div class="meter"><span id="bar" style="width:0%"></span></div>
     <div class="meterlab" id="mlab">0 of 52 mastered</div>
@@ -70,6 +70,19 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  "use strict";
  var LADDER=[{"uid": "U1", "title": "Rational & Irrational Numbers", "atoms": [{"code": "8.NS.A.1a", "text": "Explore the real number system."}, {"code": "8.NS.A.1b", "text": "Explore the real number system."}, {"code": "8.NS.A.1c", "text": "Explore the real number system."}, {"code": "8.NS.A.1d", "text": "Explore the real number system."}, {"code": "8.NS.A.2", "text": "Estimate the value and compare the size of irrational numbers and approximate their locations on a number line."}]}, {"uid": "U2", "title": "Integer Exponents & Scientific Notation", "atoms": [{"code": "8.EEI.A.1", "text": "Know and apply the properties of integer exponents to generate equivalent expressions."}, {"code": "8.EEI.A.2a", "text": "Investigate concepts of square and cube roots."}, {"code": "8.EEI.A.2b", "text": "Investigate concepts of square and cube roots."}, {"code": "8.EEI.A.2c", "text": "Investigate concepts of square and cube roots."}, {"code": "8.EEI.A.3", "text": "Express very large and very small quantities in scientific notation and approximate how many times larger one is than the other."}, {"code": "8.EEI.A.4a", "text": "Use scientific notation to solve problems."}, {"code": "8.EEI.A.4b", "text": "Use scientific notation to solve problems."}]}, {"uid": "U3", "title": "Proportional Relationships, Lines & Slope", "atoms": [{"code": "8.EEI.B.5a", "text": "Graph proportional relationships."}, {"code": "8.EEI.B.5b", "text": "Graph proportional relationships."}, {"code": "8.EEI.B.6a", "text": "Apply concepts of slope and y-intercept to graphs, equations and proportional relationships."}, {"code": "8.EEI.B.6b", "text": "Apply concepts of slope and y-intercept to graphs, equations and proportional relationships."}]}, {"uid": "U4", "title": "Linear Equations & Systems", "atoms": [{"code": "8.EEI.C.7a", "text": "Solve linear equations and inequalities in one variable."}, {"code": "8.EEI.C.7b", "text": "Solve linear equations and inequalities in one variable."}, {"code": "8.EEI.C.8a", "text": "Analyze and solve systems of linear equations."}, {"code": "8.EEI.C.8b", "text": "Analyze and solve systems of linear equations."}, {"code": "8.EEI.C.8c", "text": "Analyze and solve systems of linear equations."}, {"code": "8.EEI.C.8d", "text": "Analyze and solve systems of linear equations."}]}, {"uid": "U5", "title": "Functions: Definition, Evaluation & Comparison", "atoms": [{"code": "8.F.A.1a", "text": "Explore the concept of functions. (The use of function notation is not required.)"}, {"code": "8.F.A.1b", "text": "Explore the concept of functions. (The use of function notation is not required.)"}, {"code": "8.F.A.1c", "text": "Explore the concept of functions. (The use of function notation is not required.)"}, {"code": "8.F.A.2", "text": "Compare characteristics of two functions each represented in a different way."}, {"code": "8.F.A.3a", "text": "Investigate the differences between linear and nonlinear functions."}, {"code": "8.F.A.3b", "text": "Investigate the differences between linear and nonlinear functions."}, {"code": "8.F.A.3c", "text": "Investigate the differences between linear and nonlinear functions."}]}, {"uid": "U6", "title": "Modeling with Functions", "atoms": [{"code": "8.F.B.4a", "text": "Use functions to model linear relationships between quantities."}, {"code": "8.F.B.4b", "text": "Use functions to model linear relationships between quantities."}, {"code": "8.F.B.4c", "text": "Use functions to model linear relationships between quantities."}, {"code": "8.F.B.5", "text": "Describe the functional relationship between two quantities from a graph or a verbal description."}]}, {"uid": "U7", "title": "Transformations, Congruence & Similarity", "atoms": [{"code": "8.GM.A.1a", "text": "Verify experimentally the congruence properties of rigid transformations."}, {"code": "8.GM.A.1b", "text": "Verify experimentally the congruence properties of rigid transformations."}, {"code": "8.GM.A.2a", "text": "Understand that two-dimensional figures are congruent if a series of rigid transformations can be performed to map the pre-image to the image."}, {"code": "8.GM.A.3", "text": "Describe the effect of dilations, translations, rotations and reflections on two-dimensional figures using coordinates."}, {"code": "8.GM.A.4a", "text": "Understand that two-dimensional figures are similar if a series of transformations (rotations, reflections, translations and dilations) can be performed to map the pre-image to the image."}, {"code": "8.GM.A.5a", "text": "Explore angle relationships and establish informal arguments."}, {"code": "8.GM.A.5b", "text": "Explore angle relationships and establish informal arguments."}, {"code": "8.GM.A.5c", "text": "Explore angle relationships and establish informal arguments."}, {"code": "8.GM.A.5d", "text": "Explore angle relationships and establish informal arguments."}]}, {"uid": "U8", "title": "The Pythagorean Theorem", "atoms": [{"code": "8.GM.B.6", "text": "Use models to demonstrate a proof of the Pythagorean Theorem and its converse."}, {"code": "8.GM.B.7", "text": "Use the Pythagorean Theorem to determine unknown side lengths in right triangles in problems in two- and three-dimensional contexts."}, {"code": "8.GM.B.8", "text": "Use the Pythagorean Theorem to find the distance between points in a Cartesian coordinate system."}]}, {"uid": "U9", "title": "Volume of Cones, Cylinders & Spheres", "atoms": [{"code": "8.GM.C.9a", "text": "Solve problems involving surface area and volume."}, {"code": "8.GM.C.9b", "text": "Solve problems involving surface area and volume."}]}, {"uid": "U10", "title": "Bivariate Data & Scatter Plots", "atoms": [{"code": "8.DSP.A.1", "text": "Construct and interpret scatter plots of bivariate measurement data to investigate patterns of association between two quantities."}, {"code": "8.DSP.A.2", "text": "Generate and use a trend line for bivariate data, and informally assess the fit of the line."}, {"code": "8.DSP.A.3", "text": "Interpret the parameters of a linear model of bivariate measurement data to solve problems."}, {"code": "8.DSP.A.4a", "text": "Understand the patterns of association in bivariate categorical data displayed in a two-way table."}, {"code": "8.DSP.A.4b", "text": "Understand the patterns of association in bivariate categorical data displayed in a two-way table."}]}], BUILT={"8.NS.A.2": "Julie - Math Day 1 - Irrational Numbers.html"}, TOTAL=52, STU='julie', SUB='math';
  var app={}; try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+ var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+ var __ks=(app.family&&app.family.kids)||[];
+ var __rk=null;
+ if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+ if(!__rk&&app.activeKid)__rk=__ks.filter(function(x){return x.id===app.activeKid;})[0];
+ if(!__rk)__rk=__ks.filter(function(x){return x.grade===8;})[0];
+ if(!__rk&&__ks.length)__rk=__ks[0];
+ if(!__rk)__rk={id:'julie',name:'Julie',grade:8};
+ app.activeKid=__rk.id; try{localStorage.setItem('edu.app',JSON.stringify(app));}catch(e){}
+ STU=__rk.id;
+ var __cn=document.getElementById('__crumbName'); if(__cn)__cn.textContent=__rk.name;
+ var __h1=document.getElementById('__h1Name'); if(__h1)__h1.textContent=__rk.name;
+ var __cl=document.getElementById('__crumbLink'); if(__cl)__cl.href='dashboard.html?kid='+encodeURIComponent(__rk.id);
  var prog=((app.progress||{})[STU]||{})[SUB]||{};
  function mastered(code){var r=prog[code];return r&&r.status==='passed';}
  var seq=[]; LADDER.forEach(function(u){u.atoms.forEach(function(a){seq.push(a.code);});});
@@ -87,8 +100,9 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
    card.appendChild(head);
    u.atoms.forEach(function(a){ var st=states[a.code], row=document.createElement('div'); row.className='atom'+(a.code===firstOpen?' now':'');
      var icon=st==='done'?'✓':st==='lock'?'●':st==='open'?'▶':'…', act;
-     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
-     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]||'#')+'">Review</a>';
+     var __kq='?kid='+encodeURIComponent(__rk.id);
+     if(st==='open')act='<a class="pill open" href="'+BUILT[a.code]+__kq+'">'+(a.code===firstOpen?'Start':'Open')+'</a>';
+     else if(st==='done')act='<a class="pill done" href="'+(BUILT[a.code]?BUILT[a.code]+__kq:'#')+'">Review</a>';
      else if(st==='soon')act='<span class="pill soon">Coming soon</span>';
      else act='<span class="pill lock">Locked</span>';
      row.innerHTML='<span class="st '+st+'">'+icon+'</span><div class="abody"><div class="acode">'+a.code+'</div><div class="atext">'+a.text+'</div></div><div class="aact">'+act+'</div>';
@@ -97,7 +111,7 @@ footer{font-size:13px;color:var(--mut);text-align:center;border-top:2px solid va
  document.getElementById('bar').style.width=(TOTAL?Math.round(doneCount/TOTAL*100):0)+'%';
  document.getElementById('mlab').textContent=doneCount+' of '+TOTAL+' mastered';
  var btn=document.getElementById('continueBtn');
- if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen];}; }
+ if(firstOpen){ btn.textContent='Continue: '+firstOpen; btn.onclick=function(){location.href=BUILT[firstOpen]+'?kid='+encodeURIComponent(__rk.id);}; }
  else { var soon=seq.filter(function(c){return states[c]==='soon';})[0];
    btn.className='cta dim'; btn.disabled=true; btn.textContent= soon? 'Lessons coming soon':'All caught up'; }
 })();

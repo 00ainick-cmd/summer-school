@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec;--paper:#ffffff;--ink:#1d1a16;--ink2:#4f463c;--mut:#8c8275;
+  --line:#e2dccf;--accent:#2f5fd0;--accent2:#1f3d8a;--ok:#1f9d57;--warn:#a85d12;--err:#b3261e;
+  --shade:#fbf8f1;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(46vmax 36vmax at 90% -10%,rgba(47,95,208,.08),transparent 60%),radial-gradient(40vmax 34vmax at 8% 112%,rgba(31,157,87,.06),transparent 60%);}
+h1,h2,h3,.disp{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+
+.wrap{max-width:820px;margin:0 auto;padding:32px 20px 80px;}
+.kick{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);font-weight:600;}
+h1{font-size:clamp(32px,6vw,42px);font-weight:600;line-height:1.05;margin-top:6px;}
+.sub{color:var(--ink2);margin-top:10px;font-size:17px;}
+
+.section{margin-top:24px;}
+.section .lab{font-family:'Inter';font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:600;margin-bottom:10px;}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px 24px;}
+.card+.card{margin-top:14px;}
+
+.kid-card{display:flex;flex-direction:column;gap:14px;}
+.kid-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.kid-mark{width:48px;height:48px;border-radius:12px;background:var(--accent);color:#fff;font-family:'Fraunces';font-weight:700;font-size:22px;display:flex;align-items:center;justify-content:center;flex:none;}
+.kid-name{font-family:'Fraunces';font-size:24px;font-weight:600;}
+.kid-grade{font-size:13px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.kid-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
+
+.mastery{display:flex;flex-direction:column;gap:8px;}
+.mastery .label{font-size:12px;color:var(--mut);font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+.checks{display:flex;gap:6px;flex-wrap:wrap;}
+.chk{width:28px;height:28px;border-radius:6px;background:var(--shade);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--mut);font-weight:700;position:relative;}
+.chk.passed{background:#e7f6ec;border-color:#9bd9b9;color:var(--ok);}
+.chk.passed::after{content:"\2713";}
+.chk[title]{cursor:help;}
+.kid-meta{font-size:14px;color:var(--ink2);}
+.kid-meta .last{color:var(--mut);}
+
+.btn{font-family:'Inter';font-weight:600;font-size:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 16px;min-height:38px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;}
+.btn:hover{background:var(--accent2);text-decoration:none;}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+.btn.ghost:hover{background:var(--shade);}
+.btn.danger{background:#fff;color:var(--err);border:1px solid #f0c8c4;}
+.btn.danger:hover{background:#fbeceb;}
+.btn.big{padding:13px 22px;font-size:16px;min-height:48px;}
+
+.add-card{border:2px dashed var(--line);background:transparent;display:flex;justify-content:center;align-items:center;padding:24px;text-align:center;cursor:pointer;border-radius:12px;color:var(--accent);font-weight:600;}
+.add-card:hover{border-color:var(--accent);background:#f0f5ff;}
+
+details.backup{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+details.backup>summary{padding:18px 24px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;font-family:'Fraunces';font-weight:600;font-size:20px;}
+details.backup>summary::-webkit-details-marker{display:none;}
+details.backup>summary::after{content:"\25BC";margin-left:auto;font-size:12px;color:var(--mut);transition:transform .2s;}
+details.backup[open]>summary::after{transform:rotate(180deg);}
+.backup-body{padding:0 24px 22px;border-top:1px solid var(--line);}
+.backup-body p{color:var(--ink2);margin:14px 0;font-size:15.5px;}
+.backup-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
+.backup-status{font-size:13.5px;margin-top:14px;color:var(--ink2);}
+.backup-status.stale{color:var(--err);font-weight:600;}
+
+#editKidModal,#confirmRestoreModal{position:fixed;inset:0;background:rgba(29,26,22,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
+#editKidModal.show,#confirmRestoreModal.show{display:flex;}
+.modal-inner{background:var(--paper);border-radius:14px;padding:28px;max-width:440px;width:100%;}
+.modal-inner h3{font-size:22px;margin-bottom:14px;}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.field label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);}
+.field input,.field select{font-family:'Inter';font-size:17px;padding:11px 13px;border:1px solid var(--line);background:#fff;border-radius:8px;color:var(--ink);min-height:46px;}
+
+.tip{margin-top:30px;padding:14px 18px;background:#f0eee6;border-left:3px solid var(--mut);border-radius:0 8px 8px 0;color:var(--ink2);font-style:italic;font-family:'Fraunces';font-size:15.5px;}
+footer{margin-top:30px;text-align:center;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:16px;}
+.empty{text-align:center;padding:30px;color:var(--mut);font-style:italic;}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.tools a{font-size:14px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 14px;display:inline-flex;align-items:center;gap:6px;}
+.tools a:hover{border-color:var(--ink);color:var(--ink);text-decoration:none;}
+.reveal{opacity:0;transform:translateY(10px);animation:rise .5s ease forwards;animation-delay:var(--d,0s);}
+@keyframes rise{to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="reveal" style="--d:0s">
+    <div class="kick">For the grown-ups</div>
+    <h1>Family Dashboard</h1>
+    <p class="sub">Your family's progress, at a glance. Backup regularly to keep it safe.</p>
+  </div>
+
+  <div class="section reveal" style="--d:.05s">
+    <div class="lab">Your kids</div>
+    <div id="kidsList"></div>
+    <button class="add-card" id="addKidBtn" type="button">+ Add another kid</button>
+  </div>
+
+  <div class="section reveal" style="--d:.10s">
+    <div class="lab">Backup &amp; restore</div>
+    <details class="backup">
+      <summary>Protect your progress</summary>
+      <div class="backup-body">
+        <p>Your kids' work is saved on this device only. Download a backup weekly so you can recover if the device fails or someone clears the browser data. Switching devices? Download here, then upload on the new device.</p>
+        <div class="backup-actions">
+          <button class="btn" id="downloadBtn" type="button">Download backup</button>
+          <label class="btn ghost" for="restoreFile">Restore from backup</label>
+          <input type="file" id="restoreFile" accept="application/json,.json" style="display:none">
+        </div>
+        <div class="backup-status" id="backupStatus"></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="section reveal" style="--d:.15s">
+    <div class="lab">More</div>
+    <div class="tools">
+      <a href="Week 1 Schedule.html">Week 1 schedule</a>
+      <a href="Start Here.html">Program guide</a>
+    </div>
+  </div>
+
+  <div class="tip">Pro tip: bookmark this URL. This is your family's permanent link.</div>
+  <footer>The Summer Learning Studio. Local-first. Your data stays on your device.</footer>
+</div>
+
+<div id="editKidModal" role="dialog" aria-modal="true" aria-labelledby="editKidTitle">
+  <div class="modal-inner">
+    <h3 id="editKidTitle">Edit kid</h3>
+    <div class="field">
+      <label for="editName">Name</label>
+      <input type="text" id="editName" maxlength="24">
+    </div>
+    <div class="field">
+      <label for="editGrade">Grade</label>
+      <select id="editGrade"></select>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+      <button class="btn" id="editSave" type="button">Save</button>
+      <button class="btn ghost" id="editCancel" type="button">Cancel</button>
+      <button class="btn danger" id="editDelete" type="button" style="margin-left:auto;">Remove kid</button>
+    </div>
+  </div>
+</div>
+
+<div id="confirmRestoreModal" role="dialog" aria-modal="true" aria-labelledby="restoreTitle">
+  <div class="modal-inner">
+    <h3 id="restoreTitle">Replace all progress?</h3>
+    <p style="color:var(--ink2);margin-bottom:18px;">This will replace ALL current progress on this device with the file you uploaded. This cannot be undone (unless you have another backup). Are you sure?</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn" id="restoreYes" type="button">Yes, replace it</button>
+      <button class="btn ghost" id="restoreNo" type="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY='edu.app';
+  var ACTIVE_GRADES=[2,3,8];
+  var ALL_GRADES=[
+    {v:'K',label:'Kindergarten'},
+    {v:'1',label:'Grade 1'},
+    {v:'2',label:'Grade 2'},
+    {v:'3',label:'Grade 3'},
+    {v:'4',label:'Grade 4'},
+    {v:'5',label:'Grade 5'},
+    {v:'6',label:'Grade 6'},
+    {v:'7',label:'Grade 7'},
+    {v:'8',label:'Grade 8'}
+  ];
+
+  // Week 1 lesson codes per grade (for mastery dots)
+  // These should match what dashboard.html and lessons use
+  var WEEK1_BY_GRADE={
+    2:[
+      {sub:'math',code:'2.NBT.A.1'},{sub:'reading',code:'2.RF.3.A.a'},{sub:'science',code:'2.PS1.A.1'},
+      {sub:'math',code:'2.NBT.A.2'},{sub:'reading',code:'2.RF.3.A.b'},{sub:'social',code:'2.EG5.A.a'},
+      {sub:'math',code:'2.NBT.A.3'},{sub:'reading',code:'2.RF.1.A.a'},{sub:'japanese',code:'JP.G2.D1'},
+      {sub:'math',code:'2.NBT.A.4'},{sub:'reading',code:'2.R.1.A.a'},{sub:'science',code:'2.PS1.A.2'},
+      {sub:'math',code:'2.NBT.A.5'},{sub:'reading',code:'2.R.1.A.b'},{sub:'social',code:'2.EG5.A.b'}
+    ],
+    3:[
+      {sub:'math',code:'3.NBT.A.1'},{sub:'reading',code:'3.R.1.B.a'},{sub:'science',code:'3.PS2.A.1'},
+      {sub:'math',code:'3.NBT.A.2'},{sub:'reading',code:'3.RF.3.A.a'},{sub:'social',code:'3.EG5.B.b'},
+      {sub:'math',code:'3.NBT.A.3'},{sub:'reading',code:'3.R.1.A.b'},{sub:'japanese',code:'JP.G3.D1'},
+      {sub:'math',code:'3.NBT.A.4'},{sub:'reading',code:'3.R.1.A.c'},{sub:'science',code:'3.PS1.A.1'},
+      {sub:'math',code:'3.RA.A.1'},{sub:'reading',code:'3.R.3.A.b'},{sub:'social',code:'3.EG5.A.a'}
+    ],
+    8:[
+      {sub:'math',code:'8.NS.A.1a'},{sub:'reading',code:'8.RL.1.A'},{sub:'science',code:'6-8.PS2.A.2'},
+      {sub:'math',code:'8.NS.A.1b'},{sub:'reading',code:'8.RL.1.B'},{sub:'social',code:'6-8.AH.3'},
+      {sub:'math',code:'8.NS.A.1c'},{sub:'reading',code:'8.RL.1.D'},{sub:'japanese',code:'JP.G8.D1'},
+      {sub:'math',code:'8.NS.A.1d'},{sub:'reading',code:'8.RL.2.C'},{sub:'science',code:'6-8.PS2.B.1'},
+      {sub:'math',code:'8.NS.A.2'},{sub:'reading',code:'8.RI.2.D'},{sub:'social',code:'6-8.AH.3.CC.B'}
+    ]
+  };
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  function slugify(s){return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,24)||'kid';}
+  function shortId(){return Math.random().toString(36).slice(2,8);}
+  function makeKidId(name){return 'kid_'+slugify(name)+'_'+shortId();}
+  function escapeHtml(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+
+  // Redirect to welcome if no family set up
+  var app=load();
+  if(!app.family || !app.family.setupComplete || !(app.family.kids||[]).length){
+    location.replace('welcome.html'); return;
+  }
+
+  function recRel(ts){
+    if(!ts) return 'Not started yet';
+    var d=new Date(ts), n=new Date();
+    var ms=n-d;
+    var hr=ms/3600000;
+    if(hr<1) return 'Just now';
+    if(hr<24){
+      if(d.toDateString()===n.toDateString()) return 'Today';
+      return 'Yesterday';
+    }
+    var days=Math.floor(hr/24);
+    if(days===1) return 'Yesterday';
+    if(days<7) return days+' days ago';
+    if(days<14) return '1 week ago';
+    if(days<60) return Math.floor(days/7)+' weeks ago';
+    if(days<365) return Math.floor(days/30)+' months ago';
+    return 'Over a year ago';
+  }
+
+  function lastActiveFor(kidId){
+    var p=(app.progress||{})[kidId]||{};
+    var max=0;
+    for(var sub in p){ for(var code in p[sub]){
+      var r=p[sub][code]; if(r && r.lastAt && r.lastAt>max) max=r.lastAt;
+    }}
+    return max;
+  }
+
+  function masteryFor(kidId,grade){
+    var lessons=WEEK1_BY_GRADE[grade]||[];
+    var p=(app.progress||{})[kidId]||{};
+    return lessons.map(function(L){
+      var r=(p[L.sub]||{})[L.code];
+      return {sub:L.sub,code:L.code,passed:!!(r&&r.status==='passed')};
+    });
+  }
+
+  function render(){
+    app=load();
+    var box=document.getElementById('kidsList');
+    box.innerHTML='';
+    var kids=(app.family||{}).kids||[];
+    if(kids.length===0){
+      box.innerHTML='<div class="card empty">No kids set up yet. Add one below.</div>';
+    }
+    kids.forEach(function(kid){
+      var card=document.createElement('div'); card.className='card kid-card';
+      var initial=(kid.name||'?').charAt(0).toUpperCase();
+      var grade=kid.grade;
+      var gradeLabel=(grade===0?'Kindergarten':'Grade '+grade);
+      var lastTs=lastActiveFor(kid.id);
+      var lastRel=recRel(lastTs);
+      var mast=masteryFor(kid.id,grade);
+      var passedCount=mast.filter(function(m){return m.passed;}).length;
+
+      var head=document.createElement('div'); head.className='kid-head';
+      head.innerHTML='<div class="kid-mark">'+escapeHtml(initial)+'</div>'+
+                     '<div><div class="kid-name">'+escapeHtml(kid.name)+'</div>'+
+                     '<div class="kid-grade">'+escapeHtml(gradeLabel)+'</div></div>'+
+                     '<div class="kid-actions">'+
+                     '<a class="btn" href="dashboard.html?kid='+encodeURIComponent(kid.id)+'">Open dashboard &#8594;</a>'+
+                     '<button class="btn ghost" type="button" data-edit="'+escapeHtml(kid.id)+'">Edit</button>'+
+                     '</div>';
+      card.appendChild(head);
+
+      var mastBox=document.createElement('div'); mastBox.className='mastery';
+      var lbl=document.createElement('div'); lbl.className='label';
+      lbl.textContent='Week 1 mastery: '+passedCount+' of '+mast.length;
+      mastBox.appendChild(lbl);
+      var checks=document.createElement('div'); checks.className='checks';
+      mast.forEach(function(m){
+        var c=document.createElement('div');
+        c.className='chk'+(m.passed?' passed':'');
+        c.title=m.sub+' '+m.code+(m.passed?' (mastered)':' (not yet)');
+        checks.appendChild(c);
+      });
+      mastBox.appendChild(checks);
+      card.appendChild(mastBox);
+
+      var meta=document.createElement('div'); meta.className='kid-meta';
+      meta.innerHTML='<span class="last">Last active: '+escapeHtml(lastRel)+'</span>';
+      card.appendChild(meta);
+
+      box.appendChild(card);
+    });
+
+    // wire up edit buttons
+    [].slice.call(box.querySelectorAll('[data-edit]')).forEach(function(btn){
+      btn.addEventListener('click',function(){ openEdit(btn.getAttribute('data-edit')); });
+    });
+
+    // backup status
+    var bs=document.getElementById('backupStatus');
+    if(app.lastBackupAt){
+      var d=new Date(app.lastBackupAt);
+      var daysAgo=Math.floor((Date.now()-app.lastBackupAt)/86400000);
+      var stale=daysAgo>7;
+      bs.className='backup-status'+(stale?' stale':'');
+      bs.textContent='Last backup: '+recRel(app.lastBackupAt)+(stale?'. Time for a fresh one.':'.');
+    } else {
+      bs.className='backup-status stale';
+      bs.textContent='No backup yet. Download one now to be safe.';
+    }
+  }
+
+  // ---- edit kid modal ----
+  var editingId=null;
+  function openEdit(id){
+    var k=((app.family||{}).kids||[]).filter(function(x){return x.id===id;})[0];
+    if(!k) return;
+    editingId=id;
+    document.getElementById('editName').value=k.name;
+    var sel=document.getElementById('editGrade');
+    sel.innerHTML='';
+    ALL_GRADES.forEach(function(g){
+      var num=(g.v==='K')?0:parseInt(g.v,10);
+      var isActive=ACTIVE_GRADES.indexOf(num)>=0;
+      var o=document.createElement('option'); o.value=g.v;
+      o.textContent=g.label+(isActive?'':' (coming soon)');
+      if(!isActive) o.disabled=true;
+      if(String(k.grade)===g.v || (k.grade===0 && g.v==='K')) o.selected=true;
+      sel.appendChild(o);
+    });
+    document.getElementById('editKidModal').classList.add('show');
+  }
+  document.getElementById('editCancel').addEventListener('click',function(){
+    document.getElementById('editKidModal').classList.remove('show');
+  });
+  document.getElementById('editSave').addEventListener('click',function(){
+    if(!editingId) return;
+    var name=document.getElementById('editName').value.trim();
+    var grade=document.getElementById('editGrade').value;
+    if(!name){ alert('Name cannot be empty.'); return; }
+    var gnum=(grade==='K')?0:parseInt(grade,10);
+    if(ACTIVE_GRADES.indexOf(gnum)<0){ alert('That grade is not available yet.'); return; }
+    var a=load();
+    a.family.kids=a.family.kids.map(function(k){
+      if(k.id===editingId){ k.name=name; k.grade=gnum; }
+      return k;
+    });
+    save(a); app=a;
+    document.getElementById('editKidModal').classList.remove('show');
+    render();
+  });
+  document.getElementById('editDelete').addEventListener('click',function(){
+    if(!editingId) return;
+    if(!confirm('Remove this kid? Their progress data will stay on the device but they will no longer appear in the dashboard.')) return;
+    var a=load();
+    a.family.kids=a.family.kids.filter(function(k){return k.id!==editingId;});
+    if(a.activeKid===editingId){ a.activeKid=(a.family.kids[0]||{}).id; }
+    save(a); app=a;
+    document.getElementById('editKidModal').classList.remove('show');
+    render();
+  });
+
+  document.getElementById('addKidBtn').addEventListener('click',function(){
+    var name=prompt('What is the new kid\'s first name?');
+    if(!name) return;
+    name=name.trim().slice(0,24);
+    if(!name) return;
+    var gradeIn=prompt('What grade? Type 2, 3, or 8 (those are ready). Or K, 1, 4, 5, 6, 7 if you want to preload (lessons coming soon).');
+    if(!gradeIn) return;
+    gradeIn=gradeIn.trim().toUpperCase();
+    var gnum=(gradeIn==='K')?0:parseInt(gradeIn,10);
+    if(isNaN(gnum) || (gradeIn!=='K' && (gnum<1 || gnum>8))){ alert('Grade must be K or 1 through 8.'); return; }
+    if(ACTIVE_GRADES.indexOf(gnum)<0){ alert('That grade is not available yet. Pick 2, 3, or 8.'); return; }
+    var a=load();
+    a.family.kids=a.family.kids||[];
+    a.family.kids.push({id:makeKidId(name),name:name,grade:gnum,addedAt:new Date().toISOString()});
+    save(a); app=a;
+    render();
+  });
+
+  // ---- backup / restore ----
+  document.getElementById('downloadBtn').addEventListener('click',function(){
+    var a=load();
+    a.lastBackupAt=Date.now();
+    save(a); app=a;
+    var blob=new Blob([JSON.stringify(a,null,2)],{type:'application/json'});
+    var url=URL.createObjectURL(blob);
+    var d=new Date();
+    var fn='summerschool-backup-'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'.json';
+    var a2=document.createElement('a'); a2.href=url; a2.download=fn; document.body.appendChild(a2); a2.click(); a2.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    render();
+  });
+
+  var pendingRestore=null;
+  document.getElementById('restoreFile').addEventListener('change',function(e){
+    var file=e.target.files[0];
+    if(!file) return;
+    var reader=new FileReader();
+    reader.onload=function(ev){
+      try{
+        var data=JSON.parse(ev.target.result);
+        if(!data || typeof data!=='object'){ alert('That file does not look like a valid backup.'); return; }
+        if(!data.family || !data.family.kids){ alert('That file is missing family data. Cannot restore.'); return; }
+        pendingRestore=data;
+        document.getElementById('confirmRestoreModal').classList.add('show');
+      }catch(err){
+        alert('Could not read that file. Make sure it is a JSON backup downloaded from this program.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value='';
+  });
+  document.getElementById('restoreNo').addEventListener('click',function(){
+    pendingRestore=null;
+    document.getElementById('confirmRestoreModal').classList.remove('show');
+  });
+  document.getElementById('restoreYes').addEventListener('click',function(){
+    if(!pendingRestore) return;
+    save(pendingRestore);
+    pendingRestore=null;
+    document.getElementById('confirmRestoreModal').classList.remove('show');
+    location.reload();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

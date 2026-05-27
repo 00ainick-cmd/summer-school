@@ -358,7 +358,7 @@
       rec.formB=correct;
       var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
       document.getElementById('retry').classList.add('hide'); document.getElementById('toExplain').classList.add('hide'); document.getElementById('toFormB').classList.add('hide');
-      if(passedB && rec.ptDone){ rec.status='mastered'; rec.passedAt=Date.now(); save(app); syncCloud();
+      if(passedB && rec.ptDone){ rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
         rtitle.textContent='Mastered.'; rmsg.textContent='Form A and Form B both passed and the out-loud task is done. The 2.RF.1.A.a credential is yours.';
       } else if(passedB){ rec.status='formB-passed'; save(app);
         rtitle.textContent='Form B passed!'; rmsg.textContent='Strong work. Finish the out-loud task to lock in mastery.';

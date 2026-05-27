@@ -355,7 +355,7 @@
   function renderResult(passed,label,correct){
     var aMet=(rec.bestA||0)>=PASS, bMet=(rec.bestB||0)>=PASS, ptMet=!!rec.ptDone;
     var mastered=aMet&&bMet;
-    rec.status = mastered ? 'mastered' : (aMet ? 'partA' : 'tried');
+    rec.status = mastered ? 'passed' : (aMet ? 'partA' : 'tried');
     save(app); syncCloud(); show('result');
     document.getElementById('scorebig').textContent=(rec.bestA||0)+' + '+(rec.bestB||0);
     document.getElementById('rtitle').textContent = mastered ? 'Mastered.' : (passed ? 'Form complete.' : 'Not yet.');

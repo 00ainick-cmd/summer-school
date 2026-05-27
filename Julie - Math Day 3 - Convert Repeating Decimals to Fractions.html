@@ -363,7 +363,7 @@
       function gline(ok,label){ var d=document.createElement('div'); d.className='gitem '+(ok?'ok':'miss'); d.innerHTML='<div class="mk">'+(ok?'✓':'!')+'</div><div>'+label+'</div>'; gate.appendChild(d); }
       gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
       gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
-      if(both){ el('cred').classList.add('show'); rec.status='mastered'; rec.points=Math.max(rec.points||0,100); rec.passedAt=Date.now(); }
+      if(both){ el('cred').classList.add('show'); rec.status='passed'; rec.points=Math.max(rec.points||0,100); rec.passedAt=Date.now(); }
       else { rec.status='formB_tried'; }
       save(app); commitTime(); syncCloud();
       setTimeout(function(){ el('donebox').classList.remove('hide'); }, 600);

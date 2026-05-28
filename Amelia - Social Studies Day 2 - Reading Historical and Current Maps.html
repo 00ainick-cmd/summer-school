@@ -316,10 +316,10 @@
 
   // comparison questions inline
   var COMP=[
-    {q:'How many states does the 1800 map show?', o:['50','16','13','30'], a:1, why:'The 1800 atlas showed 16 states along the east coast.'},
-    {q:'In 1800, the United States ended around which river?', o:['Mississippi','Missouri','Colorado','Rio Grande'], a:0, why:'The country reached only about as far west as the Mississippi River.'},
-    {q:'Which is true of the current map but NOT the 1800 map?', o:['Has the Atlantic Ocean','Includes California','Has rivers','Shows the East coast'], a:1, why:'California became a state in 1850 and is on the current map only.'},
-    {q:'The 1800 map is best called a ...', o:['fake map','historical map','weather map','treasure map'], a:1, why:'It shows the country at a moment in the past, so it is a historical map.'}
+    {q:'How many states does the 1800 map show?',o:['16','50','13','30'],a:0, why:'The 1800 atlas showed 16 states along the east coast.'},
+    {q:'In 1800, the United States ended around which river?',o:['Missouri','Mississippi','Colorado','Rio Grande'],a:1, why:'The country reached only about as far west as the Mississippi River.'},
+    {q:'Which is true of the current map but NOT the 1800 map?',o:['Has the Atlantic Ocean','Has rivers','Includes California','Shows the East coast'],a:2, why:'California became a state in 1850 and is on the current map only.'},
+    {q:'The 1800 map is best called a ...',o:['fake map','treasure map','weather map','historical map'],a:3, why:'It shows the country at a moment in the past, so it is a historical map.'}
   ];
   // append comp questions to the second station
   var cmpbox=document.getElementById('cmpbox');
@@ -341,24 +341,24 @@
 
   // Form A and B
   var FORMA=[
-    {q:'What does a historical map show?', o:['What the place will look like','A place at a moment in the past','Only weather','Only roads'], a:1, why:'A historical map is a snapshot of a place at a date in the past.'},
-    {q:'To tell a historical map from a current one, read the ...', o:['title only','date','colors','size'], a:1, why:'The date is the fastest way to place a map in time.'},
-    {q:'Which feature is on the 1800 US map but NOT the current one?', o:['Atlantic Ocean','Large unmapped western area','East coast cities','Mississippi River'], a:1, why:'Much of the west was unmapped or unsettled by the US in 1800.'},
-    {q:'Comparing two maps of the same place from different dates shows ...', o:['what stayed the same and what changed','that one is wrong','that maps lie','the weather'], a:0, why:'That is the whole point of comparing historical and current maps.'},
-    {q:'On the 1800 map, the United States stretched roughly from the Atlantic to the ...', o:['Pacific','Mississippi','Rocky Mountains','Great Lakes only'], a:1, why:'About to the Mississippi River.'},
-    {q:'A current map of the US has how many states?', o:['16','25','48','50'], a:3, why:'Today there are 50 states.'},
-    {q:'A map\'s SOURCE tells you ...', o:['who made it','its color','its size','its smell'], a:0, why:'The source is the cartographer or agency that made the map.'},
-    {q:'An 1800 map missing California is ...', o:['wrong','correct for its date','a treasure map','useless'], a:1, why:'California was not a state in 1800. The map is correct for its time.'}
+    {q:'What does a historical map show?',o:['A place at a moment in the past','What the place will look like','Only weather','Only roads'],a:0, why:'A historical map is a snapshot of a place at a date in the past.'},
+    {q:'To tell a historical map from a current one, read the ...',o:['title only','colors','date','size'],a:2, why:'The date is the fastest way to place a map in time.'},
+    {q:'Which feature is on the 1800 US map but NOT the current one?',o:['Atlantic Ocean','Mississippi River','East coast cities','Large unmapped western area'],a:3, why:'Much of the west was unmapped or unsettled by the US in 1800.'},
+    {q:'Comparing two maps of the same place from different dates shows ...',o:['that one is wrong','what stayed the same and what changed','that maps lie','the weather'],a:1, why:'That is the whole point of comparing historical and current maps.'},
+    {q:'On the 1800 map, the United States stretched roughly from the Atlantic to the ...',o:['Mississippi','Pacific','Rocky Mountains','Great Lakes only'],a:0, why:'About to the Mississippi River.'},
+    {q:'A current map of the US has how many states?',o:['16','50','48','25'],a:1, why:'Today there are 50 states.'},
+    {q:'A map\'s SOURCE tells you ...',o:['its size','its color','who made it','its smell'],a:2, why:'The source is the cartographer or agency that made the map.'},
+    {q:'An 1800 map missing California is ...',o:['wrong','useless','a treasure map','correct for its date'],a:3, why:'California was not a state in 1800. The map is correct for its time.'}
   ];
   var FORMB=[
-    {q:'A map showing the 13 colonies in 1776 is a ...', o:['current map','historical map','weather map','treasure map'], a:1, why:'It shows a place at a moment in the past.'},
-    {q:'Which corner item helps date the map fastest?', o:['Title','Legend','Date','Scale bar'], a:2, why:'The date is the direct answer.'},
-    {q:'You see two maps of Missouri, one from 1820 and one from today. The biggest difference is most likely ...', o:['the rivers','the borders and cities','the ocean','the language'], a:1, why:'Borders moved and cities grew between 1820 and today.'},
-    {q:'Why compare a historical map to a current one?', o:['To find out what changed over time','To pick a color','To make it pretty','To shrink it'], a:0, why:'Comparison shows what changed.'},
-    {q:'An EVENT map might show ...', o:['the weather forecast','arrows for a journey or battle','only state borders','only roads'], a:1, why:'Event maps use arrows or paths to show what happened.'},
-    {q:'A SNAPSHOT map shows ...', o:['a place at one date','sound waves','only the moon','only your room'], a:0, why:'A snapshot freezes the place at one date.'},
-    {q:'The country today reaches all the way to which ocean on the west side?', o:['Atlantic','Indian','Pacific','Arctic'], a:2, why:'The US reaches the Pacific Ocean on the west.'},
-    {q:'A map made today that shows the United States in 1865 is ...', o:['a current map','a historical map','a weather map','not a real map'], a:1, why:'If it shows a place in the past, it is historical, even if it was drawn today.'}
+    {q:'A map showing the 13 colonies in 1776 is a ...',o:['historical map','current map','weather map','treasure map'],a:0, why:'It shows a place at a moment in the past.'},
+    {q:'Which corner item helps date the map fastest?',o:['Title','Date','Legend','Scale bar'],a:1, why:'The date is the direct answer.'},
+    {q:'You see two maps of Missouri, one from 1820 and one from today. The biggest difference is most likely ...',o:['the rivers','the ocean','the borders and cities','the language'],a:2, why:'Borders moved and cities grew between 1820 and today.'},
+    {q:'Why compare a historical map to a current one?',o:['To shrink it','To pick a color','To make it pretty','To find out what changed over time'],a:3, why:'Comparison shows what changed.'},
+    {q:'An EVENT map might show ...',o:['arrows for a journey or battle','the weather forecast','only state borders','only roads'],a:0, why:'Event maps use arrows or paths to show what happened.'},
+    {q:'A SNAPSHOT map shows ...',o:['sound waves','a place at one date','only the moon','only your room'],a:1, why:'A snapshot freezes the place at one date.'},
+    {q:'The country today reaches all the way to which ocean on the west side?',o:['Atlantic','Indian','Arctic','Pacific'],a:3, why:'The US reaches the Pacific Ocean on the west.'},
+    {q:'A map made today that shows the United States in 1865 is ...',o:['a current map','a weather map','a historical map','not a real map'],a:2, why:'If it shows a place in the past, it is historical, even if it was drawn today.'}
   ];
 
   var PHASES=['lesson','check','retention','result'];

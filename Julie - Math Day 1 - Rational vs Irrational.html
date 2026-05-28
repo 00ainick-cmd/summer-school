@@ -302,23 +302,23 @@
 
   // ---- Form A and Form B item banks ----
   var FORMA=[
-    {q:'Which of these is <b>irrational</b>?', o:['√49','√50','0.25','7/8'], a:1, why:'50 is not a perfect square, so √50 is irrational.'},
-    {q:'Which of these is <b>rational</b>?', o:['pi','√2','0.333...','e'], a:2, why:'0.333... = 1/3, a fraction of integers.'},
-    {q:'√81 is ...', o:['rational because 81 = 9²','irrational because it has a root','irrational because the answer is messy','not a real number'], a:0, why:'√81 = 9, a whole number, so rational.'},
-    {q:'The number 22/7 is ...', o:['irrational because it looks like pi','rational because it is a ratio of integers','irrational because the decimal is long','equal to pi'], a:1, why:'22/7 is p/q with integers, so rational. It is only close to pi.'},
-    {q:'Which decimal is <b>irrational</b>?', o:['0.5','0.272727...','0.101001000100001...','0.875'], a:2, why:'The gaps grow forever with no repeating block.'},
-    {q:'√45 is between which two whole numbers?', o:['5 and 6','6 and 7','7 and 8','It is rational'], a:1, why:'6²=36 and 7²=49, and 45 is between. √45 is irrational.'},
-    {q:'A number can be written as p/q with integers and q≠0. It must be ...', o:['irrational','rational','undefined','a square root'], a:1, why:'That is the definition of rational.'},
-    {q:'Which set is <b>all rational</b>?', o:['{√16, 0.‾3, 5/2}','{√2, pi, e}','{√3, 0.875, 7}','{√25, pi, 1/2}'], a:0, why:'√16=4, 0.333...=1/3, 5/2 is a fraction. All rational.'}
+    {q:'Which of these is <b>irrational</b>?',o:['√50','√49','0.25','7/8'],a:0, why:'50 is not a perfect square, so √50 is irrational.'},
+    {q:'Which of these is <b>rational</b>?',o:['pi','0.333...','√2','e'],a:1, why:'0.333... = 1/3, a fraction of integers.'},
+    {q:'√81 is ...',o:['irrational because the answer is messy','irrational because it has a root','rational because 81 = 9²','not a real number'],a:2, why:'√81 = 9, a whole number, so rational.'},
+    {q:'The number 22/7 is ...',o:['irrational because it looks like pi','equal to pi','irrational because the decimal is long','rational because it is a ratio of integers'],a:3, why:'22/7 is p/q with integers, so rational. It is only close to pi.'},
+    {q:'Which decimal is <b>irrational</b>?',o:['0.101001000100001...','0.272727...','0.5','0.875'],a:0, why:'The gaps grow forever with no repeating block.'},
+    {q:'√45 is between which two whole numbers?',o:['5 and 6','7 and 8','6 and 7','It is rational'],a:2, why:'6²=36 and 7²=49, and 45 is between. √45 is irrational.'},
+    {q:'A number can be written as p/q with integers and q≠0. It must be ...',o:['irrational','a square root','undefined','rational'],a:3, why:'That is the definition of rational.'},
+    {q:'Which set is <b>all rational</b>?',o:['{√2, pi, e}','{√16, 0.‾3, 5/2}','{√3, 0.875, 7}','{√25, pi, 1/2}'],a:1, why:'√16=4, 0.333...=1/3, 5/2 is a fraction. All rational.'}
   ];
   var FORMB=[
-    {q:'Which of these is <b>irrational</b>?', o:['√64','√72','0.5','3/8'], a:1, why:'72 is not a perfect square, so √72 is irrational.'},
-    {q:'Which of these is <b>rational</b>?', o:['pi','√5','0.‾6 (0.666...)','e'], a:2, why:'0.666... = 2/3, a fraction of integers.'},
-    {q:'√121 is ...', o:['irrational because it has a root','rational because 121 = 11²','irrational because 121 is big','not a real number'], a:1, why:'√121 = 11, a whole number, so rational.'},
-    {q:'The number 355/113 is ...', o:['irrational because it is close to pi','rational because it is a ratio of integers','irrational because the decimal is long','equal to pi'], a:1, why:'Integers on top and bottom means rational, even if it is close to pi.'},
-    {q:'Which decimal is <b>irrational</b>?', o:['0.4','0.142857142857...','0.202002000200002...','0.125'], a:2, why:'The pattern is not a fixed repeating block. The gaps grow.'},
-    {q:'√30 is between which two whole numbers?', o:['4 and 5','5 and 6','6 and 7','It is rational'], a:1, why:'5²=25 and 6²=36, so √30 sits between, and it is irrational.'},
-    {q:'A number whose decimal never ends and never repeats must be ...', o:['rational','irrational','an integer','a perfect square root'], a:1, why:'No fraction can capture a non-repeating endless decimal.'},
+    {q:'Which of these is <b>irrational</b>?',o:['√72','√64','0.5','3/8'],a:0, why:'72 is not a perfect square, so √72 is irrational.'},
+    {q:'Which of these is <b>rational</b>?',o:['pi','0.‾6 (0.666...)','√5','e'],a:1, why:'0.666... = 2/3, a fraction of integers.'},
+    {q:'√121 is ...',o:['irrational because it has a root','irrational because 121 is big','rational because 121 = 11²','not a real number'],a:2, why:'√121 = 11, a whole number, so rational.'},
+    {q:'The number 355/113 is ...',o:['irrational because it is close to pi','equal to pi','irrational because the decimal is long','rational because it is a ratio of integers'],a:3, why:'Integers on top and bottom means rational, even if it is close to pi.'},
+    {q:'Which decimal is <b>irrational</b>?',o:['0.202002000200002...','0.142857142857...','0.4','0.125'],a:0, why:'The pattern is not a fixed repeating block. The gaps grow.'},
+    {q:'√30 is between which two whole numbers?',o:['4 and 5','6 and 7','5 and 6','It is rational'],a:2, why:'5²=25 and 6²=36, so √30 sits between, and it is irrational.'},
+    {q:'A number whose decimal never ends and never repeats must be ...',o:['rational','a perfect square root','an integer','irrational'],a:3, why:'No fraction can capture a non-repeating endless decimal.'},
     {q:'Which set is <b>all irrational</b>?', o:['{√9, pi, 0.5}','{√2, pi, e}','{√100, 0.‾3, 7}','{1/4, √8, e}'], a:1, why:'√2, pi, and e all have endless non-repeating decimals.'}
   ];
 

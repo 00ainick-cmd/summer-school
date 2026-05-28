@@ -351,24 +351,24 @@
   render();
 
   var FORMA=[
-    {q:'A <b>conclusion</b> is ...',o:['something the author wrote out loud','something you figure out from clues','a guess with no proof'],a:1},
-    {q:'What makes a conclusion <b>strong</b>?',o:['it sounds nice','a sentence in the text supports it','it is the longest answer'],a:1},
-    {q:'Read: <i>Sam yawned, rubbed his eyes, and rested his head on the table.</i> Best conclusion?',o:['Sam is tired','Sam is hungry','Sam is funny'],a:0},
-    {q:'For the conclusion <b>"Sam is tired,"</b> the strongest evidence is ...',o:['"Sam yawned and rubbed his eyes."','"Sam is in third grade."','"There is a table in the room."'],a:0},
-    {q:'Read: <i>The dog crouched, ears back, growling at the door.</i> Best conclusion?',o:['The dog is sleepy','The dog senses something wrong','The dog is hungry'],a:1},
-    {q:'Which is a <b>weak</b> guess?',o:['A conclusion with a sentence to support it','A conclusion with no sentence in the text to back it','A conclusion you can point to'],a:1},
-    {q:'Read: <i>Maya cleared her throat, looked at her notes, and her voice came out quiet.</i> Best conclusion?',o:['Maya is excited','Maya is nervous','Maya forgot what to say'],a:1},
-    {q:'When you give evidence, you should ...',o:['quote or point to the exact sentence','say what you wish was in the story','pick the longest sentence'],a:0}
+    {q:'A <b>conclusion</b> is ...',o:['something you figure out from clues','something the author wrote out loud','a guess with no proof'],a:0},
+    {q:'What makes a conclusion <b>strong</b>?',o:['it sounds nice','it is the longest answer','a sentence in the text supports it'],a:2},
+    {q:'Read: <i>Sam yawned, rubbed his eyes, and rested his head on the table.</i> Best conclusion?',o:['Sam is hungry','Sam is tired','Sam is funny'],a:1},
+    {q:'For the conclusion <b>"Sam is tired,"</b> the strongest evidence is ...',o:['"Sam is in third grade."','"Sam yawned and rubbed his eyes."','"There is a table in the room."'],a:1},
+    {q:'Read: <i>The dog crouched, ears back, growling at the door.</i> Best conclusion?',o:['The dog senses something wrong','The dog is sleepy','The dog is hungry'],a:0},
+    {q:'Which is a <b>weak</b> guess?',o:['A conclusion with a sentence to support it','A conclusion you can point to','A conclusion with no sentence in the text to back it'],a:2},
+    {q:'Read: <i>Maya cleared her throat, looked at her notes, and her voice came out quiet.</i> Best conclusion?',o:['Maya is nervous','Maya is excited','Maya forgot what to say'],a:0},
+    {q:'When you give evidence, you should ...',o:['say what you wish was in the story','quote or point to the exact sentence','pick the longest sentence'],a:1}
   ];
   var FORMB=[
-    {q:'A conclusion you cannot back up with a sentence is really a ...',o:['fact','guess','quote'],a:1},
-    {q:'Read: <i>The cat’s tail puffed up and it backed away from the corner.</i> Best conclusion?',o:['The cat is scared','The cat is asleep','The cat is hungry'],a:0},
-    {q:'For "The cat is scared," the strongest evidence is ...',o:['"The cat’s tail puffed up."','"The corner is in the room."','"Cats live in houses."'],a:0},
-    {q:'Read: <i>Theo grinned, raced to the door, and called, "Mom! Look!"</i> Best conclusion?',o:['Theo is sad','Theo is excited','Theo is sleepy'],a:1},
-    {q:'A conclusion is <b>not</b> ...',o:['a thing you figure out','an idea backed by evidence','something the author wrote word for word'],a:2},
-    {q:'Read: <i>Gabby zipped her coat, pulled her hood up, and tucked her hands under her arms.</i> Best conclusion?',o:['Gabby is hot','Gabby is cold','Gabby is bored'],a:1},
+    {q:'A conclusion you cannot back up with a sentence is really a ...',o:['fact','quote','guess'],a:2},
+    {q:'Read: <i>The cat’s tail puffed up and it backed away from the corner.</i> Best conclusion?',o:['The cat is asleep','The cat is scared','The cat is hungry'],a:1},
+    {q:'For "The cat is scared," the strongest evidence is ...',o:['"Cats live in houses."','"The corner is in the room."','"The cat’s tail puffed up."'],a:2},
+    {q:'Read: <i>Theo grinned, raced to the door, and called, "Mom! Look!"</i> Best conclusion?',o:['Theo is excited','Theo is sad','Theo is sleepy'],a:0},
+    {q:'A conclusion is <b>not</b> ...',o:['something the author wrote word for word','an idea backed by evidence','a thing you figure out'],a:0},
+    {q:'Read: <i>Gabby zipped her coat, pulled her hood up, and tucked her hands under her arms.</i> Best conclusion?',o:['Gabby is hot','Gabby is bored','Gabby is cold'],a:2},
     {q:'The best evidence for a conclusion is the sentence that ...',o:['comes first','shows the clue most directly','sounds the prettiest'],a:1},
-    {q:'Read: <i>Owen checked the recipe twice, then washed his hands again.</i> Best conclusion?',o:['Owen is being careful','Owen is in a hurry','Owen does not know what food is'],a:0}
+    {q:'Read: <i>Owen checked the recipe twice, then washed his hands again.</i> Best conclusion?',o:['Owen is in a hurry','Owen is being careful','Owen does not know what food is'],a:1}
   ];
 
   var FORM='A', QS=FORMA;

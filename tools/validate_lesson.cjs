@@ -318,9 +318,10 @@ function runChecks(filePath) {
 
   // 16. Standard code present
   {
-    // Common MO standard patterns: 2.RF.3.A.a, 3.NBT.A.2, 8.NS.A.1, 6-8.PS, 2.L.1.B.f, 8.EEI.A.1
-    // Subparts can be lowercase letters (e.g., .a in 2.RF.3.A.a).
-    const stdRegex = /\b\d(?:-\d)?\.[A-Z]{1,4}(?:\.[A-Za-z0-9]+){1,4}\b/;
+    // Common MO standard patterns: 2.RF.3.A.a, 3.NBT.A.2, 8.NS.A.1, 6-8.PS2.A.2, 2.EG5.A.b,
+    // 2.L.1.B.f, 8.EEI.A.1, 6-8.AH.3.CC.B
+    // Strands can include digits (PS2, EG5). Sub-parts can be lowercase (e.g., .a in 2.RF.3.A.a).
+    const stdRegex = /\b\d(?:-\d)?\.[A-Z][A-Z0-9]{0,4}(?:\.[A-Za-z0-9]+){1,4}\b/;
     if (stdRegex.test(html)) pass('Standard code present');
     else fail('Standard code present', 'no MO-style standard code found (e.g. 2.RF.3.A.a)');
   }
@@ -387,7 +388,8 @@ function main() {
     const cwd = path.resolve(__dirname, '..');
     const files = fs.readdirSync(cwd)
       .filter(f => f.endsWith('.html'))
-      .filter(f => !/^(welcome|dashboard|index|Build Tracker)\b/i.test(f))
+      // Exclude infrastructure pages (these aren't lessons and would fail lesson-specific checks)
+      .filter(f => !/^(welcome|dashboard|parent|index|Build Tracker|Start Here)\b/i.test(f))
       .filter(f => !/Dashboard|Schedule|Index/i.test(f));
     let totalP = 0, totalF = 0, totalW = 0;
     const rows = [];

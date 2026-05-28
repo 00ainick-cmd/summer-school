@@ -333,21 +333,21 @@
   var FORM_A=[
     {q:'A syllable is...',o:['one beat in a word','another name for letter','a punctuation mark'],a:0,why:'Every syllable has one vowel sound and is one beat.'},
     {q:'How many syllables in <b>rabbit</b>?',o:['one','two','three'],a:1,why:'rab + bit = two beats.'},
-    {q:'Where do you split <b>napkin</b>?',o:['na + pkin','nap + kin','napk + in'],a:1,why:'Between the two middle consonants (p and k).'},
+    {q:'Where do you split <b>napkin</b>?',o:['na + pkin','napk + in','nap + kin'],a:2,why:'Between the two middle consonants (p and k).'},
     {q:'Where do you split <b>basket</b>?',o:['ba + sket','bas + ket','bask + et'],a:1,why:'Between s and k.'},
     {q:'The <b>sh</b> in <i>shop</i> is a...',o:['digraph (two letters, one sound)','blend (two sounds you hear)','single letter'],a:0,why:'sh makes one new sound.'},
-    {q:'The <b>bl</b> in <i>blob</i> is a...',o:['digraph','blend (two sounds you hear)','vowel team'],a:1,why:'You hear both b and l, so it is a blend.'},
+    {q:'The <b>bl</b> in <i>blob</i> is a...',o:['digraph','vowel team','blend (two sounds you hear)'],a:2,why:'You hear both b and l, so it is a blend.'},
     {q:'Beats <b>pic</b> and <b>nic</b> snap together to make...',o:['picnik','picnic','picnack'],a:1,why:'pic + nic = picnic.'},
-    {q:'How many syllables in <b>butterfly</b>?',o:['two','three','four'],a:1,why:'but + ter + fly = three beats.'}
+    {q:'How many syllables in <b>butterfly</b>?',o:['three','four','two'],a:0,why:'but + ter + fly = three beats.'}
   ];
   var FORM_B=[
-    {q:'Every syllable has exactly one...',o:['vowel sound','consonant','silent letter'],a:0,why:'One vowel sound = one beat = one syllable.'},
+    {q:'Every syllable has exactly one...',o:['consonant','silent letter','vowel sound'],a:2,why:'One vowel sound = one beat = one syllable.'},
     {q:'How many syllables in <b>sunset</b>?',o:['one','two','three'],a:1,why:'sun + set = two beats.'},
-    {q:'Where do you split <b>magnet</b>?',o:['ma + gnet','mag + net','magn + et'],a:1,why:'Between g and n, the two middle consonants.'},
-    {q:'Where do you split <b>tennis</b>?',o:['te + nnis','ten + nis','tenn + is'],a:1,why:'Between the two n\'s.'},
+    {q:'Where do you split <b>magnet</b>?',o:['mag + net','magn + et','ma + gnet'],a:0,why:'Between g and n, the two middle consonants.'},
+    {q:'Where do you split <b>tennis</b>?',o:['te + nnis','tenn + is','ten + nis'],a:2,why:'Between the two n\'s.'},
     {q:'The <b>ch</b> in <i>chip</i> is a...',o:['blend','digraph (two letters, one sound)','vowel team'],a:1,why:'ch makes one new sound.'},
-    {q:'The <b>st</b> in <i>stop</i> is a...',o:['digraph','vowel team','blend (two sounds you hear)'],a:2,why:'You hear both s and t.'},
-    {q:'Beats <b>ham</b> and <b>ster</b> snap together to make...',o:['hamster','hampster','hamester'],a:0,why:'ham + ster = hamster.'},
+    {q:'The <b>st</b> in <i>stop</i> is a...',o:['blend (two sounds you hear)','digraph','vowel team'],a:0,why:'You hear both s and t.'},
+    {q:'Beats <b>ham</b> and <b>ster</b> snap together to make...',o:['hamester','hampster','hamster'],a:2,why:'ham + ster = hamster.'},
     {q:'How many syllables in <b>computer</b>?',o:['two','three','four'],a:1,why:'com + pu + ter = three beats.'}
   ];
 

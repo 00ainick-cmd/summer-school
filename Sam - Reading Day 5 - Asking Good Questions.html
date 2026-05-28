@@ -416,8 +416,8 @@
       retry.classList.add('hide'); toExplain.classList.add('hide'); toFormB.classList.add('hide');
       if(passed){
         rec.status='formA-passed'; save(app); syncCloud();
-        rtitle.textContent='Form A passed!'; rmsg.textContent='You got '+correct+' of '+FORM_A.length+' correct. Next, explain in your own words and try the out-loud task.';
-        toExplain.classList.remove('hide');
+        rtitle.textContent='Form A passed!'; rmsg.textContent='You got '+correct+' of '+FORM_A.length+' correct. Form B opens 24 hours from now to lock it in.';
+        toFormB.classList.remove('hide');
       } else {
         rec.status='tried'; save(app);
         rtitle.textContent='So close!'; rmsg.textContent='You need 7 of 8 to pass Form A. You got '+correct+'. Look back at the stations, then try again.';
@@ -430,10 +430,10 @@
       rec.formB=correct;
       var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
       document.getElementById('retry').classList.add('hide'); document.getElementById('toExplain').classList.add('hide'); document.getElementById('toFormB').classList.add('hide');
-      if(passedB && rec.ptDone){ rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
-        rtitle.textContent='Mastered.'; rmsg.textContent='Form A and Form B both passed and the out-loud task is done. The 2.R.1.A.b credential is yours.';
+      if(passedB){ rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+        rtitle.textContent='Mastered.'; rmsg.textContent='Form A and Form B both passed. You mastered this lesson.';
       } else if(passedB){ rec.status='formB-passed'; save(app);
-        rtitle.textContent='Form B passed!'; rmsg.textContent='Strong work. Finish the out-loud task to lock in mastery.';
+        rtitle.textContent='Form B passed!'; rmsg.textContent='Strong work on Form B.';
       } else { rec.status='formB-tried'; save(app);
         rtitle.textContent='Almost there.'; rmsg.textContent='You got '+correct+' of '+FORM_B.length+' on Form B. Reread the stations and try Form B again later.';
       }
@@ -443,10 +443,11 @@
 
   document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
   document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); startCheck('A'); });
-  document.getElementById('toExplain').addEventListener('click',function(){ secResult.classList.add('hide'); secExplain.classList.remove('hide'); window.scrollTo(0,0); });
+  document.getElementById('toExplain').addEventListener('click',function(){ secResult.classList.add('hide'); secFormB.classList.remove('hide'); window.scrollTo(0,0); });
   document.getElementById('startB').addEventListener('click',function(){ var __ap=rec.formAPassedAt||0; if(__ap && (Date.now()-__ap)<24*60*60*1000){ alert('Form B opens 24 hours after Form A passes. Come back tomorrow to lock these in.'); return; } startCheck('B'); });
   document.getElementById('toFormB').addEventListener('click',function(){ secResult.classList.add('hide'); secFormB.classList.remove('hide'); window.scrollTo(0,0); });
 })();
+/* FIX_EXPLAIN_ROUTING_V1 */
 </script>
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
 <script id="mastery-done-wiring">

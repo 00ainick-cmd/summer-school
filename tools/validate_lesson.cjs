@@ -155,17 +155,26 @@ function runChecks(filePath) {
   if (/id\s*=\s*["']masteryDone["']/.test(html)) pass('Mastery screen present');
   else fail('Mastery screen present', 'no id="masteryDone" element found');
 
-  // 4. No Performance Task / Explain free-text
+  // 4. No Performance Task / Explain free-text / dead-end routing
+  // Expanded after the Sam Reading bug where toExplain + secExplain + ptDone
+  // gating left kids stranded on a dead-end page that wasn't caught by the
+  // narrower id="ptDone" / textarea checks.
   {
-    const hasPt = /id\s*=\s*["']ptDone["']/.test(html);
-    const hasExplain = /<textarea[^>]*id\s*=\s*["']explainText["']/.test(html);
-    if (!hasPt && !hasExplain) pass('No performance task / explain free-text');
-    else {
-      const bits = [];
-      if (hasPt) bits.push('id="ptDone" present');
-      if (hasExplain) bits.push('<textarea id="explainText"> present');
-      fail('No performance task / explain free-text', bits.join('; '));
-    }
+    const bits = [];
+    if (/id\s*=\s*["']ptDone["']/.test(html))
+      bits.push('id="ptDone" button present');
+    if (/<textarea[^>]*id\s*=\s*["']explainText["']/.test(html))
+      bits.push('<textarea id="explainText"> present');
+    if (/<section[^>]*id\s*=\s*["'](?:explainSec|ptSec)["']/.test(html))
+      bits.push('<section id="explainSec/ptSec"> present');
+    if (/(?:^|[^a-zA-Z])(?:toExplain|toPT|secExplain|secPT)(?:[^a-zA-Z]|$)/.test(html))
+      bits.push('toExplain / toPT / secExplain / secPT reference present');
+    if (/if\s*\(\s*passedB\s*&&\s*rec\.ptDone\s*\)/.test(html))
+      bits.push('"passedB && rec.ptDone" gating present');
+    if (/rmsg\.textContent\s*=\s*['"][^'"]*\b(?:explain in your own words|out[- ]loud|read.*?aloud|out-loud reading task|reading task)\b/i.test(html))
+      bits.push('rmsg text references explain/out-loud activity');
+    if (!bits.length) pass('No performance task / explain free-text / dead-end routing');
+    else fail('No performance task / explain free-text / dead-end routing', bits.join('; '));
   }
 
   // 5. No parent rubric / grown-up notes

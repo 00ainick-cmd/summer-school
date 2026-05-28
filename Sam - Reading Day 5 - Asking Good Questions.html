@@ -199,26 +199,6 @@
     <div class="qwhy" id="qwhy"></div>
   </section>
 
-  <section id="explainSec" class="hide">
-    <div class="station">
-      <div class="shead"><span class="sno">EXPLAIN</span><h2>Say it in your own words</h2></div>
-      <p class="lead">Strong work on Form A. Now write one or two sentences: <b>what makes a question relevant, and how do you find the answer in the text?</b></p>
-      
-      
-      <button class="cta" id="toPT">Next: ask out loud</button>
-    </div>
-  </section>
-
-  <section id="ptSec" class="hide">
-    <div class="station">
-      <div class="shead"><span class="sno">PERFORMANCE</span><h2>Ask three questions out loud</h2></div>
-      <p class="lead">Pick any short passage in a book you have (a page works fine). Read it out loud to an adult. Then ask <b>three relevant questions</b> about it, using three different question words. After each question, point to where the answer is.</p>
-      
-      
-      
-    </div>
-  </section>
-
   <section id="formBSec" class="hide">
     <div class="station">
       <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
@@ -242,7 +222,6 @@
       <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
     </div>
     <button class="cta alt hide" id="retry">Try Form A again</button>
-    <button class="cta hide" id="toExplain">Next: explain in your own words</button>
     <button class="cta hide" id="toFormB">Next: spaced retention check</button>
     <div id="donebox" class="hide" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
   </section>
@@ -371,8 +350,7 @@
     {q:'A good reader asks questions to...',o:['stop reading early','dig deeper into what the text means','ignore the words on the page'],a:1,why:'Questions pull you into the meaning.'}
   ];
 
-  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'), secExplain=document.getElementById('explainSec'),
-      secPT=document.getElementById('ptSec'), secFormB=document.getElementById('formBSec'), secResult=document.getElementById('result');
+  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'), secFormB=document.getElementById('formBSec'), secResult=document.getElementById('result');
   var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'), elQwhy=document.getElementById('qwhy'),
       elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill');
   var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A;
@@ -412,8 +390,8 @@
       document.getElementById('scorebig').textContent=pct+'%';
       rec.formA=correct; if(!rec.formAPassedAt && rec.formA>=PASS) rec.formAPassedAt=Date.now(); rec.best=Math.max(rec.best||0,pct);
       var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
-          retry=document.getElementById('retry'), toExplain=document.getElementById('toExplain'), toFormB=document.getElementById('toFormB');
-      retry.classList.add('hide'); toExplain.classList.add('hide'); toFormB.classList.add('hide');
+          retry=document.getElementById('retry'), toFormB=document.getElementById('toFormB');
+      retry.classList.add('hide'); toFormB.classList.add('hide');
       if(passed){
         rec.status='formA-passed'; save(app); syncCloud();
         rtitle.textContent='Form A passed!'; rmsg.textContent='You got '+correct+' of '+FORM_A.length+' correct. Form B opens 24 hours from now to lock it in.';
@@ -429,7 +407,7 @@
       document.getElementById('scorebig').textContent=pctB+'%';
       rec.formB=correct;
       var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
-      document.getElementById('retry').classList.add('hide'); document.getElementById('toExplain').classList.add('hide'); document.getElementById('toFormB').classList.add('hide');
+      document.getElementById('retry').classList.add('hide'); document.getElementById('toFormB').classList.add('hide');
       if(passedB){ rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
         rtitle.textContent='Mastered.'; rmsg.textContent='Form A and Form B both passed. You mastered this lesson.';
       } else if(passedB){ rec.status='formB-passed'; save(app);
@@ -443,7 +421,6 @@
 
   document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
   document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); startCheck('A'); });
-  document.getElementById('toExplain').addEventListener('click',function(){ secResult.classList.add('hide'); secFormB.classList.remove('hide'); window.scrollTo(0,0); });
   document.getElementById('startB').addEventListener('click',function(){ var __ap=rec.formAPassedAt||0; if(__ap && (Date.now()-__ap)<24*60*60*1000){ alert('Form B opens 24 hours after Form A passes. Come back tomorrow to lock these in.'); return; } startCheck('B'); });
   document.getElementById('toFormB').addEventListener('click',function(){ secResult.classList.add('hide'); secFormB.classList.remove('hide'); window.scrollTo(0,0); });
 })();

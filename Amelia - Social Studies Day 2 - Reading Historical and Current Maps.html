@@ -137,24 +137,24 @@
 
     <div class="kicker">Map plate 02</div>
     <h1>Reading Historical and Current Maps</h1>
-    <p class="mission">A map is a <b>snapshot</b> of a place at one moment. A <b>historical</b> map shows that place a long time ago. A <b>current</b> map shows it today. Put the two beside each other and you can see what changed.</p>
+    <p class="mission">A map is a <b>snapshot</b> of a place at one moment. A <b>historical</b> map shows the place long ago. A <b>current</b> map shows it today. Set them side by side and you can see what changed.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Read and construct historical and current maps.</div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>First, find the date and source</h2></div>
-      <p class="lead">Every good map tells you <b>when</b> it was made and <b>who</b> made it. That information lives in the corner: a date, a title, and a source. Without those, you cannot tell a historical map from a current one.</p>
+      <p class="lead">Every good map tells you <b>when</b> it was made and <b>who</b> made it. Those clues live in the corner. You see a date, a title, and a source. Without them, you cannot tell a historical map from a current one.</p>
       <div class="meta">
-        <div><b>Title</b><br>What the map is showing.</div>
+        <div><b>Title</b><br>What the map shows.</div>
         <div><b>Date</b><br>When the map was made.</div>
-        <div><b>Source</b><br>Who made it (cartographer or agency).</div>
+        <div><b>Source</b><br>Who made it.</div>
         <div><b>Legend</b><br>What the colors and marks mean.</div>
       </div>
-      <p class="lead" style="margin-top:14px;">A <b>snapshot map</b> shows a place at one date. An <b>event map</b> shows what happened, like arrows for a battle or a journey. Both can be historical or current. The date in the corner tells you which.</p>
+      <p class="lead" style="margin-top:14px;">A <b>snapshot map</b> shows a place at one date. An <b>event map</b> shows what happened. It might have arrows for a battle or a trip. Both kinds can be historical or current. The date in the corner tells you which.</p>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">02</span><h2>Compare the two United States</h2></div>
-      <p class="lead">These two maps both show the United States. One was drawn near the year <b>1800</b>, when the country had only 16 states clinging to the east coast. The other shows the country today, all the way to the Pacific. Tap a region to see its label, then answer the comparison questions.</p>
+      <p class="lead">Both maps show the United States. One was drawn around <b>1800</b>. The country had only 16 states. They all sat on the east coast. The other map shows the country today. It reaches all the way to the Pacific. Tap a region to see its label. Then answer the questions.</p>
       <div class="cmaps">
         <div class="cmap">
           <h3>United States, about 1800</h3>
@@ -208,7 +208,7 @@
 
     <div class="station">
       <div class="shead"><span class="sno">03</span><h2>Watch out for this</h2></div>
-      <div class="myth"><span class="tag">Common mix-up</span><div class="big">An old map is not a wrong map.</div><div style="color:var(--ink2)">The 1800 map is correct <b>for 1800</b>. It does not include California because the United States did not include California yet. Always read the date before you judge a map.</div></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">An old map is not a wrong map.</div><div style="color:var(--ink2)">The 1800 map is right <b>for 1800</b>. It does not show California. That is because the United States did not have California yet. Always read the date before you judge a map.</div></div>
     </div>
 
     <button class="cta" id="toCheck">I can compare the two maps. Start the check</button>
@@ -318,8 +318,8 @@
   var COMP=[
     {q:'How many states does the 1800 map show?',o:['16','50','13','30'],a:0, why:'The 1800 atlas showed 16 states along the east coast.'},
     {q:'In 1800, the United States ended around which river?',o:['Missouri','Mississippi','Colorado','Rio Grande'],a:1, why:'The country reached only about as far west as the Mississippi River.'},
-    {q:'Which is true of the current map but NOT the 1800 map?',o:['Has the Atlantic Ocean','Has rivers','Includes California','Shows the East coast'],a:2, why:'California became a state in 1850 and is on the current map only.'},
-    {q:'The 1800 map is best called a ...',o:['fake map','treasure map','weather map','historical map'],a:3, why:'It shows the country at a moment in the past, so it is a historical map.'}
+    {q:'Which is true of the current map but NOT the 1800 map?',o:['Has the Atlantic Ocean','Has rivers','Includes California','Shows the East coast'],a:2, why:'California became a state in 1850. It is only on the current map.'},
+    {q:'The 1800 map is best called a ...',o:['fake map','treasure map','weather map','historical map'],a:3, why:'It shows the country at a moment in the past. That makes it a historical map.'}
   ];
   // append comp questions to the second station
   var cmpbox=document.getElementById('cmpbox');
@@ -341,24 +341,24 @@
 
   // Form A and B
   var FORMA=[
-    {q:'What does a historical map show?',o:['A place at a moment in the past','What the place will look like','Only weather','Only roads'],a:0, why:'A historical map is a snapshot of a place at a date in the past.'},
+    {q:'What does a historical map show?',o:['A place at a moment in the past','What the place will look like','Only weather','Only roads'],a:0, why:'A historical map is a snapshot of a place from the past.'},
     {q:'To tell a historical map from a current one, read the ...',o:['title only','colors','date','size'],a:2, why:'The date is the fastest way to place a map in time.'},
-    {q:'Which feature is on the 1800 US map but NOT the current one?',o:['Atlantic Ocean','Mississippi River','East coast cities','Large unmapped western area'],a:3, why:'Much of the west was unmapped or unsettled by the US in 1800.'},
-    {q:'Comparing two maps of the same place from different dates shows ...',o:['that one is wrong','what stayed the same and what changed','that maps lie','the weather'],a:1, why:'That is the whole point of comparing historical and current maps.'},
-    {q:'On the 1800 map, the United States stretched roughly from the Atlantic to the ...',o:['Mississippi','Pacific','Rocky Mountains','Great Lakes only'],a:0, why:'About to the Mississippi River.'},
+    {q:'Which feature is on the 1800 US map but NOT the current one?',o:['Atlantic Ocean','Mississippi River','East coast cities','Large unmapped western area'],a:3, why:'Most of the west was unmapped in 1800.'},
+    {q:'Comparing two maps of the same place from different dates shows ...',o:['that one is wrong','what stayed the same and what changed','that maps lie','the weather'],a:1, why:'That is the point of comparing the two maps.'},
+    {q:'On the 1800 map, the United States stretched roughly from the Atlantic to the ...',o:['Mississippi','Pacific','Rocky Mountains','Great Lakes only'],a:0, why:'It reached about as far as the Mississippi River.'},
     {q:'A current map of the US has how many states?',o:['16','50','48','25'],a:1, why:'Today there are 50 states.'},
-    {q:'A map\'s SOURCE tells you ...',o:['its size','its color','who made it','its smell'],a:2, why:'The source is the cartographer or agency that made the map.'},
-    {q:'An 1800 map missing California is ...',o:['wrong','useless','a treasure map','correct for its date'],a:3, why:'California was not a state in 1800. The map is correct for its time.'}
+    {q:'A map\'s SOURCE tells you ...',o:['its size','its color','who made it','its smell'],a:2, why:'The source is the person or group who made the map.'},
+    {q:'An 1800 map missing California is ...',o:['wrong','useless','a treasure map','correct for its date'],a:3, why:'California was not a state in 1800. The map is right for its time.'}
   ];
   var FORMB=[
     {q:'A map showing the 13 colonies in 1776 is a ...',o:['historical map','current map','weather map','treasure map'],a:0, why:'It shows a place at a moment in the past.'},
     {q:'Which corner item helps date the map fastest?',o:['Title','Date','Legend','Scale bar'],a:1, why:'The date is the direct answer.'},
-    {q:'You see two maps of Missouri, one from 1820 and one from today. The biggest difference is most likely ...',o:['the rivers','the ocean','the borders and cities','the language'],a:2, why:'Borders moved and cities grew between 1820 and today.'},
+    {q:'You see two maps of Missouri, one from 1820 and one from today. The biggest change will most likely be ...',o:['the rivers','the ocean','the borders and cities','the language'],a:2, why:'Borders moved. Cities grew. That all happened between 1820 and today.'},
     {q:'Why compare a historical map to a current one?',o:['To shrink it','To pick a color','To make it pretty','To find out what changed over time'],a:3, why:'Comparison shows what changed.'},
     {q:'An EVENT map might show ...',o:['arrows for a journey or battle','the weather forecast','only state borders','only roads'],a:0, why:'Event maps use arrows or paths to show what happened.'},
     {q:'A SNAPSHOT map shows ...',o:['sound waves','a place at one date','only the moon','only your room'],a:1, why:'A snapshot freezes the place at one date.'},
     {q:'The country today reaches all the way to which ocean on the west side?',o:['Atlantic','Indian','Arctic','Pacific'],a:3, why:'The US reaches the Pacific Ocean on the west.'},
-    {q:'A map made today that shows the United States in 1865 is ...',o:['a current map','a weather map','a historical map','not a real map'],a:2, why:'If it shows a place in the past, it is historical, even if it was drawn today.'}
+    {q:'A map made today that shows the United States in 1865 is ...',o:['a current map','a weather map','a historical map','not a real map'],a:2, why:'It shows a place in the past. That makes it historical, even if it was drawn today.'}
   ];
 
   var PHASES=['lesson','check','retention','result'];

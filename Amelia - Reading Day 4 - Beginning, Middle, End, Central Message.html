@@ -166,34 +166,34 @@
 
     <div class="kicker">Chapter four</div>
     <h1>Beginning, Middle, End, and the Central Message</h1>
-    <p class="opener"><span class="dropcap">E</span>very story has bones underneath it. The setup, the trouble, the way out. If you can find those three beats, you have the summary. And once you have the summary, you can ask the biggest question of all: <i>what is the lesson here?</i></p>
-    <p class="mission">By the end you will summarize a short story in three sentences and pick the central message.</p>
+    <p class="opener"><span class="dropcap">E</span>very story has bones. The setup. The trouble. The way out. Find those three parts and you have a summary. Then you can ask the big question: <i>what is the lesson?</i></p>
+    <p class="mission">By the end you will sum up a short story in three sentences. You will pick the central message.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Summarizing a story's beginning, middle, and determining their central message, lesson or moral.</div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>The bones of a story</h2></div>
-      <p class="lead">A summary is the story shrunk to its bones. One sentence for each part.</p>
+      <p class="lead">A summary is a story made small. You write one sentence for each part.</p>
       <div class="arc">
-        <div class="col b"><div class="lab">Beginning</div><div class="big">Setup</div><div class="desc">Who is in it, where they are, what is normal.</div></div>
+        <div class="col b"><div class="lab">Beginning</div><div class="big">Setup</div><div class="desc">Who is in it. Where they are. What is normal.</div></div>
         <div class="col m"><div class="lab">Middle</div><div class="big">Problem</div><div class="desc">Something goes wrong. The character tries to fix it.</div></div>
-        <div class="col e"><div class="lab">End</div><div class="big">Solution</div><div class="desc">How it works out and what changes.</div></div>
+        <div class="col e"><div class="lab">End</div><div class="big">Solution</div><div class="desc">How it works out. What changes.</div></div>
       </div>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">02</span><h2>Plot vs central message</h2></div>
-      <p class="lead">The <b>plot</b> is what happened. The <b>central message</b> is the lesson the story teaches. The plot is different in every story, the message often shows up again and again.</p>
+      <p class="lead">The <b>plot</b> is what happened. The <b>central message</b> is the lesson. The plot is new in every story. The message shows up over and over.</p>
       <div class="morals">
-        <div class="moral"><div class="top">Classic message</div><div class="ttl">Overcoming fear</div><div class="ex">A scared character tries anyway and finds out it was not as bad as they thought.</div></div>
-        <div class="moral"><div class="top">Classic message</div><div class="ttl">Kindness pays off</div><div class="ex">A small kind act comes back around to help the character later.</div></div>
-        <div class="moral"><div class="top">Classic message</div><div class="ttl">Look before you leap</div><div class="ex">A character rushes in and learns to slow down and check first.</div></div>
-        <div class="moral"><div class="top">Classic message</div><div class="ttl">Practice makes you better</div><div class="ex">A character struggles, keeps at it, and improves.</div></div>
+        <div class="moral"><div class="top">Classic message</div><div class="ttl">Beating fear</div><div class="ex">A scared kid tries anyway. It was not as bad as they thought.</div></div>
+        <div class="moral"><div class="top">Classic message</div><div class="ttl">Kindness pays off</div><div class="ex">One kind act comes back to help the kid later.</div></div>
+        <div class="moral"><div class="top">Classic message</div><div class="ttl">Look before you leap</div><div class="ex">A kid rushes in. They learn to slow down and check first.</div></div>
+        <div class="moral"><div class="top">Classic message</div><div class="ttl">Practice makes you better</div><div class="ex">A kid keeps at it. They get better.</div></div>
       </div>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">03</span><h2>Try it: label and find the message</h2></div>
-      <p class="lead">Read the short story. Tag each sentence as <b>B</b> for beginning, <b>M</b> for middle, or <b>E</b> for end. Then pick the central message.</p>
+      <p class="lead">Read the short story. Tag each sentence with <b>B</b>, <b>M</b>, or <b>E</b>. Then pick the central message.</p>
       <div class="story" id="story"></div>
       <div class="progressline" id="prog">0 of 6 labeled.</div>
       <div class="moralpick hide" id="mpwrap">
@@ -205,7 +205,7 @@
 
     <div class="station">
       <div class="shead"><span class="sno">04</span><h2>Watch out for this</h2></div>
-      <div class="myth"><span class="tag">Common mix-up</span><div class="big">The central message is the plot.</div><div style="color:var(--ink2)">No. The plot is <b>what happened</b>: a girl built a stand, sales were slow, she changed her sign. The message is the <b>lesson</b>: trying a small change can fix a problem. The message is what the story teaches, not what it describes.</div></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">The central message is the plot.</div><div style="color:var(--ink2)">No. The plot is <b>what happened</b>. A girl built a stand. Sales were slow. She changed her sign. The message is the <b>lesson</b>. A small change can fix a problem. The message is what the story teaches. The plot is what it tells.</div></div>
     </div>
 
     <button class="cta" id="toCheck">I can summarize. Start the check</button>
@@ -320,8 +320,8 @@
     if(moralShown) return; moralShown=true; mpwrap.classList.remove('hide');
     var MORALS=[
       {t:'A small change can fix a stuck problem.', ok:true, why:'Yes. Nora changed her sign and the line formed.'},
-      {t:'Lemonade is the best summer drink.', ok:false, why:'That is a detail, not the lesson the story teaches.'},
-      {t:'Selling things outside is hard.', ok:false, why:'That is closer to the problem than the message. The story shows the fix.'}
+      {t:'Lemonade is the best summer drink.', ok:false, why:'That is a detail. It is not the lesson.'},
+      {t:'Selling things outside is hard.', ok:false, why:'That is the problem, not the lesson. The story shows the fix.'}
     ];
     var mp=document.getElementById('mpopts'), fb=document.getElementById('mpfb'); mp.innerHTML=''; fb.textContent='';
     MORALS.forEach(function(m){

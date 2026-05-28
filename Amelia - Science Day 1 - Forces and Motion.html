@@ -138,7 +138,7 @@
 
     <div class="kicker">Investigation 01</div>
     <h1>Balanced and Unbalanced Forces</h1>
-    <p class="mission">A <b>force</b> is a push or a pull. When two forces are <b>balanced</b> they cancel and nothing moves. When they are <b>unbalanced</b>, the object moves toward the stronger side.</p>
+    <p class="mission">A <b>force</b> is a push or a pull. When two forces are <b>balanced</b>, they cancel out. Nothing moves. When they are <b>unbalanced</b>, the object moves toward the stronger side.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Plan and conduct an study to provide evidence of the effects of balanced and unbalanced forces on the motion of an object.</div>
 
     <div class="station">
@@ -149,7 +149,7 @@
 
     <div class="station">
       <div class="shead"><span class="sno">02</span><h2>The force lab</h2></div>
-      <p class="lead">Set how hard each side pushes the box. Then press Test it and watch what happens.</p>
+      <p class="lead">Set how hard each side pushes. Then press Test it. Watch what the box does.</p>
       <div class="flab">
         <div class="farena"><div class="ftrack"></div><div class="fbox" id="fbox"></div><div class="farr" id="farrL" style="left:6%"></div><div class="farr" id="farrR" style="right:6%"></div></div>
         <div class="fctrl">
@@ -169,7 +169,7 @@
 
     <div class="station">
       <div class="shead"><span class="sno">04</span><h2>Watch out for this</h2></div>
-      <div class="myth"><span class="tag">Common mix-up</span><div class="wrong">If the box does not move, there are no forces on it.</div><div class="right">Not true. With <b>balanced</b> forces, both pushes are still there. They are equal and point opposite ways, so they cancel out and the box stays still.</div></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="wrong">If the box does not move, there are no forces on it.</div><div class="right">Not true. With <b>balanced</b> forces, both pushes are still there. They are equal. They point opposite ways. They cancel out. The box stays still.</div></div>
     </div>
  
     <button class="cta" id="toCheck">I tested the forces. Start the check</button>
@@ -250,7 +250,7 @@
     pull:'<svg viewBox="0 0 40 40" xmlns="'+AR+'"><path d="M32 20 H10" stroke="#0e9c8a" stroke-width="4"/><path d="M16 13 L8 20 L16 27" fill="none" stroke="#0e9c8a" stroke-width="4"/></svg>',
     bal:'<svg viewBox="0 0 40 40" xmlns="'+AR+'"><path d="M14 20 H4" stroke="#0e9c8a" stroke-width="4"/><path d="M9 15 L4 20 L9 25" fill="none" stroke="#0e9c8a" stroke-width="3"/><rect x="16" y="12" width="8" height="16" fill="#0e9c8a"/><path d="M26 20 H36" stroke="#0e9c8a" stroke-width="4"/><path d="M31 15 L36 20 L31 25" fill="none" stroke="#0e9c8a" stroke-width="3"/></svg>',
     unbal:'<svg viewBox="0 0 40 40" xmlns="'+AR+'"><rect x="10" y="12" width="8" height="16" fill="#0e9c8a"/><path d="M20 20 H36" stroke="#0e9c8a" stroke-width="5"/><path d="M30 13 L37 20 L30 27" fill="none" stroke="#0e9c8a" stroke-width="5"/></svg>'};
-  var PROPS=[['push','Push','force away from you'],['pull','Pull','force toward you'],['bal','Balanced','equal forces, no motion'],['unbal','Unbalanced','one side wins, it moves']];
+  var PROPS=[['push','Push','a force away from you'],['pull','Pull','a force toward you'],['bal','Balanced','equal forces, no motion'],['unbal','Unbalanced','one side wins, it moves']];
   var pbox=document.getElementById('props');
   PROPS.forEach(function(p){ var d=document.createElement('div'); d.className='prop'; d.innerHTML=G[p[0]]+'<div class="pair">'+p[1]+'</div><div class="eg">'+p[2]+'</div>'; pbox.appendChild(d); });
   var L=2,R=2; var fL=document.getElementById('fLval'),fR=document.getElementById('fRval'),box=document.getElementById('fbox'),read=document.getElementById('fread'),arL=document.getElementById('farrL'),arR=document.getElementById('farrR');
@@ -260,9 +260,9 @@
   document.getElementById('fLm').onclick=function(){L=clampv(L-1);show();};
   document.getElementById('fRp').onclick=function(){R=clampv(R+1);show();};
   document.getElementById('fRm').onclick=function(){R=clampv(R-1);show();};
-  document.getElementById('ftest').onclick=function(){ if(L===R){ box.style.left='50%'; read.textContent='Balanced. The forces cancel, so the box stays still.'; } else if(L>R){ box.style.left='80%'; read.textContent='Unbalanced. The left push is stronger, so the box moves to the right.'; } else { box.style.left='20%'; read.textContent='Unbalanced. The right push is stronger, so the box moves to the left.'; } };
+  document.getElementById('ftest').onclick=function(){ if(L===R){ box.style.left='50%'; read.textContent='Balanced. The forces cancel out. The box stays still.'; } else if(L>R){ box.style.left='80%'; read.textContent='Unbalanced. The left push is stronger. The box moves to the right.'; } else { box.style.left='20%'; read.textContent='Unbalanced. The right push is stronger. The box moves to the left.'; } };
   show();
-  var PRED=[{q:'Two kids push the box equally hard from both sides.',a:'It stays still',why:'Equal and opposite forces are balanced.'},{q:'One kid pushes from the left, no one pushes the right.',a:'It moves right',why:'The force is unbalanced, the box moves away from the push.'}];
+  var PRED=[{q:'Two kids push the box just as hard from both sides.',a:'It stays still',why:'Equal forces from opposite sides are balanced.'},{q:'One kid pushes from the left. No one pushes from the right.',a:'It moves right',why:'The force is unbalanced. The box moves away from the push.'}];
   var prbox=document.getElementById('preds');
   PRED.forEach(function(p){ var d=document.createElement('div'); d.className='pred'; d.innerHTML='<div class="q">'+p.q+' What happens?</div><div class="btns"><button class="pbtn" type="button">'+p.a+'</button><button class="pbtn" type="button">Reveal</button></div><div class="ans hide">Answer: <b>'+p.a+'</b>. '+p.why+'</div>';
     var ans=d.querySelector('.ans'); d.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){ans.classList.remove('hide');});}); prbox.appendChild(d); });

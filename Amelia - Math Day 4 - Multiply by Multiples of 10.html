@@ -127,6 +127,15 @@
   .synth .rule{font-family:'Baloo 2';font-size:20px;color:var(--accent-d);text-align:center;margin:6px 0;}
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .dot-one{fill:var(--ones);}
+  .lesson-hero .dot-ten{fill:var(--accent);}
+  .lesson-hero .ten-bar{fill:var(--tens);}
+  .lesson-hero .num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:11px;}
+  .lesson-hero .arrow-stroke{fill:none;stroke:var(--alt);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -163,6 +172,55 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab &middot; <b>Grade 3</b><span class="chip">Standard 3.NBT.A.4</span></div>
+
+  <!-- HERO_ILLO_V1: 4x3 dots transforms into 4x3 tens via x10 arrow -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 560 280" role="img" aria-label="A four by three array of dots equals twelve, with an arrow labeled times ten, becoming a four by three array of ten-bars equal to one hundred twenty.">
+      <g transform="translate(50 60)">
+        <text class="lbl" x="0" y="-12">4 x 3</text>
+        <g>
+          <circle class="dot-one" cx="10" cy="10" r="7"/>
+          <circle class="dot-one" cx="38" cy="10" r="7"/>
+          <circle class="dot-one" cx="66" cy="10" r="7"/>
+          <circle class="dot-one" cx="10" cy="38" r="7"/>
+          <circle class="dot-one" cx="38" cy="38" r="7"/>
+          <circle class="dot-one" cx="66" cy="38" r="7"/>
+          <circle class="dot-one" cx="10" cy="66" r="7"/>
+          <circle class="dot-one" cx="38" cy="66" r="7"/>
+          <circle class="dot-one" cx="66" cy="66" r="7"/>
+          <circle class="dot-one" cx="10" cy="94" r="7"/>
+          <circle class="dot-one" cx="38" cy="94" r="7"/>
+          <circle class="dot-one" cx="66" cy="94" r="7"/>
+        </g>
+        <text class="num" x="38" y="138" text-anchor="middle" font-size="26">12</text>
+      </g>
+      <g transform="translate(170 130)">
+        <path class="arrow-stroke" d="M0 20 L82 20"/>
+        <path class="arrow-stroke" d="M70 8 L86 20 L70 32"/>
+        <text class="lbl" x="44" y="6" text-anchor="middle" fill="var(--alt)" font-size="13">x 10</text>
+        <text class="lbl" x="44" y="50" text-anchor="middle" font-size="10" fill="var(--mute)">shift one place</text>
+      </g>
+      <g transform="translate(286 60)">
+        <text class="lbl" x="0" y="-12">4 x 30</text>
+        <defs>
+          <g id="tenstrip">
+            <rect class="ten-bar" x="0" y="0" width="10" height="36" rx="2"/>
+            <line x1="0" y1="6" x2="10" y2="6" stroke="rgba(255,255,255,.55)"/>
+            <line x1="0" y1="12" x2="10" y2="12" stroke="rgba(255,255,255,.55)"/>
+            <line x1="0" y1="18" x2="10" y2="18" stroke="rgba(255,255,255,.55)"/>
+            <line x1="0" y1="24" x2="10" y2="24" stroke="rgba(255,255,255,.55)"/>
+            <line x1="0" y1="30" x2="10" y2="30" stroke="rgba(255,255,255,.55)"/>
+          </g>
+        </defs>
+        <use href="#tenstrip" x="0" y="0"/><use href="#tenstrip" x="18" y="0"/><use href="#tenstrip" x="36" y="0"/>
+        <use href="#tenstrip" x="0" y="42"/><use href="#tenstrip" x="18" y="42"/><use href="#tenstrip" x="36" y="42"/>
+        <use href="#tenstrip" x="0" y="84"/><use href="#tenstrip" x="18" y="84"/><use href="#tenstrip" x="36" y="84"/>
+        <use href="#tenstrip" x="0" y="126"/><use href="#tenstrip" x="18" y="126"/><use href="#tenstrip" x="36" y="126"/>
+        <text class="num" x="23" y="186" text-anchor="middle" font-size="26" fill="var(--tens)">120</text>
+        <text class="lbl" x="23" y="200" text-anchor="middle" font-size="10" fill="var(--mute)">twelve tens</text>
+      </g>
+    </svg>
+  </div>
 
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 &middot; Hook</div><h1>One fact, three answers</h1>

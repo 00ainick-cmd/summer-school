@@ -121,6 +121,16 @@
   .gnote b{color:var(--accent-d);}
   footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:540px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .accent-soft{fill:#fbe1d6;}
+  .lesson-hero .paper{fill:#fffdf8;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .alt{fill:var(--alt);opacity:.85;}
+  .lesson-hero .word{font-family:'Fraunces',serif;font-weight:600;fill:var(--accent-d);}
+  .lesson-hero .annot{font-family:'Fraunces',serif;font-style:italic;fill:var(--ink2);font-size:11px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -159,6 +169,61 @@
     <p class="opener"><span class="dropcap">S</span>ome words do not follow the rules. They are tricky little words you have to know by sight. This week we learn ten of them. Each one shows up in books and writing all the time, so once they stick, your reading gets faster and your writing gets stronger.</p>
     <p class="mission">By the end you will spell ten everyday words from memory and use them in your own sentences.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Spell words using irregular spelling patterns.</div>
+
+    <!-- HERO_ILLO_V1: open book with sight words and magnifier on "said" -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 540 280" role="img" aria-label="An open book with tricky words floating from its pages and a magnifier focused on the word said.">
+        <defs>
+          <linearGradient id="pageShade" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fffdf8"/>
+            <stop offset="1" stop-color="#f6ecd9"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(70 60)">
+          <path d="M0 150 Q100 130 200 142 L200 8 Q100 -6 0 12 Z" fill="url(#pageShade)" stroke="#d8c6b0" stroke-width="1.4"/>
+          <path d="M400 150 Q300 130 200 142 L200 8 Q300 -6 400 12 Z" fill="url(#pageShade)" stroke="#d8c6b0" stroke-width="1.4"/>
+          <line x1="200" y1="8" x2="200" y2="142" stroke="#b89a72" stroke-width="1.2"/>
+          <g class="ink" stroke="#7a5a3a" stroke-width="0.9" opacity=".6">
+            <line x1="22" y1="42" x2="170" y2="32"/>
+            <line x1="22" y1="62" x2="170" y2="52"/>
+            <line x1="22" y1="82" x2="170" y2="72"/>
+            <line x1="22" y1="102" x2="170" y2="92"/>
+            <line x1="22" y1="122" x2="170" y2="112"/>
+            <line x1="230" y1="32" x2="378" y2="42"/>
+            <line x1="230" y1="52" x2="378" y2="62"/>
+            <line x1="230" y1="72" x2="378" y2="82"/>
+            <line x1="230" y1="92" x2="378" y2="102"/>
+            <line x1="230" y1="112" x2="378" y2="122"/>
+          </g>
+          <path d="M0 150 Q100 130 200 142 Q300 130 400 150 L400 158 Q300 142 200 150 Q100 142 0 158 Z" fill="#e6d4b3" stroke="#b89a72" stroke-width="1"/>
+        </g>
+        <g transform="translate(0 0)" font-family="Fraunces, serif">
+          <text class="word" x="50" y="34" font-size="20" transform="rotate(-6 50 34)">friend</text>
+          <text class="word" x="380" y="28" font-size="18" transform="rotate(4 380 28)">because</text>
+          <text class="word" x="445" y="120" font-size="17" transform="rotate(-3 445 120)">where</text>
+          <text class="word" x="20" y="220" font-size="18" transform="rotate(-4 20 220)">mother</text>
+          <text class="word" x="180" y="248" font-size="17" transform="rotate(2 180 248)">water</text>
+          <text class="word" x="360" y="245" font-size="18" transform="rotate(-2 360 245)">school</text>
+          <g opacity=".55" fill="var(--alt)">
+            <circle cx="40" cy="80" r="2"/>
+            <circle cx="490" cy="60" r="2.5"/>
+            <circle cx="470" cy="200" r="2"/>
+            <circle cx="80" cy="160" r="1.8"/>
+          </g>
+        </g>
+        <g transform="translate(150 90)">
+          <text x="40" y="36" font-family="Fraunces, serif" font-size="32" font-weight="600" fill="var(--accent-d)">said</text>
+          <g transform="translate(72 18)">
+            <circle cx="0" cy="0" r="38" fill="rgba(255,253,248,.4)" stroke="var(--accent)" stroke-width="3"/>
+            <circle cx="0" cy="0" r="38" fill="none" stroke="var(--accent-d)" stroke-width="1" opacity=".5"/>
+            <line x1="27" y1="27" x2="58" y2="58" stroke="var(--accent-d)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="27" y1="27" x2="58" y2="58" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="-10" cy="-12" r="6" fill="rgba(255,255,255,.5)"/>
+          </g>
+          <text class="annot" x="42" y="62" font-size="11">the tricky letters</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>This week's words</h2></div>

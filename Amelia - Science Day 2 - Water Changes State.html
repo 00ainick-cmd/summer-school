@@ -130,6 +130,16 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .ice-fill{fill:#cfe4f0;stroke:var(--cold);stroke-width:1.5;stroke-linejoin:round;}
+  .lesson-hero .water-fill{fill:#7fb6d8;stroke:var(--blue-d);stroke-width:1.4;}
+  .lesson-hero .vapor-fill{fill:rgba(210,69,47,.18);stroke:var(--hot);stroke-width:1.3;}
+  .lesson-hero .vessel{fill:#fff;stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round;}
+  .lesson-hero .lbl-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+  .lesson-hero .lbl-name{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:14px;}
+  .lesson-hero .arrow{fill:none;stroke:var(--alt);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -166,6 +176,88 @@
     <h1>Water Changes State</h1>
     <p class="mission">The same water can be a hard solid, a flowing liquid, or an invisible gas. Temperature is the switch. Heat it up, the water climbs through the states. Cool it down, it climbs back.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Predict and investigate that water can change from a liquid to a solid (freeze), and back again (melt), or from a liquid to a gas (evaporation), and back again (condensation) as the result of temperature changes.</div>
+
+    <!-- HERO_ILLO_V1: three beakers (ice, water, vapor) with thermometer and transition arrows -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 300" role="img" aria-label="Three glass beakers showing ice, water, and steam, with arrows for melt, freeze, evaporate, condense, and a thermometer rising on the side.">
+        <g transform="translate(76 80)">
+          <path class="vessel" d="M0 0 L0 130 Q0 152 22 152 L66 152 Q88 152 88 130 L88 0 Z"/>
+          <line x1="0" y1="0" x2="88" y2="0" stroke="var(--ink)" stroke-width="1.5"/>
+          <g transform="translate(8 48)">
+            <rect class="ice-fill" x="0" y="0" width="32" height="32" rx="3" transform="rotate(-6 16 16)"/>
+            <rect class="ice-fill" x="32" y="14" width="36" height="36" rx="3" transform="rotate(8 50 32)"/>
+            <rect class="ice-fill" x="6" y="56" width="36" height="34" rx="3" transform="rotate(3 24 73)"/>
+            <rect class="ice-fill" x="40" y="62" width="32" height="32" rx="3" transform="rotate(-5 56 78)"/>
+          </g>
+          <text class="lbl-name" x="44" y="178" text-anchor="middle" fill="var(--cold)">Ice</text>
+          <text class="lbl-mono" x="44" y="194" text-anchor="middle" fill="var(--ink2)">solid</text>
+        </g>
+        <g transform="translate(236 80)">
+          <path class="vessel" d="M0 0 L0 130 Q0 152 22 152 L66 152 Q88 152 88 130 L88 0 Z"/>
+          <line x1="0" y1="0" x2="88" y2="0" stroke="var(--ink)" stroke-width="1.5"/>
+          <path class="water-fill" d="M2 70 Q22 64 44 70 T86 70 L86 150 Q86 152 84 152 L4 152 Q2 152 2 150 Z"/>
+          <path d="M2 70 Q22 64 44 70 T86 70" fill="none" stroke="#fff" stroke-width="1" opacity=".5"/>
+          <g fill="rgba(255,255,255,.5)">
+            <circle cx="18" cy="100" r="3"/>
+            <circle cx="64" cy="115" r="2.5"/>
+            <circle cx="42" cy="130" r="2"/>
+          </g>
+          <text class="lbl-name" x="44" y="178" text-anchor="middle" fill="var(--blue-d)">Water</text>
+          <text class="lbl-mono" x="44" y="194" text-anchor="middle" fill="var(--ink2)">liquid</text>
+        </g>
+        <g transform="translate(396 80)">
+          <path class="vessel" d="M0 0 L0 130 Q0 152 22 152 L66 152 Q88 152 88 130 L88 0 Z"/>
+          <line x1="0" y1="0" x2="88" y2="0" stroke="var(--ink)" stroke-width="1.5"/>
+          <g fill="none" stroke="var(--hot)" stroke-width="1.6" stroke-linecap="round" opacity=".85">
+            <path d="M22 16 Q26 30 22 44 Q18 58 24 72 Q30 86 22 100"/>
+            <path d="M44 8 Q48 22 44 36 Q40 50 46 64 Q52 78 44 92 Q40 108 46 124"/>
+            <path d="M66 14 Q70 28 66 42 Q62 56 68 70 Q74 84 66 100"/>
+          </g>
+          <g fill="var(--hot)" opacity=".6">
+            <circle cx="22" cy="106" r="2.5"/>
+            <circle cx="44" cy="130" r="2"/>
+            <circle cx="66" cy="106" r="2.5"/>
+            <circle cx="34" cy="76" r="1.8"/>
+            <circle cx="56" cy="92" r="1.8"/>
+          </g>
+          <text class="lbl-name" x="44" y="178" text-anchor="middle" fill="var(--hot)">Steam</text>
+          <text class="lbl-mono" x="44" y="194" text-anchor="middle" fill="var(--ink2)">gas</text>
+        </g>
+        <g transform="translate(176 130)">
+          <path class="arrow" d="M0 0 L48 0"/>
+          <path class="arrow" d="M40 -6 L50 0 L40 6"/>
+          <text class="lbl-mono" x="24" y="-12" text-anchor="middle" fill="var(--hot)" font-size="10">melt</text>
+          <path class="arrow" d="M50 22 L2 22"/>
+          <path class="arrow" d="M10 16 L0 22 L10 28"/>
+          <text class="lbl-mono" x="24" y="40" text-anchor="middle" fill="var(--cold)" font-size="10">freeze</text>
+        </g>
+        <g transform="translate(336 130)">
+          <path class="arrow" d="M0 0 L48 0"/>
+          <path class="arrow" d="M40 -6 L50 0 L40 6"/>
+          <text class="lbl-mono" x="24" y="-12" text-anchor="middle" fill="var(--hot)" font-size="10">evaporate</text>
+          <path class="arrow" d="M50 22 L2 22"/>
+          <path class="arrow" d="M10 16 L0 22 L10 28"/>
+          <text class="lbl-mono" x="24" y="40" text-anchor="middle" fill="var(--cold)" font-size="10">condense</text>
+        </g>
+        <g transform="translate(20 32)">
+          <rect x="0" y="0" width="22" height="200" rx="11" fill="#fff" stroke="var(--ink)" stroke-width="1.4"/>
+          <circle cx="11" cy="222" r="18" fill="var(--hot)" stroke="var(--ink)" stroke-width="1.4"/>
+          <rect x="6" y="32" width="10" height="190" rx="5" fill="rgba(210,69,47,.15)"/>
+          <rect x="6" y="120" width="10" height="102" rx="5" fill="var(--hot)" opacity=".85"/>
+          <circle cx="11" cy="222" r="9" fill="var(--hot)"/>
+          <g class="lbl-mono" font-size="9" fill="var(--ink2)">
+            <text x="28" y="40">hot</text>
+            <text x="28" y="120">cool</text>
+            <text x="28" y="200">cold</text>
+          </g>
+          <g stroke="var(--ink2)" stroke-width="1">
+            <line x1="22" y1="40" x2="26" y2="40"/>
+            <line x1="22" y1="120" x2="26" y2="120"/>
+            <line x1="22" y1="200" x2="26" y2="200"/>
+          </g>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>Three states, one substance</h2></div>

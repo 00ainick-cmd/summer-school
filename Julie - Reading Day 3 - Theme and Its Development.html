@@ -110,6 +110,16 @@
   .note{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:12px 14px;font-size:14.5px;margin-top:10px;} .note b{color:var(--gold);}
   .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;margin-top:8px;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;} html{scroll-behavior:auto;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:540px;height:auto;display:block;}
+  .lesson-hero .surface-fill{fill:#f8f4e6;}
+  .lesson-hero .water-fill{fill:#e3ecf2;}
+  .lesson-hero .berg-top{fill:#fff;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;}
+  .lesson-hero .berg-bot{fill:#cfdde6;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;opacity:.92;}
+  .lesson-hero .berg-shade{fill:rgba(20,30,40,.06);}
+  .lesson-hero .axis-mono{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.02em;text-transform:uppercase;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -146,6 +156,62 @@
     <h1>Theme and Its Development</h1>
     <p class="mission">A topic is what a story is about. A theme is what the story is <i>saying</i> about that topic. Skilled readers track theme the way an engineer tracks a load: where it gets introduced, where it gets stressed, where it gets resolved.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Using appropriate text, determine the theme(s) of a text and analyze its development over the course of a text; provide an objective summary of the text.</div>
+
+    <!-- HERO_ILLO_V1: iceberg metaphor for plot vs theme -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 540 300" role="img" aria-label="An iceberg above and below the waterline: plot is the visible peak, theme is the larger mass underneath.">
+        <rect class="surface-fill" x="0" y="0" width="540" height="118"/>
+        <rect class="water-fill" x="0" y="118" width="540" height="182"/>
+        <g stroke="rgba(36,81,166,.18)" stroke-width="1">
+          <line x1="0" y1="138" x2="540" y2="138"/>
+          <line x1="0" y1="170" x2="540" y2="170"/>
+          <line x1="0" y1="206" x2="540" y2="206"/>
+          <line x1="0" y1="246" x2="540" y2="246"/>
+        </g>
+        <line x1="0" y1="118" x2="540" y2="118" stroke="var(--ink)" stroke-width="1.5"/>
+        <g transform="translate(180 0)">
+          <path class="berg-top" d="M28 110 L72 18 L116 44 L160 22 L196 110 Z"/>
+          <path class="berg-shade" d="M28 110 L72 18 L102 44 L110 110 Z"/>
+        </g>
+        <g transform="translate(180 0)">
+          <path class="berg-bot" d="M28 118 L196 118 L218 168 L186 246 L132 274 L66 256 L20 198 Z"/>
+          <path class="berg-shade" d="M28 118 L102 118 L96 168 L74 220 L28 200 Z"/>
+        </g>
+        <g transform="translate(0 0)">
+          <text class="anton" x="22" y="44" font-size="22" fill="var(--ink)">Plot</text>
+          <text class="axis-mono" x="22" y="62" fill="var(--ink2)">what happens</text>
+          <path d="M70 50 Q120 50 168 56" fill="none" stroke="var(--ink2)" stroke-width="1.2"/>
+          <circle cx="168" cy="56" r="2.5" fill="var(--ink2)"/>
+        </g>
+        <g transform="translate(0 0)">
+          <text class="axis-mono" x="22" y="120" fill="var(--accent-d)">waterline</text>
+          <text class="axis-mono" x="430" y="120" fill="var(--accent-d)">surface</text>
+        </g>
+        <g transform="translate(0 0)">
+          <text class="anton" x="22" y="186" font-size="28" fill="var(--accent-d)">Theme</text>
+          <text class="axis-mono" x="22" y="206" fill="var(--ink2)">what it says about that</text>
+          <path d="M120 200 Q150 212 178 220" fill="none" stroke="var(--accent-d)" stroke-width="1.3"/>
+          <circle cx="178" cy="220" r="2.5" fill="var(--accent-d)"/>
+        </g>
+        <g transform="translate(380 156)">
+          <rect x="0" y="0" width="130" height="92" rx="6" fill="rgba(255,255,255,.92)" stroke="var(--alt)" stroke-width="1.25"/>
+          <text class="axis-mono" x="12" y="20" fill="var(--alt)">developed across</text>
+          <g transform="translate(12 32)" font-family="Anton, sans-serif" font-size="16" fill="var(--ink)">
+            <text x="0" y="14">setup</text>
+            <text x="0" y="34">rising</text>
+            <text x="0" y="54">resolution</text>
+          </g>
+          <g stroke="var(--alt)" stroke-width="2" stroke-linecap="round" fill="none">
+            <path d="M82 40 L114 40"/>
+            <path d="M82 60 L114 60"/>
+            <path d="M114 40 L108 36"/>
+            <path d="M114 40 L108 44"/>
+            <path d="M114 60 L108 56"/>
+            <path d="M114 60 L108 64"/>
+          </g>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Topic vs theme vs plot</h2></div>

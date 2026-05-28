@@ -126,17 +126,17 @@
 
     <div class="kicker">Session 01</div>
     <h1>Proving It With the Text</h1>
-    <p class="mission">A good claim about a text is only as strong as the evidence behind it. The skill is not just finding a quote that relates, it is finding the one that most directly proves the point and leaves the least doubt.</p>
+    <p class="mission">A defensible claim about a text is only as compelling as the textual evidence marshalled in its support. The analytical work is not merely locating a quotation that loosely corresponds to the assertion; it is identifying the passage that most precisely substantiates the specific point and forecloses reasonable alternative interpretations.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Draw conclusions, infer and analyze by citing the textual evidence that most strongly supports an analysis of what the text says explicitly as well as inferences drawn from the text.</div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Strong vs weak evidence</h2></div>
-      <p class="lead">Many quotes can relate to a claim. Strong evidence is <b>specific</b> and <b>directly</b> supports the exact point. Weak evidence is vague, off topic, or could back almost any claim.</p>
+      <p class="lead">Numerous passages within a text may bear some relation to a given claim, yet only a fraction will rise to the standard of strong evidentiary support. Strong textual evidence is <b>specific</b>, <b>contextually anchored</b>, and <b>directly</b> substantiates the precise interpretive point being advanced. Weak evidence, by contrast, is vague, tangential, or so generic that it could be marshalled in defense of nearly any claim, which renders it analytically inert.</p>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">02 / DO</span><h2>Pick the strongest evidence</h2></div>
-      <p class="lead">Read the short passage. Then choose the quote that <b>most strongly</b> supports the claim. Watch for quotes that are true but weak.</p>
+      <p class="lead">Read the brief passage that follows, then select the quotation that <b>most directly and incontrovertibly</b> substantiates the claim. Be vigilant: certain quotations are factually accurate yet evidentially weak, lending themselves to multiple interpretations rather than anchoring a single conclusion.</p>
       <div class="passage" id="passage"></div>
       <div class="claim" id="claim"></div>
       <div class="evs" id="evs"></div>
@@ -220,14 +220,14 @@
   var ROUNDS=[
     {passage:'Maya read the list of names posted on the gym wall. She read it again. Then she walked to the corner, set down her bag, and stared at the floor for a long time without saying anything to anyone.',
      claim:'Maya was disappointed by what she saw on the list.',
-     evs:[{t:'Maya read the list of names posted on the gym wall.',ok:false,why:'True, but this only sets the scene. It does not show how she felt.'},
-          {t:'She set down her bag and stared at the floor for a long time without saying anything.',ok:true,why:'Strongest. Her silence and staring directly show disappointment.'},
-          {t:'The list was posted on the gym wall.',ok:false,why:'A detail about the setting, not about Maya at all.'}]},
+     evs:[{t:'Maya read the list of names posted on the gym wall.',ok:false,why:'Factually accurate, but this sentence merely establishes the scene; it offers no behavioral or emotional indicator from which disappointment can be inferred.'},
+          {t:'She set down her bag and stared at the floor for a long time without saying anything.',ok:true,why:'Strongest. The prolonged silence, the downward gaze, and the deliberate setting aside of her bag constitute a cluster of observable behaviors that unambiguously connote disappointment.'},
+          {t:'The list was posted on the gym wall.',ok:false,why:'A purely contextual detail about the setting, with no reference whatsoever to Maya or her interior state.'}]},
     {passage:'Devon checked the recipe three times before he started. He measured each cup of flour and leveled it with a knife. He set a timer for the oven and wrote the finish time on a sticky note.',
      claim:'Devon was being careful and precise.',
-     evs:[{t:'Devon checked the recipe three times and leveled each cup with a knife.',ok:true,why:'Strongest. Specific actions that directly show care and precision.'},
-          {t:'He set a timer for the oven.',ok:false,why:'Relates a little, but many cooks do this. It is weaker, less specific evidence.'},
-          {t:'Devon was making something in the kitchen.',ok:false,why:'Too general. It could support almost any claim.'}]}
+     evs:[{t:'Devon checked the recipe three times and leveled each cup with a knife.',ok:true,why:'Strongest. The repeated verification of the recipe combined with the deliberate leveling of each measurement constitutes specific, observable evidence of methodical precision.'},
+          {t:'He set a timer for the oven.',ok:false,why:'Tangentially related, but timing a recipe is a near-universal cooking practice; it does not distinguish careful behavior from routine behavior and therefore offers weaker evidentiary support.'},
+          {t:'Devon was making something in the kitchen.',ok:false,why:'Excessively general. A sentence this broad could plausibly support virtually any claim about Devon and therefore proves nothing in particular.'}]}
   ];
   var rIdx=0, passage=document.getElementById('passage'), claim=document.getElementById('claim'),
       evs=document.getElementById('evs'), evfb=document.getElementById('evfb'), rnext=document.getElementById('rnext');
@@ -236,7 +236,7 @@
     r.evs.forEach(function(e){ var b=document.createElement('button'); b.className='ev'; b.type='button'; b.textContent='\u201c'+e.t+'\u201d';
       b.addEventListener('click',function(){ Array.prototype.forEach.call(evs.children,function(c){c.disabled=true;});
         if(e.ok){ b.classList.add('ok'); evfb.className='fbline ok'; evfb.textContent=e.why; }
-        else { b.classList.add('no'); evfb.className='fbline try'; evfb.textContent=e.why+' Look for the most specific, direct quote.';
+        else { b.classList.add('no'); evfb.className='fbline try'; evfb.textContent=e.why+' Seek the quotation that is most specific, most directly probative, and least susceptible to alternative interpretations.';
           Array.prototype.forEach.call(evs.children,function(c,i){ if(r.evs[i].ok)c.classList.add('ok'); }); }
         if(rIdx<ROUNDS.length-1) rnext.classList.remove('hide');
       }); evs.appendChild(b); });
@@ -273,7 +273,7 @@
       document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
       fbcard.classList.remove('hide'); retry.classList.add('hide');
     } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
-      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Look back at the stations, then try again.';
+      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Revisit the stations to consolidate the distinction between specific, directly probative quotations and merely tangential textual references, then retake the check.';
       ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
     commitTime(); }
   document.getElementById('toCheck').addEventListener('click',startCheck);

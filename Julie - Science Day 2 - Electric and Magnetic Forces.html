@@ -163,12 +163,12 @@
   <section id="lesson">
     <div class="kicker">Session 02</div>
     <h1>Electric and Magnetic Forces</h1>
-    <p class="mission">Two non-contact forces shape almost everything you build: charges that push and pull through empty space, and magnets that do the same with poles. Both follow patterns you can measure. Both fall off fast with distance.</p>
+    <p class="mission">Two non-contact, field-mediated forces shape virtually every electronic and mechanical system humans construct: electric charges that attract or repel one another across empty space, and magnetic poles that exert analogous interactions through their surrounding fields. Both forces follow precise mathematical patterns that can be measured and modeled, and both diminish rapidly with distance according to an inverse-square relationship.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Analyze diagrams and collect data to determine factors affecting electric and magnetic force strength.</div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / FRAME</span><h2>Forces without touching</h2></div>
-      <p class="body">A <b>contact force</b> needs the two objects to touch (your hand pushing a cart). An <b>electric force</b> and a <b>magnetic force</b> act across empty space. You can hold a magnet near a paperclip and lift it without ever touching. The space around a charge or a magnet is called a <b>field</b>. The force on a second object depends on how strong the field is at its location.</p>
+      <p class="body">A <b>contact force</b> requires physical contact between the interacting objects, such as the normal force your hand exerts when pushing a cart. Electric and magnetic forces, by contrast, are <b>non-contact forces</b> that propagate across empty space through a <b>field</b>, the region of influence surrounding any charge or magnet. A magnet can lift a paperclip without ever touching it because the magnetic field permeates the intervening space. The force experienced by a second object is determined by the field strength at that object's location, an interaction described as field-mediated.</p>
       <div class="compare">
         <div class="ccol"><h3>Electric</h3>
           <ul><li>Source: electric charge (+ or -)</li><li>Like charges <b>repel</b>; opposite charges <b>attract</b></li><li>Stronger charges, stronger force</li><li>Force drops fast as distance grows</li></ul></div>
@@ -179,14 +179,14 @@
 
     <div class="station">
       <div class="shead"><span class="sno">02 / MODEL</span><h2>The pattern: Coulomb's law</h2></div>
-      <p class="body">For two point charges, the electric force has a clean formula. Bigger charges scale the force linearly. Distance scales it as an inverse square: double the distance and the force drops to one quarter.</p>
+      <p class="body">For two point charges, the electric force is governed by Coulomb's law, a precise quantitative relationship. The magnitude of the force scales linearly with the product of the two charges and decreases as the inverse square of the separation distance: doubling the distance reduces the force to one quarter of its original value, and tripling reduces it to one ninth.</p>
       <div class="eq">F = k &middot; <b>q1 &middot; q2</b> / <b>r&sup2;</b></div>
-      <p class="lead" style="margin-top:9px;">Read it: force is proportional to the product of the two charges, and inversely proportional to the distance squared. Magnets follow a similar shape: stronger poles or closer distance both pump up the force, and the drop-off with distance is steep.</p>
+      <p class="lead" style="margin-top:9px;">Interpret the equation: the electrostatic force is directly proportional to the product of the two charges and inversely proportional to the square of the distance separating them. Magnetic interactions follow a structurally similar inverse-square pattern; stronger poles or reduced separation distance both amplify the force, and the attenuation with distance is correspondingly steep.</p>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">03 / INVESTIGATE A</span><h2>Two charges, one force</h2></div>
-      <p class="lead">Set each charge's sign and magnitude, then change the distance between them. The arrow shows force direction (attract vs repel). The number is a relative strength index.</p>
+      <p class="lead">Configure the sign and magnitude of each charge, then vary the inter-charge distance. The arrow indicates the direction of the resulting force (attraction or repulsion), and the numerical readout reports a relative magnitude consistent with Coulomb's law.</p>
       <div class="simbox">
         <div class="diag" id="eDiag" aria-hidden="true">
           <div class="charge pos" id="cA" style="left:30%;">+</div>
@@ -209,7 +209,7 @@
 
     <div class="station">
       <div class="shead"><span class="sno">04 / INVESTIGATE B</span><h2>Two magnets, one force</h2></div>
-      <p class="lead">Each magnet has a north and south pole. Flip a magnet to swap which end faces the other. Slide them closer or farther.</p>
+      <p class="lead">Each bar magnet possesses a north (N) and a south (S) pole, the two ends of its magnetic dipole. Reorient a magnet to swap which pole faces its counterpart, and adjust the separation distance to observe how field interaction changes.</p>
       <div class="simbox">
         <div class="diag" id="mDiag" aria-hidden="true">
           <div class="magnet" id="mA" style="left:30%;"><div class="pole pn" id="mAleft">N</div><div class="pole ps" id="mAright">S</div></div>
@@ -232,14 +232,14 @@
 
     <div class="station">
       <div class="shead"><span class="sno">05 / PREDICT</span><h2>Test what the data shows</h2></div>
-      <p class="lead">If you <b>double the distance</b> between two point charges and change nothing else, the force becomes...</p>
+      <p class="lead">If you <b>double the separation distance</b> between two point charges while holding all other variables constant, what does Coulomb's inverse-square relationship predict for the resulting electrostatic force?</p>
       <div class="predrow" id="pred1">
         <button class="pbtn" type="button" data-ok="false">Twice as big</button>
         <button class="pbtn" type="button" data-ok="false">Half as big</button>
         <button class="pbtn" type="button" data-ok="true">One quarter as big</button>
       </div>
       <div class="fbline" id="pfb1"></div>
-      <p class="lead" style="margin-top:14px;">Two bar magnets attract each other. To get a <b>stronger</b> attraction without changing the magnets...</p>
+      <p class="lead" style="margin-top:14px;">Two bar magnets are presently in mutual attraction. To intensify the attractive force without altering the magnets themselves, you should...</p>
       <div class="predrow" id="pred2">
         <button class="pbtn" type="button" data-ok="true">Move them closer</button>
         <button class="pbtn" type="button" data-ok="false">Move them farther apart</button>
@@ -252,10 +252,10 @@
       <div class="shead"><span class="sno">06 / WATCH OUT</span><h2>Two common mix-ups</h2></div>
       <div class="myth"><span class="tag">Mix-up 1</span>
         <div class="wrong">Doubling the distance halves the force.</div>
-        <div class="right">Both Coulomb's law and magnetic force fall off as an <b>inverse square</b>, not a straight inverse. Doubling distance cuts the force to a quarter. Tripling cuts it to a ninth.</div></div>
+        <div class="right">Both Coulomb's law and the magnetic force diminish as an <b>inverse square</b> of distance, not as a simple inverse. Consequently, doubling the separation reduces the force to one quarter of its original magnitude, and tripling it reduces the force to one ninth.</div></div>
       <div class="myth"><span class="tag">Mix-up 2</span>
         <div class="wrong">Like things always attract.</div>
-        <div class="right">For both forces it is the opposite: <b>like repels, opposite attracts</b>. Two north poles push apart. Two positive charges push apart.</div></div>
+        <div class="right">For both electric and magnetic forces, the opposite is true: <b>like repels, opposite attracts</b>. Two north poles mutually repel, as do two positive charges, while a north pole attracts a south pole and a positive charge attracts a negative charge.</div></div>
     </div>
 
     <button class="cta" id="toCheck">I analyzed the diagrams. Start the check</button>
@@ -407,27 +407,27 @@
         Array.prototype.forEach.call(row.children,function(c){ if(c.getAttribute('data-ok')==='true')c.classList.add('ok'); }); }
     }); });
   }
-  wire('pred1','pfb1','The force scales as 1 over r squared. Doubling r divides the force by 4. Try the distance slider at r=1 vs r=2.');
-  wire('pred2','pfb2','Distance has the biggest effect. Closer means much stronger because the force scales as 1 over r squared.');
+  wire('pred1','pfb1','The electrostatic force scales as the inverse square of distance, so doubling r reduces F by a factor of 4. Verify the prediction empirically by comparing the readout at r=1 and r=2.');
+  wire('pred2','pfb2','Separation distance exerts the most pronounced influence because the magnetic force, like Coulomb interactions, attenuates as the inverse square of distance. Reducing the separation produces a disproportionately strong amplification of the force.');
 
   var BANK={
-    q1:{q:'Electric and magnetic forces are different from a push from your hand because they...',o:['only act on plastic','act without touching','only act in water','need batteries'],a:1, ex:'Both are non-contact forces; they act through fields across empty space.'},
-    q2:{q:'Two positive point charges are placed near each other. The force between them is...',o:['repulsive','attractive','zero','only magnetic'],a:0, ex:'Like charges repel.'},
-    q3:{q:'In Coulomb’s law F = k q1 q2 / r&sup2;, if you triple the distance r, the force becomes...',o:['3 times bigger','3 times smaller','9 times bigger','9 times smaller'],a:3, ex:'Inverse square: tripling r divides the force by 3&sup2; = 9.'},
-    q4:{q:'A north pole is held near another north pole. They will...',o:['attract','do nothing','repel','swap poles'],a:2, ex:'Like poles repel, the same pattern as like charges.'},
-    q5:{q:'Which change will increase the electric force between two charges the most?',o:['Halve the distance','Double one charge','Double both charges','Move them farther apart'],a:0, ex:'Distance affects force the most because of the inverse-square relationship.'},
-    q6:{q:'A bar magnet is moved twice as far from a paperclip. The magnetic force the clip feels...',o:['doubles','roughly drops to one quarter','halves','stays the same'],a:1, ex:'Magnetic force on a small object also falls off roughly as the inverse square of distance.'},
-    q7:{q:'Which factors set the size of the electric force between two point charges?',o:['Mass of each charge','Color of each charge','Temperature of the room','Magnitude of each charge and distance between them'],a:3, ex:'Charge magnitudes (q1 and q2) and distance r are what set the force.'},
-    q8:{q:'A diagram shows two opposite charges with arrows pointing toward each other. What does that mean?',o:['The charges repel','The charges are equal','The charges attract','The charges have no force'],a:2, ex:'Arrows toward each other show an attractive force, which is what opposite charges produce.'},
+    q1:{q:'Electric and magnetic forces are different from a push from your hand because they...',o:['only act on plastic','act without touching','only act in water','need batteries'],a:1, ex:'Both are non-contact, field-mediated forces; they propagate through the surrounding electric or magnetic field across empty space.'},
+    q2:{q:'Two positive point charges are placed near each other. The force between them is...',o:['repulsive','attractive','zero','only magnetic'],a:0, ex:'Like charges mutually repel, a fundamental consequence of Coulomb interactions.'},
+    q3:{q:'In Coulomb’s law F = k q1 q2 / r&sup2;, if you triple the distance r, the force becomes...',o:['3 times bigger','3 times smaller','9 times bigger','9 times smaller'],a:3, ex:'The inverse-square relationship dictates that tripling r reduces the force by a factor of 3&sup2;, or 9.'},
+    q4:{q:'A north pole is held near another north pole. They will...',o:['attract','do nothing','repel','swap poles'],a:2, ex:'Like magnetic poles repel one another, mirroring the behavior of like electric charges.'},
+    q5:{q:'Which change will increase the electric force between two charges the most?',o:['Halve the distance','Double one charge','Double both charges','Move them farther apart'],a:0, ex:'Distance exerts the most pronounced influence on the force because the inverse-square relationship amplifies the effect of any change in separation.'},
+    q6:{q:'A bar magnet is moved twice as far from a paperclip. The magnetic force the clip feels...',o:['doubles','roughly drops to one quarter','halves','stays the same'],a:1, ex:'The magnetic force on a small ferromagnetic object also attenuates approximately as the inverse square of distance, so doubling the separation reduces the force to roughly one quarter.'},
+    q7:{q:'Which factors set the size of the electric force between two point charges?',o:['Mass of each charge','Color of each charge','Temperature of the room','Magnitude of each charge and distance between them'],a:3, ex:'According to Coulomb\'s law, the electrostatic force is determined exclusively by the magnitudes of the two charges (q1 and q2) and the separation distance r.'},
+    q8:{q:'A diagram shows two opposite charges with arrows pointing toward each other. What does that mean?',o:['The charges repel','The charges are equal','The charges attract','The charges have no force'],a:2, ex:'Force vectors directed toward one another denote an attractive interaction, the characteristic behavior of opposite charges.'},
 
-    q9:{q:'Two negative charges. The force between them is...',o:['repulsive','attractive','zero','gravitational'],a:0, ex:'Two like (both negative) charges repel each other.'},
-    q10:{q:'Two bar magnets are placed with N facing S. They will...',o:['repel','do nothing','attract','spin'],a:2, ex:'Opposite poles attract.'},
-    q11:{q:'If you double both charges and keep the distance the same, the electric force becomes...',o:['the same','four times as big','twice as big','one quarter as big'],a:1, ex:'F is proportional to q1 times q2. Doubling both multiplies the force by 2 x 2 = 4.'},
-    q12:{q:'Which pair of changes would DECREASE the force between two magnets?',o:['Stronger magnets, closer','Weaker magnets, closer','Stronger magnets, farther apart','Weaker magnets, farther apart'],a:3, ex:'Weaker and farther apart both reduce the force.'},
-    q13:{q:'A student measures the force between two charges at r=1 cm and gets F=16. At r=2 cm, predict F.',o:['4','8','2','32'],a:0, ex:'Doubling r divides F by 4. 16 / 4 = 4.'},
-    q14:{q:'Electric force can act across empty space because of...',o:['the air pushing the charges','tiny wires you cannot see','an electric field around each charge','gravity'],a:2, ex:'Each charge sets up an electric field; the other charge feels a force from that field.'},
-    q15:{q:'Which of these is the BEST evidence that the magnetic force depends on distance?',o:['A magnet is heavier than a paperclip','Magnets only work in air','Magnets are made of iron','A magnet lifts more clips when it is closer'],a:3, ex:'Closer distance = stronger force, which is the inverse-square pattern.'},
-    q16:{q:'In a diagram, two arrows of equal length point away from each charge in opposite directions. The forces are...',o:['attractive and weak','repulsive and equal in magnitude','attractive and strong','unbalanced'],a:1, ex:'Arrows pointing apart show repulsion; equal lengths show Newton’s third law: equal and opposite forces.'}
+    q9:{q:'Two negative charges. The force between them is...',o:['repulsive','attractive','zero','gravitational'],a:0, ex:'Two like charges, in this case both negative, exert a mutually repulsive Coulomb force.'},
+    q10:{q:'Two bar magnets are placed with N facing S. They will...',o:['repel','do nothing','attract','spin'],a:2, ex:'Opposite magnetic poles attract, the magnetic analogue of opposite electric charges.'},
+    q11:{q:'If you double both charges and keep the distance the same, the electric force becomes...',o:['the same','four times as big','twice as big','one quarter as big'],a:1, ex:'Because F is proportional to the product q1 multiplied by q2, doubling both charges yields a fourfold increase in force (2 x 2 = 4).'},
+    q12:{q:'Which pair of changes would DECREASE the force between two magnets?',o:['Stronger magnets, closer','Weaker magnets, closer','Stronger magnets, farther apart','Weaker magnets, farther apart'],a:3, ex:'Reducing magnet strength and increasing separation both diminish the force; their combined effect produces the largest decrease.'},
+    q13:{q:'A student measures the force between two charges at r=1 cm and gets F=16. At r=2 cm, predict F.',o:['4','8','2','32'],a:0, ex:'The inverse-square relationship dictates that doubling r reduces F by a factor of four; 16 divided by 4 equals 4.'},
+    q14:{q:'Electric force can act across empty space because of...',o:['the air pushing the charges','tiny wires you cannot see','an electric field around each charge','gravity'],a:2, ex:'Each charge generates a surrounding electric field, and any other charge within that field experiences a force proportional to the field strength at its location.'},
+    q15:{q:'Which of these is the BEST evidence that the magnetic force depends on distance?',o:['A magnet is heavier than a paperclip','Magnets only work in air','Magnets are made of iron','A magnet lifts more clips when it is closer'],a:3, ex:'The observation that reduced separation correlates with markedly increased lifting capacity provides direct empirical evidence of the inverse-square dependence on distance.'},
+    q16:{q:'In a diagram, two arrows of equal length point away from each charge in opposite directions. The forces are...',o:['attractive and weak','repulsive and equal in magnitude','attractive and strong','unbalanced'],a:1, ex:'Vectors directed away from each other indicate mutual repulsion, and their equal magnitudes reflect Newton\'s third law: the forces the two charges exert on each other are equal in magnitude and opposite in direction.'}
   };
   var FORMS={A:['q1','q2','q3','q4','q5','q6','q7','q8'], B:['q9','q10','q11','q12','q13','q14','q15','q16']};
   var FORM_ORDER=['A','B'];

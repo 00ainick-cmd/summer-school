@@ -130,12 +130,12 @@
 
     <div class="kicker">Session 01</div>
     <h1>Force, Mass and Motion</h1>
-    <p class="mission">Push harder and a cart speeds up faster. Load it heavier and the same push moves it less. One relationship ties it together: acceleration equals net force divided by mass.</p>
+    <p class="mission">Apply a greater net force to a cart and its acceleration rises proportionally; increase its mass while holding force constant and the same applied force produces correspondingly less acceleration. A single quantitative relationship, Newton's second law, governs both phenomena: acceleration equals net force divided by mass, with acceleration directly proportional to net force and inversely proportional to mass.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Plan and conduct an investigation to provide evidence that the change in an object's motion depends on the sum of the forces on the object and the mass of the object.</div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / INVESTIGATE</span><h2>The cart lab</h2></div>
-      <p class="lead">Set the net force and the mass. The acceleration and the cart's speed update live. Change one thing at a time and watch what happens.</p>
+      <p class="lead">Configure the net force (a vector quantity expressed in newtons) and the mass (a scalar quantity expressed in kilograms). The resulting acceleration and the cart's motion update in real time. Vary one independent variable at a time, holding the other constant, and observe the resulting change in the dependent variable, the kinematic signature of a controlled experiment.</p>
       <div class="simgrid">
         <div class="ctrlbox"><label>Net force <span class="val"><span id="fval">8</span> N</span></label><input type="range" id="force" min="0" max="20" step="1" value="8" aria-label="net force in newtons"></div>
         <div class="ctrlbox"><label>Mass <span class="val"><span id="mval">2</span> kg</span></label><input type="range" id="mass" min="1" max="10" step="1" value="2" aria-label="mass in kilograms"></div>
@@ -149,14 +149,14 @@
 
     <div class="station">
       <div class="shead"><span class="sno">02 / PREDICT</span><h2>Make a prediction</h2></div>
-      <p class="lead">Keep the mass the same. If you <b>double the net force</b>, what happens to the acceleration?</p>
+      <p class="lead">Hold the mass constant. If you <b>double the net force</b> applied to the cart, what does Newton's second law predict will happen to the acceleration?</p>
       <div class="predrow" id="pred1">
         <button class="pbtn" type="button" data-ok="false">It halves</button>
         <button class="pbtn" type="button" data-ok="true">It doubles</button>
         <button class="pbtn" type="button" data-ok="false">It stays the same</button>
       </div>
       <div class="fbline" id="pfb1"></div>
-      <p class="lead" style="margin-top:14px;">Now keep the force the same. If you <b>double the mass</b>, what happens to the acceleration?</p>
+      <p class="lead" style="margin-top:14px;">Now hold the net force constant. If you <b>double the mass</b> of the cart, what does the inverse-proportional relationship between mass and acceleration predict will occur?</p>
       <div class="predrow" id="pred2">
         <button class="pbtn" type="button" data-ok="true">It halves</button>
         <button class="pbtn" type="button" data-ok="false">It doubles</button>
@@ -244,8 +244,8 @@
   function sim(){ var F=parseInt(force.value,10), m=parseInt(mass.value,10); var a=F/m;
     fval.textContent=F; mval.textContent=m; accnum.textContent='a = '+a.toFixed(1)+' m/s squared';
     cart.style.width=Math.max(6,Math.min(100, a/10*100))+'%';
-    if(F===0) simnote.textContent='Net force is zero, so the forces are balanced and the acceleration is zero. The cart does not speed up or slow down.';
-    else simnote.textContent='With '+F+' N of net force on '+m+' kg, the cart accelerates at '+a.toFixed(1)+' meters per second every second.';
+    if(F===0) simnote.textContent='Net force is zero, indicating that all forces acting on the cart are balanced. Consequently, acceleration is zero, and the cart maintains its current state of motion in accordance with Newton\'s first law.';
+    else simnote.textContent='With a net force of '+F+' N applied to a mass of '+m+' kg, the cart accelerates at '+a.toFixed(1)+' meters per second per second, the direct consequence of Newton\'s second law.';
   }
   force.addEventListener('input',sim); mass.addEventListener('input',sim); sim();
   function wire(id,fb,msg){ var row=document.getElementById(id), f=document.getElementById(fb);
@@ -256,8 +256,8 @@
         Array.prototype.forEach.call(row.children,function(c){ if(c.getAttribute('data-ok')==='true')c.classList.add('ok'); }); }
     }); });
   }
-  wire('pred1','pfb1','Acceleration is force divided by mass, so doubling the force doubles the acceleration. Test it on the slider.');
-  wire('pred2','pfb2','More mass is harder to move, so doubling the mass cuts the acceleration in half. Test it on the slider.');
+  wire('pred1','pfb1','Acceleration equals net force divided by mass, so doubling the net force while mass remains constant produces a proportional doubling of acceleration. Confirm the prediction empirically by adjusting the slider.');
+  wire('pred2','pfb2','Because acceleration is inversely proportional to mass, doubling the mass while net force remains constant reduces acceleration to one half its original magnitude. A heavier object resists changes in motion more strongly, a property known as inertia. Confirm with the slider.');
 
   var QS=[{"q": "If the net force on a cart increases and its mass stays the same, its acceleration...", "o": ["increases", "decreases", "stays the same", "becomes zero"], "a": 0}, {"q": "Two carts get the same net force. The cart with <b>more mass</b> will have...", "o": ["more acceleration", "less acceleration", "the same acceleration", "no motion at all"], "a": 1}, {"q": "A 2 kg cart feels a net force of 10 N. Its acceleration is...", "o": ["2 m/s squared", "5 m/s squared", "10 m/s squared", "20 m/s squared"], "a": 1}, {"q": "When the forces on an object are balanced (net force is zero), its motion...", "o": ["speeds up steadily", "stops instantly", "does not change", "reverses direction"], "a": 2}, {"q": "To give a heavier cart the <b>same</b> acceleration as a lighter one, you must...", "o": ["use less force", "use more force", "remove the wheels", "wait longer"], "a": 1}];
 
@@ -288,7 +288,7 @@
       document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
       fbcard.classList.remove('hide'); retry.classList.add('hide');
     } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
-      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Look back at the stations, then try again.';
+      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Revisit the lab to consolidate the proportional relationship between net force and acceleration, and the inverse relationship between mass and acceleration, then reattempt the check.';
       ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
     commitTime(); }
   document.getElementById('toCheck').addEventListener('click',startCheck);

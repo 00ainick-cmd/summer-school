@@ -126,17 +126,17 @@
 
     <div class="kicker">Session 01</div>
     <h1>Three Branches, One Balance</h1>
-    <p class="mission">The Constitution splits power into three branches so no single one can run the whole show. Each branch also holds checks on the others. That design is what keeps the system in balance.</p>
+    <p class="mission">The Constitution distributes federal authority across three coequal branches so that no single institution can consolidate sovereign power over the entire government. Each branch is, by deliberate constitutional design, vested with mechanisms to constrain the others. This architecture of separation of powers, reinforced by an overlapping system of checks and balances, is what sustains institutional equilibrium across successive administrations.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Apply the principles of rule of law, representation, separation of powers, checks and balances, and federalism to explain the purposes and functions of the Constitution.</div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Who does what</h2></div>
-      <p class="lead"><b>Legislative</b> makes the laws (Congress). <b>Executive</b> carries out the laws (the President). <b>Judicial</b> interprets the laws and weighs them against the Constitution (the courts). Splitting these jobs is called <b>separation of powers</b>.</p>
+      <p class="lead">The <b>legislative branch</b>, vested in the bicameral Congress, enacts statutes and appropriates federal funds. The <b>executive branch</b>, headed by the President, administers and enforces the laws Congress has promulgated. The <b>judicial branch</b>, consisting of the Supreme Court and the lower federal courts, interprets statutes and adjudicates their constitutionality. The deliberate partitioning of these three governmental functions, each delineated in a separate constitutional article, is known as <b>separation of powers</b>.</p>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">02 / SORT</span><h2>Which branch holds this power?</h2></div>
-      <p class="lead">Read each power and assign it to the branch that holds it.</p>
+      <p class="lead">Read each enumerated power and assign it to the branch in which the Constitution vests that authority. Note how the powers are distributed to prevent any single institution from accumulating disproportionate influence.</p>
       <div class="sgrid" id="sgrid"></div>
       <div class="sortscore" id="sortscore">0 of 6 sorted</div>
     </div>
@@ -215,12 +215,12 @@
   }catch(e){} }
 
   var POWERS=[
-    {t:'Write and pass new laws',b:'Legislative',why:'Congress, the legislative branch, writes and passes laws.'},
-    {t:'Veto a bill passed by Congress',b:'Executive',why:'The President, head of the executive branch, can veto a bill. This is also a check on Congress.'},
-    {t:'Decide whether a law is unconstitutional',b:'Judicial',why:'The courts, the judicial branch, interpret laws and judge them against the Constitution.'},
-    {t:'Command the armed forces',b:'Executive',why:'The President is commander in chief, an executive power.'},
-    {t:'Approve the federal budget and taxes',b:'Legislative',why:'Control of spending and taxes belongs to Congress, the legislative branch.'},
-    {t:'Interpret the meaning of a law in a case',b:'Judicial',why:'Interpreting laws in real cases is the job of the judicial branch.'}
+    {t:'Write and pass new laws',b:'Legislative',why:'Congress, vested with the enumerated legislative powers under Article I, drafts, deliberates, and enacts federal statutes.'},
+    {t:'Veto a bill passed by Congress',b:'Executive',why:'The President, as head of the executive branch, may veto legislation passed by Congress, exercising a constitutional check on the legislative branch.'},
+    {t:'Decide whether a law is unconstitutional',b:'Judicial',why:'The federal judiciary, through the power of judicial review articulated in Marbury v. Madison, interprets statutes and adjudicates their conformity with the Constitution.'},
+    {t:'Command the armed forces',b:'Executive',why:'The President serves as commander in chief under Article II, a core executive power over the nation\'s military forces.'},
+    {t:'Approve the federal budget and taxes',b:'Legislative',why:'Control over federal expenditures and the power to levy taxes belong exclusively to Congress, often described as the constitutional "power of the purse."'},
+    {t:'Interpret the meaning of a law in a case',b:'Judicial',why:'Construing statutes as applied to specific cases and controversies is the constitutional province of the judicial branch.'}
   ];
   var BR=['Legislative','Executive','Judicial'];
   var sgrid=document.getElementById('sgrid'), done=0, ss=document.getElementById('sortscore');
@@ -265,7 +265,7 @@
       document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
       fbcard.classList.remove('hide'); retry.classList.add('hide');
     } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
-      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Look back at the stations, then try again.';
+      rtitle.textContent='So close!'; rmsg.textContent='You need 4 of 5 to pass. You got '+correct+'. Revisit the stations to reinforce the constitutional distinctions among legislative, executive, and judicial authority, then reattempt the check.';
       ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
     commitTime(); }
   document.getElementById('toCheck').addEventListener('click',startCheck);

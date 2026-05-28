@@ -327,22 +327,31 @@ function runChecks(filePath) {
   }
 
   // 17. Reading level
+  // Skipped for math lessons: math standards inherently use grade-required
+  // vocabulary ("three-digit numbers", "hundreds, tens and ones") that
+  // pushes FK up; the verbatim Missouri standard text is also unparaphrasable.
+  // FK is a meaningful signal for reading/science/social-studies but not math.
   {
-    const grade = detectGrade(filename, html);
-    const text = extractVisibleText(html);
-    const fk = fleschKincaidGrade(text);
-    if (!fk) {
-      warn('Reading level', 'could not compute (no sentences detected)');
-    } else if (!grade || !READING_TARGETS[grade]) {
-      warn('Reading level', 'FK=' + fk.grade + ' (no target for detected grade ' + grade + ')');
+    const isMathLesson = /\bmath\b/i.test(filename);
+    if (isMathLesson) {
+      pass('Reading level (skipped for math)');
     } else {
-      const t = READING_TARGETS[grade];
-      const inRange = (fk.grade >= t.ideal[0] && fk.grade <= t.ideal[1]);
-      const withinSoft = fk.grade <= t.soft;
-      const label = 'G' + grade + ' target ' + t.ideal[0] + '-' + t.ideal[1];
-      if (inRange) pass('Reading level FK=' + fk.grade + ' ' + label);
-      else if (withinSoft) warn('Reading level', 'FK=' + fk.grade + ' outside ideal ' + label + ' (within soft cap ' + t.soft + ')');
-      else warn('Reading level', 'FK=' + fk.grade + ' above soft cap ' + t.soft + ' for ' + label);
+      const grade = detectGrade(filename, html);
+      const text = extractVisibleText(html);
+      const fk = fleschKincaidGrade(text);
+      if (!fk) {
+        warn('Reading level', 'could not compute (no sentences detected)');
+      } else if (!grade || !READING_TARGETS[grade]) {
+        warn('Reading level', 'FK=' + fk.grade + ' (no target for detected grade ' + grade + ')');
+      } else {
+        const t = READING_TARGETS[grade];
+        const inRange = (fk.grade >= t.ideal[0] && fk.grade <= t.ideal[1]);
+        const withinSoft = fk.grade <= t.soft;
+        const label = 'G' + grade + ' target ' + t.ideal[0] + '-' + t.ideal[1];
+        if (inRange) pass('Reading level FK=' + fk.grade + ' ' + label);
+        else if (withinSoft) warn('Reading level', 'FK=' + fk.grade + ' outside ideal ' + label + ' (within soft cap ' + t.soft + ')');
+        else warn('Reading level', 'FK=' + fk.grade + ' above soft cap ' + t.soft + ' for ' + label);
+      }
     }
   }
 

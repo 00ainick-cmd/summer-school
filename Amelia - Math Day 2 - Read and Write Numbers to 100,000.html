@@ -398,7 +398,7 @@
   app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
   app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
   app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
-  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null,formAPassedAt:null};
   app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
   var SUPA_URL='', SUPA_KEY='';
   function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
@@ -488,7 +488,7 @@
     setTimeout(function(){ st.i++; if(st.i<items.length) showQ(form); else finishMC(form); }, ok?700:1250);
   }
   function finishMC(form){ var st=mcState[form];
-    if(form==='A'){ rec.formA=st.correct; rec.best=Math.max(rec.best||0,Math.round(st.correct/DATA.FORMA.length*100)); rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app); if(typeof syncCloud==='function')syncCloud();
+    if(form==='A'){ rec.formA=st.correct; if(!rec.formAPassedAt && rec.formA>=DATA.PASS) rec.formAPassedAt=Date.now(); rec.best=Math.max(rec.best||0,Math.round(st.correct/DATA.FORMA.length*100)); rec.lastWrong=st.wrong; rec.wrongCount=st.wrong.length; save(app); if(typeof syncCloud==='function')syncCloud();
       document.getElementById('mcA').classList.add('hide'); document.getElementById('resultA').classList.remove('hide');
       document.getElementById('scoreAtxt').textContent=st.correct+' / '+DATA.FORMA.length;
       var __strong=(st.correct>=DATA.PASS), __st=document.getElementById('aStatus'); if(__st){__st.textContent=__strong?'Form A clear':'Reteach needed'; __st.style.color=__strong?'var(--good)':'var(--alt)';}
@@ -511,7 +511,7 @@
 
   document.getElementById('retryA').addEventListener('click',function(){ show('learn'); setStep('ps-mastery','');setStep('ps-practice','on');setStep('ps-learn','done'); });
   document.getElementById('toRetention').addEventListener('click',function(){ show('retention'); setStep('ps-mastery','done'); setStep('ps-retention','on'); });
-  document.getElementById('startB').addEventListener('click',function(){ document.getElementById('mcB').classList.remove('hide'); this.classList.add('hide'); startMC('B'); });
+  document.getElementById('startB').addEventListener('click',function(){ var __ap=rec.formAPassedAt||0; if(__ap && (Date.now()-__ap)<24*60*60*1000){ alert('Form B opens 24 hours after Form A passes. Come back tomorrow to lock these in.'); return; } document.getElementById('mcB').classList.remove('hide'); this.classList.add('hide'); startMC('B'); });
   document.getElementById('toWrap').addEventListener('click',function(){ show('wrap'); setStep('ps-retention','done'); setStep('ps-wrap','on'); decide(); });
 
   var feel=null, conf=null;

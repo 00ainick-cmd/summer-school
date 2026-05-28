@@ -262,7 +262,7 @@
   app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
   app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
   app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
-  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,formA:0,formB:0,feedback:null};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,formA:0,formB:0,formAPassedAt:null,feedback:null};
   app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
   var SUPA_URL='', SUPA_KEY='';
   function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
@@ -373,7 +373,7 @@
   function startA(){ MODE='A'; QS=FORMA; rec.attempts=(rec.attempts||0)+1; save(app);
     secL.classList.add('hide'); secRA.classList.add('hide'); secC.classList.remove('hide');
     qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
-  function startB(){ MODE='B'; QS=FORMB; el('startB').classList.add('hide'); bWrap.classList.remove('hide');
+  function startB(){ var __ap=rec.formAPassedAt||0; if(__ap && (Date.now()-__ap)<24*60*60*1000){ alert('Form B opens 24 hours after Form A passes. Come back tomorrow to lock these in.'); return; } MODE='B'; QS=FORMB; el('startB').classList.add('hide'); bWrap.classList.remove('hide');
     qi=0; correct=0; runWrong=[]; window.scrollTo(0,0); showQ(); }
   function showQ(){ locked=false; var item=QS[qi];
     var ids = MODE==='A' ? {c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'} : {c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhy'};
@@ -396,7 +396,7 @@
     setTimeout(function(){ qi++; if(qi<QS.length)showQ(); else finish(); }, ok?700:1300); }
   function finish(){
     if(MODE==='A'){ secC.classList.add('hide'); secRA.classList.remove('hide'); window.scrollTo(0,0);
-      rec.formA=correct; rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
+      rec.formA=correct; if(!rec.formAPassedAt && rec.formA>=PASS) rec.formAPassedAt=Date.now(); rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
       el('scoreA').textContent=correct+' / '+QS.length;
       var passed=(correct>=PASS); el('statusA').textContent=passed?'PASS':'NOT YET'; el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
       el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B waits at least a day.'):('You need '+PASS+' of '+QS.length+' to clear Form A. You got '+correct+'. Re-step the three worked examples, then try again.');

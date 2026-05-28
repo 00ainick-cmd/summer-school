@@ -259,7 +259,7 @@
   app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
   app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
   app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
-  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null,formA:null,formB:null,explain:'',pt:[]};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,points:0,feedback:null,formA:null,formB:null,formAPassedAt:null,explain:'',pt:[]};
   app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
   var SUPA_URL='', SUPA_KEY='';
   function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
@@ -371,7 +371,7 @@
   function finish(){ secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
     var pct=Math.round(correct/QS.length*100), passed=(correct/QS.length>=PASS); document.getElementById('scorebig').textContent=pct+'%';
     rec.lastWrong=runWrong; rec.wrongCount=runWrong.length;
-    if(FORM==='A') rec.formA={score:correct,total:QS.length,at:Date.now(),passed:passed}; else rec.formB={score:correct,total:QS.length,at:Date.now(),passed:passed};
+    if(FORM==='A') { rec.formA={score:correct,total:QS.length,at:Date.now(),passed:passed}; if(!rec.formAPassedAt && passed) rec.formAPassedAt=Date.now(); } else rec.formB={score:correct,total:QS.length,at:Date.now(),passed:passed};
     var ptsrow=document.getElementById('ptsrow'), retry=document.getElementById('retry'), toB=document.getElementById('toFormB'), rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'), gate=document.getElementById('gateinfo');
     toB.classList.add('hide'); retry.classList.add('hide'); gate.classList.add('hide');
     if(FORM==='A'){
@@ -398,7 +398,7 @@
     }
     commitTime(); }
   document.getElementById('toCheck').addEventListener('click',function(){ startCheck('A'); });
-  document.getElementById('toFormB').addEventListener('click',function(){ startCheck('B'); });
+  document.getElementById('toFormB').addEventListener('click',function(){ var __ap=rec.formAPassedAt||0; if(__ap && (Date.now()-__ap)<24*60*60*1000){ alert('Form B opens 24 hours after Form A passes. Come back tomorrow to lock these in.'); return; } startCheck('B'); });
   document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); secLesson.classList.remove('hide'); window.scrollTo(0,0); });
 
   var explainText=document.getElementById('explainText'), explainSave=document.getElementById('explainSave'), explainSaved=document.getElementById('explainSaved');

@@ -283,7 +283,7 @@
   app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
   app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
   app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
-  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,ptDone:false,explainText:''};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,ptDone:false,explainText:''};
   app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
   var SUPA_URL='', SUPA_KEY='';
   function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
@@ -410,7 +410,7 @@
       secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
       var passed=(correct>=PASS), pct=Math.round(correct/FORM_A.length*100);
       document.getElementById('scorebig').textContent=pct+'%';
-      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      rec.formA=correct; if(!rec.formAPassedAt && rec.formA>=PASS) rec.formAPassedAt=Date.now(); rec.best=Math.max(rec.best||0,pct);
       var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
           retry=document.getElementById('retry'), toExplain=document.getElementById('toExplain'), toFormB=document.getElementById('toFormB');
       retry.classList.add('hide'); toExplain.classList.add('hide'); toFormB.classList.add('hide');
@@ -444,7 +444,7 @@
   document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
   document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); startCheck('A'); });
   document.getElementById('toExplain').addEventListener('click',function(){ secResult.classList.add('hide'); secExplain.classList.remove('hide'); window.scrollTo(0,0); });
-  document.getElementById('startB').addEventListener('click',function(){startCheck('B');});
+  document.getElementById('startB').addEventListener('click',function(){ var __ap=rec.formAPassedAt||0; if(__ap && (Date.now()-__ap)<24*60*60*1000){ alert('Form B opens 24 hours after Form A passes. Come back tomorrow to lock these in.'); return; } startCheck('B'); });
   document.getElementById('toFormB').addEventListener('click',function(){ secResult.classList.add('hide'); secFormB.classList.remove('hide'); window.scrollTo(0,0); });
 })();
 </script>

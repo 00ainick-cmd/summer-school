@@ -145,11 +145,11 @@
   <div class="stdtag"><span class="l">Standard 2.PS1.A.2</span>Analyze data got from testing different materials to find out which materials have the properties that are best suited for an intended purpose.</div>
 
   <div class="station prose"><div class="shead"><span class="sno">01</span><h2>From sorting to picking</h2></div>
-    <p>Last time you sorted materials by their <b>properties</b>. A property is something you can see: hard, soft, bendy, stiff, see-through, waterproof, magnetic. Today you do the next thing real engineers do. You <b>pick</b> a material for a job. You would not make a window from cardboard. You would not make a raincoat from paper. The match between job and material is the whole game.</p>
+    <p>Last time you sorted things by their <b>properties</b>. A property is what you can see. Hard, soft, bendy, stiff, see-through, waterproof, magnetic. Today you do the next step. You <b>pick</b> a thing for a job. You would not make a window from cardboard. You would not make a raincoat from paper. The match between job and stuff is the whole game.</p>
   </div>
 
   <div class="station"><div class="shead"><span class="sno">02</span><h2>Six properties to test</h2></div>
-    <p class="intro">Each material in the lab has property tags. Read the tags like clues.</p>
+    <p class="intro">Each thing in the lab has tags. Read the tags like clues.</p>
     <div class="ccards">
       <div class="ccard"><div class="lbl">Hard / Soft</div><div class="sub">does it squish</div><div class="eg">rock vs pillow</div></div>
       <div class="ccard"><div class="lbl">Bendy / Stiff</div><div class="sub">does it change shape</div><div class="eg">rubber band vs ruler</div></div>
@@ -161,44 +161,44 @@
   </div>
 
   <div class="station prose"><div class="shead"><span class="sno">03</span><h2>How engineers choose</h2></div>
-    <p>An engineer does three things, in order. First, they say the <b>job</b> out loud: what does this thing have to do. Next, they <b>test</b> the materials and write down the <b>data</b>: which materials are bendy, which are waterproof, which are strong. Last, they make a <b>choice</b>: pick the material whose properties match the job best.</p>
+    <p>An engineer does three things in order. First, say the <b>job</b>. What does this thing have to do? Next, <b>test</b> the stuff. Write down the <b>data</b>. Which ones are bendy? Which ones hold water out? Which ones are strong? Last, make a <b>choice</b>. Pick the one whose properties match the job best.</p>
   </div>
 
   <div class="station"><div class="shead"><span class="sno">04</span><h2>One choice, all the way through</h2></div>
     <div class="worked">
       <div class="prompt">Job: build a spoon for hot soup.</div>
       <ol>
-        <li>Job needs: stiff (so it scoops), strong, and not too soft.</li>
-        <li>Test the data: foam is soft, paper bends in soup, wood is stiff and strong, ice melts.</li>
-        <li>Choice: <b>wood or metal</b>. Both are stiff and strong. Foam and paper fail the test.</li>
+        <li>The job needs: stiff to scoop. Strong. Not too soft.</li>
+        <li>Test: foam is soft. Paper bends in soup. Wood is stiff and strong. Ice melts.</li>
+        <li>Pick: <b>wood or metal</b>. Both are stiff and strong. Foam and paper fail.</li>
       </ol>
-      <div class="ans">The property tags tell you what fits the job. That is data driving the choice.</div>
+      <div class="ans">The tags tell you what fits the job. The tags help you pick.</div>
     </div>
   </div>
 
   <div class="station"><div class="shead"><span class="sno">05</span><h2>Material match lab</h2></div>
-    <p class="intro">Three jobs, six materials. For each job, tap the material whose properties fit best.</p>
+    <p class="intro">Three jobs. Six things. For each job, tap the one that fits best.</p>
     <div class="joblist" id="joblist"></div>
     <div class="labnote" id="labnote">0 of 3 jobs matched.</div>
   </div>
 
   <div class="station"><div class="shead"><span class="sno">06</span><h2>Watch out for this</h2></div>
     <div class="myth"><span class="tag">Common mix-up</span>
-      <div class="wrong">The strongest material is always the best choice.</div>
-      <div class="right">A steel window would be strong, but you could not see through it. The best material is the one whose properties match the <b>job</b>, not the one that is strongest overall.</div></div>
+      <div class="wrong">The strongest stuff is always the best.</div>
+      <div class="right">A steel window would be strong. But you could not see through it. The best stuff is the one that fits the <b>job</b>, not the strongest of all.</div></div>
   </div>
 
   <div class="station"><div class="shead"><span class="sno">07</span><h2>Watch out for this</h2></div>
     <div class="myth"><span class="tag">Common mix-up</span>
-      <div class="wrong">If a material works for one job, it works for every job.</div>
-      <div class="right">Cardboard is great for a cereal box. It would be terrible for a raincoat. Each job has its own short list of properties that matter.</div></div>
+      <div class="wrong">If it works for one job, it works for every job.</div>
+      <div class="right">Cardboard is great for a cereal box. It is bad for a raincoat. Each job has its own list of what to look for.</div></div>
   </div>
 
   <div class="station recap"><div class="shead"><span class="sno">08</span><h2>What you learned</h2></div>
     <ul>
-      <li>A property is something you can see and test.</li>
-      <li>Engineers say the job, test the materials, then pick.</li>
-      <li>The right material is the one whose properties match the job.</li>
+      <li>A property is what you can see and test.</li>
+      <li>Engineers say the job. They test the stuff. They pick.</li>
+      <li>The right stuff has properties that fit the job.</li>
       <li>Strong is not always best. Match beats strong.</li>
     </ul>
   </div>
@@ -267,23 +267,23 @@
   }catch(e){} }
 
   var JOBS=[
-    {job:'Build an umbrella', why:'It has to keep rain off your head and bend open and shut.', needs:['waterproof','bendy'], good:['plastic','rubber'], bad:['paper','cardboard','steel','foam'],
-     win:'Plastic and rubber are waterproof and bendy. Paper would soak through. Steel would be too stiff to fold.'},
-    {job:'Build a window', why:'It has to let light through and not break easily.', needs:['see-through','strong'], good:['glass','clearPlastic'], bad:['cardboard','wood','steel','foam'],
-     win:'Glass and clear plastic are see-through and strong. Wood and cardboard block all the light.'},
-    {job:'Build a fork', why:'It has to scoop food, stay stiff, and not soak up gravy.', needs:['stiff','waterproof'], good:['steel','plastic'], bad:['paper','foam','cardboard','rubber'],
-     win:'Steel and plastic are stiff and do not soak up liquid. Paper and foam would fall apart.'}
+    {job:'Build an umbrella', why:'It must keep rain off. It must fold open and shut.', needs:['waterproof','bendy'], good:['plastic','rubber'], bad:['paper','cardboard','steel','foam'],
+     win:'Plastic and rubber keep rain off. They bend. Paper would soak through. Steel would not fold.'},
+    {job:'Build a window', why:'It must let light through. It must not break easily.', needs:['see-through','strong'], good:['glass','clearPlastic'], bad:['cardboard','wood','steel','foam'],
+     win:'Glass and clear plastic are see-through and strong. Wood and cardboard block light.'},
+    {job:'Build a fork', why:'It must scoop food. It must stay stiff. It must not soak up gravy.', needs:['stiff','waterproof'], good:['steel','plastic'], bad:['paper','foam','cardboard','rubber'],
+     win:'Steel and plastic are stiff. They do not soak up liquid. Paper and foam would fall apart.'}
   ];
   var MATS={
     plastic:{name:'Plastic', props:'bendy, waterproof, light'},
     rubber:{name:'Rubber', props:'bendy, waterproof, stretchy'},
     glass:{name:'Glass', props:'hard, see-through, smooth'},
     clearPlastic:{name:'Clear plastic', props:'see-through, strong, light'},
-    cardboard:{name:'Cardboard', props:'stiff, soaks water, light'},
-    wood:{name:'Wood', props:'stiff, strong, not see-through'},
-    steel:{name:'Steel', props:'hard, stiff, magnetic, strong'},
+    cardboard:{name:'Cardboard', props:'stiff, soaks up water, light'},
+    wood:{name:'Wood', props:'stiff, strong, blocks light'},
+    steel:{name:'Steel', props:'hard, stiff, magnet sticks, strong'},
     foam:{name:'Foam', props:'soft, light, squishy'},
-    paper:{name:'Paper', props:'thin, bendy, soaks water'}
+    paper:{name:'Paper', props:'thin, bendy, soaks up water'}
   };
   var jl=document.getElementById('joblist'), labnote=document.getElementById('labnote');
   JOBS.forEach(function(j,idx){
@@ -300,31 +300,31 @@
         var k=b.getAttribute('data-key'); var ok=j.good.indexOf(k)>=0;
         b.setAttribute('aria-pressed','true');
         if(ok){ b.classList.remove('bad'); card.setAttribute('data-done','1'); fb.className='jobfb ok'; fb.textContent='Good pick. '+j.win; }
-        else { b.classList.add('bad'); fb.className='jobfb no'; fb.textContent='Not quite. This material is missing one of the needs ('+j.needs.join(', ')+'). Try again.'; setTimeout(function(){ b.setAttribute('aria-pressed','false'); b.classList.remove('bad'); },900); }
+        else { b.classList.add('bad'); fb.className='jobfb no'; fb.textContent='Not quite. This one is missing what the job needs ('+j.needs.join(', ')+'). Try again.'; setTimeout(function(){ b.setAttribute('aria-pressed','false'); b.classList.remove('bad'); },900); }
         var n=0; document.querySelectorAll('.jobcard[data-done="1"]').forEach(function(){n++;});
-        if(n===JOBS.length){ labnote.textContent='All 3 jobs matched. You picked the right material every time.'; labnote.classList.add('win'); }
-        else { labnote.textContent=n+' of '+JOBS.length+' jobs matched.'; labnote.classList.remove('win'); }
+        if(n===JOBS.length){ labnote.textContent='All 3 jobs done. You picked the right one each time!'; labnote.classList.add('win'); }
+        else { labnote.textContent=n+' of '+JOBS.length+' jobs done.'; labnote.classList.remove('win'); }
       });
     });
   });
 
   var BANK={
-    q1:{stem:'A property is something you can ...',options:['observe','only smell','only taste','only hear'],answer:0,explain:'You observe properties by looking and feeling.'},
-    q2:{stem:'You want to build a raincoat. Which property matters most?',options:['Waterproof','Magnetic','See-through','Heavy'],answer:0,explain:'A raincoat has to keep water off you.'},
-    q3:{stem:'Why is paper a bad choice for an umbrella?',options:['It soaks up water','It is too shiny','It is magnetic','It is see-through'],answer:0,explain:'Paper is not waterproof. It would tear when wet.'},
-    q4:{stem:'A window needs to be ...',options:['See-through and strong','Soft and bendy','Magnetic and rough','Heavy and squishy'],answer:0,explain:'You need to see through it and it needs to not break.'},
+    q1:{stem:'A property is something you can ...',options:['observe','only smell','only taste','only hear'],answer:0,explain:'You see properties by looking and feeling.'},
+    q2:{stem:'You want to build a raincoat. Which property matters most?',options:['Waterproof','Magnetic','See-through','Heavy'],answer:0,explain:'A raincoat keeps water off you.'},
+    q3:{stem:'Why is paper a bad choice for an umbrella?',options:['It soaks up water','It is too shiny','It is magnetic','It is see-through'],answer:0,explain:'Paper soaks up water. It would tear.'},
+    q4:{stem:'A window needs to be ...',options:['See-through and strong','Soft and bendy','Magnetic and rough','Heavy and squishy'],answer:0,explain:'You must see through it. It must not break.'},
     q5:{stem:'Which material would work for a window?',options:['Cardboard','Glass','Foam','Wood'],answer:1,explain:'Glass is see-through and strong.'},
-    q6:{stem:'Engineers test materials so they can ...',options:['Pick the one that fits the job','Find the heaviest one','Color them all the same','Make them magnetic'],answer:0,explain:'The data from tests tells you which material fits the job.'},
-    q7:{stem:'Why is foam a bad choice for a fork?',options:['It is too soft to scoop food','It is too shiny','It is too heavy','It is see-through'],answer:0,explain:'A fork needs to be stiff. Foam squishes.'},
-    q8:{stem:'A bike helmet needs to be hard on the outside. Which material fits?',options:['Soft pillow','Hard plastic','Paper','Water'],answer:1,explain:'Hard plastic protects your head.'},
+    q6:{stem:'Engineers test materials so they can ...',options:['Pick the one that fits the job','Find the heaviest one','Color them all the same','Make them magnetic'],answer:0,explain:'Tests tell you which one fits the job.'},
+    q7:{stem:'Why is foam a bad choice for a fork?',options:['It is too soft to scoop food','It is too shiny','It is too heavy','It is see-through'],answer:0,explain:'A fork must be stiff. Foam squishes.'},
+    q8:{stem:'A bike helmet needs to be hard on the outside. Which material fits?',options:['Soft pillow','Hard plastic','Paper','Water'],answer:1,explain:'Hard plastic keeps your head safe.'},
 
-    q9:{stem:'Which property does a magnet test?',options:['Magnetic','Bendy','See-through','Waterproof'],answer:0,explain:'A magnet sticks to magnetic materials like steel.'},
+    q9:{stem:'Which property does a magnet test?',options:['Magnetic','Bendy','See-through','Waterproof'],answer:0,explain:'A magnet sticks to things like steel.'},
     q10:{stem:'A bag has to carry heavy books. Which property matters most?',options:['Strong','See-through','Soft','Shiny'],answer:0,explain:'A strong bag will not rip.'},
-    q11:{stem:'Why would steel be a bad choice for a window?',options:['You cannot see through it','It is too soft','It melts in the sun','It is too light'],answer:0,explain:'Steel is not see-through, so a window made of steel would block the light.'},
-    q12:{stem:'A spoon for hot soup needs to be ...',options:['Stiff and strong','Soft and bendy','Light and shiny','Magnetic and rough'],answer:0,explain:'A spoon has to keep its shape and scoop without breaking.'},
-    q13:{stem:'Which job fits a bendy material best?',options:['A ruler','A rubber band toy','A window','A hammer'],answer:1,explain:'Bendy is good for things that need to stretch or twist.'},
-    q14:{stem:'You tested 4 materials. Only one is waterproof. For a raincoat you would pick ...',options:['The waterproof one','The heaviest one','The shiniest one','Any of them'],answer:0,explain:'The data points you to the waterproof one.'},
-    q15:{stem:'Which is NOT a property you can test by looking and feeling?',options:['Shiny','How it tastes','Hard','Bendy'],answer:1,explain:'Scientists do not taste materials. Properties are observed by looking and touching.'},
+    q11:{stem:'Why would steel be a bad choice for a window?',options:['You cannot see through it','It is too soft','It melts in the sun','It is too light'],answer:0,explain:'Steel blocks light. A steel window would be dark.'},
+    q12:{stem:'A spoon for hot soup needs to be ...',options:['Stiff and strong','Soft and bendy','Light and shiny','Magnetic and rough'],answer:0,explain:'A spoon must keep its shape. It must scoop.'},
+    q13:{stem:'Which job fits a bendy material best?',options:['A ruler','A rubber band toy','A window','A hammer'],answer:1,explain:'Bendy is good for things that stretch or twist.'},
+    q14:{stem:'You tested 4 materials. Only one is waterproof. For a raincoat you would pick ...',options:['The waterproof one','The heaviest one','The shiniest one','Any of them'],answer:0,explain:'The data points to the waterproof one.'},
+    q15:{stem:'Which is NOT a property you can test by looking and feeling?',options:['Shiny','How it tastes','Hard','Bendy'],answer:1,explain:'Do not taste things. You look and touch.'},
     q16:{stem:'The best material for a job is the one that ...',options:['Matches the needed properties','Is the strongest in the world','Is the prettiest color','Costs the most'],answer:0,explain:'Match beats strong. Pick what fits the job.'}
   };
   var FORMS={A:['q1','q2','q3','q4','q5','q6','q7','q8'], B:['q9','q10','q11','q12','q13','q14','q15','q16']};
@@ -368,7 +368,7 @@
       document.getElementById('vbase').textContent=base; document.getElementById('vbonus').textContent=runPts; document.getElementById('vtotal').textContent=total; ptsrow.classList.remove('hide');
       fbcard.classList.remove('hide'); retry.classList.add('hide');
     } else { rec.best=Math.max(rec.best||0,pct); rec.status='tried'; save(app);
-      rt.textContent='So close!'; rm.textContent='You need '+Math.ceil(PASS*QS.length)+' of '+QS.length+' to pass. You got '+correct+'. Look back, then try again for a fresh set.';
+      rt.textContent='So close!'; rm.textContent='You need '+Math.ceil(PASS*QS.length)+' of '+QS.length+' to pass. You got '+correct+'. Look back. Then try again.';
       ptsrow.classList.add('hide'); fbcard.classList.add('hide'); retry.classList.remove('hide'); }
     commitTime();
   }

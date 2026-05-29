@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A grade 8 spelling session on ten academic words built from Greek and Latin roots, with attention to the orthographic patterns each root produces.">
+<title>Session 18 . Greek and Latin Academic Roots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(255,59,20,.08)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(36,81,166,.10)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(255,200,100,.05)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(255,59,20,.08);--bg-blob-2:rgba(36,81,166,.10);--bg-blob-3:rgba(255,200,100,.05);}
+  :root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+   --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--gold:#a8780d;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:
+     linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+     linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+     radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+  h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+  .mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+  h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+  .mission{color:var(--ink2);max-width:62ch;}
+  .stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+  .station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-top:14px;}
+  .wcard{background:#faf8f2;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .wcard .w{font-family:'Anton';font-size:22px;letter-spacing:.02em;color:var(--ink);text-transform:uppercase;}
+  .wcard .tr{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.06em;color:var(--accent-d);text-transform:uppercase;margin-top:2px;}
+  .wcard .root{font-family:'Spline Sans Mono';font-size:11.5px;color:var(--alt);margin-top:4px;}
+  .wcard .root b{color:var(--ink);font-weight:700;}
+  .wcard .meaning{font-size:14.5px;color:var(--ink2);margin-top:6px;}
+  .wcard .ex{font-size:14px;color:var(--ink);margin-top:6px;font-style:italic;}
+  .wcard .ex b{font-style:normal;font-weight:700;color:var(--accent-d);}
+  .tipbox{margin-top:14px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:10px;padding:14px 16px;}
+  .tipbox .tt{font-family:'Spline Sans Mono';color:var(--alt);font-size:11.5px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px;}
+  .tipbox ul{margin:4px 0 0 22px;color:var(--ink2);}
+  .tipbox li{margin:4px 0;font-size:15.5px;}
+  .roottable{margin-top:14px;width:100%;border-collapse:collapse;font-size:14px;}
+  .roottable th,.roottable td{border:1px solid var(--line);padding:8px 10px;text-align:left;}
+  .roottable th{background:#eef0e8;font-family:'Anton';font-weight:400;letter-spacing:.04em;text-transform:uppercase;font-size:12.5px;color:var(--ink);}
+  .roottable td.r{font-family:'Spline Sans Mono';color:var(--accent-d);font-weight:700;}
+  .roottable td.m{color:var(--ink2);}
+  .roottable td.ex{font-family:'Spline Sans Mono';color:var(--alt);}
+  .matchgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  @media (max-width:560px){.matchgrid{grid-template-columns:1fr;}}
+  .mtile{font:inherit;font-weight:600;font-size:15px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:11px 13px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .mtile:hover{border-color:var(--accent);}
+  .mtile.sel{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .mtile.ok{border-color:var(--good);background:#eaf5ee;color:var(--good);cursor:default;}
+  .mtile.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .matchnote{margin-top:10px;font-size:14px;color:var(--mute);}
+  .matchnote.win{color:var(--good);font-weight:600;}
+  .myth{border:1px solid #f0d97a;background:#fffbe9;border-radius:10px;padding:14px 16px;margin-top:12px;}
+  .myth .tag{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);}
+  .myth .big{font-family:'Anton';font-size:17px;margin:4px 0;color:var(--ink);}
+  .recap{background:#fff;border-left:4px solid var(--accent);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-top:12px;}
+  .recap ul{margin:6px 0 0 20px;color:var(--ink2);}
+  .recap li{margin:4px 0;font-size:15px;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);}.cta.alt:hover{filter:brightness(.92);}
+  .cta.go{background:var(--good);}.cta.go:hover{filter:brightness(.92);}
+  .cta:disabled{opacity:.55;cursor:not-allowed;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;font-family:'Spline Sans Mono';}
+  .qstem{font-family:'Anton';font-size:22px;letter-spacing:.02em;line-height:1.25;margin-bottom:10px;text-transform:uppercase;color:var(--ink);}
+  .qctx{font-size:16px;color:var(--ink2);margin-bottom:14px;font-style:italic;}
+  .qctx .blank{display:inline-block;min-width:130px;border-bottom:2px solid var(--accent);text-align:center;font-family:'Spline Sans Mono';font-weight:600;color:var(--accent-d);padding:0 6px;font-style:normal;}
+  .typewrap{display:flex;flex-direction:column;gap:10px;}
+  .typewrap input[type=text]{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:22px;font-weight:600;letter-spacing:.04em;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:14px 16px;min-height:56px;color:var(--ink);text-align:center;text-transform:lowercase;}
+  .typewrap input[type=text]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,59,20,.12);}
+  .typewrap input.ok{border-color:var(--good);background:#eaf5ee;color:var(--good);}
+  .typewrap input.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .pickrow{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+  .pickrow .pop{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:18px;font-weight:600;letter-spacing:.04em;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;min-height:50px;cursor:pointer;color:var(--ink);text-align:center;}
+  .pickrow .pop:hover{border-color:var(--accent);}
+  .pickrow .pop.ok{border-color:var(--good);background:#eaf5ee;color:var(--good);}
+  .pickrow .pop.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .submitbtn{font:inherit;font-weight:700;font-size:16px;color:#fff;background:var(--accent);border:none;border-radius:10px;padding:13px;min-height:50px;cursor:pointer;}
+  .submitbtn:disabled{opacity:.55;cursor:not-allowed;}
+  .feedback{margin-top:8px;font-size:15px;min-height:1.4em;}
+  .feedback.ok{color:var(--good);font-weight:600;}
+  .feedback.no{color:var(--accent-d);font-weight:600;}
+  .scoreband{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;margin-top:14px;}
+  .scoreband .s{font-family:'Anton';font-size:30px;line-height:1;color:var(--ink);}
+  .scoreband .lbl{font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  .result h2{font-family:'Anton';font-size:26px;font-weight:400;letter-spacing:.02em;text-transform:uppercase;margin:12px 0 4px;}
+  .result p{color:var(--ink2);max-width:50ch;}
+  .gatebox{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:14px 16px;margin-top:14px;font-size:15px;color:var(--ink2);}
+  .gatebox b{color:var(--gold);}
+  .countdown{font-family:'Spline Sans Mono';font-size:28px;font-weight:600;color:var(--accent-d);text-align:center;margin-top:8px;letter-spacing:.06em;}
+  footer{text-align:center;margin-top:30px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-family:'Spline Sans Mono';}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:580px;height:auto;display:block;}
+
+  #masteryDone { display: none; margin: 16px 0; }
+  #masteryDone.show { display: block; }
+  .mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f7a4d); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,122,77,.6); }
+  .mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+  .mastery-badge svg { width: 100%; height: 100%; display: block; }
+  .mastery-card h2 { font-family: 'Anton', system-ui, sans-serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f7a4d); margin: 8px 0; text-transform: uppercase; }
+  .mastery-msg { color: var(--ink2, #454b54); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+  .mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+  .mastery-stats .stat { background: #eaf5ee; border: 2px solid #bce0cf; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+  .mastery-stats .stat-num { display: block; font-family: 'Anton', system-ui, sans-serif; font-size: 32px; color: var(--good, #1f7a4d); line-height: 1; }
+  .mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #454b54); font-weight: 600; font-family: 'Spline Sans Mono'; }
+  .mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #ff3b14); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+  .mastery-cta a.cta:hover { background: var(--accent-d, #cf2c07); }
+</style>
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session . <b>Grade 8</b><span class="chip">Standard 8.W.3.A.c</span></div>
+  <section id="lesson">
+    <div class="kicker">Week 4 . Session 18</div>
+    <h1>Greek and Latin Academic Roots</h1>
+    <p class="mission">Roughly sixty percent of English vocabulary derives from Latin and Greek. The roots that built scholarly English are the building blocks behind most tier-three academic vocabulary: hydrology, chronology, demography, hypothesis, photosynthesis. Once you recognize the root, the spelling becomes structural rather than arbitrary. This session presents ten high-frequency academic words built from common roots, names the root in each, and drills both spelling and the underlying meaning.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>demonstrate a command of the conventions of standard English grammar and usage, including spelling and punctuation.</div>
+
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 580 260" role="img" aria-label="A diagram showing three words composed of Greek and Latin roots. Hydrology splits into HYDRO meaning water and LOGY meaning the study of. Chronology splits into CHRONO meaning time and LOGY meaning the study of. Photosynthesis splits into PHOTO meaning light and SYN meaning together and THESIS meaning placing.">
+        <rect x="6" y="6" width="568" height="248" rx="10" fill="#fff" stroke="#dcdcd2"/>
+        <text x="22" y="26" font-family="Anton" font-size="13" letter-spacing=".06em" fill="#1f3b54">ROOTS BUILD MEANING</text>
+        <text x="558" y="26" text-anchor="end" font-family="Spline Sans Mono" font-size="10" letter-spacing=".06em" fill="#828893">name the parts, spell the word</text>
+
+        <g transform="translate(22 50)">
+          <rect x="0" y="0" width="120" height="38" fill="rgba(255,59,20,.12)" stroke="#cf2c07" stroke-width="1.5" rx="4"/>
+          <text x="60" y="24" text-anchor="middle" font-family="Anton" font-size="18" fill="#cf2c07">HYDRO</text>
+          <rect x="124" y="0" width="80" height="38" fill="rgba(36,81,166,.12)" stroke="#1f3b54" stroke-width="1.5" rx="4"/>
+          <text x="164" y="24" text-anchor="middle" font-family="Anton" font-size="18" fill="#1f3b54">LOGY</text>
+          <text x="0" y="56" font-family="Spline Sans Mono" font-size="10" fill="#cf2c07">water</text>
+          <text x="124" y="56" font-family="Spline Sans Mono" font-size="10" fill="#1f3b54">study of</text>
+          <text x="220" y="26" font-family="Spline Sans Mono" font-size="12" fill="#454b54">= hydrology, the study of water</text>
+        </g>
+
+        <g transform="translate(22 110)">
+          <rect x="0" y="0" width="120" height="38" fill="rgba(255,59,20,.12)" stroke="#cf2c07" stroke-width="1.5" rx="4"/>
+          <text x="60" y="24" text-anchor="middle" font-family="Anton" font-size="18" fill="#cf2c07">CHRONO</text>
+          <rect x="124" y="0" width="80" height="38" fill="rgba(36,81,166,.12)" stroke="#1f3b54" stroke-width="1.5" rx="4"/>
+          <text x="164" y="24" text-anchor="middle" font-family="Anton" font-size="18" fill="#1f3b54">LOGY</text>
+          <text x="0" y="56" font-family="Spline Sans Mono" font-size="10" fill="#cf2c07">time</text>
+          <text x="124" y="56" font-family="Spline Sans Mono" font-size="10" fill="#1f3b54">study of</text>
+          <text x="220" y="26" font-family="Spline Sans Mono" font-size="12" fill="#454b54">= chronology, the study of time</text>
+        </g>
+
+        <g transform="translate(22 170)">
+          <rect x="0" y="0" width="100" height="38" fill="rgba(255,59,20,.12)" stroke="#cf2c07" stroke-width="1.5" rx="4"/>
+          <text x="50" y="24" text-anchor="middle" font-family="Anton" font-size="18" fill="#cf2c07">PHOTO</text>
+          <rect x="104" y="0" width="70" height="38" fill="rgba(15,122,58,.14)" stroke="#1f7a4d" stroke-width="1.5" rx="4"/>
+          <text x="139" y="24" text-anchor="middle" font-family="Anton" font-size="18" fill="#1f7a4d">SYN</text>
+          <rect x="176" y="0" width="110" height="38" fill="rgba(36,81,166,.12)" stroke="#1f3b54" stroke-width="1.5" rx="4"/>
+          <text x="231" y="24" text-anchor="middle" font-family="Anton" font-size="18" fill="#1f3b54">THESIS</text>
+          <text x="0" y="56" font-family="Spline Sans Mono" font-size="10" fill="#cf2c07">light</text>
+          <text x="104" y="56" font-family="Spline Sans Mono" font-size="10" fill="#1f7a4d">together</text>
+          <text x="176" y="56" font-family="Spline Sans Mono" font-size="10" fill="#1f3b54">placing</text>
+          <text x="300" y="26" font-family="Spline Sans Mono" font-size="12" fill="#454b54">= putting together with light</text>
+        </g>
+
+        <text x="22" y="245" font-family="Spline Sans Mono" font-size="10" fill="#454b54">Spell the roots; the words become predictable.</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>This week's words</h2></div>
+      <p class="lead">Each card presents the target word, names its principal root or roots, and embeds the word in a precise academic sentence. The roots are highlighted so the same building blocks become recognizable in dozens of other words you will meet in middle and high school content.</p>
+      <div class="wgrid" id="wgrid"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / STRATEGY</span><h2>The root map</h2></div>
+      <p class="lead">Twelve roots build most of the academic vocabulary used in middle-school science, history, and literature. Memorizing the root pays off across thousands of words.</p>
+      <table class="roottable">
+        <thead><tr><th>Root</th><th>Origin</th><th>Meaning</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td class="r">hydro</td><td>Greek</td><td class="m">water</td><td class="ex">hydrology, hydrate, dehydration</td></tr>
+          <tr><td class="r">chrono</td><td>Greek</td><td class="m">time</td><td class="ex">chronology, chronic, anachronism</td></tr>
+          <tr><td class="r">photo</td><td>Greek</td><td class="m">light</td><td class="ex">photosynthesis, photograph</td></tr>
+          <tr><td class="r">bio</td><td>Greek</td><td class="m">life</td><td class="ex">biology, biography, antibiotic</td></tr>
+          <tr><td class="r">geo</td><td>Greek</td><td class="m">earth</td><td class="ex">geography, geology, geometry</td></tr>
+          <tr><td class="r">demo</td><td>Greek</td><td class="m">people</td><td class="ex">demography, democracy</td></tr>
+          <tr><td class="r">therm</td><td>Greek</td><td class="m">heat</td><td class="ex">thermometer, thermal</td></tr>
+          <tr><td class="r">spect, spec</td><td>Latin</td><td class="m">to see, look</td><td class="ex">spectrum, perspective, inspect</td></tr>
+          <tr><td class="r">struct</td><td>Latin</td><td class="m">to build</td><td class="ex">structure, construct, infrastructure</td></tr>
+          <tr><td class="r">dict</td><td>Latin</td><td class="m">to say, speak</td><td class="ex">predict, diction, contradict</td></tr>
+          <tr><td class="r">port</td><td>Latin</td><td class="m">to carry</td><td class="ex">transport, portable, import</td></tr>
+          <tr><td class="r">scribe, script</td><td>Latin</td><td class="m">to write</td><td class="ex">describe, manuscript, inscription</td></tr>
+        </tbody>
+      </table>
+      <div class="tipbox">
+        <div class="tt">Tactics</div>
+        <ul>
+          <li>Identify the root first. A long word is a sequence of small parts; name each one and the spelling becomes structural.</li>
+          <li>Watch for Greek "y" vs Latin "i". Greek-origin words often carry a Y where you might expect an I (hydrology not hidrology; hypothesis not hipothesis). Latin-origin words generally use I.</li>
+          <li>Watch the connecting vowel. Greek compounds typically link with O (chrono-logy, photo-synthesis). Latin compounds vary, but I and U are more common (struct-ure).</li>
+          <li>Suffixes follow patterns. -logy means study of. -graph means writing or recording. -meter means measure. -sis often signals a process or condition.</li>
+          <li>If you can spell the root once, you can usually spell it everywhere it appears.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / DO</span><h2>Match the root to the meaning</h2></div>
+      <p class="lead">Select a root on the left, then the meaning on the right. Linking root to meaning fixes both in memory. Five pairs to complete.</p>
+      <div class="matchgrid">
+        <div id="matchWords"></div>
+        <div id="matchMeans"></div>
+      </div>
+      <div class="matchnote" id="matchNote">0 of 5 matched.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / WATCH</span><h2>Common spelling traps</h2></div>
+      <div class="myth"><span class="tag">Common error</span><div class="big">"I will sound it out and that will tell me the spelling."</div><div style="color:var(--ink2)">For root-based academic vocabulary, sound is the trap. Hypothesis sounds like "hi-poth-eh-sis," which suggests hipothesis; the H is silent and the Y looks wrong. Chronology sounds like "kron-ol-uh-jee," which suggests kronology; the CH is borrowed from Greek and writes the K sound. Photograph sounds like "fo-toh-graf," which suggests fotograph. The fix is to memorize the root spelling once: HYPO, CHRONO, PHOTO. Then every word built from those roots inherits the spelling.</div></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05 / RECAP</span><h2>The move</h2></div>
+      <div class="recap"><b>Remember:</b><ul>
+        <li>Decompose every long academic word into its roots before you write it.</li>
+        <li>Spell the root once correctly and the variants follow predictably.</li>
+        <li>Greek roots favor Y, PH, and CH; Latin roots tend to use I, F, and K. Use that pattern as a check.</li>
+        <li>Connecting vowels (typically O for Greek) join roots together cleanly. Notice them when you write.</li>
+      </ul></div>
+    </div>
+
+    <button class="cta" id="toCheck">I worked through it. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Word 1 of 8</span></div>
+    <div class="qstem" id="qstem"></div>
+    <div class="qctx" id="qctx"></div>
+    <div class="typewrap">
+      <input type="text" id="typeIn" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="type the spelling word">
+      <button class="submitbtn" id="submitBtn">Submit</button>
+      <div class="feedback" id="fb"></div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="scoreband">
+      <div class="s" id="scorebig">0 / 8</div>
+      <div>
+        <div class="lbl">Form score</div>
+        <h2 id="rtitle" style="font-size:22px;margin-top:2px;">Done</h2>
+      </div>
+    </div>
+    <p id="rmsg" style="margin-top:14px;color:var(--ink2);"></p>
+    <button class="cta alt hide" id="retry">Retry Form A</button>
+    <button class="cta hide" id="toGate">See the 24-hour gate</button>
+  </section>
+
+  <section id="gateSec" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">SPACING</span><h2>Form B unlocks in 24 hours</h2></div>
+      <p class="lead">Form A has been successfully completed. Form B becomes available in twenty-four hours. The deliberate interval is grounded in cognitive science. Spaced retrieval practice transfers these orthographic patterns from short-term recognition into durable long-term memory.</p>
+      <div class="gatebox"><b>Spacing matters.</b> Successive back-to-back attempts cultivate recognition memory. Attempts separated by a meaningful interval cultivate genuine recall. The objective here is durable recall.</div>
+      <div class="countdown" id="countdown">--:--:--</div>
+      <button class="cta go hide" id="startB">Start Form B</button>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Word 1 of 8</span></div>
+    <div class="qstem" id="qstemB"></div>
+    <div class="qctx" id="qctxB"></div>
+    <div class="pickrow" id="pickrowB"></div>
+    <div class="feedback" id="fbB"></div>
+  </section>
+
+  <footer><span id="__sname">Julie</span> . Spelling . W4 Day 3 . Standard 8.W.3.A.c</footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#1f7a4d" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];
+  var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===8;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'julie',name:'Julie',grade:8};
+  __ar.activeKid=__rk.id;
+  try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='spelling',DAY='8.W.3.A.c',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname'); if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7;
+  var GATE_MS=24*60*60*1000;
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){
+    if(!SUPA_URL||!SUPA_KEY) return;
+    try{
+      var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+      fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+    }catch(e){}
+  }
+
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  // ---- WORDS ----
+  var WORDS=[
+    {w:'hydrology',     tr:'Greek roots HYDRO + LOGY',          root:'<b>hydro</b> (water) + <b>logy</b> (study of)',     meaning:'the scientific study of the properties and distribution of water',  ex:'Regional <b>hydrology</b> determines flood risk.'},
+    {w:'chronology',    tr:'Greek roots CHRONO + LOGY; CH = K', root:'<b>chrono</b> (time) + <b>logy</b> (study of)',      meaning:'the arrangement of events in the order they occurred',                ex:'Establish the <b>chronology</b> of events before arguing causation.'},
+    {w:'photosynthesis',tr:'PHOTO + SYN + THESIS; PH = F',      root:'<b>photo</b> (light) + <b>syn</b> (together) + <b>thesis</b> (placing)', meaning:'the process by which plants make food using sunlight',           ex:'Leaves drive <b>photosynthesis</b> in chloroplasts.'},
+    {w:'biography',     tr:'Greek roots BIO + GRAPH',           root:'<b>bio</b> (life) + <b>graph</b> (writing)',         meaning:'a written account of a person\'s life',                                ex:'The <b>biography</b> cites unpublished letters.'},
+    {w:'geography',     tr:'Greek roots GEO + GRAPH',           root:'<b>geo</b> (earth) + <b>graph</b> (writing)',        meaning:'the study of the physical features of the earth and human activity', ex:'Local <b>geography</b> shaped early settlement.'},
+    {w:'demography',    tr:'Greek roots DEMO + GRAPH',          root:'<b>demo</b> (people) + <b>graph</b> (writing)',      meaning:'the statistical study of human populations',                          ex:'Shifting <b>demography</b> reshapes elections.'},
+    {w:'thermometer',   tr:'Greek roots THERM + METER',         root:'<b>therm</b> (heat) + <b>meter</b> (measure)',       meaning:'an instrument for measuring temperature',                             ex:'Calibrate the <b>thermometer</b> before recording.'},
+    {w:'perspective',   tr:'Latin SPECT (to look)',             root:'<b>per</b> (through) + <b>spect</b> (to look)',      meaning:'a particular point of view',                                          ex:'Consider the <b>perspective</b> of each historical actor.'},
+    {w:'infrastructure',tr:'Latin STRUCT (to build)',           root:'<b>infra</b> (below) + <b>struct</b> (to build)',    meaning:'the basic physical systems on which a society depends',               ex:'Federal <b>infrastructure</b> spending rose in 1956.'},
+    {w:'manuscript',    tr:'Latin MANU + SCRIPT (to write)',    root:'<b>manu</b> (hand) + <b>script</b> (to write)',      meaning:'a handwritten or typed document, especially before publication',     ex:'The author revised the <b>manuscript</b> three times.'}
+  ];
+
+  // ---- Static word grid ----
+  var wgrid=document.getElementById('wgrid');
+  WORDS.forEach(function(W){
+    var d=document.createElement('div'); d.className='wcard';
+    d.innerHTML='<div class="w">'+W.w+'</div><div class="tr">'+W.tr+'</div><div class="root">'+W.root+'</div><div class="meaning">'+W.meaning+'</div><div class="ex">'+W.ex+'</div>';
+    wgrid.appendChild(d);
+  });
+
+  // ---- Match: root to meaning (5 pairs) ----
+  var MATCH=[
+    {w:'hydro',  m:'water'},
+    {w:'chrono', m:'time'},
+    {w:'photo',  m:'light'},
+    {w:'demo',   m:'people'},
+    {w:'spect',  m:'to look at'}
+  ];
+  var mw=document.getElementById('matchWords'), mm=document.getElementById('matchMeans');
+  var meansShuffled=MATCH.map(function(x){return x.m;}).sort(function(){return Math.random()-.5;});
+  var wordsShuffled=MATCH.map(function(x){return x.w;}).sort(function(){return Math.random()-.5;});
+  var pickedWord=null, matched={};
+  wordsShuffled.forEach(function(w){
+    var b=document.createElement('button'); b.type='button'; b.className='mtile'; b.textContent=w; b.style.marginBottom='8px';
+    b.addEventListener('click',function(){
+      if(matched[w]) return;
+      pickedWord=w;
+      Array.prototype.forEach.call(mw.children,function(c){c.classList.remove('sel');});
+      b.classList.add('sel');
+    });
+    mw.appendChild(b);
+  });
+  meansShuffled.forEach(function(m){
+    var b=document.createElement('button'); b.type='button'; b.className='mtile'; b.textContent=m; b.style.marginBottom='8px';
+    b.addEventListener('click',function(){
+      if(b.dataset.locked) return;
+      if(!pickedWord) return;
+      var target=MATCH.filter(function(x){return x.w===pickedWord;})[0];
+      if(target && target.m===m){
+        matched[pickedWord]=true;
+        Array.prototype.forEach.call(mw.children,function(c){ if(c.textContent===pickedWord){c.classList.remove('sel');c.classList.add('ok');c.dataset.locked='1';} });
+        b.classList.add('ok'); b.dataset.locked='1';
+        pickedWord=null;
+        var nm=document.getElementById('matchNote');
+        var n=Object.keys(matched).length;
+        if(n===MATCH.length){nm.textContent='All 5 matched.';nm.classList.add('win');}
+        else nm.textContent=n+' of '+MATCH.length+' matched.';
+      } else {
+        b.classList.add('no');
+        setTimeout(function(){b.classList.remove('no');},700);
+      }
+    });
+    mm.appendChild(b);
+  });
+
+  // ---- Form A: type the word given the definition ----
+  // Uses words 0,1,2,3,4,5,6,7 (8 of 10)
+  var FORM_A=[
+    {wIdx:0, def:'the scientific study of water properties and distribution',     ctx:'Regional ___ determines flood risk.'},
+    {wIdx:1, def:'the arrangement of events in the order they occurred',          ctx:'Establish the ___ of events before arguing causation.'},
+    {wIdx:2, def:'the process by which plants make food using sunlight',          ctx:'Leaves drive ___ in chloroplasts.'},
+    {wIdx:3, def:'a written account of a person\'s life',                          ctx:'The ___ cites unpublished letters.'},
+    {wIdx:4, def:'the study of the physical features of the earth',               ctx:'Local ___ shaped early settlement.'},
+    {wIdx:5, def:'the statistical study of human populations',                    ctx:'Shifting ___ reshapes elections.'},
+    {wIdx:6, def:'an instrument for measuring temperature',                       ctx:'Calibrate the ___ before recording.'},
+    {wIdx:7, def:'a particular point of view',                                    ctx:'Consider the ___ of each historical actor.'}
+  ];
+
+  // ---- Form B: pick the correct spelling from lookalikes ----
+  // Uses words 0,1,2,3,4,7,8,9 (8 of 10, different mix)
+  var FORM_B=[
+    {wIdx:0, def:'study of water properties',          opts:['hidrology','hydrology','hydrollogy','hydrolagy']},
+    {wIdx:1, def:'order of events in time',            opts:['cronology','chronology','chronollogy','khronology']},
+    {wIdx:2, def:'plant food-making with light',       opts:['fotosynthesis','photosynthesis','photosinthesis','photosyntesis']},
+    {wIdx:3, def:'written account of a person\'s life', opts:['biograhpy','biography','byography','biografy']},
+    {wIdx:4, def:'study of earth and human activity',  opts:['geograhpy','geography','geografy','jeography']},
+    {wIdx:7, def:'a point of view',                    opts:['perspektive','perspective','prespective','perpective']},
+    {wIdx:8, def:'basic physical systems of society',  opts:['infrastructure','infrastruckture','infrastucture','infrustructure']},
+    {wIdx:9, def:'a handwritten or typed document',    opts:['manuscript','manuscrypt','maunscript','manyuscript']}
+  ];
+
+  var secLesson=document.getElementById('lesson'),
+      secCheck=document.getElementById('check'),
+      secResult=document.getElementById('result'),
+      secGate=document.getElementById('gateSec'),
+      secCheckB=document.getElementById('checkB');
+
+  var phase='A', qi=0, correct=0, currentBank=FORM_A, locked=false;
+  var elQcount, elQstem, elQctx, elIn, elBtn, elFb, elPick;
+
+  function setupRefsA(){
+    elQcount=document.getElementById('qcount');
+    elQstem=document.getElementById('qstem');
+    elQctx=document.getElementById('qctx');
+    elIn=document.getElementById('typeIn');
+    elBtn=document.getElementById('submitBtn');
+    elFb=document.getElementById('fb');
+  }
+  function setupRefsB(){
+    elQcount=document.getElementById('qcountB');
+    elQstem=document.getElementById('qstemB');
+    elQctx=document.getElementById('qctxB');
+    elPick=document.getElementById('pickrowB');
+    elFb=document.getElementById('fbB');
+  }
+
+  function startCheck(form){
+    commitTime();
+    phase=form; currentBank=(form==='A'?FORM_A:FORM_B); qi=0; correct=0; locked=false;
+    if(form==='A'){
+      rec.attempts=(rec.attempts||0)+1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide');
+      secCheck.classList.remove('hide');
+      setupRefsA();
+    } else {
+      secGate.classList.add('hide');
+      secCheckB.classList.remove('hide');
+      setupRefsB();
+    }
+    window.scrollTo(0,0);
+    showQ();
+  }
+
+  function showQ(){
+    var item=currentBank[qi];
+    var W=WORDS[item.wIdx];
+    elQcount.textContent='Word '+(qi+1)+' of '+currentBank.length;
+    elQstem.textContent=item.def;
+    if(phase==='A'){
+      elQctx.innerHTML=item.ctx.replace('___','<span class="blank">&nbsp;</span>');
+      elIn.value=''; elIn.classList.remove('ok','no'); elIn.disabled=false;
+      elBtn.disabled=false; elBtn.textContent='Submit';
+      setTimeout(function(){elIn.focus();},80);
+    } else {
+      elQctx.textContent='Select the correct spelling.';
+      elPick.innerHTML='';
+      item.opts.forEach(function(o){
+        var b=document.createElement('button'); b.type='button'; b.className='pop'; b.textContent=o;
+        b.addEventListener('click',function(){
+          if(locked)return;
+          locked=true;
+          Array.prototype.forEach.call(elPick.children,function(c){c.style.pointerEvents='none';});
+          var ok=(o===W.w);
+          if(ok){ correct++; b.classList.add('ok'); elFb.classList.remove('no'); elFb.classList.add('ok'); elFb.textContent='Correct. "'+W.w+'".'; }
+          else { b.classList.add('no'); Array.prototype.forEach.call(elPick.children,function(c){ if(c.textContent===W.w) c.classList.add('ok'); }); elFb.classList.remove('ok'); elFb.classList.add('no'); elFb.textContent='Not quite. The correct spelling is "'+W.w+'".'; }
+          setTimeout(function(){
+            qi++;
+            if(qi<currentBank.length){ locked=false; showQ(); }
+            else finish();
+          }, ok?900:1500);
+        });
+        elPick.appendChild(b);
+      });
+    }
+    elFb.textContent=''; elFb.classList.remove('ok','no');
+    locked=false;
+  }
+
+  function checkAnswer(){
+    if(locked)return;
+    var item=currentBank[qi]; var W=WORDS[item.wIdx];
+    var v=(elIn.value||'').trim().toLowerCase();
+    var truth=W.w.toLowerCase();
+    var ok=(v===truth);
+    locked=true; elIn.disabled=true; elBtn.disabled=true;
+    if(ok){ correct++; elIn.classList.add('ok'); elFb.classList.add('ok'); elFb.textContent='Correct. "'+W.w+'".'; }
+    else { elIn.classList.add('no'); elFb.classList.add('no'); elFb.textContent='Not quite. The word is "'+W.w+'".'; }
+    setTimeout(function(){
+      qi++;
+      if(qi<currentBank.length) showQ();
+      else finish();
+    }, ok?900:1500);
+  }
+
+  function finish(){
+    commitTime();
+    if(phase==='A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed=(correct>=PASS);
+      rec.formA=correct; rec.best=Math.max(rec.best||0, Math.round(correct/FORM_A.length*100));
+      document.getElementById('scorebig').textContent=correct+' / '+FORM_A.length;
+      var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
+          retry=document.getElementById('retry'), toGate=document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed';
+        rmsg.textContent='You got '+correct+' of '+FORM_A.length+'. Form B opens in 24 hours.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='Not yet';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Revisit the word list and the root map, then reattempt the form.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB=(correct>=PASS);
+      rec.formB=correct;
+      document.getElementById('scorebig').textContent=correct+' / '+FORM_B.length;
+      var rtitleB=document.getElementById('rtitle'), rmsgB=document.getElementById('rmsg'),
+          retryB=document.getElementById('retry'), toGateB=document.getElementById('toGate');
+      retryB.classList.add('hide'); toGateB.classList.add('hide');
+      if(passedB){
+        rec.status='passed'; rec.passedAt=Date.now();
+        save(app); syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status='formB-tried'; save(app); syncCloud();
+        rtitleB.textContent='Almost';
+        rmsgB.textContent='You got '+correct+' of '+FORM_B.length+'. Review the orthographic patterns in the word list, then retry Form B.';
+        retryB.classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide'); secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB');
+    var cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){
+        cd.textContent='Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else { startBtn.classList.add('hide'); }
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  function showMastery(a, b){
+    var sec=document.getElementById('masteryDone'); if(!sec) return;
+    var ea=document.getElementById('msFormA'); if(ea) ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB'); if(eb) eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secCheckB.classList.add('hide');
+    secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try{ sec.scrollIntoView({behavior:'smooth', block:'start'}); }catch(e){ window.scrollTo(0,0); }
+  }
+
+  // ---- Wiring ----
+  document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
+  document.getElementById('submitBtn').addEventListener('click',checkAnswer);
+  document.getElementById('typeIn').addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();checkAnswer();} });
+
+  document.getElementById('retry').addEventListener('click',function(){
+    secResult.classList.add('hide');
+    if(phase==='A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){startCheck('B');});
+
+  // ---- Resume logic ----
+  (function resume(){
+    if(rec.status==='passed'){
+      showMastery(rec.formA||0, rec.formB||0);
+      return;
+    }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && !(rec.formB>=PASS)){
+      secLesson.classList.add('hide');
+      showGate();
+      return;
+    }
+  })();
+
+})();
+</script>
+</body>
+</html>

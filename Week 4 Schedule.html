@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 4 Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#eef1f8;color:#14161c;font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.45;min-height:100vh;}
+a{color:#2451a6}
+.wrap{max-width:1040px;margin:0 auto;padding:26px 16px 80px;display:flex;flex-direction:column;gap:18px}
+h1{font-family:Fraunces,serif;font-size:30px}
+h2{font-family:Fraunces,serif;font-size:20px;color:var(--ac);margin-bottom:4px}
+.top{background:#fff;border:1px solid #dfe3ee;border-radius:14px;padding:22px 24px}
+.top .big{font-family:Fraunces,serif;font-size:34px;color:#2f3aa3}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:#6b7280}
+.legend b{font-weight:700;border-radius:999px;padding:2px 9px;font-size:11px}
+.kid{background:#fff;border:1px solid #dfe3ee;border-radius:14px;padding:18px 20px;border-left:5px solid var(--ac)}
+.kmeta{font-size:12.5px;color:#6b7280;margin-bottom:12px}
+.grid{width:100%;border-collapse:collapse;table-layout:fixed}
+.grid th{font-size:12px;color:#6b7280;text-align:left;padding:6px 8px;font-weight:700}
+.day{font-family:Fraunces,serif;color:#14161c;font-size:14px;white-space:nowrap;width:62px}
+.c{vertical-align:top;border:1px solid #eef1f8;border-radius:10px;padding:9px 10px}
+.c .sub{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9aa1ad;font-weight:700}
+.c .code{font-family:Fraunces,serif;font-weight:600;color:#2f3aa3;font-size:14px;margin-top:1px}
+.c .lab{font-size:12px;color:#474d5a;margin:2px 0 6px}
+.b{font-size:10px;font-weight:700;border-radius:999px;padding:2px 8px}
+.b.done{color:#0c7a64;background:#e6f7ef}
+.c.done{background:#f3fbf7}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#2451a6;text-decoration:none;font-weight:600;}
+.backlink:hover{text-decoration:underline;}
+.weeknav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.weeknav a{font-family:Inter,sans-serif;font-weight:600;font-size:13px;color:#2451a6;text-decoration:none;background:#fff;border:1px solid #dfe3ee;border-radius:999px;padding:6px 14px;}
+.weeknav a:hover{background:#eef4ff;}
+.weeknav a.current{background:#2451a6;color:#fff;border-color:#2451a6;}
+footer{font-size:12px;color:#6b7280;text-align:center;border-top:1px solid #dfe3ee;padding-top:14px}
+.empty{padding:24px;text-align:center;color:#6b7280;font-style:italic;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="parent.html" class="backlink">&#8592; Family</a>
+  <div class="weeknav">
+    <span style="font-size:12px;color:#6b7280;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">Week:</span>
+    <a href="Week 1 Schedule.html">1</a>
+    <a href="Week 2 Schedule.html">2</a>
+    <a href="Week 3 Schedule.html">3</a>
+    <a class="current">4</a>
+  </div>
+  <div class="top">
+    <h1>Week 4 Schedule</h1>
+    <p style="color:#474d5a;margin-top:4px">Week 4 opens new units. Sam moves into telling time and money. Amelia enters fractions. Julie tackles linear inequalities and systems of equations. Reading deepens grammar (G2), comparing stories (G3), and analyzing literary devices + citing sources (G8). Same daily rhythm: math + reading + one rotating enrichment.</p>
+    <div class="big" id="builtCount">- / -</div>
+    <p style="color:#6b7280">Week 4 lessons built and wired across your family</p>
+    <div class="legend">
+      <span><b class="done">built</b> ready to use</span>
+    </div>
+  </div>
+  <div id="kidsContainer"></div>
+  <footer>All Week 4 standards are verbatim Missouri Learning Standards (DESE). Mastery for each lesson is gated on Form A (&ge;7/8) plus a delayed Form B (&ge;7/8).</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var PLANS={
+    2:{color:'#2f7d52', items:[
+      {day:'Day 1', cells:[
+        {sub:'Math', code:'2.GM.D.10', lab:'Tell and write time from analog and digital clocks to the nearest five minutes, using a.m. and p.m.', file:'Sam - Math W4 Day 1 - Telling Time to Five Minutes.html'},
+        {sub:'Reading', code:'2.L.1.A.d', lab:'Use reflexive pronouns.', file:'Sam - Reading W4 Day 1 - Words That Are About You.html'},
+        {sub:'Science', code:'2.PS1.B.1', lab:'Argue with evidence that some changes from heating or cooling can be reversed and some cannot.', file:'Sam - Science W4 Day 1 - Reversible and Irreversible Changes.html'}
+      ]},
+      {day:'Day 2', cells:[
+        {sub:'Math', code:'2.GM.D.11', lab:'Describe a time shown on a digital clock as representing hours and minutes, and relate to analog.', file:'Sam - Math W4 Day 2 - Analog and Digital Clocks.html'},
+        {sub:'Reading', code:'2.L.1.A.e', lab:'Use regular verbs.', file:'Sam - Reading W4 Day 2 - Verbs That Show Action.html'},
+        {sub:'Social Studies', code:'2.E.4.A', lab:'Explain the difference between needs and wants.', file:'Sam - Social Studies W4 Day 2 - Needs and Wants.html'}
+      ]},
+      {day:'Day 3', cells:[
+        {sub:'Math', code:'2.GM.D.12', lab:'Find the value of combinations of dollar bills, quarters, dimes, nickels and pennies.', file:'Sam - Math W4 Day 3 - Coin and Dollar Values.html'},
+        {sub:'Reading', code:'2.L.1.A.f', lab:'Use helping verbs with regular verbs.', file:'Sam - Reading W4 Day 3 - Helper Words for Verbs.html'},
+        {sub:'Spelling', code:'2.L.1.B.a', lab:'Form and use frequently occurring irregular plural nouns (feet, children, mice, teeth, fish).', file:'Sam - Spelling W4 Day 3 - Irregular Plural Nouns.html'}
+      ]},
+      {day:'Day 4', cells:[
+        {sub:'Math', code:'2.GM.D.13', lab:'Find combinations of coins that equal a given amount.', file:'Sam - Math W4 Day 4 - Coin Combinations.html'},
+        {sub:'Reading', code:'2.L.1.A.g', lab:'Use adjectives and adverbs in sentences.', file:'Sam - Reading W4 Day 4 - Describing Words.html'},
+        {sub:'Science', code:'2.LS4.D.1', lab:'Compare the diversity of plants and animals in different habitats.', file:'Sam - Science W4 Day 4 - Different Habitats Different Life.html'}
+      ]},
+      {day:'Day 5', cells:[
+        {sub:'Math', code:'2.GM.D.12', lab:'Apply coin and dollar values to solve word problems.', file:'Sam - Math W4 Day 5 - Money Word Problems.html'},
+        {sub:'Reading', code:'2.L.1.A.h', lab:'Produce simple declarative, imperative, exclamatory, and interrogative sentences.', file:'Sam - Reading W4 Day 5 - Four Kinds of Sentences.html'},
+        {sub:'Social Studies', code:'2.E.4.D', lab:'Identify examples of producers and consumers.', file:'Sam - Social Studies W4 Day 5 - Producers and Consumers.html'}
+      ]}
+    ]},
+    3:{color:'#9a3a78', items:[
+      {day:'Day 1', cells:[
+        {sub:'Math', code:'3.NF.A.1', lab:'Understand a unit fraction as the quantity formed by one part when a whole is partitioned into equal parts.', file:'Amelia - Math W4 Day 1 - Unit Fractions.html'},
+        {sub:'Reading', code:'3.R.2.A.f', lab:'Compare and contrast key elements in various types of fiction.', file:'Amelia - Reading W4 Day 1 - Comparing Types of Stories.html'},
+        {sub:'Science', code:'3.ESS2.D.1', lab:'Represent data in tables and graphs to describe typical weather conditions in a season.', file:'Amelia - Science W4 Day 1 - Reading Weather Patterns.html'}
+      ]},
+      {day:'Day 2', cells:[
+        {sub:'Math', code:'3.NF.A.2a', lab:'Understand that when a whole is partitioned equally, a fraction can represent a portion of the whole.', file:'Amelia - Math W4 Day 2 - Fractions Are Pieces of a Whole.html'},
+        {sub:'Reading', code:'3.R.2.A.g', lab:"Explain cause and effect relationships.", file:'Amelia - Reading W4 Day 2 - Cause and Effect in Stories.html'},
+        {sub:'Social Studies', code:'3.E.4.A.a', lab:'Explain how supply and demand affect the price of goods and services.', file:'Amelia - Social Studies W4 Day 2 - Supply and Demand.html'}
+      ]},
+      {day:'Day 3', cells:[
+        {sub:'Math', code:'3.NF.A.2b', lab:'Represent fractions with equal-sized portions of a whole.', file:'Amelia - Math W4 Day 3 - Fractions Show Equal Portions.html'},
+        {sub:'Reading', code:'3.R.2.A.h', lab:"Distinguish their own point of view from that of the narrator or characters.", file:'Amelia - Reading W4 Day 3 - Whose Point of View.html'},
+        {sub:'Spelling', code:'3.L.1.B.k', lab:'Spell words with prefixes (un-, re-, pre-, dis-).', file:'Amelia - Spelling W4 Day 3 - Prefix Power.html'}
+      ]},
+      {day:'Day 4', cells:[
+        {sub:'Math', code:'3.NF.A.3a', lab:'Represent fractions on a number line.', file:'Amelia - Math W4 Day 4 - Fractions on a Number Line.html'},
+        {sub:'Reading', code:'3.R.1.C.a', lab:'Compare ideas and information across various fiction and nonfiction works.', file:'Amelia - Reading W4 Day 4 - Comparing Two Books.html'},
+        {sub:'Science', code:'3.ESS3.B.1', lab:'Evaluate a design solution that reduces the impacts of a weather-related hazard.', file:'Amelia - Science W4 Day 4 - Weather Hazards and Safety.html'}
+      ]},
+      {day:'Day 5', cells:[
+        {sub:'Math', code:'3.NF.A.3b', lab:'Place fractions on a number line using equal partitions of the unit segment.', file:'Amelia - Math W4 Day 5 - Placing Fractions on a Line.html'},
+        {sub:'Reading', code:'3.R.1.C.b', lab:'Connect text ideas to experiences in the world.', file:'Amelia - Reading W4 Day 5 - Connecting Books to the World.html'},
+        {sub:'Social Studies', code:'3.E.4.B.a', lab:'Explain how trade helps meet the needs of buyers and sellers.', file:'Amelia - Social Studies W4 Day 5 - Trade Helps Both Sides.html'}
+      ]}
+    ]},
+    8:{color:'#2451a6', items:[
+      {day:'Day 1', cells:[
+        {sub:'Math', code:'8.EEI.C.7b', lab:'Solve linear equations and inequalities in one variable.', file:'Julie - Math W4 Day 1 - Linear Inequalities.html'},
+        {sub:'Reading', code:'8.RL.2.C', lab:'Analyze how specific word choices and sentence structures contribute to meaning and tone.', file:'Julie - Reading W4 Day 1 - Diction in Literary Texts.html'},
+        {sub:'Science', code:'6-8.LS4.B.1', lab:'Use mathematical representations to explain how natural selection changes trait frequencies over time.', file:'Julie - Science W4 Day 1 - Natural Selection.html'}
+      ]},
+      {day:'Day 2', cells:[
+        {sub:'Math', code:'8.EEI.C.8a', lab:'Analyze and solve systems of linear equations (by graphing).', file:'Julie - Math W4 Day 2 - Systems of Equations - Graphing.html'},
+        {sub:'Reading', code:'8.RI.2.D', lab:"Evaluate an author's argument, assessing reasoning and evidence.", file:"Julie - Reading W4 Day 2 - Author's Argument Evaluation.html"},
+        {sub:'Social Studies', code:'6-8.AH.4.CC.E', lab:'Analyze the political, social, economic, and cultural conflicts that led to the Civil War.', file:'Julie - Social Studies W4 Day 2 - Sectionalism and the Road to Civil War.html'}
+      ]},
+      {day:'Day 3', cells:[
+        {sub:'Math', code:'8.EEI.C.8b', lab:'Solve systems of linear equations algebraically by substitution.', file:'Julie - Math W4 Day 3 - Systems by Substitution.html'},
+        {sub:'Reading', code:'8.RL.1.D', lab:'Determine the theme(s) of a text and analyze its development over the course of a text.', file:'Julie - Reading W4 Day 3 - Theme Development in Drama.html'},
+        {sub:'Spelling', code:'8.W.3.A.c', lab:'Greek and Latin academic roots (hydro, chrono, photo, syn, thesis, ology).', file:'Julie - Spelling W4 Day 3 - Greek and Latin Academic Roots.html'}
+      ]},
+      {day:'Day 4', cells:[
+        {sub:'Math', code:'8.EEI.C.8c', lab:'Solve systems of linear equations algebraically by elimination.', file:'Julie - Math W4 Day 4 - Systems by Elimination.html'},
+        {sub:'Reading', code:'8.RL.2.D', lab:'Analyze how literary devices develop setting, reveal character, advance plot, contribute to meaning.', file:'Julie - Reading W4 Day 4 - Conflict and Climax.html'},
+        {sub:'Science', code:'6-8.LS4.C.1', lab:'Explain how genetic variation increases survival and reproduction in a given environment.', file:'Julie - Science W4 Day 4 - Genetic Variation and Adaptation.html'}
+      ]},
+      {day:'Day 5', cells:[
+        {sub:'Math', code:'8.EEI.C.8d', lab:'Classify systems as having one, no, or infinite solutions.', file:'Julie - Math W4 Day 5 - One No or Infinite Solutions.html'},
+        {sub:'Reading', code:'8.W.1.A2', lab:'Gather relevant information from multiple sources; assess credibility; integrate with citations.', file:'Julie - Reading W4 Day 5 - Citing Across Multiple Texts.html'},
+        {sub:'Social Studies', code:'6-8.AH.5.CC.A', lab:'Analyze the political, social, economic, cultural, and military aspects of the Civil War.', file:'Julie - Social Studies W4 Day 5 - The Civil War.html'}
+      ]}
+    ]}
+  };
+
+  function escapeHtml(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  var app={};
+  try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var kids=(app.family&&app.family.kids)||[];
+  var container=document.getElementById('kidsContainer');
+
+  if(!kids.length){
+    container.innerHTML='<div class="kid empty" style="border-left-color:#9aa1ad">No kids set up yet. <a href="welcome.html">Add your family</a> to see this week.</div>';
+    document.getElementById('builtCount').textContent='0 / 0';
+    return;
+  }
+
+  var totalBuilt=0, totalCells=0;
+  kids.forEach(function(kid){
+    var plan=PLANS[kid.grade];
+    if(!plan){
+      var sect=document.createElement('section'); sect.className='kid'; sect.style.setProperty('--ac','#9aa1ad');
+      sect.innerHTML='<h2>'+escapeHtml(kid.name)+' &middot; Grade '+kid.grade+'</h2>'+
+        '<p class="kmeta">No Week 3 lessons available for this grade yet. Coming soon.</p>';
+      container.appendChild(sect);
+      return;
+    }
+    var sect=document.createElement('section'); sect.className='kid'; sect.style.setProperty('--ac',plan.color);
+    var built=plan.items.reduce(function(n,r){return n+r.cells.length;},0);
+    totalBuilt+=built; totalCells+=built;
+    var html='<h2>'+escapeHtml(kid.name)+' &middot; Grade '+kid.grade+'</h2>'+
+             '<p class="kmeta">Week 3 plan. '+plan.items.length+' days, '+built+' lessons ready.</p>'+
+             '<table class="grid"><tr><th></th><th>Math</th><th>Reading</th><th>Enrichment</th></tr>';
+    plan.items.forEach(function(row){
+      html+='<tr><th class="day">'+row.day+'</th>';
+      row.cells.forEach(function(c){
+        var href=c.file+'?kid='+encodeURIComponent(kid.id);
+        html+='<td class="c done">'+
+              '<div class="sub">'+escapeHtml(c.sub)+'</div>'+
+              '<div class="code"><a href="'+escapeHtml(href)+'">'+escapeHtml(c.code)+'</a></div>'+
+              '<div class="lab">'+c.lab+'</div>'+
+              '<span class="b done">built</span></td>';
+      });
+      html+='</tr>';
+    });
+    html+='</table>';
+    sect.innerHTML=html;
+    container.appendChild(sect);
+  });
+  document.getElementById('builtCount').textContent=totalBuilt+' / '+totalCells;
+})();
+</script>
+</body>
+</html>

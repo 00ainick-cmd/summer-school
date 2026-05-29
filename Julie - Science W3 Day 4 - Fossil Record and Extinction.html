@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Julie, Grade 8 Science training. Analyze and interpret evidence from the fossil record to infer patterns of environmental change and extinction. Auto-graded mastery lesson aligned to Missouri 6-8.LS4.A.1.">
+<title>Session 15 . Fossil Record and Extinction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(255,59,20,.08)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(36,81,166,.10)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(255,200,100,.05)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(255,59,20,.08);--bg-blob-2:rgba(36,81,166,.10);--bg-blob-3:rgba(255,200,100,.05);}
+
+:root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+  --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;
+  --teal:#147a8a;--teal-d:#0e5663;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:-1;background:
+   linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+   linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+   radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+.mono,.kicker,.labbar,.sno,.stdtag .l{font-family:'Spline Sans Mono',monospace;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+.labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);}
+.labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+.kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);}
+h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+.mission{color:var(--ink2);max-width:58ch;}
+.stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+.stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-d);display:block;margin-bottom:4px;}
+
+.lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+
+.station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+.station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;} .station p.body{color:var(--ink);margin-top:9px;}
+
+.orgtable{display:grid;grid-template-columns:1fr;gap:8px;margin-top:14px;}
+.orgrow{border:1px solid var(--line);border-radius:11px;padding:13px;display:grid;grid-template-columns:1fr 1.6fr;gap:12px;align-items:start;background:#fafaf6;}
+.orgrow .nm{font-family:'Anton';font-size:17px;color:var(--teal-d);text-transform:uppercase;letter-spacing:.02em;}
+.orgrow .fn{font-size:14.5px;color:var(--ink2);}
+@media (max-width:520px){.orgrow{grid-template-columns:1fr;}}
+
+.note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.note b{color:var(--alt);}
+.warn{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.warn b{color:var(--accent-d);}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px;}
+@media (max-width:520px){.compare{grid-template-columns:1fr;}}
+.ccol{border:1px solid var(--line);border-radius:11px;padding:13px;background:#fff;}
+.ccol h3{font-family:'Anton';font-size:17px;color:var(--teal-d);text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px;}
+.ccol ul{margin:0 0 0 18px;font-size:14.5px;color:var(--ink2);}
+.ccol ul li{margin:5px 0;}
+
+.predict{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.pcard{font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:10px;padding:13px 14px;min-height:48px;cursor:pointer;color:var(--ink);text-align:left;font-size:15.5px;}
+.pcard:hover{border-color:var(--teal);}
+.pcard.ok{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.pcard.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+.reveal{margin-top:10px;font-size:15px;color:var(--ink2);display:none;}
+.reveal.show{display:block;}
+
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--teal);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+.cta:hover{background:var(--teal-d);}
+.cta.alt{background:var(--alt);}
+
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+.tfill{height:100%;width:100%;background:var(--teal);transition:width 1s linear;}
+.tfill.low{background:var(--red);}
+.qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+.opt2:hover{border-color:var(--teal);}
+.opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+.qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+
+.result{text-align:center;padding:14px 0;}
+.scorebig{font-family:'Anton';font-size:60px;font-weight:400;line-height:1;color:var(--teal-d);}
+.result h2{font-size:26px;font-weight:700;margin:10px 0 4px;font-family:'Anton';}
+
+.gatebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-family:'Spline Sans Mono',monospace;font-size:36px;font-weight:700;color:var(--teal-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+
+footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+
+@media (prefers-reduced-motion:reduce){.tfill{transition:none;}*{animation:none!important;}}
+
+#masteryDone{display:none;margin:16px 0;}
+#masteryDone.show{display:block;}
+.mastery-card{background:var(--card);border:2px solid var(--good);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 16px 32px -28px rgba(15,122,58,.6);}
+.mastery-badge{margin:0 auto 14px;width:76px;height:76px;}
+.mastery-badge svg{width:100%;height:100%;display:block;}
+.mastery-card h2{font-family:'Anton',system-ui,sans-serif;font-weight:400;font-size:clamp(26px,5vw,36px);color:var(--good);margin:8px 0;letter-spacing:.02em;text-transform:uppercase;}
+.mastery-msg{color:var(--ink2);max-width:46ch;margin:0 auto 18px;font-size:16px;line-height:1.5;}
+.mastery-stats{display:flex;justify-content:center;gap:22px;margin:14px 0 22px;flex-wrap:wrap;}
+.mastery-stats .stat{background:#e9f6ee;border:2px solid #bce6cb;border-radius:12px;padding:12px 18px;min-width:100px;}
+.mastery-stats .stat-num{display:block;font-family:'Anton';font-size:32px;font-weight:400;color:var(--good);line-height:1;}
+.mastery-stats .stat-lbl{display:block;margin-top:4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600;}
+.mastery-cta a.cta{display:inline-block;text-decoration:none;width:auto;padding:14px 22px;}
+</style>
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session . <b>Grade 8</b><span class="chip">Standard 6-8.LS4.A.1</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 15 . Week 3</div>
+    <h1>Fossil record and extinction</h1>
+    <p class="mission">Layered sedimentary rock is a chronological archive. Older strata sit below younger strata. The fossils within each layer mark which organisms lived during that interval, and the appearance and disappearance of species across layers document environmental change and extinction events. This session walks through how to read those layers as data.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Analyze and interpret evidence from the fossil record to infer patterns of environmental change and extinction.</div>
+
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 380" role="img" aria-label="A vertical rock strata cross-section with five distinct layers labeled by age. Older layers at the bottom contain trilobite fossils. A middle layer marks a mass extinction. Upper layers contain dinosaur and then mammal fossils with date annotations in millions of years.">
+        <rect x="6" y="6" width="548" height="368" rx="10" fill="#fff" stroke="#dcdcd2"/>
+        <text x="280" y="26" text-anchor="middle" font-family="Anton,sans-serif" font-size="14" letter-spacing=".06em" fill="#1f3b54">STRATIGRAPHIC COLUMN</text>
+
+        <g transform="translate(80 50)">
+          <rect x="0" y="0" width="180" height="60" fill="#cbb89f" stroke="#3a2a18" stroke-width="1.5"/>
+          <text x="90" y="35" text-anchor="middle" font-family="Anton,sans-serif" font-size="13" fill="#1f3b54">YOUNGEST</text>
+          <g fill="#1f3b54">
+            <ellipse cx="40" cy="44" rx="10" ry="6"/>
+            <circle cx="32" cy="40" r="4"/>
+            <line x1="44" y1="50" x2="48" y2="56" stroke="#1f3b54" stroke-width="2"/>
+            <line x1="36" y1="50" x2="32" y2="56" stroke="#1f3b54" stroke-width="2"/>
+          </g>
+          <ellipse cx="110" cy="44" rx="8" ry="5" fill="#1f3b54"/>
+          <circle cx="104" cy="40" r="3" fill="#1f3b54"/>
+        </g>
+        <g transform="translate(280 60)">
+          <rect x="0" y="0" width="180" height="22" rx="3" fill="#fdecea" stroke="#cf2c07" stroke-width="1.4"/>
+          <text x="90" y="15" text-anchor="middle" font-family="Spline Sans Mono,monospace" font-size="11" fill="#cf2c07" font-weight="700">0 to 65 mya: mammals dominate</text>
+        </g>
+
+        <g transform="translate(80 115)">
+          <rect x="0" y="0" width="180" height="60" fill="#a8773c" stroke="#3a2a18" stroke-width="1.5"/>
+          <text x="90" y="22" text-anchor="middle" font-family="Anton,sans-serif" font-size="11" fill="#fff">MESOZOIC SHALE</text>
+          <g fill="#1f3b54">
+            <ellipse cx="40" cy="42" rx="14" ry="6"/>
+            <path d="M48 40 L60 32 L58 42 Z"/>
+            <line x1="32" y1="46" x2="26" y2="52" stroke="#1f3b54" stroke-width="2"/>
+            <line x1="28" y1="46" x2="22" y2="50" stroke="#1f3b54" stroke-width="2"/>
+            <line x1="42" y1="48" x2="42" y2="56" stroke="#1f3b54" stroke-width="2"/>
+            <line x1="48" y1="48" x2="48" y2="56" stroke="#1f3b54" stroke-width="2"/>
+          </g>
+          <g fill="#1f3b54">
+            <ellipse cx="120" cy="44" rx="10" ry="5"/>
+            <path d="M126 42 L134 36 L132 44 Z"/>
+            <line x1="116" y1="48" x2="114" y2="54" stroke="#1f3b54" stroke-width="1.6"/>
+            <line x1="122" y1="48" x2="124" y2="54" stroke="#1f3b54" stroke-width="1.6"/>
+          </g>
+        </g>
+        <g transform="translate(280 125)">
+          <rect x="0" y="0" width="180" height="22" rx="3" fill="#fdecea" stroke="#cf2c07" stroke-width="1.4"/>
+          <text x="90" y="15" text-anchor="middle" font-family="Spline Sans Mono,monospace" font-size="11" fill="#cf2c07" font-weight="700">65 to 252 mya: dinosaurs</text>
+        </g>
+
+        <g transform="translate(80 180)">
+          <rect x="0" y="0" width="180" height="22" fill="#1a1006" stroke="#000" stroke-width="1.5"/>
+          <text x="90" y="15" text-anchor="middle" font-family="Anton,sans-serif" font-size="11" fill="#fff" letter-spacing=".05em">K-PG BOUNDARY (mass extinction)</text>
+        </g>
+        <g transform="translate(280 180)">
+          <rect x="0" y="0" width="180" height="22" rx="3" fill="#14171c" stroke="#cf2c07" stroke-width="1.4"/>
+          <text x="90" y="15" text-anchor="middle" font-family="Spline Sans Mono,monospace" font-size="11" fill="#ff3b14" font-weight="700">252 mya: ~96% species lost</text>
+        </g>
+
+        <g transform="translate(80 207)">
+          <rect x="0" y="0" width="180" height="60" fill="#5fb3d8" stroke="#155879" stroke-width="1.5"/>
+          <text x="90" y="22" text-anchor="middle" font-family="Anton,sans-serif" font-size="11" fill="#fff">PALEOZOIC LIMESTONE</text>
+          <g fill="#1f3b54">
+            <ellipse cx="40" cy="44" rx="14" ry="6"/>
+            <g stroke="#1f3b54" stroke-width="1.5" fill="none">
+              <line x1="30" y1="44" x2="30" y2="38"/>
+              <line x1="36" y1="44" x2="36" y2="36"/>
+              <line x1="42" y1="44" x2="42" y2="36"/>
+              <line x1="48" y1="44" x2="48" y2="38"/>
+            </g>
+            <line x1="40" y1="48" x2="44" y2="54" stroke="#1f3b54" stroke-width="1.4"/>
+          </g>
+          <g fill="#1f3b54">
+            <ellipse cx="110" cy="46" rx="12" ry="5"/>
+            <g stroke="#1f3b54" stroke-width="1.4" fill="none">
+              <line x1="102" y1="46" x2="102" y2="40"/>
+              <line x1="108" y1="46" x2="108" y2="38"/>
+              <line x1="114" y1="46" x2="114" y2="38"/>
+              <line x1="120" y1="46" x2="120" y2="40"/>
+            </g>
+          </g>
+          <g fill="#1f3b54">
+            <ellipse cx="150" cy="44" rx="6" ry="3.5"/>
+          </g>
+        </g>
+        <g transform="translate(280 220)">
+          <rect x="0" y="0" width="180" height="22" rx="3" fill="#fdecea" stroke="#cf2c07" stroke-width="1.4"/>
+          <text x="90" y="15" text-anchor="middle" font-family="Spline Sans Mono,monospace" font-size="11" fill="#cf2c07" font-weight="700">252 to 541 mya: trilobites</text>
+        </g>
+
+        <g transform="translate(80 272)">
+          <rect x="0" y="0" width="180" height="60" fill="#8c5d2a" stroke="#3a2a18" stroke-width="1.5"/>
+          <text x="90" y="22" text-anchor="middle" font-family="Anton,sans-serif" font-size="11" fill="#fff">PRECAMBRIAN BASEMENT</text>
+          <g fill="#1f3b54">
+            <circle cx="40" cy="42" r="3"/>
+            <circle cx="50" cy="46" r="2.4"/>
+            <circle cx="60" cy="42" r="2.6"/>
+            <circle cx="100" cy="44" r="2.8"/>
+            <circle cx="110" cy="48" r="2.4"/>
+          </g>
+          <text x="90" y="52" text-anchor="middle" font-family="Spline Sans Mono,monospace" font-size="9" fill="#fff">microbial mats only</text>
+        </g>
+        <g transform="translate(280 285)">
+          <rect x="0" y="0" width="180" height="22" rx="3" fill="#fdecea" stroke="#cf2c07" stroke-width="1.4"/>
+          <text x="90" y="15" text-anchor="middle" font-family="Spline Sans Mono,monospace" font-size="11" fill="#cf2c07" font-weight="700">541 mya and older: simple life</text>
+        </g>
+
+        <g transform="translate(40 50)" stroke="#1f3b54" stroke-width="1.4" fill="none">
+          <line x1="0" y1="0" x2="0" y2="282"/>
+          <polygon points="-4,282 0,290 4,282" fill="#1f3b54"/>
+          <text x="-8" y="6" font-family="Spline Sans Mono,monospace" font-size="10" fill="#1f3b54" text-anchor="end">YOUNG</text>
+          <text x="-8" y="280" font-family="Spline Sans Mono,monospace" font-size="10" fill="#1f3b54" text-anchor="end">OLD</text>
+        </g>
+
+        <g transform="translate(28 351)">
+          <text x="0" y="0" font-family="Spline Sans Mono,monospace" font-size="10" fill="#454b54">Older layers are deeper. Fossils mark the era.</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>Why fossil layers are an archive</h2></div>
+      <p class="lead">Sedimentary rock forms when particles settle and compress over long timescales. Younger sediment is deposited on top of older sediment. The principle of superposition states that, in undisturbed strata, lower layers are older than upper layers. Fossils preserved within a layer record which organisms lived during the interval when that layer was being deposited.</p>
+      <p class="body">Index fossils are particularly useful: species that were widespread and existed only for a short period are reliable markers for the age of a layer. A trilobite is an index fossil for the Paleozoic; if a layer contains trilobites but no dinosaur bones, it predates the Mesozoic.</p>
+      <div class="note"><b>Reading the column.</b> A vertical cross-section through sedimentary rock is read from bottom (oldest) to top (youngest). What appears, what disappears, and what is replaced gives you the pattern.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Patterns in the record</h2></div>
+      <p class="lead">Three distinct patterns are routinely inferred from fossil sequences. Each is an interpretation supported by what the rock record contains and what it lacks.</p>
+      <div class="orgtable">
+        <div class="orgrow">
+          <div><div class="nm">Environmental change</div></div>
+          <div class="fn">A layer that contains marine fossils (coral, shells) sitting beneath a layer that contains terrestrial fossils (trees, land mammals) indicates that the environment shifted from sea to land. The fossils document what lived there at each point in time.</div>
+        </div>
+        <div class="orgrow">
+          <div><div class="nm">Extinction</div></div>
+          <div class="fn">When a species appears consistently in lower layers, then disappears completely from all higher layers, the most parsimonious interpretation is extinction. The absence of the species from every younger layer is the evidence.</div>
+        </div>
+        <div class="orgrow">
+          <div><div class="nm">Mass extinction event</div></div>
+          <div class="fn">When many unrelated species disappear from the same horizontal boundary, a major event affected the biosphere globally. The K-Pg boundary (about 66 million years ago) marks the end of non-avian dinosaurs and many other groups; the Permian-Triassic boundary (about 252 million years ago) marks the largest known mass extinction.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Inference vs assertion</h2></div>
+      <p class="lead">The fossil record supports inferences, not direct observation. A scientist does not see dinosaurs die. The scientist sees a pattern: dinosaur fossils present below a boundary, absent above it. From that pattern, the scientist infers extinction at that boundary.</p>
+      <div class="compare">
+        <div class="ccol">
+          <h3>Strong inference</h3>
+          <ul>
+            <li>Multiple sites show the same pattern.</li>
+            <li>The boundary is dated consistently with independent methods.</li>
+            <li>An alternate explanation (e.g., migration) is ruled out by global absence.</li>
+            <li>The pattern fits other geological evidence (e.g., iridium layer).</li>
+          </ul>
+        </div>
+        <div class="ccol">
+          <h3>Weak inference</h3>
+          <ul>
+            <li>One site, small sample.</li>
+            <li>Disturbed strata of uncertain order.</li>
+            <li>Species could simply be undiscovered in higher layers.</li>
+            <li>No corroborating evidence beyond fossils.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn"><b>Sampling caveat.</b> Absence of a fossil in a layer can mean extinction, but it can also mean the layer was a poor place for fossilization or the species was rare and never preserved there. Strong claims require strong sampling.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Read a sequence</h2></div>
+      <p class="lead">Consider the column above. From the bottom up: a Precambrian layer with only microbial mats; a Paleozoic layer rich in trilobites and other marine invertebrates; a sharp boundary representing the Permian-Triassic event; a Mesozoic layer with dinosaur fossils; another sharp boundary (K-Pg); a Cenozoic layer with mammals.</p>
+      <p class="body">From this column you can infer: (1) life became more complex over time, (2) trilobites went extinct at the Permian-Triassic boundary, (3) dinosaurs went extinct at the K-Pg boundary, (4) the environment in this location was marine during the Paleozoic and shifted to terrestrial later, and (5) major mass extinctions reset the dominant fauna more than once. Each inference is supported by what is present in some layers and absent in others.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Interpret one</h2></div>
+      <p class="lead">A paleontologist finds trilobite fossils in a layer dated at 400 million years ago. A layer directly above, dated at 240 million years ago, contains no trilobites at all, despite extensive sampling. Higher layers also contain no trilobites. Which interpretation is best supported?</p>
+      <div class="predict" id="tryRow">
+        <button class="pcard" type="button" data-ok="false">Trilobites still exist today but are rare</button>
+        <button class="pcard" type="button" data-ok="false">Trilobites moved to a different continent and were never found again</button>
+        <button class="pcard" type="button" data-ok="true">Trilobites went extinct between roughly 400 and 240 million years ago; their absence from all later layers across many sites supports extinction</button>
+        <button class="pcard" type="button" data-ok="false">Trilobites were never real organisms</button>
+      </div>
+      <div class="reveal" id="tryRv">Trilobites are present below a boundary and absent in all later layers worldwide. The strongest interpretation is global extinction. Migration cannot account for total absence across continents, and modern surveys confirm no living trilobites.</div>
+    </div>
+
+    <button class="cta" id="toCheck">Begin Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">Form A passed. The 24-hour delay separates short-term recall from durable retention. Form B presents eight distinct items on the same standard.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+    <div class="qtext" id="qtextB"></div>
+    <div class="opts" id="optsB"></div>
+    <div class="qwhy" id="qwhyB"></div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Retry</button>
+    <button class="cta hide" id="toGate">Continue to 24-hour gate</button>
+  </section>
+
+  <footer><span id="__sname">Julie</span> . Science . Day 4 . Standard 6-8.LS4.A.1</footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#0f7a3a" stroke="#0a5527" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var __qk = (location.search.match(/[?&]kid=([^&]+)/)||[])[1];
+  __qk = __qk ? decodeURIComponent(__qk) : null;
+  var __ar = {};
+  try { __ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); } catch(e) {}
+  var __ks = (__ar.family && __ar.family.kids) || [];
+  var __rk = null;
+  if (__qk) __rk = __ks.filter(function(x){ return x.id===__qk; })[0];
+  if (!__rk && __ar.activeKid) __rk = __ks.filter(function(x){ return x.id===__ar.activeKid; })[0];
+  if (!__rk) __rk = __ks.filter(function(x){ return x.grade===8; })[0];
+  if (!__rk && __ks.length) __rk = __ks[0];
+  if (!__rk) __rk = { id:'julie', name:'Julie', grade:8 };
+  __ar.activeKid = __rk.id;
+  try { localStorage.setItem('edu.app', JSON.stringify(__ar)); } catch(e) {}
+
+  var KEY     = 'edu.app';
+  var STUDENT = __rk.id;
+  var SUBJECT = 'science';
+  var DAY     = '6-8.LS4.A.1';
+  var SNAME   = __rk.name;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var __fn = document.getElementById('__sname');
+    if (__fn) __fn.textContent = SNAME;
+    document.querySelectorAll('.__snameInline, #masteryDone .__sname').forEach(function(n){
+      n.textContent = SNAME;
+    });
+    var back = document.getElementById('msBack');
+    if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+  });
+
+  var PASS = 7;
+  var QTIME = 25;
+  var GATE_MS = 24 * 60 * 60 * 1000;
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){ return {}; } }
+  function save(o){ try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {} }
+
+  var app = load();
+  app.students = app.students || {};
+  app.students[STUDENT] = app.students[STUDENT] || { name: SNAME };
+  app.progress = app.progress || {};
+  app.progress[STUDENT] = app.progress[STUDENT] || {};
+  app.progress[STUDENT][SUBJECT] = app.progress[STUDENT][SUBJECT] || {};
+  var rec = app.progress[STUDENT][SUBJECT][DAY] || {
+    status: 'open', best: 0, attempts: 0,
+    formA: 0, formB: 0,
+    formAPassedAt: null, passedAt: null
+  };
+  app.progress[STUDENT][SUBJECT][DAY] = rec;
+  app.activeStudent = STUDENT;
+  save(app);
+
+  var SUPA_URL = '', SUPA_KEY = '';
+  function syncCloud(){
+    if (!SUPA_URL || !SUPA_KEY) return;
+    try {
+      var row = {
+        student: STUDENT, subject: SUBJECT, day: DAY,
+        status: rec.status, best: rec.best||0, attempts: rec.attempts||0,
+        formA: rec.formA||0, formB: rec.formB||0,
+        form_a_passed_at: rec.formAPassedAt||null,
+        time_ms: rec.timeMs||0,
+        updated_at: new Date().toISOString()
+      };
+      fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day', {
+        method:'POST',
+        headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},
+        body: JSON.stringify(row),
+        keepalive: true
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
+  var SEG = Date.now();
+  function commitTime(){ rec.timeMs = (rec.timeMs||0) + (Date.now()-SEG); SEG = Date.now(); rec.lastAt = Date.now(); save(app); }
+  window.addEventListener('beforeunload', commitTime);
+  window.addEventListener('pagehide', commitTime);
+
+  syncCloud();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var row = document.getElementById('tryRow');
+    var rv = document.getElementById('tryRv');
+    if (!row) return;
+    row.querySelectorAll('.pcard').forEach(function(b){
+      b.addEventListener('click', function(){
+        var ok = b.getAttribute('data-ok') === 'true';
+        row.querySelectorAll('.pcard').forEach(function(x){ x.classList.remove('ok','no'); });
+        b.classList.add(ok ? 'ok' : 'no');
+        rv.classList.add('show');
+      });
+    });
+  });
+
+  /* Item bank: 14 items. Distribution: a:0 x4, a:1 x4, a:2 x4, a:3 x2 */
+  var ITEM_BANK = [
+    { q: 'According to the principle of superposition, in undisturbed sedimentary strata, the relative ages of layers are best described as ...',
+      o: ['Lower layers are older than upper layers','Upper layers are older than lower layers','All layers are the same age','Age cannot be determined from layers'], a: 0, why: 'Sediment is deposited from the bottom up. Lower layers are deposited first and therefore older.' },
+    { q: 'A trilobite is most useful as an index fossil because it ...',
+      o: ['can still be found alive today','was widespread but existed only for a limited time, marking a specific era','is too rare to be useful for dating','is found at every depth equally'], a: 1, why: 'An index fossil is broadly distributed in space but narrow in time. A trilobite signals the Paleozoic.' },
+    { q: 'A sedimentary column shows marine fossils in a lower layer and terrestrial plant fossils in a higher layer. The most direct inference is that ...',
+      o: ['The plants always existed underwater','The site changed from a marine environment to a terrestrial environment over time','The marine fossils migrated upward','Sedimentary layers form randomly'], a: 1, why: 'Different fossil assemblages in older and younger layers track environmental change at the location.' },
+    { q: 'A species appears in many lower layers worldwide but is completely absent from every layer above a specific boundary. The strongest interpretation is ...',
+      o: ['The species migrated','The species evolved into something undetectable','Extinction at or near that boundary','Sampling failed everywhere'], a: 2, why: 'Global absence above a boundary, supported by many sites, is best explained by extinction.' },
+    { q: 'A horizon at which many unrelated species disappear from the rock record marks ...',
+      o: ['a sampling error','an artistic illustration only','a mass extinction event','a recent volcanic eruption with no biological effect'], a: 2, why: 'Synchronized losses across many lineages at the same horizon define a mass extinction.' },
+    { q: 'Which corroborating evidence most strengthens the claim that a mass extinction occurred at the K-Pg boundary?',
+      o: ['One dinosaur bone in one site','The boundary is found globally and is associated with a worldwide iridium layer plus consistent radiometric dates','Modern dinosaurs are visible at a zoo','An artistic reconstruction of the event'], a: 1, why: 'Strong inference requires global pattern, independent dating, and corroborating geochemical evidence.' },
+    { q: 'A scientist claims a species went extinct based on a single site where it is missing from one layer. The proper response is ...',
+      o: ['Accept the claim immediately','Reject the claim with no follow-up','Suspend judgment and require evidence from multiple sites, since absence at one site may reflect local conditions or sampling','Conclude the species never existed'], a: 2, why: 'Local absence is weak evidence. Strong inference requires multi-site corroboration.' },
+    { q: 'Which is the best evidence that a major environmental change accompanied the K-Pg extinction?',
+      o: ['Dinosaurs are mentioned in films','Geochemical and stratigraphic data show a worldwide layer enriched in iridium, with associated soot and other markers, consistent with a major impact event','One scientist asserts it','Modern climate change'], a: 1, why: 'Independent geochemical signatures consistent with a global event support the environmental-change inference.' },
+    { q: 'Older layers typically contain ...',
+      o: ['simpler life forms; complexity tends to increase up the column, although exceptions exist','complex mammals only','no fossils ever','the same fossils as today'], a: 0, why: 'The fossil record shows a general increase in complexity over geological time, with notable exceptions.' },
+    { q: 'A new fossil is discovered in a previously undated layer. Which information would best help estimate the layer\'s age?',
+      o: ['The size of the fossil only','The thickness of the layer','The presence of index fossils with known time ranges and independent radiometric dating','The color of the surrounding rock'], a: 2, why: 'Index fossils plus radiometric dating provide converging evidence for the layer\'s age.' },
+    { q: 'A fossil species appears in lower layers and is replaced in upper layers by a similar but distinct species. The simplest inference is ...',
+      o: ['The first species is the parent of the second','The first species probably went extinct or evolved into the second, with the transition reflected in the layers','Both species lived at the same time and place','Fossils do not preserve such transitions'], a: 1, why: 'Stratigraphic replacement is consistent with extinction or evolutionary turnover.' },
+    { q: 'Why is absence of a fossil from upper layers stronger evidence of extinction when found across many sites worldwide?',
+      o: ['Because museums say so','Because global absence rules out alternative explanations like local extirpation, migration, or sampling gaps','Because old rocks are easier to find','Because younger layers cannot contain fossils'], a: 1, why: 'Worldwide absence is harder to attribute to chance or migration than local absence is.' },
+    { q: 'The Permian-Triassic boundary, around 252 million years ago, is significant in the fossil record because ...',
+      o: ['It is when humans first appeared','It is when trilobites first appeared','It marks the largest known mass extinction, with estimated loss of roughly 90 to 96 percent of marine species','It is when dinosaurs went extinct'], a: 2, why: 'The end-Permian extinction is the most severe event in the fossil record.' },
+    { q: 'Which limitation of the fossil record must scientists keep in mind when inferring extinction?',
+      o: ['Fossils can talk','Fossils are always perfectly preserved','Fossils never form in any environment','Not all organisms fossilize equally; soft-bodied species are underrepresented, so absence does not always equal extinction'], a: 3, why: 'Preservation bias is a real constraint. Strong inference requires accounting for what kinds of organisms can be preserved.' }
+  ];
+
+  var FORM_A_IDX = [0,1,2,3,4,5,6,7];
+  var FORM_B_IDX = [8,9,10,11,12,13,3,5];
+
+  var FORM_A = FORM_A_IDX.map(function(i){ return ITEM_BANK[i]; });
+  var FORM_B = FORM_B_IDX.map(function(i){ return ITEM_BANK[i]; });
+
+  var secLesson = document.getElementById('lesson'),
+      secCheck  = document.getElementById('check'),
+      secGate   = document.getElementById('gate'),
+      secCheckB = document.getElementById('checkB'),
+      secResult = document.getElementById('result');
+
+  var elQtext = document.getElementById('qtext'), elOpts = document.getElementById('opts'), elQwhy = document.getElementById('qwhy'),
+      elCount = document.getElementById('qcount'), elTlabel = document.getElementById('tlabel'), elTfill = document.getElementById('tfill');
+
+  var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A;
+
+  function startCheck(form){
+    commitTime();
+    phase = form;
+    currentBank = (form==='A') ? FORM_A : FORM_B;
+    qi = 0; correct = 0;
+    if (form==='A'){
+      rec.attempts = (rec.attempts||0) + 1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    } else {
+      secGate.classList.add('hide'); secResult.classList.add('hide'); secCheckB.classList.remove('hide');
+    }
+    window.scrollTo(0,0);
+    showQ();
+  }
+
+  function showQ(){
+    locked = false;
+    var item = currentBank[qi];
+    var isA = (phase==='A');
+    var qtext = isA ? elQtext : document.getElementById('qtextB');
+    var opts  = isA ? elOpts  : document.getElementById('optsB');
+    var why   = isA ? elQwhy  : document.getElementById('qwhyB');
+    var count = isA ? elCount : document.getElementById('qcountB');
+    var label = isA ? elTlabel: document.getElementById('tlabelB');
+    var fill  = isA ? elTfill : document.getElementById('tfillB');
+    count.textContent = 'Question ' + (qi+1) + ' of ' + currentBank.length;
+    qtext.innerHTML = item.q;
+    opts.innerHTML = ''; why.textContent = '';
+    item.o.forEach(function(txt, i){
+      var b = document.createElement('button');
+      b.className = 'opt2'; b.type = 'button'; b.innerHTML = txt;
+      b.addEventListener('click', function(){ answer(i, b, opts, why, item); });
+      opts.appendChild(b);
+    });
+    timeLeft = QTIME; fill.style.width='100%'; fill.classList.remove('low');
+    label.textContent = QTIME + 's';
+    clearInterval(timer);
+    timer = setInterval(function(){
+      timeLeft--;
+      if (timeLeft < 0) timeLeft = 0;
+      fill.style.width = (timeLeft/QTIME*100) + '%';
+      label.textContent = timeLeft + 's';
+      if (timeLeft <= 8) fill.classList.add('low');
+      if (timeLeft === 0){ clearInterval(timer); autoAdvance(opts, why, item); }
+    }, 1000);
+  }
+
+  function autoAdvance(opts, why, item){
+    if (locked) return; locked = true;
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      c.style.pointerEvents = 'none';
+    });
+    why.style.color = 'var(--accent-d)';
+    why.textContent = 'Time. ' + item.why;
+    setTimeout(next, 1100);
+  }
+
+  function answer(i, btn, opts, why, item){
+    if (locked) return; locked = true; clearInterval(timer);
+    var ok = (i === item.a);
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      if (idx === i && !ok) c.classList.add('bad');
+      c.style.pointerEvents = 'none';
+    });
+    if (ok){ correct++; why.style.color='var(--good)'; why.textContent = 'Yes. ' + item.why; }
+    else   {            why.style.color='var(--accent-d)'; why.textContent = 'Not quite. ' + item.why; }
+    setTimeout(next, ok ? 700 : 1200);
+  }
+
+  function next(){ qi++; if (qi < currentBank.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    if (phase === 'A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed = (correct >= PASS), pct = Math.round(correct/FORM_A.length*100);
+      document.getElementById('scorebig').textContent = pct + '%';
+      rec.formA = correct; rec.best = Math.max(rec.best||0, pct);
+      var rtitle = document.getElementById('rtitle'), rmsg = document.getElementById('rmsg'),
+          retry  = document.getElementById('retry'),  toGate = document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if (passed){
+        rec.status = 'formA-passed';
+        if (!rec.formAPassedAt) rec.formAPassedAt = Date.now();
+        save(app);
+        syncCloud();
+        rtitle.textContent = 'Form A passed';
+        rmsg.textContent = correct + ' of ' + FORM_A.length + ' correct. Form B opens in 24 hours.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status = 'tried'; save(app);
+        rtitle.textContent = 'Below threshold';
+        rmsg.textContent = 'Pass requires 7 of 8. You scored ' + correct + '. Review the stations and retry.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB = (correct >= PASS), pctB = Math.round(correct/FORM_B.length*100);
+      document.getElementById('scorebig').textContent = pctB + '%';
+      rec.formB = correct;
+      var rtitleB = document.getElementById('rtitle'), rmsgB = document.getElementById('rmsg');
+      document.getElementById('retry').classList.add('hide');
+      document.getElementById('toGate').classList.add('hide');
+      if (passedB){
+        rec.status = 'passed';
+        rec.passedAt = Date.now();
+        save(app);
+        syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status = 'formB-tried'; save(app);
+        rtitleB.textContent = 'Below threshold';
+        rmsgB.textContent = 'Form B requires 7 of 8. You scored ' + correct + '. Review and retry.';
+        document.getElementById('retry').classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide');
+    secGate.classList.remove('hide');
+    window.scrollTo(0,0);
+    var startBtn = document.getElementById('startB');
+    var cd = document.getElementById('countdown');
+    function tick(){
+      var elapsed = Date.now() - (rec.formAPassedAt || Date.now());
+      var remain = GATE_MS - elapsed;
+      if (remain <= 0){
+        cd.textContent = 'Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else {
+        startBtn.classList.add('hide');
+      }
+      var h = Math.floor(remain/3600000),
+          m = Math.floor((remain%3600000)/60000),
+          s = Math.floor((remain%60000)/1000);
+      cd.textContent = (h<10?'0':'') + h + ':' + (m<10?'0':'') + m + ':' + (s<10?'0':'') + s;
+      setTimeout(tick, 1000);
+    }
+    tick();
+  }
+
+  function showMastery(a, b){
+    var sec = document.getElementById('masteryDone'); if (!sec) return;
+    var ea = document.getElementById('msFormA'); if (ea) ea.textContent = a + ' / 8';
+    var eb = document.getElementById('msFormB'); if (eb) eb.textContent = b + ' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent = SNAME; });
+    var back = document.getElementById('msBack'); if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secCheckB.classList.add('hide');
+    secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try { sec.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e) { window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if (rec.status === 'passed'){
+      showMastery(rec.formA||0, rec.formB||0);
+      return;
+    }
+    if (rec.formAPassedAt && (rec.formA||0) >= PASS && (rec.formB||0) < PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click', function(){ startCheck('A'); });
+  document.getElementById('retry').addEventListener('click', function(){
+    secResult.classList.add('hide');
+    if (phase === 'A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click', showGate);
+  document.getElementById('startB').addEventListener('click', function(){ startCheck('B'); });
+
+  document.addEventListener('DOMContentLoaded', resume);
+
+})();
+</script>
+</body>
+</html>

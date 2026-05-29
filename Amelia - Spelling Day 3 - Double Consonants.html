@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A grade 3 spelling lesson on doubling the final consonant when adding endings like -ing, -ed, and -est.">
+<title>Story Lab &middot; Double Consonants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+/* LESSON_BG_ANIM_V1 */
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(120,80,200,.15)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(200,100,80,.12)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(180,140,60,.08)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(181,70,47,.10);--bg-blob-2:rgba(90,122,74,.08);--bg-blob-3:rgba(184,138,45,.06);}
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a2e;--blue:#3a5a7a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(32px,6vw,46px);line-height:1.02;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px;}
+  .wcard{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fbf5ea;}
+  .wcard .w{font-family:'Fraunces';font-size:22px;font-weight:600;color:var(--accent);}
+  .wcard .parts{font-family:'Fraunces';font-size:13px;font-style:italic;color:var(--alt);margin-top:2px;}
+  .wcard .ex{font-size:14px;color:var(--ink);margin-top:6px;font-style:italic;}
+  .wcard .ex b{font-style:normal;font-weight:600;color:var(--accent-d);}
+  .tipbox{margin-top:14px;background:#f3f6ee;border:1px dashed var(--alt);border-radius:12px;padding:14px 16px;}
+  .tipbox .tt{font-family:'Fraunces';font-style:italic;color:var(--alt);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+  .tipbox ul{margin:4px 0 0 22px;color:var(--ink2);}
+  .tipbox li{margin:4px 0;font-size:15.5px;}
+  .matchgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  @media (max-width:560px){.matchgrid{grid-template-columns:1fr;}}
+  .mtile{font:inherit;font-weight:600;font-size:15.5px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:11px 13px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .mtile:hover{border-color:var(--accent);}
+  .mtile.sel{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .mtile.ok{border-color:var(--good);background:#e8efde;color:var(--good);cursor:default;}
+  .mtile.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .matchnote{margin-top:10px;font-size:14px;color:var(--mute);}
+  .matchnote.win{color:var(--good);font-weight:600;}
+  .fillrow{margin-top:14px;display:flex;flex-direction:column;gap:10px;}
+  .fillitem{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbf5ea;}
+  .fillitem .stem{font-size:16px;color:var(--ink);}
+  .fillitem .stem .blank{display:inline-block;min-width:120px;border-bottom:2px solid var(--accent);text-align:center;font-family:'Fraunces';font-weight:600;color:var(--accent-d);padding:0 6px;}
+  .fillopts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .fop{font:inherit;font-size:14.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:44px;cursor:pointer;color:var(--ink);}
+  .fop:hover{border-color:var(--accent);}
+  .fop.ok{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .fop.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .fillwhy{margin-top:8px;font-size:14px;color:var(--ink2);min-height:1em;}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+  .recap{background:#f3ead9;border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;margin-top:12px;}
+  .recap ul{margin:6px 0 0 20px;color:var(--ink2);}
+  .recap li{margin:4px 0;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);}.cta.alt:hover{filter:brightness(.92);}
+  .cta.go{background:var(--good);}.cta.go:hover{filter:brightness(.92);}
+  .cta:disabled{opacity:.55;cursor:not-allowed;}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;}
+  .qstem{font-family:'Fraunces';font-size:22px;font-weight:600;line-height:1.25;margin-bottom:10px;}
+  .qctx{font-size:16px;color:var(--ink2);margin-bottom:14px;font-style:italic;}
+  .qctx .blank{display:inline-block;min-width:110px;border-bottom:2px solid var(--accent);text-align:center;font-family:'Fraunces';font-weight:600;color:var(--accent-d);padding:0 6px;font-style:normal;}
+  .typewrap{display:flex;flex-direction:column;gap:10px;}
+  .typewrap input[type=text]{font:inherit;font-family:'Fraunces',serif;font-size:24px;font-weight:600;border:1.5px solid var(--line);background:#fffdf8;border-radius:12px;padding:14px 16px;min-height:56px;color:var(--ink);text-align:center;letter-spacing:.02em;}
+  .typewrap input[type=text]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(181,70,47,.12);}
+  .typewrap input.ok{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .typewrap input.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .pickrow{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+  .pickrow .pop{font:inherit;font-family:'Fraunces',serif;font-size:20px;font-weight:600;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;min-height:50px;cursor:pointer;color:var(--ink);text-align:center;}
+  .pickrow .pop:hover{border-color:var(--accent);}
+  .pickrow .pop.ok{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .pickrow .pop.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .submitbtn{font:inherit;font-weight:700;font-size:16px;color:#fff;background:var(--accent);border:none;border-radius:10px;padding:13px;min-height:50px;cursor:pointer;}
+  .submitbtn:disabled{opacity:.55;cursor:not-allowed;}
+  .feedback{margin-top:8px;font-size:15px;min-height:1.4em;}
+  .feedback.ok{color:var(--good);font-weight:600;}
+  .feedback.no{color:var(--accent-d);font-weight:600;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Fraunces';text-align:center;}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;font-family:'Fraunces';text-align:center;}
+  .result p{text-align:center;color:var(--ink2);max-width:46ch;margin:0 auto;}
+  .gatebox{background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:16px;margin-top:14px;font-size:15px;color:var(--ink2);}
+  .gatebox b{color:var(--accent-d);}
+  .countdown{font-family:'Fraunces';font-size:24px;font-weight:600;color:var(--accent-d);text-align:center;margin-top:8px;}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:520px;height:auto;display:block;}
+  .lesson-hero .wb-a{fill:#e8d5cc;stroke:var(--accent);stroke-width:1.5;}
+  .lesson-hero .wb-b{fill:#d8e0cc;stroke:#5a7a4a;stroke-width:1.5;}
+  .lesson-hero .wb-c{fill:#f3e8d0;stroke:var(--alt);stroke-width:1.8;}
+  .lesson-hero .wb-txt{font-family:'Fraunces',serif;font-weight:600;font-size:24px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .wb-big{font-family:'Fraunces',serif;font-weight:600;font-size:30px;text-anchor:middle;fill:var(--accent-d);}
+  .lesson-hero .hlbox{fill:rgba(181,70,47,.18);stroke:var(--accent);stroke-width:1.6;}
+  .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;}
+  .lesson-hero .plus{font-family:'Fraunces',serif;font-weight:600;font-size:30px;fill:var(--mute);text-anchor:middle;}
+  .lesson-hero .arrow{fill:none;stroke:var(--mute);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .lbl{font-family:'Fraunces',serif;font-style:italic;font-size:10px;fill:var(--accent-d);text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;}
+</style>
+
+<!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
+<style id="mastery-done-styles">
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f9d6b); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Baloo 2', system-ui, sans-serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f9d6b); margin: 8px 0; }
+.mastery-msg { color: var(--ink2, #4a4566); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e8f7f0; border: 2px solid #bce6d8; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Baloo 2', system-ui, sans-serif; font-size: 32px; font-weight: 700; color: var(--good, #1f9d6b); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #4a4566); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #5a43d6); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #3f2bb0); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #5a43d6); outline-offset: 3px; }
+</style>
+
+</head>
+<body>
+<!-- LESSON_BG_ANIM_V1 -->
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.L.1.B.i</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Chapter three</div>
+    <h1>Double Consonants</h1>
+    <p class="opener"><span class="dropcap">S</span>ome short words double their last letter when you add an ending. The word <b>hop</b> ends in one p after one o, so when you add <b>-ing</b> you write <b>hopping</b> with two p's. Without the second p, hopping would look like hoping, a totally different word. The double letter keeps the short vowel sound where it belongs.</p>
+    <p class="mission">By the end you will spell ten doubled-consonant words and know when the doubling rule fires.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Spell words that double the consonant.</div>
+
+    <!-- HERO_ILLO_V1: hop + ing = hopping with the doubled p highlighted, plus run + ing = running -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 520 240" role="img" aria-label="The base word hop plus the ending ing becomes hopping, with the doubled p highlighted in red. Below it, run plus ing becomes running with the doubled n highlighted.">
+        <text class="cap" x="260" y="20" fill="var(--accent-d)">When you add the ending, double the last letter</text>
+
+        <g transform="translate(20 38)">
+          <rect class="wb-a" x="0" y="0" width="100" height="50" rx="10"/>
+          <text class="wb-txt" x="50" y="33">hop</text>
+          <text class="lbl" x="50" y="68">base word</text>
+        </g>
+        <text class="plus" x="140" y="70">+</text>
+        <g transform="translate(160 38)">
+          <rect class="wb-b" x="0" y="0" width="100" height="50" rx="10"/>
+          <text class="wb-txt" x="50" y="33">-ing</text>
+          <text class="lbl" x="50" y="68">ending</text>
+        </g>
+        <g class="arrow">
+          <path d="M270 64 L320 64"/>
+          <path d="M312 58 L320 64 L312 70"/>
+        </g>
+        <g transform="translate(330 38)">
+          <rect class="wb-c" x="0" y="0" width="170" height="50" rx="12"/>
+          <text class="wb-big" x="42" y="36">ho</text>
+          <rect class="hlbox" x="58" y="6" width="34" height="38" rx="6"/>
+          <text class="wb-big" x="75" y="36">pp</text>
+          <text class="wb-big" x="120" y="36">ing</text>
+          <text class="lbl" x="85" y="68">doubled p</text>
+        </g>
+
+        <g transform="translate(20 138)">
+          <rect class="wb-a" x="0" y="0" width="100" height="50" rx="10"/>
+          <text class="wb-txt" x="50" y="33">run</text>
+          <text class="lbl" x="50" y="68">base word</text>
+        </g>
+        <text class="plus" x="140" y="170">+</text>
+        <g transform="translate(160 138)">
+          <rect class="wb-b" x="0" y="0" width="100" height="50" rx="10"/>
+          <text class="wb-txt" x="50" y="33">-ing</text>
+          <text class="lbl" x="50" y="68">ending</text>
+        </g>
+        <g class="arrow">
+          <path d="M270 164 L320 164"/>
+          <path d="M312 158 L320 164 L312 170"/>
+        </g>
+        <g transform="translate(330 138)">
+          <rect class="wb-c" x="0" y="0" width="170" height="50" rx="12"/>
+          <text class="wb-big" x="38" y="36">ru</text>
+          <rect class="hlbox" x="52" y="6" width="34" height="38" rx="6"/>
+          <text class="wb-big" x="70" y="36">nn</text>
+          <text class="wb-big" x="118" y="36">ing</text>
+          <text class="lbl" x="85" y="68">doubled n</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>This week's words</h2></div>
+      <p class="lead">Each card shows the spelled word, the base word plus the ending, and a sentence using it. Notice the doubled letter in every one.</p>
+      <div class="wgrid" id="wgrid"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Strategy tips</h2></div>
+      <div class="tipbox">
+        <div class="tt">When to double the last letter</div>
+        <ul>
+          <li>The base word has one short vowel followed by one consonant. Hop, run, sit, big, hot.</li>
+          <li>You are adding an ending that starts with a vowel. The big three are -ing, -ed, and -est.</li>
+          <li>Both true? Double the last consonant before you add the ending.</li>
+          <li>Hop plus -ing becomes hopping. Sit plus -ing becomes sitting. Big plus -est becomes biggest.</li>
+          <li>Words ending in two consonants do not double. Jump becomes jumping, not jumpping.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Match the meaning</h2></div>
+      <p class="lead">Tap a word, then tap the meaning that fits. Five pairs to match.</p>
+      <div class="matchgrid">
+        <div id="matchWords"></div>
+        <div id="matchMeans"></div>
+      </div>
+      <div class="matchnote" id="matchNote">0 of 5 matched.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Fill in the blank</h2></div>
+      <p class="lead">Which word fits the sentence? Tap to choose.</p>
+      <div class="fillrow" id="fillrow"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">"All words double their last letter."</div><div style="color:var(--ink2)">No. Only short words with one vowel and one consonant double up. Jump already ends in two consonants, so jumping has one p. Read has two vowels in a row, so reading does not double the d. Check for the short vowel and single consonant before you double.</div></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">06</span><h2>The move</h2></div>
+      <div class="recap"><b>Remember:</b><ul>
+        <li>One short vowel, one consonant, vowel-starting ending. Double the consonant.</li>
+        <li>Without the doubled letter, the vowel sound would change. Hopping turns into hoping.</li>
+        <li>Always check the base word first. Spell it, then add the ending.</li>
+      </ul></div>
+    </div>
+
+    <button class="cta" id="toCheck">I studied the words. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Word 1 of 8</span></div>
+    <div class="qstem" id="qstem"></div>
+    <div class="qctx" id="qctx"></div>
+    <div class="typewrap">
+      <input type="text" id="typeIn" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="type the word">
+      <button class="submitbtn" id="submitBtn">Check my spelling</button>
+      <div class="feedback" id="fb"></div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0 of 8</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try Form A again</button>
+    <button class="cta hide" id="toGate">See the spacing gate</button>
+  </section>
+
+  <section id="gateSec" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">SPACING</span><h2>Form B unlocks in 24 hours</h2></div>
+      <p class="lead">You passed Form A. Form B opens a day from now. The wait helps the spellings move from short term memory into long term.</p>
+      <div class="gatebox"><b>Why wait?</b> Spaced practice means coming back after time has passed. It locks in spelling more than back to back tries do.</div>
+      <div class="countdown" id="countdown">--:--:--</div>
+      <button class="cta go hide" id="startB">Start Form B</button>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Word 1 of 8</span></div>
+    <div class="qstem" id="qstemB"></div>
+    <div class="qctx" id="qctxB"></div>
+    <div class="pickrow" id="pickrowB"></div>
+    <div class="feedback" id="fbB"></div>
+  </section>
+
+  <section id="finalSec" class="hide">
+    <div class="result">
+      <div class="scorebig" style="font-size:34px;">All set.</div>
+      <h2>Your doubled words are locked in.</h2>
+      <p>Form A and Form B passed. The 3.L.1.B.i credential is yours.</p>
+    </div>
+    <div id="donebox" style="text-align:center;margin-top:18px;"><p style="color:var(--accent-d);font-weight:600;">Saved. You can close this and head back to your dashboard.</p></div>
+  </section>
+
+  <footer><span id="__sname">Amelia</span> &middot; Spelling &middot; Day 3 &middot; Standard 3.L.1.B.i</footer>
+
+<!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
+<section id="masteryDone" class="mastery-complete" aria-live="polite">
+  <div class="mastery-card">
+    <div class="mastery-badge" aria-hidden="true">
+      <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+        <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>You did it!</h2>
+    <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+    <div class="mastery-stats">
+      <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+      <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+    </div>
+    <div class="mastery-cta">
+      <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];if(!__rk&&__ks.length)__rk=__ks[0];if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};__ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}var KEY='edu.app',STUDENT=__rk.id,SUBJECT='spelling',DAY='3.L.1.B.i',SNAME=__rk.name;document.addEventListener('DOMContentLoaded',function(){var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;});
+
+  var PASS=7;
+  var GATE_MS=24*60*60*1000;
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  // ---- WORDS ----
+  var WORDS=[
+    {w:'running',   parts:'run + ing',   meaning:'moving fast on your feet',          ex:'She is <b>running</b> down the path.'},
+    {w:'swimming',  parts:'swim + ing',  meaning:'moving through water',              ex:'We were <b>swimming</b> in the pool all afternoon.'},
+    {w:'stopped',   parts:'stop + ed',   meaning:'came to a halt; ended',             ex:'The car <b>stopped</b> at the red light.'},
+    {w:'beginning', parts:'begin + ing', meaning:'starting; the first part',          ex:'I am <b>beginning</b> a new book today.'},
+    {w:'hopping',   parts:'hop + ing',   meaning:'jumping on one or two feet',        ex:'The rabbit was <b>hopping</b> across the yard.'},
+    {w:'sitting',   parts:'sit + ing',   meaning:'resting on a seat',                  ex:'My cat is <b>sitting</b> by the window.'},
+    {w:'biggest',   parts:'big + est',   meaning:'larger than all the rest',           ex:'That is the <b>biggest</b> pumpkin in the patch.'},
+    {w:'hottest',   parts:'hot + est',   meaning:'warmer than all the rest',           ex:'August is the <b>hottest</b> month here.'},
+    {w:'batter',    parts:'bat + er',    meaning:'a player who hits the ball',         ex:'The <b>batter</b> swung at the third pitch.'},
+    {w:'summer',    parts:'sum + er',    meaning:'the warmest season of the year',     ex:'Every <b>summer</b> we visit the lake.'}
+  ];
+
+  // ---- Static word grid ----
+  var wgrid=document.getElementById('wgrid');
+  WORDS.forEach(function(W){
+    var d=document.createElement('div'); d.className='wcard';
+    d.innerHTML='<div class="w">'+W.w+'</div><div class="parts">'+W.parts+'</div><div class="ex">'+W.ex+'</div>';
+    wgrid.appendChild(d);
+  });
+
+  // ---- Match (5 pairs) ----
+  var MATCH=[
+    {w:'running',   m:'moving fast on your feet'},
+    {w:'beginning', m:'starting; the first part'},
+    {w:'biggest',   m:'larger than all the rest'},
+    {w:'summer',    m:'the warmest season'},
+    {w:'sitting',   m:'resting on a seat'}
+  ];
+  var mw=document.getElementById('matchWords'), mm=document.getElementById('matchMeans');
+  var meansShuffled=MATCH.map(function(x){return x.m;}).sort(function(){return Math.random()-.5;});
+  var wordsShuffled=MATCH.map(function(x){return x.w;}).sort(function(){return Math.random()-.5;});
+  var pickedWord=null, matched={};
+  wordsShuffled.forEach(function(w){
+    var b=document.createElement('button'); b.type='button'; b.className='mtile'; b.textContent=w; b.style.marginBottom='8px';
+    b.addEventListener('click',function(){
+      if(matched[w]) return;
+      pickedWord=w;
+      Array.prototype.forEach.call(mw.children,function(c){c.classList.remove('sel');});
+      b.classList.add('sel');
+    });
+    mw.appendChild(b);
+  });
+  meansShuffled.forEach(function(m){
+    var b=document.createElement('button'); b.type='button'; b.className='mtile'; b.textContent=m; b.style.marginBottom='8px';
+    b.addEventListener('click',function(){
+      if(b.dataset.locked) return;
+      if(!pickedWord) return;
+      var target=MATCH.filter(function(x){return x.w===pickedWord;})[0];
+      if(target && target.m===m){
+        matched[pickedWord]=true;
+        Array.prototype.forEach.call(mw.children,function(c){ if(c.textContent===pickedWord){c.classList.remove('sel');c.classList.add('ok');c.dataset.locked='1';} });
+        b.classList.add('ok'); b.dataset.locked='1';
+        pickedWord=null;
+        var nm=document.getElementById('matchNote');
+        var n=Object.keys(matched).length;
+        if(n===MATCH.length){nm.textContent='All 5 matched. Great work!';nm.classList.add('win');}
+        else nm.textContent=n+' of '+MATCH.length+' matched.';
+      } else {
+        b.classList.add('no');
+        setTimeout(function(){b.classList.remove('no');},700);
+      }
+    });
+    mm.appendChild(b);
+  });
+
+  // ---- Fill in the blank (4) ----
+  var FILL=[
+    {stem:'The puppy is ___ around the yard.', ans:'hopping', opts:['hopping','sitting','running']},
+    {stem:'Our class is ___ a new project today.', ans:'beginning', opts:['beginning','stopped','swimming']},
+    {stem:'July is often the ___ month of the year.', ans:'hottest', opts:['biggest','hottest','running']},
+    {stem:'Every ___ we go to the beach.', ans:'summer', opts:['batter','summer','sitting']}
+  ];
+  var fr=document.getElementById('fillrow');
+  FILL.forEach(function(F){
+    var d=document.createElement('div'); d.className='fillitem';
+    var stem=F.stem.replace('___','<span class="blank">&nbsp;</span>');
+    d.innerHTML='<div class="stem">'+stem+'</div><div class="fillopts"></div><div class="fillwhy"></div>';
+    var opts=d.querySelector('.fillopts'), why=d.querySelector('.fillwhy');
+    F.opts.forEach(function(o){
+      var b=document.createElement('button'); b.type='button'; b.className='fop'; b.textContent=o;
+      b.addEventListener('click',function(){
+        if(b.dataset.locked)return;
+        Array.prototype.forEach.call(opts.children,function(c){c.dataset.locked='1';c.style.pointerEvents='none';});
+        if(o===F.ans){ b.classList.add('ok'); why.style.color='var(--good)'; why.textContent='Yes. "'+F.ans+'" fits.'; }
+        else { b.classList.add('no'); Array.prototype.forEach.call(opts.children,function(c){if(c.textContent===F.ans)c.classList.add('ok');}); why.style.color='var(--accent-d)'; why.textContent='Not quite. The right word is "'+F.ans+'".'; }
+      });
+      opts.appendChild(b);
+    });
+    fr.appendChild(d);
+  });
+
+  // ---- Form A (type the word from a fill-in-blank sentence) ----
+  // Uses words 0,1,2,3,4,5,6,8 (8 of 10)
+  var FORM_A=[
+    {wIdx:0, def:'moving fast on your feet',     ctx:'The kids were ___ across the field.'},
+    {wIdx:1, def:'moving through water',          ctx:'We spent the morning ___ at the lake.'},
+    {wIdx:2, def:'came to a halt',                ctx:'The bus ___ at the corner.'},
+    {wIdx:3, def:'starting; the first part',      ctx:'School is ___ in two weeks.'},
+    {wIdx:4, def:'jumping on one or two feet',    ctx:'A frog was ___ near the pond.'},
+    {wIdx:5, def:'resting on a seat',             ctx:'My cat is ___ on the rug.'},
+    {wIdx:6, def:'larger than all the rest',      ctx:'That oak is the ___ tree on the block.'},
+    {wIdx:8, def:'a player who hits the ball',    ctx:'The next ___ stepped up to the plate.'}
+  ];
+
+  // ---- Form B (pick the correct spelling from 4 lookalike options) ----
+  // Uses words 0,2,3,4,5,7,8,9 (8 of 10, different mix)
+  var FORM_B=[
+    {wIdx:0, def:'moving fast on your feet',      opts:['runing','runnning','running','runneng']},
+    {wIdx:2, def:'came to a halt',                opts:['stoped','stopped','stoppedd','stopd']},
+    {wIdx:3, def:'starting; the first part',      opts:['begining','beggining','beginning','beginnning']},
+    {wIdx:4, def:'jumping on one or two feet',    opts:['hoping','hopping','hopppng','hoppng']},
+    {wIdx:5, def:'resting on a seat',             opts:['sitng','siting','sitting','sittng']},
+    {wIdx:7, def:'warmer than all the rest',      opts:['hotest','hottest','hottast','hotttest']},
+    {wIdx:8, def:'a player who hits the ball',    opts:['bater','battter','batter','battir']},
+    {wIdx:9, def:'the warmest season',            opts:['sumer','summer','summmer','sumemr']}
+  ];
+
+  // ---- Form runner ----
+  var secLesson=document.getElementById('lesson'),
+      secCheck=document.getElementById('check'),
+      secResult=document.getElementById('result'),
+      secGate=document.getElementById('gateSec'),
+      secCheckB=document.getElementById('checkB'),
+      secFinal=document.getElementById('finalSec');
+
+  var phase='A', qi=0, correct=0, currentBank=FORM_A, locked=false;
+  var elQcount, elQstem, elQctx, elIn, elBtn, elFb, elPick;
+
+  function setupRefsA(){
+    elQcount=document.getElementById('qcount');
+    elQstem=document.getElementById('qstem');
+    elQctx=document.getElementById('qctx');
+    elIn=document.getElementById('typeIn');
+    elBtn=document.getElementById('submitBtn');
+    elFb=document.getElementById('fb');
+  }
+  function setupRefsB(){
+    elQcount=document.getElementById('qcountB');
+    elQstem=document.getElementById('qstemB');
+    elQctx=document.getElementById('qctxB');
+    elPick=document.getElementById('pickrowB');
+    elFb=document.getElementById('fbB');
+  }
+
+  function startCheck(form){
+    commitTime();
+    phase=form; currentBank=(form==='A'?FORM_A:FORM_B); qi=0; correct=0; locked=false;
+    if(form==='A'){
+      rec.attempts=(rec.attempts||0)+1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide');
+      secCheck.classList.remove('hide');
+      setupRefsA();
+    } else {
+      secGate.classList.add('hide');
+      secCheckB.classList.remove('hide');
+      setupRefsB();
+    }
+    window.scrollTo(0,0);
+    showQ();
+  }
+
+  function showQ(){
+    var item=currentBank[qi];
+    var W=WORDS[item.wIdx];
+    elQcount.textContent='Word '+(qi+1)+' of '+currentBank.length;
+    elQstem.textContent=item.def;
+    if(phase==='A'){
+      elQctx.innerHTML=item.ctx.replace('___','<span class="blank">&nbsp;</span>');
+      elIn.value=''; elIn.classList.remove('ok','no'); elIn.disabled=false;
+      elBtn.disabled=false; elBtn.textContent='Check my spelling';
+      setTimeout(function(){elIn.focus();},80);
+    } else {
+      elQctx.textContent='Pick the correct spelling.';
+      elPick.innerHTML='';
+      item.opts.forEach(function(o){
+        var b=document.createElement('button'); b.type='button'; b.className='pop'; b.textContent=o;
+        b.addEventListener('click',function(){
+          if(locked)return;
+          locked=true;
+          Array.prototype.forEach.call(elPick.children,function(c){c.style.pointerEvents='none';});
+          var ok=(o===W.w);
+          if(ok){ correct++; b.classList.add('ok'); elFb.classList.remove('no'); elFb.classList.add('ok'); elFb.textContent='Yes! "'+W.w+'" is right.'; }
+          else { b.classList.add('no'); Array.prototype.forEach.call(elPick.children,function(c){ if(c.textContent===W.w) c.classList.add('ok'); }); elFb.classList.remove('ok'); elFb.classList.add('no'); elFb.textContent='Not quite. The right spelling is "'+W.w+'".'; }
+          setTimeout(function(){
+            qi++;
+            if(qi<currentBank.length){ locked=false; showQ(); }
+            else finish();
+          }, ok?900:1500);
+        });
+        elPick.appendChild(b);
+      });
+    }
+    elFb.textContent=''; elFb.classList.remove('ok','no');
+    locked=false;
+  }
+
+  function checkAnswer(){
+    if(locked)return;
+    var item=currentBank[qi]; var W=WORDS[item.wIdx];
+    var v=(elIn.value||'').trim().toLowerCase();
+    var truth=W.w.toLowerCase();
+    var ok=(v===truth);
+    locked=true; elIn.disabled=true; elBtn.disabled=true;
+    if(ok){ correct++; elIn.classList.add('ok'); elFb.classList.add('ok'); elFb.textContent='Yes! "'+W.w+'" is right.'; }
+    else { elIn.classList.add('no'); elFb.classList.add('no'); elFb.textContent='Not quite. The word is "'+W.w+'".'; }
+    setTimeout(function(){
+      qi++;
+      if(qi<currentBank.length) showQ();
+      else finish();
+    }, ok?900:1500);
+  }
+
+  function finish(){
+    commitTime();
+    if(phase==='A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed=(correct>=PASS);
+      rec.formA=correct; rec.best=Math.max(rec.best||0, Math.round(correct/FORM_A.length*100));
+      document.getElementById('scorebig').textContent=correct+' of '+FORM_A.length;
+      var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
+          retry=document.getElementById('retry'), toGate=document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of '+FORM_A.length+' right. Form B opens in 24 hours to lock these in.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close.';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Look back at the words, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB=(correct>=PASS);
+      rec.formB=correct;
+      document.getElementById('scorebig').textContent=correct+' of '+FORM_B.length;
+      var rtitleB=document.getElementById('rtitle'), rmsgB=document.getElementById('rmsg'),
+          retryB=document.getElementById('retry'), toGateB=document.getElementById('toGate');
+      retryB.classList.add('hide'); toGateB.classList.add('hide');
+      if(passedB){
+        if((rec.formA||0)>=PASS && (rec.formB||0)>=PASS){ rec.status='passed'; rec.passedAt=Date.now(); } else { rec.status='formB-passed'; }
+        save(app); syncCloud();
+        rtitleB.textContent='Form B passed!'; rmsgB.textContent='Both forms cleared. Mastery complete.';
+      } else {
+        rec.status='formB-tried'; save(app); syncCloud();
+        rtitleB.textContent='Almost there.';
+        rmsgB.textContent='You got '+correct+' of '+FORM_B.length+'. Reread the word list and try Form B again.';
+        retryB.classList.remove('hide');
+      }
+    }
+  }
+
+  // ---- Gate countdown ----
+  function showGate(){
+    secResult.classList.add('hide'); secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB');
+    var cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){
+        cd.textContent='Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else { startBtn.classList.add('hide'); }
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  // ---- Event wiring ----
+  document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
+  document.getElementById('submitBtn').addEventListener('click',checkAnswer);
+  document.getElementById('typeIn').addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();checkAnswer();} });
+
+  document.getElementById('retry').addEventListener('click',function(){
+    secResult.classList.add('hide');
+    if(phase==='A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){startCheck('B');});
+
+  // ---- Resume logic ----
+  (function resume(){
+    if(rec.status==='passed'){
+      secLesson.classList.add('hide'); secFinal.classList.remove('hide');
+      return;
+    }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && !(rec.formB>=PASS)){
+      secLesson.classList.add('hide');
+      showGate();
+      return;
+    }
+  })();
+
+})();
+</script>
+<!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
+<script id="mastery-done-wiring">
+(function(){
+  "use strict";
+  function getKidId(){ try { var qk = (location.search.match(/[?&]kid=([^&]+)/)||[])[1]; if (qk) return decodeURIComponent(qk); var ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); return ar.activeKid || ar.activeStudent || ''; } catch(e){} return ''; }
+  function setKidName(){ var src = document.getElementById('__sname'); if (!src) return; var name = (src.textContent||'').trim(); if (!name) return; document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent = name; }); }
+  function setBackHref(){ var a = document.getElementById('msBack'); if (!a) return; var kid = getKidId(); if (kid) a.href = 'dashboard.html?kid=' + encodeURIComponent(kid); }
+  function findRec(){ try { var ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); var prog = ar.progress || {}; var pick = null; for (var kid in prog) { var subs = prog[kid]; for (var subj in subs) { var byday = subs[subj]; for (var day in byday) { var r = byday[day]; if (!r || typeof r !== 'object') continue; if (!pick || (r.lastAt||0) >= (pick.lastAt||0)) pick = r; } } } return pick; } catch(e) { return null; } }
+  function passScore(v){ if (v == null) return 0; if (typeof v === 'number') return v; if (typeof v === 'object' && typeof v.score === 'number') return v.score; return 0; }
+  function showMastery(a, b){ var sec = document.getElementById('masteryDone'); if (!sec) return; setKidName(); setBackHref(); var ea = document.getElementById('msFormA'); if (ea && typeof a === 'number') ea.textContent = a + ' / 8'; var eb = document.getElementById('msFormB'); if (eb && typeof b === 'number') eb.textContent = b + ' / 8'; ['badge','donebox','notyetBox','cred','gateinfo','feelRate','confRate','planText','saveReflect','fbcard','ptsrow','rtitle','rmsg','retry','toFormB','scorebig','toWrap','finalSec','wrap','gate','aMsg','aStatus','bStatus','scoreAtxt','scoreBtxt','result'].forEach(function(id){ var e = document.getElementById(id); if (e) { e.classList && e.classList.add('hide'); e.style.display='none'; } }); sec.classList.add('show'); try { sec.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e) { window.scrollTo(0,0); } }
+  function poll(){ var r = findRec(); if (!r) return; var a = passScore(r.formA), b = passScore(r.formB); var aMet = a >= 7, bMet = b >= 7; if (aMet && bMet) { if (r.status !== 'passed') { try { var ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); var prog = ar.progress || {}; for (var k in prog) for (var s in prog[k]) for (var d in prog[k][s]) { var rr = prog[k][s][d]; if (rr && rr.lastAt === r.lastAt && passScore(rr.formA)===a && passScore(rr.formB)===b) { rr.status='passed'; rr.passedAt = rr.passedAt || Date.now(); } } localStorage.setItem('edu.app', JSON.stringify(ar)); } catch(e){} } showMastery(a, b); return; } if (r.status === 'passed' && a === 0 && b === 0) { var best = Math.round(((r.best||0)/100) * 8); showMastery(best, best); return; } var ba = r.bestA||0, bb = r.bestB||0; if (ba >= 7 && bb >= 7) { if (r.status !== 'passed') { try { var ar2 = JSON.parse(localStorage.getItem('edu.app')||'{}'); var prog2 = ar2.progress || {}; for (var k2 in prog2) for (var s2 in prog2[k2]) for (var d2 in prog2[k2][s2]) { var rr2 = prog2[k2][s2][d2]; if (rr2 && (rr2.bestA||0)===ba && (rr2.bestB||0)===bb) { rr2.status='passed'; rr2.passedAt = rr2.passedAt || Date.now(); } } localStorage.setItem('edu.app', JSON.stringify(ar2)); } catch(e){} } showMastery(ba, bb); } }
+  document.addEventListener('DOMContentLoaded', function(){ setKidName(); setBackHref(); setTimeout(poll, 60); setTimeout(poll, 400); document.addEventListener('click', function(){ setTimeout(poll, 200); }, true); document.addEventListener('visibilitychange', poll); window.addEventListener('storage', poll); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mastery learning lesson aligned to a verbatim Missouri Learning Standard. Auto-graded, kid-independent.">
+<title>Story Lab, Author's Purpose</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+/* LESSON_BG_ANIM_V1 */
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(181,70,47,.10)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(90,122,74,.08)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(184,138,45,.06)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(181,70,47,.10);--bg-blob-2:rgba(90,122,74,.08);--bg-blob-3:rgba(184,138,45,.06);}
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a32;
+   --inform:#2a5d8a;--persuade:#b5462f;--entertain:#7a5a2a;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(30px,5.5vw,44px);line-height:1.04;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .pie{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+  .pie .col{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;text-align:center;}
+  .pie .col .letter{font-family:'Fraunces';font-weight:600;font-size:30px;line-height:1;display:inline-block;width:42px;height:42px;border-radius:50%;color:#fff;margin-bottom:6px;padding-top:6px;}
+  .pie .col.i .letter{background:var(--inform);}
+  .pie .col.p .letter{background:var(--persuade);}
+  .pie .col.e .letter{background:var(--entertain);}
+  .pie .col .nm{font-family:'Fraunces';font-weight:600;font-size:18px;color:var(--ink);}
+  .pie .col .ds{font-size:14px;color:var(--ink2);margin-top:4px;}
+  .pie .col.i{border-left:4px solid var(--inform);}
+  .pie .col.p{border-left:4px solid var(--persuade);}
+  .pie .col.e{border-left:4px solid var(--entertain);}
+  .clues-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:12px;}
+  .cluecard{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbf5ea;}
+  .cluecard .h{font-family:'Fraunces';font-weight:600;color:var(--ink);}
+  .cluecard .h.i{color:var(--inform);}
+  .cluecard .h.p{color:var(--persuade);}
+  .cluecard .h.e{color:var(--entertain);}
+  .cluecard ul{list-style:disc;margin-left:18px;margin-top:6px;font-size:14px;color:var(--ink2);}
+  .cluecard ul li{margin:2px 0;}
+  .passage{background:#fbf5ea;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:17px;color:var(--ink);font-family:'Newsreader',Georgia,serif;line-height:1.55;font-style:italic;}
+  .qrow{margin-top:14px;}
+  .qrow .ql{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--accent-d);letter-spacing:.04em;text-transform:uppercase;}
+  .qrow .q{font-family:'Fraunces';font-weight:600;font-size:17px;margin-top:4px;margin-bottom:8px;}
+  .opts3{display:flex;flex-direction:column;gap:8px;}
+  .opt3{font:inherit;font-size:16px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .opt3:hover{border-color:var(--accent);}
+  .opt3.ok{border-color:var(--good);background:#eef5ea;color:var(--good);font-weight:600;}
+  .opt3.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .opt3:disabled{cursor:default;}
+  .stagefb{margin-top:10px;font-size:15px;min-height:1.4em;color:var(--ink2);}
+  .stagefb.ok{color:var(--good);font-weight:600;} .stagefb.try{color:var(--accent-d);font-weight:600;}
+  .rnext{margin-top:12px;}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .gateinfo{margin-top:10px;font-size:14px;color:var(--ink2);text-align:center;}
+  .gatebox{background:#f3ead9;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+  .gatebox .cd{font-size:36px;font-weight:700;font-family:'Fraunces',serif;color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+  .gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} *{animation:none !important;}}
+
+  /* HERO_ILLO_V1: three book covers labeled INFORM, PERSUADE, ENTERTAIN with distinct cues */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .shelf{stroke:var(--ink2);stroke-width:2;stroke-linecap:round;}
+  .lesson-hero .book{stroke:#2a2018;stroke-width:1.5;}
+  .lesson-hero .book.i{fill:var(--inform);}
+  .lesson-hero .book.p{fill:var(--persuade);}
+  .lesson-hero .book.e{fill:var(--entertain);}
+  .lesson-hero .book-spine{fill:rgba(0,0,0,.2);}
+  .lesson-hero .label{font-family:'Fraunces',serif;font-weight:600;font-size:13px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;fill:#fff;}
+  .lesson-hero .desc{font-family:'Fraunces',serif;font-style:italic;font-size:10px;text-anchor:middle;fill:#fce4dc;}
+  .lesson-hero .symbol{stroke:#fff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .symbol-fill{fill:#fff;}
+  .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;fill:var(--mute);}
+  .lesson-hero .pie-mark{font-family:'Fraunces',serif;font-weight:600;font-size:28px;text-anchor:middle;fill:#fff;}
+</style>
+
+<style id="mastery-done-styles">
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f9d6b); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f9d6b); margin: 8px 0; }
+.mastery-msg { color: var(--ink2, #4a4566); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e8f7f0; border: 2px solid #bce6d8; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; color: var(--good, #1f9d6b); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #4a4566); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #b5462f); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #8c3320); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #b5462f); outline-offset: 3px; }
+</style>
+
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.R.3.A.a</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Chapter five</div>
+    <h1>Author's Purpose</h1>
+    <p class="opener"><span class="dropcap">E</span>very author writes for a reason. Some want to teach you a fact. Some want to talk you into doing something. Some want to make you laugh or feel something. Spotting that reason helps you read better. Use the word <b>PIE</b>: Persuade, Inform, Entertain.</p>
+    <p class="mission">By the end you will name the author's purpose for a short text and pick the clue that tells you.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Explain the author's purpose.</div>
+
+    <!-- HERO_ILLO_V1: three book covers labeled INFORM, PERSUADE, ENTERTAIN with visual cues -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="Three book covers stand on a shelf. The first is blue and labeled INFORM with a fact diagram. The middle is red and labeled PERSUADE with a thumbs-up symbol. The third is brown and labeled ENTERTAIN with a smiling shape.">
+        <text class="cap" x="240" y="22">A book to ...</text>
+        <g transform="translate(40 40)">
+          <rect class="book i" x="0" y="0" width="110" height="160" rx="4"/>
+          <rect class="book-spine" x="0" y="0" width="10" height="160"/>
+          <text class="label" x="60" y="40">INFORM</text>
+          <text class="desc" x="60" y="56">give you facts</text>
+          <line class="symbol" x1="30" y1="86" x2="90" y2="86"/>
+          <line class="symbol" x1="30" y1="100" x2="80" y2="100"/>
+          <line class="symbol" x1="30" y1="114" x2="86" y2="114"/>
+          <rect class="symbol-fill" x="30" y="128" width="60" height="14" rx="2"/>
+          <line class="symbol" x1="36" y1="135" x2="84" y2="135" stroke="var(--inform)"/>
+        </g>
+        <g transform="translate(185 40)">
+          <rect class="book p" x="0" y="0" width="110" height="160" rx="4"/>
+          <rect class="book-spine" x="0" y="0" width="10" height="160"/>
+          <text class="label" x="60" y="40">PERSUADE</text>
+          <text class="desc" x="60" y="56">talk you into</text>
+          <text class="desc" x="60" y="68">something</text>
+          <circle class="symbol" cx="60" cy="110" r="22"/>
+          <path class="symbol-fill" d="M50 110 Q50 96 60 96 Q70 96 70 110 L70 124 L50 124 Z"/>
+          <path class="symbol-fill" d="M50 124 L70 124 L74 130 L46 130 Z"/>
+        </g>
+        <g transform="translate(330 40)">
+          <rect class="book e" x="0" y="0" width="110" height="160" rx="4"/>
+          <rect class="book-spine" x="0" y="0" width="10" height="160"/>
+          <text class="label" x="60" y="40">ENTERTAIN</text>
+          <text class="desc" x="60" y="56">make it fun</text>
+          <circle class="symbol" cx="60" cy="106" r="22"/>
+          <circle class="symbol-fill" cx="52" cy="100" r="3"/>
+          <circle class="symbol-fill" cx="68" cy="100" r="3"/>
+          <path class="symbol" d="M48 112 Q60 124 72 112"/>
+        </g>
+        <line class="shelf" x1="20" y1="206" x2="460" y2="206"/>
+        <text class="cap" x="240" y="232">three reasons authors write</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>PIE: three reasons authors write</h2></div>
+      <p class="lead">Authors usually have one big reason for writing. Three letters help you remember them. <b>P</b> for persuade. <b>I</b> for inform. <b>E</b> for entertain.</p>
+      <div class="pie">
+        <div class="col p"><div class="letter">P</div><div class="nm">Persuade</div><div class="ds">Try to talk you into something. Get you to agree or do something.</div></div>
+        <div class="col i"><div class="letter">I</div><div class="nm">Inform</div><div class="ds">Teach you facts. Tell you how something works.</div></div>
+        <div class="col e"><div class="letter">E</div><div class="nm">Entertain</div><div class="ds">Tell a fun story. Make you laugh, feel, or wonder.</div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>How to tell which is which</h2></div>
+      <p class="lead">Every purpose leaves clues on the page. Learn the clues and you can name the purpose fast.</p>
+      <div class="clues-row">
+        <div class="cluecard"><div class="h i">Inform clues</div><ul><li>Real facts and dates</li><li>Headings and labels</li><li>Sounds like a textbook</li><li>Lots of "is" and "are"</li></ul></div>
+        <div class="cluecard"><div class="h p">Persuade clues</div><ul><li>"You should ..."</li><li>"The best way ..."</li><li>Strong opinion words</li><li>Reasons to agree</li></ul></div>
+        <div class="cluecard"><div class="h e">Entertain clues</div><ul><li>Made-up characters</li><li>"Once there was ..."</li><li>Feelings and surprise</li><li>Funny or scary parts</li></ul></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Try it: name the purpose</h2></div>
+      <p class="lead">Read each short passage. Pick the author's purpose. Then pick the line that tells you.</p>
+      <div id="rounds"></div>
+      <button class="cta rnext hide" id="rnext">Next passage</button>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">If a text has facts in it, it must be there to inform.</div><div style="color:var(--ink2)">Not always. A persuade text may use a fact or two to back up its opinion. The key is the whole purpose. Ask: is the author trying to tell me what is true, talk me into something, or tell a story? The strongest clue wins.</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I can spot the purpose. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span id="formlabel">Form A</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You passed Form A. To prove the skill stuck, come back tomorrow for Form B. Same skill, new questions.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="gateinfo hide" id="gateinfo"></div>
+    </div>
+    <button class="cta hide" id="toFormB">Next: spaced retention check</button>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);"><span id="__sname">Amelia</span> &middot; Reading &middot; Standard 3.R.3.A.a</footer>
+
+<section id="masteryDone" class="mastery-complete" aria-live="polite">
+  <div class="mastery-card">
+    <div class="mastery-badge" aria-hidden="true">
+      <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+        <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>You did it!</h2>
+    <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+    <div class="mastery-stats">
+      <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+      <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+    </div>
+    <div class="mastery-cta">
+      <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};
+  __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='3.R.3.A.a',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname'); if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  var ROUNDS=[
+    {
+      passage:'"Every kid in our school should bring a reusable water bottle. Plastic bottles end up in the trash, and we go through hundreds of them each month. A reusable bottle saves money and is better for our planet."',
+      purpQ:'What is the author\'s purpose?',
+      purps:[
+        {t:'Inform', ok:false, why:'There are facts, but the whole point is to talk you into bringing a reusable bottle. That makes it persuade.'},
+        {t:'Persuade', ok:true, why:'Yes. "Every kid should ..." is a strong opinion. The author is trying to talk you into doing something.'},
+        {t:'Entertain', ok:false, why:'There is no story or fun part. The author wants action, not laughs.'}
+      ],
+      cQ:'Which line is the strongest clue?',
+      cs:[
+        {t:'"Every kid in our school should bring a reusable water bottle."', ok:true, why:'Yes. The word "should" tells you the author wants to talk you into doing it.'},
+        {t:'"Plastic bottles end up in the trash."', ok:false, why:'That is a fact used as backup. The "should" line is the clearer persuade clue.'},
+        {t:'"A reusable bottle saves money."', ok:false, why:'That is a reason. The opinion sentence is the stronger clue.'}
+      ]
+    },
+    {
+      passage:'"Bats are mammals that fly at night. They use sound to find bugs. A small bat can eat over 1,000 bugs in one hour. Bats live on every continent except Antarctica."',
+      purpQ:'What is the author\'s purpose?',
+      purps:[
+        {t:'Persuade', ok:false, why:'No opinion words. The author is not telling you what to do. Just sharing facts.'},
+        {t:'Entertain', ok:false, why:'No story, no characters, no surprise ending. Just facts about bats.'},
+        {t:'Inform', ok:true, why:'Yes. Real facts about bats. No opinion, no story. The purpose is to teach you.'}
+      ],
+      cQ:'Which line is the strongest clue?',
+      cs:[
+        {t:'"A small bat can eat over 1,000 bugs in one hour."', ok:true, why:'Yes. A real fact with a number is a strong inform clue.'},
+        {t:'"Bats are mammals."', ok:false, why:'That is also a fact, but the eating fact has a number and feels more "teach you something."'},
+        {t:'"Bats live on every continent except Antarctica."', ok:false, why:'That is another fact, but the bug fact is the clearest "inform" clue.'}
+      ]
+    },
+    {
+      passage:'"Once there was a goat who thought he could ski. He climbed the hill, strapped on his too-small skis, and yelled, \'Look out below!\' His sister covered her eyes. Down he went, missed three trees, and landed right in a snowdrift."',
+      purpQ:'What is the author\'s purpose?',
+      purps:[
+        {t:'Entertain', ok:true, why:'Yes. A made-up goat, a funny scene, a surprise landing. That is entertain.'},
+        {t:'Inform', ok:false, why:'Goats do not really ski. This is made up. It is not teaching real facts.'},
+        {t:'Persuade', ok:false, why:'The author is not telling you to do anything. They are telling a fun story.'}
+      ],
+      cQ:'Which line is the strongest clue?',
+      cs:[
+        {t:'"Once there was a goat who thought he could ski."', ok:true, why:'Yes. "Once there was a ..." is a classic entertain opener.'},
+        {t:'"His sister covered her eyes."', ok:false, why:'That is a fun part, but the "Once there was" opener is the clearest entertain clue.'},
+        {t:'"He climbed the hill."', ok:false, why:'That is just an action. The opener line is the strongest clue.'}
+      ]
+    }
+  ];
+  var rIdx=0, rbox=document.getElementById('rounds'), rnext=document.getElementById('rnext');
+  function render(){
+    var r=ROUNDS[rIdx]; rbox.innerHTML='';
+    var p=document.createElement('div'); p.className='passage'; p.textContent=r.passage; rbox.appendChild(p);
+    var qr=document.createElement('div'); qr.className='qrow';
+    qr.innerHTML='<div class="ql">Step 1, pick the purpose</div><div class="q">'+r.purpQ+'</div>';
+    var opts=document.createElement('div'); opts.className='opts3';
+    var fb=document.createElement('div'); fb.className='stagefb';
+    r.purps.forEach(function(o){
+      var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.textContent=o.t;
+      b.addEventListener('click',function(){
+        Array.prototype.forEach.call(opts.children,function(x){x.disabled=true;});
+        if(o.ok){ b.classList.add('ok'); fb.className='stagefb ok'; fb.textContent=o.why; setTimeout(showCue,700); }
+        else { b.classList.add('no'); fb.className='stagefb try'; fb.textContent=o.why;
+          Array.prototype.forEach.call(opts.children,function(x,k){ if(r.purps[k].ok) x.classList.add('ok'); });
+          setTimeout(showCue,1300);
+        }
+      });
+      opts.appendChild(b);
+    });
+    qr.appendChild(opts); qr.appendChild(fb); rbox.appendChild(qr);
+    function showCue(){
+      var qr2=document.createElement('div'); qr2.className='qrow';
+      qr2.innerHTML='<div class="ql">Step 2, pick the clue line</div><div class="q">'+r.cQ+'</div>';
+      var op2=document.createElement('div'); op2.className='opts3';
+      var fb2=document.createElement('div'); fb2.className='stagefb';
+      r.cs.forEach(function(o){
+        var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.textContent=o.t;
+        b.addEventListener('click',function(){
+          Array.prototype.forEach.call(op2.children,function(x){x.disabled=true;});
+          if(o.ok){ b.classList.add('ok'); fb2.className='stagefb ok'; fb2.textContent=o.why; }
+          else { b.classList.add('no'); fb2.className='stagefb try'; fb2.textContent=o.why;
+            Array.prototype.forEach.call(op2.children,function(x,k){ if(r.cs[k].ok) x.classList.add('ok'); });
+          }
+          if(rIdx<ROUNDS.length-1){ rnext.classList.remove('hide'); }
+          else { rnext.textContent='You worked through all three. Scroll down to keep going.'; rnext.classList.remove('hide'); rnext.disabled=true; rnext.style.opacity='.7'; }
+        });
+        op2.appendChild(b);
+      });
+      qr2.appendChild(op2); qr2.appendChild(fb2); rbox.appendChild(qr2);
+    }
+  }
+  rnext.addEventListener('click',function(){ if(rIdx<ROUNDS.length-1){ rIdx++; rnext.classList.add('hide'); render(); } });
+  render();
+
+  var FORMA=[
+    {q:'In <b>PIE</b>, the P stands for ...',o:['perform','persuade','print'],a:1,why:'P is for persuade: try to talk the reader into something.'},
+    {q:'In PIE, the I stands for ...',o:['imagine','invent','inform'],a:2,why:'I is for inform: teach the reader real facts.'},
+    {q:'In PIE, the E stands for ...',o:['entertain','explain','end'],a:0,why:'E is for entertain: tell a fun story, make the reader laugh or feel.'},
+    {q:'A book of dinosaur facts is mostly there to ...',o:['inform','persuade','entertain'],a:0,why:'A book of facts teaches you about dinosaurs. That is inform.'},
+    {q:'A sign that says "Vote for Mia for class president" is mostly there to ...',o:['inform','persuade','entertain'],a:1,why:'It is trying to talk you into voting for Mia. That is persuade.'},
+    {q:'A made-up story about a talking turtle who races a hare is mostly there to ...',o:['inform','persuade','entertain'],a:2,why:'A made-up animal story is for fun. That is entertain.'},
+    {q:'Which line is a strong <b>persuade</b> clue?',o:['"You should always wear a helmet."','"Bikes have two wheels."','"Once there was a fast bike."'],a:0,why:'"You should" is a classic persuade clue.'},
+    {q:'Which line is a strong <b>inform</b> clue?',o:['"The bike pedaled by itself, laughing."','"A bike has two wheels and a frame."','"You should buy a bike."'],a:1,why:'A real fact with no opinion is an inform clue.'}
+  ];
+  var FORMB=[
+    {q:'A story that begins <i>"Once there was a frog who wore a hat"</i> is mostly there to ...',o:['entertain','inform','persuade'],a:0,why:'A made-up frog in a hat is a fun story. That is entertain.'},
+    {q:'A page that explains how a heart pumps blood is mostly there to ...',o:['persuade','inform','entertain'],a:1,why:'Real facts about how something works is inform.'},
+    {q:'An ad that says "Try Best Burger today, you will love it" is mostly there to ...',o:['inform','entertain','persuade'],a:2,why:'It is trying to talk you into trying it. That is persuade.'},
+    {q:'Which line is a strong <b>entertain</b> clue?',o:['"You should drink water."','"Water is made of H and O."','"The water bottle hopped down the hall, singing."'],a:2,why:'A water bottle that hops and sings is a made-up, fun moment. That is entertain.'},
+    {q:'Which sentence is mostly to <b>inform</b>?',o:['"A bee has six legs and two wings."','"You should plant more flowers."','"The bee buzzed and danced a jig."'],a:0,why:'A real fact with a number is inform.'},
+    {q:'Which sentence is mostly to <b>persuade</b>?',o:['"Once there was a kid who never slept."','"You should read every day, even for ten minutes."','"Books have pages."'],a:1,why:'"You should" with a reason is persuade.'},
+    {q:'A text can have a fact in it and still be ...',o:['persuade','math','poetry only'],a:0,why:'Persuade texts often use a fact or two to back up their opinion. The whole purpose is still persuade.'},
+    {q:'The best way to find the author\'s purpose is to ask ...',o:['"How long is the text?"','"Did I like it?"','"Is the author teaching, telling a story, or trying to talk me into something?"'],a:2,why:'Ask which big PIE job the author is doing. That gives you the purpose.'}
+  ];
+
+  var FORM='A', QS=FORMA, qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false;
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'),
+      secResult=document.getElementById('result'), secGate=document.getElementById('gate');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'),
+      elTfill=document.getElementById('tfill'), elForm=document.getElementById('formlabel');
+
+  function startCheck(which){
+    commitTime();
+    FORM=which; QS=(which==='A')?FORMA:FORMB; elForm.textContent='Form '+which;
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secGate.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ();
+  }
+  function showQ(){
+    locked=false; var item=QS[qi];
+    elCount.textContent='Question '+(qi+1)+' of '+QS.length;
+    elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){
+      var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,item);});
+      elOpts.appendChild(b);
+    });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s';
+    clearInterval(timer);
+    timer=setInterval(function(){
+      timeLeft--; if(timeLeft<0)timeLeft=0;
+      elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s';
+      if(timeLeft<=8)elTfill.classList.add('low');
+      if(timeLeft===0){ clearInterval(timer); autoAdv(item); }
+    },1000);
+  }
+  function autoAdv(item){
+    if(locked)return; locked=true;
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct'); c.style.pointerEvents='none';
+    });
+    setTimeout(next,1100);
+  }
+  function answer(i,btn,item){
+    if(locked)return; locked=true; clearInterval(timer);
+    var ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct');
+      if(idx===i&&!ok)c.classList.add('bad');
+      c.style.pointerEvents='none';
+    });
+    if(ok) correct++;
+    setTimeout(next, ok?650:1100);
+  }
+  function next(){ qi++; if(qi<QS.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct>=PASS);
+    document.getElementById('scorebig').textContent=pct+'%';
+    var retry=document.getElementById('retry'), toB=document.getElementById('toFormB'),
+        rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    toB.classList.add('hide'); retry.classList.add('hide');
+    if(FORM==='A'){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of '+QS.length+' right. Form B opens in 24 hours to lock the skill in.';
+        toB.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close!';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Look back at the stations, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      rec.formB=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status='formB-tried'; save(app);
+        rtitle.textContent='Almost there.';
+        rmsg.textContent='You need 7 of 8 on Form B. You got '+correct+'. Reread the stations and try again.';
+        retry.classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide'); secLesson.classList.add('hide');
+    secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB'), cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){ cd.textContent='Form B is ready.'; startBtn.classList.remove('hide'); return; }
+      startBtn.classList.add('hide');
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  function showMastery(a,b){
+    var sec=document.getElementById('masteryDone'); if(!sec) return;
+    var ea=document.getElementById('msFormA'); if(ea) ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB'); if(eb) eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if(rec.status==='passed'){ showMastery(rec.formA||0, rec.formB||0); return; }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && (rec.formB||0)<PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){ startCheck('A'); });
+  document.getElementById('toFormB').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){ startCheck('B'); });
+  document.getElementById('retry').addEventListener('click',function(){
+    secResult.classList.add('hide');
+    if(FORM==='A') startCheck('A'); else startCheck('B');
+  });
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

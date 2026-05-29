@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mastery learning lesson aligned to a verbatim Missouri Learning Standard. Auto-graded, kid-independent.">
+<title>Story Lab, Find the Big Idea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+/* LESSON_BG_ANIM_V1 */
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(181,70,47,.10)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(90,122,74,.08)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(184,138,45,.06)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(181,70,47,.10);--bg-blob-2:rgba(90,122,74,.08);--bg-blob-3:rgba(184,138,45,.06);}
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a32;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(30px,5.5vw,44px);line-height:1.04;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .pieces{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
+  .piece{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;}
+  .piece.big{border-left:4px solid var(--accent);}
+  .piece.det{border-left:4px solid var(--alt);}
+  .piece .lab{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);text-transform:uppercase;letter-spacing:.05em;}
+  .piece .ex{font-family:'Newsreader',Georgia,serif;font-size:16px;color:var(--ink);margin-top:4px;}
+  .par{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .par .col{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;}
+  .par .col h3{font-family:'Fraunces';font-size:16px;color:var(--accent-d);font-style:italic;margin-bottom:6px;}
+  .par .col p{font-family:'Newsreader',Georgia,serif;font-size:15px;color:var(--ink);font-style:italic;}
+  .passage{background:#fbf5ea;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:17px;color:var(--ink);font-family:'Newsreader',Georgia,serif;line-height:1.55;}
+  .qrow{margin-top:14px;}
+  .qrow .ql{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--accent-d);letter-spacing:.04em;text-transform:uppercase;}
+  .qrow .q{font-family:'Fraunces';font-weight:600;font-size:17px;margin-top:4px;margin-bottom:8px;}
+  .opts3{display:flex;flex-direction:column;gap:8px;}
+  .opt3{font:inherit;font-size:16px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .opt3:hover{border-color:var(--accent);}
+  .opt3.ok{border-color:var(--good);background:#eef5ea;color:var(--good);font-weight:600;}
+  .opt3.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .opt3:disabled{cursor:default;}
+  .stagefb{margin-top:10px;font-size:15px;min-height:1.4em;color:var(--ink2);}
+  .stagefb.ok{color:var(--good);font-weight:600;} .stagefb.try{color:var(--accent-d);font-weight:600;}
+  .rnext{margin-top:12px;}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .gateinfo{margin-top:10px;font-size:14px;color:var(--ink2);text-align:center;}
+  .gatebox{background:#f3ead9;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+  .gatebox .cd{font-size:36px;font-weight:700;font-family:'Fraunces',serif;color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+  .gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} *{animation:none !important;}}
+
+  /* HERO_ILLO_V1: big idea label up top, three supporting detail boxes underneath, connected */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .big-box{fill:var(--accent);stroke:#5a2818;stroke-width:1.5;}
+  .lesson-hero .big-cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;letter-spacing:.08em;text-transform:uppercase;fill:#fce4dc;}
+  .lesson-hero .big-txt{font-family:'Fraunces',serif;font-weight:600;font-size:16px;text-anchor:middle;fill:#fff;}
+  .lesson-hero .det-box{fill:#fbf5ea;stroke:var(--alt);stroke-width:1.4;}
+  .lesson-hero .det-cap{font-family:'Fraunces',serif;font-style:italic;font-size:10px;text-anchor:middle;letter-spacing:.08em;text-transform:uppercase;fill:#3f5a32;}
+  .lesson-hero .det-txt{font-family:'Fraunces',serif;font-size:11px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .conn{stroke:var(--accent-d);stroke-width:1.6;stroke-linecap:round;fill:none;}
+  .lesson-hero .conn-d{stroke-dasharray:4 4;}
+  .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;fill:var(--mute);}
+  .lesson-hero .num{fill:var(--alt);}
+  .lesson-hero .num-txt{font-family:'Fraunces',serif;font-weight:600;font-size:13px;text-anchor:middle;fill:#fff;}
+</style>
+
+<style id="mastery-done-styles">
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f9d6b); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f9d6b); margin: 8px 0; }
+.mastery-msg { color: var(--ink2, #4a4566); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e8f7f0; border: 2px solid #bce6d8; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; color: var(--good, #1f9d6b); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #4a4566); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #b5462f); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #8c3320); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #b5462f); outline-offset: 3px; }
+</style>
+
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.R.2.A.d</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Chapter four</div>
+    <h1>Find the Big Idea</h1>
+    <p class="opener"><span class="dropcap">A</span> story or paragraph is built around one big idea. That big idea is what the whole thing is mostly about. The other sentences are details that hold the big idea up. A good reader spots the big idea and says it in their own words.</p>
+    <p class="mission">By the end you will name the big idea of a short text. You will say it in your own words. You will point to two details that back it up.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Paraphrase the big idea/themes and supporting details of texts.</div>
+
+    <!-- HERO_ILLO_V1: big idea label up top, three supporting detail boxes underneath, connected by lines -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="A red box at the top reads BIG IDEA. Three smaller boxes sit underneath it labeled detail one, detail two, and detail three. Lines connect each detail box up to the big idea box.">
+        <g transform="translate(140 18)">
+          <rect class="big-box" x="0" y="0" width="200" height="56" rx="8"/>
+          <text class="big-cap" x="100" y="20">the big idea</text>
+          <text class="big-txt" x="100" y="42">what it is mostly about</text>
+        </g>
+        <line class="conn conn-d" x1="240" y1="80" x2="240" y2="106"/>
+        <line class="conn" x1="240" y1="106" x2="80" y2="160"/>
+        <line class="conn" x1="240" y1="106" x2="240" y2="160"/>
+        <line class="conn" x1="240" y1="106" x2="400" y2="160"/>
+        <g transform="translate(20 160)">
+          <rect class="det-box" x="0" y="0" width="120" height="60" rx="8"/>
+          <circle class="num" cx="14" cy="14" r="9"/>
+          <text class="num-txt" x="14" y="18">1</text>
+          <text class="det-cap" x="60" y="22">detail</text>
+          <text class="det-txt" x="60" y="40">backs the big</text>
+          <text class="det-txt" x="60" y="52">idea up</text>
+        </g>
+        <g transform="translate(180 160)">
+          <rect class="det-box" x="0" y="0" width="120" height="60" rx="8"/>
+          <circle class="num" cx="14" cy="14" r="9"/>
+          <text class="num-txt" x="14" y="18">2</text>
+          <text class="det-cap" x="60" y="22">detail</text>
+          <text class="det-txt" x="60" y="40">backs the big</text>
+          <text class="det-txt" x="60" y="52">idea up</text>
+        </g>
+        <g transform="translate(340 160)">
+          <rect class="det-box" x="0" y="0" width="120" height="60" rx="8"/>
+          <circle class="num" cx="14" cy="14" r="9"/>
+          <text class="num-txt" x="14" y="18">3</text>
+          <text class="det-cap" x="60" y="22">detail</text>
+          <text class="det-txt" x="60" y="40">backs the big</text>
+          <text class="det-txt" x="60" y="52">idea up</text>
+        </g>
+        <text class="cap" x="240" y="234">all three details point to the same big idea</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>Big idea vs detail</h2></div>
+      <p class="lead">The <b>big idea</b> is what the whole thing is mostly about. A <b>detail</b> is one piece that holds it up. A big idea works for the whole text. A detail works for just one part.</p>
+      <div class="pieces">
+        <div class="piece big"><div class="lab">Big idea</div><div class="ex">Bees do important work for the food we eat.</div></div>
+        <div class="piece det"><div class="lab">Detail</div><div class="ex">Bees move pollen from one flower to another.</div></div>
+        <div class="piece det"><div class="lab">Detail</div><div class="ex">Apples and pumpkins need bees to grow well.</div></div>
+        <div class="piece det"><div class="lab">Detail</div><div class="ex">About one in three foods you eat needs a bee.</div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Paraphrase: say it in your own words</h2></div>
+      <p class="lead">When you <b>paraphrase</b>, you say the same idea in your own words. Not word for word from the book. Not longer than it needs to be. Just the heart of it.</p>
+      <div class="par">
+        <div class="col"><h3>The text says</h3><p>"The library hosts a free reading hour every Saturday so kids in the neighborhood can come share their favorite books."</p></div>
+        <div class="col"><h3>Your paraphrase</h3><p>The library has a free hour on Saturdays for kids to come share books they love.</p></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">Same big idea. Your words. A bit shorter. That is the move.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Try it: pick the big idea, then the details</h2></div>
+      <p class="lead">Read each short passage. First pick the big idea. Then pick a detail that supports it.</p>
+      <div id="rounds"></div>
+      <button class="cta rnext hide" id="rnext">Next passage</button>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">A small fact in the text is the big idea.</div><div style="color:var(--ink2)">No. A small fact is a detail. The big idea is what the whole text is about. If your "big idea" only fits one sentence, it is really a detail. Zoom out.</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I can find the big idea. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span id="formlabel">Form A</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You passed Form A. To prove the skill stuck, come back tomorrow for Form B. Same skill, new questions.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="gateinfo hide" id="gateinfo"></div>
+    </div>
+    <button class="cta hide" id="toFormB">Next: spaced retention check</button>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);"><span id="__sname">Amelia</span> &middot; Reading &middot; Standard 3.R.2.A.d</footer>
+
+<section id="masteryDone" class="mastery-complete" aria-live="polite">
+  <div class="mastery-card">
+    <div class="mastery-badge" aria-hidden="true">
+      <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+        <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>You did it!</h2>
+    <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+    <div class="mastery-stats">
+      <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+      <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+    </div>
+    <div class="mastery-cta">
+      <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};
+  __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='3.R.2.A.d',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname'); if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  var ROUNDS=[
+    {
+      passage:'Sea otters keep our oceans healthy. They eat sea urchins, which eat the kelp. With fewer urchins, more kelp can grow. Big kelp forests are home to lots of fish.',
+      bigQ:'Which is the best big idea for this passage?',
+      bigs:[
+        {t:'Sea otters help keep ocean life in balance.', ok:true, why:'Yes. Every sentence backs that idea up. That is the big idea.'},
+        {t:'Sea otters eat sea urchins.', ok:false, why:'That is a detail. It only fits one sentence. Zoom out.'},
+        {t:'Kelp grows tall in the ocean.', ok:false, why:'That is a small fact in the passage. The big idea is bigger.'}
+      ],
+      detQ:'Which sentence is a <b>detail</b> that backs the big idea up?',
+      dets:[
+        {t:'Sea otters keep our oceans healthy.', ok:false, why:'That sentence is the big idea itself, not a detail.'},
+        {t:'They eat sea urchins, which eat the kelp.', ok:true, why:'Yes. That is one piece of how otters help. It backs the big idea up.'},
+        {t:'Fish live in the ocean.', ok:false, why:'That is not in the passage. Pick a sentence from the text.'}
+      ]
+    },
+    {
+      passage:'Our school recycling club is making a real change. Last month we collected over 200 bottles. We taught a younger class how to sort plastics. We made signs for every classroom.',
+      bigQ:'Which is the best big idea?',
+      bigs:[
+        {t:'The recycling club is doing work that makes a difference.', ok:true, why:'Yes. Every detail in the paragraph is something the club did to help. That is the big idea.'},
+        {t:'The club made signs.', ok:false, why:'That is just one thing the club did. It is a detail.'},
+        {t:'Younger classes do not know how to recycle.', ok:false, why:'The passage does not say that. It says the club taught a younger class.'}
+      ],
+      detQ:'Which sentence is a <b>detail</b> that backs the big idea up?',
+      dets:[
+        {t:'Last month we collected over 200 bottles.', ok:true, why:'Yes. That is one thing the club did. It backs the big idea up.'},
+        {t:'Our school recycling club is making a real change.', ok:false, why:'That sentence is the big idea. It is not the detail.'},
+        {t:'Plastic is made in factories.', ok:false, why:'That is not in the passage. Pick from the text.'}
+      ]
+    },
+    {
+      passage:'Lia trains her dog Max every day. She uses small treats. She gives short, clear orders. She praises him fast when he gets it right. Max has learned six tricks.',
+      bigQ:'Which is the best big idea?',
+      bigs:[
+        {t:'Max loves treats.', ok:false, why:'That is one small detail. The big idea is bigger than treats.'},
+        {t:'Lia uses simple steps each day to train her dog.', ok:true, why:'Yes. Every sentence is part of how she trains Max. That is the big idea.'},
+        {t:'Dogs cannot learn tricks.', ok:false, why:'The passage shows Max learned six tricks. This is the opposite of the text.'}
+      ],
+      detQ:'Which sentence is a <b>detail</b> that backs the big idea up?',
+      dets:[
+        {t:'She gives short, clear orders.', ok:true, why:'Yes. That is one step Lia uses. It backs the big idea up.'},
+        {t:'Max has eaten dog food.', ok:false, why:'That is not in the passage. Pick from the text.'},
+        {t:'Dogs are pets.', ok:false, why:'That is a general fact, not a detail from this paragraph.'}
+      ]
+    }
+  ];
+  var rIdx=0, rbox=document.getElementById('rounds'), rnext=document.getElementById('rnext');
+  function render(){
+    var r=ROUNDS[rIdx]; rbox.innerHTML='';
+    var p=document.createElement('div'); p.className='passage'; p.textContent=r.passage; rbox.appendChild(p);
+    var qr=document.createElement('div'); qr.className='qrow';
+    qr.innerHTML='<div class="ql">Step 1, pick the big idea</div><div class="q">'+r.bigQ+'</div>';
+    var opts=document.createElement('div'); opts.className='opts3';
+    var fb=document.createElement('div'); fb.className='stagefb';
+    r.bigs.forEach(function(o){
+      var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.innerHTML=o.t;
+      b.addEventListener('click',function(){
+        Array.prototype.forEach.call(opts.children,function(x){x.disabled=true;});
+        if(o.ok){ b.classList.add('ok'); fb.className='stagefb ok'; fb.textContent=o.why; setTimeout(showDet,700); }
+        else { b.classList.add('no'); fb.className='stagefb try'; fb.textContent=o.why;
+          Array.prototype.forEach.call(opts.children,function(x,k){ if(r.bigs[k].ok) x.classList.add('ok'); });
+          setTimeout(showDet,1300);
+        }
+      });
+      opts.appendChild(b);
+    });
+    qr.appendChild(opts); qr.appendChild(fb); rbox.appendChild(qr);
+    function showDet(){
+      var qr2=document.createElement('div'); qr2.className='qrow';
+      qr2.innerHTML='<div class="ql">Step 2, pick a detail that backs it up</div><div class="q">'+r.detQ+'</div>';
+      var op2=document.createElement('div'); op2.className='opts3';
+      var fb2=document.createElement('div'); fb2.className='stagefb';
+      r.dets.forEach(function(o){
+        var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.textContent=o.t;
+        b.addEventListener('click',function(){
+          Array.prototype.forEach.call(op2.children,function(x){x.disabled=true;});
+          if(o.ok){ b.classList.add('ok'); fb2.className='stagefb ok'; fb2.textContent=o.why; }
+          else { b.classList.add('no'); fb2.className='stagefb try'; fb2.textContent=o.why;
+            Array.prototype.forEach.call(op2.children,function(x,k){ if(r.dets[k].ok) x.classList.add('ok'); });
+          }
+          if(rIdx<ROUNDS.length-1){ rnext.classList.remove('hide'); }
+          else { rnext.textContent='You worked through all three. Scroll down to keep going.'; rnext.classList.remove('hide'); rnext.disabled=true; rnext.style.opacity='.7'; }
+        });
+        op2.appendChild(b);
+      });
+      qr2.appendChild(op2); qr2.appendChild(fb2); rbox.appendChild(qr2);
+    }
+  }
+  rnext.addEventListener('click',function(){ if(rIdx<ROUNDS.length-1){ rIdx++; rnext.classList.add('hide'); render(); } });
+  render();
+
+  var FORMA=[
+    {q:'The <b>big idea</b> is ...',o:['what the whole text is mostly about','the first sentence in the text','the longest word'],a:0,why:'The big idea is what the whole text is about. Details hold it up.'},
+    {q:'A <b>detail</b> is ...',o:['the title of the book','one piece of the text that holds the big idea up','the page number'],a:1,why:'A detail backs up the big idea. It is one piece, not the whole thing.'},
+    {q:'To <b>paraphrase</b> means ...',o:['copy it word for word','say the same idea in your own words','make the text twice as long'],a:1,why:'Paraphrasing is saying the same idea in your own, shorter words.'},
+    {q:'Read: <i>Bees move pollen between flowers. They help apples, almonds, and pumpkins grow. Many foods we eat need bees.</i> Best big idea?',o:['Apples are red','Bees do important work for the food we eat','Pollen is yellow'],a:1,why:'Every sentence points to that. That is the big idea.'},
+    {q:'Read the same passage. Which is a <b>detail</b>?',o:['Bees move pollen between flowers','The big idea is the lesson','Books are made of paper'],a:0,why:'Pollen moving is one detail that holds the big idea up.'},
+    {q:'A good test for a big idea is: does it fit ...',o:['only one sentence','the whole paragraph','only the title'],a:1,why:'A real big idea fits the whole paragraph, not just one sentence.'},
+    {q:'Which is a paraphrase of <i>"Many bees are losing their homes when fields are cleared"</i>?',o:['Bees lose homes when their fields get cleared away','Bees are buzzing yellow insects','Fields are big and flat'],a:0,why:'Same idea, your words. That is paraphrasing.'},
+    {q:'If your "big idea" only matches one sentence, it is really a ...',o:['detail','title','synonym'],a:0,why:'A big idea covers the whole text. A one-sentence match is a detail.'}
+  ];
+  var FORMB=[
+    {q:'A big idea works for ...',o:['only the first sentence','the whole text','only the last sentence'],a:1,why:'The big idea fits across the whole text.'},
+    {q:'A detail does what for the big idea?',o:['hides it','replaces it','holds it up'],a:2,why:'Details support the big idea.'},
+    {q:'Read: <i>Sea otters eat urchins. Urchins eat kelp. With fewer urchins, more kelp grows. Many fish live in kelp.</i> Best big idea?',o:['Sea otters keep ocean life in balance','Fish are colorful','Kelp tastes salty'],a:0,why:'Every sentence points to otters keeping the balance. That is the big idea.'},
+    {q:'From the same passage, which is a <b>detail</b>?',o:['Whales are big','Urchins eat kelp','The ocean is wet'],a:1,why:'Urchins eating kelp is a sentence from the text. It backs the big idea up.'},
+    {q:'Read: <i>Our class started a garden. We planted seeds, watered them, and pulled weeds. Now we have tomatoes.</i> Best big idea?',o:['Tomatoes are red','Pulling weeds is hard','Our class grew a garden by doing the work step by step'],a:2,why:'Every sentence is something the class did to grow the garden. That is the big idea.'},
+    {q:'Which is a paraphrase of <i>"Reading every day, even for a short time, makes you a better reader"</i>?',o:['A little reading each day makes you better at reading','Reading is hard','Books are heavy'],a:0,why:'Same idea in your words. That is a paraphrase.'},
+    {q:'If you cannot find one sentence that says the big idea, you should ...',o:['skip the text','ask the author','look at all the details and figure out what they share'],a:2,why:'A big idea is often shown by all the details together, not stated outright.'},
+    {q:'A big idea and a detail are ...',o:['the same thing','only in math','different; the big idea covers the whole text, a detail is one piece'],a:2,why:'Big idea covers the whole text; a detail is one piece that supports it.'}
+  ];
+
+  var FORM='A', QS=FORMA, qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false;
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'),
+      secResult=document.getElementById('result'), secGate=document.getElementById('gate');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'),
+      elTfill=document.getElementById('tfill'), elForm=document.getElementById('formlabel');
+
+  function startCheck(which){
+    commitTime();
+    FORM=which; QS=(which==='A')?FORMA:FORMB; elForm.textContent='Form '+which;
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secGate.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ();
+  }
+  function showQ(){
+    locked=false; var item=QS[qi];
+    elCount.textContent='Question '+(qi+1)+' of '+QS.length;
+    elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){
+      var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,item);});
+      elOpts.appendChild(b);
+    });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s';
+    clearInterval(timer);
+    timer=setInterval(function(){
+      timeLeft--; if(timeLeft<0)timeLeft=0;
+      elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s';
+      if(timeLeft<=8)elTfill.classList.add('low');
+      if(timeLeft===0){ clearInterval(timer); autoAdv(item); }
+    },1000);
+  }
+  function autoAdv(item){
+    if(locked)return; locked=true;
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct'); c.style.pointerEvents='none';
+    });
+    setTimeout(next,1100);
+  }
+  function answer(i,btn,item){
+    if(locked)return; locked=true; clearInterval(timer);
+    var ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct');
+      if(idx===i&&!ok)c.classList.add('bad');
+      c.style.pointerEvents='none';
+    });
+    if(ok) correct++;
+    setTimeout(next, ok?650:1100);
+  }
+  function next(){ qi++; if(qi<QS.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct>=PASS);
+    document.getElementById('scorebig').textContent=pct+'%';
+    var retry=document.getElementById('retry'), toB=document.getElementById('toFormB'),
+        rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    toB.classList.add('hide'); retry.classList.add('hide');
+    if(FORM==='A'){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of '+QS.length+' right. Form B opens in 24 hours to lock the skill in.';
+        toB.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close!';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Look back at the stations, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      rec.formB=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status='formB-tried'; save(app);
+        rtitle.textContent='Almost there.';
+        rmsg.textContent='You need 7 of 8 on Form B. You got '+correct+'. Reread the stations and try again.';
+        retry.classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide'); secLesson.classList.add('hide');
+    secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB'), cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){ cd.textContent='Form B is ready.'; startBtn.classList.remove('hide'); return; }
+      startBtn.classList.add('hide');
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  function showMastery(a,b){
+    var sec=document.getElementById('masteryDone'); if(!sec) return;
+    var ea=document.getElementById('msFormA'); if(ea) ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB'); if(eb) eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if(rec.status==='passed'){ showMastery(rec.formA||0, rec.formB||0); return; }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && (rec.formB||0)<PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){ startCheck('A'); });
+  document.getElementById('toFormB').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){ startCheck('B'); });
+  document.getElementById('retry').addEventListener('click',function(){
+    secResult.classList.add('hide');
+    if(FORM==='A') startCheck('A'); else startCheck('B');
+  });
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

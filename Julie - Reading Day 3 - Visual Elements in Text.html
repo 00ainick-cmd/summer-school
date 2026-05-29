@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mastery learning lesson on interpreting visual elements in informational text, aligned to Missouri Learning Standard 8.RI.1.C. Auto-graded, kid-independent.">
+<title>Training Console &middot; Visual Elements in Text</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(255,59,20,.08)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(36,81,166,.10)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(255,200,100,.05)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+
+:root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mut:#828893;--line:#dcdcd2;
+ --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--gold:#a8780d;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:-1;background:
+   linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+   linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+   radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+.mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+
+.labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+.labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+
+.kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+.opener{font-size:18px;color:var(--ink);}
+.mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+.stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+.stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+
+.station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+.station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+
+.lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:580px;height:auto;display:block;}
+.lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+.lesson-hero .page{fill:#fbf8ef;stroke:var(--ink);stroke-width:1.4;stroke-linejoin:round;}
+.lesson-hero .ruleline{stroke:#cfc8b8;stroke-width:1;}
+.lesson-hero .bar{fill:var(--alt);}
+.lesson-hero .bar-hi{fill:var(--accent);}
+.lesson-hero .axis{stroke:var(--ink);stroke-width:1.2;fill:none;}
+.lesson-hero .ann{fill:none;stroke:var(--accent-d);stroke-width:1.4;}
+.lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+.lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+.lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+
+.ftable{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+.ftable th,.ftable td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+.ftable th{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
+.ftable td b{color:var(--accent-d);}
+
+.chartbox{background:#faf8f2;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:14px;text-align:center;}
+.chartbox svg{width:100%;max-width:420px;height:auto;display:block;margin:0 auto;}
+.chartbox .cap{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-top:8px;}
+
+.claim{margin-top:14px;font-weight:700;font-size:16.5px;}
+.claim span{color:var(--accent-d);}
+.evs{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+.ev{font:inherit;font-size:15.5px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:13px 15px;min-height:52px;cursor:pointer;color:var(--ink);}
+.ev:hover{border-color:var(--accent);}
+.ev.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+.ev.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+.ev:disabled{cursor:default;}
+.fbline{margin-top:12px;font-size:14.5px;min-height:1.3em;}
+.fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+.rnext{margin-top:12px;}
+
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+.cta:hover{background:var(--accent-d);}
+.cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:6px;font-family:'Spline Sans Mono';}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+.tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+.tfill.low{background:var(--red);}
+.qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt2{font:inherit;font-size:16.5px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+.opt2:hover{border-color:var(--accent);}
+.opt2.correct{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+.opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+.qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+
+.result{text-align:center;padding:14px 0;}
+.scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Anton';}
+.result h2{font-size:26px;font-weight:700;margin:10px 0 4px;font-family:'Anton';}
+
+.gatebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-size:36px;font-weight:700;font-family:'Anton';color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-family:'Spline Sans Mono';}
+
+footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-family:'Spline Sans Mono';}
+
+@media (prefers-reduced-motion:reduce){.tfill{transition:none;}*{animation:none!important;}}
+
+#masteryDone{display:none;margin:16px 0;}
+#masteryDone.show{display:block;}
+.mastery-card{background:var(--card);border:2px solid var(--good);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 16px 32px -28px rgba(31,122,77,.6);}
+.mastery-badge{margin:0 auto 14px;width:76px;height:76px;}
+.mastery-badge svg{width:100%;height:100%;display:block;}
+.mastery-card h2{font-family:'Anton';font-size:clamp(26px,5vw,36px);color:var(--good);margin:8px 0;}
+.mastery-msg{color:var(--ink2);max-width:46ch;margin:0 auto 18px;font-size:16px;line-height:1.5;}
+.mastery-stats{display:flex;justify-content:center;gap:22px;margin:14px 0 22px;flex-wrap:wrap;}
+.mastery-stats .stat{background:#e9f5ee;border:2px solid #bce0cc;border-radius:12px;padding:12px 18px;min-width:100px;}
+.mastery-stats .stat-num{display:block;font-family:'Anton';font-size:32px;font-weight:700;color:var(--good);line-height:1;}
+.mastery-stats .stat-lbl{display:block;margin-top:4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600;font-family:'Spline Sans Mono';}
+.mastery-cta a.cta{display:inline-block;text-decoration:none;width:auto;padding:14px 22px;}
+</style>
+</head>
+<body>
+
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <div class="labbar">
+    <span class="dotg" aria-hidden="true"></span>
+    Session 03 &middot; <b>Grade 8</b>
+    <span class="chip">Standard 8.RI.1.C</span>
+  </div>
+
+  <section id="lesson">
+
+    <div class="kicker">Session 03</div>
+    <h1>Visual Elements in Text</h1>
+    <p class="opener">A chart is not decoration. A photograph is not filler. In informational writing, every visual element advances the argument or supplies evidence the prose cannot deliver as efficiently.</p>
+    <p class="mission">By the end of this session you will read charts, graphs, maps, photographs, and infographics as integrated parts of an expository text, identifying what each visual contributes and how it relates to the written argument.</p>
+    <div class="stdtag">
+      <span class="l">What this session teaches</span>
+      Interpret visual elements of a text including those from different media and draw conclusions from them (when applicable).
+    </div>
+
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 580 280" role="img" aria-label="A two-column article page. The left column contains body text and a small bar chart with rising bars. The right column shows a labeled photograph rectangle. Both visuals are tagged with their contribution to the argument.">
+        <rect class="panel" x="6" y="6" width="568" height="268" rx="10"/>
+        <text class="headlbl" x="22" y="26">An article with two visuals</text>
+        <text class="mono" x="556" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mut);">prose &#8721; visual = argument</text>
+        <g transform="translate(28 48)">
+          <rect class="page" x="0" y="0" width="240" height="220" rx="3"/>
+          <text class="anton" x="14" y="22" font-size="11" fill="var(--ink)">URBAN TRANSIT REVIEW</text>
+          <line x1="14" y1="28" x2="226" y2="28" stroke="var(--ink)" stroke-width="1"/>
+          <g class="ruleline">
+            <line x1="14" y1="42" x2="226" y2="42"/>
+            <line x1="14" y1="56" x2="226" y2="56"/>
+            <line x1="14" y1="70" x2="226" y2="70"/>
+          </g>
+          <g transform="translate(20 86)">
+            <path class="axis" d="M0 80 L180 80 M0 80 L0 0"/>
+            <rect class="bar" x="14" y="56" width="22" height="24"/>
+            <rect class="bar" x="50" y="44" width="22" height="36"/>
+            <rect class="bar" x="86" y="30" width="22" height="50"/>
+            <rect class="bar-hi" x="122" y="10" width="22" height="70"/>
+            <text x="25" y="94" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="8" fill="var(--ink2)">21</text>
+            <text x="61" y="94" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="8" fill="var(--ink2)">22</text>
+            <text x="97" y="94" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="8" fill="var(--ink2)">23</text>
+            <text x="133" y="94" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="8" fill="var(--ink2)">24</text>
+            <text x="0" y="-4" font-family="'Spline Sans Mono'" font-size="8" fill="var(--ink2)" style="letter-spacing:.04em;">RIDERS (THOUSANDS)</text>
+          </g>
+          <g class="ruleline">
+            <line x1="14" y1="200" x2="226" y2="200"/>
+            <line x1="14" y1="212" x2="226" y2="212"/>
+          </g>
+        </g>
+        <g transform="translate(286 48)">
+          <rect class="page" x="0" y="0" width="266" height="220" rx="3"/>
+          <text class="anton" x="14" y="22" font-size="11" fill="var(--ink)">SEE ALSO</text>
+          <line x1="14" y1="28" x2="252" y2="28" stroke="var(--ink)" stroke-width="1"/>
+          <rect x="14" y="40" width="238" height="130" rx="3" fill="#dde3eb" stroke="var(--ink)" stroke-width="1.2"/>
+          <g transform="translate(20 50)" fill="none" stroke="var(--alt)" stroke-width="1.6">
+            <rect x="0" y="40" width="226" height="40" fill="rgba(31,59,84,.25)" stroke="none"/>
+            <polyline points="0,40 60,20 110,30 170,8 226,18" stroke-linejoin="round"/>
+            <circle cx="60" cy="20" r="3" fill="var(--alt)"/>
+            <circle cx="110" cy="30" r="3" fill="var(--alt)"/>
+            <circle cx="170" cy="8" r="3" fill="var(--alt)"/>
+            <rect x="180" y="44" width="36" height="32" fill="rgba(20,23,28,.4)" stroke="none"/>
+          </g>
+          <text x="14" y="184" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)" style="letter-spacing:.06em;">FIG. 2 RIDERS BOARDING THE NEW</text>
+          <text x="14" y="196" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)" style="letter-spacing:.06em;">CROSSTOWN ROUTE AT 7:42 A.M.</text>
+        </g>
+        <g class="ann">
+          <path d="M170 170 Q170 198 200 220" stroke-linecap="round"/>
+          <circle cx="170" cy="170" r="3" fill="var(--accent-d)" stroke="none"/>
+        </g>
+        <text class="mono" x="178" y="246" font-size="9" fill="var(--accent-d)" style="letter-spacing:.06em;text-transform:uppercase;">supplies the numbers</text>
+        <g class="ann">
+          <path d="M420 178 Q420 210 416 244" stroke-linecap="round"/>
+          <circle cx="420" cy="178" r="3" fill="var(--accent-d)" stroke="none"/>
+        </g>
+        <text class="mono" x="328" y="262" font-size="9" fill="var(--accent-d)" style="letter-spacing:.06em;text-transform:uppercase;">supplies the human picture</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Visuals are part of the argument</h2></div>
+      <p class="lead">In sophisticated informational writing, the visuals carry argumentative weight. A bar chart quantifies a trend the prose only describes. A photograph supplies the human evidence a statistic cannot convey. A map locates a phenomenon in space. When a reader skips the visuals, the reader has read only part of the text.</p>
+      <p class="lead" style="margin-top:8px;">Your job is to identify <b>what the visual contributes</b> and then ask whether it <b>supports</b>, <b>extends</b>, or in rare cases <b>contradicts</b> the surrounding prose.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>What each visual type is good at</h2></div>
+      <table class="ftable">
+        <tr><th>Visual</th><th>What it does best</th><th>Common pitfall</th></tr>
+        <tr><td><b>Bar chart</b></td><td>Compares quantities across categories.</td><td>Truncated y-axis can exaggerate differences.</td></tr>
+        <tr><td><b>Line graph</b></td><td>Shows change in a quantity over time.</td><td>Cherry-picked time window can mislead.</td></tr>
+        <tr><td><b>Map</b></td><td>Locates a phenomenon geographically; reveals spatial pattern.</td><td>Color choice can distort severity.</td></tr>
+        <tr><td><b>Photograph</b></td><td>Supplies human, particular, concrete evidence.</td><td>Caption framing can change interpretation.</td></tr>
+        <tr><td><b>Infographic</b></td><td>Combines several data layers into one visual.</td><td>Density can obscure source and method.</td></tr>
+      </table>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Reading a data display: the checklist</h2></div>
+      <p class="lead">Before you draw a conclusion from a chart or graph, run the following four checks. Skipping any one is how readers get misled.</p>
+      <table class="ftable">
+        <tr><th>Check</th><th>What to look for</th></tr>
+        <tr><td><b>1. Axes</b></td><td>What is being measured on each axis? What are the units?</td></tr>
+        <tr><td><b>2. Scale</b></td><td>Does the y-axis start at zero? Is the range honest?</td></tr>
+        <tr><td><b>3. Source</b></td><td>Where do the data come from? When were they collected?</td></tr>
+        <tr><td><b>4. Window</b></td><td>What time span or sample is shown? What is excluded?</td></tr>
+      </table>
+      <p class="lead" style="margin-top:10px;">A confident interpretation cites the actual values: "ridership rose from 21,000 in 2021 to 70,000 in 2024," not "ridership rose a lot."</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Read the chart, draw the conclusion</h2></div>
+      <p class="lead">Read the bar chart below. The prose context is that a city installed a new crosstown bus route at the end of 2021. Select the conclusion most directly supported by the visual.</p>
+      <div class="chartbox" aria-hidden="true">
+        <svg viewBox="0 0 380 200" role="img" aria-label="A bar chart showing annual ridership in thousands for years 2021 through 2024 with values 21, 34, 50, and 70.">
+          <path d="M40 160 L360 160 M40 160 L40 20" stroke="var(--ink)" stroke-width="1.4" fill="none"/>
+          <text x="22" y="160" text-anchor="end" font-family="'Spline Sans Mono'" font-size="10" fill="var(--ink2)">0</text>
+          <text x="22" y="124" text-anchor="end" font-family="'Spline Sans Mono'" font-size="10" fill="var(--ink2)">25</text>
+          <text x="22" y="88" text-anchor="end" font-family="'Spline Sans Mono'" font-size="10" fill="var(--ink2)">50</text>
+          <text x="22" y="52" text-anchor="end" font-family="'Spline Sans Mono'" font-size="10" fill="var(--ink2)">75</text>
+          <rect x="60" y="130" width="48" height="30" fill="var(--alt)"/>
+          <rect x="140" y="111" width="48" height="49" fill="var(--alt)"/>
+          <rect x="220" y="89" width="48" height="71" fill="var(--alt)"/>
+          <rect x="300" y="60" width="48" height="100" fill="var(--accent)"/>
+          <text x="84" y="176" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="var(--ink)">2021</text>
+          <text x="164" y="176" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="var(--ink)">2022</text>
+          <text x="244" y="176" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="var(--ink)">2023</text>
+          <text x="324" y="176" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="var(--ink)">2024</text>
+          <text x="84" y="125" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="#fff" font-weight="700">21</text>
+          <text x="164" y="106" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="#fff" font-weight="700">34</text>
+          <text x="244" y="84" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="#fff" font-weight="700">50</text>
+          <text x="324" y="55" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="11" fill="#fff" font-weight="700">70</text>
+          <text x="200" y="14" text-anchor="middle" font-family="'Anton'" font-size="13" fill="var(--ink)" style="letter-spacing:.04em;">ANNUAL RIDERSHIP</text>
+        </svg>
+        <div class="cap">Crosstown route. Y-axis: riders in thousands. Source: Transit Authority, 2024.</div>
+      </div>
+      <div class="claim">Which conclusion is <b>most directly supported by this visual</b>?</div>
+      <div class="evs" id="evs"></div>
+      <div class="fbline" id="evfb"></div>
+      <button class="cta rnext hide" id="rnext">Next visual</button>
+    </div>
+
+    <button class="cta" id="toCheck">I am ready. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You cleared Form A. To verify retention, Form B is held for 24 hours. Same standard, different items.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+    <div class="qtext" id="qtextB"></div>
+    <div class="opts" id="optsB"></div>
+    <div class="qwhy" id="qwhyB"></div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try again</button>
+    <button class="cta hide" id="toGate">Next: 24-hour gate</button>
+  </section>
+
+  <footer>
+    <span id="__sname">Julie</span>
+    &middot; Reading &middot; Day 3 &middot; Standard 8.RI.1.C
+  </footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#1f7a4d" stroke="#0f5634" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You demonstrated the skill on Form A and Form B. <span class="__sname">friend</span>, this credential is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var __qk = (location.search.match(/[?&]kid=([^&]+)/)||[])[1];
+  __qk = __qk ? decodeURIComponent(__qk) : null;
+  var __ar = {};
+  try { __ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); } catch(e) {}
+  var __ks = (__ar.family && __ar.family.kids) || [];
+  var __rk = null;
+  if (__qk) __rk = __ks.filter(function(x){ return x.id===__qk; })[0];
+  if (!__rk && __ar.activeKid) __rk = __ks.filter(function(x){ return x.id===__ar.activeKid; })[0];
+  if (!__rk) __rk = __ks.filter(function(x){ return x.grade===8; })[0];
+  if (!__rk && __ks.length) __rk = __ks[0];
+  if (!__rk) __rk = { id:'julie', name:'Julie', grade:8 };
+  __ar.activeKid = __rk.id;
+  try { localStorage.setItem('edu.app', JSON.stringify(__ar)); } catch(e) {}
+
+  var KEY     = 'edu.app';
+  var STUDENT = __rk.id;
+  var SUBJECT = 'reading';
+  var DAY     = '8.RI.1.C';
+  var SNAME   = __rk.name;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var __fn = document.getElementById('__sname');
+    if (__fn) __fn.textContent = SNAME;
+    document.querySelectorAll('.__snameInline, #masteryDone .__sname').forEach(function(n){
+      n.textContent = SNAME;
+    });
+    var back = document.getElementById('msBack');
+    if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+  });
+
+  var PASS = 7;
+  var QTIME = 25;
+  var GATE_MS = 24 * 60 * 60 * 1000;
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){ return {}; } }
+  function save(o){ try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {} }
+
+  var app = load();
+  app.students = app.students || {};
+  app.students[STUDENT] = app.students[STUDENT] || { name: SNAME };
+  app.progress = app.progress || {};
+  app.progress[STUDENT] = app.progress[STUDENT] || {};
+  app.progress[STUDENT][SUBJECT] = app.progress[STUDENT][SUBJECT] || {};
+  var rec = app.progress[STUDENT][SUBJECT][DAY] || {
+    status: 'open', best: 0, attempts: 0,
+    formA: 0, formB: 0,
+    formAPassedAt: null, passedAt: null
+  };
+  app.progress[STUDENT][SUBJECT][DAY] = rec;
+  app.activeStudent = STUDENT;
+  save(app);
+
+  var SUPA_URL = '', SUPA_KEY = '';
+  function syncCloud(){
+    if (!SUPA_URL || !SUPA_KEY) return;
+    try {
+      var row = {
+        student: STUDENT, subject: SUBJECT, day: DAY,
+        status: rec.status, best: rec.best||0, attempts: rec.attempts||0,
+        formA: rec.formA||0, formB: rec.formB||0,
+        form_a_passed_at: rec.formAPassedAt||null,
+        time_ms: rec.timeMs||0,
+        updated_at: new Date().toISOString()
+      };
+      fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day', {
+        method:'POST',
+        headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},
+        body: JSON.stringify(row),
+        keepalive: true
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
+  var SEG = Date.now();
+  function commitTime(){ rec.timeMs = (rec.timeMs||0) + (Date.now()-SEG); SEG = Date.now(); rec.lastAt = Date.now(); save(app); }
+  window.addEventListener('beforeunload', commitTime);
+  window.addEventListener('pagehide', commitTime);
+
+  syncCloud();
+
+  /* Mid-lesson practice */
+  var EVS = [
+    { t: 'Annual ridership on the crosstown route more than tripled between 2021 and 2024.', ok: true, why: 'Strongest. The chart shows 21 in 2021 and 70 in 2024; 70 is more than three times 21.' },
+    { t: 'The 2024 figure represents the peak ridership the route will ever record.', ok: false, why: 'Not supported. The chart shows only the years 2021 through 2024 and cannot speak to future peaks.' },
+    { t: 'Ridership grew slightly from 2021 to 2024.', ok: false, why: 'Understates the trend. A jump from 21 to 70 thousand is not slight; it is a more than threefold increase.' }
+  ];
+  document.addEventListener('DOMContentLoaded', function(){
+    var evs = document.getElementById('evs'), evfb = document.getElementById('evfb'),
+        rnext = document.getElementById('rnext');
+    EVS.forEach(function(e){
+      var b = document.createElement('button');
+      b.className = 'ev'; b.type = 'button'; b.textContent = e.t;
+      b.addEventListener('click', function(){
+        Array.prototype.forEach.call(evs.children, function(c){ c.disabled = true; });
+        if (e.ok){ b.classList.add('ok'); evfb.className = 'fbline ok'; evfb.textContent = e.why; }
+        else { b.classList.add('no'); evfb.className = 'fbline try';
+          evfb.textContent = e.why + ' Cite the actual values on the chart before drawing a conclusion.';
+          Array.prototype.forEach.call(evs.children, function(c, i){ if (EVS[i].ok) c.classList.add('ok'); });
+        }
+      });
+      evs.appendChild(b);
+    });
+  });
+
+  /* Item bank: 14 items. Answer positions balanced (no position > 50%). */
+  var ITEM_BANK = [
+    /* 0 a:1 */ { q: 'Visual elements in an informational text most accurately serve as...',
+      o: ['decoration that breaks up long paragraphs','integral parts of the argument that supply evidence the prose cannot','optional summaries for readers who skip the text','transitions between sections'], a: 1,
+      why: 'In sophisticated expository writing, the visuals carry argumentative weight; they are not optional.' },
+
+    /* 1 a:0 */ { q: 'A <b>bar chart</b> is best at...',
+      o: ['comparing quantities across distinct categories','locating a phenomenon geographically','showing the texture of a human face','illustrating a chemical reaction'], a: 0,
+      why: 'Bar charts compare discrete categorical quantities; that is their core function.' },
+
+    /* 2 a:1 */ { q: 'A <b>line graph</b> is best at showing...',
+      o: ['the spatial layout of a region','the change in a quantity over time','the comparative weight of categories','the emotional impact of an event'], a: 1,
+      why: 'A line graph is purpose-built to display change over a continuous time variable.' },
+
+    /* 3 a:2 */ { q: 'Before drawing a conclusion from a chart, the reader should check...',
+      o: ['the size of the chart','the color of the bars','the axes, scale, source, and time window','the position of the chart on the page'], a: 2,
+      why: 'These four checks (axes, scale, source, window) are the standard reader controls against misleading visuals.' },
+
+    /* 4 a:0 */ { q: 'A bar chart with a y-axis that starts at 90 rather than 0 is likely to...',
+      o: ['exaggerate visible differences between bars','make all bars look exactly the same height','contain no usable information','be more accurate than a zero-anchored chart'], a: 0,
+      why: 'A truncated y-axis magnifies the visual gap between values, which can exaggerate differences.' },
+
+    /* 5 a:3 */ { q: 'A photograph in an informational text typically contributes...',
+      o: ['statistical precision the prose cannot','an unbiased summary of the entire argument','the article\'s thesis statement','a particular, human, concrete instance of the topic'], a: 3,
+      why: 'Photographs anchor abstract claims in concrete, particular instances; that is their evidentiary contribution.' },
+
+    /* 6 a:1 */ { q: 'A bar chart shows annual ridership of 21, 34, 50, and 70 (in thousands) for 2021 through 2024. Which conclusion is most directly supported?',
+      o: ['Ridership has fluctuated unpredictably.','Ridership more than tripled across the four-year window.','Ridership stayed roughly constant.','Ridership peaked in 2022.'], a: 1,
+      why: '70 thousand divided by 21 thousand exceeds 3; the increase is more than threefold.' },
+
+    /* 7 a:2 */ { q: 'A map in an informational article is most useful when the writer wants the reader to...',
+      o: ['memorize a list of place names','understand the chemistry of a substance','recognize a spatial pattern or geographic concentration','feel a specific emotion'], a: 2,
+      why: 'Maps reveal spatial relationships that prose alone cannot communicate as efficiently.' },
+
+    /* 8 a:1 */ { q: 'A caption under a photograph typically does which of the following?',
+      o: ['serves no informational purpose','frames the image and tells the reader what to notice','always contradicts the image','replaces the main article'], a: 1,
+      why: 'Captions guide interpretation by signaling what the writer considers significant about the image.' },
+
+    /* 9 a:0 */ { q: 'An infographic combines multiple data layers in one visual. Its main risk for a reader is...',
+      o: ['the density may obscure source and method','the colors may be too dull','the file size may be too large','it always agrees with the prose'], a: 0,
+      why: 'Dense infographics can hide where the data came from and how they were collected; the reader must look for source attribution.' },
+
+    /* 10 a:3 */ { q: 'A line graph showing only the years 2020 and 2024 is most vulnerable to which critique?',
+      o: ['the y-axis is too tall','the line is too thick','the title is too long','the time window is so narrow that key fluctuations may be hidden'], a: 3,
+      why: 'A narrow or cherry-picked time window can hide variation that would change the interpretation.' },
+
+    /* 11 a:2 */ { q: 'When a chart and the prose appear to disagree, the careful reader should...',
+      o: ['always trust the prose','always trust the chart','re-examine both and check the source','ignore the disagreement'], a: 2,
+      why: 'Apparent conflict is a signal to scrutinize both sides and check the original source.' },
+
+    /* 12 a:0 */ { q: 'Which of these statements is the strongest conclusion to draw from a visual alone?',
+      o: ['"Between the years shown, the value rose from 21 to 70 thousand."','"The trend shown will continue forever."','"The data prove the policy is good."','"Most readers will agree with this chart."'], a: 0,
+      why: 'A strong visual conclusion cites the actual values displayed and stays within the displayed range.' },
+
+    /* 13 a:3 */ { q: 'The standard requires interpreting visuals from <b>different media</b>. This phrase signals that...',
+      o: ['only print charts count','only digital visuals are tested','readers must reproduce the visuals','readers will face photographs, maps, infographics, video stills, and more'], a: 3,
+      why: 'Different media includes any visual carrier of meaning: photographs, maps, graphs, infographics, screenshots, video stills.' }
+  ];
+
+  /* Bank answer positions: [1,0,1,2,0,3,1,2,1,0,3,2,0,3] -> 0:4, 1:4, 2:3, 3:3 - balanced */
+  /* Form A indices [0,1,2,3,4,5,6,7] -> [1,0,1,2,0,3,1,2] -> 0:2, 1:3, 2:2, 3:1 */
+  var FORM_A_IDX = [0,1,2,3,4,5,6,7];
+  /* Form B indices [8,9,10,11,12,13,4,3] -> [1,0,3,2,0,3,0,2] -> 0:3, 1:1, 2:2, 3:2 */
+  var FORM_B_IDX = [8,9,10,11,12,13,4,3];
+
+  var FORM_A = FORM_A_IDX.map(function(i){ return ITEM_BANK[i]; });
+  var FORM_B = FORM_B_IDX.map(function(i){ return ITEM_BANK[i]; });
+
+  var secLesson = document.getElementById('lesson'),
+      secCheck  = document.getElementById('check'),
+      secGate   = document.getElementById('gate'),
+      secCheckB = document.getElementById('checkB'),
+      secResult = document.getElementById('result');
+
+  var elQtext = document.getElementById('qtext'), elOpts = document.getElementById('opts'), elQwhy = document.getElementById('qwhy'),
+      elCount = document.getElementById('qcount'), elTlabel = document.getElementById('tlabel'), elTfill = document.getElementById('tfill');
+
+  var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A;
+
+  function startCheck(form){
+    commitTime();
+    phase = form;
+    currentBank = (form==='A') ? FORM_A : FORM_B;
+    qi = 0; correct = 0;
+    if (form==='A'){
+      rec.attempts = (rec.attempts||0) + 1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    } else {
+      secGate.classList.add('hide'); secResult.classList.add('hide'); secCheckB.classList.remove('hide');
+    }
+    window.scrollTo(0,0);
+    showQ();
+  }
+
+  function showQ(){
+    locked = false;
+    var item = currentBank[qi];
+    var isA = (phase==='A');
+    var qtext = isA ? elQtext : document.getElementById('qtextB');
+    var opts  = isA ? elOpts  : document.getElementById('optsB');
+    var why   = isA ? elQwhy  : document.getElementById('qwhyB');
+    var count = isA ? elCount : document.getElementById('qcountB');
+    var label = isA ? elTlabel: document.getElementById('tlabelB');
+    var fill  = isA ? elTfill : document.getElementById('tfillB');
+    count.textContent = 'Question ' + (qi+1) + ' of ' + currentBank.length;
+    qtext.innerHTML = item.q;
+    opts.innerHTML = ''; why.textContent = '';
+    item.o.forEach(function(txt, i){
+      var b = document.createElement('button');
+      b.className = 'opt2'; b.type = 'button'; b.innerHTML = txt;
+      b.addEventListener('click', function(){ answer(i, b, opts, why, item); });
+      opts.appendChild(b);
+    });
+    timeLeft = QTIME; fill.style.width='100%'; fill.classList.remove('low');
+    label.textContent = QTIME + 's';
+    clearInterval(timer);
+    timer = setInterval(function(){
+      timeLeft--;
+      if (timeLeft < 0) timeLeft = 0;
+      fill.style.width = (timeLeft/QTIME*100) + '%';
+      label.textContent = timeLeft + 's';
+      if (timeLeft <= 8) fill.classList.add('low');
+      if (timeLeft === 0){ clearInterval(timer); autoAdvance(opts, why, item); }
+    }, 1000);
+  }
+
+  function autoAdvance(opts, why, item){
+    if (locked) return; locked = true;
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      c.style.pointerEvents = 'none';
+    });
+    why.style.color = 'var(--accent-d)';
+    why.textContent = 'Time. ' + item.why;
+    setTimeout(next, 1100);
+  }
+
+  function answer(i, btn, opts, why, item){
+    if (locked) return; locked = true; clearInterval(timer);
+    var ok = (i === item.a);
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      if (idx === i && !ok) c.classList.add('bad');
+      c.style.pointerEvents = 'none';
+    });
+    if (ok){ correct++; why.style.color='var(--good)'; why.textContent = 'Correct. ' + item.why; }
+    else   {            why.style.color='var(--accent-d)'; why.textContent = 'Not quite. ' + item.why; }
+    setTimeout(next, ok ? 700 : 1200);
+  }
+
+  function next(){ qi++; if (qi < currentBank.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    if (phase === 'A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed = (correct >= PASS), pct = Math.round(correct/FORM_A.length*100);
+      document.getElementById('scorebig').textContent = pct + '%';
+      rec.formA = correct; rec.best = Math.max(rec.best||0, pct);
+      var rtitle = document.getElementById('rtitle'), rmsg = document.getElementById('rmsg'),
+          retry  = document.getElementById('retry'),  toGate = document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if (passed){
+        rec.status = 'formA-passed';
+        if (!rec.formAPassedAt) rec.formAPassedAt = Date.now();
+        save(app);
+        syncCloud();
+        rtitle.textContent = 'Form A cleared.';
+        rmsg.textContent = 'You scored ' + correct + ' of ' + FORM_A.length + '. Form B unlocks in 24 hours to verify retention.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status = 'tried'; save(app);
+        rtitle.textContent = 'Below the bar.';
+        rmsg.textContent = 'The pass bar is 7 of 8. You scored ' + correct + '. Revisit the stations, then retake the check.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB = (correct >= PASS), pctB = Math.round(correct/FORM_B.length*100);
+      document.getElementById('scorebig').textContent = pctB + '%';
+      rec.formB = correct;
+      var rtitleB = document.getElementById('rtitle'), rmsgB = document.getElementById('rmsg');
+      document.getElementById('retry').classList.add('hide');
+      document.getElementById('toGate').classList.add('hide');
+      if (passedB){
+        rec.status = 'passed';
+        rec.passedAt = Date.now();
+        save(app);
+        syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status = 'formB-tried'; save(app);
+        rtitleB.textContent = 'Below the retention bar.';
+        rmsgB.textContent = 'You scored ' + correct + ' of ' + FORM_B.length + ' on Form B. Reread the stations and retake.';
+        document.getElementById('retry').classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide');
+    secGate.classList.remove('hide');
+    window.scrollTo(0,0);
+    var startBtn = document.getElementById('startB');
+    var cd = document.getElementById('countdown');
+    function tick(){
+      var elapsed = Date.now() - (rec.formAPassedAt || Date.now());
+      var remain = GATE_MS - elapsed;
+      if (remain <= 0){
+        cd.textContent = 'Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else {
+        startBtn.classList.add('hide');
+      }
+      var h = Math.floor(remain/3600000),
+          m = Math.floor((remain%3600000)/60000),
+          s = Math.floor((remain%60000)/1000);
+      cd.textContent = (h<10?'0':'') + h + ':' + (m<10?'0':'') + m + ':' + (s<10?'0':'') + s;
+      setTimeout(tick, 1000);
+    }
+    tick();
+  }
+
+  function showMastery(a, b){
+    var sec = document.getElementById('masteryDone'); if (!sec) return;
+    var ea = document.getElementById('msFormA'); if (ea) ea.textContent = a + ' / 8';
+    var eb = document.getElementById('msFormB'); if (eb) eb.textContent = b + ' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent = SNAME; });
+    var back = document.getElementById('msBack'); if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secCheckB.classList.add('hide');
+    secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try { sec.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e) { window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if (rec.status === 'passed'){
+      showMastery(rec.formA||0, rec.formB||0);
+      return;
+    }
+    if (rec.formAPassedAt && (rec.formA||0) >= PASS && (rec.formB||0) < PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click', function(){ startCheck('A'); });
+  document.getElementById('retry').addEventListener('click', function(){
+    secResult.classList.add('hide');
+    if (phase === 'A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click', showGate);
+  document.getElementById('startB').addEventListener('click', function(){ startCheck('B'); });
+
+  document.addEventListener('DOMContentLoaded', resume);
+
+})();
+</script>
+</body>
+</html>

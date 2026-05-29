@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mastery learning lesson on interpreting visual elements of literary texts, aligned to Missouri Learning Standard 8.RL.1.C. Auto-graded, kid-independent.">
+<title>Training Console &middot; Visual Elements in Literature</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(255,59,20,.08)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(36,81,166,.10)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(255,200,100,.05)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+
+:root{--paper:#f3f1ea;--card:#ffffff;--ink:#14171c;--ink2:#454b54;--mut:#828893;--line:#dcdcd2;
+ --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#1f7a4d;--gold:#a8780d;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:-1;background:
+   linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+   linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+   radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+.mono,.kicker,.labbar,.sno{font-family:'Spline Sans Mono',monospace;}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+
+.labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+.labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+
+.kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
+.opener{font-size:18px;color:var(--ink);}
+.mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+.stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+.stdtag .l{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+
+.station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+.station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+
+.lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+.lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+.lesson-hero .gpanel{fill:#fbf8ef;stroke:var(--ink);stroke-width:1.5;}
+.lesson-hero .anno{fill:rgba(255,59,20,.14);stroke:var(--accent);stroke-width:1.25;}
+.lesson-hero .labelbox{fill:#14171c;}
+.lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+.lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+.lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+
+.ftable{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;}
+.ftable th,.ftable td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+.ftable th{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
+.ftable td b{color:var(--accent-d);}
+
+.passage{background:#faf8f2;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:16px;color:var(--ink);}
+.claim{margin-top:14px;font-weight:700;font-size:16.5px;}
+.claim span{color:var(--accent-d);}
+.evs{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+.ev{font:inherit;font-size:15.5px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:13px 15px;min-height:52px;cursor:pointer;color:var(--ink);}
+.ev:hover{border-color:var(--accent);}
+.ev.ok{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+.ev.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+.ev:disabled{cursor:default;}
+.fbline{margin-top:12px;font-size:14.5px;min-height:1.3em;}
+.fbline.ok{color:var(--good);font-weight:600;} .fbline.try{color:var(--accent-d);font-weight:600;}
+.rnext{margin-top:12px;}
+
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+.cta:hover{background:var(--accent-d);}
+.cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:6px;font-family:'Spline Sans Mono';}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+.tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+.tfill.low{background:var(--red);}
+.qtext{font-size:21px;font-weight:700;line-height:1.3;margin-bottom:14px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt2{font:inherit;font-size:16.5px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+.opt2:hover{border-color:var(--accent);}
+.opt2.correct{border-color:var(--good);background:#e9f5ee;color:var(--good);}
+.opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+.qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+
+.result{text-align:center;padding:14px 0;}
+.scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Anton';}
+.result h2{font-size:26px;font-weight:700;margin:10px 0 4px;font-family:'Anton';}
+
+.gatebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-size:36px;font-weight:700;font-family:'Anton';color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-family:'Spline Sans Mono';}
+
+footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-family:'Spline Sans Mono';}
+
+@media (prefers-reduced-motion:reduce){.tfill{transition:none;}*{animation:none!important;}}
+
+#masteryDone{display:none;margin:16px 0;}
+#masteryDone.show{display:block;}
+.mastery-card{background:var(--card);border:2px solid var(--good);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 16px 32px -28px rgba(31,122,77,.6);}
+.mastery-badge{margin:0 auto 14px;width:76px;height:76px;}
+.mastery-badge svg{width:100%;height:100%;display:block;}
+.mastery-card h2{font-family:'Anton';font-size:clamp(26px,5vw,36px);color:var(--good);margin:8px 0;}
+.mastery-msg{color:var(--ink2);max-width:46ch;margin:0 auto 18px;font-size:16px;line-height:1.5;}
+.mastery-stats{display:flex;justify-content:center;gap:22px;margin:14px 0 22px;flex-wrap:wrap;}
+.mastery-stats .stat{background:#e9f5ee;border:2px solid #bce0cc;border-radius:12px;padding:12px 18px;min-width:100px;}
+.mastery-stats .stat-num{display:block;font-family:'Anton';font-size:32px;font-weight:700;color:var(--good);line-height:1;}
+.mastery-stats .stat-lbl{display:block;margin-top:4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600;font-family:'Spline Sans Mono';}
+.mastery-cta a.cta{display:inline-block;text-decoration:none;width:auto;padding:14px 22px;}
+</style>
+</head>
+<body>
+
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <div class="labbar">
+    <span class="dotg" aria-hidden="true"></span>
+    Session 06 &middot; <b>Grade 8</b>
+    <span class="chip">Standard 8.RL.1.C</span>
+  </div>
+
+  <section id="lesson">
+
+    <div class="kicker">Session 06</div>
+    <h1>Visual Elements in Literature</h1>
+    <p class="opener">A graphic panel, an illustration, a font choice, a page layout. In literary texts, the picture is not decoration. It is part of the argument the work is making about its characters and its world.</p>
+    <p class="mission">By the end of this session you will identify how a visual element shapes characterization, mood, or pacing in a literary text, and you will defend a conclusion you draw from what the picture, not the prose, is doing.</p>
+    <div class="stdtag">
+      <span class="l">What this session teaches</span>
+      Interpret visual elements of a text and draw conclusions from them (when applicable).
+    </div>
+
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 290" role="img" aria-label="A graphic novel panel showing a character at a window with annotation arrows pointing to the slumped posture, the low camera angle, and the heavy shadow, each labeled with the trait it conveys.">
+        <rect class="panel" x="6" y="6" width="548" height="278" rx="10"/>
+        <text class="headlbl" x="22" y="26">Panel &#8594; conclusion</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mut);">visual reading</text>
+
+        <g transform="translate(28 46)">
+          <rect class="gpanel" x="0" y="0" width="240" height="220" rx="3"/>
+          <rect x="20" y="22" width="120" height="92" fill="#e8e2cf" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="80" y1="22" x2="80" y2="114" stroke="var(--ink)" stroke-width="1"/>
+          <line x1="20" y1="68" x2="140" y2="68" stroke="var(--ink)" stroke-width="1"/>
+          <circle cx="170" cy="86" r="14" fill="#14171c"/>
+          <path d="M156 100 Q170 116 184 100 L188 168 L152 168 Z" fill="#14171c"/>
+          <path d="M0 180 L240 180 L240 220 L0 220 Z" fill="#2a2620" opacity=".82"/>
+          <path d="M152 168 L188 168 L210 220 L138 220 Z" fill="#000"/>
+        </g>
+
+        <g transform="translate(300 64)">
+          <rect class="anno" x="0" y="0" width="220" height="46" rx="8"/>
+          <text class="anton" x="12" y="18" font-size="11" fill="var(--accent-d)">SLUMPED POSTURE</text>
+          <text class="mono" x="12" y="34" font-size="10.5" fill="var(--ink2)">conveys: fatigue, defeat</text>
+          <path d="M-6 26 L-30 24" stroke="var(--accent-d)" stroke-width="2" fill="none"/>
+          <path d="M-30 24 L-22 19 L-22 29 Z" fill="var(--accent-d)"/>
+        </g>
+
+        <g transform="translate(300 134)">
+          <rect class="anno" x="0" y="0" width="220" height="46" rx="8"/>
+          <text class="anton" x="12" y="18" font-size="11" fill="var(--accent-d)">LOW ANGLE</text>
+          <text class="mono" x="12" y="34" font-size="10.5" fill="var(--ink2)">conveys: looming weight</text>
+          <path d="M-6 26 L-46 30" stroke="var(--accent-d)" stroke-width="2" fill="none"/>
+          <path d="M-46 30 L-38 25 L-38 35 Z" fill="var(--accent-d)"/>
+        </g>
+
+        <g transform="translate(300 204)">
+          <rect class="anno" x="0" y="0" width="220" height="46" rx="8"/>
+          <text class="anton" x="12" y="18" font-size="11" fill="var(--accent-d)">HEAVY SHADOW</text>
+          <text class="mono" x="12" y="34" font-size="10.5" fill="var(--ink2)">conveys: somber mood</text>
+          <path d="M-6 26 L-44 14" stroke="var(--accent-d)" stroke-width="2" fill="none"/>
+          <path d="M-44 14 L-35 13 L-39 22 Z" fill="var(--accent-d)"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Pictures argue too</h2></div>
+      <p class="lead">When a literary work uses a visual element, whether a panel in a graphic novel, an illustration in a picture book, a font shift, or a page layout, that element carries meaning. It can characterize a figure, set a mood, control pacing, or signal a shift in time. A trained reader treats the visual as a sentence to be interpreted, not as a decoration to be skipped.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>The vocabulary of visual reading</h2></div>
+      <table class="ftable">
+        <tr><th>Visual element</th><th>What it can convey</th><th>Example</th></tr>
+        <tr><td><b>Posture and gesture</b></td><td>Internal state of the character.</td><td>Slumped shoulders read as fatigue or defeat.</td></tr>
+        <tr><td><b>Angle of view</b></td><td>Power balance in the scene.</td><td>A low angle makes the subject loom; a high angle diminishes it.</td></tr>
+        <tr><td><b>Shadow and contrast</b></td><td>Mood and tone.</td><td>Heavy shadow reads as somber, dangerous, or sealed off.</td></tr>
+        <tr><td><b>Panel size and pacing</b></td><td>Time, weight, and emphasis.</td><td>A large panel slows the moment; a row of small panels speeds it.</td></tr>
+        <tr><td><b>Font and lettering</b></td><td>Voice, volume, and emotion.</td><td>Jagged hand lettering reads louder than crisp printed type.</td></tr>
+      </table>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>From visual to conclusion</h2></div>
+      <p class="lead">A defensible conclusion drawn from a visual element follows the same logic as one drawn from a sentence. Name the element. Describe what it shows. State the conclusion the element supports. The strongest readings can point to a specific feature, not a vague impression of the picture.</p>
+      <table class="ftable">
+        <tr><th>Element</th><th>Observation</th><th>Conclusion</th></tr>
+        <tr><td>Shadow</td><td>Covers two thirds of the frame.</td><td>The mood is heavy; the character feels boxed in.</td></tr>
+        <tr><td>Panel size</td><td>One large panel after eight small ones.</td><td>The moment matters; the pace slows on purpose.</td></tr>
+        <tr><td>Font</td><td>Letters grow larger across one balloon.</td><td>The character is raising volume, escalating.</td></tr>
+      </table>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Read the panel, draw the conclusion</h2></div>
+      <p class="lead">Each round describes a brief panel from a graphic novel or illustrated story. Select the conclusion that the visual element most directly supports.</p>
+      <div class="passage" id="passage"></div>
+      <div class="claim" id="claim"></div>
+      <div class="evs" id="evs"></div>
+      <div class="fbline" id="evfb"></div>
+      <button class="cta rnext hide" id="rnext">Next panel</button>
+    </div>
+
+    <button class="cta" id="toCheck">I am ready. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You cleared Form A. To verify retention, Form B is held for 24 hours. Same standard, different items.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+    <div class="qtext" id="qtextB"></div>
+    <div class="opts" id="optsB"></div>
+    <div class="qwhy" id="qwhyB"></div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try again</button>
+    <button class="cta hide" id="toGate">Next: 24-hour gate</button>
+  </section>
+
+  <footer>
+    <span id="__sname">Julie</span>
+    &middot; Reading &middot; Week 3 Day 1 &middot; Standard 8.RL.1.C
+  </footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#1f7a4d" stroke="#0f5634" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You demonstrated the skill on Form A and Form B. <span class="__sname">friend</span>, this credential is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var __qk = (location.search.match(/[?&]kid=([^&]+)/)||[])[1];
+  __qk = __qk ? decodeURIComponent(__qk) : null;
+  var __ar = {};
+  try { __ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); } catch(e) {}
+  var __ks = (__ar.family && __ar.family.kids) || [];
+  var __rk = null;
+  if (__qk) __rk = __ks.filter(function(x){ return x.id===__qk; })[0];
+  if (!__rk && __ar.activeKid) __rk = __ks.filter(function(x){ return x.id===__ar.activeKid; })[0];
+  if (!__rk) __rk = __ks.filter(function(x){ return x.grade===8; })[0];
+  if (!__rk && __ks.length) __rk = __ks[0];
+  if (!__rk) __rk = { id:'julie', name:'Julie', grade:8 };
+  __ar.activeKid = __rk.id;
+  try { localStorage.setItem('edu.app', JSON.stringify(__ar)); } catch(e) {}
+
+  var KEY     = 'edu.app';
+  var STUDENT = __rk.id;
+  var SUBJECT = 'reading';
+  var DAY     = '8.RL.1.C';
+  var SNAME   = __rk.name;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var __fn = document.getElementById('__sname');
+    if (__fn) __fn.textContent = SNAME;
+    document.querySelectorAll('.__snameInline, #masteryDone .__sname').forEach(function(n){
+      n.textContent = SNAME;
+    });
+    var back = document.getElementById('msBack');
+    if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+  });
+
+  var PASS = 7;
+  var QTIME = 25;
+  var GATE_MS = 24 * 60 * 60 * 1000;
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){ return {}; } }
+  function save(o){ try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {} }
+
+  var app = load();
+  app.students = app.students || {};
+  app.students[STUDENT] = app.students[STUDENT] || { name: SNAME };
+  app.progress = app.progress || {};
+  app.progress[STUDENT] = app.progress[STUDENT] || {};
+  app.progress[STUDENT][SUBJECT] = app.progress[STUDENT][SUBJECT] || {};
+  var rec = app.progress[STUDENT][SUBJECT][DAY] || {
+    status: 'open', best: 0, attempts: 0,
+    formA: 0, formB: 0,
+    formAPassedAt: null, passedAt: null
+  };
+  app.progress[STUDENT][SUBJECT][DAY] = rec;
+  app.activeStudent = STUDENT;
+  save(app);
+
+  var SUPA_URL = '', SUPA_KEY = '';
+  function syncCloud(){
+    if (!SUPA_URL || !SUPA_KEY) return;
+    try {
+      var row = {
+        student: STUDENT, subject: SUBJECT, day: DAY,
+        status: rec.status, best: rec.best||0, attempts: rec.attempts||0,
+        formA: rec.formA||0, formB: rec.formB||0,
+        form_a_passed_at: rec.formAPassedAt||null,
+        time_ms: rec.timeMs||0,
+        updated_at: new Date().toISOString()
+      };
+      fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day', {
+        method:'POST',
+        headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},
+        body: JSON.stringify(row),
+        keepalive: true
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
+  var SEG = Date.now();
+  function commitTime(){ rec.timeMs = (rec.timeMs||0) + (Date.now()-SEG); SEG = Date.now(); rec.lastAt = Date.now(); save(app); }
+  window.addEventListener('beforeunload', commitTime);
+  window.addEventListener('pagehide', commitTime);
+
+  syncCloud();
+
+  var ROUNDS = [
+    {
+      passage: 'A single large panel takes up two thirds of the page. A girl sits at a kitchen table. The overhead light is on, but the entire left half of the panel is in shadow. Her face is turned away from the reader. A coffee cup sits untouched in front of her.',
+      claim: 'Choose the conclusion the visual elements most directly support.',
+      evs: [
+        { t: 'The girl is content but quiet, enjoying a calm morning at home.', ok: false, why: 'The heavy shadow and turned-away face cut against contentment; the picture reads heavier than that.' },
+        { t: 'The girl is carrying something she has not said aloud; the mood is somber and withdrawn.', ok: true, why: 'Heavy shadow, a turned face, and an untouched cup together support a withdrawn, weighted reading.' },
+        { t: 'The kitchen is poorly lit because of a power outage during a storm.', ok: false, why: 'There is no visual evidence of a storm; the shadow is compositional, not environmental.' }
+      ]
+    },
+    {
+      passage: 'Eight small square panels stretch across two pages. In each one, a boy stands on a stage. His mouth opens wider in each panel. The lettering in his speech balloon grows from thin printed type in panel one to jagged hand-drawn letters that crash against the balloon edge in panel eight.',
+      claim: 'Choose the conclusion the visual elements most directly support.',
+      evs: [
+        { t: 'The boy is speaking softly; the row of panels shows a long calm speech.', ok: false, why: 'Growing letter weight and a wider mouth across eight panels argue against a calm reading.' },
+        { t: 'The boy is repeating the same line, unsure of what to say.', ok: false, why: 'The font change shows escalation, not repetition; the panels do not show repeated words.' },
+        { t: 'The boy is escalating, his speech growing louder and more urgent across the page.', ok: true, why: 'The widening mouth, the jagged lettering, and the panel rhythm all build the same conclusion: rising intensity.' }
+      ]
+    }
+  ];
+  var rIdx = 0;
+  document.addEventListener('DOMContentLoaded', function(){
+    var passage = document.getElementById('passage'), claim = document.getElementById('claim'),
+        evs = document.getElementById('evs'), evfb = document.getElementById('evfb'),
+        rnext = document.getElementById('rnext');
+    function loadRound(){
+      var r = ROUNDS[rIdx];
+      passage.textContent = r.passage;
+      claim.innerHTML = 'Task: <span>' + r.claim + '</span>';
+      evfb.className = 'fbline'; evfb.textContent = '';
+      rnext.classList.add('hide');
+      evs.innerHTML = '';
+      r.evs.forEach(function(e){
+        var b = document.createElement('button');
+        b.className = 'ev'; b.type = 'button';
+        b.textContent = e.t;
+        b.addEventListener('click', function(){
+          Array.prototype.forEach.call(evs.children, function(c){ c.disabled = true; });
+          if (e.ok){ b.classList.add('ok'); evfb.className = 'fbline ok'; evfb.textContent = e.why; }
+          else { b.classList.add('no'); evfb.className = 'fbline try';
+            evfb.textContent = e.why + ' The strongest reading names a specific visual feature and ties it to a single conclusion.';
+            Array.prototype.forEach.call(evs.children, function(c, i){ if (r.evs[i].ok) c.classList.add('ok'); });
+          }
+          if (rIdx < ROUNDS.length - 1) rnext.classList.remove('hide');
+        });
+        evs.appendChild(b);
+      });
+    }
+    rnext.addEventListener('click', function(){ rIdx++; loadRound(); });
+    loadRound();
+  });
+
+  var ITEM_BANK = [
+    { q: 'In a literary text, a visual element such as a panel, an illustration, or a font shift functions as...',
+      o: ['decoration that supports the prose but adds no meaning','a meaningful sign that can characterize, set mood, or pace the scene','a substitute for the writer\'s words','a publisher\'s choice unrelated to the story'], a: 1,
+      why: 'Visual elements in literary texts carry interpretive weight; they argue, the way sentences do.' },
+
+    { q: 'A graphic novel panel shows a character drawn from a low angle, towering over a small figure in the foreground. Which conclusion does the angle most directly support?',
+      o: ['The towering character holds power in the scene.','The two characters are equals.','The small figure is the narrator.','The scene takes place at sunset.'], a: 0,
+      why: 'A low camera angle makes the subject loom; the visual signals a power imbalance.' },
+
+    { q: 'A page in a graphic novel uses one giant panel after a row of eight tiny panels. The giant panel shows a character standing alone in a field. The pacing change most directly conveys...',
+      o: ['confusion in the reader','that the giant panel moment carries weight and slows the story\'s time','that the artist ran out of room','that the eight small panels were a mistake'], a: 1,
+      why: 'A large panel after small ones slows pacing; the visual rhythm emphasizes the held moment.' },
+
+    { q: 'In an illustrated novel, a character\'s speech bubble grows larger and uses jagged hand-drawn letters that break the edge of the bubble. The lettering most directly conveys...',
+      o: ['the character is whispering','the character is calm and reflective','the character is raising volume, escalating in emotion','the character is asleep'], a: 2,
+      why: 'Growing, jagged letters that break the bubble border signal rising volume and intensity.' },
+
+    { q: 'A graphic novel panel uses heavy black shadow across two thirds of the frame. The character\'s face is barely visible. The shadow most directly conveys...',
+      o: ['a celebratory mood','a somber or heavy mood','a humorous mood','a peaceful mood'], a: 1,
+      why: 'Heavy shadow and obscured features support a somber, weighted reading of the moment.' },
+
+    { q: 'A picture book shows a child in the same red coat on every spread. The repeated visual choice most directly supports the conclusion that...',
+      o: ['the coat is a marker of the child\'s identity in the story','the illustrator only owned one color','the story takes place in winter','the child has no other clothes'], a: 0,
+      why: 'A repeated, consistent visual marker functions as a sign of the character\'s identity.' },
+
+    { q: 'A graphic novel shows a character drawn very small at the bottom of a tall, empty panel, with vast white space above. The composition most directly conveys...',
+      o: ['the character is isolated or overwhelmed by the space','the character is the most powerful figure on the page','the page was incorrectly printed','the character is very large'], a: 0,
+      why: 'A tiny figure in a vast empty frame supports a reading of isolation or insignificance.' },
+
+    { q: 'When you draw a conclusion from a visual element in a literary text, the strongest move is to...',
+      o: ['guess at the artist\'s mood','name the specific visual feature and tie it to a single supported conclusion','ignore the picture and focus on the words','assume every visual choice means the same thing'], a: 1,
+      why: 'A defensible visual reading names the feature, the observation, and the conclusion it supports.' },
+
+    { q: 'A graphic novel page uses panels with thin black borders for present-day scenes and panels with rough, broken borders for flashbacks. The border style most directly functions as...',
+      o: ['a visual signal that distinguishes time periods within the narrative','a decorative choice with no narrative meaning','an error by the letterer','a sign that the book is a mystery'], a: 0,
+      why: 'A consistent visual contrast between borders serves as a structural marker of time shifts.' },
+
+    { q: 'An illustration in a novel shows two characters seated at a table. One character\'s chair is drawn slightly higher than the other\'s. The compositional choice most directly suggests...',
+      o: ['the two characters are exactly equal in status','one character holds more authority or control in the scene','the artist had trouble drawing chairs','the table is broken'], a: 1,
+      why: 'A height difference in seated figures supports a power-imbalance reading of the scene.' },
+
+    { q: 'A graphic novel shows a row of identical panels with no change between them. The character stares straight ahead in each one. The visual repetition most directly conveys...',
+      o: ['the character is moving quickly across the page','time is stretching; the character is frozen in thought or shock','the page was a printing mistake','the scene is humorous'], a: 1,
+      why: 'Visual repetition without change slows narrative time and supports a frozen or stalled reading.' },
+
+    { q: 'In an illustrated short story, the narrator\'s text appears in a clean printed font, but one character\'s dialogue appears in spidery handwritten script. The font contrast most directly supports the conclusion that...',
+      o: ['the character has a different voice or quality from the narrator','the publisher ran out of one font','the story takes place in two countries','the story is a translation'], a: 0,
+      why: 'A consistent font contrast between narrator and character marks a distinct voice or presence.' },
+
+    { q: 'A graphic novel transitions from full color to black and white starting in chapter three. The color shift most directly supports the conclusion that...',
+      o: ['the printer made a budget cut','a meaningful change has occurred in the story\'s tone or time','the chapter takes place at night','the character has fallen asleep'], a: 1,
+      why: 'A sustained shift from color to black and white reads as a deliberate tonal or temporal change.' },
+
+    { q: 'Which of the following best describes the relationship between visual elements and conclusions in a literary text?',
+      o: ['Visual elements are unrelated to the conclusions a reader draws.','The strongest conclusions point to a specific visual feature, not a vague impression.','The longest illustration always carries the most meaning.','Conclusions from visuals can never be defended.'], a: 1,
+      why: 'A defensible visual reading rests on a named feature, not on overall impression or length.' }
+  ];
+
+  var FORM_A_IDX = [0,1,2,3,4,5,6,7];
+  var FORM_B_IDX = [8,9,10,11,12,13,3,5];
+
+  var FORM_A = FORM_A_IDX.map(function(i){ return ITEM_BANK[i]; });
+  var FORM_B = FORM_B_IDX.map(function(i){ return ITEM_BANK[i]; });
+
+  var secLesson = document.getElementById('lesson'),
+      secCheck  = document.getElementById('check'),
+      secGate   = document.getElementById('gate'),
+      secCheckB = document.getElementById('checkB'),
+      secResult = document.getElementById('result');
+
+  var elQtext = document.getElementById('qtext'), elOpts = document.getElementById('opts'), elQwhy = document.getElementById('qwhy'),
+      elCount = document.getElementById('qcount'), elTlabel = document.getElementById('tlabel'), elTfill = document.getElementById('tfill');
+
+  var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A;
+
+  function startCheck(form){
+    commitTime();
+    phase = form;
+    currentBank = (form==='A') ? FORM_A : FORM_B;
+    qi = 0; correct = 0;
+    if (form==='A'){
+      rec.attempts = (rec.attempts||0) + 1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    } else {
+      secGate.classList.add('hide'); secResult.classList.add('hide'); secCheckB.classList.remove('hide');
+    }
+    window.scrollTo(0,0);
+    showQ();
+  }
+
+  function showQ(){
+    locked = false;
+    var item = currentBank[qi];
+    var isA = (phase==='A');
+    var qtext = isA ? elQtext : document.getElementById('qtextB');
+    var opts  = isA ? elOpts  : document.getElementById('optsB');
+    var why   = isA ? elQwhy  : document.getElementById('qwhyB');
+    var count = isA ? elCount : document.getElementById('qcountB');
+    var label = isA ? elTlabel: document.getElementById('tlabelB');
+    var fill  = isA ? elTfill : document.getElementById('tfillB');
+    count.textContent = 'Question ' + (qi+1) + ' of ' + currentBank.length;
+    qtext.innerHTML = item.q;
+    opts.innerHTML = ''; why.textContent = '';
+    item.o.forEach(function(txt, i){
+      var b = document.createElement('button');
+      b.className = 'opt2'; b.type = 'button'; b.innerHTML = txt;
+      b.addEventListener('click', function(){ answer(i, b, opts, why, item); });
+      opts.appendChild(b);
+    });
+    timeLeft = QTIME; fill.style.width='100%'; fill.classList.remove('low');
+    label.textContent = QTIME + 's';
+    clearInterval(timer);
+    timer = setInterval(function(){
+      timeLeft--;
+      if (timeLeft < 0) timeLeft = 0;
+      fill.style.width = (timeLeft/QTIME*100) + '%';
+      label.textContent = timeLeft + 's';
+      if (timeLeft <= 8) fill.classList.add('low');
+      if (timeLeft === 0){ clearInterval(timer); autoAdvance(opts, why, item); }
+    }, 1000);
+  }
+
+  function autoAdvance(opts, why, item){
+    if (locked) return; locked = true;
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      c.style.pointerEvents = 'none';
+    });
+    why.style.color = 'var(--accent-d)';
+    why.textContent = 'Time. ' + item.why;
+    setTimeout(next, 1100);
+  }
+
+  function answer(i, btn, opts, why, item){
+    if (locked) return; locked = true; clearInterval(timer);
+    var ok = (i === item.a);
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      if (idx === i && !ok) c.classList.add('bad');
+      c.style.pointerEvents = 'none';
+    });
+    if (ok){ correct++; why.style.color='var(--good)'; why.textContent = 'Correct. ' + item.why; }
+    else   {            why.style.color='var(--accent-d)'; why.textContent = 'Not quite. ' + item.why; }
+    setTimeout(next, ok ? 700 : 1200);
+  }
+
+  function next(){ qi++; if (qi < currentBank.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    if (phase === 'A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed = (correct >= PASS), pct = Math.round(correct/FORM_A.length*100);
+      document.getElementById('scorebig').textContent = pct + '%';
+      rec.formA = correct; rec.best = Math.max(rec.best||0, pct);
+      var rtitle = document.getElementById('rtitle'), rmsg = document.getElementById('rmsg'),
+          retry  = document.getElementById('retry'),  toGate = document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if (passed){
+        rec.status = 'formA-passed';
+        if (!rec.formAPassedAt) rec.formAPassedAt = Date.now();
+        save(app);
+        syncCloud();
+        rtitle.textContent = 'Form A cleared.';
+        rmsg.textContent = 'You scored ' + correct + ' of ' + FORM_A.length + '. Form B unlocks in 24 hours to verify retention.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status = 'tried'; save(app);
+        rtitle.textContent = 'Below the bar.';
+        rmsg.textContent = 'The pass bar is 7 of 8. You scored ' + correct + '. Revisit the stations, then retake the check.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB = (correct >= PASS), pctB = Math.round(correct/FORM_B.length*100);
+      document.getElementById('scorebig').textContent = pctB + '%';
+      rec.formB = correct;
+      var rtitleB = document.getElementById('rtitle'), rmsgB = document.getElementById('rmsg');
+      document.getElementById('retry').classList.add('hide');
+      document.getElementById('toGate').classList.add('hide');
+      if (passedB){
+        rec.status = 'passed';
+        rec.passedAt = Date.now();
+        save(app);
+        syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status = 'formB-tried'; save(app);
+        rtitleB.textContent = 'Below the retention bar.';
+        rmsgB.textContent = 'You scored ' + correct + ' of ' + FORM_B.length + ' on Form B. Reread the stations and retake.';
+        document.getElementById('retry').classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide');
+    secGate.classList.remove('hide');
+    window.scrollTo(0,0);
+    var startBtn = document.getElementById('startB');
+    var cd = document.getElementById('countdown');
+    function tick(){
+      var elapsed = Date.now() - (rec.formAPassedAt || Date.now());
+      var remain = GATE_MS - elapsed;
+      if (remain <= 0){
+        cd.textContent = 'Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else {
+        startBtn.classList.add('hide');
+      }
+      var h = Math.floor(remain/3600000),
+          m = Math.floor((remain%3600000)/60000),
+          s = Math.floor((remain%60000)/1000);
+      cd.textContent = (h<10?'0':'') + h + ':' + (m<10?'0':'') + m + ':' + (s<10?'0':'') + s;
+      setTimeout(tick, 1000);
+    }
+    tick();
+  }
+
+  function showMastery(a, b){
+    var sec = document.getElementById('masteryDone'); if (!sec) return;
+    var ea = document.getElementById('msFormA'); if (ea) ea.textContent = a + ' / 8';
+    var eb = document.getElementById('msFormB'); if (eb) eb.textContent = b + ' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent = SNAME; });
+    var back = document.getElementById('msBack'); if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secCheckB.classList.add('hide');
+    secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try { sec.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e) { window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if (rec.status === 'passed'){
+      showMastery(rec.formA||0, rec.formB||0);
+      return;
+    }
+    if (rec.formAPassedAt && (rec.formA||0) >= PASS && (rec.formB||0) < PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click', function(){ startCheck('A'); });
+  document.getElementById('retry').addEventListener('click', function(){
+    secResult.classList.add('hide');
+    if (phase === 'A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click', showGate);
+  document.getElementById('startB').addEventListener('click', function(){ startCheck('B'); });
+
+  document.addEventListener('DOMContentLoaded', resume);
+
+})();
+</script>
+</body>
+</html>

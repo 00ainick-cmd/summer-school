@@ -425,13 +425,13 @@
   ];
   var FORMB=[
     {q:'To <b>sequence</b> events you ask ...',o:['what happened first, next, then, last','how long the story is','what the title says'],a:0,why:'Sequencing is finding the order first, next, then, last.'},
-    {q:'Which is a <b>signal word</b> for order?',o:['then','green','five'],a:0,why:'"Then" tells you what came next.'},
-    {q:'Read: <i>It rained all night. The next day the field was muddy and soccer was canceled.</i> What caused the cancel?',o:['the soccer ball','the rain making the field muddy','the day of the week'],a:1,why:'The rain made the field muddy, which caused the cancel.'},
+    {q:'Which is a <b>signal word</b> for order?',o:['green','then','five'],a:1,why:'"Then" tells you what came next.'},
+    {q:'Read: <i>It rained all night. The next day the field was muddy and soccer was canceled.</i> What caused the cancel?',o:['the soccer ball','the day of the week','the rain making the field muddy'],a:2,why:'The rain made the field muddy, which caused the cancel.'},
     {q:'Read: <i>Jo left the freezer door open. Hours later, the ice cream was a puddle.</i> What caused the puddle?',o:['leaving the freezer door open','the kind of ice cream','the size of the carton'],a:0,why:'Warm air got in because the door was open. That melted the ice cream.'},
     {q:'Which is the right order? Ben missed the bus. He walked to school. He was late to class.',o:['was late, walked to school, missed bus','missed bus, walked to school, was late','walked to school, missed bus, was late'],a:1,why:'Miss bus, walk, late is the chain.'},
-    {q:'Read: <i>Lia practiced her speech five times. When she stood up to give it, she did not feel scared.</i> What past event caused her to feel less scared?',o:['standing up','practicing five times','the size of the room'],a:1,why:'Practice made her ready. That caused the calm.'},
-    {q:'The order of events in a story is ...',o:['random','planned by the writer to build the story','always backwards'],a:1,why:'Writers choose the order. It builds the story.'},
-    {q:'If event A would have happened even without event B, then ...',o:['event B caused event A','event B did not cause event A','event A caused event B'],a:1,why:'If A still happens without B, B is not the cause.'}
+    {q:'Read: <i>Lia practiced her speech five times. When she stood up to give it, she did not feel scared.</i> What past event caused her to feel less scared?',o:['the size of the room','standing up','practicing five times'],a:2,why:'Practice made her ready. That caused the calm.'},
+    {q:'The order of events in a story is ...',o:['planned by the writer to build the story','random','always backwards'],a:0,why:'Writers choose the order. It builds the story.'},
+    {q:'If event A would have happened even without event B, then ...',o:['event B caused event A','event A caused event B','event B did not cause event A'],a:2,why:'If A still happens without B, B is not the cause.'}
   ];
 
   var FORM='A', QS=FORMA, qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false;

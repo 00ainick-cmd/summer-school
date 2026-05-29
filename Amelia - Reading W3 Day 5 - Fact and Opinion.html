@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Mastery learning lesson aligned to a verbatim Missouri Learning Standard. Auto-graded, kid-independent.">
-<title>Story Lab, Text Features Help You Find</title>
+<title>Story Lab, Fact and Opinion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
@@ -41,24 +41,20 @@
   .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
   .station h2{font-size:23px;}
   .station p.lead{color:var(--ink2);}
-  .feats{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
-  .feat{border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:10px;padding:12px 14px;background:#fbf5ea;}
-  .feat .lab{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);text-transform:uppercase;letter-spacing:.05em;}
-  .feat .body{margin-top:4px;color:var(--ink);font-size:15px;}
-  .feat .pts{font-size:14px;color:var(--ink2);margin-top:6px;}
-  .feat.title{border-left-color:var(--accent);}
-  .feat.head{border-left-color:#7a5a2a;}
-  .feat.bold{border-left-color:var(--accent);}
-  .feat.cap{border-left-color:var(--alt);}
-  .feat.toc{border-left-color:#7a5a2a;}
-  /* sample page */
-  .samp{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;margin-top:14px;font-family:'Newsreader',Georgia,serif;}
-  .samp .ttl{font-family:'Fraunces';font-weight:600;font-size:22px;color:var(--ink);}
-  .samp .hd{font-family:'Fraunces';font-weight:600;font-size:16px;color:var(--accent-d);margin-top:10px;border-bottom:1px solid var(--line);padding-bottom:3px;}
-  .samp p{font-size:15px;margin-top:8px;}
-  .samp .bw{font-weight:700;background:#fdecea;padding:1px 5px;border-radius:4px;color:var(--accent-d);}
-  .samp .photo{margin-top:10px;border:1px dashed var(--mute);border-radius:8px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--mute);font-style:italic;background:#f6ecdb;}
-  .samp .cap-lbl{font-style:italic;font-size:13px;color:var(--ink2);margin-top:4px;}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .col-c{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;}
+  .col-c.fact{border-left:4px solid var(--alt);}
+  .col-c.op{border-left:4px solid var(--accent);}
+  .col-c h3{font-family:'Fraunces';font-size:16px;font-style:italic;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+  .col-c.fact h3{color:#3f5a32;}
+  .col-c.op h3{color:var(--accent-d);}
+  .col-c .ex{font-family:'Newsreader',Georgia,serif;font-size:15px;color:var(--ink);margin-top:6px;}
+  .col-c .pts{font-size:14px;color:var(--ink2);margin-top:8px;}
+  .signal{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .sig{font-family:'Fraunces';font-size:13px;background:#fdecea;border:1px solid var(--accent);color:var(--accent-d);border-radius:6px;padding:3px 9px;font-style:italic;}
+  .test{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbf5ea;margin-top:10px;}
+  .test .q{font-family:'Fraunces';font-style:italic;color:var(--accent-d);}
+  .test .a{margin-top:4px;color:var(--ink);}
   .passage{background:#fbf5ea;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:17px;color:var(--ink);font-family:'Newsreader',Georgia,serif;line-height:1.55;}
   .qrow{margin-top:14px;}
   .qrow .ql{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--accent-d);letter-spacing:.04em;text-transform:uppercase;}
@@ -105,24 +101,26 @@
   .gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;} *{animation:none !important;}}
 
-  /* HERO_ILLO_V1: a page with title, heading, photo with caption, and a bold word, each labeled with arrow pointing to useful info */
+  /* HERO_ILLO_V1: two columns. FACT with checkmark and "Mars is a planet". OPINION with thought bubble and "Mars is the best planet" */
   .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
   .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
-  .lesson-hero .page{fill:#fffdf8;stroke:var(--line);stroke-width:1.2;}
-  .lesson-hero .ttl{font-family:'Fraunces',serif;font-weight:600;font-size:13px;fill:var(--ink);}
-  .lesson-hero .hd{font-family:'Fraunces',serif;font-weight:600;font-size:11px;fill:var(--accent-d);}
-  .lesson-hero .body{font-family:'Newsreader',serif;font-size:8px;fill:var(--ink2);}
-  .lesson-hero .photo{fill:#f3ead9;stroke:var(--mute);stroke-width:1;}
-  .lesson-hero .phx{stroke:var(--mute);stroke-width:.8;}
-  .lesson-hero .cap-l{font-family:'Newsreader',serif;font-style:italic;font-size:7px;fill:var(--ink2);}
-  .lesson-hero .bold-box{fill:#fdecea;stroke:var(--accent);stroke-width:1;}
-  .lesson-hero .bold-t{font-family:'Fraunces',serif;font-weight:700;font-size:8px;text-anchor:middle;fill:var(--accent-d);}
-  .lesson-hero .label-pill{fill:#eef5ea;stroke:var(--alt);stroke-width:1;}
-  .lesson-hero .label-t{font-family:'Fraunces',serif;font-style:italic;font-size:9px;text-anchor:middle;fill:#3f5a32;}
-  .lesson-hero .arrow{fill:none;stroke:var(--alt);stroke-width:1.2;stroke-linecap:round;stroke-dasharray:3 3;}
-  .lesson-hero .ah{fill:var(--alt);}
-  .lesson-hero .useful{fill:#fbf5ea;stroke:var(--accent-d);stroke-width:1.4;}
-  .lesson-hero .useful-t{font-family:'Fraunces',serif;font-style:italic;font-size:10px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;fill:var(--accent-d);}
+  .lesson-hero .col-box{stroke-width:1.4;}
+  .lesson-hero .fact-box{fill:#eef5ea;stroke:var(--alt);}
+  .lesson-hero .op-box{fill:#fdecea;stroke:var(--accent);}
+  .lesson-hero .col-cap{font-family:'Fraunces',serif;font-style:italic;font-size:13px;text-anchor:middle;letter-spacing:.1em;text-transform:uppercase;}
+  .lesson-hero .col-cap.fact{fill:#3f5a32;}
+  .lesson-hero .col-cap.op{fill:var(--accent-d);}
+  .lesson-hero .check{fill:none;stroke:#3f5a32;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .check-bg{fill:#fff;stroke:var(--alt);stroke-width:1.4;}
+  .lesson-hero .bubble{fill:#fff;stroke:var(--accent);stroke-width:1.4;}
+  .lesson-hero .bubble-dot{fill:var(--accent);}
+  .lesson-hero .sample-card{fill:#fff;stroke-width:1.2;}
+  .lesson-hero .sample-card.fact{stroke:var(--alt);}
+  .lesson-hero .sample-card.op{stroke:var(--accent);}
+  .lesson-hero .sample-t{font-family:'Newsreader',serif;font-size:11px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .sub{font-family:'Fraunces',serif;font-style:italic;font-size:10px;text-anchor:middle;letter-spacing:.04em;}
+  .lesson-hero .sub.fact{fill:#3f5a32;}
+  .lesson-hero .sub.op{fill:var(--accent-d);}
   .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;fill:var(--mute);}
 </style>
 
@@ -152,125 +150,84 @@
 </div>
 <div class="bg" aria-hidden="true"></div>
 <div class="wrap">
-  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.R.3.A.c</span></div>
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.R.3.B.b</span></div>
   <section id="lesson">
 
-    <div class="kicker">Week three, Day four</div>
-    <h1>Text Features Help You Find</h1>
-    <p class="opener"><span class="dropcap">N</span>onfiction books have more than words. They have titles, headings, bold words, photos, captions, and lists. Those are <b>text features</b>. They are not just for show. They help you find what you need fast and check if your guess about the topic is right.</p>
-    <p class="mission">By the end you will name common text features, use them to find info, and use them to check a prediction.</p>
-    <div class="stdtag"><span class="l">What this lesson teaches</span>Use text and graphic features to locate information and to make and verify predictions.</div>
+    <div class="kicker">Week three, Day five</div>
+    <h1>Fact and Opinion</h1>
+    <p class="opener"><span class="dropcap">N</span>onfiction is full of two kinds of lines. Facts and opinions. A <b>fact</b> can be checked and proved. An <b>opinion</b> tells how a person feels or thinks. Both can be useful. A good reader tells them apart so they know what to trust and what to weigh.</p>
+    <p class="mission">By the end you will pick fact from opinion in a sentence, and you will say why.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Distinguish fact from opinion.</div>
 
-    <!-- HERO_ILLO_V1: a page showing a title, heading, photo with caption, and bold word, each feature labeled with arrows pointing to useful info -->
+    <!-- HERO_ILLO_V1: two columns. FACT column with checkmark and "Mars is a planet". OPINION column with thought bubble and "Mars is the best planet". -->
     <div class="lesson-hero" aria-hidden="true">
-      <svg viewBox="0 0 480 270" role="img" aria-label="A book page shows a title at the top, a section heading, a photo with a caption, and a bold word in the text. Green labels point to each feature: title, heading, bold word, photo with caption. A red arrow shows that all features point to useful info.">
-        <rect class="page" x="58" y="14" width="240" height="232" rx="6"/>
-        <text class="ttl" x="68" y="38">All About Mars</text>
-        <line class="phx" x1="68" y1="46" x2="288" y2="46"/>
-        <text class="hd" x="68" y="64">What Mars Looks Like</text>
-        <text class="body" x="68" y="80">Mars is the fourth planet</text>
-        <text class="body" x="68" y="92">from the sun. The ground</text>
-        <text class="body" x="68" y="104">looks red because of</text>
-        <g>
-          <rect class="bold-box" x="68" y="110" width="60" height="14" rx="3"/>
-          <text class="bold-t" x="98" y="121">iron dust</text>
+      <svg viewBox="0 0 480 250" role="img" aria-label="Two columns side by side. The left column is labeled FACT in green with a checkmark and a card that reads Mars is a planet. The right column is labeled OPINION in red with a thought bubble and a card that reads Mars is the best planet.">
+        <rect class="col-box fact-box" x="20" y="20" width="210" height="210" rx="10"/>
+        <text class="col-cap fact" x="125" y="44">fact</text>
+        <circle class="check-bg" cx="125" cy="80" r="22"/>
+        <polyline class="check" points="113,82 122,92 138,72"/>
+        <rect class="sample-card fact" x="40" y="118" width="170" height="56" rx="8"/>
+        <text class="sample-t" x="125" y="142">"Mars is a planet."</text>
+        <text class="sub fact" x="125" y="162">can be checked</text>
+        <text class="sub fact" x="125" y="198">true for everyone</text>
+        <rect class="col-box op-box" x="250" y="20" width="210" height="210" rx="10"/>
+        <text class="col-cap op" x="355" y="44">opinion</text>
+        <g transform="translate(330 60)">
+          <ellipse class="bubble" cx="25" cy="20" rx="34" ry="22"/>
+          <circle class="bubble-dot" cx="14" cy="46" r="4"/>
+          <circle class="bubble-dot" cx="6" cy="58" r="2"/>
+          <text class="sub op" x="25" y="16">I think</text>
+          <text class="sub op" x="25" y="30">it is the best</text>
         </g>
-        <text class="body" x="132" y="120">all over.</text>
-        <g>
-          <rect class="photo" x="68" y="134" width="220" height="76" rx="4"/>
-          <line class="phx" x1="68" y1="134" x2="288" y2="210"/>
-          <line class="phx" x1="288" y1="134" x2="68" y2="210"/>
-          <text class="cap" x="178" y="178" fill="var(--mute)">photo of Mars</text>
-        </g>
-        <text class="cap-l" x="68" y="222">Photo. Mars from the Hubble.</text>
-        <g>
-          <rect class="label-pill" x="306" y="28" width="92" height="22" rx="11"/>
-          <text class="label-t" x="352" y="42">title</text>
-        </g>
-        <path class="arrow" d="M306 38 L294 38"/>
-        <polygon class="ah" points="296,34 286,38 296,42"/>
-        <g>
-          <rect class="label-pill" x="306" y="56" width="92" height="22" rx="11"/>
-          <text class="label-t" x="352" y="70">heading</text>
-        </g>
-        <path class="arrow" d="M306 66 L294 64"/>
-        <polygon class="ah" points="296,60 286,64 296,68"/>
-        <g>
-          <rect class="label-pill" x="306" y="110" width="92" height="22" rx="11"/>
-          <text class="label-t" x="352" y="124">bold word</text>
-        </g>
-        <path class="arrow" d="M306 120 L132 118"/>
-        <polygon class="ah" points="134,114 124,118 134,122"/>
-        <g>
-          <rect class="label-pill" x="306" y="172" width="92" height="22" rx="11"/>
-          <text class="label-t" x="352" y="186">photo + caption</text>
-        </g>
-        <path class="arrow" d="M306 182 L290 178"/>
-        <polygon class="ah" points="292,174 282,178 292,182"/>
-        <g>
-          <rect class="useful" x="306" y="218" width="156" height="32" rx="8"/>
-          <text class="useful-t" x="384" y="238">useful info</text>
-        </g>
-        <path class="arrow" d="M398 50 Q420 130 384 216"/>
-        <polygon class="ah" points="378,212 388,222 388,210"/>
-        <path class="arrow" d="M398 78 Q420 140 384 216"/>
-        <polygon class="ah" points="378,212 388,222 388,210"/>
-        <path class="arrow" d="M398 132 Q420 170 384 216"/>
-        <path class="arrow" d="M398 194 Q418 206 384 218"/>
-        <text class="cap" x="186" y="266">each feature points to useful info</text>
+        <rect class="sample-card op" x="270" y="118" width="170" height="56" rx="8"/>
+        <text class="sample-t" x="355" y="142">"Mars is the best planet."</text>
+        <text class="sub op" x="355" y="162">tells a feeling</text>
+        <text class="sub op" x="355" y="198">others may not agree</text>
+        <text class="cap" x="240" y="248">facts can be proved. opinions cannot.</text>
       </svg>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">01</span><h2>Common text features</h2></div>
-      <p class="lead">A <b>text feature</b> is a part of a nonfiction page that is not just words in a line. Each one does a job for the reader.</p>
-      <div class="feats">
-        <div class="feat title"><div class="lab">Title</div><div class="body">Big words at the top. Tells you the topic of the whole book or page.</div><div class="pts"><b>Use it for:</b> What is the page about?</div></div>
-        <div class="feat head"><div class="lab">Heading</div><div class="body">Words above a chunk of text. Tells you what that part is about.</div><div class="pts"><b>Use it for:</b> Skipping to the part you need.</div></div>
-        <div class="feat bold"><div class="lab">Bold word</div><div class="body">A word in dark print. Tells you the word is important and often has a meaning to learn.</div><div class="pts"><b>Use it for:</b> Spotting key words to learn.</div></div>
-        <div class="feat cap"><div class="lab">Photo with caption</div><div class="body">A picture with a short line under it. The caption tells you what the picture shows.</div><div class="pts"><b>Use it for:</b> Quick info without reading a whole paragraph.</div></div>
-        <div class="feat toc"><div class="lab">Table of contents</div><div class="body">A list at the front. Tells you which chapter is on which page.</div><div class="pts"><b>Use it for:</b> Going straight to the chapter you want.</div></div>
+      <div class="shead"><span class="sno">01</span><h2>Facts and opinions, side by side</h2></div>
+      <div class="twocol">
+        <div class="col-c fact"><h3>Fact</h3><p class="ex">"Mars is a planet."</p><div class="pts"><b>Why:</b> you can check this with a science book or a teacher. It is true for everyone.</div></div>
+        <div class="col-c op"><h3>Opinion</h3><p class="ex">"Mars is the best planet."</p><div class="pts"><b>Why:</b> "Best" is a feeling. Another person could say Jupiter is the best. Cannot be proved.</div></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">Both sentences talk about Mars. One can be checked. The other tells you what someone feels.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Signal words for opinions</h2></div>
+      <p class="lead">Some words tip you off that a line is an opinion. Watch for these:</p>
+      <div class="signal">
+        <span class="sig">best</span><span class="sig">worst</span><span class="sig">I think</span><span class="sig">I feel</span><span class="sig">should</span><span class="sig">always</span><span class="sig">most fun</span><span class="sig">cutest</span><span class="sig">amazing</span><span class="sig">boring</span>
+      </div>
+      <p class="lead" style="margin-top:10px;">These words tell you a feeling, not a fact. "Dogs are the best pet" is an opinion. "Dogs have four legs" is a fact.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>The test: can it be proved?</h2></div>
+      <p class="lead">When you are not sure, ask this one question:</p>
+      <div class="test"><div class="q">"Could two people check this and agree?"</div><div class="a">If yes, it is a <b>fact</b>. If two people might never agree, it is an <b>opinion</b>.</div></div>
+      <div class="twocol" style="margin-top:10px;">
+        <div class="col-c fact"><h3>Try it: fact</h3><p class="ex">"The library opens at 9 a.m."</p><div class="pts">Check the sign or the website. Anyone would get the same answer.</div></div>
+        <div class="col-c op"><h3>Try it: opinion</h3><p class="ex">"The library is the most fun place in town."</p><div class="pts">Some kids love the pool. Some love the library. Cannot be proved.</div></div>
       </div>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">02</span><h2>Use features to find info fast</h2></div>
-      <p class="lead">Say you need to know what otters eat. You do not have to read the whole book. Try this:</p>
-      <ol style="margin:8px 0 0 22px;color:var(--ink2);">
-        <li>Use the <b>table of contents</b> to find a chapter about food.</li>
-        <li>Look at <b>headings</b> on each page to skip to the right part.</li>
-        <li>Scan for <b>bold words</b> like "diet" or "prey."</li>
-        <li>Read the <b>caption</b> under a photo of an otter eating.</li>
-      </ol>
-      <p class="lead" style="margin-top:10px;">In one minute you can find the answer. That is text features doing the work.</p>
-    </div>
-
-    <div class="station">
-      <div class="shead"><span class="sno">03</span><h2>Use features to make and check a prediction</h2></div>
-      <p class="lead">A <b>prediction</b> is a smart guess about what a book is going to say. You make one before you read. Then you check it.</p>
-      <div class="samp">
-        <div class="ttl">All About Bats</div>
-        <div class="hd">Chapter 2: Where Bats Sleep</div>
-        <p>Bats sleep upside down. They hold on tight with their <span class="bw">claws</span>. Most bats live in caves or in old trees.</p>
-        <div class="photo">photo of a bat hanging upside down in a cave</div>
-        <div class="cap-lbl">Photo. A small bat sleeping in a cave.</div>
-      </div>
-      <p class="lead" style="margin-top:10px;"><b>Before you read,</b> the title and heading tell you the topic. You can <b>predict</b>: "I bet this part is going to tell me where bats sleep and how they hold on." <b>After you read,</b> check the photo, caption, and bold word. If they match your guess, your prediction was right. If they show something new, change your prediction.</p>
-    </div>
-
-    <div class="station">
-      <div class="shead"><span class="sno">04</span><h2>Try it: use the features</h2></div>
-      <p class="lead">Look at the sample page in each round. Pick which feature you would use to answer the question. Then check a prediction with another feature.</p>
+      <div class="shead"><span class="sno">04</span><h2>Try it: sort fact from opinion</h2></div>
+      <p class="lead">Read each short passage. Pick the sentence that is a fact. Then pick the sentence that is an opinion.</p>
       <div id="rounds"></div>
-      <button class="cta rnext hide" id="rnext">Next page</button>
+      <button class="cta rnext hide" id="rnext">Next passage</button>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">05</span><h2>Watch out for this</h2></div>
-      <div class="myth"><span class="tag">Common mix-up</span><div class="big">If you have not read the whole page, you cannot answer questions about it.</div><div style="color:var(--ink2)">No. Text features are made for fast finding. The heading, photo, and caption can give you the answer in seconds. Use them on purpose. Reading the whole page is great too, but you do not always need to.</div></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">If a lot of people agree with a line, it is a fact.</div><div style="color:var(--ink2)">No. Lots of kids might say chocolate is the best ice cream, but that is still an opinion. A fact has to be checked and proved with the same answer every time. Popular is not the same as true.</div></div>
     </div>
 
-    <button class="cta" id="toCheck">I can use text features. Start the check</button>
+    <button class="cta" id="toCheck">I can tell fact from opinion. Start the check</button>
   </section>
 
   <section id="check" class="hide">
@@ -303,7 +260,7 @@
     <button class="cta alt hide" id="retry">Try the check again</button>
   </section>
 
-  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);"><span id="__sname">Amelia</span> &middot; Reading &middot; Standard 3.R.3.A.c</footer>
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);"><span id="__sname">Amelia</span> &middot; Reading &middot; Standard 3.R.3.B.b</footer>
 
 <section id="masteryDone" class="mastery-complete" aria-live="polite">
   <div class="mastery-card">
@@ -338,7 +295,7 @@
   if(!__rk&&__ks.length)__rk=__ks[0];
   if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};
   __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
-  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='3.R.3.A.c',SNAME=__rk.name;
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='3.R.3.B.b',SNAME=__rk.name;
   document.addEventListener('DOMContentLoaded',function(){
     var __fn=document.getElementById('__sname'); if(__fn)__fn.textContent=SNAME;
     document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
@@ -367,79 +324,79 @@
 
   var ROUNDS=[
     {
-      sample:'<div class="ttl">All About Owls</div><div class="hd">Chapter 3: What Owls Eat</div><p>Owls hunt at night. They swoop down and grab small animals with their <span class="bw">talons</span>. Most owls eat mice, voles, and rats.</p><div class="photo">photo of an owl holding a mouse</div><div class="cap-lbl">Photo. A barn owl with a mouse it just caught.</div>',
-      q1:'You want to find out fast what owls eat. Which feature do you use first?',
+      passage:'Penguins live in cold places. They have black and white feathers. I think penguins are the cutest birds. They cannot fly, but they are great swimmers.',
+      q1:'Which sentence from the passage is a <b>fact</b>?',
       o1:[
-        {t:'the photo and its caption', ok:true, why:'Yes. The caption says "a mouse it just caught." That answers the question in one line.'},
-        {t:'a random sentence in the middle', ok:false, why:'Random sentences are slow. Features are faster.'},
-        {t:'the page number', ok:false, why:'Page numbers do not tell you about food.'}
+        {t:'"I think penguins are the cutest birds."', ok:false, why:'"I think" and "cutest" are opinion words. That line is an opinion.'},
+        {t:'"They cannot fly, but they are great swimmers."', ok:true, why:'Yes. You can check this in a science book. It is true for everyone.'},
+        {t:'"Penguins should be in every zoo."', ok:false, why:'That line is not in the passage. Pick a sentence from the text.'}
       ],
-      q2:'You predicted "this page will say owls eat plants." Which feature tells you to change that prediction?',
+      q2:'Which sentence is an <b>opinion</b>?',
       o2:[
-        {t:'the bold word "talons" and the photo of an owl with a mouse', ok:true, why:'Yes. Talons are claws, and the photo shows a mouse. Owls eat animals, not plants. Change the prediction.'},
-        {t:'the page is white', ok:false, why:'The color of the page is not a text feature.'},
-        {t:'the title only', ok:false, why:'The title says "owls," not what they eat. Use more features to check.'}
+        {t:'"Penguins live in cold places."', ok:false, why:'That can be checked. It is a fact.'},
+        {t:'"I think penguins are the cutest birds."', ok:true, why:'Yes. "I think" and "cutest" are opinion signals.'},
+        {t:'"They have black and white feathers."', ok:false, why:'That can be checked with a photo. It is a fact.'}
       ]
     },
     {
-      sample:'<div class="ttl">Volcanoes</div><div class="hd">Chapter 5: Why Volcanoes Erupt</div><p>Deep inside Earth, hot melted rock called <span class="bw">magma</span> pushes up. When it breaks through the ground, the volcano erupts.</p><div class="photo">photo of a volcano with red lava flowing down</div><div class="cap-lbl">Photo. Lava flows down a volcano at night.</div>',
-      q1:'You want to find what melted rock is called. Which feature is fastest?',
+      passage:'Pizza was first made in Italy. Most pizzas have cheese and tomato sauce. Pizza is the best food in the world. The big pizza chain near my house makes thin crust.',
+      q1:'Which sentence is a <b>fact</b>?',
       o1:[
-        {t:'the bold word in the paragraph', ok:true, why:'Yes. "Magma" is the bold word. Bold words are usually key words to learn.'},
-        {t:'the page number', ok:false, why:'Page numbers do not give meanings.'},
-        {t:'the title', ok:false, why:'The title says "Volcanoes." The bold word gives you the exact term.'}
+        {t:'"Pizza is the best food in the world."', ok:false, why:'"Best" is an opinion word. People might not agree.'},
+        {t:'"Pizza was first made in Italy."', ok:true, why:'Yes. You can check this in a food history book.'},
+        {t:'"Pizza is boring."', ok:false, why:'That line is not in the passage and is also an opinion. Pick from the text.'}
       ],
-      q2:'You predicted "this chapter is about why volcanoes erupt." Which feature tells you the prediction is right?',
+      q2:'Which sentence is an <b>opinion</b>?',
       o2:[
-        {t:'the heading "Chapter 5: Why Volcanoes Erupt"', ok:true, why:'Yes. The heading matches the prediction exactly.'},
-        {t:'the photo caption alone', ok:false, why:'The caption helps, but the heading is the most direct match.'},
-        {t:'the page color', ok:false, why:'Page color is not a text feature.'}
+        {t:'"Most pizzas have cheese and tomato sauce."', ok:false, why:'You can check this by looking at menus. It is a fact.'},
+        {t:'"Pizza is the best food in the world."', ok:true, why:'Yes. "Best" tells a feeling. People might not agree.'},
+        {t:'"The big pizza chain near my house makes thin crust."', ok:false, why:'That can be checked by looking. It is a fact.'}
       ]
     },
     {
-      sample:'<div class="ttl">Rainforests</div><div class="hd">Chapter 1: Layers of the Forest</div><p>A rainforest has four layers. The top is called the <span class="bw">canopy</span>. Below that are smaller trees, plants, and the forest floor.</p><div class="photo">photo of tall trees with monkeys at the top</div><div class="cap-lbl">Photo. Monkeys live high in the canopy.</div>',
-      q1:'You want to know what the top layer is called. Which feature gives the answer fastest?',
+      passage:'Dogs are pets all over the world. Some dogs help blind people get around. I feel dogs are way better than cats. Dogs have four legs and a tail.',
+      q1:'Which sentence is a <b>fact</b>?',
       o1:[
-        {t:'the bold word "canopy"', ok:true, why:'Yes. Bold words name key terms. "Canopy" is the top layer.'},
-        {t:'the page count', ok:false, why:'Page count does not name layers.'},
-        {t:'the last sentence', ok:false, why:'The last sentence does not name the top layer. Bold words do.'}
+        {t:'"I feel dogs are way better than cats."', ok:false, why:'"I feel" is an opinion signal.'},
+        {t:'"Dogs have four legs and a tail."', ok:true, why:'Yes. Anyone can check this by looking. It is a fact.'},
+        {t:'"Cats are mean."', ok:false, why:'That is not in the passage and is also an opinion.'}
       ],
-      q2:'You predicted "monkeys probably live high up." Which feature checks your prediction?',
+      q2:'Which sentence is an <b>opinion</b>?',
       o2:[
-        {t:'the photo and its caption', ok:true, why:'Yes. The caption says "monkeys live high in the canopy." Your prediction matches.'},
-        {t:'the chapter number', ok:false, why:'Chapter numbers do not show what animals live where.'},
-        {t:'the page color', ok:false, why:'Page color is not a text feature.'}
+        {t:'"Some dogs help blind people get around."', ok:false, why:'You can check that. It is a fact.'},
+        {t:'"Dogs are pets all over the world."', ok:false, why:'You can check that too. It is a fact.'},
+        {t:'"I feel dogs are way better than cats."', ok:true, why:'Yes. "I feel" and "better" are opinion signals.'}
       ]
     }
   ];
   var rIdx=0, rbox=document.getElementById('rounds'), rnext=document.getElementById('rnext');
   function render(){
     var r=ROUNDS[rIdx]; rbox.innerHTML='';
-    var s=document.createElement('div'); s.className='samp'; s.innerHTML=r.sample; rbox.appendChild(s);
+    var p=document.createElement('div'); p.className='passage'; p.textContent=r.passage; rbox.appendChild(p);
     var qr=document.createElement('div'); qr.className='qrow';
-    qr.innerHTML='<div class="ql">Step 1, find info</div><div class="q">'+r.q1+'</div>';
+    qr.innerHTML='<div class="ql">Step 1, find a fact</div><div class="q">'+r.q1+'</div>';
     var opts=document.createElement('div'); opts.className='opts3';
     var fb=document.createElement('div'); fb.className='stagefb';
     r.o1.forEach(function(o){
-      var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.textContent=o.t;
+      var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.innerHTML=o.t;
       b.addEventListener('click',function(){
         Array.prototype.forEach.call(opts.children,function(x){x.disabled=true;});
-        if(o.ok){ b.classList.add('ok'); fb.className='stagefb ok'; fb.textContent=o.why; setTimeout(showPred,700); }
+        if(o.ok){ b.classList.add('ok'); fb.className='stagefb ok'; fb.textContent=o.why; setTimeout(showOp,700); }
         else { b.classList.add('no'); fb.className='stagefb try'; fb.textContent=o.why;
           Array.prototype.forEach.call(opts.children,function(x,k){ if(r.o1[k].ok) x.classList.add('ok'); });
-          setTimeout(showPred,1300);
+          setTimeout(showOp,1300);
         }
       });
       opts.appendChild(b);
     });
     qr.appendChild(opts); qr.appendChild(fb); rbox.appendChild(qr);
-    function showPred(){
+    function showOp(){
       var qr2=document.createElement('div'); qr2.className='qrow';
-      qr2.innerHTML='<div class="ql">Step 2, check a prediction</div><div class="q">'+r.q2+'</div>';
+      qr2.innerHTML='<div class="ql">Step 2, find an opinion</div><div class="q">'+r.q2+'</div>';
       var op2=document.createElement('div'); op2.className='opts3';
       var fb2=document.createElement('div'); fb2.className='stagefb';
       r.o2.forEach(function(o){
-        var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.textContent=o.t;
+        var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.innerHTML=o.t;
         b.addEventListener('click',function(){
           Array.prototype.forEach.call(op2.children,function(x){x.disabled=true;});
           if(o.ok){ b.classList.add('ok'); fb2.className='stagefb ok'; fb2.textContent=o.why; }
@@ -458,24 +415,24 @@
   render();
 
   var FORMA=[
-    {q:'A <b>text feature</b> is ...',o:['a part of a page that is not just lines of words','the size of the book','the cover color'],a:0,why:'Text features are parts like titles, headings, photos, and captions.'},
-    {q:'A <b>heading</b> tells you ...',o:['the whole book topic','what a chunk of text is about','the page count'],a:1,why:'A heading tells you what one part is about.'},
-    {q:'A <b>caption</b> is ...',o:['a long story','a short line that tells what a picture shows','the title'],a:1,why:'Captions explain a photo or picture.'},
-    {q:'You want to skip to the chapter about food. Which feature is best?',o:['the page color','the last sentence','table of contents'],a:2,why:'A table of contents lists chapters and pages.'},
-    {q:'A <b>bold word</b> usually means ...',o:['the word is wrong','the page is upside down','the word is important and worth learning'],a:2,why:'Bold marks key terms.'},
-    {q:'A <b>prediction</b> is ...',o:['the title','a smart guess about what the text will say','the last word'],a:1,why:'A prediction is your guess before you read.'},
-    {q:'You predicted bats eat plants. The page shows a photo of a bat eating a bug. You should ...',o:['ignore the photo','change the prediction','tear the page out'],a:1,why:'New info means update your prediction.'},
-    {q:'Which features do you use to make a prediction before you read?',o:['only the bold words','only the page number','title and headings'],a:2,why:'The title and headings tell you the topic up front.'}
+    {q:'A <b>fact</b> is a line that ...',o:['can be checked and proved','tells how a person feels','is always the title'],a:0,why:'Facts can be checked. They are true for everyone.'},
+    {q:'An <b>opinion</b> is a line that ...',o:['tells a feeling or judgment','is the longest sentence','is the same for everyone'],a:0,why:'Opinions tell a feeling. People might not agree.'},
+    {q:'Which is a <b>fact</b>?',o:['"I think dogs are amazing."','"A dog has four legs."','"Dogs are the best pet."'],a:1,why:'You can check that with a photo. It is true for everyone.'},
+    {q:'Which is an <b>opinion</b>?',o:['"The library has more than 200 books."','"The library opens at 9 a.m."','"The library is the most fun place in town."'],a:2,why:'"Most fun" is a feeling word. People can disagree.'},
+    {q:'Which word is a signal for opinions?',o:['three','best','grass'],a:1,why:'"Best" tells a feeling. It is an opinion signal.'},
+    {q:'Which is a <b>fact</b>?',o:['"Soccer is boring."','"Soccer uses one ball per game."','"Soccer is the most exciting sport."'],a:1,why:'You can check this with the rules. It is a fact.'},
+    {q:'Which is an <b>opinion</b>?',o:['"Pizza is the best food in the world."','"Pizza was first made in Italy."','"Pizza has cheese on top."'],a:0,why:'"Best" is an opinion word. The other lines can be checked.'},
+    {q:'If many kids agree, the line ...',o:['is now a fact','is still an opinion','is now a heading'],a:1,why:'Popular is not the same as proved. It is still an opinion.'}
   ];
   var FORMB=[
-    {q:'A <b>title</b> tells you ...',o:['the topic of the whole book or page','the page color','the longest sentence'],a:0,why:'A title tells you the topic.'},
-    {q:'A <b>photo with a caption</b> can give you ...',o:['only colors','quick info without reading a whole paragraph','only the title'],a:1,why:'Photos plus captions are fast info.'},
-    {q:'You want to find what magma is. Which feature is best?',o:['the page color','the cover','the bold word in the paragraph'],a:2,why:'Bold words name key terms like magma.'},
-    {q:'You see a chapter heading "How Sea Otters Hunt." You can predict the chapter is about ...',o:['the color of the ocean','the price of fish','the way sea otters catch food'],a:2,why:'The heading tells you what to expect.'},
-    {q:'A reader who uses text features ...',o:['wastes time','can find info faster than reading every word','breaks the rules'],a:1,why:'Features are made for fast finding.'},
-    {q:'You predicted the book would say "owls only eat plants." The bold word is "talons" and the photo shows an owl with a mouse. You should ...',o:['change the prediction','keep the prediction the same','ignore both'],a:0,why:'Talons and a mouse photo show owls eat animals. Update.'},
-    {q:'Which is NOT a text feature?',o:['heading','the color the reader is wearing','caption'],a:1,why:'The reader\'s shirt is not on the page. Headings and captions are features.'},
-    {q:'The fastest way to check a prediction is to ...',o:['read every page of the book','ask a friend','use the heading, photo, and caption that match the topic'],a:2,why:'Features that match the topic check the prediction fast.'}
+    {q:'To check if a line is a fact, you ask ...',o:['"Could two people check this and agree?"','"Is it long?"','"Do I like it?"'],a:0,why:'Facts can be checked and people will agree.'},
+    {q:'Which is a <b>fact</b>?',o:['"Mars is a planet."','"Mars is the best planet."','"Mars is boring."'],a:0,why:'You can check this in a science book.'},
+    {q:'Which is an <b>opinion</b>?',o:['"Dogs have four legs."','"Dogs are pets in many homes."','"Dogs are way better than cats."'],a:2,why:'"Better" is a feeling word. People disagree.'},
+    {q:'Which is a <b>fact</b>?',o:['"Apples are the most amazing fruit."','"Apples are too sour."','"Apples grow on trees."'],a:2,why:'You can check this in a science book. The others are feelings.'},
+    {q:'Which word is a signal for opinions?',o:['"I think"','"five"','"on"'],a:0,why:'"I think" tells you a feeling is coming.'},
+    {q:'Which is an <b>opinion</b>?',o:['"Spring starts in March."','"Spring is the most fun season."','"Spring brings rain in many places."'],a:1,why:'"Most fun" is an opinion word.'},
+    {q:'A fact and an opinion both ...',o:['must be in a story','can show up in nonfiction','must be long'],a:1,why:'Both can show up in nonfiction. The reader sorts them.'},
+    {q:'Which is a <b>fact</b>?',o:['"Pickleball is the best new sport."','"Pickleball is played with a paddle and a plastic ball."','"Pickleball is boring."'],a:1,why:'You can check this with the rules. The others are feelings.'}
   ];
 
   var FORM='A', QS=FORMA, qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false;

@@ -404,18 +404,18 @@
     {q:'Why look at the words around a new word?',o:['they make the page look nice','they give clues to the meaning','they tell you to skip the word'],a:1,why:'Other words give clues to the meaning.'}
   ];
   var FORM_B=[
-    {q:'"The pond was <b>shallow,</b> so I could stand up in it." <b>Shallow</b> means...',o:['very deep','not deep','very cold'],a:1,why:'You can stand up in it. Shallow = not deep.'},
-    {q:'"The puppy was <b>timid</b> and hid behind a chair." <b>Timid</b> means...',o:['shy and scared','loud and fast','big and brave'],a:0,why:'Hiding behind a chair is shy. Timid = shy.'},
+    {q:'"The pond was <b>shallow,</b> so I could stand up in it." <b>Shallow</b> means...',o:['not deep','very deep','very cold'],a:0,why:'You can stand up in it. Shallow = not deep.'},
+    {q:'"The puppy was <b>timid</b> and hid behind a chair." <b>Timid</b> means...',o:['big and brave','loud and fast','shy and scared'],a:2,why:'Hiding behind a chair is shy. Timid = shy.'},
     {q:'In "We use a <b>pen</b> to write a note," the word <b>pen</b> means...',o:['a place for animals','a tool to write with','a small lake'],a:1,why:'The clue is "write a note." That is the writing tool.'},
     {q:'In "The pigs sleep in the <b>pen</b> by the barn," the word <b>pen</b> means...',o:['a place for animals','a tool to write with','a kind of food'],a:0,why:'"Pigs sleep" and "barn" point to a place for animals.'},
     {q:'"The trail was <b>steep,</b> so we climbed slowly." <b>Steep</b> means...',o:['flat and even','sharp going up','full of water'],a:1,why:'"Climbed slowly" points to sharp up. Steep = sharp up.'},
     {q:'"It was <b>chilly,</b> so I put on my coat." <b>Chilly</b> means...',o:['hot','wet','a little cold'],a:2,why:'You put on a coat when it is cold. Chilly = a little cold.'},
     {q:'"My brother was <b>furious</b> when the dog ate his toy." <b>Furious</b> means...',o:['very mad','very happy','very tired'],a:0,why:'A dog eating your toy makes you mad. Furious = very mad.'},
     {q:'"The room was <b>dim,</b> so I turned on a lamp." <b>Dim</b> means...',o:['very loud','not much light','very hot'],a:1,why:'You turn on a lamp when there is not enough light.'},
-    {q:'Words with more than one meaning need...',o:['no help at all','clue words to tell which meaning fits','a longer word in place'],a:1,why:'Clue words tell you which meaning fits.'},
+    {q:'Words with more than one meaning need...',o:['clue words to tell which meaning fits','no help at all','a longer word in place'],a:0,why:'Clue words tell you which meaning fits.'},
     {q:'"The kitten was <b>plump,</b> like a soft little ball." <b>Plump</b> means...',o:['thin','round and full','cold'],a:1,why:'"Soft little ball" points to round and full.'},
-    {q:'"The road was <b>bumpy,</b> so the bike shook a lot." <b>Bumpy</b> means...',o:['smooth','full of bumps','very wide'],a:1,why:'A shaking bike means lots of bumps.'},
-    {q:'A good last step on a new word is to...',o:['guess a word you know that fits the spot','close the book','pick the longest word'],a:0,why:'Try a word you know that fits the same spot.'}
+    {q:'"The road was <b>bumpy,</b> so the bike shook a lot." <b>Bumpy</b> means...',o:['very wide','full of bumps','smooth'],a:1,why:'A shaking bike means lots of bumps.'},
+    {q:'A good last step on a new word is to...',o:['close the book','pick the longest word','guess a word you know that fits the spot'],a:2,why:'Try a word you know that fits the same spot.'}
   ];
 
   var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),

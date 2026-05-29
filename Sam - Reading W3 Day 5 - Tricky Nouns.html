@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Mastery learning lesson on using antonyms (opposites) and synonyms (same meanings) to grow word knowledge. Auto-graded, kid-independent.">
-<title>Story Lab &middot; Opposites and Same Meanings</title>
+<meta name="description" content="Mastery learning lesson on common irregular nouns and their plural forms. Auto-graded, kid-independent.">
+<title>Story Lab &middot; Tricky Nouns</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
@@ -45,27 +45,25 @@
   .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
   .station h2{font-size:23px;}
   .station p.lead{color:var(--ink2);}
-  .twobox{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
-  @media (max-width:520px){.twobox{grid-template-columns:1fr;}}
-  .sbox{border:1.5px solid var(--alt);border-radius:12px;padding:14px;background:#eef3e9;}
-  .obox{border:1.5px solid var(--accent);border-radius:12px;padding:14px;background:#fbecdf;}
-  .sbox .head,.obox .head{font-family:'Fraunces';font-weight:600;font-size:14px;color:#fff;border-radius:6px;padding:2px 9px;display:inline-block;margin-bottom:8px;letter-spacing:.06em;}
-  .sbox .head{background:var(--alt);}
-  .obox .head{background:var(--accent);}
-  .pairs{display:grid;grid-template-columns:1fr;gap:6px;}
-  .pair{font-family:'Fraunces';font-weight:600;font-size:17px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;}
-  .pair .eq{color:var(--alt);padding:0 4px;}
-  .pair .ne{color:var(--accent);padding:0 4px;}
-  .examples{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
-  .ex{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;}
-  .ex .word{font-family:'Fraunces';font-weight:600;font-size:20px;color:var(--accent-d);}
-  .ex .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
-  .tag2{font-family:'Fraunces';font-weight:600;font-size:14px;border-radius:8px;padding:6px 10px;}
-  .tag2.same{background:#eef3e9;color:var(--alt);border:1px solid #b5cea3;}
-  .tag2.opp{background:#fbecdf;color:var(--accent-d);border:1px solid #e8b9a0;}
+  .chart{margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fbf5ea;}
+  .chart .row{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:0;border-bottom:1px solid var(--line);}
+  .chart .row:last-child{border-bottom:none;}
+  .chart .row .one,.chart .row .many{padding:14px 16px;font-family:'Fraunces';font-size:20px;font-weight:600;}
+  .chart .row .one{color:var(--alt);background:#eef3e9;}
+  .chart .row .many{color:var(--accent-d);background:#fff5cf;}
+  .chart .row .arr{text-align:center;font-family:'Fraunces';font-weight:700;color:var(--ink2);background:#fff;border-left:1px solid var(--line);border-right:1px solid var(--line);padding:14px 0;font-size:16px;}
+  .chart .head{background:var(--ink);color:#fff;display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;font-family:'Fraunces';font-style:italic;font-size:14px;letter-spacing:.05em;}
+  .chart .head .h{padding:10px 16px;}
+  .chart .head .arr{background:var(--ink);border:none;color:#fff;}
+  .normalbox{background:#fbf5ea;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:12px;}
+  .normalbox .lbl{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--alt);}
+  .normalbox .big{font-family:'Fraunces';font-weight:600;font-size:18px;color:var(--ink);}
+  .sentbox{background:#fbf5ea;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:12px;font-family:'Fraunces';font-size:19px;line-height:1.55;color:var(--ink);}
+  .sentbox .one{background:#eef3e9;border-bottom:3px solid var(--alt);padding:1px 5px;font-weight:700;}
+  .sentbox .many{background:#fff5cf;border-bottom:3px solid var(--gold);padding:1px 5px;font-weight:700;}
   .practice .pblock{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fbf5ea;margin-top:12px;}
   .practice .ptitle{font-family:'Fraunces';font-style:italic;font-size:14px;color:var(--accent-d);margin-bottom:6px;}
-  .practice .targetw{font-family:'Fraunces';font-size:22px;font-weight:600;color:var(--ink);text-align:center;}
+  .practice .targetw{font-family:'Fraunces';font-size:19px;font-weight:500;color:var(--ink);}
   .practice .qq{font-family:'Fraunces';font-weight:600;color:var(--ink);margin-top:10px;}
   .practice .picker{display:flex;flex-direction:column;gap:8px;margin-top:8px;}
   .qopt{font:inherit;font-weight:600;font-size:15px;text-align:left;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:12px;min-height:48px;cursor:pointer;}
@@ -107,9 +105,9 @@
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}*{animation:none!important;}}
   .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
   .lesson-hero svg{width:100%;max-width:520px;height:auto;display:block;}
-  .lesson-hero text.head{font-family:'Fraunces',serif;font-weight:700;font-size:16px;fill:#fff;letter-spacing:.05em;}
-  .lesson-hero text.w{font-family:'Fraunces',serif;font-weight:600;font-size:18px;}
-  .lesson-hero text.eq{font-family:'Fraunces',serif;font-weight:700;font-size:18px;}
+  .lesson-hero text.h{font-family:'Fraunces',serif;font-style:italic;font-size:13px;letter-spacing:.05em;fill:#fff;}
+  .lesson-hero text.w{font-family:'Fraunces',serif;font-weight:700;font-size:18px;}
+  .lesson-hero text.arr{font-family:'Fraunces',serif;font-weight:700;font-size:16px;fill:var(--ink2);}
 </style>
 
 <style id="mastery-done-styles">
@@ -138,158 +136,101 @@
 </div>
 <div class="bg" aria-hidden="true"></div>
 <div class="wrap">
-  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 2</b><span class="chip">Standard 2.R.1.B.d</span></div>
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 2</b><span class="chip">Standard 2.L.1.A.c</span></div>
   <section id="lesson">
 
-    <div class="kicker">Chapter two</div>
-    <h1>Opposites and Same Meanings</h1>
-    <p class="opener"><span class="dropcap">W</span>ords can be friends. Some say the same thing. <i>Big</i> and <i>large</i> are like that. Some say the other thing. <i>Big</i> and <i>small</i> are like that. Both kinds help you read. Both kinds help you write.</p>
-    <p class="mission">By the end you will spot words with the same meaning and words with the opposite meaning. You will pick the right one for a sentence.</p>
-    <div class="stdtag"><span class="l">What this lesson teaches</span>Using antonyms and synonyms.</div>
+    <div class="kicker">Chapter five</div>
+    <h1>Tricky Nouns</h1>
+    <p class="opener"><span class="dropcap">M</span>ost of the time, more than one means add an <i>s</i>. One cup, two cups. One dog, two dogs. Easy. But some words do not play that game. One child, two <b>children</b>. One foot, two <b>feet</b>. These are tricky nouns. You learn them by heart.</p>
+    <p class="mission">By the end you will know the tricky noun pairs. You will pick the right word when you mean one, and the right word when you mean more than one.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Use common irregular nouns.</div>
 
     <div class="lesson-hero" aria-hidden="true">
-      <svg viewBox="0 0 520 260" role="img" aria-label="Two boxes side by side: SAME with big equals large, and OPPOSITE with big and small.">
-        <g transform="translate(20 20)">
-          <rect x="0" y="0" width="232" height="220" rx="14" fill="#eef3e9" stroke="var(--alt)" stroke-width="2"/>
-          <rect x="14" y="14" width="80" height="24" rx="6" fill="var(--alt)"/>
-          <text class="head" x="54" y="31" text-anchor="middle">SAME</text>
-          <rect x="14" y="54" width="204" height="42" rx="8" fill="#fff" stroke="var(--line)"/>
-          <text class="w" x="50" y="80" text-anchor="middle" fill="var(--ink)">big</text>
-          <text class="eq" x="116" y="80" text-anchor="middle" fill="var(--alt)">=</text>
-          <text class="w" x="180" y="80" text-anchor="middle" fill="var(--ink)">large</text>
-          <rect x="14" y="106" width="204" height="42" rx="8" fill="#fff" stroke="var(--line)"/>
-          <text class="w" x="50" y="132" text-anchor="middle" fill="var(--ink)">happy</text>
-          <text class="eq" x="116" y="132" text-anchor="middle" fill="var(--alt)">=</text>
-          <text class="w" x="180" y="132" text-anchor="middle" fill="var(--ink)">glad</text>
-          <rect x="14" y="158" width="204" height="42" rx="8" fill="#fff" stroke="var(--line)"/>
-          <text class="w" x="50" y="184" text-anchor="middle" fill="var(--ink)">fast</text>
-          <text class="eq" x="116" y="184" text-anchor="middle" fill="var(--alt)">=</text>
-          <text class="w" x="180" y="184" text-anchor="middle" fill="var(--ink)">quick</text>
-        </g>
-        <g transform="translate(268 20)">
-          <rect x="0" y="0" width="232" height="220" rx="14" fill="#fbecdf" stroke="var(--accent)" stroke-width="2"/>
-          <rect x="14" y="14" width="120" height="24" rx="6" fill="var(--accent)"/>
-          <text class="head" x="74" y="31" text-anchor="middle">OPPOSITE</text>
-          <rect x="14" y="54" width="204" height="42" rx="8" fill="#fff" stroke="var(--line)"/>
-          <text class="w" x="50" y="80" text-anchor="middle" fill="var(--ink)">big</text>
-          <text class="eq" x="116" y="80" text-anchor="middle" fill="var(--accent)">vs</text>
-          <text class="w" x="180" y="80" text-anchor="middle" fill="var(--ink)">small</text>
-          <rect x="14" y="106" width="204" height="42" rx="8" fill="#fff" stroke="var(--line)"/>
-          <text class="w" x="50" y="132" text-anchor="middle" fill="var(--ink)">hot</text>
-          <text class="eq" x="116" y="132" text-anchor="middle" fill="var(--accent)">vs</text>
-          <text class="w" x="180" y="132" text-anchor="middle" fill="var(--ink)">cold</text>
-          <rect x="14" y="158" width="204" height="42" rx="8" fill="#fff" stroke="var(--line)"/>
-          <text class="w" x="50" y="184" text-anchor="middle" fill="var(--ink)">up</text>
-          <text class="eq" x="116" y="184" text-anchor="middle" fill="var(--accent)">vs</text>
-          <text class="w" x="180" y="184" text-anchor="middle" fill="var(--ink)">down</text>
-        </g>
+      <svg viewBox="0 0 520 280" role="img" aria-label="Chart of singular and plural pairs: child to children, mouse to mice, foot to feet, woman to women.">
+        <rect x="20" y="20" width="480" height="240" rx="14" fill="#fbf5ea" stroke="var(--line)" stroke-width="1.5"/>
+        <rect x="20" y="20" width="200" height="36" rx="14" fill="var(--alt)"/>
+        <rect x="300" y="20" width="200" height="36" rx="14" fill="var(--accent)"/>
+        <text class="h" x="120" y="44" text-anchor="middle" fill="#fff">JUST ONE</text>
+        <text class="h" x="400" y="44" text-anchor="middle" fill="#fff">MORE THAN ONE</text>
+        <text class="w" x="120" y="98" text-anchor="middle" fill="var(--alt)">child</text>
+        <text class="arr" x="260" y="98" text-anchor="middle">&rarr;</text>
+        <text class="w" x="400" y="98" text-anchor="middle" fill="var(--accent-d)">children</text>
+        <line x1="40" y1="115" x2="480" y2="115" stroke="var(--line)" stroke-width="1"/>
+        <text class="w" x="120" y="146" text-anchor="middle" fill="var(--alt)">mouse</text>
+        <text class="arr" x="260" y="146" text-anchor="middle">&rarr;</text>
+        <text class="w" x="400" y="146" text-anchor="middle" fill="var(--accent-d)">mice</text>
+        <line x1="40" y1="163" x2="480" y2="163" stroke="var(--line)" stroke-width="1"/>
+        <text class="w" x="120" y="194" text-anchor="middle" fill="var(--alt)">foot</text>
+        <text class="arr" x="260" y="194" text-anchor="middle">&rarr;</text>
+        <text class="w" x="400" y="194" text-anchor="middle" fill="var(--accent-d)">feet</text>
+        <line x1="40" y1="211" x2="480" y2="211" stroke="var(--line)" stroke-width="1"/>
+        <text class="w" x="120" y="242" text-anchor="middle" fill="var(--alt)">woman</text>
+        <text class="arr" x="260" y="242" text-anchor="middle">&rarr;</text>
+        <text class="w" x="400" y="242" text-anchor="middle" fill="var(--accent-d)">women</text>
         <g fill="var(--alt)" opacity=".55">
-          <circle cx="36" cy="252" r="2.4"/>
-          <circle cx="484" cy="252" r="2"/>
+          <circle cx="36" cy="36" r="2.4"/>
+          <circle cx="484" cy="36" r="2"/>
         </g>
       </svg>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">01</span><h2>Same meaning words</h2></div>
-      <p class="lead">Some words are like teammates. They say almost the same thing. You can swap one for the other and the sentence still works. These are called <b>synonyms</b>.</p>
-      <div class="twobox">
-        <div class="sbox">
-          <span class="head">SAME</span>
-          <div class="pairs">
-            <div class="pair">big <span class="eq">=</span> large</div>
-            <div class="pair">happy <span class="eq">=</span> glad</div>
-            <div class="pair">fast <span class="eq">=</span> quick</div>
-            <div class="pair">small <span class="eq">=</span> tiny</div>
-          </div>
-        </div>
-        <div class="sbox">
-          <span class="head">SAME</span>
-          <div class="pairs">
-            <div class="pair">mad <span class="eq">=</span> angry</div>
-            <div class="pair">cold <span class="eq">=</span> chilly</div>
-            <div class="pair">sad <span class="eq">=</span> upset</div>
-            <div class="pair">jump <span class="eq">=</span> hop</div>
-          </div>
-        </div>
-      </div>
-      <p class="lead" style="margin-top:12px;">Try it: "The dog is <b>big</b>." or "The dog is <b>large</b>." Same idea. The sentence still works.</p>
+      <div class="shead"><span class="sno">01</span><h2>How most words work</h2></div>
+      <p class="lead">For most words, you just add <b>s</b> to mean more than one. This is the normal way.</p>
+      <div class="normalbox"><span class="lbl">normal pairs</span><div class="big">one cup &rarr; two <b>cups</b>. one dog &rarr; two <b>dogs</b>. one toy &rarr; two <b>toys</b>.</div></div>
+      <p class="lead" style="margin-top:10px;">Add an <i>s</i>. Done. That is the rule for most words.</p>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">02</span><h2>Opposite meaning words</h2></div>
-      <p class="lead">Some words point the other way. They are flip-flops of each other. These are called <b>antonyms</b>.</p>
-      <div class="twobox">
-        <div class="obox">
-          <span class="head">OPPOSITE</span>
-          <div class="pairs">
-            <div class="pair">big <span class="ne">vs</span> small</div>
-            <div class="pair">hot <span class="ne">vs</span> cold</div>
-            <div class="pair">up <span class="ne">vs</span> down</div>
-            <div class="pair">day <span class="ne">vs</span> night</div>
-          </div>
+      <div class="shead"><span class="sno">02</span><h2>Words that break the rule</h2></div>
+      <p class="lead">Some words do not add <i>s</i>. They change to a whole new word. These are the tricky ones. Here is the chart.</p>
+      <div class="chart">
+        <div class="head">
+          <div class="h">Just one</div>
+          <div class="arr">&rarr;</div>
+          <div class="h">More than one</div>
         </div>
-        <div class="obox">
-          <span class="head">OPPOSITE</span>
-          <div class="pairs">
-            <div class="pair">fast <span class="ne">vs</span> slow</div>
-            <div class="pair">happy <span class="ne">vs</span> sad</div>
-            <div class="pair">open <span class="ne">vs</span> shut</div>
-            <div class="pair">light <span class="ne">vs</span> dark</div>
-          </div>
-        </div>
+        <div class="row"><div class="one">child</div><div class="arr">&rarr;</div><div class="many">children</div></div>
+        <div class="row"><div class="one">mouse</div><div class="arr">&rarr;</div><div class="many">mice</div></div>
+        <div class="row"><div class="one">foot</div><div class="arr">&rarr;</div><div class="many">feet</div></div>
+        <div class="row"><div class="one">woman</div><div class="arr">&rarr;</div><div class="many">women</div></div>
+        <div class="row"><div class="one">man</div><div class="arr">&rarr;</div><div class="many">men</div></div>
+        <div class="row"><div class="one">tooth</div><div class="arr">&rarr;</div><div class="many">teeth</div></div>
+        <div class="row"><div class="one">goose</div><div class="arr">&rarr;</div><div class="many">geese</div></div>
       </div>
-      <p class="lead" style="margin-top:12px;">Try it: "The cup is <b>hot</b>." vs "The cup is <b>cold</b>." Now the meaning is flipped. That is an opposite.</p>
+      <p class="lead" style="margin-top:10px;">Notice: no <i>s</i> at the end. The whole word shifts.</p>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">03</span><h2>How to tell which is which</h2></div>
-      <p class="lead">Ask yourself one question. Does this word mean almost the same thing? Or does it mean the other thing?</p>
-      <div class="examples">
-        <div class="ex">
-          <div class="word">fast</div>
-          <div class="row">
-            <div class="tag2 same">SAME: quick, speedy</div>
-            <div class="tag2 opp">OPPOSITE: slow</div>
-          </div>
-        </div>
-        <div class="ex">
-          <div class="word">happy</div>
-          <div class="row">
-            <div class="tag2 same">SAME: glad, joyful</div>
-            <div class="tag2 opp">OPPOSITE: sad</div>
-          </div>
-        </div>
-        <div class="ex">
-          <div class="word">big</div>
-          <div class="row">
-            <div class="tag2 same">SAME: large, huge</div>
-            <div class="tag2 opp">OPPOSITE: small, tiny</div>
-          </div>
-        </div>
-      </div>
+      <div class="shead"><span class="sno">03</span><h2>See them in sentences</h2></div>
+      <p class="lead">Match the word to the count. One thing = the short word. Two or more = the long form.</p>
+      <div class="sentbox">One <span class="one">child</span> went down the slide. Then five <span class="many">children</span> went after.</div>
+      <div class="sentbox">A <span class="one">mouse</span> sat by the cheese. Soon three <span class="many">mice</span> were there.</div>
+      <div class="sentbox">My left <span class="one">foot</span> hurts. Both <span class="many">feet</span> are tired.</div>
+      <div class="sentbox">The <span class="one">woman</span> waved. Then more <span class="many">women</span> joined her.</div>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">04</span><h2>Why you need both</h2></div>
-      <p class="lead">Same words help you read. If you do not know <i>quick,</i> you can think "oh, that is like <i>fast.</i>" Opposite words help you read too. If a book says "not <i>cold,</i>" you know it means <i>hot.</i></p>
-      <p class="lead" style="margin-top:10px;">Same and opposite words help you write. If you keep saying <i>nice,</i> you can try <i>kind</i> or <i>sweet</i> to mix it up. If you want to flip what you said, you can use the opposite.</p>
+      <div class="shead"><span class="sno">04</span><h2>How to remember them</h2></div>
+      <p class="lead">Tricky words show up a lot in books. Read them. Say them. They start to stick.</p>
+      <p class="lead" style="margin-top:8px;">Try this rhyme in your head: <i>one foot, two feet. one tooth, two teeth.</i> The <i>oo</i> turns to <i>ee</i>. That helps you spot a few of them.</p>
+      <p class="lead" style="margin-top:8px;">For the rest, just hold the pair in your mind: <i>child / children</i>, <i>mouse / mice</i>, <i>man / men</i>, <i>woman / women</i>, <i>goose / geese</i>.</p>
     </div>
 
     <div class="station practice">
-      <div class="shead"><span class="sno">05</span><h2>Same or opposite?</h2></div>
-      <p class="lead">Look at the word. Tap if the other word means the SAME or the OPPOSITE.</p>
+      <div class="shead"><span class="sno">05</span><h2>Pick the right form</h2></div>
+      <p class="lead">Read each sentence. Tap the word that fits.</p>
       <div id="parts"></div>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">06</span><h2>Watch out for this</h2></div>
-      <div class="myth"><span class="tag">Common mix-up</span><div class="big">"They sound alike, so they are the same."</div><div style="color:var(--ink2)">No. The <b>meaning</b> is what counts, not the sound. <i>Big</i> and <i>bag</i> sound alike but mean very different things. Always ask: do they mean almost the same thing, or the other thing?</div></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">Adding <i>s</i> to a tricky word.</div><div style="color:var(--ink2)">Words like <b>foots</b>, <b>mouses</b>, <b>childs</b>, <b>tooths</b>: those are not real words. The plural is the whole new word. Feet, mice, children, teeth. No <i>s</i>.</div></div>
     </div>
 
     <div class="station">
       <div class="shead"><span class="sno">07</span><h2>The move</h2></div>
-      <div class="recap"><b>Remember:</b><ul><li>Same-meaning words can swap in a sentence. Big and large.</li><li>Opposite-meaning words point the other way. Big and small.</li><li>If you do not know a word, think of a same word you know.</li><li>If a sentence says "not ___," think of the opposite.</li></ul></div>
+      <div class="recap"><b>Remember:</b><ul><li>Most words just add an <i>s</i> for more than one. Cups. Dogs.</li><li>Tricky words turn into a new word. Children, mice, feet, women, men, teeth, geese.</li><li>Never add <i>s</i> to a tricky word. No foots. No mouses.</li><li>Count first. One = the short form. More than one = the new form.</li></ul></div>
     </div>
 
     <button class="cta" id="toCheck">I read it all. Start Form A</button>
@@ -306,7 +247,7 @@
   <section id="gate" class="hide">
     <div class="station">
       <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
-      <p class="lead">You passed Form A. Come back tomorrow for Form B. New word pairs. Same skill.</p>
+      <p class="lead">You passed Form A. Come back tomorrow for Form B. New sentences. Same skill.</p>
       <div class="gatebox">
         <div class="lbl">Time until Form B</div>
         <div class="cd" id="countdown">24:00:00</div>
@@ -333,7 +274,7 @@
     <button class="cta hide" id="toGate">Next: spaced retention check</button>
   </section>
 
-  <footer><span id="__sname">Sam</span> &middot; Reading &middot; W3 Day 2 &middot; Standard 2.R.1.B.d</footer>
+  <footer><span id="__sname">Sam</span> &middot; Reading &middot; W3 Day 5 &middot; Standard 2.L.1.A.c</footer>
 
   <section id="masteryDone" class="mastery-complete" aria-live="polite">
     <div class="mastery-card">
@@ -371,7 +312,7 @@
   if(!__rk)__rk={id:'sam',name:'Sam',grade:2};
   __ar.activeKid=__rk.id;
   try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
-  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='2.R.1.B.d',SNAME=__rk.name;
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='2.L.1.A.c',SNAME=__rk.name;
   document.addEventListener('DOMContentLoaded',function(){
     var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;
     document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
@@ -398,33 +339,37 @@
   syncCloud();
 
   var PARTS=[
-    {title:'Pair one',
-     w:'fast and quick',
-     q:'Do these mean the SAME or the OPPOSITE?',
+    {title:'Sentence one',
+     w:'Three ___ ran into the room.',
+     q:'Which word fits?',
      options:[
-       {t:'SAME',ok:true,why:'Quick means fast. They mean almost the same thing.'},
-       {t:'OPPOSITE',ok:false,why:'Quick is not the flip of fast. The opposite of fast is slow.'}
+       {t:'child',ok:false,why:'Three means more than one. Use children.'},
+       {t:'children',ok:true,why:'More than one child = children.'},
+       {t:'childs',ok:false,why:'Childs is not a real word.'}
      ]},
-    {title:'Pair two',
-     w:'hot and cold',
-     q:'Do these mean the SAME or the OPPOSITE?',
+    {title:'Sentence two',
+     w:'I see one ___ by the cheese.',
+     q:'Which word fits?',
      options:[
-       {t:'SAME',ok:false,why:'Hot and cold mean different things.'},
-       {t:'OPPOSITE',ok:true,why:'Hot is the flip of cold. They are opposites.'}
+       {t:'mouse',ok:true,why:'One = mouse.'},
+       {t:'mice',ok:false,why:'Mice is for more than one.'},
+       {t:'mouses',ok:false,why:'Mouses is not a real word.'}
      ]},
-    {title:'Pair three',
-     w:'big and large',
-     q:'Do these mean the SAME or the OPPOSITE?',
+    {title:'Sentence three',
+     w:'My ___ are sore from the long walk.',
+     q:'Which word fits?',
      options:[
-       {t:'SAME',ok:true,why:'Big and large mean almost the same thing.'},
-       {t:'OPPOSITE',ok:false,why:'The opposite of big is small, not large.'}
+       {t:'foot',ok:false,why:'You have two feet, so use feet.'},
+       {t:'foots',ok:false,why:'Foots is not a real word.'},
+       {t:'feet',ok:true,why:'Two = feet.'}
      ]},
-    {title:'Pair four',
-     w:'open and shut',
-     q:'Do these mean the SAME or the OPPOSITE?',
+    {title:'Sentence four',
+     w:'Two ___ helped at the bake sale.',
+     q:'Which word fits?',
      options:[
-       {t:'SAME',ok:false,why:'Open and shut do not mean the same thing.'},
-       {t:'OPPOSITE',ok:true,why:'Open is the flip of shut.'}
+       {t:'woman',ok:false,why:'Two = more than one. Use women.'},
+       {t:'women',ok:true,why:'More than one woman = women.'},
+       {t:'womans',ok:false,why:'Womans is not a real word.'}
      ]}
   ];
   document.addEventListener('DOMContentLoaded',function(){
@@ -453,32 +398,32 @@
   });
 
   var FORM_A=[
-    {q:'A word with almost the SAME meaning is called a...',o:['synonym','antonym','rhyme'],a:0,why:'Synonym = same meaning.'},
-    {q:'A word with the OPPOSITE meaning is called a...',o:['synonym','antonym','rhyme'],a:1,why:'Antonym = opposite meaning.'},
-    {q:'Which word means almost the SAME as <b>big</b>?',o:['large','small','wet'],a:0,why:'Big and large mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>hot</b>?',o:['warm','sunny','cold'],a:2,why:'Hot and cold are opposites.'},
-    {q:'Which word means almost the SAME as <b>happy</b>?',o:['mad','glad','sad'],a:1,why:'Happy and glad mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>up</b>?',o:['out','in','down'],a:2,why:'Up and down are opposites.'},
-    {q:'Which word means almost the SAME as <b>fast</b>?',o:['quick','slow','loud'],a:0,why:'Fast and quick mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>day</b>?',o:['sun','night','morning'],a:1,why:'Day and night are opposites.'},
-    {q:'Which word means almost the SAME as <b>small</b>?',o:['tiny','huge','tall'],a:0,why:'Small and tiny mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>open</b>?',o:['wide','shut','round'],a:1,why:'Open and shut are opposites.'},
-    {q:'In "The cat was <b>quick</b>," the word <b>quick</b> means almost the same as...',o:['slow','soft','fast'],a:2,why:'Quick = fast.'},
-    {q:'In "The room was <b>chilly</b>," the word <b>chilly</b> means almost the same as...',o:['cold','warm','wet'],a:0,why:'Chilly = a little cold.'}
+    {q:'More than one <b>child</b> is...',o:['childs','children','childes'],a:1,why:'Child becomes children for more than one.'},
+    {q:'More than one <b>mouse</b> is...',o:['mouses','mices','mice'],a:2,why:'Mouse becomes mice.'},
+    {q:'More than one <b>foot</b> is...',o:['feet','foots','footes'],a:0,why:'Foot becomes feet.'},
+    {q:'More than one <b>woman</b> is...',o:['women','womans','womens'],a:0,why:'Woman becomes women.'},
+    {q:'Just one of <b>children</b> is...',o:['childs','chiald','child'],a:2,why:'One child. More than one = children.'},
+    {q:'Just one of <b>feet</b> is...',o:['foots','foot','foote'],a:1,why:'One foot. More than one = feet.'},
+    {q:'"I lost a ___ today." Which fits if Sam lost one?',o:['tooth','teeth','tooths'],a:0,why:'One = tooth.'},
+    {q:'"The baby has six ___." Which fits?',o:['tooth','tooths','teeth'],a:2,why:'Six = more than one = teeth.'},
+    {q:'For most words, more than one means...',o:['add s','change the whole word','say it twice'],a:0,why:'Most words just add s.'},
+    {q:'Which word is NOT a real word?',o:['feet','foots','geese'],a:1,why:'Foots is not real. The plural is feet.'},
+    {q:'"Three ___ walked into the store." Which fits?',o:['man','mans','men'],a:2,why:'Three = more than one = men.'},
+    {q:'"One ___ flew in the pond." Which fits?',o:['goose','geese','gooses'],a:0,why:'One = goose.'}
   ];
   var FORM_B=[
-    {q:'Which word means almost the SAME as <b>mad</b>?',o:['angry','glad','soft'],a:0,why:'Mad and angry mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>light</b>?',o:['bright','dark','smooth'],a:1,why:'Light and dark are opposites.'},
-    {q:'Which word means almost the SAME as <b>sad</b>?',o:['glad','tired','upset'],a:2,why:'Sad and upset mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>fast</b>?',o:['quick','slow','tall'],a:1,why:'Fast and slow are opposites.'},
-    {q:'Which word means almost the SAME as <b>jump</b>?',o:['hop','sit','sleep'],a:0,why:'Jump and hop mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>happy</b>?',o:['soft','sad','glad'],a:1,why:'Happy and sad are opposites.'},
-    {q:'Which word means almost the SAME as <b>nice</b>?',o:['kind','mean','loud'],a:0,why:'Nice and kind mean almost the same.'},
-    {q:'Which word is the OPPOSITE of <b>full</b>?',o:['empty','heavy','tall'],a:0,why:'Full and empty are opposites.'},
-    {q:'Two words that mean almost the same thing are called...',o:['rhymes','antonyms','synonyms'],a:2,why:'Synonyms = same meaning.'},
-    {q:'Two words that mean the opposite are called...',o:['synonyms','antonyms','letters'],a:1,why:'Antonyms = opposite meaning.'},
-    {q:'In "Mom said the soup was <b>warm</b>," the word <b>warm</b> is the OPPOSITE of...',o:['hot','cold','tasty'],a:1,why:'Warm/hot are close; warm is the opposite end from cold.'},
-    {q:'A book says "not <b>cold</b>." You can guess it means...',o:['hot or warm','wet','slow'],a:0,why:'Opposite of cold is hot or warm.'}
+    {q:'More than one <b>man</b> is...',o:['mans','men','manes'],a:1,why:'Man becomes men.'},
+    {q:'More than one <b>tooth</b> is...',o:['teeth','tooths','toothes'],a:0,why:'Tooth becomes teeth.'},
+    {q:'More than one <b>goose</b> is...',o:['gooses','geese','geeses'],a:1,why:'Goose becomes geese.'},
+    {q:'Just one of <b>mice</b> is...',o:['mouse','mices','mous'],a:0,why:'One = mouse.'},
+    {q:'Just one of <b>women</b> is...',o:['womans','woman','womens'],a:1,why:'One = woman.'},
+    {q:'"Five ___ sat on the pond." Which fits?',o:['gooses','goose','geese'],a:2,why:'Five = more than one = geese.'},
+    {q:'"My little brother is a ___." Which fits if you mean one boy?',o:['child','children','childs'],a:0,why:'One = child.'},
+    {q:'Which word is NOT a real word?',o:['children','mouses','women'],a:1,why:'Mouses is not real. Plural of mouse is mice.'},
+    {q:'"My two ___ are cold." Which fits?',o:['foot','foots','feet'],a:2,why:'Two = feet.'},
+    {q:'"There is one ___ in the trap." Which fits?',o:['mice','mouse','mouses'],a:1,why:'One = mouse.'},
+    {q:'For most words, you mean more than one by...',o:['adding s','changing the whole word','saying it twice'],a:0,why:'Most words just add s.'},
+    {q:'Tricky nouns are different because they...',o:['add s like normal','change to a whole new word','sound the same in both forms'],a:1,why:'They turn into a new word.'}
   ];
 
   var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),

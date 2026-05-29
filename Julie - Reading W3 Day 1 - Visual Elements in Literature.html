@@ -435,36 +435,28 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   });
 
   var ITEM_BANK = [
-    { q: 'In a literary text, a visual element such as a panel, an illustration, or a font shift functions as...',
-      o: ['decoration that supports the prose but adds no meaning','a meaningful sign that can characterize, set mood, or pace the scene','a substitute for the writer\'s words','a publisher\'s choice unrelated to the story'], a: 1,
+    {q:'In a literary text, a visual element such as a panel, an illustration, or a font shift functions as...',o:['a meaningful sign that can characterize, set mood, or pace the scene','decoration that supports the prose but adds no meaning','a substitute for the writer\'s words','a publisher\'s choice unrelated to the story'],a:0,
       why: 'Visual elements in literary texts carry interpretive weight; they argue, the way sentences do.' },
 
-    { q: 'A graphic novel panel shows a character drawn from a low angle, towering over a small figure in the foreground. Which conclusion does the angle most directly support?',
-      o: ['The towering character holds power in the scene.','The two characters are equals.','The small figure is the narrator.','The scene takes place at sunset.'], a: 0,
+    {q:'A graphic novel panel shows a character drawn from a low angle, towering over a small figure in the foreground. Which conclusion does the angle most directly support?',o:['The two characters are equals.','The towering character holds power in the scene.','The small figure is the narrator.','The scene takes place at sunset.'],a:1,
       why: 'A low camera angle makes the subject loom; the visual signals a power imbalance.' },
 
-    { q: 'A page in a graphic novel uses one giant panel after a row of eight tiny panels. The giant panel shows a character standing alone in a field. The pacing change most directly conveys...',
-      o: ['confusion in the reader','that the giant panel moment carries weight and slows the story\'s time','that the artist ran out of room','that the eight small panels were a mistake'], a: 1,
+    {q:'A page in a graphic novel uses one giant panel after a row of eight tiny panels. The giant panel shows a character standing alone in a field. The pacing change most directly conveys...',o:['confusion in the reader','that the artist ran out of room','that the giant panel moment carries weight and slows the story\'s time','that the eight small panels were a mistake'],a:2,
       why: 'A large panel after small ones slows pacing; the visual rhythm emphasizes the held moment.' },
 
-    { q: 'In an illustrated novel, a character\'s speech bubble grows larger and uses jagged hand-drawn letters that break the edge of the bubble. The lettering most directly conveys...',
-      o: ['the character is whispering','the character is calm and reflective','the character is raising volume, escalating in emotion','the character is asleep'], a: 2,
+    {q:'In an illustrated novel, a character\'s speech bubble grows larger and uses jagged hand-drawn letters that break the edge of the bubble. The lettering most directly conveys...',o:['the character is whispering','the character is calm and reflective','the character is asleep','the character is raising volume, escalating in emotion'],a:3,
       why: 'Growing, jagged letters that break the bubble border signal rising volume and intensity.' },
 
-    { q: 'A graphic novel panel uses heavy black shadow across two thirds of the frame. The character\'s face is barely visible. The shadow most directly conveys...',
-      o: ['a celebratory mood','a somber or heavy mood','a humorous mood','a peaceful mood'], a: 1,
+    {q:'A graphic novel panel uses heavy black shadow across two thirds of the frame. The character\'s face is barely visible. The shadow most directly conveys...',o:['a somber or heavy mood','a celebratory mood','a humorous mood','a peaceful mood'],a:0,
       why: 'Heavy shadow and obscured features support a somber, weighted reading of the moment.' },
 
-    { q: 'A picture book shows a child in the same red coat on every spread. The repeated visual choice most directly supports the conclusion that...',
-      o: ['the coat is a marker of the child\'s identity in the story','the illustrator only owned one color','the story takes place in winter','the child has no other clothes'], a: 0,
+    {q:'A picture book shows a child in the same red coat on every spread. The repeated visual choice most directly supports the conclusion that...',o:['the illustrator only owned one color','the coat is a marker of the child\'s identity in the story','the story takes place in winter','the child has no other clothes'],a:1,
       why: 'A repeated, consistent visual marker functions as a sign of the character\'s identity.' },
 
-    { q: 'A graphic novel shows a character drawn very small at the bottom of a tall, empty panel, with vast white space above. The composition most directly conveys...',
-      o: ['the character is isolated or overwhelmed by the space','the character is the most powerful figure on the page','the page was incorrectly printed','the character is very large'], a: 0,
+    {q:'A graphic novel shows a character drawn very small at the bottom of a tall, empty panel, with vast white space above. The composition most directly conveys...',o:['the page was incorrectly printed','the character is the most powerful figure on the page','the character is isolated or overwhelmed by the space','the character is very large'],a:2,
       why: 'A tiny figure in a vast empty frame supports a reading of isolation or insignificance.' },
 
-    { q: 'When you draw a conclusion from a visual element in a literary text, the strongest move is to...',
-      o: ['guess at the artist\'s mood','name the specific visual feature and tie it to a single supported conclusion','ignore the picture and focus on the words','assume every visual choice means the same thing'], a: 1,
+    {q:'When you draw a conclusion from a visual element in a literary text, the strongest move is to...',o:['guess at the artist\'s mood','assume every visual choice means the same thing','ignore the picture and focus on the words','name the specific visual feature and tie it to a single supported conclusion'],a:3,
       why: 'A defensible visual reading names the feature, the observation, and the conclusion it supports.' },
 
     { q: 'A graphic novel page uses panels with thin black borders for present-day scenes and panels with rough, broken borders for flashbacks. The border style most directly functions as...',
@@ -475,16 +467,13 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
       o: ['the two characters are exactly equal in status','one character holds more authority or control in the scene','the artist had trouble drawing chairs','the table is broken'], a: 1,
       why: 'A height difference in seated figures supports a power-imbalance reading of the scene.' },
 
-    { q: 'A graphic novel shows a row of identical panels with no change between them. The character stares straight ahead in each one. The visual repetition most directly conveys...',
-      o: ['the character is moving quickly across the page','time is stretching; the character is frozen in thought or shock','the page was a printing mistake','the scene is humorous'], a: 1,
+    {q:'A graphic novel shows a row of identical panels with no change between them. The character stares straight ahead in each one. The visual repetition most directly conveys...',o:['the character is moving quickly across the page','the page was a printing mistake','time is stretching; the character is frozen in thought or shock','the scene is humorous'],a:2,
       why: 'Visual repetition without change slows narrative time and supports a frozen or stalled reading.' },
 
-    { q: 'In an illustrated short story, the narrator\'s text appears in a clean printed font, but one character\'s dialogue appears in spidery handwritten script. The font contrast most directly supports the conclusion that...',
-      o: ['the character has a different voice or quality from the narrator','the publisher ran out of one font','the story takes place in two countries','the story is a translation'], a: 0,
+    {q:'In an illustrated short story, the narrator\'s text appears in a clean printed font, but one character\'s dialogue appears in spidery handwritten script. The font contrast most directly supports the conclusion that...',o:['the story is a translation','the publisher ran out of one font','the story takes place in two countries','the character has a different voice or quality from the narrator'],a:3,
       why: 'A consistent font contrast between narrator and character marks a distinct voice or presence.' },
 
-    { q: 'A graphic novel transitions from full color to black and white starting in chapter three. The color shift most directly supports the conclusion that...',
-      o: ['the printer made a budget cut','a meaningful change has occurred in the story\'s tone or time','the chapter takes place at night','the character has fallen asleep'], a: 1,
+    {q:'A graphic novel transitions from full color to black and white starting in chapter three. The color shift most directly supports the conclusion that...',o:['a meaningful change has occurred in the story\'s tone or time','the printer made a budget cut','the chapter takes place at night','the character has fallen asleep'],a:0,
       why: 'A sustained shift from color to black and white reads as a deliberate tonal or temporal change.' },
 
     { q: 'Which of the following best describes the relationship between visual elements and conclusions in a literary text?',

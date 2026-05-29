@@ -409,22 +409,22 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   var FORMA=[
     {q:'For <span class="mono">y = 3x + 8</span>, slope and y-intercept?', o:['m = 3, b = 8','m = 8, b = 3','m = -3, b = 8','m = 3, b = 0'], a:0, why:'In y = mx + b, m is the coefficient of x and b is the constant.'},
     {q:'For <span class="mono">y = -5x + 2</span>, the slope is:', o:['5','-2','-5','2'], a:2, why:'The coefficient of x is -5. The y-intercept is 2.'},
-    {q:'For <span class="mono">y = 7x</span>, the y-intercept is:', o:['7','x','0','-7'], a:2, why:'No constant added means b = 0. The line passes through the origin.'},
+    {q:'For <span class="mono">y = 7x</span>, the y-intercept is:', o:['0','x','7','-7'], a:0, why:'No constant added means b = 0. The line passes through the origin.'},
     {q:'For <span class="mono">y = 10 - 2x</span>, the slope is:', o:['10','-2','2','-10'], a:1, why:'Rewrite as y = -2x + 10. The slope is -2.'},
-    {q:'A line has slope 4 and y-intercept 9. Its equation is:', o:['y = 9x + 4','y = 4 + 9x','y = 4x + 9','y = 4x - 9'], a:2, why:'Plug into y = mx + b: m = 4 and b = 9 gives y = 4x + 9.'},
-    {q:'Which equation has y-intercept (0, -3)?', o:['y = 2x - 3','y = -3x + 2','y = 2x + 3','y = 3x - 2'], a:0, why:'Set x = 0 in y = 2x - 3: y = -3. The line crosses at (0, -3).'},
+    {q:'A line has slope 4 and y-intercept 9. Its equation is:', o:['y = 4x + 9','y = 9x + 4','y = 4 + 9x','y = 4x - 9'], a:0, why:'Plug into y = mx + b: m = 4 and b = 9 gives y = 4x + 9.'},
+    {q:'Which equation has y-intercept (0, -3)?', o:['y = -3x + 2','y = 2x - 3','y = 2x + 3','y = 3x - 2'], a:1, why:'Set x = 0 in y = 2x - 3: y = -3. The line crosses at (0, -3).'},
     {q:'Which line is horizontal?', o:['y = x','y = 4x','y = 5','y = x + 5'], a:2, why:'y = 5 has slope 0, so it is horizontal at height 5.'},
     {q:'In <span class="mono">y = mx + b</span>, what does b tell you?', o:['How steep the line is','The slope of the line','The x-intercept','The y-coordinate where the line crosses the y-axis'], a:3, why:'b is the value of y when x = 0, which is where the line crosses the y-axis.'}
   ];
   var FORMB=[
     {q:'For <span class="mono">y = 6x + 1</span>, slope and y-intercept?', o:['m = 6, b = 1','m = 1, b = 6','m = -6, b = 1','m = 6, b = 0'], a:0, why:'In y = mx + b, m is the coefficient of x and b is the constant.'},
-    {q:'For <span class="mono">y = -4x + 9</span>, the slope is:', o:['4','-9','-4','9'], a:2, why:'The coefficient of x is -4. The y-intercept is 9.'},
-    {q:'For <span class="mono">y = -x</span>, the y-intercept is:', o:['-1','x','0','1'], a:2, why:'No constant added means b = 0. The line passes through the origin.'},
-    {q:'For <span class="mono">y = 12 - 5x</span>, the slope is:', o:['12','-5','5','-12'], a:1, why:'Rewrite as y = -5x + 12. The slope is -5.'},
+    {q:'For <span class="mono">y = -4x + 9</span>, the slope is:', o:['9','4','-4','-9'], a:2, why:'The coefficient of x is -4. The y-intercept is 9.'},
+    {q:'For <span class="mono">y = -x</span>, the y-intercept is:', o:['-1','0','x','1'], a:1, why:'No constant added means b = 0. The line passes through the origin.'},
+    {q:'For <span class="mono">y = 12 - 5x</span>, the slope is:', o:['12','-12','5','-5'], a:3, why:'Rewrite as y = -5x + 12. The slope is -5.'},
     {q:'A line has slope -2 and y-intercept 7. Its equation is:', o:['y = 7x - 2','y = -2 + 7x','y = -2x + 7','y = 2x + 7'], a:2, why:'Plug into y = mx + b: m = -2 and b = 7 gives y = -2x + 7.'},
     {q:'Which equation has y-intercept (0, 5)?', o:['y = 3x + 5','y = 5x + 3','y = 3x - 5','y = -5x + 3'], a:0, why:'Set x = 0 in y = 3x + 5: y = 5. The line crosses at (0, 5).'},
     {q:'Which line has slope zero?', o:['y = -x','y = 2x','y = -7','y = 7x - 7'], a:2, why:'y = -7 has no x term, so the slope is 0 and the line is horizontal.'},
-    {q:'In <span class="mono">y = mx + b</span>, what does m tell you?', o:['The y-intercept','The x-intercept','The slope of the line','The starting value'], a:2, why:'m is the rate of change of y per unit increase in x. That is the slope.'}
+    {q:'In <span class="mono">y = mx + b</span>, what does m tell you?', o:['The slope of the line','The y-intercept','The x-intercept','The starting value'], a:0, why:'m is the rate of change of y per unit increase in x. That is the slope.'}
   ];
 
   // --- runner ---

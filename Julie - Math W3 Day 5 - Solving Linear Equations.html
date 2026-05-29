@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Grade 8 graphing proportional relationships lesson. Learn how y = kx graphs as a straight line through the origin, with the constant of proportionality controlling the steepness. Auto-graded, kid-independent.">
-<title>Session 11 &middot; Graphing Proportional Relationships</title>
+<meta name="description" content="Grade 8 lesson on solving linear equations in one variable. Learn how to isolate the variable using inverse operations and verify the solution. Auto-graded, kid-independent.">
+<title>Session 15 &middot; Solving Linear Equations</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -53,10 +53,6 @@ h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
 .note b{color:var(--alt);}
 .warn{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
 .warn b{color:var(--accent-d);}
-.tbl{width:100%;border-collapse:collapse;margin-top:12px;font-family:'Spline Sans Mono',monospace;font-size:14.5px;}
-.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:center;}
-.tbl th{background:#fafaf6;color:var(--ink);font-weight:700;}
-.tbl td b{color:var(--accent-d);}
 .practice .prow{display:grid;grid-template-columns:1fr;gap:8px;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fafaf6;margin-top:10px;}
 .practice .prq{font-family:'Spline Sans Mono',monospace;font-size:16px;color:var(--ink);font-weight:600;}
 .practice .pchoices{display:flex;flex-wrap:wrap;gap:6px;}
@@ -98,15 +94,16 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
 .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
 .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
-.lesson-hero .gridline{stroke:#e7e6dc;stroke-width:1;}
-.lesson-hero .axis{stroke:var(--ink);stroke-width:1.5;}
-.lesson-hero .line{stroke:var(--accent);stroke-width:2.5;fill:none;}
-.lesson-hero .pt{fill:var(--accent-d);}
-.lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+.lesson-hero .step{fill:#fafaf6;stroke:var(--line);stroke-width:1;}
+.lesson-hero .stepdone{fill:#e9f6ee;stroke:#0f7a3a;stroke-width:1.5;}
+.lesson-hero .arrow{stroke:var(--alt);stroke-width:1.5;fill:none;}
 .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+.lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
 .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
-.lesson-hero .ticklbl{font-family:'Spline Sans Mono',monospace;font-size:10.5px;fill:var(--ink2);}
-.lesson-hero .ptlbl{font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:600;fill:var(--accent-d);}
+.lesson-hero .steplbl{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;fill:var(--ink2);}
+.lesson-hero .eq{font-family:'Spline Sans Mono',monospace;font-size:20px;font-weight:700;fill:var(--ink);}
+.lesson-hero .eqdone{font-family:'Spline Sans Mono',monospace;font-size:22px;font-weight:700;fill:#0f7a3a;}
+.lesson-hero .oplbl{font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:600;fill:var(--accent-d);}
 
 #masteryDone { display: none; margin: 16px 0; }
 #masteryDone.show { display: block; }
@@ -132,117 +129,78 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 </div>
 <div class="bg" aria-hidden="true"></div>
 <div class="wrap">
-  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.EEI.B.5a</span></div>
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.EEI.C.7a</span></div>
 
   <section id="lesson">
-    <div class="kicker">Session 11</div>
-    <h1>Graphing Proportional Relationships</h1>
-    <p class="mission">When two quantities scale together at a fixed rate, their graph is always a straight line through the origin. The slope of that line is the constant of proportionality, and every ordered pair on the line carries the same ratio.</p>
-    <div class="stdtag"><span class="l">What this session teaches</span>Graph proportional relationships.</div>
+    <div class="kicker">Session 15</div>
+    <h1>Solving Linear Equations</h1>
+    <p class="mission">A linear equation in one variable asks: what value makes both sides equal? You isolate the variable by undoing operations in reverse order, keeping the equation balanced at every step.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Solve linear equations and inequalities in one variable.</div>
 
-    <!-- HERO: coordinate plane with y=2x and labeled ordered pairs -->
+    <!-- HERO: 3-step solve 3x + 5 = 20 -> 3x = 15 -> x = 5 -->
     <div class="lesson-hero" aria-hidden="true">
-      <svg viewBox="0 0 560 320" role="img" aria-label="A coordinate plane showing the line y equals 2x passing through the origin with ordered pairs labeled at one comma two and three comma six.">
-        <rect class="panel" x="6" y="6" width="548" height="308" rx="10"/>
-        <text class="headlbl" x="22" y="26">y = 2x &middot; a proportional line</text>
-        <text class="ticklbl" x="538" y="26" text-anchor="end">k = 2</text>
+      <svg viewBox="0 0 560 290" role="img" aria-label="A three-step solution to the equation three x plus five equals twenty. Step one shows the starting equation. Step two shows three x equals fifteen after subtracting five from both sides. Step three shows x equals five after dividing both sides by three.">
+        <rect class="panel" x="6" y="6" width="548" height="278" rx="10"/>
+        <text class="headlbl" x="22" y="26">Isolate the variable, step by step</text>
+        <text class="ticklbl" x="538" y="26" text-anchor="end" font-family="Spline Sans Mono" font-size="10.5" fill="var(--ink2)">undo + then undo &times;</text>
 
-        <g transform="translate(60 40)">
-          <!-- grid lines x=0..6, y=0..8 -->
-          <g class="gridline">
-            <line x1="0" y1="0" x2="0" y2="240"/>
-            <line x1="60" y1="0" x2="60" y2="240"/>
-            <line x1="120" y1="0" x2="120" y2="240"/>
-            <line x1="180" y1="0" x2="180" y2="240"/>
-            <line x1="240" y1="0" x2="240" y2="240"/>
-            <line x1="300" y1="0" x2="300" y2="240"/>
-            <line x1="360" y1="0" x2="360" y2="240"/>
-            <line x1="0" y1="0" x2="360" y2="0"/>
-            <line x1="0" y1="30" x2="360" y2="30"/>
-            <line x1="0" y1="60" x2="360" y2="60"/>
-            <line x1="0" y1="90" x2="360" y2="90"/>
-            <line x1="0" y1="120" x2="360" y2="120"/>
-            <line x1="0" y1="150" x2="360" y2="150"/>
-            <line x1="0" y1="180" x2="360" y2="180"/>
-            <line x1="0" y1="210" x2="360" y2="210"/>
-            <line x1="0" y1="240" x2="360" y2="240"/>
-          </g>
-          <!-- axes -->
-          <line class="axis" x1="0" y1="240" x2="360" y2="240"/>
-          <line class="axis" x1="0" y1="0" x2="0" y2="240"/>
-          <!-- ticks on x -->
-          <g class="ticklbl">
-            <text x="0" y="258" text-anchor="middle">0</text>
-            <text x="60" y="258" text-anchor="middle">1</text>
-            <text x="120" y="258" text-anchor="middle">2</text>
-            <text x="180" y="258" text-anchor="middle">3</text>
-            <text x="240" y="258" text-anchor="middle">4</text>
-            <text x="300" y="258" text-anchor="middle">5</text>
-            <text x="360" y="258" text-anchor="middle">6</text>
-          </g>
-          <!-- ticks on y -->
-          <g class="ticklbl">
-            <text x="-8" y="244" text-anchor="end">0</text>
-            <text x="-8" y="214" text-anchor="end">1</text>
-            <text x="-8" y="184" text-anchor="end">2</text>
-            <text x="-8" y="154" text-anchor="end">3</text>
-            <text x="-8" y="124" text-anchor="end">4</text>
-            <text x="-8" y="94" text-anchor="end">5</text>
-            <text x="-8" y="64" text-anchor="end">6</text>
-            <text x="-8" y="34" text-anchor="end">7</text>
-            <text x="-8" y="4" text-anchor="end">8</text>
-          </g>
-          <!-- axis labels -->
-          <text class="headlbl" x="340" y="232" text-anchor="end" fill="var(--ink2)">x</text>
-          <text class="headlbl" x="10" y="14" fill="var(--ink2)">y</text>
-          <!-- the line y=2x from (0,0) to (4,8) in plane coords -->
-          <line class="line" x1="0" y1="240" x2="240" y2="0"/>
-          <!-- origin point -->
-          <circle class="pt" cx="0" cy="240" r="4"/>
-          <text class="ptlbl" x="6" y="234">(0, 0)</text>
-          <!-- point (1, 2) -->
-          <circle class="pt" cx="60" cy="180" r="5"/>
-          <text class="ptlbl" x="68" y="176">(1, 2)</text>
-          <!-- point (3, 6) -->
-          <circle class="pt" cx="180" cy="60" r="5"/>
-          <text class="ptlbl" x="188" y="56">(3, 6)</text>
+        <!-- Step 1 -->
+        <g transform="translate(20 50)">
+          <rect class="step" x="0" y="0" width="520" height="60" rx="8"/>
+          <text class="steplbl" x="14" y="22">Step 1 &middot; starting equation</text>
+          <text class="eq" x="200" y="44">3x + 5 = 20</text>
+        </g>
+        <line class="arrow" x1="280" y1="115" x2="280" y2="135"/>
+        <polyline class="arrow" points="274,129 280,138 286,129"/>
+        <text class="oplbl" x="300" y="130">subtract 5 from both sides</text>
+
+        <!-- Step 2 -->
+        <g transform="translate(20 145)">
+          <rect class="step" x="0" y="0" width="520" height="60" rx="8"/>
+          <text class="steplbl" x="14" y="22">Step 2 &middot; combine, isolate the term with x</text>
+          <text class="eq" x="220" y="44">3x = 15</text>
+        </g>
+        <line class="arrow" x1="280" y1="210" x2="280" y2="230"/>
+        <polyline class="arrow" points="274,224 280,233 286,224"/>
+        <text class="oplbl" x="300" y="225">divide both sides by 3</text>
+
+        <!-- Step 3 -->
+        <g transform="translate(20 240)">
+          <rect class="stepdone" x="0" y="0" width="520" height="40" rx="8"/>
+          <text class="steplbl" x="14" y="16" fill="#0f7a3a">Step 3 &middot; solution</text>
+          <text class="eqdone" x="240" y="30">x = 5</text>
         </g>
       </svg>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">01 / LEARN</span><h2>The shape of a proportional relationship</h2></div>
-      <p class="lead">A relationship between two quantities <span class="mono">x</span> and <span class="mono">y</span> is proportional when every paired value satisfies <span class="mono">y = kx</span>, where <span class="mono">k</span> is a fixed nonzero number called the constant of proportionality. The graph of any proportional relationship is a straight line that passes through the origin. No exceptions.</p>
-      <div class="worked"><b>Equation:</b> y = 2x &nbsp; &nbsp; <b>k:</b> 2</div>
-      <table class="tbl">
-        <tr><th>x</th><th>y = 2x</th><th>ordered pair</th></tr>
-        <tr><td>0</td><td>0</td><td>(0, 0)</td></tr>
-        <tr><td>1</td><td>2</td><td>(1, 2)</td></tr>
-        <tr><td>2</td><td>4</td><td>(2, 4)</td></tr>
-        <tr><td>3</td><td>6</td><td>(3, 6)</td></tr>
-      </table>
-      <div class="note"><b>Every ratio matches.</b> Compute y over x for any point on the line: 2 over 1 is 2, 4 over 2 is 2, 6 over 3 is 2. That shared ratio is the constant k.</div>
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Balance, the only rule</h2></div>
+      <p class="lead">An equation is a balance scale: whatever sits on the left equals whatever sits on the right. As long as you do the same operation to both sides, the balance holds and the equation stays true. Add 5 to both sides, divide both sides by 3, multiply both sides by negative 2; each move keeps the scale level.</p>
+      <div class="note"><b>Both sides, every time.</b> The most common error is doing something to one side and forgetting the other. That breaks the balance and the equation no longer holds.</div>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">02 / LEARN</span><h2>Why the line goes through the origin</h2></div>
-      <p class="lead">Plug <span class="mono">x = 0</span> into <span class="mono">y = kx</span>. Any number times zero is zero, so <span class="mono">y = 0</span>. That means the point <span class="mono">(0, 0)</span> is always on the graph of a proportional relationship. If a line does not pass through the origin, the relationship is linear but not proportional.</p>
-      <div class="worked"><b>Test:</b> Does y = 3x + 1 represent a proportional relationship?</div>
-      <div class="worked"><b>Check:</b> At x = 0, y = 1, not 0. The line crosses the y-axis at (0, 1). <b>Not proportional.</b></div>
-      <div class="warn"><b>Quick check.</b> The graph passes through the origin AND it is a straight line. Both conditions or neither.</div>
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Undo in reverse</h2></div>
+      <p class="lead">In <span class="mono">3x + 5 = 20</span>, the variable x has been multiplied by 3 and then 5 has been added. To isolate x you undo the operations in reverse order: first reverse the addition (subtract 5), then reverse the multiplication (divide by 3). Inverse operations cancel: addition undoes subtraction, multiplication undoes division.</p>
+      <div class="worked"><b>3x + 5 = 20</b></div>
+      <div class="worked"><b>Subtract 5:</b> 3x + 5 - 5 = 20 - 5 -&gt; 3x = 15</div>
+      <div class="worked"><b>Divide by 3:</b> 3x / 3 = 15 / 3 -&gt; x = 5</div>
+      <div class="worked"><b>Check:</b> 3(5) + 5 = 15 + 5 = 20. True.</div>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">03 / LEARN</span><h2>Steeper lines mean a larger k</h2></div>
-      <p class="lead">The constant of proportionality controls how fast y grows as x grows. The line <span class="mono">y = 3x</span> climbs faster than <span class="mono">y = 2x</span>, which climbs faster than <span class="mono">y = x</span>. All three pass through the origin; the difference is steepness. The bigger the value of k, the steeper the line.</p>
-      <div class="worked"><b>y = x:</b> at x = 1, y = 1. Climbs 1 per step.</div>
-      <div class="worked"><b>y = 2x:</b> at x = 1, y = 2. Climbs 2 per step.</div>
-      <div class="worked"><b>y = 3x:</b> at x = 1, y = 3. Climbs 3 per step.</div>
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Variables on both sides</h2></div>
+      <p class="lead">When the equation has the variable on both sides, first move every variable term to one side. Pick the side with the larger coefficient to avoid negatives. Then isolate as usual.</p>
+      <div class="worked"><b>5x + 3 = 2x + 18</b></div>
+      <div class="worked"><b>Subtract 2x:</b> 3x + 3 = 18</div>
+      <div class="worked"><b>Subtract 3:</b> 3x = 15</div>
+      <div class="worked"><b>Divide by 3:</b> x = 5</div>
+      <div class="warn"><b>Always verify.</b> Substitute your solution back into the original equation. If both sides match, the solution is correct. If they do not, retrace your steps.</div>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">04 / DO</span><h2>Read the graph or the equation</h2></div>
-      <p class="lead">Identify whether each scenario gives a proportional relationship. The page checks each tap and shows why.</p>
+      <div class="shead"><span class="sno">04 / DO</span><h2>Solve and verify</h2></div>
+      <p class="lead">Find the value of the variable that makes each equation true. The page checks each tap and shows why.</p>
       <div class="practice" id="practice"></div>
       <div class="scorerow"><span id="pLine">0 of 5 answered</span><button class="resetb" id="pReset" type="button">Reset</button></div>
     </div>
@@ -271,7 +229,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   <section id="retention" class="hide">
     <div class="station">
       <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
-      <p class="lead">Eight new questions on the same skill, with different equations and graphs. Best done at least a day after Form A. That delay is what proves the skill lasted.</p>
+      <p class="lead">Eight new equations with different coefficients and constants. Best done at least a day after Form A. The delay locks the skill in.</p>
       <div class="gatebox">
         <div class="lbl">Time until Form B opens</div>
         <div class="cd" id="countdown">24:00:00</div>
@@ -292,12 +250,12 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
       <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
       <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
       <div class="gate" id="gate"></div>
-      <div class="cred" id="cred"><div class="gem">&#9670;</div><h3>8.EEI.B.5a Mastered</h3><p>You graph and identify proportional relationships on sight.</p></div>
-      <p class="lead" style="margin-top:10px;">Next session: unit rate as the slope of a proportional line.</p>
+      <div class="cred" id="cred"><div class="gem">&#9670;</div><h3>8.EEI.C.7a Mastered</h3><p>You isolate the variable and verify the solution every time.</p></div>
+      <p class="lead" style="margin-top:10px;">Next session: equations with no solution and equations with infinitely many.</p>
     </div>
   </section>
 
-  <footer><span id="__sname">Julie</span> &middot; Math &middot; Week 3 Day 1 &middot; Verbatim Missouri Learning Standard 8.EEI.B.5a</footer>
+  <footer><span id="__sname">Julie</span> &middot; Math &middot; Week 3 Day 5 &middot; Verbatim Missouri Learning Standard 8.EEI.C.7a</footer>
 
   <section id="masteryDone" class="mastery-complete" aria-live="polite">
     <div class="mastery-card">
@@ -333,7 +291,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   if(!__rk&&__ks.length)__rk=__ks[0];
   if(!__rk)__rk={id:'julie',name:'Julie',grade:8};
   __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
-  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='math',DAY='8.EEI.B.5a',SNAME=__rk.name;
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='math',DAY='8.EEI.C.7a',SNAME=__rk.name;
   document.addEventListener('DOMContentLoaded',function(){
     var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;
     document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
@@ -363,11 +321,11 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   // --- mid-lesson practice ---
   var PRAC=[
-    {q:'Does y = 5x represent a proportional relationship?', o:['Yes, straight line through origin','No, k must be 1','No, only y = x is proportional','Cannot tell without a table'], a:0, why:'Any y = kx with nonzero k is proportional. Here k = 5.'},
-    {q:'Does the line through (0, 3) and (1, 5) show a proportional relationship?', o:['Yes, it is a straight line','No, it does not pass through the origin','Yes, the ratio 5/1 is constant','Cannot tell'], a:1, why:'Proportional graphs pass through (0, 0). This one crosses the y-axis at (0, 3).'},
-    {q:'For y = 4x, what point lies on the graph when x = 2?', o:['(2, 6)','(2, 4)','(2, 8)','(4, 2)'], a:2, why:'y = 4(2) = 8. The ordered pair is (2, 8).'},
-    {q:'A table shows (1, 3), (2, 6), (3, 9). What is k?', o:['3','6','9','1'], a:0, why:'Every y over x equals 3, so the constant of proportionality is 3.'},
-    {q:'Which equation is NOT proportional?', o:['y = 7x','y = 2x + 4','y = 0.5x','y = -3x'], a:1, why:'A constant added shifts the line off the origin. Proportional lines have form y = kx with no added constant.'}
+    {q:'Solve: 2x + 7 = 19', o:['x = 6','x = 13','x = 26','x = 12'], a:0, why:'Subtract 7: 2x = 12. Divide by 2: x = 6.'},
+    {q:'Solve: 4x - 3 = 17', o:['x = 5','x = 14','x = 3.5','x = 20'], a:0, why:'Add 3: 4x = 20. Divide by 4: x = 5.'},
+    {q:'Solve: 3x + 5 = 2x + 11', o:['x = 16','x = 5','x = 6','x = 8'], a:2, why:'Subtract 2x: x + 5 = 11. Subtract 5: x = 6.'},
+    {q:'Solve: -2x + 4 = 12', o:['x = 4','x = -4','x = 8','x = -8'], a:1, why:'Subtract 4: -2x = 8. Divide by -2: x = -4.'},
+    {q:'Solve: x / 5 = 3', o:['x = 3/5','x = 8','x = 15','x = 2'], a:2, why:'Multiply both sides by 5: x = 15.'}
   ];
   var prac=document.getElementById('practice'), pLine=document.getElementById('pLine');
   var pDone=0;
@@ -401,24 +359,24 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   // --- Form A and Form B item banks (varied answer positions) ---
   var FORMA=[
-    {q:'For <span class="mono">y = 3x</span>, which ordered pair lies on the graph?', o:['(2, 5)','(2, 6)','(3, 2)','(6, 2)'], a:1, why:'Substitute x = 2: y = 3(2) = 6. The pair is (2, 6).'},
-    {q:'A proportional line passes through which point, no matter what k is?', o:['(0, 1)','(1, 0)','(0, 0)','(1, 1)'], a:2, why:'For y = kx, when x = 0, y = 0. Every proportional line passes through the origin.'},
-    {q:'Which equation represents a proportional relationship?', o:['y = 4x','y = 4x + 2','y = x squared','y = 2 over x'], a:0, why:'A proportional relationship has the form y = kx with no added constant. y = 4x has k = 4.'},
-    {q:'A graph is a straight line through (0, 0) and (4, 12). What is k?', o:['12','4','1/3','3'], a:3, why:'k equals y over x for any point on the line. 12 over 4 equals 3.'},
-    {q:'Which graph is NOT a proportional relationship?', o:['Line through origin with slope 2','Line through (0, 1) and (1, 4)','Line through origin with slope 1/2','Line through origin with slope 10'], a:1, why:'A line that crosses the y-axis at (0, 1) does not pass through the origin, so it is not proportional.'},
-    {q:'The table shows (1, 4), (2, 8), (3, 12). Write the equation.', o:['y = x + 3','y = x + 4','y = 4x','y = 4 + x'], a:2, why:'Every y over x equals 4, so k = 4 and the equation is y = 4x.'},
-    {q:'For <span class="mono">y = 2x</span>, what y-value matches x = 5?', o:['10','25','7','2.5'], a:0, why:'y = 2(5) = 10.'},
-    {q:'Why must a proportional graph be a straight line?', o:['Tables are easy to plot','y changes by the same amount k for every unit increase in x','All lines are straight','The origin makes it straight'], a:1, why:'A constant rate of change produces a line. Every step right by 1 in x adds k to y.'}
+    {q:'Solve: <span class="mono">3x + 5 = 20</span>', o:['x = 5','x = 15','x = 25/3','x = 7.5'], a:0, why:'Subtract 5: 3x = 15. Divide by 3: x = 5.'},
+    {q:'Solve: <span class="mono">5x - 7 = 18</span>', o:['x = 25','x = 5','x = 2.2','x = 11/5'], a:1, why:'Add 7: 5x = 25. Divide by 5: x = 5.'},
+    {q:'Solve: <span class="mono">2x + 9 = 5x</span>', o:['x = -3','x = 3','x = 9','x = -9'], a:1, why:'Subtract 2x: 9 = 3x. Divide by 3: x = 3.'},
+    {q:'Solve: <span class="mono">-4x + 11 = 3</span>', o:['x = -2','x = 8','x = 14','x = 2'], a:3, why:'Subtract 11: -4x = -8. Divide by -4: x = 2.'},
+    {q:'Solve: <span class="mono">7x - 4 = 4x + 11</span>', o:['x = 5','x = 15','x = 1','x = 7/3'], a:0, why:'Subtract 4x: 3x - 4 = 11. Add 4: 3x = 15. Divide by 3: x = 5.'},
+    {q:'Solve: <span class="mono">x / 4 + 2 = 5</span>', o:['x = 12','x = 28','x = 3','x = 7'], a:0, why:'Subtract 2: x / 4 = 3. Multiply by 4: x = 12.'},
+    {q:'Solve: <span class="mono">2(x + 3) = 14</span>', o:['x = 11','x = 7','x = 4','x = 2'], a:2, why:'Distribute: 2x + 6 = 14. Subtract 6: 2x = 8. Divide by 2: x = 4.'},
+    {q:'Solve: <span class="mono">8 - 3x = 2</span>', o:['x = -2','x = 10/3','x = -10/3','x = 2'], a:3, why:'Subtract 8: -3x = -6. Divide by -3: x = 2.'}
   ];
   var FORMB=[
-    {q:'For <span class="mono">y = 6x</span>, which ordered pair lies on the graph?', o:['(2, 12)','(2, 8)','(6, 1)','(1, 7)'], a:0, why:'y = 6(2) = 12. The pair is (2, 12).'},
-    {q:'A proportional relationship always passes through which point?', o:['(0, k)','(k, 0)','(1, 1)','(0, 0)'], a:3, why:'For y = kx, plugging in x = 0 gives y = 0. The origin lies on every proportional line.'},
-    {q:'Which equation is proportional?', o:['y = 7x + 1','y = 0.5x','y = 3 over x','y = x squared'], a:1, why:'Form y = kx with k = 0.5. No added constant. Linear and through the origin.'},
-    {q:'A proportional line passes through (5, 15). What is k?', o:['5','15','75','3'], a:3, why:'k equals y over x. 15 over 5 equals 3.'},
-    {q:'Which describes a proportional graph?', o:['Straight line crossing the y-axis at (0, 4)','Curve through the origin','Straight line through the origin','Straight line below the x-axis only'], a:2, why:'Proportional means straight line AND through the origin.'},
-    {q:'The table shows (1, 7), (2, 14), (4, 28). Write the equation.', o:['y = x + 6','y = 7 + x','y = 7x','y = 14x'], a:2, why:'Every y over x equals 7, so the constant of proportionality is 7. The equation is y = 7x.'},
-    {q:'For <span class="mono">y = 10x</span>, what y-value matches x = 3?', o:['13','7','3','30'], a:3, why:'y = 10(3) = 30.'},
-    {q:'A graph shows a line through (0, 2) and (1, 5). Is it proportional?', o:['No, it does not pass through the origin','Yes, it is a straight line','Yes, the ratio is constant','Cannot tell without more points'], a:0, why:'Proportional lines pass through (0, 0). This line crosses at (0, 2) so it is linear but not proportional.'}
+    {q:'Solve: <span class="mono">4x + 7 = 31</span>', o:['x = 6','x = 9.5','x = 38/4','x = 38'], a:0, why:'Subtract 7: 4x = 24. Divide by 4: x = 6.'},
+    {q:'Solve: <span class="mono">6x - 5 = 19</span>', o:['x = 24','x = 4','x = 14/6','x = 14'], a:1, why:'Add 5: 6x = 24. Divide by 6: x = 4.'},
+    {q:'Solve: <span class="mono">3x + 12 = 7x</span>', o:['x = -3','x = 3','x = 12','x = -12'], a:1, why:'Subtract 3x: 12 = 4x. Divide by 4: x = 3.'},
+    {q:'Solve: <span class="mono">-2x + 9 = 1</span>', o:['x = -4','x = 5','x = 10','x = 4'], a:3, why:'Subtract 9: -2x = -8. Divide by -2: x = 4.'},
+    {q:'Solve: <span class="mono">9x - 6 = 5x + 14</span>', o:['x = 5','x = 20','x = 2','x = 14/4'], a:0, why:'Subtract 5x: 4x - 6 = 14. Add 6: 4x = 20. Divide by 4: x = 5.'},
+    {q:'Solve: <span class="mono">x / 3 + 4 = 9</span>', o:['x = 15','x = 39','x = 5/3','x = 5'], a:0, why:'Subtract 4: x / 3 = 5. Multiply by 3: x = 15.'},
+    {q:'Solve: <span class="mono">3(x - 2) = 18</span>', o:['x = 6','x = 4','x = 8','x = 12'], a:2, why:'Distribute: 3x - 6 = 18. Add 6: 3x = 24. Divide by 3: x = 8.'},
+    {q:'Solve: <span class="mono">10 - 4x = -2</span>', o:['x = -3','x = 8/4','x = 12','x = 3'], a:3, why:'Subtract 10: -4x = -12. Divide by -4: x = 3.'}
   ];
 
   // --- runner ---

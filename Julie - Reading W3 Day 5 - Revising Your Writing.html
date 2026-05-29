@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Mastery learning lesson on building stamina to read and comprehend literature independently, aligned to Missouri Learning Standard 8.RL.3.D. Auto-graded, kid-independent.">
-<title>Training Console &middot; Reading Literature with Stamina</title>
+<meta name="description" content="Mastery learning lesson on the revision and editing process across task, purpose, and audience, aligned to Missouri Learning Standard 8.W.3.A. Auto-graded, kid-independent.">
+<title>Training Console &middot; Revising Your Writing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -53,11 +53,11 @@ h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
 .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
 .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
 .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
-.lesson-hero .book{fill:#fbf8ef;stroke:var(--ink);stroke-width:1.5;}
-.lesson-hero .spine{fill:var(--alt);}
+.lesson-hero .page{fill:#fbf8ef;stroke:var(--ink);stroke-width:1.4;}
 .lesson-hero .ruleline{stroke:#cfc8b8;stroke-width:1;}
-.lesson-hero .marker{fill:var(--accent);}
-.lesson-hero .anno{fill:rgba(36,81,166,.10);stroke:var(--alt);stroke-width:1.1;}
+.lesson-hero .struck{stroke:var(--accent-d);stroke-width:2;}
+.lesson-hero .add{fill:var(--good);}
+.lesson-hero .margin{fill:rgba(255,59,20,.08);stroke:var(--accent);stroke-width:1.1;}
 .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
 .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
 .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
@@ -136,117 +136,117 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   <div class="labbar">
     <span class="dotg" aria-hidden="true"></span>
-    Session 07 &middot; <b>Grade 8</b>
-    <span class="chip">Standard 8.RL.3.D</span>
+    Session 10 &middot; <b>Grade 8</b>
+    <span class="chip">Standard 8.W.3.A</span>
   </div>
 
   <section id="lesson">
 
-    <div class="kicker">Session 07</div>
-    <h1>Reading Literature with Stamina</h1>
-    <p class="opener">A novel rewards the reader who keeps showing up. Stamina is not the act of reading fast. It is the protocol that lets you finish a long, layered story without losing the plot, the characters, or your own attention.</p>
-    <p class="mission">By the end of this session you will name the practices that sustain attention across a long literary work, and you will identify the moves that protect comprehension when reading dramas, novels, and poems independently.</p>
+    <div class="kicker">Session 10</div>
+    <h1>Revising Your Writing</h1>
+    <p class="opener">A first draft is not the finished thought. Revision is the act of returning to the page with the audience in mind, asking whether the task got done, and rewriting the parts that fell short. The writers who get better are the writers who treat revision as a separate skill.</p>
+    <p class="mission">By the end of this session you will name the three passes of structured revision, distinguish revision from editing, and identify the revision move that fits a given moment in a draft.</p>
     <div class="stdtag">
       <span class="l">What this session teaches</span>
-      Read and comprehend literature, including stories, dramas and poems, independently and proficiently.
+      Review, revise, and edit writing with consideration for the task, purpose, and audience.
     </div>
 
     <div class="lesson-hero" aria-hidden="true">
-      <svg viewBox="0 0 560 290" role="img" aria-label="An open novel with a chapter progress bar moving from chapter one to chapter ten, with three annotation labels for pacing, note-taking, and contextual recall.">
+      <svg viewBox="0 0 560 290" role="img" aria-label="A draft paragraph with words struck through in red, words added in green, and three margin notes labeled task, purpose, and audience to show the categories of a revision pass.">
         <rect class="panel" x="6" y="6" width="548" height="278" rx="10"/>
-        <text class="headlbl" x="22" y="26">Long-form reading protocol</text>
-        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mut);">stamina</text>
+        <text class="headlbl" x="22" y="26">Draft, revised</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mut);">revision passes</text>
 
-        <g transform="translate(60 56)">
-          <rect class="book" x="0" y="0" width="200" height="150" rx="3"/>
-          <rect class="book" x="200" y="0" width="200" height="150" rx="3"/>
-          <rect class="spine" x="196" y="0" width="8" height="150"/>
+        <g transform="translate(28 50)">
+          <rect class="page" x="0" y="0" width="320" height="220" rx="3"/>
           <g class="ruleline">
-            <line x1="14" y1="22" x2="190" y2="22"/>
-            <line x1="14" y1="36" x2="190" y2="36"/>
-            <line x1="14" y1="50" x2="190" y2="50"/>
-            <line x1="14" y1="64" x2="190" y2="64"/>
-            <line x1="14" y1="78" x2="190" y2="78"/>
-            <line x1="14" y1="92" x2="190" y2="92"/>
-            <line x1="14" y1="106" x2="190" y2="106"/>
-            <line x1="14" y1="120" x2="190" y2="120"/>
-            <line x1="14" y1="134" x2="190" y2="134"/>
-            <line x1="214" y1="22" x2="390" y2="22"/>
-            <line x1="214" y1="36" x2="390" y2="36"/>
-            <line x1="214" y1="50" x2="390" y2="50"/>
-            <line x1="214" y1="64" x2="390" y2="64"/>
-            <line x1="214" y1="78" x2="390" y2="78"/>
-            <line x1="214" y1="92" x2="390" y2="92"/>
-            <line x1="214" y1="106" x2="390" y2="106"/>
-            <line x1="214" y1="120" x2="390" y2="120"/>
-            <line x1="214" y1="134" x2="390" y2="134"/>
+            <line x1="14" y1="34" x2="306" y2="34"/>
+            <line x1="14" y1="58" x2="306" y2="58"/>
+            <line x1="14" y1="82" x2="306" y2="82"/>
+            <line x1="14" y1="106" x2="306" y2="106"/>
+            <line x1="14" y1="130" x2="306" y2="130"/>
+            <line x1="14" y1="154" x2="306" y2="154"/>
+            <line x1="14" y1="178" x2="306" y2="178"/>
+            <line x1="14" y1="202" x2="306" y2="202"/>
           </g>
-          <polygon class="marker" points="350,0 366,0 366,38 358,30 350,38"/>
+          <text class="anton" x="14" y="22" font-size="11" fill="var(--ink)">DRAFT 1</text>
+
+          <text class="mono" x="14" y="50" font-size="11" fill="var(--ink)">The new policy is</text>
+          <text class="mono" x="124" y="50" font-size="11" fill="var(--accent-d)" text-decoration="line-through">kind of</text>
+          <text class="mono" x="170" y="50" font-size="11" fill="var(--good)">measurably</text>
+
+          <text class="mono" x="14" y="74" font-size="11" fill="var(--ink)">good and very interesting,</text>
+
+          <text class="mono" x="14" y="98" font-size="11" fill="var(--accent-d)" text-decoration="line-through">like for example</text>
+          <text class="mono" x="124" y="98" font-size="11" fill="var(--good)">for instance,</text>
+
+          <text class="mono" x="14" y="122" font-size="11" fill="var(--ink)">the test scores went up</text>
+
+          <text class="mono" x="14" y="146" font-size="11" fill="var(--accent-d)" text-decoration="line-through">a lot</text>
+          <text class="mono" x="58" y="146" font-size="11" fill="var(--good)">by 18 percent.</text>
+
+          <text class="mono" x="14" y="170" font-size="11" fill="var(--ink)">Teachers</text>
+          <text class="mono" x="76" y="170" font-size="11" fill="var(--accent-d)" text-decoration="line-through">say it works</text>
+          <text class="mono" x="156" y="170" font-size="11" fill="var(--good)">reported gains</text>
+
+          <text class="mono" x="14" y="194" font-size="11" fill="var(--ink)">in reading fluency.</text>
         </g>
 
-        <g transform="translate(60 224)">
-          <rect x="0" y="0" width="400" height="14" rx="7" fill="#e8e2cf" stroke="var(--ink)" stroke-width="1"/>
-          <rect x="0" y="0" width="180" height="14" rx="7" fill="var(--accent)"/>
-          <circle cx="40" cy="7" r="9" fill="#14171c"/>
-          <circle cx="200" cy="7" r="9" fill="#14171c"/>
-          <circle cx="360" cy="7" r="9" fill="#14171c" opacity=".4"/>
-          <text class="mono" x="40" y="32" text-anchor="middle" font-size="9.5" fill="var(--ink2)" style="letter-spacing:.06em;text-transform:uppercase;">Ch 1</text>
-          <text class="mono" x="200" y="32" text-anchor="middle" font-size="9.5" fill="var(--ink2)" style="letter-spacing:.06em;text-transform:uppercase;">Ch 5</text>
-          <text class="mono" x="360" y="32" text-anchor="middle" font-size="9.5" fill="var(--ink2)" style="letter-spacing:.06em;text-transform:uppercase;">Ch 10</text>
+        <g transform="translate(360 50)">
+          <rect class="margin" x="0" y="0" width="170" height="58" rx="6"/>
+          <text class="anton" x="10" y="18" font-size="11" fill="var(--accent-d)">TASK</text>
+          <text class="mono" x="10" y="32" font-size="9.5" fill="var(--ink2)">does it answer the prompt</text>
+          <text class="mono" x="10" y="46" font-size="9.5" fill="var(--ink2)">precisely and completely</text>
         </g>
-
-        <g transform="translate(470 60)">
-          <rect class="anno" x="0" y="0" width="80" height="36" rx="6"/>
-          <text class="anton" x="40" y="16" text-anchor="middle" font-size="10" fill="var(--alt)">PACING</text>
-          <text class="mono" x="40" y="28" text-anchor="middle" font-size="8.5" fill="var(--ink2)">set a session</text>
+        <g transform="translate(360 116)">
+          <rect class="margin" x="0" y="0" width="170" height="58" rx="6"/>
+          <text class="anton" x="10" y="18" font-size="11" fill="var(--accent-d)">PURPOSE</text>
+          <text class="mono" x="10" y="32" font-size="9.5" fill="var(--ink2)">is the argument clear and</text>
+          <text class="mono" x="10" y="46" font-size="9.5" fill="var(--ink2)">backed by real evidence</text>
         </g>
-        <g transform="translate(470 108)">
-          <rect class="anno" x="0" y="0" width="80" height="36" rx="6"/>
-          <text class="anton" x="40" y="16" text-anchor="middle" font-size="10" fill="var(--alt)">NOTES</text>
-          <text class="mono" x="40" y="28" text-anchor="middle" font-size="8.5" fill="var(--ink2)">log per chapter</text>
-        </g>
-        <g transform="translate(470 156)">
-          <rect class="anno" x="0" y="0" width="80" height="36" rx="6"/>
-          <text class="anton" x="40" y="16" text-anchor="middle" font-size="10" fill="var(--alt)">RECALL</text>
-          <text class="mono" x="40" y="28" text-anchor="middle" font-size="8.5" fill="var(--ink2)">resume context</text>
+        <g transform="translate(360 182)">
+          <rect class="margin" x="0" y="0" width="170" height="58" rx="6"/>
+          <text class="anton" x="10" y="18" font-size="11" fill="var(--accent-d)">AUDIENCE</text>
+          <text class="mono" x="10" y="32" font-size="9.5" fill="var(--ink2)">is the tone and register</text>
+          <text class="mono" x="10" y="46" font-size="9.5" fill="var(--ink2)">right for the reader</text>
         </g>
       </svg>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">01 / LEARN</span><h2>Stamina, defined</h2></div>
-      <p class="lead">In this context, stamina means the practiced ability to read a long, structurally complex work independently and still hold the threads. Plot, character motivation, voice, theme. A novel takes ten chapters to do what a short story does in four pages. Stamina is the discipline that keeps the reader present from the first scene to the last.</p>
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Revision is not editing</h2></div>
+      <p class="lead">Revision changes the substance: claims, structure, evidence, voice, paragraph order. Editing changes the surface: spelling, punctuation, agreement, word choice at the sentence level. The two stages are different. Editing a draft that has not been revised is rearranging the chairs on a stage that is still in the wrong room.</p>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">02 / LEARN</span><h2>The three pillars of long-form reading</h2></div>
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Three passes, three lenses</h2></div>
       <table class="ftable">
-        <tr><th>Pillar</th><th>What it looks like</th><th>Why it matters</th></tr>
-        <tr><td><b>Pacing</b></td><td>Set a session length, such as 25 minutes, and a daily chapter target.</td><td>A predictable rhythm prevents the slump that ends abandoned books.</td></tr>
-        <tr><td><b>Note-taking</b></td><td>Log one sentence per chapter: who, where, what changed.</td><td>A short log preserves continuity across days and weeks.</td></tr>
-        <tr><td><b>Contextual recall</b></td><td>Before resuming, scan the last log entry and the final paragraph of the prior session.</td><td>Comprehension breaks when the reader cannot reconstruct where the story stood.</td></tr>
+        <tr><th>Pass</th><th>Lens</th><th>What you ask</th></tr>
+        <tr><td><b>Task</b></td><td>The assignment.</td><td>Does this draft answer the prompt precisely and completely?</td></tr>
+        <tr><td><b>Purpose</b></td><td>The argument or aim.</td><td>Is the central idea clear and supported by real evidence?</td></tr>
+        <tr><td><b>Audience</b></td><td>The reader.</td><td>Is the tone, register, and level of detail right for the reader?</td></tr>
+      </table>
+      <p class="lead" style="margin-top:10px;">Each pass produces its own kind of revision mark: cut a paragraph that drifts off task, add a citation that lacks evidence, lower a register that sounds too casual.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>What revision marks look like</h2></div>
+      <table class="ftable">
+        <tr><th>Mark</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><b>Strikethrough</b></td><td>Cuts a word, phrase, or sentence.</td><td>"kind of" replaced by "measurably."</td></tr>
+        <tr><td><b>Insertion</b></td><td>Adds a word, citation, or transition.</td><td>"for instance" inserted to signal an example.</td></tr>
+        <tr><td><b>Margin note</b></td><td>Flags a larger change for the next pass.</td><td>"too casual for the assignment" beside a paragraph.</td></tr>
       </table>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">03 / LEARN</span><h2>Dramas and poems demand their own moves</h2></div>
-      <p class="lead">Across literary forms, the stamina protocol shifts. A novel rewards continuity logs. A drama rewards a running cast list and a stage-direction scan. A poetry collection rewards rereading a single poem twice before moving on, since the second pass is where pattern, image, and sound begin to organize themselves.</p>
-      <table class="ftable">
-        <tr><th>Form</th><th>Stamina move</th><th>What it protects</th></tr>
-        <tr><td>Novel</td><td>One-sentence chapter log.</td><td>Plot and character continuity across sessions.</td></tr>
-        <tr><td>Drama</td><td>Cast list with one defining trait per role.</td><td>Voice and motivation, since speakers shift rapidly.</td></tr>
-        <tr><td>Poem</td><td>Read once for surface, once for pattern.</td><td>Image, metaphor, and structural meaning.</td></tr>
-      </table>
-    </div>
-
-    <div class="station">
-      <div class="shead"><span class="sno">04 / DO</span><h2>Diagnose the stamina move</h2></div>
-      <p class="lead">Each scenario describes a reader who has hit a stamina wall. Select the move that most directly protects comprehension.</p>
+      <div class="shead"><span class="sno">04 / DO</span><h2>Diagnose the revision move</h2></div>
+      <p class="lead">Each round shows a moment in a draft. Select the revision move that most directly fits the task, purpose, or audience problem.</p>
       <div class="passage" id="passage"></div>
       <div class="claim" id="claim"></div>
       <div class="evs" id="evs"></div>
       <div class="fbline" id="evfb"></div>
-      <button class="cta rnext hide" id="rnext">Next scenario</button>
+      <button class="cta rnext hide" id="rnext">Next draft</button>
     </div>
 
     <button class="cta" id="toCheck">I am ready. Start Form A</button>
@@ -292,7 +292,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   <footer>
     <span id="__sname">Julie</span>
-    &middot; Reading &middot; Week 3 Day 2 &middot; Standard 8.RL.3.D
+    &middot; Reading &middot; Week 3 Day 5 &middot; Standard 8.W.3.A
   </footer>
 
   <section id="masteryDone" class="mastery-complete" aria-live="polite">
@@ -338,7 +338,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   var KEY     = 'edu.app';
   var STUDENT = __rk.id;
   var SUBJECT = 'reading';
-  var DAY     = '8.RL.3.D';
+  var DAY     = '8.W.3.A';
   var SNAME   = __rk.name;
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -403,21 +403,21 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   var ROUNDS = [
     {
-      passage: 'A reader picks up a 320-page novel. She reads forty pages in a single sitting on Saturday, sets it down, and does not return for nine days. When she opens the book again, she cannot remember the protagonist\'s sister\'s name or what the family had argued about.',
-      claim: 'Which stamina move would have most directly protected her comprehension?',
+      passage: 'Prompt: write a one-paragraph argument that the new bus route has helped downtown. Draft sentence: "The bus is kind of cool and people seem to like it a lot."',
+      claim: 'Choose the strongest revision move for this sentence.',
       evs: [
-        { t: 'Read the entire novel in a single Saturday session, faster.', ok: false, why: 'A single marathon session does not protect comprehension across the next week; the wall is continuity, not speed.' },
-        { t: 'Set a shorter daily session and keep a one-sentence log per chapter.', ok: true, why: 'A predictable daily rhythm plus a per-chapter log preserves character names, conflicts, and continuity across days.' },
-        { t: 'Switch to a different, shorter book.', ok: false, why: 'Abandoning the book does not build stamina or protect comprehension of long-form literature.' }
+        { t: 'Fix the spelling and move on.', ok: false, why: 'Spelling is an editing concern; the sentence has a substance problem the surface pass cannot fix.' },
+        { t: 'Cut the vague phrases and add measurable evidence; the purpose pass calls for backed claims.', ok: true, why: 'Replacing vague language with cited evidence is the purpose-pass move that strengthens the argument.' },
+        { t: 'Add three more vague sentences to make the paragraph longer.', ok: false, why: 'Length without substance does not satisfy the argument; revision sharpens claims, it does not pad them.' }
       ]
     },
     {
-      passage: 'A reader starts a play with thirteen named characters. He reads scene one and scene two on the same evening. By scene four, he keeps confusing two of the brothers and is no longer sure who is loyal to the king.',
-      claim: 'Which stamina move would most directly protect his comprehension of the drama?',
+      passage: 'Prompt: write a formal letter to the school board about a proposed policy change. Draft opening: "Hey y\'all, so I was thinking about that whole new policy thing and figured I\'d throw in my two cents."',
+      claim: 'Choose the strongest revision move for this opening.',
       evs: [
-        { t: 'Read each scene three times in a row before continuing.', ok: false, why: 'Mass rereading without organizing the speakers does not address the cast-confusion problem.' },
-        { t: 'Skip the speakers he does not recognize.', ok: false, why: 'Skipping speakers in a drama loses the very motivations he needs to track.' },
-        { t: 'Keep a running cast list with one defining trait per role.', ok: true, why: 'A trait-tagged cast list is the form-specific stamina move that protects voice and motivation in drama.' }
+        { t: 'Leave the sentence; the school board will find it friendly.', ok: false, why: 'A formal letter has a defined audience and register; the draft does not match either.' },
+        { t: 'Fix a punctuation comma and move on.', ok: false, why: 'Punctuation is editing; the audience mismatch is a substance problem the surface pass cannot fix.' },
+        { t: 'Rewrite the opening in a formal register; the audience pass calls for the right tone for a school board.', ok: true, why: 'The audience pass adjusts tone and register to match the actual reader; a school board calls for formal voice.' }
       ]
     }
   ];
@@ -429,7 +429,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
     function loadRound(){
       var r = ROUNDS[rIdx];
       passage.textContent = r.passage;
-      claim.innerHTML = 'Question: <span>' + r.claim + '</span>';
+      claim.innerHTML = 'Task: <span>' + r.claim + '</span>';
       evfb.className = 'fbline'; evfb.textContent = '';
       rnext.classList.add('hide');
       evs.innerHTML = '';
@@ -441,7 +441,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
           Array.prototype.forEach.call(evs.children, function(c){ c.disabled = true; });
           if (e.ok){ b.classList.add('ok'); evfb.className = 'fbline ok'; evfb.textContent = e.why; }
           else { b.classList.add('no'); evfb.className = 'fbline try';
-            evfb.textContent = e.why + ' Stamina is a protocol, not a speed setting.';
+            evfb.textContent = e.why + ' Match the revision move to the pass: task, purpose, or audience.';
             Array.prototype.forEach.call(evs.children, function(c, i){ if (r.evs[i].ok) c.classList.add('ok'); });
           }
           if (rIdx < ROUNDS.length - 1) rnext.classList.remove('hide');
@@ -454,57 +454,65 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   });
 
   var ITEM_BANK = [
-    {q:'In long-form literary reading, stamina is best defined as...',o:['the protocol that lets a reader sustain comprehension across a long work','the speed at which a reader can finish a chapter','the number of books a reader has finished','the ability to skim past hard passages'],a:0,
-      why: 'Stamina is a sustained-comprehension protocol, not a measure of reading speed.' },
+    { q: 'Revision differs from editing in that revision...',
+      o: ['fixes spelling and punctuation','changes substance: claims, structure, evidence, voice','adjusts margins and fonts','retypes the draft without changes'], a: 1,
+      why: 'Revision works on substance; editing works on the surface.' },
 
-    {q:'A reader returns to a novel after a five-day break. The fastest way to restore comprehension before continuing is to...',o:['reread the entire novel from page one','scan the prior session\'s log entry and the last paragraph read','skip ahead until the plot feels familiar','put the book down for another week'],a:1,
-      why: 'Contextual recall before resuming is the move that protects comprehension across breaks.' },
+    { q: 'The three lenses of a structured revision pass are...',
+      o: ['task, purpose, audience','length, color, font','title, opening, closing','draft, edit, post'], a: 0,
+      why: 'Task, purpose, and audience are the three lenses of structured revision.' },
 
-    {q:'Which of the following best describes a one-sentence chapter log?',o:['a complete plot summary of the novel','a list of every line of dialogue','a short note recording who appeared, where, and what changed','the writer\'s biography'],a:2,
-      why: 'A chapter log captures continuity in a sentence: people, setting, and change.' },
+    { q: 'A draft does not answer the assigned prompt directly. The revision pass that catches this problem is the...',
+      o: ['audience pass','purpose pass','task pass','editing pass'], a: 2,
+      why: 'The task pass asks whether the draft answers the prompt precisely and completely.' },
 
-    {q:'A reader of a poetry collection is moving from poem to poem after a single read each. The form-specific stamina move would be to...',o:['read only the first stanza of each poem','memorize each poem','skim the introduction only','read each poem twice before moving on'],a:3,
-      why: 'Poetry rewards a second pass for pattern, image, and sound; the first pass is for surface.' },
+    { q: 'A draft makes a strong claim but offers no cited evidence to back it. The revision pass that catches this problem is the...',
+      o: ['task pass','purpose pass','audience pass','editing pass'], a: 1,
+      why: 'The purpose pass asks whether the central idea is clear and supported by real evidence.' },
 
-    { q: 'In drama, the stamina move most directly tied to keeping speakers and motivations clear is...',
-      o: ['keeping a cast list with one defining trait per role','highlighting the stage directions in one color','reading every scene aloud','skipping the prologue'], a: 0,
-      why: 'A trait-tagged cast list protects voice and motivation across rapid speaker shifts.' },
+    { q: 'A draft for a formal letter opens with "Hey y\'all." The revision pass that catches this problem is the...',
+      o: ['audience pass','task pass','purpose pass','editing pass'], a: 0,
+      why: 'The audience pass asks whether the tone and register fit the reader.' },
 
-    { q: 'Pacing in the stamina protocol means...',
-      o: ['reading as fast as the eye allows','setting a predictable session length and daily target','timing each chapter with a stopwatch','reading only when the mood strikes'], a: 1,
-      why: 'A predictable session and target build the rhythm that prevents abandoned books.' },
+    { q: 'Editing a draft that has not been revised is most like...',
+      o: ['the correct order of operations','polishing surface details while the substance still fails','the most important step','a substitute for revision'], a: 1,
+      why: 'Surface polishing cannot fix substance problems; revision must precede editing.' },
 
-    {q:'Independent and proficient reading of literature requires a reader to...',o:['rely on someone else to summarize each chapter','read only short stories','sustain comprehension of plot, character, and voice without outside scaffolding','read out loud at all times'],a:2,
-      why: 'Independent proficiency means holding the threads of the work without outside scaffolding.' },
+    { q: 'Which of the following is a revision move, not an editing move?',
+      o: ['fixing a misspelled word','adding a missing comma','cutting a paragraph that drifts off task','correcting a capitalization error'], a: 2,
+      why: 'Cutting a paragraph for task drift is a substance change, which is revision.' },
 
-    {q:'The pillar most directly designed to protect novel continuity is...',o:['skipping description-heavy paragraphs','choosing books with short chapters','using audiobooks instead','note-taking, such as a one-sentence chapter log'],a:3,
-      why: 'A per-chapter log is the explicit protection against continuity loss.' },
+    { q: 'A margin note that reads "too casual for the assignment" is a flag for the...',
+      o: ['task pass','purpose pass','audience pass','editing pass'], a: 2,
+      why: 'A register mismatch with the reader is an audience-pass concern.' },
 
-    { q: 'A reader sets a 25-minute daily reading session for a 400-page novel. The session length is an example of...',
-      o: ['pacing','note-taking','contextual recall','memorization'], a: 0,
-      why: 'A predictable daily session is the pacing pillar in practice.' },
+    { q: 'In a structured revision, the first pass typically addresses...',
+      o: ['the task: does the draft answer the prompt at all','spelling errors','word-level synonyms','final formatting'], a: 0,
+      why: 'A task pass comes first; there is no point polishing a draft that does not answer the prompt.' },
 
-    { q: 'When a reader scans the final paragraph of yesterday\'s session before starting today\'s, the practice is...',
-      o: ['pacing','contextual recall','note-taking','revision'], a: 1,
-      why: 'Recalling where the story stood before resuming is the contextual-recall pillar.' },
+    { q: 'A draft argues that a new policy is effective but never gives a number or a citation. The revision move that fits is to...',
+      o: ['leave the draft alone','add cited evidence to back the claim','reduce the paragraph length','rewrite the title only'], a: 1,
+      why: 'A claim with no evidence triggers the purpose-pass move of adding cited support.' },
 
-    {q:'A reader of a Shakespeare play notices the cast list has thirteen named characters. The first stamina move should be to...',o:['skip every character whose name is unfamiliar','memorize every line spoken in scene one','build a trait-tagged cast list','read the play backwards'],a:2,
-      why: 'A trait-tagged cast list is the drama-specific protection against speaker confusion.' },
+    { q: 'A draft for a peer audience uses dense academic phrases that the peer reader will not follow. The revision move that fits is to...',
+      o: ['leave the language untouched','add three more academic phrases','lower the register and translate the phrases for the reader','add a thesaurus list'], a: 2,
+      why: 'The audience-pass move lowers register and adjusts vocabulary for the actual reader.' },
 
-    {q:'A reader finishes a novel by reading sixty pages every Saturday and nothing on the other six days. The most likely failure point is...',o:['the chapters being too short','too many pages per session','the prose being too easy','continuity loss between sessions a week apart'],a:3,
-      why: 'A weekly burst leaves six days of continuity drift; comprehension cracks at the gaps.' },
+    { q: 'A paragraph in a draft drifts onto a topic the prompt did not ask about. The revision move that fits is to...',
+      o: ['cut the paragraph or refocus it on the prompt','keep the paragraph because it sounds smart','add another off-topic paragraph','italicize the paragraph'], a: 0,
+      why: 'A task-pass move cuts or refocuses any paragraph that drifts off the prompt.' },
 
-    { q: 'Across novel, drama, and poem, the unifying principle of stamina is that the reader...',
-      o: ['matches a protocol to the form being read','reads every text the same way','reads only when motivated','memorizes large sections of text'], a: 0,
-      why: 'Stamina is a form-aware protocol; the move shifts with the form, the discipline does not.' },
+    { q: 'Which of the following best describes the relationship between revision and editing?',
+      o: ['They are the same thing under two names.','Revision changes substance and comes first; editing polishes the surface and comes after.','Editing is more important than revision.','Both belong to the first draft.'], a: 1,
+      why: 'Revision changes substance and comes first; editing polishes the surface and comes after.' },
 
-    { q: 'A reader who reads forty pages in a single sitting, then sets the book down for nine days, has most directly violated the principle of...',
-      o: ['note-taking','pacing','contextual recall','genre selection'], a: 1,
-      why: 'A predictable rhythm is the pacing pillar; a nine-day gap breaks it.' }
+    { q: 'A reader-aware writer revises with consideration for task, purpose, and audience because...',
+      o: ['the page count requires it','those three lenses align the draft with what the writing is supposed to do for whom','the spell checker demands it','revision is required by every prompt'], a: 1,
+      why: 'Task, purpose, and audience align the draft with what the writing is supposed to do and for whom.' }
   ];
 
   var FORM_A_IDX = [0,1,2,3,4,5,6,7];
-  var FORM_B_IDX = [8,9,10,11,12,13,3,4];
+  var FORM_B_IDX = [8,9,10,11,12,13,2,4];
 
   var FORM_A = FORM_A_IDX.map(function(i){ return ITEM_BANK[i]; });
   var FORM_B = FORM_B_IDX.map(function(i){ return ITEM_BANK[i]; });

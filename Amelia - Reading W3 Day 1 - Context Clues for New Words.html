@@ -378,22 +378,22 @@
   var FORMA=[
     {q:'A <b>context clue</b> is ...',o:['a word in the sentence that helps you figure out a new word','the title of the book','a word you copy from a poster'],a:0,why:'Context clues come from the words right around the new word.'},
     {q:'Read: <i>The puppy was tiny, no bigger than my hand.</i> What does <i>tiny</i> mean here?',o:['huge','very small','tall'],a:1,why:'"No bigger than my hand" is the clue. That means very small.'},
-    {q:'Read: <i>The soup was scalding, so I waited for it to cool.</i> What does <i>scalding</i> mean?',o:['cold','very hot','sweet'],a:1,why:'You wait for hot food to cool. That clue points to very hot.'},
-    {q:'Read: <i>Ben is usually loud, but tonight he was subdued.</i> What does <i>subdued</i> mean?',o:['loud','quiet','funny'],a:1,why:'The word "but" shows an opposite. The opposite of loud is quiet.'},
-    {q:'Read: <i>She loved citrus fruits like oranges, lemons, and limes.</i> What does <i>citrus</i> mean?',o:['a kind of bread','a fruit like oranges, lemons, and limes','a kind of toy'],a:1,why:'The examples tell you. Oranges, lemons, and limes are all citrus.'},
+    {q:'Read: <i>The soup was scalding, so I waited for it to cool.</i> What does <i>scalding</i> mean?',o:['sweet','cold','very hot'],a:2,why:'You wait for hot food to cool. That clue points to very hot.'},
+    {q:'Read: <i>Ben is usually loud, but tonight he was subdued.</i> What does <i>subdued</i> mean?',o:['quiet','loud','funny'],a:0,why:'The word "but" shows an opposite. The opposite of loud is quiet.'},
+    {q:'Read: <i>She loved citrus fruits like oranges, lemons, and limes.</i> What does <i>citrus</i> mean?',o:['a kind of bread','a kind of toy','a fruit like oranges, lemons, and limes'],a:2,why:'The examples tell you. Oranges, lemons, and limes are all citrus.'},
     {q:'A word with more than one meaning is figured out by ...',o:['the longest word in the sentence','the words around it','the number of letters'],a:1,why:'The sentence around it tells you which meaning fits.'},
-    {q:'Read: <i>The dog gave a sharp bark when the mail came.</i> What does <i>bark</i> mean here?',o:['the skin of a tree','a sound a dog makes','a kind of boat'],a:1,why:'A dog at the mail fits "the sound a dog makes."'},
-    {q:'When you do not know a word, the best first move is to ...',o:['skip the sentence','read the words near it for clues','close the book'],a:1,why:'Use the words right around it. The sentence is doing work for you.'}
+    {q:'Read: <i>The dog gave a sharp bark when the mail came.</i> What does <i>bark</i> mean here?',o:['a sound a dog makes','the skin of a tree','a kind of boat'],a:0,why:'A dog at the mail fits "the sound a dog makes."'},
+    {q:'When you do not know a word, the best first move is to ...',o:['skip the sentence','close the book','read the words near it for clues'],a:2,why:'Use the words right around it. The sentence is doing work for you.'}
   ];
   var FORMB=[
-    {q:'Read: <i>The room was vast; you could fit a whole school bus in it.</i> What does <i>vast</i> mean?',o:['small','huge','warm'],a:1,why:'If a school bus fits in it, the room is huge.'},
-    {q:'Read: <i>The lake was tranquil. There were no waves and no boats.</i> What does <i>tranquil</i> mean?',o:['rough','calm','cold'],a:1,why:'No waves and no boats is a calm scene.'},
+    {q:'Read: <i>The room was vast; you could fit a whole school bus in it.</i> What does <i>vast</i> mean?',o:['huge','small','warm'],a:0,why:'If a school bus fits in it, the room is huge.'},
+    {q:'Read: <i>The lake was tranquil. There were no waves and no boats.</i> What does <i>tranquil</i> mean?',o:['rough','cold','calm'],a:2,why:'No waves and no boats is a calm scene.'},
     {q:'Read: <i>Mia is usually shy, but on stage she was confident.</i> What does <i>confident</i> mean?',o:['shy','sure of herself','sad'],a:1,why:'"But" shows an opposite. The opposite of shy is sure of yourself.'},
-    {q:'Read: <i>He ate root vegetables like carrots, potatoes, and beets.</i> What does <i>root vegetables</i> mean?',o:['fruits that grow high in trees','vegetables like carrots, potatoes, and beets','candy bars'],a:1,why:'The examples right after give you the meaning.'},
-    {q:'Read: <i>The bank of the river was muddy after the rain.</i> What does <i>bank</i> mean here?',o:['a place that holds money','the edge of the river','a heavy hit'],a:1,why:'A river has banks. The "muddy after the rain" clue fits the edge of a river.'},
-    {q:'Read: <i>The room was dim, so I could barely see my feet.</i> What does <i>dim</i> mean?',o:['bright','low on light','loud'],a:1,why:'Barely seeing your feet means low on light.'},
+    {q:'Read: <i>He ate root vegetables like carrots, potatoes, and beets.</i> What does <i>root vegetables</i> mean?',o:['vegetables like carrots, potatoes, and beets','fruits that grow high in trees','candy bars'],a:0,why:'The examples right after give you the meaning.'},
+    {q:'Read: <i>The bank of the river was muddy after the rain.</i> What does <i>bank</i> mean here?',o:['a place that holds money','a heavy hit','the edge of the river'],a:2,why:'A river has banks. The "muddy after the rain" clue fits the edge of a river.'},
+    {q:'Read: <i>The room was dim, so I could barely see my feet.</i> What does <i>dim</i> mean?',o:['loud','low on light','bright'],a:1,why:'Barely seeing your feet means low on light.'},
     {q:'Best test for the right meaning of a word with many meanings is ...',o:['the meaning that fits the sentence','the meaning you saw first','the longest meaning'],a:0,why:'Pick the meaning that makes the sentence make sense.'},
-    {q:'Read: <i>The fans were ecstatic when the team won the title.</i> What does <i>ecstatic</i> mean?',o:['bored','very happy','tired'],a:1,why:'Fans whose team wins are very happy.'}
+    {q:'Read: <i>The fans were ecstatic when the team won the title.</i> What does <i>ecstatic</i> mean?',o:['bored','tired','very happy'],a:2,why:'Fans whose team wins are very happy.'}
   ];
 
   var FORM='A', QS=FORMA, qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false;

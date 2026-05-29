@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mastery learning lesson aligned to a verbatim Missouri Learning Standard. Auto-graded, kid-independent.">
+<title>Story Lab, Comparing Types of Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+/* LESSON_BG_ANIM_V1 */
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(181,70,47,.10)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(90,122,74,.08)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(184,138,45,.06)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(181,70,47,.10);--bg-blob-2:rgba(90,122,74,.08);--bg-blob-3:rgba(184,138,45,.06);}
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a32;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(30px,5.5vw,44px);line-height:1.04;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  .pair .col{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;}
+  .pair .col h3{font-family:'Fraunces';font-size:16px;color:var(--accent-d);font-style:italic;margin-bottom:6px;}
+  .pair .col p{font-family:'Newsreader',Georgia,serif;font-size:15px;color:var(--ink);}
+  .passage{background:#fbf5ea;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:17px;color:var(--ink);font-family:'Newsreader',Georgia,serif;line-height:1.55;}
+  .qrow{margin-top:14px;}
+  .qrow .ql{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--accent-d);letter-spacing:.04em;text-transform:uppercase;}
+  .qrow .q{font-family:'Fraunces';font-weight:600;font-size:17px;margin-top:4px;margin-bottom:8px;}
+  .opts3{display:flex;flex-direction:column;gap:8px;}
+  .opt3{font:inherit;font-size:16px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .opt3:hover{border-color:var(--accent);}
+  .opt3.ok{border-color:var(--good);background:#eef5ea;color:var(--good);font-weight:600;}
+  .opt3.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .opt3:disabled{cursor:default;}
+  .stagefb{margin-top:10px;font-size:15px;min-height:1.4em;color:var(--ink2);}
+  .stagefb.ok{color:var(--good);font-weight:600;} .stagefb.try{color:var(--accent-d);font-weight:600;}
+  .rnext{margin-top:12px;}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+  .rt{font-family:'Fraunces';font-size:13px;background:#eef5ea;border:1px solid var(--alt);color:#3f5a32;border-radius:6px;padding:3px 9px;font-style:italic;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .gateinfo{margin-top:10px;font-size:14px;color:var(--ink2);text-align:center;}
+  .gatebox{background:#f3ead9;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+  .gatebox .cd{font-size:36px;font-weight:700;font-family:'Fraunces',serif;color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+  .gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} *{animation:none !important;}}
+
+  /* HERO_ILLO_V1: Venn diagram comparing folktale and realistic fiction */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:520px;height:auto;display:block;}
+  .lesson-hero .ring-a{fill:rgba(181,70,47,.14);stroke:var(--accent);stroke-width:2;}
+  .lesson-hero .ring-b{fill:rgba(90,122,74,.14);stroke:var(--alt);stroke-width:2;}
+  .lesson-hero .ring-cap{font-family:'Fraunces',serif;font-style:italic;font-size:13px;text-anchor:middle;fill:var(--ink);font-weight:600;}
+  .lesson-hero .tag{font-family:'Newsreader',serif;font-size:11px;text-anchor:middle;fill:var(--ink2);}
+  .lesson-hero .mid-cap{font-family:'Fraunces',serif;font-style:italic;font-size:12px;text-anchor:middle;fill:var(--accent-d);font-weight:600;}
+  .lesson-hero .dot-a{fill:var(--accent);}
+  .lesson-hero .dot-b{fill:var(--alt);}
+  .lesson-hero .dot-c{fill:var(--accent-d);}
+  .lesson-hero .ground{stroke:var(--mute);stroke-width:1;stroke-dasharray:3 4;}
+</style>
+
+<style id="mastery-done-styles">
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f9d6b); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f9d6b); margin: 8px 0; }
+.mastery-msg { color: var(--ink2, #4a4566); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e8f7f0; border: 2px solid #bce6d8; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; color: var(--good, #1f9d6b); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #4a4566); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #b5462f); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #8c3320); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #b5462f); outline-offset: 3px; }
+</style>
+
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.R.2.A.f</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Week four, Day one</div>
+    <h1>Comparing Types of Stories</h1>
+    <p class="opener"><span class="dropcap">F</span>iction comes in many shapes. A folktale, a fairy tale, a fable, a realistic story. They are all made up. But each kind has its own rules. A folktale may have talking animals. A realistic story has kids who go to a real school. When you know the type, you know what to expect.</p>
+    <p class="mission">By the end you will compare two kinds of fiction. You will name what is the same and what is different.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Compare and contrast key elements in various types of fiction</div>
+
+    <!-- HERO_ILLO_V1: Venn diagram. Left ring labeled Folktale, right ring labeled Realistic. Center overlap labeled Both. Tiny tag words sit inside each region. -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 520 270" role="img" aria-label="A Venn diagram. The left red circle is labeled Folktale and contains the words talking animal, magic, and long ago. The right green circle is labeled Realistic and contains the words real school, no magic, and today. The center overlap is labeled Both and contains the words characters, plot, and setting.">
+        <line class="ground" x1="40" y1="246" x2="480" y2="246"/>
+        <circle class="ring-a" cx="190" cy="135" r="110"/>
+        <circle class="ring-b" cx="330" cy="135" r="110"/>
+        <text class="ring-cap" x="120" y="40" fill="#8c3320">Folktale</text>
+        <text class="ring-cap" x="400" y="40" fill="#3f5a32">Realistic</text>
+        <text class="mid-cap" x="260" y="46">Both</text>
+        <circle class="dot-a" cx="120" cy="100" r="3"/>
+        <text class="tag" x="120" y="118">talking animal</text>
+        <circle class="dot-a" cx="125" cy="140" r="3"/>
+        <text class="tag" x="125" y="158">magic</text>
+        <circle class="dot-a" cx="125" cy="180" r="3"/>
+        <text class="tag" x="125" y="198">long ago</text>
+        <circle class="dot-c" cx="260" cy="105" r="3"/>
+        <text class="tag" x="260" y="123">characters</text>
+        <circle class="dot-c" cx="260" cy="140" r="3"/>
+        <text class="tag" x="260" y="158">plot</text>
+        <circle class="dot-c" cx="260" cy="175" r="3"/>
+        <text class="tag" x="260" y="193">setting</text>
+        <circle class="dot-b" cx="400" cy="100" r="3"/>
+        <text class="tag" x="400" y="118">real school</text>
+        <circle class="dot-b" cx="395" cy="140" r="3"/>
+        <text class="tag" x="395" y="158">no magic</text>
+        <circle class="dot-b" cx="400" cy="180" r="3"/>
+        <text class="tag" x="400" y="198">today</text>
+        <text class="tag" x="260" y="266">same parts in the middle, different parts on the sides</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>Two kinds of made-up stories</h2></div>
+      <p class="lead">A <b>folktale</b> is an old story passed down for many years. It often has magic, talking animals, or a lesson at the end. A <b>realistic fiction</b> story is made up too. But it could really happen in our world. Kids go to school, families argue, a soccer team wins or loses.</p>
+      <div class="pair">
+        <div class="col"><h3>Folktale</h3><p>"A clever fox tricked a hungry lion. The fox sang a song that put the lion to sleep."</p></div>
+        <div class="col"><h3>Realistic fiction</h3><p>"Mia hid her notebook in her backpack. She did not want her brother to read her poems."</p></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>What is the same in all fiction</h2></div>
+      <p class="lead">All fiction shares the <b>same key parts</b>. Every made-up story has these three:</p>
+      <div class="pair">
+        <div class="col"><h3>Characters</h3><p>The people or animals in the story. Mia, the fox, Coach Park.</p></div>
+        <div class="col"><h3>Plot</h3><p>The events. What happens, in order, from start to end.</p></div>
+      </div>
+      <div class="pair" style="margin-top:8px;">
+        <div class="col"><h3>Setting</h3><p>Where and when the story happens. A forest, a school, long ago, today.</p></div>
+        <div class="col"><h3>Theme</h3><p>The big idea or lesson the story leaves you with.</p></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">These four go in the <b>middle</b> of the Venn diagram. They show up in every type of fiction.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>What is different</h2></div>
+      <p class="lead">Each type of fiction has its own rules. These rules go on the <b>outside</b> of the Venn diagram.</p>
+      <div class="pair">
+        <div class="col"><h3>Folktale only</h3><p>Talking animals. Magic. A clear lesson at the end. Set long ago, often in a far place.</p></div>
+        <div class="col"><h3>Realistic only</h3><p>Set today, in places we know. No magic. People act like real people. The plot could really happen.</p></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Try it: same or different</h2></div>
+      <p class="lead">Read each story clue. Then tap whether it belongs in <b>Both</b>, <b>Folktale only</b>, or <b>Realistic only</b>.</p>
+      <div id="rounds"></div>
+      <button class="cta rnext hide" id="rnext">Next clue</button>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">If a story has animals, it must be a folktale.</div><div style="color:var(--ink2)">No. A realistic story can have a dog or a pet cat. The difference is the animal acts like a real animal. In a folktale, the animal talks and thinks like a person.</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I can compare types of stories. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span id="formlabel">Form A</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You passed Form A. To prove the skill stuck, come back tomorrow for Form B. Same skill, new questions.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="gateinfo hide" id="gateinfo"></div>
+    </div>
+    <button class="cta hide" id="toFormB">Next: spaced retention check</button>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);"><span id="__sname">Amelia</span> &middot; Reading &middot; Standard 3.R.2.A.f</footer>
+
+<section id="masteryDone" class="mastery-complete" aria-live="polite">
+  <div class="mastery-card">
+    <div class="mastery-badge" aria-hidden="true">
+      <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+        <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>You did it!</h2>
+    <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+    <div class="mastery-stats">
+      <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+      <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+    </div>
+    <div class="mastery-cta">
+      <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};
+  __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='3.R.2.A.f',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname'); if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  var ROUNDS=[
+    {
+      clue:'The story is about a wise turtle who tells a young rabbit, "Slow and steady is best." The rabbit learns to stop bragging.',
+      q:'Where does this clue belong?',
+      o:[
+        {t:'Folktale only', ok:true, why:'Yes. A talking turtle and a clear lesson. That points to a folktale.'},
+        {t:'Realistic only', ok:false, why:'No. Real turtles do not talk. This is a folktale clue.'},
+        {t:'Both', ok:false, why:'A talking animal is not in realistic fiction. This is folktale only.'}
+      ]
+    },
+    {
+      clue:'Sam walked to the bus stop. His backpack felt heavy. He hoped his math test would be easy.',
+      q:'Where does this clue belong?',
+      o:[
+        {t:'Folktale only', ok:false, why:'No magic, no talking animals. This is not a folktale.'},
+        {t:'Realistic only', ok:true, why:'Yes. A bus stop, a backpack, a math test. This could really happen today.'},
+        {t:'Both', ok:false, why:'This clue only fits real life. It is not a folktale.'}
+      ]
+    },
+    {
+      clue:'The story has people, events that happen in order, and a place where they happen.',
+      q:'Where does this clue belong?',
+      o:[
+        {t:'Folktale only', ok:false, why:'These parts are in every fiction story, not just folktales.'},
+        {t:'Realistic only', ok:false, why:'These parts are in every fiction story, not just realistic ones.'},
+        {t:'Both', ok:true, why:'Yes. Characters, plot, and setting are the same parts in all fiction.'}
+      ]
+    }
+  ];
+  var rIdx=0, rbox=document.getElementById('rounds'), rnext=document.getElementById('rnext');
+  function render(){
+    var r=ROUNDS[rIdx]; rbox.innerHTML='';
+    var p=document.createElement('div'); p.className='passage'; p.textContent=r.clue; rbox.appendChild(p);
+    var qr=document.createElement('div'); qr.className='qrow';
+    qr.innerHTML='<div class="ql">Pick the right region</div><div class="q">'+r.q+'</div>';
+    var opts=document.createElement('div'); opts.className='opts3';
+    var fb=document.createElement('div'); fb.className='stagefb';
+    r.o.forEach(function(o){
+      var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.textContent=o.t;
+      b.addEventListener('click',function(){
+        Array.prototype.forEach.call(opts.children,function(x){x.disabled=true;});
+        if(o.ok){ b.classList.add('ok'); fb.className='stagefb ok'; fb.textContent=o.why; }
+        else { b.classList.add('no'); fb.className='stagefb try'; fb.textContent=o.why;
+          Array.prototype.forEach.call(opts.children,function(x,k){ if(r.o[k].ok) x.classList.add('ok'); });
+        }
+        if(rIdx<ROUNDS.length-1){ rnext.classList.remove('hide'); }
+        else { rnext.textContent='You worked through all three. Scroll down to keep going.'; rnext.classList.remove('hide'); rnext.disabled=true; rnext.style.opacity='.7'; }
+      });
+      opts.appendChild(b);
+    });
+    qr.appendChild(opts); qr.appendChild(fb); rbox.appendChild(qr);
+  }
+  rnext.addEventListener('click',function(){ if(rIdx<ROUNDS.length-1){ rIdx++; rnext.classList.add('hide'); render(); } });
+  render();
+
+  var FORMA=[
+    {q:'A <b>folktale</b> is ...',o:['an old story passed down with magic or a lesson','a list of facts','a math problem'],a:0,why:'Folktales are old stories that often have magic or a clear lesson.'},
+    {q:'A <b>realistic fiction</b> story is ...',o:['true and not made up','made up, but it could really happen','about talking animals'],a:1,why:'Realistic fiction is made up, but the events feel real.'},
+    {q:'Which part is in <b>every</b> fiction story?',o:['talking animals','magic','characters and a setting'],a:2,why:'All fiction has characters, plot, and setting.'},
+    {q:'A talking fox who tricks a lion is most likely from ...',o:['a folktale','realistic fiction','a science book'],a:0,why:'Talking animals point to a folktale.'},
+    {q:'Mia takes the city bus to school and forgets her homework. This sounds like ...',o:['a folktale','realistic fiction','a fairy tale'],a:1,why:'A real city, a real school, a real problem. Realistic.'},
+    {q:'A <b>theme</b> in fiction is ...',o:['the big idea or lesson','the title','the page number'],a:0,why:'Theme is the big idea the story leaves you with.'},
+    {q:'Which is different between folktales and realistic fiction?',o:['both have a plot','folktales often use magic, realistic stories do not','both have characters'],a:1,why:'Magic is in folktales but not in realistic fiction.'},
+    {q:'A folktale and a realistic story both have ...',o:['the same magic spells','the same setting','a plot with events in order'],a:2,why:'Plot is in every fiction story.'}
+  ];
+  var FORMB=[
+    {q:'When you <b>compare</b> two types of stories, you look for ...',o:['parts that are the same','only the title','only the cover'],a:0,why:'Comparing means finding parts that are the same.'},
+    {q:'When you <b>contrast</b> two types of stories, you look for ...',o:['the same parts','parts that are different','only the page count'],a:1,why:'Contrast means finding parts that are different.'},
+    {q:'A wise owl gives a young mouse advice and the mouse learns to be brave. This is most likely ...',o:['a folktale','realistic fiction','a math problem'],a:0,why:'A talking owl and a clear lesson point to a folktale.'},
+    {q:'Ben tries out for the school play and feels nervous. This is most likely ...',o:['a poem about clouds','a folktale','realistic fiction'],a:2,why:'A real school and real nerves point to realistic fiction.'},
+    {q:'Both folktales and realistic stories must have ...',o:['talking animals','magic objects','characters and events'],a:2,why:'All fiction has characters and a plot.'},
+    {q:'Which is true <b>only</b> for folktales?',o:['they are made up','they often use magic and clear lessons','they have a setting'],a:1,why:'Magic and clear lessons are common in folktales, not realistic fiction.'},
+    {q:'Which is true <b>only</b> for realistic fiction?',o:['it could really happen in our world today','it has a plot','it has characters'],a:0,why:'Realistic fiction events could really happen now.'},
+    {q:'A Venn diagram helps you ...',o:['see same parts and different parts at once','draw a circle for fun','find the page number'],a:0,why:'A Venn diagram shows same in the middle and different on the sides.'}
+  ];
+
+  var FORM='A', QS=FORMA, qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false;
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'),
+      secResult=document.getElementById('result'), secGate=document.getElementById('gate');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'),
+      elTfill=document.getElementById('tfill'), elForm=document.getElementById('formlabel');
+
+  function startCheck(which){
+    commitTime();
+    FORM=which; QS=(which==='A')?FORMA:FORMB; elForm.textContent='Form '+which;
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secGate.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ();
+  }
+  function showQ(){
+    locked=false; var item=QS[qi];
+    elCount.textContent='Question '+(qi+1)+' of '+QS.length;
+    elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){
+      var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,item);});
+      elOpts.appendChild(b);
+    });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s';
+    clearInterval(timer);
+    timer=setInterval(function(){
+      timeLeft--; if(timeLeft<0)timeLeft=0;
+      elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s';
+      if(timeLeft<=8)elTfill.classList.add('low');
+      if(timeLeft===0){ clearInterval(timer); autoAdv(item); }
+    },1000);
+  }
+  function autoAdv(item){
+    if(locked)return; locked=true;
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct'); c.style.pointerEvents='none';
+    });
+    setTimeout(next,1100);
+  }
+  function answer(i,btn,item){
+    if(locked)return; locked=true; clearInterval(timer);
+    var ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct');
+      if(idx===i&&!ok)c.classList.add('bad');
+      c.style.pointerEvents='none';
+    });
+    if(ok) correct++;
+    setTimeout(next, ok?650:1100);
+  }
+  function next(){ qi++; if(qi<QS.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct>=PASS);
+    document.getElementById('scorebig').textContent=pct+'%';
+    var retry=document.getElementById('retry'), toB=document.getElementById('toFormB'),
+        rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    toB.classList.add('hide'); retry.classList.add('hide');
+    if(FORM==='A'){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of '+QS.length+' right. Form B opens in 24 hours to lock the skill in.';
+        toB.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close!';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Look back at the stations, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      rec.formB=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status='formB-tried'; save(app);
+        rtitle.textContent='Almost there.';
+        rmsg.textContent='You need 7 of 8 on Form B. You got '+correct+'. Reread the stations and try again.';
+        retry.classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide'); secLesson.classList.add('hide');
+    secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB'), cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){ cd.textContent='Form B is ready.'; startBtn.classList.remove('hide'); return; }
+      startBtn.classList.add('hide');
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  function showMastery(a,b){
+    var sec=document.getElementById('masteryDone'); if(!sec) return;
+    var ea=document.getElementById('msFormA'); if(ea) ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB'); if(eb) eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if(rec.status==='passed'){ showMastery(rec.formA||0, rec.formB||0); return; }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && (rec.formB||0)<PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){ startCheck('A'); });
+  document.getElementById('toFormB').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){ startCheck('B'); });
+  document.getElementById('retry').addEventListener('click',function(){
+    secResult.classList.add('hide');
+    if(FORM==='A') startCheck('A'); else startCheck('B');
+  });
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

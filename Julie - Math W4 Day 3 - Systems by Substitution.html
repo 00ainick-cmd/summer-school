@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Grade 8 lesson on solving systems of linear equations by substitution. Replace one variable with an equivalent expression, solve, then back-substitute to find the second value. Auto-graded, kid-independent.">
+<title>Session 18 &middot; Systems by Substitution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* LESSON_BG_ANIM_V1 */
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(255,59,20,.08)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(36,81,166,.10)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(255,200,100,.05)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(255,59,20,.08);--bg-blob-2:rgba(36,81,166,.10);--bg-blob-3:rgba(255,200,100,.05);}
+
+:root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+  --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:-1;background:
+   linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+   linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+   radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+.mono,.kicker,.labbar,.sno,.stdtag .l,.tick{font-family:'Spline Sans Mono',monospace;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+.labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+.labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+.kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+.mission{color:var(--ink2);max-width:58ch;}
+.stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+.stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+.station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+.station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+.worked{background:#fafaf6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;font-family:'Spline Sans Mono',monospace;font-size:15px;color:var(--ink);}
+.worked b{color:var(--accent-d);}
+.note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.note b{color:var(--alt);}
+.warn{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.warn b{color:var(--accent-d);}
+.practice .prow{display:grid;grid-template-columns:1fr;gap:8px;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fafaf6;margin-top:10px;}
+.practice .prq{font-family:'Spline Sans Mono',monospace;font-size:16px;color:var(--ink);font-weight:600;}
+.practice .pchoices{display:flex;flex-wrap:wrap;gap:6px;}
+.practice .pchoice{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:14px;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:40px;cursor:pointer;color:var(--ink);}
+.practice .pchoice:hover{border-color:var(--accent);}
+.practice .pchoice.ok{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.practice .pchoice.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+.practice .pwhy{font-size:13.5px;color:var(--ink2);min-height:1em;}
+.scorerow{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-family:'Spline Sans Mono',monospace;font-size:14px;color:var(--ink2);}
+.resetb{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:12px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 10px;cursor:pointer;color:var(--ink2);min-height:32px;}
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+.cta:hover{background:var(--accent-d);} .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);} .cta:disabled{opacity:.5;cursor:default;}
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+.tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+.tfill.low{background:var(--red);}
+.qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+.opt2:hover{border-color:var(--accent);}
+.opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+.qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+.scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:8px;}
+.scoreband .s{font-family:'Anton';font-size:30px;}
+.gatebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-family:'Spline Sans Mono',monospace;font-size:36px;font-weight:700;color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+.gate{margin-top:10px;}
+.gitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px;color:var(--ink2);}
+.gitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono',monospace;font-size:13px;}
+.gitem.ok .mk{background:var(--good);} .gitem.miss .mk{background:var(--accent-d);}
+.cred{display:none;text-align:center;padding:20px;border-radius:14px;background:#fff;border:1px solid var(--good);margin-top:12px;}
+.cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
+footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+/* HERO_ILLO */
+.lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+.lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+.lesson-hero .step{fill:#fafaf6;stroke:var(--line);stroke-width:1;}
+.lesson-hero .stepdone{fill:#e9f6ee;stroke:#0f7a3a;stroke-width:1.5;}
+.lesson-hero .arrow{stroke:var(--alt);stroke-width:1.5;fill:none;}
+.lesson-hero .hilite{fill:#fff3a8;stroke:var(--accent-d);stroke-width:1;}
+.lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+.lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+.lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+.lesson-hero .steplbl{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;fill:var(--ink2);}
+.lesson-hero .eq{font-family:'Spline Sans Mono',monospace;font-size:18px;font-weight:700;fill:var(--ink);}
+.lesson-hero .eqdone{font-family:'Spline Sans Mono',monospace;font-size:20px;font-weight:700;fill:#0f7a3a;}
+.lesson-hero .oplbl{font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:600;fill:var(--accent-d);}
+
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #0f7a3a); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(15,122,58,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Anton', system-ui, sans-serif; font-weight: 400; font-size: clamp(26px, 5vw, 36px); color: var(--good, #0f7a3a); margin: 8px 0; letter-spacing: .02em; text-transform: uppercase; }
+.mastery-msg { color: var(--ink2, #454b54); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e9f6ee; border: 2px solid #bce6cb; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Anton', system-ui, sans-serif; font-size: 32px; font-weight: 400; color: var(--good, #0f7a3a); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #454b54); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #ff3b14); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #cf2c07); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #ff3b14); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.EEI.C.8b</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 18</div>
+    <h1>Systems by Substitution</h1>
+    <p class="mission">Substitution turns a two-variable system into a one-variable equation. When one equation is already solved for a variable, you replace that variable in the other equation with the expression it equals. Then you have a single equation in one unknown.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Analyze and solve systems of linear equations.</div>
+
+    <!-- HERO: 3-step substitution. y=x+1 into x+y=5 -> x+(x+1)=5 -> x=2 -> y=3 -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 290" role="img" aria-label="A three-step substitution. Step one shows the system y equals x plus one and x plus y equals five. Step two substitutes y as x plus one into the second equation, giving x plus the quantity x plus one equals five, then simplifies to x equals two. Step three back-substitutes to get y equals three.">
+        <rect class="panel" x="6" y="6" width="548" height="278" rx="10"/>
+        <text class="headlbl" x="22" y="26">Replace one variable, solve for the other</text>
+
+        <!-- Step 1: the system -->
+        <g transform="translate(20 50)">
+          <rect class="step" x="0" y="0" width="520" height="60" rx="8"/>
+          <text class="steplbl" x="14" y="22">Step 1 &middot; the system</text>
+          <text class="eq" x="160" y="44">y = x + 1</text>
+          <text class="oplbl" x="290" y="44">and</text>
+          <text class="eq" x="340" y="44">x + y = 5</text>
+        </g>
+        <line class="arrow" x1="280" y1="115" x2="280" y2="135"/>
+        <polyline class="arrow" points="274,129 280,138 286,129"/>
+        <text class="oplbl" x="300" y="130">substitute y = x + 1 into the second</text>
+
+        <!-- Step 2: substituted equation -->
+        <g transform="translate(20 145)">
+          <rect class="step" x="0" y="0" width="520" height="60" rx="8"/>
+          <text class="steplbl" x="14" y="22">Step 2 &middot; one variable now</text>
+          <text class="eq" x="120" y="44">x + (x + 1) = 5</text>
+          <text class="oplbl" x="320" y="44">simplify:</text>
+          <text class="eq" x="410" y="44">x = 2</text>
+        </g>
+        <line class="arrow" x1="280" y1="210" x2="280" y2="230"/>
+        <polyline class="arrow" points="274,224 280,233 286,224"/>
+        <text class="oplbl" x="300" y="225">put x = 2 back into y = x + 1</text>
+
+        <!-- Step 3: solution -->
+        <g transform="translate(20 240)">
+          <rect class="stepdone" x="0" y="0" width="520" height="40" rx="8"/>
+          <text class="steplbl" x="14" y="16" fill="#0f7a3a">Step 3 &middot; solution</text>
+          <text class="eqdone" x="200" y="30">(x, y) = (2, 3)</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Why substitution works</h2></div>
+      <p class="lead">If two expressions are equal, you can swap one for the other anywhere they appear. When the first equation says <span class="mono">y = x + 1</span>, the symbol y and the expression <span class="mono">x + 1</span> are interchangeable. Replace y in the second equation with <span class="mono">x + 1</span> and the equation now has only x in it.</p>
+      <div class="note"><b>Pick the easiest setup.</b> Substitution is fastest when one equation is already solved for x or y, or can be solved for one of them with a single move.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>The four steps</h2></div>
+      <p class="lead">Substitution is the same pattern every time. Solve one equation for a single variable. Substitute that expression into the other equation. Solve the resulting one-variable equation. Substitute the answer back to find the second variable.</p>
+      <div class="worked"><b>System:</b> y = x + 1 and x + y = 5</div>
+      <div class="worked"><b>Substitute:</b> x + (x + 1) = 5</div>
+      <div class="worked"><b>Simplify:</b> 2x + 1 = 5, so 2x = 4, x = 2.</div>
+      <div class="worked"><b>Back-substitute:</b> y = 2 + 1 = 3. Solution: (2, 3).</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>When neither is solved for a variable</h2></div>
+      <p class="lead">If both equations are in standard form, pick the variable with a coefficient of 1 or -1 and isolate it. Avoid coefficients that introduce fractions when you can. Then proceed as before.</p>
+      <div class="worked"><b>System:</b> 2x + y = 10 and 3x - y = 5</div>
+      <div class="worked"><b>Isolate y in the first:</b> y = 10 - 2x</div>
+      <div class="worked"><b>Substitute:</b> 3x - (10 - 2x) = 5 -&gt; 5x - 10 = 5 -&gt; x = 3</div>
+      <div class="worked"><b>Back-substitute:</b> y = 10 - 2(3) = 4. Solution: (3, 4).</div>
+      <div class="warn"><b>Watch the parentheses.</b> When substituting an expression, write parentheses around it. The minus sign in <span class="mono">3x - (10 - 2x)</span> distributes to every term inside, not just the first.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Substitute and solve</h2></div>
+      <p class="lead">Solve each system by substitution. Pick the ordered pair. The page checks each tap and shows why.</p>
+      <div class="practice" id="practice"></div>
+      <div class="scorerow"><span id="pLine">0 of 5 answered</span><button class="resetb" id="pReset" type="button">Reset</button></div>
+    </div>
+
+    <button class="cta" id="toCheck">Start the Form A check (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="resultA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A RESULT</span><h2>How that landed</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="scoreA">0 / 8</span><span style="flex:1"></span><span id="statusA" style="font-weight:700;"></span></div>
+      <p class="lead" id="msgA" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to retention (Form B)</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new systems with different coefficients. Best done at least a day after Form A. The delay locks the skill in.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B opens</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+    <div class="hide" id="bWrap">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="cred" id="cred"><div class="gem">&#9670;</div><h3>8.EEI.C.8b Mastered</h3><p>You solve systems by substituting and back-substituting every time.</p></div>
+      <p class="lead" style="margin-top:10px;">Next session: solving systems by elimination.</p>
+    </div>
+  </section>
+
+  <footer><span id="__sname">Julie</span> &middot; Math &middot; Week 4 Day 3 &middot; Verbatim Missouri Learning Standard 8.EEI.C.8b</footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#0f7a3a" stroke="#0a5527" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You substituted, simplified, and back-substituted on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===8;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'julie',name:'Julie',grade:8};
+  __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='math',DAY='8.EEI.C.8b',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
+    var back=document.getElementById('msBack');if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{};app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{};app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec;app.activeStudent=STUDENT;save(app);
+
+  var SUPA_URL='',SUPA_KEY='';
+  function syncCloud(){if(!SUPA_URL||!SUPA_KEY)return;try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){}}
+  var SEG=Date.now();
+  function commitTime(){rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG);SEG=Date.now();rec.lastAt=Date.now();save(app);}
+  window.addEventListener('beforeunload',commitTime);
+  window.addEventListener('pagehide',commitTime);
+  syncCloud(); // call 1: init
+
+  // --- mid-lesson practice ---
+  var PRAC=[
+    {q:'System: y = x + 2 and x + y = 8. Solution:', o:['(3, 5)','(5, 3)','(2, 4)','(4, 6)'], a:0, why:'Substitute: x + (x + 2) = 8. So 2x = 6, x = 3, y = 5.'},
+    {q:'System: y = 2x and x + y = 9. Solution:', o:['(3, 6)','(9, 0)','(0, 9)','(6, 3)'], a:0, why:'Substitute: x + 2x = 9. So 3x = 9, x = 3, y = 6.'},
+    {q:'System: x = y - 1 and 2x + y = 7. Solution:', o:['(1, 2)','(2, 3)','(3, 4)','(4, 5)'], a:1, why:'Substitute: 2(y - 1) + y = 7. So 3y = 9, y = 3, x = 2.'},
+    {q:'System: y = 3x - 1 and 2x + y = 9. Solution:', o:['(2, 5)','(5, 2)','(1, 2)','(3, 8)'], a:0, why:'Substitute: 2x + (3x - 1) = 9. So 5x = 10, x = 2, y = 5.'},
+    {q:'System: y = -x and x + 2y = -3. Solution:', o:['(3, -3)','(-3, 3)','(0, 0)','(1, -1)'], a:1, why:'Substitute: x + 2(-x) = -3. So -x = -3, x = -3, y = 3.'}
+  ];
+  var prac=document.getElementById('practice'), pLine=document.getElementById('pLine');
+  var pDone=0;
+  function renderPrac(){
+    prac.innerHTML=''; pDone=0; pLine.textContent='0 of '+PRAC.length+' answered';
+    PRAC.forEach(function(item){
+      var row=document.createElement('div'); row.className='prow';
+      var q=document.createElement('div'); q.className='prq'; q.innerHTML=item.q; row.appendChild(q);
+      var ch=document.createElement('div'); ch.className='pchoices';
+      var why=document.createElement('div'); why.className='pwhy';
+      item.o.forEach(function(txt,i){
+        var b=document.createElement('button'); b.type='button'; b.className='pchoice'; b.innerHTML=txt;
+        b.addEventListener('click',function(){
+          if(row.dataset.done)return; row.dataset.done='1';
+          var ok=(i===item.a);
+          Array.prototype.forEach.call(ch.children,function(c,idx){
+            if(idx===item.a)c.classList.add('ok');
+            if(idx===i&&!ok)c.classList.add('no');
+            c.style.pointerEvents='none';
+          });
+          why.textContent=(ok?'Correct. ':'Off. ')+item.why;
+          pDone++; pLine.textContent=pDone+' of '+PRAC.length+' answered';
+        });
+        ch.appendChild(b);
+      });
+      row.appendChild(ch); row.appendChild(why); prac.appendChild(row);
+    });
+  }
+  document.getElementById('pReset').addEventListener('click',renderPrac);
+  renderPrac();
+
+  // --- Form A and Form B item banks (varied answer positions) ---
+  var FORMA=[
+    {q:'System: <span class="mono">y = x + 1</span> and <span class="mono">x + y = 5</span>. Solution:', o:['(2, 3)','(3, 2)','(1, 2)','(4, 5)'], a:0, why:'Substitute: x + (x + 1) = 5. So 2x = 4, x = 2, y = 3.'},
+    {q:'System: <span class="mono">y = 2x</span> and <span class="mono">x + y = 6</span>. Solution:', o:['(3, 3)','(2, 4)','(6, 0)','(0, 6)'], a:1, why:'Substitute: x + 2x = 6. So 3x = 6, x = 2, y = 4.'},
+    {q:'System: <span class="mono">y = x - 3</span> and <span class="mono">2x + y = 9</span>. Solution:', o:['(2, -1)','(4, 1)','(3, 0)','(1, -2)'], a:1, why:'Substitute: 2x + (x - 3) = 9. So 3x = 12, x = 4, y = 1.'},
+    {q:'System: <span class="mono">x = 2y</span> and <span class="mono">x + 3y = 10</span>. Solution:', o:['(4, 2)','(6, 3)','(2, 1)','(8, 4)'], a:0, why:'Substitute: 2y + 3y = 10. So 5y = 10, y = 2, x = 4.'},
+    {q:'System: <span class="mono">y = 3x + 1</span> and <span class="mono">y = 5x - 3</span>. Solution:', o:['(2, 7)','(1, 4)','(3, 10)','(4, 13)'], a:0, why:'Set 3x + 1 = 5x - 3. So 4 = 2x, x = 2, y = 7.'},
+    {q:'System: <span class="mono">y = -x + 4</span> and <span class="mono">2x - y = 2</span>. Solution:', o:['(0, 4)','(4, 0)','(2, 2)','(3, 1)'], a:2, why:'Substitute: 2x - (-x + 4) = 2. So 3x - 4 = 2, x = 2, y = 2.'},
+    {q:'System: <span class="mono">x = y + 2</span> and <span class="mono">3x + y = 14</span>. Solution:', o:['(2, 4)','(5, 3)','(4, 2)','(6, 4)'], a:2, why:'Substitute: 3(y + 2) + y = 14. So 4y + 6 = 14, y = 2. Then x = 4.'},
+    {q:'System: <span class="mono">y = 4x</span> and <span class="mono">x + 2y = 18</span>. Solution:', o:['(3, 12)','(4, 16)','(1, 4)','(2, 8)'], a:3, why:'Substitute: x + 2(4x) = 18. So 9x = 18, x = 2, y = 8.'}
+  ];
+  // Note: Item 7 distractor wording fixed below.
+  var FORMB=[
+    {q:'System: <span class="mono">y = x + 4</span> and <span class="mono">x + y = 10</span>. Solution:', o:['(3, 7)','(7, 3)','(2, 6)','(5, 9)'], a:0, why:'Substitute: x + (x + 4) = 10. So 2x = 6, x = 3, y = 7.'},
+    {q:'System: <span class="mono">y = 3x</span> and <span class="mono">x + y = 8</span>. Solution:', o:['(4, 4)','(2, 6)','(3, 5)','(8, 0)'], a:1, why:'Substitute: x + 3x = 8. So 4x = 8, x = 2, y = 6.'},
+    {q:'System: <span class="mono">y = x - 5</span> and <span class="mono">3x + y = 11</span>. Solution:', o:['(2, -3)','(4, -1)','(5, 0)','(3, -2)'], a:1, why:'Substitute: 3x + (x - 5) = 11. So 4x = 16, x = 4, y = -1.'},
+    {q:'System: <span class="mono">x = 3y</span> and <span class="mono">x + 2y = 15</span>. Solution:', o:['(9, 3)','(6, 2)','(3, 1)','(12, 4)'], a:0, why:'Substitute: 3y + 2y = 15. So 5y = 15, y = 3, x = 9.'},
+    {q:'System: <span class="mono">y = 2x + 3</span> and <span class="mono">y = 4x - 1</span>. Solution:', o:['(1, 5)','(2, 7)','(3, 9)','(0, 3)'], a:1, why:'Set 2x + 3 = 4x - 1. So 4 = 2x, x = 2, y = 7.'},
+    {q:'System: <span class="mono">y = -x + 6</span> and <span class="mono">2x - y = 0</span>. Solution:', o:['(0, 6)','(6, 0)','(2, 4)','(3, 3)'], a:2, why:'Substitute: 2x - (-x + 6) = 0. So 3x = 6, x = 2, y = 4.'},
+    {q:'System: <span class="mono">x = y + 1</span> and <span class="mono">2x + y = 11</span>. Solution:', o:['(2, 1)','(5, 4)','(3, 2)','(4, 3)'], a:3, why:'Substitute: 2(y + 1) + y = 11. So 3y = 9, y = 3, x = 4.'},
+    {q:'System: <span class="mono">y = 5x</span> and <span class="mono">x + 2y = 22</span>. Solution:', o:['(2, 10)','(4, 20)','(1, 5)','(3, 15)'], a:0, why:'Substitute: x + 2(5x) = 22. So 11x = 22, x = 2, y = 10.'}
+  ];
+
+  // --- runner ---
+  var qi=0,correct=0,timer=null,timeLeft=QTIME,locked=false,QS=FORMA,MODE='A';
+  var secL=document.getElementById('lesson'),secC=document.getElementById('check'),
+      secRA=document.getElementById('resultA'),secRT=document.getElementById('retention'),
+      secW=document.getElementById('wrap'),bWrap=document.getElementById('bWrap');
+  function el(id){return document.getElementById(id);}
+  function startA(){MODE='A';QS=FORMA;rec.attempts=(rec.attempts||0)+1;save(app);
+    secL.classList.add('hide');secRA.classList.add('hide');secC.classList.remove('hide');
+    qi=0;correct=0;window.scrollTo(0,0);showQ();}
+  function startB(){MODE='B';QS=FORMB;el('startB').classList.add('hide');bWrap.classList.remove('hide');
+    qi=0;correct=0;window.scrollTo(0,0);showQ();}
+  function showQ(){locked=false;var item=QS[qi];
+    var ids=MODE==='A'?{c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'}:{c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhyB'};
+    el(ids.c).textContent='Question '+(qi+1)+' of '+QS.length;
+    el(ids.q).innerHTML=item.q;
+    var opts=el(ids.o);opts.innerHTML='';
+    item.o.forEach(function(txt,i){var b=document.createElement('button');b.className='opt2';b.type='button';b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,opts,ids);});opts.appendChild(b);});
+    el(ids.w).textContent='';
+    timeLeft=QTIME;el(ids.f).style.width='100%';el(ids.f).classList.remove('low');el(ids.t).textContent=QTIME+'s';
+    clearInterval(timer);timer=setInterval(function(){timeLeft--;if(timeLeft<0)timeLeft=0;
+      el(ids.f).style.width=(timeLeft/QTIME*100)+'%';el(ids.t).textContent=timeLeft+'s';
+      if(timeLeft<=8)el(ids.f).classList.add('low');
+      if(timeLeft===0){clearInterval(timer);autoAdvance(opts,ids,item);}},1000);
+  }
+  function autoAdvance(opts,ids,item){if(locked)return;locked=true;
+    Array.prototype.forEach.call(opts.children,function(c,idx){if(idx===item.a)c.classList.add('correct');c.style.pointerEvents='none';});
+    el(ids.w).innerHTML='Time. '+item.why;
+    setTimeout(function(){qi++;if(qi<QS.length)showQ();else finish();},1100);}
+  function answer(i,btn,opts,ids){if(locked)return;locked=true;clearInterval(timer);
+    var item=QS[qi],ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){if(idx===item.a)c.classList.add('correct');if(idx===i&&!ok)c.classList.add('bad');c.style.pointerEvents='none';});
+    el(ids.w).innerHTML=(ok?'Correct. ':'Not quite. ')+item.why;
+    if(ok)correct++;
+    setTimeout(function(){qi++;if(qi<QS.length)showQ();else finish();},ok?700:1300);}
+  function finish(){commitTime();
+    if(MODE==='A'){secC.classList.add('hide');secRA.classList.remove('hide');window.scrollTo(0,0);
+      rec.formA=correct;var passed=(correct>=PASS),pct=Math.round(correct/QS.length*100);
+      if(passed&&!rec.formAPassedAt)rec.formAPassedAt=Date.now();
+      rec.best=Math.max(rec.best||0,pct);
+      el('scoreA').textContent=correct+' / '+QS.length;
+      el('statusA').textContent=passed?'PASS':'NOT YET';el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
+      el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B opens in 24 hours to lock the skill in.'):('You need '+PASS+' of '+QS.length+' to clear Form A. You got '+correct+'. Reread the stations and try again.');
+      rec.status=passed?'formA-passed':'tried';
+      if(passed){el('retryA').classList.add('hide');syncCloud();/* call 2: Form A pass */}
+      else el('retryA').classList.remove('hide');
+      save(app);
+    }else{
+      bWrap.classList.add('hide');secRT.classList.add('hide');secW.classList.remove('hide');window.scrollTo(0,0);
+      rec.formB=correct;el('finalA').textContent=(rec.formA||0)+' / 8';el('finalB').textContent=correct+' / 8';
+      var aPass=(rec.formA||0)>=PASS,bPass=correct>=PASS,both=aPass&&bPass;
+      var gate=el('gate');gate.innerHTML='';
+      function gline(ok,label){var d=document.createElement('div');d.className='gitem '+(ok?'ok':'miss');d.innerHTML='<div class="mk">'+(ok?'&#10003;':'!')+'</div><div>'+label+'</div>';gate.appendChild(d);}
+      gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
+      gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
+      if(both){el('cred').classList.add('show');rec.status='passed';rec.passedAt=Date.now();syncCloud();/* call 3: mastery */ showMastery(rec.formA||0,correct);}
+      else{rec.status='formB-tried';}
+      save(app);
+    }
+  }
+  function showMastery(a,b){var sec=document.getElementById('masteryDone');if(!sec)return;
+    var ea=document.getElementById('msFormA');if(ea)ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB');if(eb)eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
+    var back=document.getElementById('msBack');if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secL.classList.add('hide');secC.classList.add('hide');secRA.classList.add('hide');
+    secRT.classList.add('hide');secW.classList.add('hide');
+    sec.classList.add('show');
+    try{sec.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){window.scrollTo(0,0);}
+  }
+  function showGate(){
+    secRA.classList.add('hide');secRT.classList.remove('hide');window.scrollTo(0,0);
+    var startBtn=el('startB'),cd=el('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){cd.textContent='Form B is ready.';startBtn.classList.remove('hide');return;}
+      startBtn.classList.add('hide');
+      var h=Math.floor(remain/3600000),m=Math.floor((remain%3600000)/60000),s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+  function resume(){
+    if(rec.status==='passed'){showMastery(rec.formA||0,rec.formB||0);return;}
+    if(rec.formAPassedAt&&(rec.formA||0)>=PASS&&(rec.formB||0)<PASS){secL.classList.add('hide');showGate();}
+  }
+  el('toCheck').addEventListener('click',startA);
+  el('toRetention').addEventListener('click',showGate);
+  el('retryA').addEventListener('click',function(){secRA.classList.add('hide');secL.classList.remove('hide');window.scrollTo(0,0);});
+  el('startB').addEventListener('click',startB);
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

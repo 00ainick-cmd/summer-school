@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mastery learning lesson aligned to a verbatim Missouri Learning Standard. Auto-graded, kid-independent.">
+<title>Story Lab, Cause and Effect in Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+/* LESSON_BG_ANIM_V1 */
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(181,70,47,.10)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(90,122,74,.08)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(184,138,45,.06)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(181,70,47,.10);--bg-blob-2:rgba(90,122,74,.08);--bg-blob-3:rgba(184,138,45,.06);}
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a32;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(30px,5.5vw,44px);line-height:1.04;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  .pair .col{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf5ea;}
+  .pair .col h3{font-family:'Fraunces';font-size:16px;color:var(--accent-d);font-style:italic;margin-bottom:6px;}
+  .pair .col p{font-family:'Newsreader',Georgia,serif;font-size:15px;color:var(--ink);}
+  .ce-chain{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-top:12px;}
+  .ce-box{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:#fbf5ea;font-size:15px;color:var(--ink);}
+  .ce-box.cause{border-color:var(--accent);background:#fdecea;color:var(--accent-d);}
+  .ce-box.effect{border-color:var(--alt);background:#eef5ea;color:#3f5a32;}
+  .ce-arrow{font-family:'Fraunces',serif;font-style:italic;font-size:12px;color:var(--accent-d);text-align:center;font-weight:600;letter-spacing:.05em;}
+  .passage{background:#fbf5ea;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:17px;color:var(--ink);font-family:'Newsreader',Georgia,serif;line-height:1.55;}
+  .qrow{margin-top:14px;}
+  .qrow .ql{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--accent-d);letter-spacing:.04em;text-transform:uppercase;}
+  .qrow .q{font-family:'Fraunces';font-weight:600;font-size:17px;margin-top:4px;margin-bottom:8px;}
+  .opts3{display:flex;flex-direction:column;gap:8px;}
+  .opt3{font:inherit;font-size:16px;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;min-height:48px;cursor:pointer;color:var(--ink);}
+  .opt3:hover{border-color:var(--accent);}
+  .opt3.ok{border-color:var(--good);background:#eef5ea;color:var(--good);font-weight:600;}
+  .opt3.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .opt3:disabled{cursor:default;}
+  .stagefb{margin-top:10px;font-size:15px;min-height:1.4em;color:var(--ink2);}
+  .stagefb.ok{color:var(--good);font-weight:600;} .stagefb.try{color:var(--accent-d);font-weight:600;}
+  .rnext{margin-top:12px;}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;}
+  .gateinfo{margin-top:10px;font-size:14px;color:var(--ink2);text-align:center;}
+  .gatebox{background:#f3ead9;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+  .gatebox .cd{font-size:36px;font-weight:700;font-family:'Fraunces',serif;color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+  .gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;} *{animation:none !important;}}
+
+  /* HERO_ILLO_V1: Two boxes connected by an arrow labeled CAUSED. Left box has cause text, right box has effect text. */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:520px;height:auto;display:block;}
+  .lesson-hero .ground{stroke:var(--mute);stroke-width:1;stroke-dasharray:3 4;}
+  .lesson-hero .box-c{fill:#fdecea;stroke:var(--accent);stroke-width:2;}
+  .lesson-hero .box-e{fill:#eef5ea;stroke:var(--alt);stroke-width:2;}
+  .lesson-hero .box-lbl{font-family:'Fraunces',serif;font-style:italic;font-size:13px;text-anchor:middle;font-weight:600;}
+  .lesson-hero .box-lbl.c{fill:var(--accent-d);}
+  .lesson-hero .box-lbl.e{fill:#3f5a32;}
+  .lesson-hero .box-text{font-family:'Newsreader',serif;font-size:13px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .arr{stroke:var(--accent-d);stroke-width:3;fill:none;stroke-linecap:round;}
+  .lesson-hero .ah{fill:var(--accent-d);}
+  .lesson-hero .arr-lbl{font-family:'Fraunces',serif;font-style:italic;font-size:13px;text-anchor:middle;fill:var(--accent-d);font-weight:600;letter-spacing:.1em;}
+  .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;fill:var(--mute);}
+</style>
+
+<style id="mastery-done-styles">
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f9d6b); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f9d6b); margin: 8px 0; }
+.mastery-msg { color: var(--ink2, #4a4566); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e8f7f0; border: 2px solid #bce6d8; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; color: var(--good, #1f9d6b); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #4a4566); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #b5462f); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #8c3320); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #b5462f); outline-offset: 3px; }
+</style>
+
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 3</b><span class="chip">Standard 3.R.2.A.g</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Week four, Day two</div>
+    <h1>Cause and Effect in Stories</h1>
+    <p class="opener"><span class="dropcap">O</span>ne thing in a story makes the next thing happen. The first thing is the cause. The thing that follows is the effect. Rain falls, so you grab a coat. The bell rings, so you stand up. When you spot the cause, you understand why the story moves the way it does.</p>
+    <p class="mission">By the end you will name the cause and the effect in any short story you read.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Explain cause and effect relationships</div>
+
+    <!-- HERO_ILLO_V1: Two boxes linked by a thick arrow labeled CAUSED. Left box: It started raining. Right box: We went inside. -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 520 220" role="img" aria-label="A red box on the left says, It started raining. A thick arrow labeled CAUSED points to a green box on the right that says, We went inside.">
+        <line class="ground" x1="40" y1="196" x2="480" y2="196"/>
+        <rect class="box-c" x="30" y="60" width="180" height="90" rx="12"/>
+        <text class="box-lbl c" x="120" y="50">CAUSE</text>
+        <text class="box-text" x="120" y="100">It started</text>
+        <text class="box-text" x="120" y="118">raining.</text>
+        <rect class="box-e" x="310" y="60" width="180" height="90" rx="12"/>
+        <text class="box-lbl e" x="400" y="50">EFFECT</text>
+        <text class="box-text" x="400" y="100">We went</text>
+        <text class="box-text" x="400" y="118">inside.</text>
+        <line class="arr" x1="220" y1="105" x2="295" y2="105"/>
+        <polygon class="ah" points="290,95 308,105 290,115"/>
+        <text class="arr-lbl" x="258" y="88">CAUSED</text>
+        <text class="cap" x="260" y="178">the cause makes the effect happen</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>The two parts</h2></div>
+      <p class="lead">A <b>cause</b> is what makes something else happen. The <b>effect</b> is what happens because of it. The cause comes first. The effect comes after.</p>
+      <div class="pair">
+        <div class="col"><h3>Cause</h3><p>The lights went out.</p></div>
+        <div class="col"><h3>Effect</h3><p>The class got quiet.</p></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">Ask yourself: "What happened?" That is the effect. Then ask: "Why did it happen?" That is the cause.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Words that point to cause and effect</h2></div>
+      <p class="lead">Writers use signal words to link a cause to an effect. Watch for these:</p>
+      <div class="ce-chain">
+        <div class="ce-box cause">Cause</div>
+        <div class="ce-arrow">because, so, since, then</div>
+        <div class="ce-box effect">Effect</div>
+      </div>
+      <p class="lead" style="margin-top:12px;">Example: "Lia spilled her juice, <b>so</b> her sleeve was sticky." The word "so" tells you that spilling caused the sticky sleeve.</p>
+      <p class="lead">Example: "Mia could not play <b>because</b> her foot hurt." The word "because" points to the cause. The hurt foot caused her to stay out of the game.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Sometimes there are no signal words</h2></div>
+      <p class="lead">Not every story uses "because" or "so." You still have to find the link.</p>
+      <div class="passage">Ben heard a loud bark. He jumped and dropped his book. The pages got bent.</div>
+      <p class="lead" style="margin-top:10px;">No "so." No "because." But the chain is clear. The bark made Ben jump. Jumping made him drop the book. Dropping made the pages bend. Each step is a cause and an effect.</p>
+      <div class="ce-chain">
+        <div class="ce-box cause">bark</div>
+        <div class="ce-arrow">caused</div>
+        <div class="ce-box effect">Ben jumped</div>
+      </div>
+      <div class="ce-chain" style="margin-top:6px;">
+        <div class="ce-box cause">jumped</div>
+        <div class="ce-arrow">caused</div>
+        <div class="ce-box effect">dropped book</div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Try it: find the cause</h2></div>
+      <p class="lead">Read each short story. The effect is in the question. Tap the cause that made it happen.</p>
+      <div id="rounds"></div>
+      <button class="cta rnext hide" id="rnext">Next story</button>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">If two things happen close together, one must cause the other.</div><div style="color:var(--ink2)">No. Two things can happen at the same time and not be linked at all. Ask yourself: "Did the first one really make the second one happen?" If you cannot say yes, it is not cause and effect.</div></div>
+    </div>
+
+    <button class="cta" id="toCheck">I can find cause and effect. Start the check</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span id="formlabel">Form A</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You passed Form A. To prove the skill stuck, come back tomorrow for Form B. Same skill, new questions.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+      <div class="gateinfo hide" id="gateinfo"></div>
+    </div>
+    <button class="cta hide" id="toFormB">Next: spaced retention check</button>
+    <button class="cta alt hide" id="retry">Try the check again</button>
+  </section>
+
+  <footer style="text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);"><span id="__sname">Amelia</span> &middot; Reading &middot; Standard 3.R.2.A.g</footer>
+
+<section id="masteryDone" class="mastery-complete" aria-live="polite">
+  <div class="mastery-card">
+    <div class="mastery-badge" aria-hidden="true">
+      <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+        <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>You did it!</h2>
+    <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+    <div class="mastery-stats">
+      <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+      <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+    </div>
+    <div class="mastery-cta">
+      <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===3;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'amelia',name:'Amelia',grade:3};
+  __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='3.R.2.A.g',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname'); if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  var ROUNDS=[
+    {
+      passage:'Tara left her lunchbox at home. By third period, her stomach was growling. She could not focus on her math.',
+      q:'What caused Tara to lose focus in math?',
+      o:[
+        {t:'Her hungry stomach (because she left her lunchbox).', ok:true, why:'Yes. No lunch caused hunger. Hunger caused her to lose focus.'},
+        {t:'Math is her favorite subject.', ok:false, why:'The story does not say that. Look for what makes her stop focusing.'},
+        {t:'Her teacher gave her a quiz.', ok:false, why:'The story does not mention a quiz. Look for the link.'}
+      ]
+    },
+    {
+      passage:'Coach taped a hand-drawn map to the locker room wall. The next day, every player ran the new route. By Friday, the team had its best practice ever.',
+      q:'What caused the team to run the new route?',
+      o:[
+        {t:'It was Friday.', ok:false, why:'Friday came later. That is not what made them run the route.'},
+        {t:'Coach posted the map.', ok:true, why:'Yes. The map caused the players to know the new route and follow it.'},
+        {t:'The locker room was small.', ok:false, why:'The story does not link the size of the room to running.'}
+      ]
+    },
+    {
+      passage:'Jess forgot to feed her hamster for two days. The hamster squeaked all night. Jess could not sleep, so she felt grumpy at school.',
+      q:'What caused Jess to feel grumpy at school?',
+      o:[
+        {t:'She had a hamster.', ok:false, why:'Having a hamster is not the cause by itself. Look one step closer.'},
+        {t:'She did not sleep (because the hamster squeaked all night).', ok:true, why:'Yes. No sleep caused the grumpy feeling. The chain runs back to forgetting to feed.'},
+        {t:'School started early.', ok:false, why:'The story does not mention school time.'}
+      ]
+    }
+  ];
+  var rIdx=0, rbox=document.getElementById('rounds'), rnext=document.getElementById('rnext');
+  function render(){
+    var r=ROUNDS[rIdx]; rbox.innerHTML='';
+    var p=document.createElement('div'); p.className='passage'; p.textContent=r.passage; rbox.appendChild(p);
+    var qr=document.createElement('div'); qr.className='qrow';
+    qr.innerHTML='<div class="ql">Find the cause</div><div class="q">'+r.q+'</div>';
+    var opts=document.createElement('div'); opts.className='opts3';
+    var fb=document.createElement('div'); fb.className='stagefb';
+    r.o.forEach(function(o){
+      var b=document.createElement('button'); b.className='opt3'; b.type='button'; b.textContent=o.t;
+      b.addEventListener('click',function(){
+        Array.prototype.forEach.call(opts.children,function(x){x.disabled=true;});
+        if(o.ok){ b.classList.add('ok'); fb.className='stagefb ok'; fb.textContent=o.why; }
+        else { b.classList.add('no'); fb.className='stagefb try'; fb.textContent=o.why;
+          Array.prototype.forEach.call(opts.children,function(x,k){ if(r.o[k].ok) x.classList.add('ok'); });
+        }
+        if(rIdx<ROUNDS.length-1){ rnext.classList.remove('hide'); }
+        else { rnext.textContent='You worked through all three. Scroll down to keep going.'; rnext.classList.remove('hide'); rnext.disabled=true; rnext.style.opacity='.7'; }
+      });
+      opts.appendChild(b);
+    });
+    qr.appendChild(opts); qr.appendChild(fb); rbox.appendChild(qr);
+  }
+  rnext.addEventListener('click',function(){ if(rIdx<ROUNDS.length-1){ rIdx++; rnext.classList.add('hide'); render(); } });
+  render();
+
+  var FORMA=[
+    {q:'A <b>cause</b> is ...',o:['what makes something happen','the title of the story','the last page'],a:0,why:'A cause is what makes the effect happen.'},
+    {q:'An <b>effect</b> is ...',o:['the title','what happens because of a cause','the cover picture'],a:1,why:'An effect is the result of the cause.'},
+    {q:'In the cause-and-effect chain, which comes first in time?',o:['the cause','the effect','the title'],a:0,why:'The cause comes first. The effect follows it.'},
+    {q:'Which word is a strong signal for cause and effect?',o:['because','blue','tall'],a:0,why:'"Because" links a cause to an effect.'},
+    {q:'Read: <i>Sam tripped, so his juice spilled.</i> What is the effect?',o:['Sam tripped','The juice spilled','Sam had juice'],a:1,why:'The spill happened because of the trip. The spill is the effect.'},
+    {q:'Read: <i>The fire alarm rang. Everyone walked outside.</i> What caused the class to walk outside?',o:['it was lunch','they wanted fresh air','the fire alarm'],a:2,why:'The alarm was the cause. Going outside was the effect.'},
+    {q:'Read: <i>Lia studied for an hour, so she got every spelling word right.</i> What is the cause?',o:['getting every word right','Lia studied for an hour','spelling is fun'],a:1,why:'Studying made the win happen. Studying is the cause.'},
+    {q:'If two things happen near each other, you can be sure one caused the other.',o:['only on Mondays','false','true'],a:1,why:'No. They might just happen at the same time. Check that one really makes the other happen.'}
+  ];
+  var FORMB=[
+    {q:'To find a cause, ask yourself ...',o:['What page is this on?','Why did this happen?','Who is the author?'],a:1,why:'Asking why points you to the cause.'},
+    {q:'To find an effect, ask yourself ...',o:['What happened after?','Who drew the cover?','Where is the page number?'],a:0,why:'Asking what happened after the cause points you to the effect.'},
+    {q:'Read: <i>Ana left her window open. Rain soaked her rug.</i> What is the cause?',o:['the soaked rug','the open window','the new rug'],a:1,why:'The open window let the rain in. That is the cause.'},
+    {q:'Same story. What is the effect?',o:['the soaked rug','the open window','the cold weather'],a:0,why:'The rug got soaked because of the open window.'},
+    {q:'Read: <i>Ben forgot his lunch, so he was hungry by noon.</i> What is the cause?',o:['noon is late','Ben forgot his lunch','Ben got hungry'],a:1,why:'Forgetting lunch made him hungry. The forget is the cause.'},
+    {q:'Read: <i>Tara watered her plant every day. It grew six new leaves.</i> What caused the new leaves?',o:['the pot was big','the sun was hot','Tara watered the plant every day'],a:2,why:'Watering caused the growth. The story shows the link.'},
+    {q:'Which signal word points to an effect after a cause?',o:['blue','little','so'],a:2,why:'"So" tells you the next part is the effect.'},
+    {q:'Read: <i>Mia tripped on a rock. She skinned her knee.</i> What is the cause of the skinned knee?',o:['the color of her shoes','the rock she tripped on','the time of day'],a:1,why:'Tripping on the rock caused the skinned knee.'}
+  ];
+
+  var FORM='A', QS=FORMA, qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false;
+  var secCheck=document.getElementById('check'), secLesson=document.getElementById('lesson'),
+      secResult=document.getElementById('result'), secGate=document.getElementById('gate');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'),
+      elTfill=document.getElementById('tfill'), elForm=document.getElementById('formlabel');
+
+  function startCheck(which){
+    commitTime();
+    FORM=which; QS=(which==='A')?FORMA:FORMB; elForm.textContent='Form '+which;
+    secLesson.classList.add('hide'); secResult.classList.add('hide'); secGate.classList.add('hide'); secCheck.classList.remove('hide');
+    qi=0; correct=0; rec.attempts=(rec.attempts||0)+1; save(app); window.scrollTo(0,0); showQ();
+  }
+  function showQ(){
+    locked=false; var item=QS[qi];
+    elCount.textContent='Question '+(qi+1)+' of '+QS.length;
+    elQtext.innerHTML=item.q; elOpts.innerHTML='';
+    item.o.forEach(function(txt,i){
+      var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,item);});
+      elOpts.appendChild(b);
+    });
+    timeLeft=QTIME; elTfill.style.width='100%'; elTfill.classList.remove('low'); elTlabel.textContent=QTIME+'s';
+    clearInterval(timer);
+    timer=setInterval(function(){
+      timeLeft--; if(timeLeft<0)timeLeft=0;
+      elTfill.style.width=(timeLeft/QTIME*100)+'%'; elTlabel.textContent=timeLeft+'s';
+      if(timeLeft<=8)elTfill.classList.add('low');
+      if(timeLeft===0){ clearInterval(timer); autoAdv(item); }
+    },1000);
+  }
+  function autoAdv(item){
+    if(locked)return; locked=true;
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct'); c.style.pointerEvents='none';
+    });
+    setTimeout(next,1100);
+  }
+  function answer(i,btn,item){
+    if(locked)return; locked=true; clearInterval(timer);
+    var ok=(i===item.a);
+    Array.prototype.forEach.call(elOpts.children,function(c,idx){
+      if(idx===item.a)c.classList.add('correct');
+      if(idx===i&&!ok)c.classList.add('bad');
+      c.style.pointerEvents='none';
+    });
+    if(ok) correct++;
+    setTimeout(next, ok?650:1100);
+  }
+  function next(){ qi++; if(qi<QS.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+    var pct=Math.round(correct/QS.length*100), passed=(correct>=PASS);
+    document.getElementById('scorebig').textContent=pct+'%';
+    var retry=document.getElementById('retry'), toB=document.getElementById('toFormB'),
+        rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg');
+    toB.classList.add('hide'); retry.classList.add('hide');
+    if(FORM==='A'){
+      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of '+QS.length+' right. Form B opens in 24 hours to lock the skill in.';
+        toB.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close!';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Look back at the stations, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      rec.formB=correct; rec.best=Math.max(rec.best||0,pct);
+      if(passed){
+        rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status='formB-tried'; save(app);
+        rtitle.textContent='Almost there.';
+        rmsg.textContent='You need 7 of 8 on Form B. You got '+correct+'. Reread the stations and try again.';
+        retry.classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide'); secLesson.classList.add('hide');
+    secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB'), cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){ cd.textContent='Form B is ready.'; startBtn.classList.remove('hide'); return; }
+      startBtn.classList.add('hide');
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  function showMastery(a,b){
+    var sec=document.getElementById('masteryDone'); if(!sec) return;
+    var ea=document.getElementById('msFormA'); if(ea) ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB'); if(eb) eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if(rec.status==='passed'){ showMastery(rec.formA||0, rec.formB||0); return; }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && (rec.formB||0)<PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){ startCheck('A'); });
+  document.getElementById('toFormB').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){ startCheck('B'); });
+  document.getElementById('retry').addEventListener('click',function(){
+    secResult.classList.add('hide');
+    if(FORM==='A') startCheck('A'); else startCheck('B');
+  });
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

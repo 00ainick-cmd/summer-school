@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mastery learning lesson on adjectives and adverbs in sentences. Auto-graded, kid-independent.">
+<title>Story Lab &middot; Describing Words</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(181,70,47,.10)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(90,122,74,.08)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(184,138,45,.06)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(181,70,47,.10);--bg-blob-2:rgba(90,122,74,.08);--bg-blob-3:rgba(184,138,45,.06);}
+  :root{--paper:#f6efe1;--card:#fffdf8;--ink:#2a2018;--ink2:#5a4a3a;--mute:#9a8674;--line:#e6dac6;
+   --accent:#b5462f;--accent-d:#8c3320;--red:#b5462f;--alt:#5a7a4a;--good:#3f6a2e;--gold:#b88a2d;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+  .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(50vmax 40vmax at 100% 0,rgba(181,70,47,.06),transparent 60%),linear-gradient(180deg,#faf4e8,var(--paper));}
+  h1,h2,.disp{font-family:'Fraunces',serif;font-weight:600;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+  .hide{display:none !important;}
+  .labbar{background:var(--ink);color:#f0e6d6;margin:0 -18px 22px;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:'Fraunces';font-style:italic;font-size:14px;}
+  .labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .labbar .chip{margin-left:auto;border:1px solid #4a3d30;border-radius:6px;padding:3px 9px;color:#cbb89f;font-size:12px;font-style:normal;}
+  .labbar b{color:#fff;font-style:normal;}
+  .kicker{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--accent-d);}
+  h1{font-size:clamp(32px,6vw,46px);line-height:1.02;margin:6px 0 10px;}
+  .opener{font-size:19px;}
+  .opener .dropcap{float:left;font-family:'Fraunces';font-weight:600;font-size:4.4rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--accent);}
+  .mission{color:var(--ink2);max-width:58ch;margin-top:6px;}
+  .stdtag{margin-top:16px;background:#f3ead9;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:14px;color:var(--ink2);}
+  .stdtag .l{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--alt);display:block;margin-bottom:3px;}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:18px 0;box-shadow:0 16px 30px -28px rgba(60,40,20,.5);}
+  .shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .sno{font-family:'Fraunces';font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;}
+  .station h2{font-size:23px;}
+  .station p.lead{color:var(--ink2);}
+  .chart{margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fbf5ea;}
+  .chart .row{display:grid;grid-template-columns:1fr 1fr;align-items:center;border-bottom:1px solid var(--line);}
+  .chart .row:last-child{border-bottom:none;}
+  .chart .row > div{padding:12px 14px;font-family:'Fraunces';font-size:17px;font-weight:600;border-right:1px solid var(--line);}
+  .chart .row > div:last-child{border-right:none;}
+  .chart .row .adj{background:#eef3e9;color:var(--alt);}
+  .chart .row .adv{background:#fff5cf;color:var(--accent-d);}
+  .chart .head{background:var(--ink);color:#fff;display:grid;grid-template-columns:1fr 1fr;font-family:'Fraunces';font-style:italic;font-size:13px;letter-spacing:.05em;}
+  .chart .head .h{padding:10px 14px;border-right:1px solid #4a3d30;}
+  .chart .head .h:last-child{border-right:none;}
+  .sentbox{background:#fbf5ea;border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;margin-top:12px;font-family:'Fraunces';font-size:19px;line-height:1.55;color:var(--ink);}
+  .sentbox .adj{background:#eef3e9;border:2px solid var(--alt);padding:1px 6px;font-weight:700;color:var(--alt);border-radius:5px;}
+  .sentbox .adv{background:#fff5cf;border:2px solid var(--gold);padding:1px 6px;font-weight:700;color:var(--accent-d);border-radius:5px;}
+  .sentbox .tag{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--ink2);display:block;margin-bottom:4px;}
+  .normalbox{background:#fbf5ea;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:12px;}
+  .normalbox .lbl{font-family:'Fraunces';font-style:italic;font-size:13px;color:var(--alt);}
+  .normalbox .big{font-family:'Fraunces';font-weight:600;font-size:18px;color:var(--ink);}
+  .practice .pblock{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fbf5ea;margin-top:12px;}
+  .practice .ptitle{font-family:'Fraunces';font-style:italic;font-size:14px;color:var(--accent-d);margin-bottom:6px;}
+  .practice .targetw{font-family:'Fraunces';font-size:19px;font-weight:500;color:var(--ink);}
+  .practice .qq{font-family:'Fraunces';font-weight:600;color:var(--ink);margin-top:10px;}
+  .practice .picker{display:flex;flex-direction:column;gap:8px;margin-top:8px;}
+  .qopt{font:inherit;font-weight:600;font-size:15px;text-align:left;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:12px;min-height:48px;cursor:pointer;}
+  .qopt:hover{border-color:var(--accent);}
+  .qopt.ok{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .qopt.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .rv{margin-top:10px;color:var(--ink2);font-size:14.5px;display:none;}
+  .rv.show{display:block;}
+  .rv b{color:var(--accent-d);}
+  .myth{border:1px solid #d8c6b0;background:#f6ecdb;border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .myth .tag{font-family:'Fraunces';font-style:italic;font-size:12px;color:var(--accent-d);}
+  .myth .big{font-family:'Fraunces';font-weight:600;margin:4px 0;}
+  .recap{background:#f3ead9;border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;margin-top:12px;}
+  .recap ul{margin:6px 0 0 20px;color:var(--ink2);}
+  .recap li{margin:4px 0;}
+  .cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:14px;}
+  .cta:hover{background:var(--accent-d);}
+  .cta.alt{background:var(--alt);} .cta.alt:hover{filter:brightness(.92);}
+  .cta.go{background:var(--good);} .cta.go:hover{filter:brightness(.92);}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+  .timer{margin-left:auto;}
+  .tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+  .tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+  .tfill.low{background:var(--red);}
+  .qtext{font-size:23px;font-weight:700;line-height:1.25;margin-bottom:16px;font-family:'Fraunces';}
+  .opts{display:flex;flex-direction:column;gap:10px;}
+  .opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+  .opt2:hover{border-color:var(--accent);}
+  .opt2.correct{border-color:var(--good);background:#e8efde;color:var(--good);}
+  .opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+  .qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+  .result{text-align:center;padding:14px 0;}
+  .scorebig{font-size:60px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Fraunces';}
+  .result h2{font-size:26px;font-weight:700;margin:10px 0 4px;font-family:'Fraunces';}
+  .gatebox{background:#f3ead9;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+  .gatebox .cd{font-size:36px;font-weight:700;font-family:'Fraunces';color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+  .gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+  @media (prefers-reduced-motion: reduce){.tfill{transition:none;}*{animation:none!important;}}
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:520px;height:auto;display:block;}
+  .lesson-hero text.h{font-family:'Fraunces',serif;font-style:italic;font-size:13px;letter-spacing:.05em;fill:#fff;}
+  .lesson-hero text.w{font-family:'Fraunces',serif;font-weight:700;font-size:22px;}
+  .lesson-hero text.tag{font-family:'Fraunces',serif;font-style:italic;font-size:11px;fill:var(--ink2);}
+  .lesson-hero text.lbl{font-family:'Fraunces',serif;font-weight:700;font-size:12px;letter-spacing:.06em;}
+</style>
+
+<style id="mastery-done-styles">
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #1f9d6b); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 36px); color: var(--good, #1f9d6b); margin: 8px 0; }
+.mastery-msg { color: var(--ink2, #4a4566); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e8f7f0; border: 2px solid #bce6d8; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; color: var(--good, #1f9d6b); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #4a4566); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #b5462f); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #8c3320); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #b5462f); outline-offset: 3px; }
+</style>
+
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span><i>Story lab</i> &middot; <b>Grade 2</b><span class="chip">Standard 2.L.1.A.g</span></div>
+  <section id="lesson">
+
+    <div class="kicker">Chapter nine</div>
+    <h1>Describing Words</h1>
+    <p class="opener"><span class="dropcap">A</span> <b>big</b> dog runs <b>fast</b>. Two describing words. They do different jobs. <b>Big</b> tells you about the dog (a noun). <b>Fast</b> tells you about the running (a verb). Words like big are adjectives. Words like fast are adverbs.</p>
+    <p class="mission">By the end you will know an adjective from an adverb. You will spot them in sentences and use them in your own.</p>
+    <div class="stdtag"><span class="l">What this lesson teaches</span>Use adjectives and adverbs in sentences.</div>
+
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 520 280" role="img" aria-label="Sentence The big dog runs fast. The word big is boxed and labeled ADJECTIVE describes noun. The word fast is boxed and labeled ADVERB describes verb.">
+        <rect x="20" y="20" width="480" height="36" rx="14" fill="var(--accent)"/>
+        <text class="h" x="260" y="44" text-anchor="middle" fill="#fff">TWO KINDS OF DESCRIBING WORDS</text>
+        <rect x="20" y="80" width="480" height="80" rx="14" fill="#fbf5ea" stroke="var(--line)" stroke-width="1.5"/>
+        <text class="w" x="50" y="128" fill="var(--ink)">The</text>
+        <rect x="100" y="100" width="74" height="36" rx="8" fill="#eef3e9" stroke="var(--alt)" stroke-width="2.5"/>
+        <text class="w" x="137" y="128" text-anchor="middle" fill="var(--alt)">big</text>
+        <text class="w" x="200" y="128" fill="var(--ink)">dog</text>
+        <text class="w" x="282" y="128" fill="var(--ink)">runs</text>
+        <rect x="360" y="100" width="90" height="36" rx="8" fill="#fff5cf" stroke="var(--gold)" stroke-width="2.5"/>
+        <text class="w" x="405" y="128" text-anchor="middle" fill="var(--accent-d)">fast</text>
+        <line x1="137" y1="142" x2="220" y2="170" stroke="var(--alt)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <line x1="405" y1="142" x2="295" y2="170" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <line x1="200" y1="138" x2="200" y2="170" stroke="var(--alt)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <line x1="282" y1="138" x2="282" y2="170" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <rect x="40" y="172" width="200" height="80" rx="10" fill="#eef3e9" stroke="var(--alt)" stroke-width="1.5"/>
+        <text class="lbl" x="140" y="194" text-anchor="middle" fill="var(--alt)">ADJECTIVE</text>
+        <text class="tag" x="140" y="214" text-anchor="middle">describes a noun</text>
+        <text class="tag" x="140" y="232" text-anchor="middle">("dog")</text>
+        <text class="tag" x="140" y="246" text-anchor="middle" font-style="italic">what kind?</text>
+        <rect x="280" y="172" width="200" height="80" rx="10" fill="#fff5cf" stroke="var(--gold)" stroke-width="1.5"/>
+        <text class="lbl" x="380" y="194" text-anchor="middle" fill="var(--accent-d)">ADVERB</text>
+        <text class="tag" x="380" y="214" text-anchor="middle">describes a verb</text>
+        <text class="tag" x="380" y="232" text-anchor="middle">("runs")</text>
+        <text class="tag" x="380" y="246" text-anchor="middle" font-style="italic">how?</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>Adjective: a word for a noun</h2></div>
+      <p class="lead">An adjective tells you about a noun. It tells you what kind, how many, or which one.</p>
+      <div class="normalbox"><span class="lbl">see it</span><div class="big">A <b>red</b> hat. A <b>tall</b> tree. <b>Three</b> kids. A <b>soft</b> blanket.</div></div>
+      <p class="lead" style="margin-top:10px;">Red, tall, three, soft: all adjectives. Each one paints the noun.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Adverb: a word for a verb</h2></div>
+      <p class="lead">An adverb tells you about a verb. It tells you how the action happens, or when, or where.</p>
+      <div class="normalbox"><span class="lbl">see it</span><div class="big">Run <b>fast</b>. Speak <b>softly</b>. Read <b>slowly</b>. Sing <b>loudly</b>.</div></div>
+      <p class="lead" style="margin-top:10px;">Fast, softly, slowly, loudly: all adverbs. Many adverbs end in <b>ly</b>. Some, like fast, do not.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>The big difference</h2></div>
+      <p class="lead">Here is the test. Ask: <i>what kind of thing?</i> If the answer is a noun, the describing word is an adjective. Ask: <i>how is the action done?</i> If the answer is a verb, the describing word is an adverb.</p>
+      <div class="chart">
+        <div class="head">
+          <div class="h">Adjective (describes noun)</div>
+          <div class="h">Adverb (describes verb)</div>
+        </div>
+        <div class="row"><div class="adj">a quick rabbit</div><div class="adv">runs quickly</div></div>
+        <div class="row"><div class="adj">a slow turtle</div><div class="adv">walks slowly</div></div>
+        <div class="row"><div class="adj">a loud bell</div><div class="adv">rings loudly</div></div>
+        <div class="row"><div class="adj">a soft pillow</div><div class="adv">sings softly</div></div>
+      </div>
+      <p class="lead" style="margin-top:10px;">Notice: the verb form often adds <b>ly</b>. Quick to quickly. Slow to slowly.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>See them in sentences</h2></div>
+      <p class="lead">Green box is the adjective. Gold box is the adverb. Both jobs in one sentence.</p>
+      <div class="sentbox"><span class="tag">adjective + adverb</span>The <span class="adj">big</span> dog runs <span class="adv">fast</span>.</div>
+      <div class="sentbox"><span class="tag">adjective + adverb</span>A <span class="adj">red</span> bird sings <span class="adv">loudly</span>.</div>
+      <div class="sentbox"><span class="tag">adjective + adverb</span>The <span class="adj">small</span> car moves <span class="adv">slowly</span>.</div>
+      <div class="sentbox"><span class="tag">adjective + adverb</span>A <span class="adj">happy</span> kid jumps <span class="adv">high</span>.</div>
+    </div>
+
+    <div class="station practice">
+      <div class="shead"><span class="sno">05</span><h2>Pick adjective or adverb</h2></div>
+      <p class="lead">Read the sentence. Tap the word that fits the blank.</p>
+      <div id="parts"></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">06</span><h2>Watch out for this</h2></div>
+      <div class="myth"><span class="tag">Common mix-up</span><div class="big">Mixing up <b>quick</b> and <b>quickly</b>.</div><div style="color:var(--ink2)">Quick is for a noun: a <b>quick</b> dog. Quickly is for a verb: runs <b>quickly</b>. Same idea, two jobs. Ask: am I talking about the thing or the action?</div></div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">07</span><h2>The move</h2></div>
+      <div class="recap"><b>Remember:</b><ul><li>Adjective = describes a noun (a person, place, or thing).</li><li>Adverb = describes a verb (an action).</li><li>Many adverbs end in <b>ly</b>. Quickly, softly, loudly.</li><li>Ask: am I talking about the thing or the action?</li></ul></div>
+    </div>
+
+    <button class="cta" id="toCheck">I read it all. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You passed Form A. Come back tomorrow for Form B. New sentences. Same skill.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+    <div class="qtext" id="qtextB"></div>
+    <div class="opts" id="optsB"></div>
+    <div class="qwhy" id="qwhyB"></div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try again</button>
+    <button class="cta hide" id="toGate">Next: spaced retention check</button>
+  </section>
+
+  <footer><span id="__sname">Sam</span> &middot; Reading &middot; W4 Day 4 &middot; Standard 2.L.1.A.g</footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];
+  var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===2;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'sam',name:'Sam',grade:2};
+  __ar.activeKid=__rk.id;
+  try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='reading',DAY='2.L.1.A.g',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
+    var back=document.getElementById('msBack');if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{}; app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{}; app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec; app.activeStudent=STUDENT; save(app);
+
+  var SUPA_URL='', SUPA_KEY='';
+  function syncCloud(){ if(!SUPA_URL||!SUPA_KEY) return; try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){} }
+  var SEG=Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload',commitTime); window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  var PARTS=[
+    {title:'Sentence one',
+     w:'The ___ dog barks.',
+     q:'Which word fits the blank?',
+     options:[
+       {t:'loudly (adverb)',ok:false,why:'Loudly is an adverb. Before the noun dog, you need an adjective.'},
+       {t:'loud (adjective)',ok:true,why:'Loud is an adjective and describes the noun dog.'},
+       {t:'quickly (adverb)',ok:false,why:'Quickly is an adverb. Before a noun, use an adjective.'}
+     ]},
+    {title:'Sentence two',
+     w:'Sam runs ___ to the bus.',
+     q:'Which word fits the blank?',
+     options:[
+       {t:'quick (adjective)',ok:false,why:'Quick is an adjective. After a verb, use an adverb.'},
+       {t:'fast (adverb)',ok:true,why:'Fast can be an adverb here; it tells how Sam runs.'},
+       {t:'red (adjective)',ok:false,why:'Red is an adjective and describes a noun, not a verb.'}
+     ]},
+    {title:'Sentence three',
+     w:'A ___ bird flew by.',
+     q:'Which word fits the blank?',
+     options:[
+       {t:'softly (adverb)',ok:false,why:'Softly is an adverb. Before bird, use an adjective.'},
+       {t:'slowly (adverb)',ok:false,why:'Slowly is an adverb. Before bird, use an adjective.'},
+       {t:'small (adjective)',ok:true,why:'Small is an adjective and describes the noun bird.'}
+     ]},
+    {title:'Sentence four',
+     w:'Mia sings ___.',
+     q:'Which word fits the blank?',
+     options:[
+       {t:'happy (adjective)',ok:false,why:'Happy is an adjective. After a verb, use an adverb.'},
+       {t:'loudly (adverb)',ok:true,why:'Loudly tells how Mia sings.'},
+       {t:'tall (adjective)',ok:false,why:'Tall describes a noun, not the verb sings.'}
+     ]}
+  ];
+  document.addEventListener('DOMContentLoaded',function(){
+    var pbox=document.getElementById('parts'); if(!pbox)return;
+    PARTS.forEach(function(p){
+      var d=document.createElement('div'); d.className='pblock';
+      var opts='';
+      p.options.forEach(function(o,oi){ opts+='<button class="qopt" type="button" data-ok="'+(o.ok?'1':'0')+'" data-i="'+oi+'">'+o.t+'</button>'; });
+      d.innerHTML='<div class="ptitle">'+p.title+'</div><div class="targetw">'+p.w+'</div><div class="qq">'+p.q+'</div><div class="picker">'+opts+'</div><div class="rv"></div>';
+      var rv=d.querySelector('.rv');
+      d.querySelectorAll('.qopt').forEach(function(b){
+        b.addEventListener('click',function(){
+          if(b.dataset.locked)return;
+          var oi=parseInt(b.getAttribute('data-i'),10), opt=p.options[oi];
+          Array.prototype.forEach.call(d.querySelectorAll('.qopt'),function(x){x.dataset.locked='1';x.style.pointerEvents='none';});
+          b.classList.add(opt.ok?'ok':'no');
+          if(!opt.ok){
+            Array.prototype.forEach.call(d.querySelectorAll('.qopt'),function(x){ if(x.getAttribute('data-ok')==='1')x.classList.add('ok'); });
+          }
+          rv.innerHTML='<b>'+(opt.ok?'You got it.':'Not quite.')+'</b> '+opt.why;
+          rv.classList.add('show');
+        });
+      });
+      pbox.appendChild(d);
+    });
+  });
+
+  var FORM_A=[
+    {q:'Which word is an adjective in "The red ball rolls"?',o:['red','ball','rolls'],a:0,why:'Red describes the noun ball. That is an adjective.'},
+    {q:'Which word is an adverb in "The dog barks loudly"?',o:['dog','barks','loudly'],a:2,why:'Loudly tells how the dog barks. That is an adverb.'},
+    {q:'An adjective describes a...',o:['verb','noun','sentence'],a:1,why:'Adjectives describe nouns.'},
+    {q:'An adverb describes a...',o:['verb','noun','helper'],a:0,why:'Adverbs describe verbs.'},
+    {q:'"The big cat sleeps." Which is the adjective?',o:['sleeps','cat','big'],a:2,why:'Big describes the noun cat.'},
+    {q:'"He runs quickly." Which is the adverb?',o:['quickly','runs','He'],a:0,why:'Quickly tells how he runs.'},
+    {q:'Pick the adjective.',o:['softly','soft','sings'],a:1,why:'Soft can describe a noun, like a soft pillow.'},
+    {q:'Pick the adverb.',o:['slow','slowly','snail'],a:1,why:'Slowly describes a verb. Many adverbs end in ly.'},
+    {q:'"A tall tree grows." What does tall describe?',o:['the verb grows','the noun tree','nothing'],a:1,why:'Tall describes the noun tree.'},
+    {q:'"Mia sings softly." What does softly describe?',o:['the noun Mia','the verb sings','the word a'],a:1,why:'Softly describes the verb sings.'},
+    {q:'Which sentence has an adjective?',o:['She runs fast.','A red kite flies.','I am walking.'],a:1,why:'Red is an adjective. It describes the noun kite.'},
+    {q:'Which sentence has an adverb?',o:['The cat is gray.','A loud bell.','He talks softly.'],a:2,why:'Softly is an adverb. It describes the verb talks.'}
+  ];
+  var FORM_B=[
+    {q:'Which word is an adjective in "A small bug crawls"?',o:['small','bug','crawls'],a:0,why:'Small describes the noun bug.'},
+    {q:'Which word is an adverb in "He walks slowly"?',o:['walks','He','slowly'],a:2,why:'Slowly tells how he walks.'},
+    {q:'Pick the adjective.',o:['quick','quickly','quickness'],a:0,why:'Quick can describe a noun, like a quick rabbit.'},
+    {q:'Pick the adverb.',o:['happy','happily','happiness'],a:1,why:'Happily describes a verb. Many adverbs end in ly.'},
+    {q:'"The blue sky is bright." Which is the adjective?',o:['blue','is','sky'],a:0,why:'Blue describes the noun sky.'},
+    {q:'"The kids play quietly." Which is the adverb?',o:['kids','play','quietly'],a:2,why:'Quietly tells how the kids play.'},
+    {q:'An adjective tells you about a...',o:['noun','verb','helper'],a:0,why:'Adjectives describe nouns.'},
+    {q:'An adverb tells you about a...',o:['noun','verb','sentence'],a:1,why:'Adverbs describe verbs.'},
+    {q:'"A soft pillow." What does soft describe?',o:['the verb','the noun pillow','nothing'],a:1,why:'Soft describes the noun pillow.'},
+    {q:'"He sings loudly." What does loudly describe?',o:['the verb sings','the noun He','no word'],a:0,why:'Loudly describes the verb sings.'},
+    {q:'Which sentence has an adjective?',o:['I run fast.','A green frog hops.','We were swimming.'],a:1,why:'Green is an adjective. It describes the noun frog.'},
+    {q:'Which sentence has an adverb?',o:['The pup is cute.','A big box.','She moves slowly.'],a:2,why:'Slowly is an adverb. It describes the verb moves.'}
+  ];
+
+  var secLesson=document.getElementById('lesson'), secCheck=document.getElementById('check'),
+      secGate=document.getElementById('gate'), secCheckB=document.getElementById('checkB'), secResult=document.getElementById('result');
+  var elQtext=document.getElementById('qtext'), elOpts=document.getElementById('opts'), elQwhy=document.getElementById('qwhy'),
+      elCount=document.getElementById('qcount'), elTlabel=document.getElementById('tlabel'), elTfill=document.getElementById('tfill');
+  var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A.slice(0,8);
+
+  function startCheck(form){
+    commitTime();
+    phase=form;
+    currentBank=(form==='A')?FORM_A.slice(0,8):FORM_B.slice(0,8);
+    qi=0; correct=0;
+    if(form==='A'){
+      rec.attempts=(rec.attempts||0)+1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    } else {
+      secGate.classList.add('hide'); secResult.classList.add('hide'); secCheckB.classList.remove('hide');
+    }
+    window.scrollTo(0,0);
+    showQ();
+  }
+  function showQ(){
+    locked=false; var item=currentBank[qi];
+    var isA=(phase==='A');
+    var qtext=isA?elQtext:document.getElementById('qtextB');
+    var opts=isA?elOpts:document.getElementById('optsB');
+    var why=isA?elQwhy:document.getElementById('qwhyB');
+    var count=isA?elCount:document.getElementById('qcountB');
+    var label=isA?elTlabel:document.getElementById('tlabelB');
+    var fill=isA?elTfill:document.getElementById('tfillB');
+    count.textContent='Question '+(qi+1)+' of '+currentBank.length; qtext.innerHTML=item.q; opts.innerHTML=''; why.textContent='';
+    item.o.forEach(function(txt,i){ var b=document.createElement('button'); b.className='opt2'; b.type='button'; b.innerHTML=txt; b.addEventListener('click',function(){answer(i,b,opts,why,item);}); opts.appendChild(b); });
+    timeLeft=QTIME; fill.style.width='100%'; fill.classList.remove('low'); label.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){ timeLeft--; if(timeLeft<0)timeLeft=0; fill.style.width=(timeLeft/QTIME*100)+'%'; label.textContent=timeLeft+'s'; if(timeLeft<=8)fill.classList.add('low'); if(timeLeft===0){clearInterval(timer);autoAdvance(opts,why,item);} },1000);
+  }
+  function autoAdvance(opts,why,item){ if(locked)return; locked=true;
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); c.style.pointerEvents='none'; });
+    why.style.color='var(--accent-d)'; why.textContent='Time. '+item.why;
+    setTimeout(next,1100); }
+  function answer(i,btn,opts,why,item){ if(locked)return; locked=true; clearInterval(timer); var ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){ if(idx===item.a)c.classList.add('correct'); if(idx===i&&!ok)c.classList.add('bad'); c.style.pointerEvents='none'; });
+    if(ok){correct++; why.style.color='var(--good)'; why.textContent='Yes. '+item.why;} else { why.style.color='var(--accent-d)'; why.textContent='Not quite. '+item.why; }
+    setTimeout(next, ok?700:1200); }
+  function next(){ qi++; if(qi<currentBank.length)showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    if(phase==='A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed=(correct>=PASS), pct=Math.round(correct/currentBank.length*100);
+      document.getElementById('scorebig').textContent=pct+'%';
+      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
+          retry=document.getElementById('retry'), toGate=document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if(passed){
+        rec.status='formA-passed';
+        if(!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app); syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of 8. Form B opens in 24 hours to lock it in.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close!';
+        rmsg.textContent='You need 7 of 8. You got '+correct+'. Look back at the stations. Try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB=(correct>=PASS), pctB=Math.round(correct/currentBank.length*100);
+      document.getElementById('scorebig').textContent=pctB+'%';
+      rec.formB=correct;
+      var rtitleB=document.getElementById('rtitle'), rmsgB=document.getElementById('rmsg');
+      document.getElementById('retry').classList.add('hide'); document.getElementById('toGate').classList.add('hide');
+      if(passedB){
+        rec.status='passed'; rec.passedAt=Date.now(); save(app); syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status='formB-tried'; save(app);
+        rtitleB.textContent='Almost there.';
+        rmsgB.textContent='You got '+correct+' of 8 on Form B. Look back at the stations. Try again later.';
+        document.getElementById('retry').classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide'); secGate.classList.remove('hide'); window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB');
+    var cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){ cd.textContent='Form B is ready.'; startBtn.classList.remove('hide'); return; }
+      else { startBtn.classList.add('hide'); }
+      var h=Math.floor(remain/3600000), m=Math.floor((remain%3600000)/60000), s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  function showMastery(a,b){
+    var sec=document.getElementById('masteryDone'); if(!sec)return;
+    var ea=document.getElementById('msFormA'); if(ea) ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB'); if(eb) eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if(back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secCheckB.classList.add('hide');
+    secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if(rec.status==='passed'){ showMastery(rec.formA||0, rec.formB||0); return; }
+    if(rec.formAPassedAt && (rec.formA||0)>=PASS && (rec.formB||0)<PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click',function(){startCheck('A');});
+  document.getElementById('retry').addEventListener('click',function(){ secResult.classList.add('hide'); if(phase==='A') startCheck('A'); else startCheck('B'); });
+  document.getElementById('toGate').addEventListener('click',showGate);
+  document.getElementById('startB').addEventListener('click',function(){
+    var ap=rec.formAPassedAt||0;
+    if(ap && (Date.now()-ap)<GATE_MS){ alert('Form B opens 24 hours after Form A passes. Come back tomorrow.'); return; }
+    startCheck('B');
+  });
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

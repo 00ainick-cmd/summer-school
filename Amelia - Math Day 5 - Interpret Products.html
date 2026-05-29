@@ -129,6 +129,15 @@
   .synth .rule{font-family:'Baloo 2';font-size:20px;color:var(--accent-d);text-align:center;margin:6px 0;}
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .grp-bag{fill:#fbf7f0;stroke:var(--alt);stroke-width:2;stroke-linejoin:round;}
+  .lesson-hero .grp-dot{fill:var(--accent);}
+  .lesson-hero .num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);text-anchor:middle;}
+  .lesson-hero .equ{font-family:'Baloo 2',cursive;font-weight:700;font-size:30px;fill:var(--accent-d);text-anchor:middle;}
+  .lesson-hero .lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:11px;}
+  .lesson-hero .grp-tag{fill:var(--ones);font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;text-anchor:middle;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -165,6 +174,44 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab &middot; <b>Grade 3</b><span class="chip">Standard 3.RA.A.1</span></div>
+
+  <!-- HERO_ILLO_V1: 3 groups of 4 dots = 3 x 4 = 12 -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 220" role="img" aria-label="Three bags. Each bag holds four dots. Three groups of four equals twelve.">
+      <text class="lbl" x="240" y="22" text-anchor="middle">3 groups of 4</text>
+      <g transform="translate(36 50)">
+        <path class="grp-bag" d="M0 22 L12 0 L80 0 L92 22 L92 92 Q92 100 84 100 L8 100 Q0 100 0 92 Z"/>
+        <g class="grp-dot">
+          <circle cx="28" cy="44" r="9"/>
+          <circle cx="64" cy="44" r="9"/>
+          <circle cx="28" cy="78" r="9"/>
+          <circle cx="64" cy="78" r="9"/>
+        </g>
+        <text class="grp-tag" x="46" y="124">4 dots</text>
+      </g>
+      <g transform="translate(194 50)">
+        <path class="grp-bag" d="M0 22 L12 0 L80 0 L92 22 L92 92 Q92 100 84 100 L8 100 Q0 100 0 92 Z"/>
+        <g class="grp-dot">
+          <circle cx="28" cy="44" r="9"/>
+          <circle cx="64" cy="44" r="9"/>
+          <circle cx="28" cy="78" r="9"/>
+          <circle cx="64" cy="78" r="9"/>
+        </g>
+        <text class="grp-tag" x="46" y="124">4 dots</text>
+      </g>
+      <g transform="translate(352 50)">
+        <path class="grp-bag" d="M0 22 L12 0 L80 0 L92 22 L92 92 Q92 100 84 100 L8 100 Q0 100 0 92 Z"/>
+        <g class="grp-dot">
+          <circle cx="28" cy="44" r="9"/>
+          <circle cx="64" cy="44" r="9"/>
+          <circle cx="28" cy="78" r="9"/>
+          <circle cx="64" cy="78" r="9"/>
+        </g>
+        <text class="grp-tag" x="46" y="124">4 dots</text>
+      </g>
+      <text class="equ" x="240" y="194">3 x 4 = 12</text>
+    </svg>
+  </div>
 
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 &middot; Hook</div><h1>What does 5 x 7 really mean?</h1>

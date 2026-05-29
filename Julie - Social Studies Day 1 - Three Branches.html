@@ -91,6 +91,19 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .branchpanel{fill:#14171c;stroke:none;}
+  .lesson-hero .checkarc{stroke:var(--accent);stroke-width:1.6;fill:none;}
+  .lesson-hero .balarc{stroke:var(--alt);stroke-width:1.6;fill:none;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .branchlbl{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;fill:#fff;}
+  .lesson-hero .rolelbl{font-family:'Spline Sans Mono',monospace;font-size:9.5px;fill:#aab0b8;letter-spacing:.06em;text-transform:uppercase;}
+  .lesson-hero .checkanno{font-family:'Spline Sans Mono',monospace;font-size:9px;fill:var(--accent-d);letter-spacing:.04em;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -128,6 +141,63 @@
     <h1>Three Branches, One Balance</h1>
     <p class="mission">The Constitution distributes federal authority across three coequal branches so that no single institution can consolidate sovereign power over the entire government. Each branch is, by deliberate constitutional design, vested with mechanisms to constrain the others. This architecture of separation of powers, reinforced by an overlapping system of checks and balances, is what sustains institutional equilibrium across successive administrations.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Apply the principles of rule of law, representation, separation of powers, checks and balances, and federalism to explain the purposes and functions of the Constitution.</div>
+
+    <!-- HERO_ILLO_V1: triangular separation-of-powers diagram with checks arrows -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 290" role="img" aria-label="A triangular separation-of-powers diagram with three branches at the vertices: Legislative at top, Executive at lower left, Judicial at lower right. Curved arrows show each branch checks the others.">
+        <rect class="panel" x="6" y="6" width="548" height="278" rx="10"/>
+        <text class="headlbl" x="22" y="26">Separation of powers</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">three coequal branches</text>
+        <g class="checkarc">
+          <path d="M210 90 Q140 178 130 218"/>
+          <path d="M130 218 L136 209 L122 213 Z" fill="var(--accent)" stroke="none"/>
+        </g>
+        <g class="checkarc">
+          <path d="M430 218 Q500 178 350 90"/>
+          <path d="M350 90 L360 96 L348 100 Z" fill="var(--accent)" stroke="none"/>
+        </g>
+        <g class="checkarc">
+          <path d="M190 250 Q280 280 370 250"/>
+          <path d="M370 250 L362 245 L362 257 Z" fill="var(--accent)" stroke="none"/>
+        </g>
+        <g class="balarc">
+          <path d="M250 90 Q310 130 410 220"/>
+          <path d="M410 220 L402 218 L410 210 Z" fill="var(--alt)" stroke="none"/>
+        </g>
+        <g class="balarc">
+          <path d="M150 220 Q230 130 310 90"/>
+          <path d="M310 90 L304 100 L300 92 Z" fill="var(--alt)" stroke="none"/>
+        </g>
+        <g class="balarc">
+          <path d="M370 252 Q280 232 190 252"/>
+          <path d="M190 252 L196 257 L196 245 Z" fill="var(--alt)" stroke="none"/>
+        </g>
+        <g transform="translate(280 50)">
+          <rect class="branchpanel" x="-90" y="0" width="180" height="56" rx="8"/>
+          <text class="rolelbl" x="0" y="18" text-anchor="middle">ARTICLE I</text>
+          <text class="branchlbl" x="0" y="38" text-anchor="middle">LEGISLATIVE</text>
+          <text class="rolelbl" x="0" y="50" text-anchor="middle">makes the law</text>
+        </g>
+        <g transform="translate(110 224)">
+          <rect class="branchpanel" x="-78" y="0" width="156" height="56" rx="8"/>
+          <text class="rolelbl" x="0" y="18" text-anchor="middle">ARTICLE II</text>
+          <text class="branchlbl" x="0" y="38" text-anchor="middle">EXECUTIVE</text>
+          <text class="rolelbl" x="0" y="50" text-anchor="middle">enforces the law</text>
+        </g>
+        <g transform="translate(450 224)">
+          <rect class="branchpanel" x="-78" y="0" width="156" height="56" rx="8"/>
+          <text class="rolelbl" x="0" y="18" text-anchor="middle">ARTICLE III</text>
+          <text class="branchlbl" x="0" y="38" text-anchor="middle">JUDICIAL</text>
+          <text class="rolelbl" x="0" y="50" text-anchor="middle">interprets the law</text>
+        </g>
+        <g transform="translate(34 270)">
+          <rect x="0" y="-10" width="14" height="2" fill="var(--accent)"/>
+          <text class="mono" x="22" y="-4" font-size="10" fill="var(--accent-d)" style="letter-spacing:.06em;text-transform:uppercase;">checks</text>
+          <rect x="100" y="-10" width="14" height="2" fill="var(--alt)"/>
+          <text class="mono" x="122" y="-4" font-size="10" fill="var(--alt)" style="letter-spacing:.06em;text-transform:uppercase;">balanced by</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Who does what</h2></div>

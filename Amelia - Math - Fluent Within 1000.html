@@ -137,6 +137,23 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .col-h{fill:var(--huns);}
+  .lesson-hero .col-t{fill:var(--tens);}
+  .lesson-hero .col-o{fill:var(--ones);}
+  .lesson-hero .stk-h{stroke:var(--huns);}
+  .lesson-hero .stk-t{stroke:var(--tens);}
+  .lesson-hero .stk-o{stroke:var(--ones);}
+  .lesson-hero .pv-grid{stroke:var(--line);stroke-width:1.5;fill:none;}
+  .lesson-hero .pv-d{font-family:'Baloo 2',cursive;font-weight:700;font-size:36px;text-anchor:middle;}
+  .lesson-hero .pv-op{font-family:'Baloo 2',cursive;font-weight:700;font-size:36px;fill:var(--ink2);}
+  .lesson-hero .pv-cap{font-family:'Mulish',sans-serif;font-weight:700;font-size:10px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;fill:var(--ink2);}
+  .lesson-hero .pv-line{stroke:var(--ink);stroke-width:2;}
+  .lesson-hero .regroup{font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;text-anchor:middle;}
+  .lesson-hero .arrow-stroke{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:11px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -174,6 +191,51 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 3</b><span class="chip">Standard 3.NBT.A.3</span></div>
+
+  <!-- HERO_ILLO_V1: vertical algorithm 348 + 275 = 623 with regrouping arrows -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 230" role="img" aria-label="Vertical addition of 348 plus 275 equals 623. Small carried ones above the tens and hundreds columns show regrouping.">
+      <text class="lbl" x="240" y="22" text-anchor="middle">348 + 275 with regrouping</text>
+      <g transform="translate(160 38)">
+        <text class="pv-cap col-h" x="40" y="0">hundreds</text>
+        <text class="pv-cap col-t" x="100" y="0">tens</text>
+        <text class="pv-cap col-o" x="160" y="0">ones</text>
+        <text class="regroup col-h" x="40" y="22">1</text>
+        <text class="regroup col-t" x="100" y="22">1</text>
+        <g class="pv-d">
+          <text class="col-h" x="40" y="60">3</text>
+          <text class="col-t" x="100" y="60">4</text>
+          <text class="col-o" x="160" y="60">8</text>
+        </g>
+        <text class="pv-op" x="-12" y="100">+</text>
+        <g class="pv-d">
+          <text class="col-h" x="40" y="100">2</text>
+          <text class="col-t" x="100" y="100">7</text>
+          <text class="col-o" x="160" y="100">5</text>
+        </g>
+        <line class="pv-line" x1="-18" y1="116" x2="178" y2="116"/>
+        <g class="pv-d">
+          <text class="col-h" x="40" y="156">6</text>
+          <text class="col-t" x="100" y="156">2</text>
+          <text class="col-o" x="160" y="156">3</text>
+        </g>
+      </g>
+      <g>
+        <path class="arrow-stroke stk-o" d="M338 124 Q360 110 360 92 Q360 76 312 60"/>
+        <path class="arrow-stroke stk-o" d="M318 54 L308 60 L316 70"/>
+        <text class="lbl" x="378" y="92" text-anchor="middle" fill="var(--ones)" font-size="10">13 ones</text>
+        <text class="lbl" x="378" y="106" text-anchor="middle" fill="var(--mute)" font-size="9">carry 1 ten</text>
+      </g>
+      <g>
+        <path class="arrow-stroke stk-t" d="M278 124 Q120 110 120 92 Q120 76 250 60"/>
+        <path class="arrow-stroke stk-t" d="M244 54 L254 58 L250 70"/>
+        <text class="lbl" x="74" y="92" text-anchor="middle" fill="var(--tens)" font-size="10">12 tens</text>
+        <text class="lbl" x="74" y="106" text-anchor="middle" fill="var(--mute)" font-size="9">carry 1 hund</text>
+      </g>
+      <text class="lbl" x="240" y="218" text-anchor="middle" fill="var(--accent-d)" font-size="11">348 + 275 = 623</text>
+    </svg>
+  </div>
+
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>Regroup, then check</h1>
       <p class="mission">Two problems below. Tap each to see the regroup and the check.</p>

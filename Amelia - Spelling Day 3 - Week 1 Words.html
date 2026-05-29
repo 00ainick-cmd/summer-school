@@ -122,6 +122,18 @@
   .gnote b{color:var(--accent-d);}
   footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .wb-a{fill:#e8d5cc;stroke:var(--accent);stroke-width:1.5;}
+  .lesson-hero .wb-b{fill:#d8e0cc;stroke:#5a7a4a;stroke-width:1.5;}
+  .lesson-hero .wb-c{fill:#f3e8d0;stroke:var(--alt);stroke-width:1.8;}
+  .lesson-hero .wb-txt{font-family:'Fraunces',serif;font-weight:600;font-size:24px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .wb-big{font-family:'Fraunces',serif;font-weight:600;font-size:30px;text-anchor:middle;fill:var(--accent-d);}
+  .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;}
+  .lesson-hero .plus{font-family:'Fraunces',serif;font-weight:600;font-size:36px;fill:var(--mute);text-anchor:middle;}
+  .lesson-hero .arrow{fill:none;stroke:var(--mute);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .rainbow{fill:none;stroke-width:6;stroke-linecap:round;opacity:.85;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -160,6 +172,37 @@
     <p class="opener"><span class="dropcap">A</span> compound word is two real words stuck together to make a new word. Each small word brings its meaning along, so when you read a compound you can often guess what it means by reading each part. Spelling them is just spelling each piece in order, with no letters added and none taken away.</p>
     <p class="mission">By the end you will see the two parts in ten compound words and spell each one from memory.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Use spelling patterns and generalizations to spell compound words.</div>
+
+    <!-- HERO_ILLO_V1: rain + bow = rainbow with arc -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Two word blocks. Rain on the left, bow on the right. They join into the compound word rainbow with a colored arc above.">
+        <text class="cap" x="240" y="22" fill="var(--accent-d)">Two small words make one big word</text>
+        <g transform="translate(40 42)">
+          <rect class="wb-a" x="0" y="0" width="120" height="64" rx="10"/>
+          <text class="wb-txt" x="60" y="42">rain</text>
+          <text class="cap" x="60" y="82" fill="var(--accent)">word 1</text>
+        </g>
+        <text class="plus" x="240" y="86">+</text>
+        <g transform="translate(320 42)">
+          <rect class="wb-b" x="0" y="0" width="120" height="64" rx="10"/>
+          <text class="wb-txt" x="60" y="42">bow</text>
+          <text class="cap" x="60" y="82" fill="#5a7a4a">word 2</text>
+        </g>
+        <g class="arrow">
+          <path d="M100 110 Q240 130 380 110"/>
+          <path d="M232 122 L240 130 L248 122"/>
+        </g>
+        <g transform="translate(140 154)">
+          <rect class="wb-c" x="0" y="0" width="200" height="48" rx="12"/>
+          <g class="rainbow">
+            <path d="M30 38 Q100 4 170 38" stroke="#b5462f"/>
+            <path d="M40 38 Q100 12 160 38" stroke="#d28a2a"/>
+            <path d="M50 38 Q100 20 150 38" stroke="#5a7a4a"/>
+          </g>
+          <text class="wb-big" x="100" y="34">rainbow</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>This week's words</h2></div>

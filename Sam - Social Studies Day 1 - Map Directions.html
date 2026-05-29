@@ -92,6 +92,16 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .alt{fill:var(--alt);opacity:.9;}
+  .lesson-hero .roseN{fill:var(--accent-d);}
+  .lesson-hero .roseS{fill:var(--accent);}
+  .lesson-hero .dir{font-family:'DM Sans',system-ui,sans-serif;font-weight:700;fill:var(--accent-d);font-size:20px;}
+  .lesson-hero .annot{font-family:'DM Sans',system-ui,sans-serif;font-style:italic;fill:var(--ink2);font-size:11px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -129,6 +139,51 @@
     <h1>Reading a Map with a Compass Rose</h1>
     <p class="mission">Every map has a <b>compass rose</b> that shows the four cardinal directions. Learn them and you can find your way anywhere on the page.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Use a compass rose to find cardinal directions; read and make maps.</div>
+
+    <!-- HERO_ILLO_V1: hero compass rose with cardinal arms on a parchment map -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="A large compass rose on parchment with arms pointing north, south, east, and west.">
+        <defs>
+          <radialGradient id="parch" cx="50%" cy="50%" r="60%">
+            <stop offset="0" stop-color="#fbf5e6"/>
+            <stop offset="1" stop-color="#ecdfbe"/>
+          </radialGradient>
+        </defs>
+        <rect x="20" y="20" width="440" height="200" rx="10" fill="url(#parch)" stroke="#b89a72" stroke-width="1.6"/>
+        <g stroke="#b89a72" stroke-width="0.8" opacity=".4" fill="none">
+          <path d="M40 60 Q120 50 200 70 T380 60"/>
+          <path d="M60 180 Q140 170 220 190 T420 180"/>
+          <path d="M60 120 Q150 110 240 125 T420 120"/>
+        </g>
+        <g transform="translate(240 120)">
+          <circle cx="0" cy="0" r="74" fill="#fffdf8" stroke="var(--accent-d)" stroke-width="1.6"/>
+          <circle cx="0" cy="0" r="60" fill="none" stroke="var(--accent-d)" stroke-width="0.8" opacity=".6"/>
+          <circle cx="0" cy="0" r="6" fill="var(--accent-d)"/>
+          <polygon points="0,-66 8,0 -8,0" class="roseN"/>
+          <polygon points="0,66 8,0 -8,0" class="roseS"/>
+          <polygon points="66,0 0,-8 0,8" class="roseS"/>
+          <polygon points="-66,0 0,-8 0,8" class="roseS"/>
+          <polygon points="0,-40 4,0 -4,0" fill="#fff"/>
+          <g class="ink" stroke="var(--accent-d)" stroke-width="0.8" opacity=".5" fill="none">
+            <line x1="-46" y1="-46" x2="-30" y2="-30"/>
+            <line x1="46" y1="-46" x2="30" y2="-30"/>
+            <line x1="-46" y1="46" x2="-30" y2="30"/>
+            <line x1="46" y1="46" x2="30" y2="30"/>
+          </g>
+        </g>
+        <text class="dir" x="240" y="46" text-anchor="middle">N</text>
+        <text class="dir" x="240" y="216" text-anchor="middle">S</text>
+        <text class="dir" x="338" y="128" text-anchor="middle">E</text>
+        <text class="dir" x="142" y="128" text-anchor="middle">W</text>
+        <text class="annot" x="240" y="62" text-anchor="middle">north is always up</text>
+        <g fill="var(--alt)" opacity=".5">
+          <circle cx="50" cy="50" r="2"/>
+          <circle cx="430" cy="50" r="2"/>
+          <circle cx="50" cy="200" r="2"/>
+          <circle cx="430" cy="200" r="2"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>The compass rose</h2></div>

@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -174,6 +183,47 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.C.11</span></div>
+  <!-- HERO_ILLO_V1: two baskets of apples and a question mark basket, with words to math bridge -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="Two baskets, one with twenty seven apples and one with thirty four apples, with a third labeled how many in all.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">From story to equation</text>
+      <g transform="translate(30 50)">
+        <path d="M0 38 L100 38 L88 110 L12 110 Z" fill="#fdeede" stroke="var(--alt)" stroke-width="2"/>
+        <ellipse cx="50" cy="38" rx="50" ry="8" fill="#fff" stroke="var(--alt)" stroke-width="2"/>
+        <circle cx="32" cy="30" r="6" class="hl-o"/>
+        <circle cx="48" cy="28" r="6" class="hl-o"/>
+        <circle cx="64" cy="30" r="6" class="hl-o"/>
+        <circle cx="40" cy="22" r="5" class="hl-o"/>
+        <circle cx="58" cy="22" r="5" class="hl-o"/>
+        <text class="hl-num" x="50" y="80" text-anchor="middle" font-size="22" fill="var(--alt)">27</text>
+        <text class="hl-lbl" x="50" y="128" text-anchor="middle">basket A</text>
+      </g>
+      <text class="hl-num" x="146" y="116" text-anchor="middle" font-size="32" fill="var(--accent-d)">+</text>
+      <g transform="translate(170 50)">
+        <path d="M0 38 L100 38 L88 110 L12 110 Z" fill="#fdeede" stroke="var(--alt)" stroke-width="2"/>
+        <ellipse cx="50" cy="38" rx="50" ry="8" fill="#fff" stroke="var(--alt)" stroke-width="2"/>
+        <circle cx="30" cy="30" r="6" class="hl-o"/>
+        <circle cx="46" cy="28" r="6" class="hl-o"/>
+        <circle cx="62" cy="30" r="6" class="hl-o"/>
+        <circle cx="38" cy="22" r="5" class="hl-o"/>
+        <circle cx="56" cy="22" r="5" class="hl-o"/>
+        <circle cx="72" cy="24" r="5" class="hl-o"/>
+        <text class="hl-num" x="50" y="80" text-anchor="middle" font-size="22" fill="var(--alt)">34</text>
+        <text class="hl-lbl" x="50" y="128" text-anchor="middle">basket B</text>
+      </g>
+      <text class="hl-num" x="286" y="116" text-anchor="middle" font-size="32" fill="var(--accent-d)">=</text>
+      <g transform="translate(310 50)">
+        <path d="M0 38 L130 38 L116 110 L14 110 Z" fill="#efeefb" stroke="var(--accent)" stroke-width="2.5"/>
+        <ellipse cx="65" cy="38" rx="65" ry="8" fill="#fff" stroke="var(--accent)" stroke-width="2.5"/>
+        <text class="hl-num" x="65" y="86" text-anchor="middle" font-size="34" fill="var(--accent-d)">?</text>
+        <text class="hl-lbl" x="65" y="128" text-anchor="middle" fill="var(--accent-d)">in all</text>
+      </g>
+      <g transform="translate(80 200)">
+        <rect class="hl-card" x="0" y="0" width="320" height="32" rx="8" fill="#efeefb" stroke="var(--accent)" stroke-width="1.5"/>
+        <text class="hl-num" x="160" y="22" text-anchor="middle" font-size="18">27 + 34 = ?</text>
+      </g>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>Read the action, choose the move</h1>
       <p class="mission">Two stories below. Tap each to see whether it adds or subtracts.</p>

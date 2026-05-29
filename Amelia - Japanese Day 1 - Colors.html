@@ -108,6 +108,15 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .swatch{stroke:var(--ink);stroke-width:1.5;}
+  .lesson-hero .kanji{font-family:'Noto Serif JP',serif;font-weight:700;font-size:30px;text-anchor:middle;}
+  .lesson-hero .romaji{font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:12px;text-anchor:middle;letter-spacing:.04em;fill:var(--ink);}
+  .lesson-hero .gloss{font-family:'Noto Sans JP',sans-serif;font-size:11px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);}
+  .lesson-hero .cap{font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:11px;text-anchor:middle;letter-spacing:.14em;text-transform:uppercase;fill:var(--accent-d);}
+  .lesson-hero .accent-line{stroke:var(--accent);stroke-width:2;stroke-linecap:round;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -147,6 +156,52 @@
       <p class="mission">Learn to recognize color words in Japanese. Some are <b>kanji</b> (赤 = red) and some are borrowed words written in <b>katakana</b> (ピンク = pink).</p>
     </div></div>
     <div class="stdtag"><span class="l">What this lesson teaches</span>I can identify the general topic and some basic information by recognizing practiced or memorized words, phrases, and simple sentences.</div>
+
+    <!-- HERO_ILLO_V1: six color swatches with kanji + romaji + English gloss -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Six color swatches with their Japanese names. Red is aka, blue is ao, yellow is kiiro, green is midori, black is kuro, white is shiro.">
+        <text class="cap" x="240" y="22">六つの色 . Six colors</text>
+        <line class="accent-line" x1="180" y1="32" x2="300" y2="32"/>
+        <g transform="translate(28 50)">
+          <rect class="swatch" x="0" y="0" width="64" height="64" rx="6" fill="#d2352f"/>
+          <text class="kanji" x="32" y="42" fill="#fff">赤</text>
+          <text class="romaji" x="32" y="88">aka</text>
+          <text class="gloss" x="32" y="104">red</text>
+        </g>
+        <g transform="translate(106 50)">
+          <rect class="swatch" x="0" y="0" width="64" height="64" rx="6" fill="#2f5fd0"/>
+          <text class="kanji" x="32" y="42" fill="#fff">青</text>
+          <text class="romaji" x="32" y="88">ao</text>
+          <text class="gloss" x="32" y="104">blue</text>
+        </g>
+        <g transform="translate(184 50)">
+          <rect class="swatch" x="0" y="0" width="64" height="64" rx="6" fill="#e6b800"/>
+          <text class="kanji" x="32" y="42" fill="#1a1a1a">黄</text>
+          <text class="romaji" x="32" y="88">kiiro</text>
+          <text class="gloss" x="32" y="104">yellow</text>
+        </g>
+        <g transform="translate(262 50)">
+          <rect class="swatch" x="0" y="0" width="64" height="64" rx="6" fill="#2e9d5b"/>
+          <text class="kanji" x="32" y="42" fill="#fff">緑</text>
+          <text class="romaji" x="32" y="88">midori</text>
+          <text class="gloss" x="32" y="104">green</text>
+        </g>
+        <g transform="translate(340 50)">
+          <rect class="swatch" x="0" y="0" width="64" height="64" rx="6" fill="#1a1a1a"/>
+          <text class="kanji" x="32" y="42" fill="#fff">黒</text>
+          <text class="romaji" x="32" y="88">kuro</text>
+          <text class="gloss" x="32" y="104">black</text>
+        </g>
+        <g transform="translate(418 50)">
+          <rect class="swatch" x="0" y="0" width="40" height="64" rx="6" fill="#f4f4f4"/>
+          <text class="kanji" x="20" y="42" fill="#1a1a1a">白</text>
+          <text class="romaji" x="20" y="88">shiro</text>
+          <text class="gloss" x="20" y="104">white</text>
+        </g>
+        <text class="cap" x="240" y="172" fill="var(--ink2)">colors that share a word</text>
+        <text class="cap" x="240" y="194" fill="var(--accent)">point . say it . hear it</text>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>The color cards</h2></div>

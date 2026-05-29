@@ -112,6 +112,17 @@
   .note{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:12px 14px;font-size:14.5px;margin-top:10px;} .note b{color:var(--gold);}
   .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;margin-top:8px;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;} .sentence{transition:none;} html{scroll-behavior:auto;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .claimpanel{fill:#14171c;stroke:none;}
+  .lesson-hero .warrantpanel{fill:rgba(31,59,84,.06);stroke:var(--alt);stroke-width:1.4;}
+  .lesson-hero .evpanel{fill:rgba(31,122,77,.05);stroke:var(--good);stroke-width:1.4;}
+  .lesson-hero .conn{stroke:var(--ink2);stroke-width:1.5;fill:none;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -148,6 +159,43 @@
     <h1>Evaluating an Author's Argument</h1>
     <p class="mission">An argument is not just a strong opinion stated loudly. It is a claim, supported by reasoning, supported by evidence. Your job as a reader is to take that structure apart and ask whether the pieces actually hold each other up, or whether something off-topic, fallacious, or emotional has been smuggled in.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Evaluate an author's argument, assessing whether the reasoning is sound and the evidence is relevant and sufficient; recognize when irrelevant evidence is introduced.</div>
+
+    <!-- HERO_ILLO_V1: argument anatomy: claim sits on reasoning, reasoning rests on evidence -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 270" role="img" aria-label="An argument diagram: a dark claim panel sits on top, supported by a reasoning panel labeled because, which is itself supported by two evidence panels.">
+        <rect class="panel" x="6" y="6" width="548" height="258" rx="10"/>
+        <text class="headlbl" x="22" y="26">Anatomy of an argument</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">claim &#8594; reasoning &#8594; evidence</text>
+        <g transform="translate(150 46)">
+          <rect class="claimpanel" x="0" y="0" width="260" height="56" rx="8"/>
+          <text class="anton" x="14" y="20" font-size="10.5" fill="#9aa0a8" style="letter-spacing:.14em;">CLAIM</text>
+          <line x1="14" y1="26" x2="44" y2="26" stroke="var(--accent)" stroke-width="2"/>
+          <text x="14" y="44" font-family="'Spline Sans', sans-serif" font-size="13" fill="#fff" font-weight="600">Schools should start later.</text>
+        </g>
+        <path class="conn" d="M280 102 L280 124"/>
+        <path class="conn" d="M280 124 L280 132" marker-end="none"/>
+        <path class="conn" d="M275 124 L285 124"/>
+        <text class="mono" x="294" y="120" font-size="10.5" fill="var(--ink2)" style="letter-spacing:.06em;text-transform:uppercase;">because</text>
+        <g transform="translate(150 138)">
+          <rect class="warrantpanel" x="0" y="0" width="260" height="44" rx="8"/>
+          <text class="anton" x="14" y="18" font-size="10.5" fill="var(--alt)" style="letter-spacing:.12em;">REASONING</text>
+          <text x="14" y="36" font-family="'Spline Sans', sans-serif" font-size="12.5" fill="var(--ink)">Adolescents perform better when rested.</text>
+        </g>
+        <path class="conn" d="M210 182 L150 210"/>
+        <path class="conn" d="M350 182 L410 210"/>
+        <text class="mono" x="280" y="200" text-anchor="middle" font-size="10.5" fill="var(--ink2)" style="letter-spacing:.06em;text-transform:uppercase;">supported by</text>
+        <g transform="translate(30 214)">
+          <rect class="evpanel" x="0" y="0" width="240" height="44" rx="8"/>
+          <text class="anton" x="14" y="18" font-size="10.5" fill="var(--good)" style="letter-spacing:.12em;">EVIDENCE A</text>
+          <text x="14" y="36" font-family="'Spline Sans', sans-serif" font-size="11.5" fill="var(--ink)">CDC sleep study, peer-reviewed, 2014.</text>
+        </g>
+        <g transform="translate(290 214)">
+          <rect class="evpanel" x="0" y="0" width="240" height="44" rx="8"/>
+          <text class="anton" x="14" y="18" font-size="10.5" fill="var(--good)" style="letter-spacing:.12em;">EVIDENCE B</text>
+          <text x="14" y="36" font-family="'Spline Sans', sans-serif" font-size="11.5" fill="var(--ink)">Test scores rose in Seattle pilot, 2017.</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>The structure: claim, reasoning, evidence</h2></div>

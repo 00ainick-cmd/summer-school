@@ -100,6 +100,14 @@
   .delayBox{background:#f3ead9;border:1px solid var(--line);border-radius:10px;padding:14px;font-size:15px;color:var(--ink2);margin-top:10px;}
   footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}*{animation:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .alt{fill:var(--alt);opacity:.85;}
+  .lesson-hero .annot{font-family:'Fraunces',serif;font-style:italic;fill:var(--ink2);font-size:11px;}
+  .lesson-hero .qword{font-family:'Fraunces',serif;font-weight:700;fill:#fff;font-size:15px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -138,6 +146,65 @@
     <p class="opener"><span class="dropcap">G</span>ood readers ask questions while they read. Not just any question. The <b>right</b> ones. Good questions have answers in the book. They help you understand. A good question pulls you into the story. A random question floats off and leaves the book behind.</p>
     <p class="mission">By the end you will ask good questions. You will tell a good question from a bad one. You will find the answers in the book.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Asking and responding to good questions about a text.</div>
+
+    <!-- HERO_ILLO_V1: question word bubbles pointing into a text passage -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="Five question word bubbles, Who What When Where Why, all pointing into a page of text.">
+        <defs>
+          <linearGradient id="textPage" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fffdf8"/>
+            <stop offset="1" stop-color="#f3ead9"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(170 60)">
+          <rect x="0" y="0" width="160" height="160" rx="6" fill="url(#textPage)" stroke="#b89a72" stroke-width="1.5"/>
+          <g stroke="var(--ink2)" stroke-width="1.2" opacity=".55">
+            <line x1="14" y1="22" x2="146" y2="22"/>
+            <line x1="14" y1="38" x2="146" y2="38"/>
+            <line x1="14" y1="54" x2="130" y2="54"/>
+            <line x1="14" y1="70" x2="146" y2="70"/>
+            <line x1="14" y1="86" x2="120" y2="86"/>
+            <line x1="14" y1="102" x2="146" y2="102"/>
+            <line x1="14" y1="118" x2="140" y2="118"/>
+            <line x1="14" y1="134" x2="110" y2="134"/>
+            <line x1="14" y1="150" x2="146" y2="150"/>
+          </g>
+        </g>
+        <g class="ink" stroke="var(--accent)" stroke-width="1.6" opacity=".8" fill="none">
+          <path d="M82 50 Q140 64 175 80"/>
+          <path d="M82 110 Q140 100 175 100"/>
+          <path d="M82 175 Q140 160 175 145"/>
+          <path d="M398 60 Q346 85 325 95"/>
+          <path d="M398 165 Q346 145 325 130"/>
+        </g>
+        <g>
+          <g transform="translate(20 30)">
+            <ellipse cx="40" cy="20" rx="40" ry="20" fill="var(--accent)"/>
+            <text class="qword" x="40" y="25" text-anchor="middle">Who</text>
+          </g>
+          <g transform="translate(10 92)">
+            <ellipse cx="40" cy="20" rx="40" ry="20" fill="var(--accent-d)"/>
+            <text class="qword" x="40" y="25" text-anchor="middle">What</text>
+          </g>
+          <g transform="translate(20 158)">
+            <ellipse cx="40" cy="20" rx="40" ry="20" fill="var(--accent)"/>
+            <text class="qword" x="40" y="25" text-anchor="middle">When</text>
+          </g>
+          <g transform="translate(400 42)">
+            <ellipse cx="40" cy="20" rx="40" ry="20" fill="var(--accent-d)"/>
+            <text class="qword" x="40" y="25" text-anchor="middle">Where</text>
+          </g>
+          <g transform="translate(400 148)">
+            <ellipse cx="40" cy="20" rx="40" ry="20" fill="var(--accent)"/>
+            <text class="qword" x="40" y="25" text-anchor="middle">Why</text>
+          </g>
+        </g>
+        <g fill="var(--alt)" opacity=".55">
+          <circle cx="245" cy="18" r="2"/>
+          <circle cx="245" cy="232" r="2"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>Question words</h2></div>

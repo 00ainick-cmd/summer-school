@@ -102,6 +102,15 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .washi{fill:#fbf0e2;stroke:#c89a86;stroke-width:1.2;}
+  .lesson-hero .kanji{font-family:'Noto Serif JP','Hiragino Mincho ProN',serif;font-weight:700;fill:var(--ink);}
+  .lesson-hero .romaji{font-family:'Fraunces',serif;font-style:italic;fill:var(--accent-d);font-size:11px;}
+  .lesson-hero .annot{font-family:'Fraunces',serif;font-style:italic;fill:var(--ink2);font-size:11px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -141,6 +150,71 @@
       <p class="mission">Learn to read the numbers 1 to 10 in Japanese. You will see the <b>kanji</b> (the character), the <b>romaji</b> (how to say it), and the number it means.</p>
     </div></div>
     <div class="stdtag"><span class="l">What this lesson teaches</span>I can find the general topic and some basic information by recognizing practiced or memorized words, phrases, and simple sentences.</div>
+
+    <!-- HERO_ILLO_V1: ten washi number cards with kanji 1 through 10 -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="Ten washi paper cards arranged in two rows, each showing a Japanese number kanji from one to ten with its romaji reading.">
+        <g transform="translate(20 26)">
+          <g transform="translate(0 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="48" text-anchor="middle" font-size="36">一</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">ichi</text>
+          </g>
+          <g transform="translate(92 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="48" text-anchor="middle" font-size="32">二</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">ni</text>
+          </g>
+          <g transform="translate(184 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="48" text-anchor="middle" font-size="32">三</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">san</text>
+          </g>
+          <g transform="translate(276 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="50" text-anchor="middle" font-size="32">四</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">shi / yon</text>
+          </g>
+          <g transform="translate(368 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="50" text-anchor="middle" font-size="32">五</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">go</text>
+          </g>
+        </g>
+        <g transform="translate(20 122)">
+          <g transform="translate(0 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="50" text-anchor="middle" font-size="32">六</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">roku</text>
+          </g>
+          <g transform="translate(92 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="50" text-anchor="middle" font-size="32">七</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">nana</text>
+          </g>
+          <g transform="translate(184 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="50" text-anchor="middle" font-size="32">八</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">hachi</text>
+          </g>
+          <g transform="translate(276 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="50" text-anchor="middle" font-size="32">九</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">kyuu</text>
+          </g>
+          <g transform="translate(368 0)">
+            <rect class="washi" x="0" y="0" width="80" height="80" rx="4"/>
+            <text class="kanji" x="40" y="48" text-anchor="middle" font-size="32">十</text>
+            <text class="romaji" x="40" y="70" text-anchor="middle">juu</text>
+          </g>
+        </g>
+        <g transform="translate(240 218)">
+          <circle cx="-86" cy="0" r="2.4" fill="var(--accent)" opacity=".7"/>
+          <circle cx="0" cy="0" r="2.8" fill="var(--accent)" opacity=".8"/>
+          <circle cx="86" cy="0" r="2.4" fill="var(--accent)" opacity=".7"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>The ten number cards</h2></div>

@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 
   .cmp{background:#faf9ff;border:2px solid var(--line);border-radius:16px;padding:20px 14px;margin-top:12px;}
   .cmpgrid{display:flex;flex-direction:column;gap:10px;align-items:center;}
@@ -192,6 +201,49 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Compare lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.A.5</span></div>
+  <!-- HERO_ILLO_V1: two three-digit columns with comparison symbol -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="The number four hundred eighteen is greater than the number three hundred ninety two, decided by the hundreds digit.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Compare from the biggest place first</text>
+      <g transform="translate(30 50)">
+        <rect class="hl-card" x="0" y="0" width="170" height="160" rx="12"/>
+        <text class="hl-lbl" x="85" y="20" text-anchor="middle">Number A</text>
+        <g transform="translate(20 38)">
+          <rect class="hl-h" x="0" y="0" width="38" height="38" rx="4"/>
+          <rect class="hl-t" x="48" y="0" width="38" height="38" rx="4"/>
+          <rect class="hl-o" x="96" y="0" width="38" height="38" rx="4"/>
+          <text x="19" y="26" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="24">4</text>
+          <text x="67" y="26" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="24">1</text>
+          <text x="115" y="26" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="24">8</text>
+          <text class="hl-lbl" x="19" y="56" text-anchor="middle" fill="var(--huns)" font-size="9">H</text>
+          <text class="hl-lbl" x="67" y="56" text-anchor="middle" fill="var(--tens)" font-size="9">T</text>
+          <text class="hl-lbl" x="115" y="56" text-anchor="middle" fill="var(--ones)" font-size="9">O</text>
+        </g>
+        <text class="hl-num" x="85" y="138" text-anchor="middle" font-size="22">418</text>
+      </g>
+      <g transform="translate(210 110)">
+        <circle cx="30" cy="20" r="28" fill="#efeefb" stroke="var(--accent)" stroke-width="2.5"/>
+        <text class="hl-num" x="30" y="32" text-anchor="middle" font-size="36" fill="var(--accent-d)">&gt;</text>
+        <text class="hl-lbl" x="30" y="68" text-anchor="middle" fill="var(--mute)" font-size="9">4 H beats 3 H</text>
+      </g>
+      <g transform="translate(280 50)">
+        <rect class="hl-card" x="0" y="0" width="170" height="160" rx="12"/>
+        <text class="hl-lbl" x="85" y="20" text-anchor="middle">Number B</text>
+        <g transform="translate(20 38)">
+          <rect class="hl-h" x="0" y="0" width="38" height="38" rx="4"/>
+          <rect class="hl-t" x="48" y="0" width="38" height="38" rx="4"/>
+          <rect class="hl-o" x="96" y="0" width="38" height="38" rx="4"/>
+          <text x="19" y="26" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="24">3</text>
+          <text x="67" y="26" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="24">9</text>
+          <text x="115" y="26" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="24">2</text>
+          <text class="hl-lbl" x="19" y="56" text-anchor="middle" fill="var(--huns)" font-size="9">H</text>
+          <text class="hl-lbl" x="67" y="56" text-anchor="middle" fill="var(--tens)" font-size="9">T</text>
+          <text class="hl-lbl" x="115" y="56" text-anchor="middle" fill="var(--ones)" font-size="9">O</text>
+        </g>
+        <text class="hl-num" x="85" y="138" text-anchor="middle" font-size="22">392</text>
+      </g>
+    </svg>
+  </div>
 
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>The biggest digit does not always win</h1>

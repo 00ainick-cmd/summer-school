@@ -113,6 +113,18 @@
   .note{background:#fffbe9;border:1px solid #f0d97a;border-radius:10px;padding:12px 14px;font-size:14.5px;margin-top:10px;} .note b{color:var(--gold);}
   .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;margin-top:8px;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;} html{scroll-behavior:auto;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .registerA{fill:rgba(31,59,84,.04);stroke:var(--alt);stroke-width:1.4;}
+  .lesson-hero .registerB{fill:rgba(255,59,20,.06);stroke:var(--accent);stroke-width:1.4;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+  .lesson-hero .anno{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:.04em;fill:var(--ink2);}
+  .lesson-hero .annoline{stroke:var(--ink2);stroke-width:.9;stroke-dasharray:2 2;fill:none;}
+  .lesson-hero .underwave{stroke:var(--accent);stroke-width:1.4;fill:none;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -149,6 +161,44 @@
     <h1>Word Choice and Sentence Structure</h1>
     <p class="mission">Two writers can recount precisely the same factual event, yet readers will experience the two passages as emotionally and tonally distinct. The underlying fact remains constant; what differs is the rhetorical machinery surrounding it. Diction (word choice) and syntax (sentence structure) perform the interpretive work, calibrating connotation, register, and pace. Discerning that machinery in operation is what separates a casual reader from a critically attuned one.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Analyze how specific word choices and sentence structures contribute to meaning and tone.</div>
+
+    <!-- HERO_ILLO_V1: same fact written in two registers, annotated -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 250" role="img" aria-label="The same fact presented in two registers: a formal version with elevated diction and complex syntax annotated, and a colloquial version with plain diction and short sentences annotated. Both convey the identical event.">
+        <rect class="panel" x="6" y="6" width="548" height="238" rx="10"/>
+        <text class="headlbl" x="22" y="26">Same fact, two registers</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">diction + syntax = tone</text>
+        <g transform="translate(28 54)">
+          <rect class="registerA" x="0" y="0" width="252" height="172" rx="8"/>
+          <text class="anton" x="14" y="22" font-size="14" fill="var(--alt)">Formal register</text>
+          <line x1="14" y1="30" x2="54" y2="30" stroke="var(--alt)" stroke-width="2"/>
+          <g transform="translate(14 50)" font-family="'Spline Sans', sans-serif" font-size="12" fill="var(--ink)">
+            <text x="0" y="0"><tspan font-weight="700">She declined</tspan> the invitation,</text>
+            <text x="0" y="16">noting that the timing</text>
+            <text x="0" y="32">was, in her judgment,</text>
+            <text x="0" y="48">inopportune.</text>
+          </g>
+          <path class="annoline" d="M88 50 L88 120 L120 122"/>
+          <text class="anno" x="126" y="124">elevated verb</text>
+          <path class="annoline" d="M16 96 L16 138 L60 140"/>
+          <text class="anno" x="66" y="143">subordinate clause</text>
+        </g>
+        <g transform="translate(296 54)">
+          <rect class="registerB" x="0" y="0" width="240" height="172" rx="8"/>
+          <text class="anton" x="14" y="22" font-size="14" fill="var(--accent-d)">Colloquial register</text>
+          <line x1="14" y1="30" x2="74" y2="30" stroke="var(--accent)" stroke-width="2"/>
+          <g transform="translate(14 50)" font-family="'Spline Sans', sans-serif" font-size="12" fill="var(--ink)">
+            <text x="0" y="0"><tspan font-weight="700">She said no.</tspan></text>
+            <text x="0" y="20">Bad timing.</text>
+          </g>
+          <path class="underwave" d="M14 56 q5 -4 10 0 t10 0 t10 0 t10 0 t10 0"/>
+          <path class="annoline" d="M48 50 L48 110 L80 112"/>
+          <text class="anno" x="86" y="114" fill="var(--accent-d)">plain verb</text>
+          <path class="annoline" d="M20 72 L20 138 L72 140"/>
+          <text class="anno" x="78" y="143" fill="var(--accent-d)">short, clipped syntax</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Diction: the word the writer picked, and the words they did not</h2></div>

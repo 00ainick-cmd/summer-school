@@ -116,6 +116,17 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .axis{stroke:var(--ink);stroke-width:1.5;}
+  .lesson-hero .tick{stroke:var(--ink2);stroke-width:1.1;}
+  .lesson-hero .gridln{stroke:rgba(36,81,166,.10);stroke-width:1;}
+  .lesson-hero .ratlbl{font-family:'Spline Sans Mono',monospace;font-size:11px;fill:var(--ink2);}
+  .lesson-hero .irrlbl{font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.03em;fill:var(--accent-d);}
+  .lesson-hero .irrval{font-family:'Spline Sans Mono',monospace;font-size:10px;fill:var(--accent-d);}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -153,6 +164,56 @@
     <h1>Real Numbers on the Line</h1>
     <p class="mission">Some numbers can be written as a clean fraction. Some never settle down, no matter how many decimals you write. You will learn to tell them apart, estimate the messy ones, and pin them to a number line.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Estimate the value and compare the size of irrational numbers and approximate their locations on a number line.</div>
+
+    <!-- HERO_ILLO_V1: irrational numbers plotted between rationals on a number line -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 200" role="img" aria-label="A number line from 0 to 4, with rational integers marked, and the irrationals square root of 2, e, and pi plotted as labeled points between them.">
+        <rect class="panel" x="6" y="6" width="548" height="188" rx="10"/>
+        <text class="headlbl" x="22" y="26">The real number line</text>
+        <text class="ratlbl" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">rationals + irrationals</text>
+        <g transform="translate(0 120)">
+          <line class="axis" x1="40" y1="0" x2="540" y2="0"/>
+          <path d="M540 0 L532 -5 L532 5 Z" fill="var(--ink)"/>
+          <path d="M40 0 L48 -5 L48 5 Z" fill="var(--ink)"/>
+          <g class="ticks">
+            <g><line class="tick" x1="60" y1="-7" x2="60" y2="7"/><text class="ratlbl" x="60" y="24" text-anchor="middle">0</text></g>
+            <g><line class="tick" x1="180" y1="-7" x2="180" y2="7"/><text class="ratlbl" x="180" y="24" text-anchor="middle">1</text></g>
+            <g><line class="tick" x1="300" y1="-7" x2="300" y2="7"/><text class="ratlbl" x="300" y="24" text-anchor="middle">2</text></g>
+            <g><line class="tick" x1="420" y1="-7" x2="420" y2="7"/><text class="ratlbl" x="420" y="24" text-anchor="middle">3</text></g>
+            <g><line class="tick" x1="540" y1="-7" x2="540" y2="7"/><text class="ratlbl" x="540" y="24" text-anchor="middle">4</text></g>
+          </g>
+          <g class="halfticks" stroke="var(--mute)" stroke-width=".75">
+            <line x1="120" y1="-4" x2="120" y2="4"/><line x1="240" y1="-4" x2="240" y2="4"/>
+            <line x1="360" y1="-4" x2="360" y2="4"/><line x1="480" y1="-4" x2="480" y2="4"/>
+          </g>
+        </g>
+        <g transform="translate(229.7 56)">
+          <line x1="0" y1="0" x2="0" y2="64" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="3 3"/>
+          <circle cx="0" cy="64" r="4.5" fill="var(--accent)"/>
+          <text class="irrlbl" x="0" y="-8" text-anchor="middle">&#8730;2</text>
+          <text class="irrval" x="0" y="-22" text-anchor="middle">1.41421...</text>
+        </g>
+        <g transform="translate(386.3 56)">
+          <line x1="0" y1="0" x2="0" y2="64" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="3 3"/>
+          <circle cx="0" cy="64" r="4.5" fill="var(--accent)"/>
+          <text class="irrlbl" x="0" y="-8" text-anchor="middle">e</text>
+          <text class="irrval" x="0" y="-22" text-anchor="middle">2.71828...</text>
+        </g>
+        <g transform="translate(437 86)">
+          <line x1="0" y1="0" x2="0" y2="34" stroke="var(--accent)" stroke-width="1.6" stroke-dasharray="3 3"/>
+          <circle cx="0" cy="34" r="4.5" fill="var(--accent)"/>
+          <text class="irrlbl" x="0" y="-8" text-anchor="middle">&#960;</text>
+          <text class="irrval" x="0" y="-22" text-anchor="middle">3.14159...</text>
+        </g>
+        <g transform="translate(60 162)">
+          <rect x="0" y="0" width="14" height="10" fill="var(--ink)"/>
+          <text class="ratlbl" x="22" y="9" style="font-size:10px;">rational integer tick</text>
+          <rect x="160" y="2" width="10" height="2" fill="var(--accent)"/>
+          <circle cx="180" cy="3" r="3.5" fill="var(--accent)"/>
+          <text class="ratlbl" x="190" y="9" style="font-size:10px;fill:var(--accent-d);">irrational, never resolves</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Two kinds of number</h2></div>

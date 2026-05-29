@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -174,6 +183,31 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.RA.A.1</span></div>
+  <!-- HERO_ILLO_V1: fact family triangle with 9, 6, 15 and four facts -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="A fact family triangle linking nine, six, and fifteen with four related addition and subtraction facts.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">One fact family · four facts</text>
+      <g transform="translate(80 38)">
+        <polygon points="80,0 0,140 160,140" fill="#efeefb" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="80" cy="0" r="26" class="hl-h"/>
+        <text x="80" y="8" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="26">15</text>
+        <circle cx="0" cy="140" r="22" class="hl-t"/>
+        <text x="0" y="148" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="22">9</text>
+        <circle cx="160" cy="140" r="22" class="hl-o"/>
+        <text x="160" y="148" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="22">6</text>
+        <text class="hl-lbl" x="80" y="175" text-anchor="middle" fill="var(--mute)" font-size="9">whole at top · parts below</text>
+      </g>
+      <g transform="translate(290 50)">
+        <rect class="hl-card" x="0" y="0" width="170" height="160" rx="12"/>
+        <text class="hl-lbl" x="85" y="20" text-anchor="middle">The four facts</text>
+        <text class="hl-num" x="85" y="50" text-anchor="middle" font-size="18">9 + 6 = 15</text>
+        <text class="hl-num" x="85" y="80" text-anchor="middle" font-size="18">6 + 9 = 15</text>
+        <text class="hl-num" x="85" y="110" text-anchor="middle" font-size="18" fill="var(--alt)">15 - 9 = 6</text>
+        <text class="hl-num" x="85" y="140" text-anchor="middle" font-size="18" fill="var(--alt)">15 - 6 = 9</text>
+      </g>
+      <path class="hl-faint" d="M250 130 L290 130"/>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>A strategy makes the fact fast</h1>
       <p class="mission">Two facts below. Tap each to see a strategy that makes it quick. Counting on your fingers is slow; a strategy is fast.</p>

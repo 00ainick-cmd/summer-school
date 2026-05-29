@@ -107,6 +107,17 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .chunk-pre{fill:#e8d5cc;stroke:var(--accent);stroke-width:1.5;}
+  .lesson-hero .chunk-root{fill:#f3e8d0;stroke:var(--alt);stroke-width:1.5;}
+  .lesson-hero .chunk-suf{fill:#d8e0cc;stroke:#5a7a4a;stroke-width:1.5;}
+  .lesson-hero .chunk-txt{font-family:'Fraunces',serif;font-weight:600;font-size:24px;text-anchor:middle;}
+  .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;}
+  .lesson-hero .mean{font-family:'Newsreader',serif;font-style:italic;font-size:13px;text-anchor:middle;fill:var(--ink2);}
+  .lesson-hero .arrow{fill:none;stroke:var(--mute);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3 3;}
+  .lesson-hero .equ{font-family:'Fraunces',serif;font-weight:600;font-size:22px;text-anchor:middle;fill:var(--ink);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -145,6 +156,38 @@
     <p class="opener"><span class="dropcap">W</span>ords can grow. Add a small part to the <b>front</b> of a word and it is a <b>prefix</b>. Add one to the <b>end</b> and it is a <b>suffix</b>. Each part carries its own meaning and changes the word.</p>
     <p class="mission">By the end you will spot prefixes and suffixes and build new words from a root.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Develop phonics in the reading process by reading words with common prefixes and suffixes.</div>
+
+    <!-- HERO_ILLO_V1: re + play + ing colored chunks combining to replaying -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="The word replaying broken into three colored chunks. Prefix re, root play, suffix ing. Underneath, the full word with its meaning.">
+        <text class="cap" x="240" y="22" fill="var(--accent-d)">A word in three parts</text>
+        <g transform="translate(40 44)">
+          <rect class="chunk-pre" x="0" y="0" width="100" height="60" rx="10"/>
+          <text class="chunk-txt" x="50" y="40" fill="var(--accent-d)">re</text>
+          <text class="cap" x="50" y="80" fill="var(--accent)">prefix</text>
+          <text class="mean" x="50" y="100">"again"</text>
+        </g>
+        <g transform="translate(160 44)">
+          <rect class="chunk-root" x="0" y="0" width="140" height="60" rx="10"/>
+          <text class="chunk-txt" x="70" y="40" fill="var(--alt)">play</text>
+          <text class="cap" x="70" y="80" fill="var(--alt)">root</text>
+          <text class="mean" x="70" y="100">"to play"</text>
+        </g>
+        <g transform="translate(320 44)">
+          <rect class="chunk-suf" x="0" y="0" width="120" height="60" rx="10"/>
+          <text class="chunk-txt" x="60" y="40" fill="#3f5a32">ing</text>
+          <text class="cap" x="60" y="80" fill="#5a7a4a">suffix</text>
+          <text class="mean" x="60" y="100">"doing now"</text>
+        </g>
+        <g class="arrow">
+          <path d="M90 130 Q90 158 240 168"/>
+          <path d="M230 142 Q230 162 240 168"/>
+          <path d="M380 130 Q380 158 240 168"/>
+        </g>
+        <text class="equ" x="240" y="200">replaying</text>
+        <text class="mean" x="240" y="222">"playing it again"</text>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>The word parts</h2></div>

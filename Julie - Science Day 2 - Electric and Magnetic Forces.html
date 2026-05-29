@@ -129,6 +129,18 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .qpos{fill:#fff;stroke:var(--accent);stroke-width:2;}
+  .lesson-hero .qneg{fill:#fff;stroke:var(--alt);stroke-width:2;}
+  .lesson-hero .field{stroke:var(--ink2);stroke-width:1.1;fill:none;opacity:.6;}
+  .lesson-hero .repel{stroke:var(--accent);stroke-width:2.2;fill:none;stroke-linecap:round;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .qlbl{font-family:'Spline Sans Mono',monospace;font-size:16px;font-weight:600;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -165,6 +177,53 @@
     <h1>Electric and Magnetic Forces</h1>
     <p class="mission">Two non-contact, field-mediated forces shape virtually every electronic and mechanical system humans construct: electric charges that attract or repel one another across empty space, and magnetic poles that exert analogous interactions through their surrounding fields. Both forces follow precise mathematical patterns that can be measured and modeled, and both diminish rapidly with distance according to an inverse-square relationship.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Analyze diagrams and collect data to determine factors affecting electric and magnetic force strength.</div>
+
+    <!-- HERO_ILLO_V1: two like charges with field lines and repulsive force vectors -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 250" role="img" aria-label="Two positive electric charges with curved field lines emanating outward and two force vectors pushing them apart, illustrating that like charges repel through a field that weakens with distance.">
+        <rect class="panel" x="6" y="6" width="548" height="238" rx="10"/>
+        <text class="headlbl" x="22" y="26">Field forces &middot; like repels like</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">force falls off with distance&#178;</text>
+        <g transform="translate(180 130)">
+          <path class="field" d="M0 0 q-40 -40 -90 -34"/>
+          <path class="field" d="M0 0 q-50 -10 -100 -2"/>
+          <path class="field" d="M0 0 q-40 30 -90 34"/>
+          <path class="field" d="M0 0 q40 -40 90 -34"/>
+          <path class="field" d="M0 0 q40 30 90 34"/>
+          <path class="field" d="M0 0 q-30 -60 -10 -100"/>
+          <path class="field" d="M0 0 q30 -60 10 -100"/>
+          <path class="field" d="M0 0 q-30 60 -10 100"/>
+          <path class="field" d="M0 0 q30 60 10 100"/>
+          <circle class="qpos" cx="0" cy="0" r="24"/>
+          <text class="qlbl" x="0" y="6" text-anchor="middle" fill="var(--accent-d)">+</text>
+        </g>
+        <g transform="translate(380 130)">
+          <path class="field" d="M0 0 q40 -40 90 -34"/>
+          <path class="field" d="M0 0 q50 -10 100 -2"/>
+          <path class="field" d="M0 0 q40 30 90 34"/>
+          <path class="field" d="M0 0 q-40 -40 -90 -34"/>
+          <path class="field" d="M0 0 q-40 30 -90 34"/>
+          <path class="field" d="M0 0 q-30 -60 -10 -100"/>
+          <path class="field" d="M0 0 q30 -60 10 -100"/>
+          <path class="field" d="M0 0 q-30 60 -10 100"/>
+          <path class="field" d="M0 0 q30 60 10 100"/>
+          <circle class="qpos" cx="0" cy="0" r="24"/>
+          <text class="qlbl" x="0" y="6" text-anchor="middle" fill="var(--accent-d)">+</text>
+        </g>
+        <g transform="translate(0 130)">
+          <line class="repel" x1="158" y1="0" x2="116" y2="0"/>
+          <path d="M116 0 L124 -5 L124 5 Z" fill="var(--accent)"/>
+          <line class="repel" x1="402" y1="0" x2="444" y2="0"/>
+          <path d="M444 0 L436 -5 L436 5 Z" fill="var(--accent)"/>
+          <text class="mono" x="280" y="-100" text-anchor="middle" font-size="11" fill="var(--accent-d)" style="letter-spacing:.06em;text-transform:uppercase;">force vectors push apart</text>
+        </g>
+        <g transform="translate(34 60)">
+          <text class="anton" x="0" y="0" font-size="12" fill="var(--ink2)">strength depends on</text>
+          <text class="mono" x="0" y="18" font-size="12" font-weight="600" fill="var(--ink)">q&#8321; &middot; q&#8322;</text>
+          <text class="mono" x="0" y="34" font-size="12" font-weight="600" fill="var(--ink)">1 / r&#178; (distance)</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / FRAME</span><h2>Forces without touching</h2></div>

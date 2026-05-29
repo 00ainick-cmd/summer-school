@@ -100,6 +100,15 @@
   .delayBox{background:#f3ead9;border:1px solid var(--line);border-radius:10px;padding:14px;font-size:15px;color:var(--ink2);margin-top:10px;}
   footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}*{animation:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .alt{fill:var(--alt);opacity:.85;}
+  .lesson-hero .annot{font-family:'Fraunces',serif;font-style:italic;fill:var(--ink2);font-size:11px;}
+  .lesson-hero .title{font-family:'Fraunces',serif;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .head{font-family:'Fraunces',serif;font-weight:600;fill:var(--ink);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -138,6 +147,57 @@
     <p class="opener"><span class="dropcap">B</span>efore you read a book, the book is already talking to you. Look at the title. Look at the pictures. Look at the bold words. Look at the headings. These are <b>text features</b>. They give you clues. Smart readers use these clues to <b>predict</b>. Then they read and check.</p>
     <p class="mission">By the end you will spot text features. You will use them to make a guess. You will tell when your guess was right.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Using text features to make and confirm predictions, and explain why a prediction was not confirmed.</div>
+
+    <!-- HERO_ILLO_V1: open book page with title, heading, picture, magnifier hovering -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="A book page with a big title, a section heading, and a picture, with a magnifier hovering over the title.">
+        <defs>
+          <linearGradient id="bookPage" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fffdf8"/>
+            <stop offset="1" stop-color="#f3ead9"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(80 30)">
+          <rect x="0" y="0" width="320" height="190" rx="6" fill="url(#bookPage)" stroke="#b89a72" stroke-width="1.6"/>
+          <line x1="14" y1="0" x2="14" y2="190" stroke="#b89a72" stroke-width="1" opacity=".5"/>
+          <text class="title" x="30" y="32" font-size="20">Frogs of the Pond</text>
+          <line x1="30" y1="42" x2="220" y2="42" stroke="var(--accent)" stroke-width="2"/>
+          <g stroke="var(--ink2)" stroke-width="1.2" opacity=".55">
+            <line x1="30" y1="58" x2="290" y2="58"/>
+            <line x1="30" y1="72" x2="290" y2="72"/>
+            <line x1="30" y1="86" x2="260" y2="86"/>
+          </g>
+          <text class="head" x="30" y="112" font-size="14">A frog's home</text>
+          <line x1="30" y1="118" x2="120" y2="118" stroke="var(--alt)" stroke-width="1.6"/>
+          <g stroke="var(--ink2)" stroke-width="1.2" opacity=".55">
+            <line x1="30" y1="132" x2="180" y2="132"/>
+            <line x1="30" y1="146" x2="180" y2="146"/>
+          </g>
+          <g transform="translate(200 124)">
+            <rect x="0" y="0" width="100" height="56" rx="4" fill="#e6efde" stroke="#5a7a4a" stroke-width="1.4"/>
+            <ellipse cx="50" cy="40" rx="34" ry="8" fill="#5a7a4a" opacity=".35"/>
+            <circle cx="50" cy="30" r="14" fill="var(--alt)"/>
+            <circle cx="44" cy="26" r="3" fill="#fffdf8"/>
+            <circle cx="56" cy="26" r="3" fill="#fffdf8"/>
+            <circle cx="44" cy="26" r="1.4" fill="var(--ink)"/>
+            <circle cx="56" cy="26" r="1.4" fill="var(--ink)"/>
+            <text class="annot" x="50" y="52" text-anchor="middle">picture</text>
+          </g>
+        </g>
+        <g transform="translate(60 14)">
+          <circle cx="100" cy="40" r="34" fill="rgba(255,253,248,.35)" stroke="var(--accent)" stroke-width="3"/>
+          <circle cx="100" cy="40" r="34" fill="none" stroke="var(--accent-d)" stroke-width="1" opacity=".5"/>
+          <circle cx="90" cy="30" r="6" fill="rgba(255,255,255,.55)"/>
+          <line x1="124" y1="64" x2="156" y2="96" stroke="var(--accent-d)" stroke-width="5" stroke-linecap="round"/>
+          <line x1="124" y1="64" x2="156" y2="96" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <text class="annot" x="60" y="226">Use the title to guess what the book is about.</text>
+        <g fill="var(--alt)" opacity=".55">
+          <circle cx="30" cy="120" r="2.4"/>
+          <circle cx="450" cy="120" r="2.4"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>Text features are the clues on the page</h2></div>

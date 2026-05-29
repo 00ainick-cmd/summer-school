@@ -108,6 +108,15 @@
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   footer{text-align:center;margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .alt{fill:var(--alt);opacity:.9;}
+  .lesson-hero .bin{fill:#f3ead9;stroke:var(--accent-d);stroke-width:1.4;}
+  .lesson-hero .label{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--accent-d);font-weight:700;}
+  .lesson-hero .annot{font-family:var(--hfont),system-ui,sans-serif;font-style:italic;fill:var(--ink2);font-size:11px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -141,6 +150,63 @@
 <div class="labbar"><span class="dotg" aria-hidden="true"></span>Science station &middot; <b>Grade 2</b><span class="chip">Standard 2-PS1-1</span></div>
 <section id="lesson">
 <div class="kicker">Lesson</div><h1>Sorting Materials by What We Observe</h1><div class="stdtag"><span class="l">Standard 2-PS1-1</span>Plan and conduct an study to describe and classify different kinds of materials by their observable properties.</div>
+
+<!-- HERO_ILLO_V1: four materials being dropped into labeled sorting bins -->
+<div class="lesson-hero" aria-hidden="true">
+  <svg viewBox="0 0 480 240" role="img" aria-label="A rock, a sponge, a metal spoon, and a glass marble being sorted into three labeled bins for hard, soft, and shiny.">
+    <g transform="translate(20 30)">
+      <circle cx="40" cy="36" r="22" fill="#8a8278" stroke="var(--ink)" stroke-width="1.4"/>
+      <path d="M28 30 Q34 26 40 30 Q46 26 52 32" stroke="var(--ink)" stroke-width="1" fill="none" opacity=".55"/>
+      <text class="annot" x="40" y="76" text-anchor="middle">rock</text>
+    </g>
+    <g transform="translate(110 30)">
+      <rect x="14" y="20" width="52" height="32" rx="4" fill="#f5d56a" stroke="var(--ink)" stroke-width="1.4"/>
+      <g stroke="var(--ink)" stroke-width="1" opacity=".4">
+        <circle cx="24" cy="30" r="1.8"/>
+        <circle cx="34" cy="40" r="1.8"/>
+        <circle cx="46" cy="32" r="1.8"/>
+        <circle cx="54" cy="42" r="1.8"/>
+      </g>
+      <text class="annot" x="40" y="76" text-anchor="middle">sponge</text>
+    </g>
+    <g transform="translate(200 30)">
+      <ellipse cx="40" cy="22" rx="14" ry="10" fill="#cfd6d8" stroke="var(--ink)" stroke-width="1.4"/>
+      <rect x="38" y="28" width="4" height="28" fill="#cfd6d8" stroke="var(--ink)" stroke-width="1.2"/>
+      <ellipse cx="40" cy="20" rx="6" ry="3" fill="#fff" opacity=".7"/>
+      <text class="annot" x="40" y="76" text-anchor="middle">spoon</text>
+    </g>
+    <g transform="translate(290 30)">
+      <circle cx="40" cy="36" r="18" fill="#7fb6e0" stroke="var(--ink)" stroke-width="1.4"/>
+      <circle cx="33" cy="30" r="5" fill="#fff" opacity=".7"/>
+      <text class="annot" x="40" y="76" text-anchor="middle">marble</text>
+    </g>
+    <g class="ink" stroke="var(--accent-d)" stroke-width="1.4" stroke-dasharray="3 3" opacity=".7" fill="none">
+      <path d="M60 96 Q70 120 100 142"/>
+      <path d="M150 96 Q180 122 230 142"/>
+      <path d="M240 96 Q260 122 270 142"/>
+      <path d="M330 96 Q340 122 360 142"/>
+    </g>
+    <g transform="translate(60 140)">
+      <path d="M0 0 L100 0 L92 60 L8 60 Z" class="bin"/>
+      <text class="label" x="50" y="36" text-anchor="middle">HARD</text>
+    </g>
+    <g transform="translate(190 140)">
+      <path d="M0 0 L100 0 L92 60 L8 60 Z" class="bin"/>
+      <text class="label" x="50" y="36" text-anchor="middle">SOFT</text>
+    </g>
+    <g transform="translate(320 140)">
+      <path d="M0 0 L100 0 L92 60 L8 60 Z" class="bin"/>
+      <text class="label" x="50" y="36" text-anchor="middle">SHINY</text>
+    </g>
+    <text class="annot" x="240" y="226" text-anchor="middle">sort by what you see and feel</text>
+    <g fill="var(--alt)" opacity=".6">
+      <circle cx="20" cy="200" r="2"/>
+      <circle cx="460" cy="200" r="2"/>
+      <circle cx="430" cy="20" r="2"/>
+    </g>
+  </svg>
+</div>
+
 <div class="station prose"><div class="shead"><span class="sno">01</span><h2>Scientists look closely</h2></div><p>A scientist looks at a thing and tells what they see. The way it looks or feels is a <b>property</b>. You see a property with your eyes. You feel it with your hands. Today you will look at things. You will tell their properties. Then you will sort them into groups. That is what real scientists do. One safety rule: do not taste or smell a thing you do not know. Use your eyes. Touch with care.</p></div>
 <div class="station"><div class="shead"><span class="sno">02</span><h2>Six properties to know</h2></div><p class="intro">Each property is a pair of opposites. Try to remember these.</p><div class="ccards"><div class="ccard"><div class="lbl">Hard / Soft</div><div class="sub">when you press it</div><div class="eg">a rock vs a pillow</div></div><div class="ccard"><div class="lbl">Smooth / Rough</div><div class="sub">when you rub it</div><div class="eg">glass vs sandpaper</div></div><div class="ccard"><div class="lbl">Bendy / Stiff</div><div class="sub">does it bend</div><div class="eg">a rubber band vs a ruler</div></div><div class="ccard"><div class="lbl">Shiny / Dull</div><div class="sub">how light bounces off</div><div class="eg">a spoon vs cardboard</div></div><div class="ccard"><div class="lbl">Heavy / Light</div><div class="sub">how much it weighs</div><div class="eg">a book vs a feather</div></div><div class="ccard"><div class="lbl">See-through / Not</div><div class="sub">can light pass through</div><div class="eg">a window vs a wall</div></div></div></div>
 <div class="station"><div class="shead"><span class="sno">03</span><h2>Predict, then check</h2></div><p class="intro">A scientist guesses first. Then they look. Make your guess. Then check.</p><details class="pred"><summary>A kitchen sponge. Hard or soft?</summary><div class="ans">Answer: <b>Soft</b>. You can squeeze it.</div></details><details class="pred"><summary>A glass marble. Smooth or rough?</summary><div class="ans">Answer: <b>Smooth</b>. It has no bumps.</div></details><details class="pred"><summary>A metal fork. Bendy or stiff?</summary><div class="ans">Answer: <b>Stiff</b>. It keeps its shape. It does not bend.</div></details><details class="pred"><summary>A clear water bottle. See-through or not?</summary><div class="ans">Answer: <b>See-through</b>. Light goes through. You can see inside.</div></details></div>

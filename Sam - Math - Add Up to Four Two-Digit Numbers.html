@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -174,6 +183,42 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.B.7</span></div>
+  <!-- HERO_ILLO_V1: four two-digit numbers stacked vertically with sum, plus pairing hints -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="Four two-digit numbers stacked: twenty seven, thirteen, twenty two, and eighteen, summing to eighty.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Stack four addends · find friendly pairs</text>
+      <g transform="translate(140 36)">
+        <rect class="hl-card" x="0" y="0" width="130" height="200" rx="14"/>
+        <text class="hl-lbl" x="50" y="20" text-anchor="middle" fill="var(--tens)">tens</text>
+        <text class="hl-lbl" x="92" y="20" text-anchor="middle" fill="var(--ones)">ones</text>
+        <text x="50" y="60" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ink)">2</text>
+        <text x="92" y="60" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ones)">7</text>
+        <text x="50" y="92" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ink)">1</text>
+        <text x="92" y="92" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ones)">3</text>
+        <text x="50" y="124" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ink)">2</text>
+        <text x="92" y="124" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ones)">2</text>
+        <text x="14" y="156" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="24" fill="var(--accent-d)">+</text>
+        <text x="50" y="156" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ink)">1</text>
+        <text x="92" y="156" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="28" fill="var(--ones)">8</text>
+        <line x1="14" y1="166" x2="116" y2="166" stroke="var(--ink)" stroke-width="2"/>
+        <text x="50" y="196" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--good)">8</text>
+        <text x="92" y="196" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--good)">0</text>
+      </g>
+      <g transform="translate(290 60)">
+        <text class="hl-lbl" x="0" y="0" fill="var(--ones)">friendly ones</text>
+        <path class="hl-faint" d="M-20 14 Q-40 50 -20 76" stroke="var(--ones)" fill="none" stroke-width="2"/>
+        <text class="hl-num" x="0" y="22" font-size="14">7 + 3 = 10</text>
+        <text class="hl-num" x="0" y="46" font-size="14">2 + 8 = 10</text>
+        <text class="hl-lbl" x="0" y="66" fill="var(--mute)">ones lane: 20</text>
+      </g>
+      <g transform="translate(290 130)">
+        <text class="hl-lbl" x="0" y="0" fill="var(--tens)">tens lane</text>
+        <text class="hl-num" x="0" y="22" font-size="14">2+1+2+1 = 6</text>
+        <text class="hl-num" x="0" y="46" font-size="14">+ 2 carried</text>
+        <text class="hl-num" x="0" y="68" font-size="15" fill="var(--good)">total: 80</text>
+      </g>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>Ones first, then tens</h1>
       <p class="mission">Two sums below. Tap each to see the order: ones first, bundle the tens you make, then add the tens.</p>

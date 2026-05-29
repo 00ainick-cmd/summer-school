@@ -117,6 +117,21 @@
   .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
   .gateitem .g2{flex:1;text-align:left;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .parch{fill:#f5e9c8;stroke:var(--ink);stroke-width:1.5;}
+  .lesson-hero .parchedge{fill:#e8d8a8;stroke:none;}
+  .lesson-hero .scroll-r{fill:#9b6d2a;stroke:var(--ink);stroke-width:1.3;}
+  .lesson-hero .ruleln{stroke:#a89160;stroke-width:1;opacity:.55;}
+  .lesson-hero .hl{fill:rgba(255,59,20,.18);stroke:var(--accent);stroke-width:1.1;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .docfont{font-family:'Spline Sans Mono',monospace;font-size:9px;fill:var(--ink);letter-spacing:.02em;}
+  .lesson-hero .annolbl{font-family:'Spline Sans Mono',monospace;font-size:9.5px;fill:var(--accent-d);letter-spacing:.06em;text-transform:uppercase;}
+  .lesson-hero .annoline{stroke:var(--accent);stroke-width:1;stroke-dasharray:3 2;fill:none;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -154,6 +169,54 @@
     <h1>The Declaration of Independence</h1>
     <p class="mission">In July of 1776, thirteen colonies announced they would no longer be ruled by Britain. The text they signed did more than declare a break; it argued a case, and the argument leaned on a small library of Enlightenment ideas. To read it well, you have to read the context, the philosophy, and the structure together.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Analyze the Declaration of Independence to determine the historical context and political philosophies that influenced its creation.</div>
+
+    <!-- HERO_ILLO_V1: parchment scroll with the famous self-evident truths phrase highlighted and annotated -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 280" role="img" aria-label="A parchment scroll showing the opening lines of the Declaration of Independence, with the phrase We hold these truths to be self-evident highlighted, and annotations pointing to its core Enlightenment ideas: natural rights and consent of the governed.">
+        <rect class="panel" x="6" y="6" width="548" height="268" rx="10"/>
+        <text class="headlbl" x="22" y="26">1776 &middot; A founding argument</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">Enlightenment ideas, signed</text>
+        <g transform="translate(140 50)">
+          <rect class="scroll-r" x="-12" y="-6" width="24" height="216" rx="3"/>
+          <rect class="scroll-r" x="268" y="-6" width="24" height="216" rx="3"/>
+          <rect class="parch" x="12" y="0" width="256" height="204" rx="2"/>
+          <path class="parchedge" d="M12 0 Q14 12 12 24 L12 6 Z"/>
+          <path class="parchedge" d="M268 0 Q266 12 268 24 L268 6 Z"/>
+          <path class="parchedge" d="M12 180 Q14 192 12 204 L12 188 Z"/>
+          <path class="parchedge" d="M268 180 Q266 192 268 204 L268 188 Z"/>
+          <g class="ruleln">
+            <line x1="24" y1="36" x2="256" y2="36"/>
+            <line x1="24" y1="52" x2="256" y2="52"/>
+            <line x1="24" y1="80" x2="256" y2="80"/>
+            <line x1="24" y1="96" x2="256" y2="96"/>
+            <line x1="24" y1="112" x2="256" y2="112"/>
+            <line x1="24" y1="140" x2="256" y2="140"/>
+            <line x1="24" y1="156" x2="256" y2="156"/>
+            <line x1="24" y1="172" x2="256" y2="172"/>
+          </g>
+          <text class="docfont" x="24" y="22" font-size="11" font-weight="700">IN CONGRESS, JULY 4, 1776.</text>
+          <text class="docfont" x="24" y="40">When in the Course of human events,</text>
+          <text class="docfont" x="24" y="56">it becomes necessary for one people...</text>
+          <rect class="hl" x="22" y="68" width="234" height="32" rx="2"/>
+          <text class="docfont" x="24" y="84" font-weight="700" fill="var(--accent-d)">We hold these truths to be self-evident,</text>
+          <text class="docfont" x="24" y="100" font-weight="700" fill="var(--accent-d)">that all men are created equal,</text>
+          <text class="docfont" x="24" y="116">that they are endowed... with certain</text>
+          <text class="docfont" x="24" y="132" font-weight="700">unalienable Rights, that among these</text>
+          <text class="docfont" x="24" y="148">are Life, Liberty and the pursuit of</text>
+          <text class="docfont" x="24" y="164">Happiness. That to secure these rights,</text>
+          <text class="docfont" x="24" y="180">Governments are instituted... deriving</text>
+          <text class="docfont" x="24" y="196">their just powers from the consent...</text>
+        </g>
+        <g transform="translate(0 0)">
+          <path class="annoline" d="M152 134 L70 140 L34 140"/>
+          <text class="annolbl" x="34" y="134">natural rights</text>
+          <text class="annolbl" x="34" y="148" fill="var(--ink2)">(from Locke)</text>
+          <path class="annoline" d="M408 196 L490 196 L526 196"/>
+          <text class="annolbl" x="526" y="190" text-anchor="end">consent of the governed</text>
+          <text class="annolbl" x="526" y="204" text-anchor="end" fill="var(--ink2)">(social contract)</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / CONTEXT</span><h2>How the colonies got to 1776</h2></div>

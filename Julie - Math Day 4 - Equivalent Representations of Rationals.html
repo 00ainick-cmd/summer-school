@@ -108,6 +108,17 @@
   .cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
   footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .nodepanel{fill:#fff;stroke:var(--alt);stroke-width:1.4;}
+  .lesson-hero .corepanel{fill:#14171c;stroke:none;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+  .lesson-hero .spoke{stroke:var(--alt);stroke-width:1.25;stroke-dasharray:3 3;fill:none;}
+  .lesson-hero .formlbl{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;fill:var(--accent-d);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -145,6 +156,55 @@
     <h1>One Number, Five Faces</h1>
     <p class="mission">The same rational number can wear a fraction, a reduced fraction, a decimal, a percent, or an equivalent fraction with a different denominator. Today you learn to move between them on demand and to spot the same number in disguise.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Generate equivalent representations of rational numbers.</div>
+
+    <!-- HERO_ILLO_V1: same number in four forms radiating from a core -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 260" role="img" aria-label="The same rational number shown in four equivalent forms: three-quarters as a fraction, point seven five as a decimal, seventy-five percent, and six-eighths as an equivalent fraction, all connected to a central node.">
+        <rect class="panel" x="6" y="6" width="548" height="248" rx="10"/>
+        <text class="headlbl" x="22" y="26">One number, four faces</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">interchangeable representations</text>
+        <g transform="translate(280 138)">
+          <line class="spoke" x1="0" y1="0" x2="-178" y2="-44"/>
+          <line class="spoke" x1="0" y1="0" x2="178" y2="-44"/>
+          <line class="spoke" x1="0" y1="0" x2="-178" y2="44"/>
+          <line class="spoke" x1="0" y1="0" x2="178" y2="44"/>
+          <circle class="corepanel" cx="0" cy="0" r="48"/>
+          <text class="anton" x="0" y="-2" text-anchor="middle" font-size="11" fill="#9aa0a8" style="letter-spacing:.1em;">SAME VALUE</text>
+          <text class="mono" x="0" y="18" text-anchor="middle" font-size="20" fill="#fff" font-weight="600">0.75</text>
+        </g>
+        <g transform="translate(50 70)">
+          <rect class="nodepanel" x="0" y="0" width="160" height="68" rx="8"/>
+          <text class="formlbl" x="12" y="20">Fraction</text>
+          <g transform="translate(80 38)" class="mono" font-size="22" fill="var(--ink)" font-weight="600">
+            <text x="0" y="-2" text-anchor="middle">3</text>
+            <line x1="-16" y1="4" x2="16" y2="4" stroke="var(--ink)" stroke-width="2"/>
+            <text x="0" y="24" text-anchor="middle">4</text>
+          </g>
+        </g>
+        <g transform="translate(350 70)">
+          <rect class="nodepanel" x="0" y="0" width="160" height="68" rx="8"/>
+          <text class="formlbl" x="12" y="20">Decimal</text>
+          <text class="mono" x="80" y="50" text-anchor="middle" font-size="22" font-weight="600" fill="var(--ink)">0.75</text>
+        </g>
+        <g transform="translate(50 158)">
+          <rect class="nodepanel" x="0" y="0" width="160" height="68" rx="8"/>
+          <text class="formlbl" x="12" y="20">Equivalent fraction</text>
+          <g transform="translate(80 38)" class="mono" font-size="22" fill="var(--ink)" font-weight="600">
+            <text x="0" y="-2" text-anchor="middle">6</text>
+            <line x1="-16" y1="4" x2="16" y2="4" stroke="var(--ink)" stroke-width="2"/>
+            <text x="0" y="24" text-anchor="middle">8</text>
+          </g>
+        </g>
+        <g transform="translate(350 158)">
+          <rect class="nodepanel" x="0" y="0" width="160" height="68" rx="8"/>
+          <text class="formlbl" x="12" y="20">Percent</text>
+          <text class="mono" x="80" y="50" text-anchor="middle" font-size="22" font-weight="600" fill="var(--ink)">75%</text>
+        </g>
+        <g transform="translate(0 240)">
+          <text class="mono" x="280" y="0" text-anchor="middle" font-size="10.5" fill="var(--mute)" style="letter-spacing:.06em;text-transform:uppercase;">multiply or divide top and bottom by the same nonzero number</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Two moves cover everything</h2></div>

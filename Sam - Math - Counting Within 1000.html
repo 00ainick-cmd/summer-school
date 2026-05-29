@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 
   .machine{background:#faf9ff;border:2px solid var(--line);border-radius:16px;padding:18px;margin-top:12px;}
   .ndisp{font-family:'Baloo 2';font-weight:700;font-size:64px;line-height:1;text-align:center;letter-spacing:.04em;}
@@ -191,6 +200,36 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.A.3</span></div>
+  <!-- HERO_ILLO_V1: number line with skip-count arcs -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 220" role="img" aria-label="A number line with arcs marking skip counts of ten from one hundred twenty to one hundred eighty.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Skip count by tens</text>
+      <line x1="30" y1="140" x2="450" y2="140" stroke="var(--ink2)" stroke-width="2"/>
+      <path class="hl-faint" d="M30 134 L30 146 M100 134 L100 146 M170 134 L170 146 M240 134 L240 146 M310 134 L310 146 M380 134 L380 146 M450 134 L450 146" stroke="var(--ink2)"/>
+      <path class="hl-stroke" d="M30 140 Q65 90 100 140" stroke-dasharray="3 3"/>
+      <path class="hl-stroke" d="M100 140 Q135 90 170 140" stroke-dasharray="3 3"/>
+      <path class="hl-stroke" d="M170 140 Q205 90 240 140" stroke-dasharray="3 3"/>
+      <path class="hl-stroke" d="M240 140 Q275 90 310 140" stroke-dasharray="3 3"/>
+      <path class="hl-stroke" d="M310 140 Q345 90 380 140" stroke-dasharray="3 3"/>
+      <path class="hl-stroke" d="M380 140 Q415 90 450 140" stroke-dasharray="3 3"/>
+      <text class="hl-lbl" x="65" y="86" text-anchor="middle" fill="var(--accent)">+10</text>
+      <text class="hl-lbl" x="135" y="86" text-anchor="middle" fill="var(--accent)">+10</text>
+      <text class="hl-lbl" x="205" y="86" text-anchor="middle" fill="var(--accent)">+10</text>
+      <text class="hl-lbl" x="275" y="86" text-anchor="middle" fill="var(--accent)">+10</text>
+      <text class="hl-lbl" x="345" y="86" text-anchor="middle" fill="var(--accent)">+10</text>
+      <text class="hl-lbl" x="415" y="86" text-anchor="middle" fill="var(--accent)">+10</text>
+      <g>
+        <circle cx="30" cy="140" r="6" class="hl-h"/><text class="hl-num" x="30" y="172" text-anchor="middle" font-size="15">120</text>
+        <circle cx="100" cy="140" r="5" class="hl-t"/><text class="hl-num" x="100" y="172" text-anchor="middle" font-size="13">130</text>
+        <circle cx="170" cy="140" r="5" class="hl-t"/><text class="hl-num" x="170" y="172" text-anchor="middle" font-size="13">140</text>
+        <circle cx="240" cy="140" r="5" class="hl-t"/><text class="hl-num" x="240" y="172" text-anchor="middle" font-size="13">150</text>
+        <circle cx="310" cy="140" r="5" class="hl-t"/><text class="hl-num" x="310" y="172" text-anchor="middle" font-size="13">160</text>
+        <circle cx="380" cy="140" r="5" class="hl-t"/><text class="hl-num" x="380" y="172" text-anchor="middle" font-size="13">170</text>
+        <circle cx="450" cy="140" r="6" class="hl-h"/><text class="hl-num" x="450" y="172" text-anchor="middle" font-size="15">180</text>
+      </g>
+      <text class="hl-lbl" x="240" y="200" text-anchor="middle" fill="var(--mute)">one hop per ten · land where you started, plus ten</text>
+    </svg>
+  </div>
 
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>The jump decides which digit moves</h1>

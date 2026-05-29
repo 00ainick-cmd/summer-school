@@ -110,6 +110,17 @@
   .delayBox{background:#f3ead9;border:1px solid var(--line);border-radius:10px;padding:14px;font-size:15px;color:var(--ink2);margin-top:10px;}
   footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}*{animation:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .accent-soft{fill:#fbe1d6;}
+  .lesson-hero .paper{fill:#fffdf8;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .alt{fill:var(--alt);opacity:.85;}
+  .lesson-hero .word{font-family:'Fraunces',serif;font-weight:600;fill:var(--accent-d);}
+  .lesson-hero .annot{font-family:'Fraunces',serif;font-style:italic;fill:var(--ink2);font-size:11px;}
+  .lesson-hero .beat{font-family:'Fraunces',serif;font-weight:600;fill:var(--accent-d);font-size:24px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -148,6 +159,54 @@
     <p class="opener"><span class="dropcap">A</span> long word can look scary. It is not. A long word is just small parts stuck together. The parts are called <b>syllables</b>. Find each part. Read each part. Then snap them back.</p>
     <p class="mission">By the end you will clap a word into beats. You will split a word between two consonants. You will read each beat.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Decoding long words in context by applying common letter-sound correspondences including single letters, consonant blends, consonant and vowel digraphs, and vowel diphthongs.</div>
+
+    <!-- HERO_ILLO_V1: long word splitting into syllable beats -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="The long word butterfly being split into three syllable beats, but ter fly, with claps marking each beat.">
+        <defs>
+          <linearGradient id="cardShade1" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fffdf8"/>
+            <stop offset="1" stop-color="#f6ecd9"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(40 36)">
+          <rect x="0" y="0" width="400" height="56" rx="10" fill="url(#cardShade1)" stroke="#d8c6b0" stroke-width="1.4"/>
+          <text x="200" y="38" text-anchor="middle" font-family="Fraunces, serif" font-size="30" font-weight="600" fill="var(--ink)">butterfly</text>
+          <line x1="146" y1="14" x2="146" y2="50" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <line x1="226" y1="14" x2="226" y2="50" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text class="annot" x="106" y="68" text-anchor="middle">split</text>
+          <text class="annot" x="186" y="68" text-anchor="middle">split</text>
+        </g>
+        <g transform="translate(0 130)">
+          <g transform="translate(40 0)">
+            <rect x="0" y="0" width="110" height="56" rx="10" fill="#fbe1d6" stroke="var(--accent)" stroke-width="1.5"/>
+            <text class="beat" x="55" y="38" text-anchor="middle">but</text>
+            <text class="annot" x="55" y="76" text-anchor="middle">beat one</text>
+          </g>
+          <g transform="translate(185 0)">
+            <rect x="0" y="0" width="110" height="56" rx="10" fill="#fbe1d6" stroke="var(--accent)" stroke-width="1.5"/>
+            <text class="beat" x="55" y="38" text-anchor="middle">ter</text>
+            <text class="annot" x="55" y="76" text-anchor="middle">beat two</text>
+          </g>
+          <g transform="translate(330 0)">
+            <rect x="0" y="0" width="110" height="56" rx="10" fill="#fbe1d6" stroke="var(--accent)" stroke-width="1.5"/>
+            <text class="beat" x="55" y="38" text-anchor="middle">fly</text>
+            <text class="annot" x="55" y="76" text-anchor="middle">beat three</text>
+          </g>
+        </g>
+        <g class="ink" stroke="var(--accent-d)" opacity=".7">
+          <path d="M150 100 Q165 116 158 130"/>
+          <path d="M240 100 Q245 116 240 130"/>
+          <path d="M335 100 Q330 116 385 130"/>
+        </g>
+        <g fill="var(--alt)" opacity=".65">
+          <circle cx="20" cy="30" r="2.4"/>
+          <circle cx="460" cy="48" r="2"/>
+          <circle cx="460" cy="200" r="2.4"/>
+          <circle cx="20" cy="210" r="2"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>One beat for every vowel sound</h2></div>

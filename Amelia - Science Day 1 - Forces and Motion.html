@@ -103,6 +103,19 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ground{stroke:var(--ink);stroke-width:1.5;}
+  .lesson-hero .ground-hatch{stroke:var(--mute);stroke-width:1;}
+  .lesson-hero .crate{fill:#fbf3df;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;}
+  .lesson-hero .crate-grain{stroke:rgba(0,0,0,.18);stroke-width:1;}
+  .lesson-hero .f-push{fill:none;stroke:var(--accent);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .f-fric{fill:none;stroke:var(--alt);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .path{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4;stroke-linecap:round;}
+  .lesson-hero .lbl-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+  .lesson-hero .lbl-name{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:13px;}
+  .lesson-hero .ghost{fill:#fbf3df;stroke:var(--mute);stroke-width:1.4;stroke-dasharray:3 3;opacity:.7;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -140,6 +153,55 @@
     <h1>Balanced and Unbalanced Forces</h1>
     <p class="mission">A <b>force</b> is a push or a pull. When two forces are <b>balanced</b>, they cancel out. Nothing moves. When they are <b>unbalanced</b>, the object moves toward the stronger side.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Plan and conduct an study to provide evidence of the effects of balanced and unbalanced forces on the motion of an object.</div>
+
+    <!-- HERO_ILLO_V1: crate on ground with push force, friction force, motion path and ghost final position -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="A crate sits on the ground. A push arrow pushes it to the right. A friction arrow pulls back. A dashed path shows the crate moves to a new position.">
+        <text class="lbl-mono" x="240" y="22" text-anchor="middle" fill="var(--accent-d)">unbalanced force changes motion</text>
+        <line class="ground" x1="20" y1="190" x2="460" y2="190"/>
+        <g class="ground-hatch">
+          <line x1="30" y1="190" x2="22" y2="202"/>
+          <line x1="60" y1="190" x2="52" y2="202"/>
+          <line x1="90" y1="190" x2="82" y2="202"/>
+          <line x1="120" y1="190" x2="112" y2="202"/>
+          <line x1="150" y1="190" x2="142" y2="202"/>
+          <line x1="180" y1="190" x2="172" y2="202"/>
+          <line x1="210" y1="190" x2="202" y2="202"/>
+          <line x1="240" y1="190" x2="232" y2="202"/>
+          <line x1="270" y1="190" x2="262" y2="202"/>
+          <line x1="300" y1="190" x2="292" y2="202"/>
+          <line x1="330" y1="190" x2="322" y2="202"/>
+          <line x1="360" y1="190" x2="352" y2="202"/>
+          <line x1="390" y1="190" x2="382" y2="202"/>
+          <line x1="420" y1="190" x2="412" y2="202"/>
+          <line x1="450" y1="190" x2="442" y2="202"/>
+        </g>
+        <g transform="translate(90 110)">
+          <rect class="crate" x="0" y="0" width="80" height="80" rx="3"/>
+          <line class="crate-grain" x1="0" y1="20" x2="80" y2="20"/>
+          <line class="crate-grain" x1="0" y1="60" x2="80" y2="60"/>
+          <line class="crate-grain" x1="40" y1="0" x2="40" y2="80"/>
+        </g>
+        <g transform="translate(330 110)">
+          <rect class="ghost" x="0" y="0" width="80" height="80" rx="3"/>
+        </g>
+        <g>
+          <path class="f-push" d="M30 150 L82 150"/>
+          <path class="f-push" d="M72 142 L86 150 L72 158"/>
+          <text class="lbl-name" x="56" y="138" text-anchor="middle" fill="var(--accent)">Push</text>
+          <text class="lbl-mono" x="56" y="174" text-anchor="middle" fill="var(--ink2)">applied force</text>
+        </g>
+        <g>
+          <path class="f-fric" d="M192 150 L222 150"/>
+          <path class="f-fric" d="M200 144 L188 150 L200 156"/>
+          <text class="lbl-name" x="206" y="138" text-anchor="middle" fill="var(--alt)">Friction</text>
+          <text class="lbl-mono" x="206" y="174" text-anchor="middle" fill="var(--ink2)">pulls back</text>
+        </g>
+        <path class="path" d="M174 230 Q252 230 326 230"/>
+        <path class="path" d="M316 222 L332 230 L316 238"/>
+        <text class="lbl-mono" x="252" y="222" text-anchor="middle" fill="var(--accent-d)">motion</text>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>Pushes, pulls, and balance</h2></div>

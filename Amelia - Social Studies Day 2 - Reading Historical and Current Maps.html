@@ -102,6 +102,22 @@
   .gateitem.met .mk{background:var(--good);} .gateitem.miss .mk{background:var(--alt);}
   .gateitem .g2{flex:1;text-align:left;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .scroll-bg{fill:#e8d9b0;stroke:var(--alt);stroke-width:1.5;}
+  .lesson-hero .modern-bg{fill:#dde6ee;stroke:var(--accent);stroke-width:1.5;}
+  .lesson-hero .land-old{fill:#c9b481;stroke:var(--accent-d);stroke-width:1.2;}
+  .lesson-hero .land-new{fill:#a8c0a8;stroke:var(--accent-d);stroke-width:1.2;}
+  .lesson-hero .river{fill:none;stroke:#5680a0;stroke-width:1.8;stroke-linecap:round;}
+  .lesson-hero .road{fill:none;stroke:#3a2a1a;stroke-width:1.8;stroke-linecap:round;}
+  .lesson-hero .road-2{fill:none;stroke:#3a2a1a;stroke-width:1.4;}
+  .lesson-hero .town{fill:var(--accent-d);}
+  .lesson-hero .city{fill:var(--red);stroke:var(--ink);stroke-width:.8;}
+  .lesson-hero .cap{font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;text-anchor:middle;letter-spacing:.12em;text-transform:uppercase;fill:var(--alt);}
+  .lesson-hero .title-old{font-family:'DM Serif Display',serif;font-size:13px;text-anchor:middle;fill:var(--accent-d);}
+  .lesson-hero .vs{font-family:'DM Serif Display',serif;font-size:18px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .key{font-family:'DM Sans',sans-serif;font-size:9px;text-anchor:middle;fill:var(--ink2);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -139,6 +155,35 @@
     <h1>Reading Historical and Current Maps</h1>
     <p class="mission">A map is a <b>snapshot</b> of a place at one moment. A <b>historical</b> map shows the place long ago. A <b>current</b> map shows it today. Set them side by side and you can see what changed.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Read and construct historical and current maps.</div>
+
+    <!-- HERO_ILLO_V1: two side-by-side maps, one historical (1850) one current, same area changed -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="Two simple maps side by side. The left map is a historical view dated 1850 with a small town. The right map is the current view with a larger city and a road network.">
+        <text class="cap" x="240" y="22">Same place, two times</text>
+        <g transform="translate(30 40)">
+          <rect class="scroll-bg" x="0" y="0" width="180" height="170" rx="4"/>
+          <path class="land-old" d="M20 28 Q60 16 110 28 Q150 40 158 80 Q156 130 120 142 Q70 152 38 132 Q14 110 18 70 Z"/>
+          <path class="river" d="M22 60 Q60 80 92 64 Q124 50 156 80"/>
+          <circle class="town" cx="80" cy="92" r="4"/>
+          <text class="key" x="80" y="110">Springfield</text>
+          <text class="title-old" x="90" y="166">Historical, 1850</text>
+        </g>
+        <g transform="translate(266 40)">
+          <rect class="modern-bg" x="0" y="0" width="180" height="170" rx="4"/>
+          <path class="land-new" d="M20 28 Q60 16 110 28 Q150 40 158 80 Q156 130 120 142 Q70 152 38 132 Q14 110 18 70 Z"/>
+          <path class="river" d="M22 60 Q60 80 92 64 Q124 50 156 80"/>
+          <path class="road" d="M22 102 L156 102"/>
+          <path class="road" d="M90 28 L90 148"/>
+          <path class="road-2" d="M42 50 L132 130"/>
+          <circle class="city" cx="90" cy="100" r="9"/>
+          <text class="key" x="90" y="120">Springfield</text>
+          <text class="title-old" x="90" y="166" fill="var(--accent)">Current, today</text>
+        </g>
+        <text class="vs" x="240" y="130">vs</text>
+        <text class="cap" x="120" y="232" fill="var(--accent-d)">small town</text>
+        <text class="cap" x="356" y="232" fill="var(--accent)">grew, new roads</text>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>First, find the date and source</h2></div>

@@ -99,6 +99,17 @@
   .cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
   footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .eqln{font-family:'Spline Sans Mono',monospace;font-size:18px;fill:var(--ink);}
+  .lesson-hero .opln{font-family:'Spline Sans Mono',monospace;font-size:14px;fill:var(--ink2);}
+  .lesson-hero .stepno{font-family:'Anton',sans-serif;font-size:11px;letter-spacing:.08em;fill:var(--accent-d);}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+  .lesson-hero .repbar{stroke:var(--accent);stroke-width:2;stroke-linecap:round;fill:none;}
+  .lesson-hero .underrule{stroke:var(--ink);stroke-width:1.4;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -136,6 +147,63 @@
     <h1>Trap the Repeating Tail</h1>
     <p class="mission">A repeating decimal looks slippery, but one algebra move pins it down as a clean fraction. You will run the move on three examples, then earn the right to do it from memory.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Convert decimals which repeat into fractions and fractions into repeating decimals.</div>
+
+    <!-- HERO_ILLO_V1: the algebraic subtraction trick worked vertically -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 240" role="img" aria-label="An algebra worked vertically: let x equal zero point three repeating; ten x equals three point three repeating; subtract; nine x equals three; therefore x equals one over three.">
+        <rect class="panel" x="6" y="6" width="548" height="228" rx="10"/>
+        <text class="headlbl" x="22" y="26">The subtraction trick</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">repeating tail cancels</text>
+        <g transform="translate(34 60)">
+          <text class="stepno" x="0" y="0">STEP 1</text>
+          <text class="eqln" x="0" y="22">x = 0.</text>
+          <g transform="translate(56 22)">
+            <text class="eqln" x="0" y="0">3 3 3</text>
+            <text class="eqln" x="48" y="0" fill="var(--ink2)" font-size="15">...</text>
+            <path class="repbar" d="M-2 -14 L42 -14"/>
+            <path class="repbar" d="M-2 -14 L-2 -10"/>
+            <path class="repbar" d="M42 -14 L42 -10"/>
+          </g>
+        </g>
+        <g transform="translate(34 110)">
+          <text class="stepno" x="0" y="0">STEP 2 &middot; MULTIPLY BY 10</text>
+          <text class="eqln" x="0" y="22">10x = 3.</text>
+          <g transform="translate(76 22)">
+            <text class="eqln" x="0" y="0">3 3 3</text>
+            <text class="eqln" x="48" y="0" fill="var(--ink2)" font-size="15">...</text>
+            <path class="repbar" d="M-2 -14 L42 -14"/>
+            <path class="repbar" d="M-2 -14 L-2 -10"/>
+            <path class="repbar" d="M42 -14 L42 -10"/>
+          </g>
+        </g>
+        <g transform="translate(34 168)">
+          <text class="opln" x="-18" y="0">&#8722;</text>
+          <text class="eqln" x="0" y="0">10x &#8722; x = 3.333... &#8722; 0.333...</text>
+          <line class="underrule" x1="-22" y1="8" x2="260" y2="8"/>
+          <text class="eqln" x="0" y="34">9x = 3</text>
+        </g>
+        <g transform="translate(330 60)">
+          <rect x="0" y="0" width="190" height="138" rx="8" fill="rgba(31,122,77,.06)" stroke="var(--good)" stroke-width="1.4"/>
+          <text class="stepno" x="14" y="20" fill="var(--good)">STEP 3 &middot; SOLVE</text>
+          <text class="eqln" x="14" y="58" font-size="22">x =</text>
+          <g transform="translate(70 38)">
+            <text class="eqln" x="0" y="14" font-size="22" text-anchor="middle" fill="var(--good)">3</text>
+            <line x1="-18" y1="20" x2="18" y2="20" stroke="var(--good)" stroke-width="2"/>
+            <text class="eqln" x="0" y="44" font-size="22" text-anchor="middle" fill="var(--good)">9</text>
+          </g>
+          <text class="opln" x="116" y="76" font-size="22" fill="var(--ink2)">=</text>
+          <g transform="translate(146 58)">
+            <text class="eqln" x="0" y="14" font-size="22" text-anchor="middle" fill="var(--good)">1</text>
+            <line x1="-12" y1="20" x2="12" y2="20" stroke="var(--good)" stroke-width="2"/>
+            <text class="eqln" x="0" y="44" font-size="22" text-anchor="middle" fill="var(--good)">3</text>
+          </g>
+          <text class="mono" x="14" y="124" font-size="10.5" fill="var(--good)" style="letter-spacing:.06em;text-transform:uppercase;">reduced fraction recovered</text>
+        </g>
+        <g transform="translate(330 208)">
+          <text class="mono" x="0" y="0" font-size="10.5" fill="var(--mute)" style="letter-spacing:.06em;text-transform:uppercase;">block of length n &#8594; multiply by 10&#8319;</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>The subtraction trick</h2></div>

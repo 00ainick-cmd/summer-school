@@ -91,6 +91,18 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:540px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .page{fill:#fbf8ef;stroke:var(--ink);stroke-width:1.4;stroke-linejoin:round;}
+  .lesson-hero .bind{stroke:var(--ink);stroke-width:1.4;fill:none;}
+  .lesson-hero .ruleline{stroke:#cfc8b8;stroke-width:1;}
+  .lesson-hero .quoterect{fill:rgba(255,59,20,.16);stroke:var(--accent);stroke-width:1.25;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+  .lesson-hero .claimpanel{fill:#14171c;stroke:none;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -128,6 +140,53 @@
     <h1>Proving It With the Text</h1>
     <p class="mission">A defensible claim about a text is only as compelling as the textual evidence marshalled in its support. The analytical work is not merely locating a quotation that loosely corresponds to the assertion; it is identifying the passage that most precisely substantiates the specific point and forecloses reasonable alternative interpretations.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Draw conclusions, infer and analyze by citing the textual evidence that most strongly supports an analysis of what the text says explicitly as well as inferences drawn from the text.</div>
+
+    <!-- HERO_ILLO_V1: open book with highlighted passage and arrow to claim panel -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 540 260" role="img" aria-label="An open book with a highlighted quoted passage, an arrow leading from the highlight to a panel labeled claim, illustrating that a claim is grounded in a specific cited passage.">
+        <rect class="panel" x="6" y="6" width="528" height="248" rx="10"/>
+        <text class="headlbl" x="22" y="26">Quote &#8594; claim</text>
+        <text class="mono" x="518" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">evidence-anchored argument</text>
+        <g transform="translate(28 56)">
+          <path class="page" d="M0 12 Q120 0 132 14 L132 162 Q120 152 0 162 Z"/>
+          <path class="page" d="M264 12 Q144 0 132 14 L132 162 Q144 152 264 162 Z"/>
+          <path class="bind" d="M132 14 L132 162"/>
+          <g class="ruleline">
+            <line x1="14" y1="36" x2="124" y2="33"/><line x1="14" y1="50" x2="124" y2="47"/>
+            <line x1="14" y1="64" x2="124" y2="61"/><line x1="14" y1="78" x2="124" y2="75"/>
+            <line x1="14" y1="92" x2="124" y2="89"/><line x1="14" y1="106" x2="124" y2="103"/>
+            <line x1="14" y1="120" x2="124" y2="117"/><line x1="14" y1="134" x2="124" y2="131"/>
+            <line x1="14" y1="148" x2="124" y2="145"/>
+            <line x1="140" y1="33" x2="250" y2="36"/><line x1="140" y1="47" x2="250" y2="50"/>
+            <line x1="140" y1="61" x2="250" y2="64"/><line x1="140" y1="75" x2="250" y2="78"/>
+            <line x1="140" y1="89" x2="250" y2="92"/><line x1="140" y1="103" x2="250" y2="106"/>
+            <line x1="140" y1="117" x2="250" y2="120"/><line x1="140" y1="131" x2="250" y2="134"/>
+            <line x1="140" y1="145" x2="250" y2="148"/>
+          </g>
+          <rect class="quoterect" x="140" y="68" width="108" height="40" rx="3"/>
+          <text class="mono" x="148" y="82" font-size="9" fill="var(--accent-d)" style="letter-spacing:.04em;">"the quiet refusal</text>
+          <text class="mono" x="148" y="94" font-size="9" fill="var(--accent-d)" style="letter-spacing:.04em;">that became her</text>
+          <text class="mono" x="148" y="105" font-size="9" fill="var(--accent-d)" style="letter-spacing:.04em;">whole reply"</text>
+        </g>
+        <g transform="translate(290 116)">
+          <path d="M0 0 Q60 -10 120 0" fill="none" stroke="var(--accent-d)" stroke-width="2"/>
+          <path d="M120 0 L112 -5 L112 5 Z" fill="var(--accent-d)"/>
+          <text class="mono" x="60" y="-16" text-anchor="middle" font-size="10" fill="var(--accent-d)" style="letter-spacing:.08em;text-transform:uppercase;">supports</text>
+        </g>
+        <g transform="translate(380 56)">
+          <rect class="claimpanel" x="0" y="0" width="148" height="148" rx="8"/>
+          <text class="anton" x="14" y="22" font-size="11" fill="#9aa0a8" style="letter-spacing:.12em;">CLAIM</text>
+          <line x1="14" y1="30" x2="56" y2="30" stroke="var(--accent)" stroke-width="2"/>
+          <g transform="translate(14 48)" font-family="'Spline Sans', sans-serif" font-size="11.5" fill="#fff">
+            <text x="0" y="0">The protagonist's</text>
+            <text x="0" y="16">silence is itself a</text>
+            <text x="0" y="32">form of resistance,</text>
+            <text x="0" y="48">not a submission.</text>
+          </g>
+          <text class="mono" x="14" y="128" font-size="9.5" fill="#7a808c" style="letter-spacing:.06em;text-transform:uppercase;">grounded in text</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Strong vs weak evidence</h2></div>

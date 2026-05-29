@@ -113,6 +113,17 @@
   .reflectbox{margin-top:10px;}
   .reflectbox textarea{width:100%;min-height:84px;font:inherit;font-size:15px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;} html{scroll-behavior:auto;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+  .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+  .lesson-hero .targetword{fill:#14171c;stroke:none;}
+  .lesson-hero .cluepanel{fill:rgba(31,59,84,.04);stroke:var(--alt);stroke-width:1.1;}
+  .lesson-hero .clueline{stroke:var(--alt);stroke-width:1.25;stroke-dasharray:3 3;fill:none;}
+  .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+  .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+  .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+  .lesson-hero .cluelbl{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;fill:var(--accent-d);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -149,6 +160,48 @@
     <h1>Word Meaning in Context</h1>
     <p class="mission">Skilled readers do not stop reading every time they hit a word they do not know. They read like detectives: lean on the sentence, the affixes, and the figurative move the writer is making. Only after that, if it is still ambiguous, do they reach for a reference.</p>
     <div class="stdtag"><span class="l">What this session teaches</span>Determine the meaning of words and phrases as they are used in the text, including figurative and connotative meanings using context, affixes, or reference materials.</div>
+
+    <!-- HERO_ILLO_V1: an unknown word at center, context clues arrayed around it like surveying triangulation -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 280" role="img" aria-label="An unknown word at center, surrounded by four labeled context clues that triangulate toward it: a contrast clue, an example clue, a definition clue, and a tone clue.">
+        <rect class="panel" x="6" y="6" width="548" height="268" rx="10"/>
+        <text class="headlbl" x="22" y="26">Triangulate the meaning</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mute);">read like a surveyor</text>
+        <g transform="translate(280 150)">
+          <line class="clueline" x1="0" y1="0" x2="-186" y2="-72"/>
+          <line class="clueline" x1="0" y1="0" x2="186" y2="-72"/>
+          <line class="clueline" x1="0" y1="0" x2="-186" y2="72"/>
+          <line class="clueline" x1="0" y1="0" x2="186" y2="72"/>
+          <rect class="targetword" x="-78" y="-30" width="156" height="60" rx="8"/>
+          <text class="anton" x="0" y="-10" text-anchor="middle" font-size="10" fill="#9aa0a8" style="letter-spacing:.14em;">UNKNOWN WORD</text>
+          <text class="mono" x="0" y="14" text-anchor="middle" font-size="20" fill="#fff" font-weight="600" font-style="italic">recalcitrant</text>
+        </g>
+        <g transform="translate(28 56)">
+          <rect class="cluepanel" x="0" y="0" width="184" height="68" rx="8"/>
+          <text class="cluelbl" x="12" y="18">Contrast clue</text>
+          <text class="mono" x="12" y="38" font-size="10.5" fill="var(--ink)">"unlike his agreeable sister,</text>
+          <text class="mono" x="12" y="52" font-size="10.5" fill="var(--ink)">he was <tspan font-weight="700" fill="var(--accent-d)">recalcitrant</tspan>..."</text>
+        </g>
+        <g transform="translate(348 56)">
+          <rect class="cluepanel" x="0" y="0" width="184" height="68" rx="8"/>
+          <text class="cluelbl" x="12" y="18">Example clue</text>
+          <text class="mono" x="12" y="38" font-size="10.5" fill="var(--ink)">"...refusing every request,</text>
+          <text class="mono" x="12" y="52" font-size="10.5" fill="var(--ink)">arguing every directive."</text>
+        </g>
+        <g transform="translate(28 184)">
+          <rect class="cluepanel" x="0" y="0" width="184" height="68" rx="8"/>
+          <text class="cluelbl" x="12" y="18">Definition clue</text>
+          <text class="mono" x="12" y="38" font-size="10.5" fill="var(--ink)">"He was <tspan font-weight="700" fill="var(--accent-d)">recalcitrant</tspan>, that is,</text>
+          <text class="mono" x="12" y="52" font-size="10.5" fill="var(--ink)">stubbornly resistant."</text>
+        </g>
+        <g transform="translate(348 184)">
+          <rect class="cluepanel" x="0" y="0" width="184" height="68" rx="8"/>
+          <text class="cluelbl" x="12" y="18">Tone clue</text>
+          <text class="mono" x="12" y="38" font-size="10.5" fill="var(--ink)">writer treats it as a flaw,</text>
+          <text class="mono" x="12" y="52" font-size="10.5" fill="var(--ink)">not a virtue. negative load.</text>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01 / LEARN</span><h2>Denotation vs connotation</h2></div>

@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -174,6 +183,46 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.B.8</span></div>
+  <!-- HERO_ILLO_V1: three-digit subtraction 432 - 187 with regrouping arrows -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="Vertical subtraction four hundred thirty two minus one hundred eighty seven equals two hundred forty five, with regrouping across hundreds, tens, and ones.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Regroup across hundreds, tens, ones</text>
+      <g transform="translate(160 36)">
+        <rect class="hl-card" x="0" y="0" width="160" height="190" rx="14"/>
+        <text class="hl-lbl" x="38" y="20" text-anchor="middle" fill="var(--huns)">H</text>
+        <text class="hl-lbl" x="76" y="20" text-anchor="middle" fill="var(--tens)">T</text>
+        <text class="hl-lbl" x="114" y="20" text-anchor="middle" fill="var(--ones)">O</text>
+        <text x="38" y="56" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="22" fill="var(--mute)" text-decoration="line-through">4</text>
+        <text x="38" y="50" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="14" fill="var(--accent)">3</text>
+        <text x="76" y="56" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="22" fill="var(--mute)" text-decoration="line-through">3</text>
+        <text x="76" y="50" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="14" fill="var(--accent)">12</text>
+        <text x="114" y="78" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="22" fill="var(--mute)" text-decoration="line-through">2</text>
+        <text x="114" y="72" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="14" fill="var(--accent)">12</text>
+        <text x="38" y="100" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--ink)" opacity=".4">4</text>
+        <text x="76" y="100" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--ink)" opacity=".4">3</text>
+        <text x="114" y="100" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--ink)" opacity=".4">2</text>
+        <text x="14" y="138" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="22" fill="var(--accent-d)">-</text>
+        <text x="38" y="138" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--ink)">1</text>
+        <text x="76" y="138" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--ink)">8</text>
+        <text x="114" y="138" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--ink)">7</text>
+        <line x1="14" y1="150" x2="146" y2="150" stroke="var(--ink)" stroke-width="2"/>
+        <text x="38" y="184" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--good)">2</text>
+        <text x="76" y="184" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--good)">4</text>
+        <text x="114" y="184" text-anchor="middle" font-family="Baloo 2" font-weight="700" font-size="30" fill="var(--good)">5</text>
+      </g>
+      <g transform="translate(20 90)">
+        <text class="hl-lbl" x="0" y="0">borrow path</text>
+        <path class="hl-stroke" d="M0 16 Q 60 30 120 30" stroke-dasharray="3 3"/>
+        <path class="hl-stroke" d="M112 26 L122 30 L114 36" stroke-dasharray="0"/>
+        <text class="hl-lbl" x="0" y="50" fill="var(--mute)" font-size="9">need more ones · take from tens · then from hundreds</text>
+      </g>
+      <g transform="translate(346 100)">
+        <text class="hl-lbl" x="0" y="0" fill="var(--good)">answer</text>
+        <text class="hl-num" x="0" y="32" font-size="28" fill="var(--good)">245</text>
+        <text class="hl-lbl" x="0" y="50" fill="var(--mute)" font-size="9">check by adding back</text>
+      </g>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>Same moves, now with hundreds</h1>
       <p class="mission">Two problems below. Tap each to see the regroup: bundling up when adding, unbundling when subtracting.</p>

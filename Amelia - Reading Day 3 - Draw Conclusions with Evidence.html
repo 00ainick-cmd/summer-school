@@ -119,6 +119,19 @@
   .ptdone.win{color:var(--good);}
   .gateinfo{margin-top:10px;font-size:14px;color:var(--ink2);text-align:center;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .paper{fill:#fbf5ea;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .line-txt{stroke:var(--mute);stroke-width:1.4;stroke-linecap:round;}
+  .lesson-hero .line-hl{stroke:var(--alt);stroke-width:3.2;stroke-linecap:round;opacity:.55;}
+  .lesson-hero .lens-rim{fill:none;stroke:var(--accent-d);stroke-width:3;}
+  .lesson-hero .lens-glass{fill:rgba(181,70,47,.08);}
+  .lesson-hero .lens-handle{fill:none;stroke:var(--accent-d);stroke-width:5;stroke-linecap:round;}
+  .lesson-hero .bubble{fill:#f3f6ee;stroke:#5a7a4a;stroke-width:1.5;}
+  .lesson-hero .bubble-cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;fill:#3f5a32;}
+  .lesson-hero .bubble-txt{font-family:'Fraunces',serif;font-weight:600;font-size:14px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .arrow{fill:none;stroke:#5a7a4a;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3 3;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -157,6 +170,39 @@
     <p class="opener"><span class="dropcap">A</span> story does not say everything out loud. The author drops clues and trusts you to figure out the rest. That figuring out is a <b>conclusion</b>, and a good conclusion always points back to a sentence that proves it.</p>
     <p class="mission">By the end you will draw a conclusion from a short story and find the exact sentence that supports it.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Draw conclusions and support with textual evidence.</div>
+
+    <!-- HERO_ILLO_V1: magnifying glass over text with thought bubble conclusion -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 220" role="img" aria-label="A page of text with one line highlighted under a magnifying glass. A thought bubble points to the page and reads: she must be nervous.">
+        <g transform="translate(40 40)">
+          <rect class="paper" x="0" y="0" width="180" height="160" rx="6"/>
+          <line class="line-txt" x1="14" y1="22" x2="166" y2="22"/>
+          <line class="line-txt" x1="14" y1="40" x2="158" y2="40"/>
+          <line class="line-hl" x1="14" y1="62" x2="160" y2="62"/>
+          <line class="line-txt" x1="14" y1="80" x2="150" y2="80"/>
+          <line class="line-txt" x1="14" y1="98" x2="166" y2="98"/>
+          <line class="line-txt" x1="14" y1="116" x2="154" y2="116"/>
+          <line class="line-txt" x1="14" y1="134" x2="148" y2="134"/>
+        </g>
+        <g transform="translate(140 78)">
+          <circle class="lens-glass" cx="40" cy="40" r="40"/>
+          <circle class="lens-rim" cx="40" cy="40" r="40"/>
+          <line class="lens-handle" x1="72" y1="72" x2="106" y2="106"/>
+          <text x="40" y="46" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-weight="600" font-size="13" fill="var(--accent-d)">"she</text>
+          <text x="40" y="62" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-weight="600" font-size="13" fill="var(--accent-d)">paced"</text>
+        </g>
+        <text class="bubble-cap" x="120" y="216">EVIDENCE FROM THE TEXT</text>
+        <g transform="translate(280 30)">
+          <path class="bubble" d="M0 14 Q0 0 14 0 L172 0 Q186 0 186 14 L186 90 Q186 104 172 104 L40 104 L18 130 L24 104 L14 104 Q0 104 0 90 Z"/>
+          <text class="bubble-cap" x="93" y="22" fill="#3f5a32">my conclusion</text>
+          <text class="bubble-txt" x="93" y="50">She must be</text>
+          <text class="bubble-txt" x="93" y="70">nervous about</text>
+          <text class="bubble-txt" x="93" y="90">the test.</text>
+        </g>
+        <path class="arrow" d="M218 84 Q254 110 286 130"/>
+        <path class="arrow" d="M222 130 L218 144 L232 134"/>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>What a conclusion is</h2></div>

@@ -107,6 +107,14 @@
   .face,.tagb{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 15px;min-height:44px;cursor:pointer;color:var(--ink2);}
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .alt{fill:var(--alt);opacity:.85;}
+  .lesson-hero .vowel{font-family:'Fraunces',serif;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .annot{font-family:'Fraunces',serif;font-style:italic;fill:var(--ink2);font-size:11px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -145,6 +153,66 @@
     <p class="opener"><span class="dropcap">E</span>very vowel can make two sounds. A <b>short</b> sound is quick, like the a in <i>cat</i>. A <b>long</b> sound says the letter's own name, like the a in <i>cake</i>. Read on and your ear will learn the difference.</p>
     <p class="mission">By the end you will hear long and short vowels in small words and know the trick that flips one into the other.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Develop phonics in the reading process by distinguishing long and short vowels when reading regularly spelled one-syllable words.</div>
+
+    <!-- HERO_ILLO_V1: five vowels with short vs long sound waves -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 240" role="img" aria-label="The five vowels A E I O U. Each one shows a short quick wave under it and a long stretched wave above it.">
+        <defs>
+          <linearGradient id="vowelShade" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fffdf8"/>
+            <stop offset="1" stop-color="#f6ecd9"/>
+          </linearGradient>
+        </defs>
+        <g font-family="Fraunces, serif">
+          <text class="annot" x="40" y="22">long: says its name</text>
+          <text class="annot" x="40" y="222">short: quick sound</text>
+        </g>
+        <g class="ink" stroke="var(--accent-d)" stroke-width="1.6" opacity=".75">
+          <path d="M40 50 Q60 30 80 50 T120 50 T160 50 T200 50 T240 50 T280 50 T320 50 T360 50 T400 50 T440 50"/>
+        </g>
+        <g class="ink" stroke="var(--alt)" stroke-width="1.6" opacity=".8">
+          <path d="M40 200 Q50 188 60 200 T80 200 T100 200 T120 200 T140 200 T160 200 T180 200 T200 200 T220 200 T240 200 T260 200 T280 200 T300 200 T320 200 T340 200 T360 200 T380 200 T400 200 T420 200 T440 200"/>
+        </g>
+        <g font-family="Fraunces, serif">
+          <g transform="translate(60 90)">
+            <rect x="0" y="0" width="60" height="74" rx="10" fill="url(#vowelShade)" stroke="#d8c6b0" stroke-width="1.4"/>
+            <text class="vowel" x="30" y="52" text-anchor="middle" font-size="44">A</text>
+          </g>
+          <g transform="translate(140 90)">
+            <rect x="0" y="0" width="60" height="74" rx="10" fill="url(#vowelShade)" stroke="#d8c6b0" stroke-width="1.4"/>
+            <text class="vowel" x="30" y="52" text-anchor="middle" font-size="44">E</text>
+          </g>
+          <g transform="translate(220 90)">
+            <rect x="0" y="0" width="60" height="74" rx="10" fill="url(#vowelShade)" stroke="#d8c6b0" stroke-width="1.4"/>
+            <text class="vowel" x="30" y="52" text-anchor="middle" font-size="44">I</text>
+          </g>
+          <g transform="translate(300 90)">
+            <rect x="0" y="0" width="60" height="74" rx="10" fill="url(#vowelShade)" stroke="#d8c6b0" stroke-width="1.4"/>
+            <text class="vowel" x="30" y="52" text-anchor="middle" font-size="44">O</text>
+          </g>
+          <g transform="translate(380 90)">
+            <rect x="0" y="0" width="60" height="74" rx="10" fill="url(#vowelShade)" stroke="#d8c6b0" stroke-width="1.4"/>
+            <text class="vowel" x="30" y="52" text-anchor="middle" font-size="44">U</text>
+          </g>
+        </g>
+        <g fill="var(--alt)" opacity=".6">
+          <circle cx="22" cy="120" r="2.4"/>
+          <circle cx="460" cy="130" r="2.4"/>
+        </g>
+        <g class="ink" stroke="var(--accent)" stroke-width="1" opacity=".55">
+          <line x1="90" y1="75" x2="90" y2="60"/>
+          <line x1="170" y1="75" x2="170" y2="60"/>
+          <line x1="250" y1="75" x2="250" y2="60"/>
+          <line x1="330" y1="75" x2="330" y2="60"/>
+          <line x1="410" y1="75" x2="410" y2="60"/>
+          <line x1="90" y1="180" x2="90" y2="170"/>
+          <line x1="170" y1="180" x2="170" y2="170"/>
+          <line x1="250" y1="180" x2="250" y2="170"/>
+          <line x1="330" y1="180" x2="330" y2="170"/>
+          <line x1="410" y1="180" x2="410" y2="170"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>Two sounds for every vowel</h2></div>

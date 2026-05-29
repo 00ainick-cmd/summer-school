@@ -138,6 +138,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
   #masteryDone { display: none; margin: 16px 0; }
   #masteryDone.show { display: block; }
   .mastery-card { background: var(--card, #fff); border: 2px solid var(--good); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
@@ -169,6 +178,43 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.A.1</span></div>
+  <!-- HERO_ILLO_V1: hundreds-flat + tens-rod + ones-cube stack making 243 -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 260" role="img" aria-label="A hundreds flat, four tens rods, and three ones cubes labeled two hundred forty three.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Two hundred forty three</text>
+      <g transform="translate(36 40)">
+        <rect class="hl-h" x="0" y="0" width="90" height="90" rx="3" opacity=".88"/>
+        <rect class="hl-h" x="0" y="0" width="90" height="90" rx="3" opacity=".88" transform="translate(8 -8)"/>
+        <g stroke="rgba(255,255,255,.35)" stroke-width="1">
+          <path d="M8 1 L8 81 M26 1 L26 81 M44 1 L44 81 M62 1 L62 81 M80 1 L80 81"/>
+          <path d="M1 9 L89 9 M1 19 L89 19 M1 29 L89 29 M1 39 L89 39 M1 49 L89 49 M1 59 L89 59 M1 69 L89 69 M1 79 L89 79"/>
+        </g>
+        <text class="hl-lbl" x="49" y="108" text-anchor="middle">200</text>
+      </g>
+      <g transform="translate(160 40)">
+        <rect class="hl-t" x="0" y="0" width="14" height="90" rx="2"/>
+        <rect class="hl-t" x="22" y="0" width="14" height="90" rx="2"/>
+        <rect class="hl-t" x="44" y="0" width="14" height="90" rx="2"/>
+        <rect class="hl-t" x="66" y="0" width="14" height="90" rx="2"/>
+        <g stroke="rgba(255,255,255,.45)" stroke-width="1">
+          <path d="M0 10 L80 10 M0 20 L80 20 M0 30 L80 30 M0 40 L80 40 M0 50 L80 50 M0 60 L80 60 M0 70 L80 70 M0 80 L80 80"/>
+        </g>
+        <text class="hl-lbl" x="40" y="108" text-anchor="middle">40</text>
+      </g>
+      <g transform="translate(284 86)">
+        <rect class="hl-o" x="0" y="0" width="14" height="14" rx="2"/>
+        <rect class="hl-o" x="22" y="0" width="14" height="14" rx="2"/>
+        <rect class="hl-o" x="44" y="0" width="14" height="14" rx="2"/>
+        <text class="hl-lbl" x="29" y="32" text-anchor="middle">3</text>
+      </g>
+      <g transform="translate(360 60)">
+        <rect class="hl-card" x="0" y="0" width="92" height="88" rx="10"/>
+        <text class="hl-num" x="46" y="50" text-anchor="middle" font-size="34">243</text>
+        <text class="hl-lbl" x="46" y="72" text-anchor="middle" font-size="9">2 H · 4 T · 3 O</text>
+      </g>
+      <path class="hl-faint" d="M270 130 L355 100"/>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>The same digit, two different worths</h1>
       <p class="mission">Here is a puzzle before we teach anything. Both numbers below have a <b>5</b> in them. Tap each 5 and see what it is really worth.</p>

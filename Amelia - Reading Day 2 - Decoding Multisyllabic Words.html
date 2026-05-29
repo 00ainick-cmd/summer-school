@@ -118,6 +118,18 @@
   .ptdone.win{color:var(--good);}
   .gateinfo{margin-top:10px;font-size:14px;color:var(--ink2);text-align:center;}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .syl-1{fill:#e8d5cc;stroke:var(--accent);stroke-width:1.5;}
+  .lesson-hero .syl-2{fill:#f3e8d0;stroke:var(--alt);stroke-width:1.5;}
+  .lesson-hero .syl-3{fill:#d8e0cc;stroke:#5a7a4a;stroke-width:1.5;}
+  .lesson-hero .syl-txt{font-family:'Fraunces',serif;font-weight:600;font-size:22px;text-anchor:middle;fill:var(--ink);}
+  .lesson-hero .cap{font-family:'Fraunces',serif;font-style:italic;font-size:11px;text-anchor:middle;letter-spacing:.06em;text-transform:uppercase;}
+  .lesson-hero .full{font-family:'Fraunces',serif;font-weight:600;font-size:28px;text-anchor:middle;fill:var(--accent-d);}
+  .lesson-hero .arrow{fill:none;stroke:var(--mute);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .scis{fill:none;stroke:var(--mute);stroke-width:1.8;stroke-linecap:round;stroke-dasharray:4 3;}
+  .lesson-hero .note{font-family:'Newsreader',serif;font-style:italic;font-size:12.5px;text-anchor:middle;fill:var(--ink2);}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -156,6 +168,40 @@
     <p class="opener"><span class="dropcap">B</span>ig words look scary until you break them into beats. Every syllable is one beat, one mouth opening. Find the beats and the word reads itself.</p>
     <p class="mission">By the end you will name the six syllable types, find a syllable boundary, and sound out long words like <i>fantastic</i> and <i>important</i>.</p>
     <div class="stdtag"><span class="l">What this lesson teaches</span>Decoding multisyllabic words in context, and independent of context, by applying common spelling patterns.</div>
+
+    <!-- HERO_ILLO_V1: butterfly broken into but-ter-fly syllables -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 220" role="img" aria-label="The word butterfly split into three syllables: but, ter, fly. A note shows that splitting the word makes it easier to read.">
+        <text class="full" x="240" y="38">butterfly</text>
+        <line class="scis" x1="208" y1="14" x2="208" y2="52"/>
+        <line class="scis" x1="272" y1="14" x2="272" y2="52"/>
+        <text class="cap" x="240" y="76" fill="var(--mute)">split at every chunk</text>
+        <g transform="translate(40 96)">
+          <rect class="syl-1" x="0" y="0" width="120" height="60" rx="10"/>
+          <text class="syl-txt" x="60" y="38">but</text>
+          <text class="cap" x="60" y="80" fill="var(--accent)">syllable 1</text>
+        </g>
+        <g transform="translate(180 96)">
+          <rect class="syl-2" x="0" y="0" width="120" height="60" rx="10"/>
+          <text class="syl-txt" x="60" y="38">ter</text>
+          <text class="cap" x="60" y="80" fill="var(--alt)">syllable 2</text>
+        </g>
+        <g transform="translate(320 96)">
+          <rect class="syl-3" x="0" y="0" width="120" height="60" rx="10"/>
+          <text class="syl-txt" x="60" y="38">fly</text>
+          <text class="cap" x="60" y="80" fill="#5a7a4a">syllable 3</text>
+        </g>
+        <g class="arrow">
+          <path d="M100 168 L150 196"/>
+          <path d="M148 188 L154 198 L142 200"/>
+          <path d="M240 168 L240 196"/>
+          <path d="M234 188 L240 198 L246 188"/>
+          <path d="M380 168 L330 196"/>
+          <path d="M332 188 L326 198 L338 200"/>
+        </g>
+        <text class="note" x="240" y="214">read each chunk, blend them together</text>
+      </svg>
+    </div>
 
     <div class="station">
       <div class="shead"><span class="sno">01</span><h2>The six syllable types</h2></div>

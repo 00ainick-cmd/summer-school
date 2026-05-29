@@ -109,6 +109,15 @@
   .face[aria-pressed="true"],.tagb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;}
   footer{text-align:center;margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
   @media (prefers-reduced-motion: reduce){.tfill{transition:none;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:18px 0 22px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .ink{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .accent{fill:var(--accent);}
+  .lesson-hero .alt{fill:var(--alt);opacity:.9;}
+  .lesson-hero .card-bg{fill:#fff;stroke:var(--line);stroke-width:1.4;}
+  .lesson-hero .label{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--accent-d);font-weight:700;}
+  .lesson-hero .annot{font-family:var(--hfont),system-ui,sans-serif;font-style:italic;fill:var(--ink2);font-size:11px;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -143,6 +152,55 @@
 <section id="lesson">
   <div class="kicker">Lesson</div><h1>Pick the Right Material</h1>
   <div class="stdtag"><span class="l">Standard 2.PS1.A.2</span>Analyze data got from testing different materials to find out which materials have the properties that are best suited for an intended purpose.</div>
+
+  <!-- HERO_ILLO_V1: a window job being matched to glass, a raincoat job to plastic, a fork to metal -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="Three jobs, a window, a raincoat, and a fork, each matched with a line to its best material: glass, plastic, and metal.">
+      <text class="label" x="40" y="22">JOB</text>
+      <text class="label" x="380" y="22">MATERIAL</text>
+      <g transform="translate(20 40)">
+        <rect x="0" y="0" width="120" height="56" rx="10" class="card-bg"/>
+        <rect x="36" y="10" width="48" height="36" fill="#cfe6f4" stroke="var(--accent-d)" stroke-width="1.4"/>
+        <line x1="60" y1="10" x2="60" y2="46" stroke="var(--accent-d)" stroke-width="1.2"/>
+        <line x1="36" y1="28" x2="84" y2="28" stroke="var(--accent-d)" stroke-width="1.2"/>
+        <text class="annot" x="60" y="74" text-anchor="middle">window</text>
+      </g>
+      <g transform="translate(20 110)">
+        <rect x="0" y="0" width="120" height="56" rx="10" class="card-bg"/>
+        <path d="M40 12 L60 6 L80 12 L84 46 L36 46 Z" fill="#f4d56a" stroke="var(--ink)" stroke-width="1.4"/>
+        <path d="M52 12 Q60 22 68 12" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+        <text class="annot" x="60" y="74" text-anchor="middle">raincoat</text>
+      </g>
+      <g transform="translate(20 180)">
+        <rect x="0" y="0" width="120" height="40" rx="10" class="card-bg"/>
+        <path d="M52 8 L52 20 M58 8 L58 20 M64 8 L64 20 M68 8 L68 20 M52 20 L70 20 L70 32 L52 32 Z" stroke="var(--ink)" stroke-width="1.4" fill="none"/>
+        <text class="annot" x="200" y="26">fork</text>
+      </g>
+      <g class="ink" stroke="var(--accent)" stroke-width="1.8" opacity=".85" fill="none">
+        <path d="M140 68 Q240 68 340 60"/>
+        <path d="M140 138 Q240 138 340 130"/>
+        <path d="M140 200 Q240 200 340 200"/>
+        <polygon points="338,56 350,60 338,64" fill="var(--accent)" stroke="none"/>
+        <polygon points="338,126 350,130 338,134" fill="var(--accent)" stroke="none"/>
+        <polygon points="338,196 350,200 338,204" fill="var(--accent)" stroke="none"/>
+      </g>
+      <g transform="translate(350 36)">
+        <rect x="0" y="0" width="110" height="48" rx="10" class="card-bg"/>
+        <text class="label" x="55" y="20" text-anchor="middle">GLASS</text>
+        <text class="annot" x="55" y="38" text-anchor="middle">see-through</text>
+      </g>
+      <g transform="translate(350 106)">
+        <rect x="0" y="0" width="110" height="48" rx="10" class="card-bg"/>
+        <text class="label" x="55" y="20" text-anchor="middle">PLASTIC</text>
+        <text class="annot" x="55" y="38" text-anchor="middle">waterproof</text>
+      </g>
+      <g transform="translate(350 176)">
+        <rect x="0" y="0" width="110" height="48" rx="10" class="card-bg"/>
+        <text class="label" x="55" y="20" text-anchor="middle">METAL</text>
+        <text class="annot" x="55" y="38" text-anchor="middle">hard, stiff</text>
+      </g>
+    </svg>
+  </div>
 
   <div class="station prose"><div class="shead"><span class="sno">01</span><h2>From sorting to picking</h2></div>
     <p>Last time you sorted things by their <b>properties</b>. A property is what you can see. Hard, soft, bendy, stiff, see-through, waterproof, magnetic. Today you do the next step. You <b>pick</b> a thing for a job. You would not make a window from cardboard. You would not make a raincoat from paper. The match between job and stuff is the whole game.</p>

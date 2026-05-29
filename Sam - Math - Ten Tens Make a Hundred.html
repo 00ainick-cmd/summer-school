@@ -138,6 +138,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
   #masteryDone { display: none; margin: 16px 0; }
   #masteryDone.show { display: block; }
   .mastery-card { background: var(--card, #fff); border: 2px solid var(--good); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(31,157,107,.6); }
@@ -169,6 +178,44 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.A.2</span></div>
+  <!-- HERO_ILLO_V1: ten tens-rods bundled, becoming one hundreds-flat -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 260" role="img" aria-label="Ten tens rods bundle into one hundreds flat.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Ten tens bundle into one hundred</text>
+      <g transform="translate(28 50)">
+        <text class="hl-lbl" x="65" y="-8" text-anchor="middle">10 tens</text>
+        <rect class="hl-t" x="0" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="15" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="30" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="45" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="60" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="75" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="90" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="105" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="120" y="0" width="13" height="100" rx="2"/>
+        <rect class="hl-t" x="135" y="0" width="13" height="100" rx="2"/>
+        <g stroke="rgba(255,255,255,.4)" stroke-width="1">
+          <path d="M0 10 L148 10 M0 20 L148 20 M0 30 L148 30 M0 40 L148 40 M0 50 L148 50 M0 60 L148 60 M0 70 L148 70 M0 80 L148 80 M0 90 L148 90"/>
+        </g>
+        <text class="hl-lbl" x="74" y="120" text-anchor="middle">10 + 10 + 10 + ...</text>
+      </g>
+      <g transform="translate(200 90)">
+        <path class="hl-stroke" d="M0 20 L70 20"/>
+        <path class="hl-stroke" d="M58 8 L74 20 L58 32"/>
+        <text class="hl-lbl" x="37" y="6" text-anchor="middle" fill="var(--accent)" font-size="11">bundle</text>
+        <text class="hl-lbl" x="37" y="50" text-anchor="middle" fill="var(--mute)" font-size="9">into one hundred</text>
+      </g>
+      <g transform="translate(296 50)">
+        <text class="hl-lbl" x="55" y="-8" text-anchor="middle">1 hundred</text>
+        <rect class="hl-h" x="0" y="0" width="110" height="110" rx="3"/>
+        <g stroke="rgba(255,255,255,.35)" stroke-width="1">
+          <path d="M11 1 L11 109 M22 1 L22 109 M33 1 L33 109 M44 1 L44 109 M55 1 L55 109 M66 1 L66 109 M77 1 L77 109 M88 1 L88 109 M99 1 L99 109"/>
+          <path d="M1 11 L109 11 M1 22 L109 22 M1 33 L109 33 M1 44 L109 44 M1 55 L109 55 M1 66 L109 66 M1 77 L109 77 M1 88 L109 88 M1 99 L109 99"/>
+        </g>
+        <text class="hl-num" x="55" y="135" text-anchor="middle" font-size="22">100</text>
+      </g>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>Ten of one thing makes the next thing</h1>
       <p class="mission">Two stacks below. Both are ten of something. Tap each one to see what it turns into. They are not the same.</p>

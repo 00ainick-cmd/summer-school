@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -174,6 +183,35 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.B.9</span></div>
+  <!-- HERO_ILLO_V1: part-part-whole bar with addition and subtraction arrows shown as mirror operations -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="A whole of forty broken into parts of fifteen and twenty five with addition and subtraction shown as mirror operations.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Add joins parts · subtract removes a part</text>
+      <g transform="translate(60 56)">
+        <rect class="hl-h" x="0" y="0" width="360" height="40" rx="6" opacity=".18" stroke="var(--huns)" stroke-width="2"/>
+        <text class="hl-lbl" x="180" y="-8" text-anchor="middle">whole</text>
+        <text class="hl-num" x="180" y="28" text-anchor="middle" font-size="22" fill="var(--huns)">40</text>
+      </g>
+      <g transform="translate(60 116)">
+        <rect class="hl-t" x="0" y="0" width="135" height="40" rx="6"/>
+        <text x="67" y="28" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="22">15</text>
+        <text class="hl-lbl" x="67" y="58" text-anchor="middle" fill="var(--tens)">part A</text>
+        <rect class="hl-o" x="140" y="0" width="220" height="40" rx="6"/>
+        <text x="250" y="28" text-anchor="middle" fill="#fff" font-family="Baloo 2" font-weight="700" font-size="22">25</text>
+        <text class="hl-lbl" x="250" y="58" text-anchor="middle" fill="var(--ones)">part B</text>
+      </g>
+      <g transform="translate(40 190)">
+        <text class="hl-num" x="0" y="0" font-size="14" fill="var(--good)">15 + 25 = 40</text>
+        <path class="hl-stroke" d="M 110 -6 Q 130 -22 150 -6" stroke="var(--good)" fill="none" stroke-width="2"/>
+        <text class="hl-num" x="195" y="0" font-size="14" fill="var(--good)">25 + 15 = 40</text>
+      </g>
+      <g transform="translate(40 220)">
+        <text class="hl-num" x="0" y="0" font-size="14" fill="var(--alt)">40 - 15 = 25</text>
+        <path class="hl-stroke" d="M 110 -6 Q 130 -22 150 -6" stroke="var(--alt)" fill="none" stroke-width="2"/>
+        <text class="hl-num" x="195" y="0" font-size="14" fill="var(--alt)">40 - 25 = 15</text>
+      </g>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>They undo each other</h1>
       <p class="mission">Tap each card. Three numbers make a whole family of facts, and subtraction can find a missing part.</p>

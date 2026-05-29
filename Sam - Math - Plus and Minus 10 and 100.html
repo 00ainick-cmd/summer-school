@@ -137,6 +137,15 @@
   footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
   @media (max-width:560px){.yard{gap:7px;} .num{font-size:42px;}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* HERO_ILLO_V1 */
+  .lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+  .lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+  .lesson-hero .hl-h{fill:var(--huns);} .lesson-hero .hl-t{fill:var(--tens);} .lesson-hero .hl-o{fill:var(--ones);}
+  .lesson-hero .hl-card{fill:#fff;stroke:var(--line);stroke-width:1.5;}
+  .lesson-hero .hl-num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+  .lesson-hero .hl-lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);letter-spacing:.04em;text-transform:uppercase;font-size:10px;}
+  .lesson-hero .hl-stroke{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .lesson-hero .hl-faint{fill:none;stroke:var(--line);stroke-width:1.5;}
 </style>
 
 <!-- REFACTOR_REMOVE_EXPLAIN_PT_V2 -->
@@ -174,6 +183,44 @@
 </div>
 <div class="wrap">
   <div class="labbar"><span class="dotg" aria-hidden="true"></span>Number lab · <b>Grade 2</b><span class="chip">Standard 2.NBT.B.10</span></div>
+  <!-- HERO_ILLO_V1: a central number 354 with four arrows showing +10, -10, +100, -100 -->
+  <div class="lesson-hero" aria-hidden="true">
+    <svg viewBox="0 0 480 240" role="img" aria-label="The number three fifty four with four arrows showing plus ten, minus ten, plus one hundred, and minus one hundred jumps.">
+      <text class="hl-lbl" x="240" y="20" text-anchor="middle">Move one digit · the rest stay put</text>
+      <g transform="translate(180 90)">
+        <rect class="hl-card" x="0" y="0" width="120" height="64" rx="12" fill="#efeefb" stroke="var(--accent)" stroke-width="2.5"/>
+        <text class="hl-num" x="60" y="46" text-anchor="middle" font-size="36">354</text>
+      </g>
+      <g>
+        <path class="hl-stroke" d="M178 110 L100 80" stroke="var(--huns)"/>
+        <path class="hl-stroke" d="M108 72 L98 80 L110 84" stroke="var(--huns)"/>
+        <rect x="20" y="58" width="76" height="28" rx="6" fill="#fff" stroke="var(--huns)" stroke-width="2"/>
+        <text x="58" y="78" text-anchor="middle" fill="var(--huns)" font-family="Baloo 2" font-weight="700" font-size="16">- 100</text>
+        <text class="hl-lbl" x="58" y="100" text-anchor="middle" fill="var(--mute)" font-size="9">254</text>
+      </g>
+      <g>
+        <path class="hl-stroke" d="M302 110 L380 80" stroke="var(--huns)"/>
+        <path class="hl-stroke" d="M372 72 L382 80 L370 84" stroke="var(--huns)"/>
+        <rect x="384" y="58" width="76" height="28" rx="6" fill="#fff" stroke="var(--huns)" stroke-width="2"/>
+        <text x="422" y="78" text-anchor="middle" fill="var(--huns)" font-family="Baloo 2" font-weight="700" font-size="16">+ 100</text>
+        <text class="hl-lbl" x="422" y="100" text-anchor="middle" fill="var(--mute)" font-size="9">454</text>
+      </g>
+      <g>
+        <path class="hl-stroke" d="M178 144 L100 174" stroke="var(--tens)"/>
+        <path class="hl-stroke" d="M110 170 L98 174 L108 182" stroke="var(--tens)"/>
+        <rect x="20" y="168" width="76" height="28" rx="6" fill="#fff" stroke="var(--tens)" stroke-width="2"/>
+        <text x="58" y="188" text-anchor="middle" fill="var(--tens)" font-family="Baloo 2" font-weight="700" font-size="16">- 10</text>
+        <text class="hl-lbl" x="58" y="212" text-anchor="middle" fill="var(--mute)" font-size="9">344</text>
+      </g>
+      <g>
+        <path class="hl-stroke" d="M302 144 L380 174" stroke="var(--tens)"/>
+        <path class="hl-stroke" d="M370 170 L382 174 L372 182" stroke="var(--tens)"/>
+        <rect x="384" y="168" width="76" height="28" rx="6" fill="#fff" stroke="var(--tens)" stroke-width="2"/>
+        <text x="422" y="188" text-anchor="middle" fill="var(--tens)" font-family="Baloo 2" font-weight="700" font-size="16">+ 10</text>
+        <text class="hl-lbl" x="422" y="212" text-anchor="middle" fill="var(--mute)" font-size="9">364</text>
+      </g>
+    </svg>
+  </div>
   <section id="start">
     <div class="station hook"><div class="beat">Beat 1 · Hook</div><h1>The jump picks the digit</h1>
       <p class="mission">Two jumps from the same number. Tap each to see which digit moves. Only one digit changes, unless it rolls over.</p>

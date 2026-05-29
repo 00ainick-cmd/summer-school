@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2 Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#eef1f8;color:#14161c;font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.45;min-height:100vh;}
+a{color:#2451a6}
+.wrap{max-width:1040px;margin:0 auto;padding:26px 16px 80px;display:flex;flex-direction:column;gap:18px}
+h1{font-family:Fraunces,serif;font-size:30px}
+h2{font-family:Fraunces,serif;font-size:20px;color:var(--ac);margin-bottom:4px}
+.top{background:#fff;border:1px solid #dfe3ee;border-radius:14px;padding:22px 24px}
+.top .big{font-family:Fraunces,serif;font-size:34px;color:#2f3aa3}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:#6b7280}
+.legend b{font-weight:700;border-radius:999px;padding:2px 9px;font-size:11px}
+.kid{background:#fff;border:1px solid #dfe3ee;border-radius:14px;padding:18px 20px;border-left:5px solid var(--ac)}
+.kmeta{font-size:12.5px;color:#6b7280;margin-bottom:12px}
+.grid{width:100%;border-collapse:collapse;table-layout:fixed}
+.grid th{font-size:12px;color:#6b7280;text-align:left;padding:6px 8px;font-weight:700}
+.day{font-family:Fraunces,serif;color:#14161c;font-size:14px;white-space:nowrap;width:62px}
+.c{vertical-align:top;border:1px solid #eef1f8;border-radius:10px;padding:9px 10px}
+.c .sub{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9aa1ad;font-weight:700}
+.c .code{font-family:Fraunces,serif;font-weight:600;color:#2f3aa3;font-size:14px;margin-top:1px}
+.c .lab{font-size:12px;color:#474d5a;margin:2px 0 6px}
+.b{font-size:10px;font-weight:700;border-radius:999px;padding:2px 8px}
+.b.done{color:#0c7a64;background:#e6f7ef}
+.c.done{background:#f3fbf7}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#2451a6;text-decoration:none;font-weight:600;}
+.backlink:hover{text-decoration:underline;}
+.weeknav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.weeknav a{font-family:Inter,sans-serif;font-weight:600;font-size:13px;color:#2451a6;text-decoration:none;background:#fff;border:1px solid #dfe3ee;border-radius:999px;padding:6px 14px;}
+.weeknav a:hover{background:#eef4ff;}
+.weeknav a.current{background:#2451a6;color:#fff;border-color:#2451a6;}
+footer{font-size:12px;color:#6b7280;text-align:center;border-top:1px solid #dfe3ee;padding-top:14px}
+.empty{padding:24px;text-align:center;color:#6b7280;font-style:italic;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="parent.html" class="backlink">&#8592; Family</a>
+  <div class="weeknav">
+    <span style="font-size:12px;color:#6b7280;font-weight:600;letter-spacing:.06em;text-transform:uppercase;">Week:</span>
+    <a href="Week 1 Schedule.html">1</a>
+    <a class="current">2</a>
+  </div>
+  <div class="top">
+    <h1>Week 2 Schedule</h1>
+    <p style="color:#474d5a;margin-top:4px">Week 2 builds on Week 1: math moves into new units, reading deepens comprehension and vocabulary, science enters life science, social studies enters geography/history, and spelling tackles a new pattern. Same daily rhythm: math + reading + one rotating enrichment.</p>
+    <div class="big" id="builtCount">- / -</div>
+    <p style="color:#6b7280">Week 2 lessons built and wired across your family</p>
+    <div class="legend">
+      <span><b class="done">built</b> ready to use</span>
+    </div>
+  </div>
+  <div id="kidsContainer"></div>
+  <footer>All Week 2 standards are verbatim Missouri Learning Standards (DESE). Mastery for each lesson is gated on Form A (&ge;7/8) plus a delayed Form B (&ge;7/8); lesson is complete on Form B pass with no parent grading required.</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var PLANS={
+    2:{color:'#2f7d52', items:[
+      {day:'Day 1', cells:[
+        {sub:'Math', code:'2.RA.B.2a', lab:'Determine if a set of objects has an odd or even number of members.', file:'Sam - Math Day 1 - Odd and Even Members.html'},
+        {sub:'Reading', code:'2.R.1.A.c', lab:'Seeking clarification, using facts to support answers with evidence.', file:'Sam - Reading Day 1 - Seeking Information with Evidence.html'},
+        {sub:'Science', code:'2.LS2.A.1', lab:'Plan and conduct investigations on plant growth when conditions are altered.', file:'Sam - Science Day 1 - Plants Need Things to Grow.html'}
+      ]},
+      {day:'Day 2', cells:[
+        {sub:'Math', code:'2.RA.B.2b', lab:'Pair-up strategy for odd/even.', file:'Sam - Math Day 2 - Pair Them Up.html'},
+        {sub:'Reading', code:'2.R.1.A.d', lab:'Retelling beginning, middle, end + central message.', file:'Sam - Reading Day 2 - Beginning Middle End.html'},
+        {sub:'Social Studies', code:'2.EG5.C.a', lab:'Identify and describe physical characteristics of the world.', file:'Sam - Social Studies Day 2 - Physical World.html'}
+      ]},
+      {day:'Day 3', cells:[
+        {sub:'Math', code:'2.RA.B.2c', lab:'Even = two equal addends; write the equation.', file:'Sam - Math Day 3 - Odd Even Sums.html'},
+        {sub:'Reading', code:'2.R.1.A.e', lab:'Monitor comprehension, fix it when stuck.', file:'Sam - Reading Day 3 - Fix It When Stuck.html'},
+        {sub:'Spelling', code:'2.L.1.B.c', lab:'Use apostrophes correctly for contractions.', file:'Sam - Spelling Day 3 - Contractions.html'}
+      ]},
+      {day:'Day 4', cells:[
+        {sub:'Math', code:'2.RA.B.3', lab:'Rectangular arrays + repeated addition equations.', file:'Sam - Math Day 4 - Rectangular Arrays.html'},
+        {sub:'Reading', code:'2.R.1.B.a', lab:'Prefixes, root words, and suffixes for meaning.', file:'Sam - Reading Day 4 - Prefixes Roots and Suffixes.html'},
+        {sub:'Science', code:'2.LS2.A.2', lab:'Animals as seed dispersers and pollinators.', file:'Sam - Science Day 4 - Animals Help Plants.html'}
+      ]},
+      {day:'Day 5', cells:[
+        {sub:'Math', code:'2.GM.B.4', lab:'Measure length, selecting the right tool.', file:'Sam - Math Day 5 - Measuring Length.html'},
+        {sub:'Reading', code:'2.R.1.B.b', lab:'Compound words from two known words.', file:'Sam - Reading Day 5 - Compound Words.html'},
+        {sub:'Social Studies', code:'2.EG5.E.a', lab:'Communication and transportation, pros and cons.', file:'Sam - Social Studies Day 5 - How We Talk and Travel.html'}
+      ]}
+    ]},
+    3:{color:'#9a3a78', items:[
+      {day:'Day 1', cells:[
+        {sub:'Math', code:'3.RA.A.2', lab:'Interpret quotients of whole numbers.', file:'Amelia - Math Day 1 - Interpret Quotients.html'},
+        {sub:'Reading', code:'3.R.1.A.a', lab:'How illustrations contribute to what words convey.', file:'Amelia - Reading Day 1 - Illustrations Tell Stories.html'},
+        {sub:'Science', code:'3.LS1.B.1', lab:'Compare and contrast life cycles of plants and animals.', file:'Amelia - Science Day 1 - Life Cycles.html'}
+      ]},
+      {day:'Day 2', cells:[
+        {sub:'Math', code:'3.RA.A.3', lab:'Describe multiplication and division situations.', file:'Amelia - Math Day 2 - Multiplication and Division Situations.html'},
+        {sub:'Reading', code:'3.R.1.A.d', lab:'Monitor comprehension and adjust.', file:'Amelia - Reading Day 2 - Monitor Your Comprehension.html'},
+        {sub:'Social Studies', code:'3.H3.F.a', lab:'Louisiana Purchase and Lewis & Clark expedition.', file:'Amelia - Social Studies Day 2 - The Louisiana Purchase.html'}
+      ]},
+      {day:'Day 3', cells:[
+        {sub:'Math', code:'3.RA.A.4', lab:'Use multiplication and division within 100 to solve problems.', file:'Amelia - Math Day 3 - Multiply and Divide Within 100.html'},
+        {sub:'Reading', code:'3.R.2.A.b', lab:'Character traits from thoughts, words, and actions.', file:'Amelia - Reading Day 3 - Character Traits.html'},
+        {sub:'Spelling', code:'3.L.1.B.i', lab:'Spell words that double the consonant.', file:'Amelia - Spelling Day 3 - Double Consonants.html'}
+      ]},
+      {day:'Day 4', cells:[
+        {sub:'Math', code:'3.RA.A.5', lab:'Find the unknown number in a multiplication/division equation.', file:'Amelia - Math Day 4 - The Missing Number.html'},
+        {sub:'Reading', code:'3.R.2.A.d', lab:'Paraphrase the big idea and supporting details.', file:'Amelia - Reading Day 4 - Find the Big Idea.html'},
+        {sub:'Science', code:'3.LS3.A.1', lab:'Inherited traits vs. environmental influences.', file:'Amelia - Science Day 4 - Inherited and Learned Traits.html'}
+      ]},
+      {day:'Day 5', cells:[
+        {sub:'Math', code:'3.RA.B.6', lab:'Properties of operations as multiplication/division strategies.', file:'Amelia - Math Day 5 - Properties of Operations.html'},
+        {sub:'Reading', code:'3.R.3.A.a', lab:'Explain the author&apos;s purpose (inform/persuade/entertain).', file:"Amelia - Reading Day 5 - Author's Purpose.html"},
+        {sub:'Social Studies', code:'3.PC1.B.a', lab:'How state laws are made and changed.', file:'Amelia - Social Studies Day 5 - How Laws Are Made.html'}
+      ]}
+    ]},
+    8:{color:'#2451a6', items:[
+      {day:'Day 1', cells:[
+        {sub:'Math', code:'8.EEI.A.1', lab:'Properties of integer exponents and equivalent expressions.', file:'Julie - Math Day 1 - Integer Exponents.html'},
+        {sub:'Reading', code:'8.RI.1.A', lab:'Cite the strongest textual evidence in informational texts.', file:'Julie - Reading Day 1 - Informational Citing Evidence.html'},
+        {sub:'Science', code:'6-8.LS1.A.1', lab:'Cells as the fundamental unit of life; unicellular function.', file:'Julie - Science Day 1 - Cells The Unit of Life.html'}
+      ]},
+      {day:'Day 2', cells:[
+        {sub:'Math', code:'8.EEI.A.2a', lab:'Investigate concepts of square roots.', file:'Julie - Math Day 2 - Square Roots.html'},
+        {sub:'Reading', code:'8.RI.1.B', lab:'Word meaning in informational text: figurative, connotative, content-specific.', file:'Julie - Reading Day 2 - Informational Word Meaning.html'},
+        {sub:'Social Studies', code:'6-8.AH.3.CC.C', lab:'Strengths and weaknesses that produced the American victory.', file:'Julie - Social Studies Day 2 - American Victory in the Revolution.html'}
+      ]},
+      {day:'Day 3', cells:[
+        {sub:'Math', code:'8.EEI.A.2b', lab:'Investigate concepts of cube roots.', file:'Julie - Math Day 3 - Cube Roots.html'},
+        {sub:'Reading', code:'8.RI.1.C', lab:'Interpret visual elements of text and media; draw conclusions.', file:'Julie - Reading Day 3 - Visual Elements in Text.html'},
+        {sub:'Spelling', code:'8.W.3.A.c', lab:'Tricky academic spellings (rhythm, parallel, conscience...).', file:'Julie - Spelling Day 3 - Tricky Academic Words.html'}
+      ]},
+      {day:'Day 4', cells:[
+        {sub:'Math', code:'8.EEI.A.2c', lab:'Estimate non-perfect roots between integers.', file:'Julie - Math Day 4 - Estimating Roots.html'},
+        {sub:'Reading', code:'8.RI.1.D', lab:'Central idea and its development; objective summary.', file:'Julie - Reading Day 4 - Central Idea of Informational Text.html'},
+        {sub:'Science', code:'6-8.LS1.A.4', lab:'Body systems interact: nutrient and oxygen provision.', file:'Julie - Science Day 4 - Body Systems Interact.html'}
+      ]},
+      {day:'Day 5', cells:[
+        {sub:'Math', code:'8.EEI.A.3', lab:'Scientific notation: very large and very small quantities.', file:'Julie - Math Day 5 - Scientific Notation.html'},
+        {sub:'Reading', code:'8.RL.2.D', lab:'How literary devices develop setting, character, plot, meaning.', file:'Julie - Reading Day 5 - Literary Devices.html'},
+        {sub:'Social Studies', code:'6-8.AH.3.CC.E', lab:'Responses of early American leaders to new-nation challenges.', file:'Julie - Social Studies Day 5 - Early Republic Leaders.html'}
+      ]}
+    ]}
+  };
+
+  function escapeHtml(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  var app={};
+  try{app=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var kids=(app.family&&app.family.kids)||[];
+  var container=document.getElementById('kidsContainer');
+
+  if(!kids.length){
+    container.innerHTML='<div class="kid empty" style="border-left-color:#9aa1ad">No kids set up yet. <a href="welcome.html">Add your family</a> to see this week's schedule.</div>';
+    document.getElementById('builtCount').textContent='0 / 0';
+    return;
+  }
+
+  var totalBuilt=0, totalCells=0;
+  kids.forEach(function(kid){
+    var plan=PLANS[kid.grade];
+    if(!plan){
+      var sect=document.createElement('section'); sect.className='kid'; sect.style.setProperty('--ac','#9aa1ad');
+      sect.innerHTML='<h2>'+escapeHtml(kid.name)+' &middot; Grade '+kid.grade+'</h2>'+
+        '<p class="kmeta">No Week 2 lessons available for this grade yet. Coming soon.</p>';
+      container.appendChild(sect);
+      return;
+    }
+    var sect=document.createElement('section'); sect.className='kid'; sect.style.setProperty('--ac',plan.color);
+    var built=plan.items.reduce(function(n,r){return n+r.cells.length;},0);
+    totalBuilt+=built; totalCells+=built;
+    var html='<h2>'+escapeHtml(kid.name)+' &middot; Grade '+kid.grade+'</h2>'+
+             '<p class="kmeta">Week 2 plan. '+plan.items.length+' days, '+built+' lessons ready.</p>'+
+             '<table class="grid"><tr><th></th><th>Math</th><th>Reading</th><th>Enrichment</th></tr>';
+    plan.items.forEach(function(row){
+      html+='<tr><th class="day">'+row.day+'</th>';
+      row.cells.forEach(function(c){
+        var href=c.file+'?kid='+encodeURIComponent(kid.id);
+        html+='<td class="c done">'+
+              '<div class="sub">'+escapeHtml(c.sub)+'</div>'+
+              '<div class="code"><a href="'+escapeHtml(href)+'">'+escapeHtml(c.code)+'</a></div>'+
+              '<div class="lab">'+c.lab+'</div>'+
+              '<span class="b done">built</span></td>';
+      });
+      html+='</tr>';
+    });
+    html+='</table>';
+    sect.innerHTML=html;
+    container.appendChild(sect);
+  });
+  document.getElementById('builtCount').textContent=totalBuilt+' / '+totalCells;
+})();
+</script>
+</body>
+</html>

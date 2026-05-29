@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Amelia, Grade 3 Number Lab. Use multiplication and division within 100 to solve problems. Auto-graded mastery lesson aligned to Missouri 3.RA.A.4.">
+<title>Number Lab &middot; Multiply and Divide Within 100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(90,67,214,.10)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(31,157,107,.08)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(224,115,26,.06)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(90,67,214,.10);--bg-blob-2:rgba(31,157,107,.08);--bg-blob-3:rgba(224,115,26,.06);}
+
+:root{
+  --paper:#f2f0fb;--card:#fff;--ink:#1d1736;--ink2:#4a4566;--mute:#857ea3;--line:#e2def2;
+  --accent:#5a43d6;--accent-d:#3f2bb0;--alt:#e0731a;--good:#1f9d6b;--red:#c2410c;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Mulish',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(40vmax 40vmax at 90% -10%,rgba(90,67,214,.10),transparent 60%),radial-gradient(40vmax 40vmax at -5% 110%,rgba(31,157,107,.10),transparent 60%),linear-gradient(180deg,#faf9ff,var(--paper));}
+.wrap{max-width:780px;margin:0 auto;padding:0 18px 90px;}
+h1,h2,h3,.disp{font-family:'Baloo 2',cursive;font-weight:700;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+
+.labbar{background:var(--ink);color:#e7e3fb;margin:0 -18px 20px;padding:12px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Baloo 2';font-size:13px;letter-spacing:.04em;}
+.labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+.labbar .chip{margin-left:auto;border:1px solid #4a4170;border-radius:6px;padding:3px 9px;color:#b9b2e0;font-size:12px;}
+.labbar b{color:#fff;}
+
+.kicker{font-family:'Baloo 2';font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-d);}
+h1{font-size:clamp(28px,5.6vw,42px);line-height:1.04;margin:6px 0 8px;}
+.opener{font-size:17.5px;color:var(--ink);}
+.mission{color:var(--ink2);max-width:56ch;margin-top:6px;}
+.stdtag{margin-top:16px;background:#efeefb;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+.stdtag .l{font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+
+.lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:480px;height:auto;display:block;}
+.lesson-hero .gridline{stroke:#d6cff0;stroke-width:1;fill:none;}
+.lesson-hero .cell{fill:#f3effe;stroke:#d6cff0;stroke-width:1;}
+.lesson-hero .hit{fill:var(--accent);stroke:var(--accent-d);stroke-width:1.2;}
+.lesson-hero .num{font-family:'Baloo 2',cursive;font-weight:700;fill:var(--accent-d);}
+.lesson-hero .lbl{font-family:'Mulish',sans-serif;font-weight:600;fill:var(--ink2);font-size:11px;}
+
+.station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:16px 0;box-shadow:0 16px 32px -28px rgba(63,43,176,.6);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.sno{font-family:'Baloo 2';font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:7px;padding:3px 9px;letter-spacing:.04em;}
+.station h2{font-size:22px;}
+.station p.lead{color:var(--ink2);margin-top:2px;}
+
+.why{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:15.5px;color:#13683a;}
+.note{background:#fffbe9;border:2px solid #f0d97a;border-radius:12px;padding:13px 15px;font-size:15.5px;margin-top:10px;}
+.note b{color:#a17500;}
+
+.factbox{background:#faf9ff;border:2px solid var(--line);border-radius:12px;padding:14px;margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
+.factbox .fc{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;}
+.factbox .fc .top{font-family:'Baloo 2';font-size:18px;color:var(--accent-d);}
+.factbox .fc .bot{font-size:13.5px;color:var(--ink2);margin-top:4px;}
+
+.steps{margin-top:12px;display:flex;flex-direction:column;gap:8px;}
+.step{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-size:15.5px;}
+.step .sn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';font-weight:700;}
+
+.predict{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.pcard{font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:12px;padding:13px 14px;min-height:48px;cursor:pointer;color:var(--ink);text-align:left;}
+.pcard:hover{border-color:var(--accent);}
+.pcard.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;}
+.pcard.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+.reveal{margin-top:10px;font-size:15.5px;color:var(--ink2);display:none;}
+.reveal.show{display:block;}
+
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:54px;cursor:pointer;margin-top:14px;}
+.cta:hover{background:var(--accent-d);}
+.cta.go{background:var(--good);}
+.cta.alt{background:var(--alt);}
+.cta:disabled{opacity:.45;cursor:default;}
+
+.qmeta{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;font-family:'Baloo 2';}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+.tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+.tfill.low{background:var(--red);}
+.qtext{font-size:20px;font-weight:700;line-height:1.3;margin-bottom:14px;font-family:'Baloo 2';}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt{font:inherit;font-size:17px;font-weight:600;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+.opt:hover{border-color:var(--accent);}
+.opt.correct{border-color:var(--good);background:#e8f7f0;color:#13683a;}
+.opt.bad{border-color:var(--red);background:#fdeee4;color:var(--red);}
+.qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+
+.result{text-align:center;padding:14px 0;}
+.scorebig{font-size:56px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Baloo 2',cursive;}
+.result h2{font-size:24px;font-weight:700;margin:10px 0 4px;}
+
+.gatebox{background:#efeefb;border:2px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-size:34px;font-weight:700;font-family:'Baloo 2';color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+
+footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);}
+
+@media (prefers-reduced-motion:reduce){.tfill{transition:none;}*{animation:none!important;}}
+
+#masteryDone{display:none;margin:16px 0;}
+#masteryDone.show{display:block;}
+.mastery-card{background:var(--card);border:2px solid var(--good);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 16px 32px -28px rgba(31,157,107,.6);}
+.mastery-badge{margin:0 auto 14px;width:76px;height:76px;}
+.mastery-badge svg{width:100%;height:100%;display:block;}
+.mastery-card h2{font-family:'Baloo 2',cursive;font-size:clamp(26px,5vw,36px);color:var(--good);margin:8px 0;}
+.mastery-msg{color:var(--ink2);max-width:46ch;margin:0 auto 18px;font-size:16px;line-height:1.5;}
+.mastery-stats{display:flex;justify-content:center;gap:22px;margin:14px 0 22px;flex-wrap:wrap;}
+.mastery-stats .stat{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 18px;min-width:100px;}
+.mastery-stats .stat-num{display:block;font-family:'Baloo 2',cursive;font-size:32px;font-weight:700;color:var(--good);line-height:1;}
+.mastery-stats .stat-lbl{display:block;margin-top:4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600;}
+.mastery-cta a.cta{display:inline-block;text-decoration:none;width:auto;padding:14px 22px;}
+.mastery-cta a.cta:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <div class="labbar">
+    <span class="dotg" aria-hidden="true"></span>
+    <i>Number lab</i> &middot; <b>Grade 3</b>
+    <span class="chip">Standard 3.RA.A.4</span>
+  </div>
+
+  <section id="lesson">
+
+    <div class="kicker">Day 3 &middot; Week 2</div>
+    <h1>Multiply and divide within 100</h1>
+    <p class="opener">A "hundred chart" shows the numbers 1 to 100. Most multiplication and division facts you need this year live inside this chart. Today you practice using them to solve problems.</p>
+    <p class="mission">By the end you will use facts like 8 x 7 = 56 to answer real questions in a few seconds.</p>
+    <div class="stdtag">
+      <span class="l">What this lesson teaches</span>
+      Use multiplication and division within 100 to solve problems.
+    </div>
+
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 480 280" role="img" aria-label="A ten by ten grid with the fifty-sixth square shaded, showing eight times seven equals fifty-six.">
+        <g transform="translate(60 40)">
+          <g>
+            <!-- 10x10 grid -->
+            <g id="grid"></g>
+          </g>
+          <text class="lbl" x="100" y="220" text-anchor="middle">10 by 10 grid: numbers 1 to 100</text>
+        </g>
+        <g transform="translate(300 60)">
+          <text class="num" x="0" y="20" font-size="22">8 x 7</text>
+          <text class="num" x="0" y="60" font-size="22">= 56</text>
+          <text class="lbl" x="0" y="92">8 rows of 7 makes 56</text>
+          <text class="lbl" x="0" y="130">56 / 8 = 7</text>
+          <text class="lbl" x="0" y="148">56 / 7 = 8</text>
+        </g>
+        <!-- Build the grid manually for accessibility -->
+        <g transform="translate(60 40)">
+          <rect class="cell" x="0" y="0" width="20" height="20"/><rect class="cell" x="20" y="0" width="20" height="20"/><rect class="cell" x="40" y="0" width="20" height="20"/><rect class="cell" x="60" y="0" width="20" height="20"/><rect class="cell" x="80" y="0" width="20" height="20"/><rect class="cell" x="100" y="0" width="20" height="20"/><rect class="cell" x="120" y="0" width="20" height="20"/><rect class="cell" x="140" y="0" width="20" height="20"/><rect class="cell" x="160" y="0" width="20" height="20"/><rect class="cell" x="180" y="0" width="20" height="20"/>
+          <rect class="cell" x="0" y="20" width="20" height="20"/><rect class="cell" x="20" y="20" width="20" height="20"/><rect class="cell" x="40" y="20" width="20" height="20"/><rect class="cell" x="60" y="20" width="20" height="20"/><rect class="cell" x="80" y="20" width="20" height="20"/><rect class="cell" x="100" y="20" width="20" height="20"/><rect class="cell" x="120" y="20" width="20" height="20"/><rect class="cell" x="140" y="20" width="20" height="20"/><rect class="cell" x="160" y="20" width="20" height="20"/><rect class="cell" x="180" y="20" width="20" height="20"/>
+          <rect class="cell" x="0" y="40" width="20" height="20"/><rect class="cell" x="20" y="40" width="20" height="20"/><rect class="cell" x="40" y="40" width="20" height="20"/><rect class="cell" x="60" y="40" width="20" height="20"/><rect class="cell" x="80" y="40" width="20" height="20"/><rect class="cell" x="100" y="40" width="20" height="20"/><rect class="cell" x="120" y="40" width="20" height="20"/><rect class="cell" x="140" y="40" width="20" height="20"/><rect class="cell" x="160" y="40" width="20" height="20"/><rect class="cell" x="180" y="40" width="20" height="20"/>
+          <rect class="cell" x="0" y="60" width="20" height="20"/><rect class="cell" x="20" y="60" width="20" height="20"/><rect class="cell" x="40" y="60" width="20" height="20"/><rect class="cell" x="60" y="60" width="20" height="20"/><rect class="cell" x="80" y="60" width="20" height="20"/><rect class="cell" x="100" y="60" width="20" height="20"/><rect class="cell" x="120" y="60" width="20" height="20"/><rect class="cell" x="140" y="60" width="20" height="20"/><rect class="cell" x="160" y="60" width="20" height="20"/><rect class="cell" x="180" y="60" width="20" height="20"/>
+          <rect class="cell" x="0" y="80" width="20" height="20"/><rect class="cell" x="20" y="80" width="20" height="20"/><rect class="cell" x="40" y="80" width="20" height="20"/><rect class="cell" x="60" y="80" width="20" height="20"/><rect class="cell" x="80" y="80" width="20" height="20"/><rect class="cell" x="100" y="80" width="20" height="20"/><rect class="cell" x="120" y="80" width="20" height="20"/><rect class="hit" x="140" y="80" width="20" height="20"/><rect class="cell" x="160" y="80" width="20" height="20"/><rect class="cell" x="180" y="80" width="20" height="20"/>
+          <!-- highlight 8 rows by 7 cols in upper-left to show 8x7=56 -->
+          <rect class="hit" x="0" y="0" width="140" height="20"/>
+          <rect class="hit" x="0" y="20" width="140" height="20"/>
+          <rect class="hit" x="0" y="40" width="140" height="20"/>
+          <rect class="hit" x="0" y="60" width="140" height="20"/>
+          <rect class="hit" x="0" y="80" width="140" height="20"/>
+          <rect class="hit" x="0" y="100" width="140" height="20"/>
+          <rect class="hit" x="0" y="120" width="140" height="20"/>
+          <rect class="hit" x="0" y="140" width="140" height="20"/>
+          <text class="num" x="70" y="90" text-anchor="middle" font-size="24" fill="#fff">56</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>What "within 100" means</h2></div>
+      <p class="lead">The standard says use multiplication and division within 100. That means the answer (or the total you divide) is no bigger than 100. Most facts you know like 6 x 7 = 42 fit inside.</p>
+      <div class="why"><b>Big idea:</b> if you know your basic facts, you can solve real problems in seconds. The numbers stay friendly.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Key facts to keep ready</h2></div>
+      <p class="lead">These are the friendly facts you will use today. Each one unlocks a matching division fact.</p>
+      <div class="factbox">
+        <div class="fc"><div class="top">6 x 7 = 42</div><div class="bot">42 / 6 = 7 and 42 / 7 = 6</div></div>
+        <div class="fc"><div class="top">8 x 4 = 32</div><div class="bot">32 / 8 = 4 and 32 / 4 = 8</div></div>
+        <div class="fc"><div class="top">9 x 6 = 54</div><div class="bot">54 / 9 = 6 and 54 / 6 = 9</div></div>
+        <div class="fc"><div class="top">7 x 8 = 56</div><div class="bot">56 / 7 = 8 and 56 / 8 = 7</div></div>
+      </div>
+      <div class="note"><b>Tip:</b> when you see a division problem, ask yourself "What times the divisor gives me this total?" The answer is the quotient.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>A simple plan for word problems</h2></div>
+      <p class="lead">When a problem appears, walk through these four steps.</p>
+      <div class="steps">
+        <div class="step"><span class="sn">1</span><span><b>Read once.</b> Picture what is happening.</span></div>
+        <div class="step"><span class="sn">2</span><span><b>Find the numbers.</b> What total do you have? What groups?</span></div>
+        <div class="step"><span class="sn">3</span><span><b>Pick the operation.</b> Multiply to find a total. Divide to share or measure.</span></div>
+        <div class="step"><span class="sn">4</span><span><b>Solve and check.</b> Use a known fact. Multiply your division answer to check.</span></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Try it: pick the right move</h2></div>
+      <p class="lead">Read the story. Tap the matching equation and the answer.</p>
+
+      <p style="margin-top:14px;font-weight:700;color:var(--ink);">Story 1. A team has 9 players. There are 4 teams. How many players in all?</p>
+      <div class="predict" data-row="r1">
+        <button class="pcard" type="button" data-ok="false">9 / 4 = 2 (and 1 left over). About 2 players.</button>
+        <button class="pcard" type="button" data-ok="true">9 x 4 = 36 players in all.</button>
+        <button class="pcard" type="button" data-ok="false">9 + 4 = 13 players.</button>
+      </div>
+      <div class="reveal">Equal groups, find total. 9 x 4 = 36 players. The numbers stay within 100.</div>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--ink);">Story 2. A book has 72 pages. Maya reads 8 pages a day. How many days to finish?</p>
+      <div class="predict" data-row="r2">
+        <button class="pcard" type="button" data-ok="false">72 x 8 = 576 days.</button>
+        <button class="pcard" type="button" data-ok="false">72 + 8 = 80 days.</button>
+        <button class="pcard" type="button" data-ok="true">72 / 8 = 9 days.</button>
+      </div>
+      <div class="reveal">How many 8s fit in 72? Nine. 72 / 8 = 9 days. Check: 9 x 8 = 72.</div>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--ink);">Story 3. A school orders 6 boxes of folders. Each box holds 8 folders. How many folders?</p>
+      <div class="predict" data-row="r3">
+        <button class="pcard" type="button" data-ok="true">6 x 8 = 48 folders.</button>
+        <button class="pcard" type="button" data-ok="false">6 / 8 less than 1. The answer is small.</button>
+        <button class="pcard" type="button" data-ok="false">6 + 8 = 14 folders.</button>
+      </div>
+      <div class="reveal">Equal groups, find total. 6 x 8 = 48 folders.</div>
+    </div>
+
+    <button class="cta" id="toCheck">I am ready. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="qmeta"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You passed Form A. Come back tomorrow for Form B. Same skill, new questions.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="qmeta"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+    <div class="qtext" id="qtextB"></div>
+    <div class="opts" id="optsB"></div>
+    <div class="qwhy" id="qwhyB"></div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try again</button>
+    <button class="cta hide" id="toGate">Next: come back tomorrow</button>
+  </section>
+
+  <footer>
+    <span id="__sname">friend</span>
+    &middot; Math
+    &middot; Standard 3.RA.A.4
+  </footer>
+
+  <section id="masteryDone" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var __qk = (location.search.match(/[?&]kid=([^&]+)/)||[])[1];
+  __qk = __qk ? decodeURIComponent(__qk) : null;
+  var __ar = {};
+  try { __ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); } catch(e) {}
+  var __ks = (__ar.family && __ar.family.kids) || [];
+  var __rk = null;
+  if (__qk) __rk = __ks.filter(function(x){ return x.id===__qk; })[0];
+  if (!__rk && __ar.activeKid) __rk = __ks.filter(function(x){ return x.id===__ar.activeKid; })[0];
+  if (!__rk) __rk = __ks.filter(function(x){ return x.grade===3; })[0];
+  if (!__rk && __ks.length) __rk = __ks[0];
+  if (!__rk) __rk = { id:'amelia', name:'Amelia', grade:3 };
+  __ar.activeKid = __rk.id;
+  try { localStorage.setItem('edu.app', JSON.stringify(__ar)); } catch(e) {}
+
+  var KEY = 'edu.app';
+  var STUDENT = __rk.id;
+  var SUBJECT = 'math';
+  var DAY = '3.RA.A.4';
+  var SNAME = __rk.name;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var __fn = document.getElementById('__sname');
+    if (__fn) __fn.textContent = SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent = SNAME; });
+    var back = document.getElementById('msBack');
+    if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+  });
+
+  var PASS = 7, QTIME = 25, GATE_MS = 24*60*60*1000;
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){ return {}; } }
+  function save(o){ try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {} }
+
+  var app = load();
+  app.students = app.students || {};
+  app.students[STUDENT] = app.students[STUDENT] || { name: SNAME };
+  app.progress = app.progress || {};
+  app.progress[STUDENT] = app.progress[STUDENT] || {};
+  app.progress[STUDENT][SUBJECT] = app.progress[STUDENT][SUBJECT] || {};
+  var rec = app.progress[STUDENT][SUBJECT][DAY] || {
+    status:'open', best:0, attempts:0, formA:0, formB:0, formAPassedAt:null, passedAt:null
+  };
+  app.progress[STUDENT][SUBJECT][DAY] = rec;
+  app.activeStudent = STUDENT;
+  save(app);
+
+  var SUPA_URL = '', SUPA_KEY = '';
+  function syncCloud(){
+    if (!SUPA_URL || !SUPA_KEY) return;
+    try {
+      var row = {
+        student:STUDENT, subject:SUBJECT, day:DAY,
+        status:rec.status, best:rec.best||0, attempts:rec.attempts||0,
+        formA:rec.formA||0, formB:rec.formB||0,
+        form_a_passed_at:rec.formAPassedAt||null,
+        time_ms:rec.timeMs||0, updated_at:new Date().toISOString()
+      };
+      fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{
+        method:'POST',
+        headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},
+        body:JSON.stringify(row), keepalive:true
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
+  var SEG = Date.now();
+  function commitTime(){ rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG); SEG=Date.now(); rec.lastAt=Date.now(); save(app); }
+  window.addEventListener('beforeunload', commitTime);
+  window.addEventListener('pagehide', commitTime);
+
+  syncCloud();
+
+  var ITEM_BANK = [
+    { q:'8 x 7 = ?', o:['54','56','64','15'], a:1, why:'Eight groups of seven is 56.' },
+    { q:'A box holds 6 eggs. How many eggs in 9 boxes?', o:['15','45','54','69'], a:2, why:'9 x 6 = 54 eggs in nine boxes.' },
+    { q:'63 / 9 = ?', o:['7','6','8','72'], a:0, why:'Nine groups of 7 make 63. The quotient is 7.' },
+    { q:'A class of 24 students sits in 4 equal rows. How many per row?', o:['4 per row','20 per row','6 per row','28 per row'], a:2, why:'24 / 4 = 6 students per row.' },
+    { q:'7 x 9 = ?', o:['16','63','72','79'], a:1, why:'Seven groups of nine is 63.' },
+    { q:'A pack has 8 markers. How many markers in 5 packs?', o:['40','13','45','3'], a:0, why:'5 x 8 = 40 markers.' },
+    { q:'48 / 6 = ?', o:['9','42','7','8'], a:3, why:'Six groups of 8 make 48. The quotient is 8.' },
+    { q:'Aisha has 81 stickers. She puts 9 on each page. How many pages does she fill?', o:['72','90','9','11'], a:2, why:'81 / 9 = 9 pages.' },
+    { q:'6 x 8 = ?', o:['48','42','54','14'], a:0, why:'Six groups of eight is 48.' },
+    { q:'72 / 8 = ?', o:['7','9','8','64'], a:1, why:'Eight groups of 9 make 72. The quotient is 9.' },
+    { q:'A garden has 4 rows of 9 tulips. How many tulips?', o:['13','36','45','94'], a:1, why:'4 x 9 = 36 tulips.' },
+    { q:'Marcus picks 56 apples. He puts 7 in each basket. How many baskets?', o:['49','8','9','63'], a:1, why:'56 / 7 = 8 baskets.' },
+    { q:'5 x 9 = ?', o:['14','40','54','45'], a:3, why:'Five groups of nine is 45.' },
+    { q:'42 / 7 = ?', o:['6','7','5','35'], a:0, why:'Seven groups of 6 make 42. The quotient is 6.' },
+    { q:'A teacher has 36 pencils. She gives each student 6. How many students?', o:['30 students','42 students','5 students','6 students'], a:3, why:'36 / 6 = 6 students.' },
+    { q:'Each tray holds 4 cupcakes. How many cupcakes on 7 trays?', o:['11 cupcakes','28 cupcakes','21 cupcakes','3 cupcakes'], a:1, why:'7 x 4 = 28 cupcakes.' }
+  ];
+
+  var FORM_A_IDX = [0,1,2,3,4,5,6,7];
+  var FORM_B_IDX = [8,9,10,11,12,13,14,15];
+
+  var FORM_A = FORM_A_IDX.map(function(i){ return ITEM_BANK[i]; });
+  var FORM_B = FORM_B_IDX.map(function(i){ return ITEM_BANK[i]; });
+
+  var secLesson = document.getElementById('lesson'),
+      secCheck  = document.getElementById('check'),
+      secGate   = document.getElementById('gate'),
+      secCheckB = document.getElementById('checkB'),
+      secResult = document.getElementById('result');
+
+  var elQtext=document.getElementById('qtext'),elOpts=document.getElementById('opts'),elQwhy=document.getElementById('qwhy'),
+      elCount=document.getElementById('qcount'),elTlabel=document.getElementById('tlabel'),elTfill=document.getElementById('tfill');
+
+  var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A;
+
+  function startCheck(form){
+    commitTime();
+    phase = form;
+    currentBank = (form==='A') ? FORM_A : FORM_B;
+    qi=0; correct=0;
+    if (form==='A'){
+      rec.attempts=(rec.attempts||0)+1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    } else {
+      secGate.classList.add('hide'); secResult.classList.add('hide'); secCheckB.classList.remove('hide');
+    }
+    window.scrollTo(0,0); showQ();
+  }
+
+  function showQ(){
+    locked=false;
+    var item=currentBank[qi], isA=(phase==='A');
+    var qtext=isA?elQtext:document.getElementById('qtextB');
+    var opts=isA?elOpts:document.getElementById('optsB');
+    var why=isA?elQwhy:document.getElementById('qwhyB');
+    var count=isA?elCount:document.getElementById('qcountB');
+    var label=isA?elTlabel:document.getElementById('tlabelB');
+    var fill=isA?elTfill:document.getElementById('tfillB');
+    count.textContent='Question '+(qi+1)+' of '+currentBank.length;
+    qtext.innerHTML=item.q;
+    opts.innerHTML=''; why.textContent='';
+    item.o.forEach(function(txt,i){
+      var b=document.createElement('button');
+      b.className='opt'; b.type='button'; b.innerHTML=txt;
+      b.addEventListener('click', function(){ answer(i,b,opts,why,item); });
+      opts.appendChild(b);
+    });
+    timeLeft=QTIME; fill.style.width='100%'; fill.classList.remove('low');
+    label.textContent=QTIME+'s'; clearInterval(timer);
+    timer=setInterval(function(){
+      timeLeft--; if (timeLeft<0) timeLeft=0;
+      fill.style.width=(timeLeft/QTIME*100)+'%';
+      label.textContent=timeLeft+'s';
+      if (timeLeft<=8) fill.classList.add('low');
+      if (timeLeft===0){ clearInterval(timer); autoAdvance(opts,why,item); }
+    },1000);
+  }
+
+  function autoAdvance(opts,why,item){
+    if (locked) return; locked=true;
+    Array.prototype.forEach.call(opts.children,function(c,idx){
+      if (idx===item.a) c.classList.add('correct');
+      c.style.pointerEvents='none';
+    });
+    why.style.color='var(--accent-d)';
+    why.textContent='Time. '+item.why;
+    setTimeout(next,1100);
+  }
+
+  function answer(i,btn,opts,why,item){
+    if (locked) return; locked=true; clearInterval(timer);
+    var ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){
+      if (idx===item.a) c.classList.add('correct');
+      if (idx===i && !ok) c.classList.add('bad');
+      c.style.pointerEvents='none';
+    });
+    if (ok){ correct++; why.style.color='var(--good)'; why.textContent='Yes. '+item.why; }
+    else { why.style.color='var(--accent-d)'; why.textContent='Not quite. '+item.why; }
+    setTimeout(next, ok?700:1200);
+  }
+
+  function next(){ qi++; if (qi<currentBank.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    if (phase==='A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed=(correct>=PASS), pct=Math.round(correct/FORM_A.length*100);
+      document.getElementById('scorebig').textContent=pct+'%';
+      rec.formA=correct; rec.best=Math.max(rec.best||0,pct);
+      var rtitle=document.getElementById('rtitle'), rmsg=document.getElementById('rmsg'),
+          retry=document.getElementById('retry'), toGate=document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if (passed){
+        rec.status='formA-passed';
+        if (!rec.formAPassedAt) rec.formAPassedAt=Date.now();
+        save(app);
+        syncCloud();
+        rtitle.textContent='Form A passed!';
+        rmsg.textContent='You got '+correct+' of '+FORM_A.length+' right. Form B opens in 24 hours.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status='tried'; save(app);
+        rtitle.textContent='So close.';
+        rmsg.textContent='You need 7 of 8 to pass. You got '+correct+'. Look back at the stations and try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB=(correct>=PASS), pctB=Math.round(correct/FORM_B.length*100);
+      document.getElementById('scorebig').textContent=pctB+'%';
+      rec.formB=correct;
+      document.getElementById('retry').classList.add('hide');
+      document.getElementById('toGate').classList.add('hide');
+      if (passedB){
+        rec.status='passed';
+        rec.passedAt=Date.now();
+        save(app);
+        syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status='formB-tried'; save(app);
+        document.getElementById('rtitle').textContent='Almost there.';
+        document.getElementById('rmsg').textContent='You got '+correct+' of '+FORM_B.length+' on Form B. Reread the stations and try again.';
+        document.getElementById('retry').classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide');
+    secGate.classList.remove('hide');
+    window.scrollTo(0,0);
+    var startBtn=document.getElementById('startB');
+    var cd=document.getElementById('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if (remain<=0){
+        cd.textContent='Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else { startBtn.classList.add('hide'); }
+      var h=Math.floor(remain/3600000),
+          m=Math.floor((remain%3600000)/60000),
+          s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+
+  function showMastery(a,b){
+    var sec=document.getElementById('masteryDone'); if (!sec) return;
+    var ea=document.getElementById('msFormA'); if (ea) ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB'); if (eb) eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent=SNAME; });
+    var back=document.getElementById('msBack'); if (back) back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secCheckB.classList.add('hide');
+    secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try { sec.scrollIntoView({behavior:'smooth',block:'start'}); } catch(e){ window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if (rec.status==='passed'){ showMastery(rec.formA||0, rec.formB||0); return; }
+    if (rec.formAPassedAt && (rec.formA||0)>=PASS && (rec.formB||0)<PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.predict'),function(row){
+    var rev=row.nextElementSibling;
+    Array.prototype.forEach.call(row.children,function(b){
+      b.addEventListener('click',function(){
+        if (b.dataset.done) return;
+        Array.prototype.forEach.call(row.children,function(c){ c.dataset.done='1'; });
+        if (b.getAttribute('data-ok')==='true') b.classList.add('ok');
+        else {
+          b.classList.add('no');
+          Array.prototype.forEach.call(row.children,function(c){ if (c.getAttribute('data-ok')==='true') c.classList.add('ok'); });
+        }
+        if (rev) rev.classList.add('show');
+      });
+    });
+  });
+
+  document.getElementById('toCheck').addEventListener('click', function(){ startCheck('A'); });
+  document.getElementById('retry').addEventListener('click', function(){
+    secResult.classList.add('hide');
+    if (phase==='A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click', showGate);
+  document.getElementById('startB').addEventListener('click', function(){
+    var ap=rec.formAPassedAt||0;
+    if (ap && (Date.now()-ap)<GATE_MS){ return; }
+    startCheck('B');
+  });
+
+  document.addEventListener('DOMContentLoaded', resume);
+
+})();
+</script>
+</body>
+</html>

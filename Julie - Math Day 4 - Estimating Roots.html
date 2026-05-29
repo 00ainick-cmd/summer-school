@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Grade 8 estimating roots lesson. Find which two integers a non-perfect root sits between, then refine. Mastery check with 24-hour retention gate. Auto-graded, kid-independent.">
+<title>Session 09 &middot; Estimating Roots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(255,59,20,.08)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(36,81,166,.10)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(255,200,100,.05)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(255,59,20,.08);--bg-blob-2:rgba(36,81,166,.10);--bg-blob-3:rgba(255,200,100,.05);}
+:root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+  --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:-1;background:
+   linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+   linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+   radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+.mono,.kicker,.labbar,.sno,.stdtag .l,.tick{font-family:'Spline Sans Mono',monospace;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+.labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+.labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+.kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+.mission{color:var(--ink2);max-width:58ch;}
+.stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+.stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+.station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+.station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+.steptab{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
+.stepc{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:#fafaf6;}
+.stepc .num{font-family:'Anton';font-size:18px;color:var(--accent);text-align:center;}
+.stepc .body p{font-size:14.5px;color:var(--ink2);}
+.stepc .body .mono{display:block;margin-top:4px;color:var(--ink);}
+.worked{background:#fafaf6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;font-family:'Spline Sans Mono',monospace;font-size:15px;color:var(--ink);}
+.worked b{color:var(--accent-d);}
+.note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.note b{color:var(--alt);}
+.warn{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.warn b{color:var(--accent-d);}
+.practice .prow{display:grid;grid-template-columns:1fr;gap:8px;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fafaf6;margin-top:10px;}
+.practice .prq{font-family:'Spline Sans Mono',monospace;font-size:16px;color:var(--ink);font-weight:600;}
+.practice .pchoices{display:flex;flex-wrap:wrap;gap:6px;}
+.practice .pchoice{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:14px;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:40px;cursor:pointer;color:var(--ink);}
+.practice .pchoice:hover{border-color:var(--accent);}
+.practice .pchoice.ok{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.practice .pchoice.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+.practice .pwhy{font-size:13.5px;color:var(--ink2);min-height:1em;}
+.scorerow{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-family:'Spline Sans Mono',monospace;font-size:14px;color:var(--ink2);}
+.resetb{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:12px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 10px;cursor:pointer;color:var(--ink2);min-height:32px;}
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+.cta:hover{background:var(--accent-d);} .cta.alt{background:var(--alt);} .cta:disabled{opacity:.5;cursor:default;}
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+.tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+.tfill.low{background:var(--red);}
+.qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+.opt2:hover{border-color:var(--accent);}
+.opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+.qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+.scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:8px;}
+.scoreband .s{font-family:'Anton';font-size:30px;}
+.gatebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-family:'Spline Sans Mono',monospace;font-size:36px;font-weight:700;color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+.gate{margin-top:10px;}
+.gitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px;color:var(--ink2);}
+.gitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono',monospace;font-size:13px;}
+.gitem.ok .mk{background:var(--good);} .gitem.miss .mk{background:var(--accent-d);}
+.cred{display:none;text-align:center;padding:20px;border-radius:14px;background:#fff;border:1px solid var(--good);margin-top:12px;}
+.cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
+footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+.lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+.lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+.lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+.lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+.lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+.lesson-hero .ticklbl{font-family:'Spline Sans Mono',monospace;font-size:11px;fill:var(--ink2);}
+.lesson-hero .nl-line{stroke:var(--alt);stroke-width:1.6;}
+.lesson-hero .nl-tick{stroke:var(--alt);stroke-width:1.4;}
+.lesson-hero .marker{fill:var(--accent);}
+.lesson-hero .sq-bubble{fill:rgba(31,59,84,.08);stroke:var(--alt);stroke-width:1.2;}
+
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #0f7a3a); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(15,122,58,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Anton', system-ui, sans-serif; font-weight: 400; font-size: clamp(26px, 5vw, 36px); color: var(--good, #0f7a3a); margin: 8px 0; letter-spacing: .02em; text-transform: uppercase; }
+.mastery-msg { color: var(--ink2, #454b54); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e9f6ee; border: 2px solid #bce6cb; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Anton', system-ui, sans-serif; font-size: 32px; font-weight: 400; color: var(--good, #0f7a3a); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #454b54); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #ff3b14); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #cf2c07); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #ff3b14); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.EEI.A.2c</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 09</div>
+    <h1>Estimating Roots</h1>
+    <p class="mission">Most roots are irrational. You will not pull a clean integer from <span class="mono">&#8730;50</span>, but you can pin it tight between two consecutive whole numbers and then refine the estimate. Today you build that workflow.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Investigate concepts of square and cube roots.</div>
+
+    <!-- HERO: number line with √50 marked between 7 and 8, squares 49 and 64 above -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 240" role="img" aria-label="A number line marking the integers 6, 7, 8, 9 with square root of 50 placed between 7 and 8, slightly past 7. The perfect squares 49 and 64 are shown above as anchors.">
+        <rect class="panel" x="6" y="6" width="548" height="228" rx="10"/>
+        <text class="headlbl" x="22" y="26">Bracket then refine</text>
+        <text class="ticklbl" x="538" y="26" text-anchor="end">find the two squares it sits between</text>
+
+        <g transform="translate(40 80)">
+          <rect class="sq-bubble" x="100" y="-30" width="60" height="28" rx="4"/>
+          <text class="mono" x="130" y="-12" text-anchor="middle" font-size="14" font-weight="600" fill="var(--alt)">7^2 = 49</text>
+
+          <rect class="sq-bubble" x="260" y="-30" width="60" height="28" rx="4"/>
+          <text class="mono" x="290" y="-12" text-anchor="middle" font-size="14" font-weight="600" fill="var(--alt)">8^2 = 64</text>
+
+          <line class="nl-line" x1="0" y1="40" x2="480" y2="40"/>
+          <g class="nl-tick">
+            <line x1="20" y1="34" x2="20" y2="46"/>
+            <line x1="140" y1="34" x2="140" y2="46"/>
+            <line x1="300" y1="34" x2="300" y2="46"/>
+            <line x1="460" y1="34" x2="460" y2="46"/>
+          </g>
+          <g class="mono" font-size="14" fill="var(--ink)">
+            <text x="20" y="68" text-anchor="middle">6</text>
+            <text x="140" y="68" text-anchor="middle">7</text>
+            <text x="300" y="68" text-anchor="middle">8</text>
+            <text x="460" y="68" text-anchor="middle">9</text>
+          </g>
+
+          <g transform="translate(160 40)">
+            <polygon class="marker" points="0,-12 -8,4 8,4"/>
+            <line x1="0" y1="4" x2="0" y2="14" stroke="var(--accent)" stroke-width="2"/>
+          </g>
+          <text class="mono" x="160" y="-46" text-anchor="middle" font-size="16" font-weight="600" fill="var(--accent-d)">&#8730;50</text>
+          <text class="ticklbl" x="160" y="92" text-anchor="middle" fill="var(--accent-d)" style="font-weight:600;">approx 7.07</text>
+
+          <text class="ticklbl" x="0" y="118">49 &lt; 50 &lt; 64, so 7 &lt; &#8730;50 &lt; 8.</text>
+          <text class="ticklbl" x="0" y="134">50 sits closer to 49, so &#8730;50 sits closer to 7.</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>The bracket method</h2></div>
+      <p class="lead">For any square root, find the two consecutive perfect squares that sandwich the radicand. The root then sits between the two square roots of those perfect squares. Here is the workflow.</p>
+      <div class="steptab">
+        <div class="stepc"><div class="num">1</div><div class="body"><p>Identify the radicand. Read off the number under the radical symbol.</p></div></div>
+        <div class="stepc"><div class="num">2</div><div class="body"><p>Find the largest perfect square less than or equal to the radicand. Call it L.</p></div></div>
+        <div class="stepc"><div class="num">3</div><div class="body"><p>Find the smallest perfect square greater than or equal to the radicand. Call it H.</p></div></div>
+        <div class="stepc"><div class="num">4</div><div class="body"><p>The root sits between <span class="mono">&#8730;L</span> and <span class="mono">&#8730;H</span>, two consecutive integers.</p></div></div>
+        <div class="stepc"><div class="num">5</div><div class="body"><p>Look at where the radicand sits between L and H. Closer to L means closer to the lower integer; closer to H means closer to the upper integer.</p></div></div>
+      </div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Three worked examples</h2></div>
+      <p class="lead">Apply the steps. Watch how the bracket appears.</p>
+      <div class="worked"><b>Estimate &#8730;50:</b> 49 &lt; 50 &lt; 64, so 7 &lt; &#8730;50 &lt; 8. Closer to 49, so &#8730;50 is closer to 7. Real value &#8776; 7.07.</div>
+      <div class="worked"><b>Estimate &#8730;30:</b> 25 &lt; 30 &lt; 36, so 5 &lt; &#8730;30 &lt; 6. Closer to 25, so &#8730;30 is closer to 5. Real value &#8776; 5.48.</div>
+      <div class="worked"><b>Estimate &#8730;75:</b> 64 &lt; 75 &lt; 81, so 8 &lt; &#8730;75 &lt; 9. Closer to 81, so &#8730;75 is closer to 9. Real value &#8776; 8.66.</div>
+      <div class="note"><b>The same idea for cube roots.</b> Use perfect cubes instead of perfect squares. For <span class="mono">&#8731;50</span>, the cubes 27 and 64 bracket 50, so 3 &lt; &#8731;50 &lt; 4. Real value &#8776; 3.68.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Comparing irrational values</h2></div>
+      <p class="lead">Estimating lets you order irrational numbers without a calculator. To compare <span class="mono">&#8730;20</span> and 4.5, note that 20 is between 16 and 25, so &#8730;20 sits between 4 and 5. To get sharper: 20 is closer to 16 than to 25, so &#8730;20 is just above 4. That is less than 4.5.</p>
+      <div class="warn"><b>Common slip.</b> Do not assume the root scales linearly with the radicand. Doubling the radicand does not double the root. <span class="mono">&#8730;4 = 2</span>, but <span class="mono">&#8730;8 &#8776; 2.83</span>, not 4. The squaring relationship is non-linear, so the root grows slower.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Estimate</h2></div>
+      <p class="lead">Pick the integer pair that sandwiches each root. The page checks each tap.</p>
+      <div class="practice" id="practice"></div>
+      <div class="scorerow"><span id="pLine">0 of 5 answered</span><button class="resetb" id="pReset" type="button">Reset</button></div>
+    </div>
+
+    <button class="cta" id="toCheck">Start the Form A check (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="resultA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A RESULT</span><h2>How that landed</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="scoreA">0 / 8</span><span style="flex:1"></span><span id="statusA" style="font-weight:700;"></span></div>
+      <p class="lead" id="msgA" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to retention (Form B)</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new questions on the same skill, with different radicands. Best done at least a day after Form A.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B opens</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+    <div class="hide" id="bWrap">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="cred" id="cred"><div class="gem">&#9670;</div><h3>8.EEI.A.2c Mastered</h3><p>You bracket irrational roots between consecutive integers and refine the estimate.</p></div>
+      <p class="lead" style="margin-top:10px;">Next session: scientific notation, the bridge between the very large and very small.</p>
+    </div>
+  </section>
+
+  <footer><span id="__sname">Julie</span> &middot; Math &middot; Day 4 &middot; Verbatim Missouri Learning Standard 8.EEI.A.2c</footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#0f7a3a" stroke="#0a5527" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===8;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'julie',name:'Julie',grade:8};
+  __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='math',DAY='8.EEI.A.2c',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
+    var back=document.getElementById('msBack');if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{};app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{};app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec;app.activeStudent=STUDENT;save(app);
+
+  var SUPA_URL='',SUPA_KEY='';
+  function syncCloud(){if(!SUPA_URL||!SUPA_KEY)return;try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){}}
+  var SEG=Date.now();
+  function commitTime(){rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG);SEG=Date.now();rec.lastAt=Date.now();save(app);}
+  window.addEventListener('beforeunload',commitTime);
+  window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  var PRAC=[
+    {q:'&#8730;50 is between ...', o:['6 and 7','7 and 8','8 and 9','5 and 6'], a:1, why:'49 &lt; 50 &lt; 64, so 7 &lt; &#8730;50 &lt; 8.'},
+    {q:'&#8730;20 is closer to ...', o:['4','5','4.5','6'], a:0, why:'20 is closer to 16 than to 25, so &#8730;20 is closer to 4.'},
+    {q:'&#8730;90 is between ...', o:['7 and 8','8 and 9','9 and 10','10 and 11'], a:2, why:'81 &lt; 90 &lt; 100, so 9 &lt; &#8730;90 &lt; 10.'},
+    {q:'&#8731;30 is between ...', o:['2 and 3','3 and 4','4 and 5','5 and 6'], a:1, why:'27 &lt; 30 &lt; 64, so 3 &lt; &#8731;30 &lt; 4.'},
+    {q:'Which is bigger, &#8730;40 or 6.5?', a:3, o:['neither, they tie','impossible to tell','&#8730;40','6.5'], why:'6.5 squared is 42.25, larger than 40, so 6.5 &gt; &#8730;40.'}
+  ];
+  var prac=document.getElementById('practice'), pLine=document.getElementById('pLine');
+  var pDone=0;
+  function renderPrac(){
+    prac.innerHTML=''; pDone=0; pLine.textContent='0 of '+PRAC.length+' answered';
+    PRAC.forEach(function(item){
+      var row=document.createElement('div'); row.className='prow';
+      var q=document.createElement('div'); q.className='prq'; q.innerHTML=item.q; row.appendChild(q);
+      var ch=document.createElement('div'); ch.className='pchoices';
+      var why=document.createElement('div'); why.className='pwhy';
+      item.o.forEach(function(txt,i){
+        var b=document.createElement('button'); b.type='button'; b.className='pchoice'; b.innerHTML=txt;
+        b.addEventListener('click',function(){
+          if(row.dataset.done)return; row.dataset.done='1';
+          var ok=(i===item.a);
+          Array.prototype.forEach.call(ch.children,function(c,idx){
+            if(idx===item.a)c.classList.add('ok');
+            if(idx===i&&!ok)c.classList.add('no');
+            c.style.pointerEvents='none';
+          });
+          why.innerHTML=(ok?'Correct. ':'Off. ')+item.why;
+          pDone++; pLine.textContent=pDone+' of '+PRAC.length+' answered';
+        });
+        ch.appendChild(b);
+      });
+      row.appendChild(ch); row.appendChild(why); prac.appendChild(row);
+    });
+  }
+  document.getElementById('pReset').addEventListener('click',renderPrac);
+  renderPrac();
+
+  var FORMA=[
+    {q:'<span class="mono">&#8730;45</span> sits between ...', o:['5 and 6','6 and 7','7 and 8','4 and 5'], a:1, why:'36 &lt; 45 &lt; 49, so 6 &lt; &#8730;45 &lt; 7.'},
+    {q:'<span class="mono">&#8730;72</span> sits between ...', o:['7 and 8','9 and 10','6 and 7','8 and 9'], a:3, why:'64 &lt; 72 &lt; 81, so 8 &lt; &#8730;72 &lt; 9.'},
+    {q:'<span class="mono">&#8730;110</span> is closest to which integer?', o:['10','11','12','13'], a:0, why:'100 &lt; 110 &lt; 121, and 110 is closer to 100 than to 121, so &#8730;110 is closest to 10.'},
+    {q:'<span class="mono">&#8730;33</span> is closest to which integer?', o:['7','5','6','8'], a:2, why:'25 &lt; 33 &lt; 36, and 33 is closer to 36, so &#8730;33 is closest to 6.'},
+    {q:'Which inequality is true?', o:['&#8730;15 &gt; 4','&#8730;15 = 4','3 &lt; &#8730;15 &lt; 4','&#8730;15 &gt; 5'], a:2, why:'9 &lt; 15 &lt; 16, so 3 &lt; &#8730;15 &lt; 4.'},
+    {q:'<span class="mono">&#8731;100</span> sits between ...', o:['3 and 4','4 and 5','5 and 6','9 and 10'], a:1, why:'64 &lt; 100 &lt; 125, so 4 &lt; &#8731;100 &lt; 5.'},
+    {q:'Order from smallest to largest: 6, &#8730;30, &#8730;50.', o:['&#8730;50 &lt; &#8730;30 &lt; 6','&#8730;30 &lt; 6 &lt; &#8730;50','6 &lt; &#8730;30 &lt; &#8730;50','&#8730;30 &lt; &#8730;50 &lt; 6'], a:1, why:'&#8730;30 &#8776; 5.48 and &#8730;50 &#8776; 7.07, so &#8730;30 &lt; 6 &lt; &#8730;50.'},
+    {q:'<span class="mono">&#8730;200</span> sits between ...', o:['13 and 14','12 and 13','14 and 15','15 and 16'], a:2, why:'196 = 14^2 and 225 = 15^2, so 14 &lt; &#8730;200 &lt; 15.'}
+  ];
+
+  var FORMB=[
+    {q:'<span class="mono">&#8730;55</span> sits between ...', o:['8 and 9','6 and 7','7 and 8','5 and 6'], a:2, why:'49 &lt; 55 &lt; 64, so 7 &lt; &#8730;55 &lt; 8.'},
+    {q:'<span class="mono">&#8730;85</span> sits between ...', o:['7 and 8','9 and 10','10 and 11','8 and 9'], a:1, why:'81 &lt; 85 &lt; 100, so 9 &lt; &#8730;85 &lt; 10.'},
+    {q:'<span class="mono">&#8730;130</span> is closest to which integer?', o:['10','11','12','13'], a:1, why:'121 &lt; 130 &lt; 144, and 130 is closer to 121, so &#8730;130 is closest to 11.'},
+    {q:'<span class="mono">&#8730;42</span> is closest to which integer?', o:['7','5','8','6'], a:3, why:'36 &lt; 42 &lt; 49, and 42 is closer to 36, so &#8730;42 is closest to 6.'},
+    {q:'Which inequality is true?', o:['&#8730;28 &gt; 6','&#8730;28 = 5','5 &lt; &#8730;28 &lt; 6','&#8730;28 &lt; 4'], a:2, why:'25 &lt; 28 &lt; 36, so 5 &lt; &#8730;28 &lt; 6.'},
+    {q:'<span class="mono">&#8731;50</span> sits between ...', o:['3 and 4','4 and 5','5 and 6','6 and 7'], a:0, why:'27 &lt; 50 &lt; 64, so 3 &lt; &#8731;50 &lt; 4.'},
+    {q:'Order from smallest to largest: 5, &#8730;20, &#8730;35.', o:['&#8730;20 &lt; &#8730;35 &lt; 5','5 &lt; &#8730;20 &lt; &#8730;35','&#8730;35 &lt; 5 &lt; &#8730;20','&#8730;20 &lt; 5 &lt; &#8730;35'], a:3, why:'&#8730;20 &#8776; 4.47 and &#8730;35 &#8776; 5.92, so &#8730;20 &lt; 5 &lt; &#8730;35.'},
+    {q:'<span class="mono">&#8730;150</span> sits between ...', o:['11 and 12','12 and 13','13 and 14','10 and 11'], a:1, why:'144 = 12^2 and 169 = 13^2, so 12 &lt; &#8730;150 &lt; 13.'}
+  ];
+
+  var qi=0,correct=0,timer=null,timeLeft=QTIME,locked=false,QS=FORMA,MODE='A';
+  var secL=document.getElementById('lesson'),secC=document.getElementById('check'),
+      secRA=document.getElementById('resultA'),secRT=document.getElementById('retention'),
+      secW=document.getElementById('wrap'),bWrap=document.getElementById('bWrap');
+  function el(id){return document.getElementById(id);}
+  function startA(){MODE='A';QS=FORMA;rec.attempts=(rec.attempts||0)+1;save(app);
+    secL.classList.add('hide');secRA.classList.add('hide');secC.classList.remove('hide');
+    qi=0;correct=0;window.scrollTo(0,0);showQ();}
+  function startB(){MODE='B';QS=FORMB;el('startB').classList.add('hide');bWrap.classList.remove('hide');
+    qi=0;correct=0;window.scrollTo(0,0);showQ();}
+  function showQ(){locked=false;var item=QS[qi];
+    var ids=MODE==='A'?{c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'}:{c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhyB'};
+    el(ids.c).textContent='Question '+(qi+1)+' of '+QS.length;
+    el(ids.q).innerHTML=item.q;
+    var opts=el(ids.o);opts.innerHTML='';
+    item.o.forEach(function(txt,i){var b=document.createElement('button');b.className='opt2';b.type='button';b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,opts,ids);});opts.appendChild(b);});
+    el(ids.w).textContent='';
+    timeLeft=QTIME;el(ids.f).style.width='100%';el(ids.f).classList.remove('low');el(ids.t).textContent=QTIME+'s';
+    clearInterval(timer);timer=setInterval(function(){timeLeft--;if(timeLeft<0)timeLeft=0;
+      el(ids.f).style.width=(timeLeft/QTIME*100)+'%';el(ids.t).textContent=timeLeft+'s';
+      if(timeLeft<=8)el(ids.f).classList.add('low');
+      if(timeLeft===0){clearInterval(timer);autoAdvance(opts,ids,item);}},1000);
+  }
+  function autoAdvance(opts,ids,item){if(locked)return;locked=true;
+    Array.prototype.forEach.call(opts.children,function(c,idx){if(idx===item.a)c.classList.add('correct');c.style.pointerEvents='none';});
+    el(ids.w).innerHTML='Time. '+item.why;
+    setTimeout(function(){qi++;if(qi<QS.length)showQ();else finish();},1100);}
+  function answer(i,btn,opts,ids){if(locked)return;locked=true;clearInterval(timer);
+    var item=QS[qi],ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){if(idx===item.a)c.classList.add('correct');if(idx===i&&!ok)c.classList.add('bad');c.style.pointerEvents='none';});
+    el(ids.w).innerHTML=(ok?'Correct. ':'Not quite. ')+item.why;
+    if(ok)correct++;
+    setTimeout(function(){qi++;if(qi<QS.length)showQ();else finish();},ok?700:1300);}
+  function finish(){commitTime();
+    if(MODE==='A'){secC.classList.add('hide');secRA.classList.remove('hide');window.scrollTo(0,0);
+      rec.formA=correct;var passed=(correct>=PASS),pct=Math.round(correct/QS.length*100);
+      if(passed&&!rec.formAPassedAt)rec.formAPassedAt=Date.now();
+      rec.best=Math.max(rec.best||0,pct);
+      el('scoreA').textContent=correct+' / '+QS.length;
+      el('statusA').textContent=passed?'PASS':'NOT YET';el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
+      el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B opens in 24 hours.'):('You need '+PASS+' of '+QS.length+'. You got '+correct+'. Review the bracket steps.');
+      rec.status=passed?'formA-passed':'tried';
+      if(passed){el('retryA').classList.add('hide');syncCloud();}
+      else el('retryA').classList.remove('hide');
+      save(app);
+    }else{
+      bWrap.classList.add('hide');secRT.classList.add('hide');secW.classList.remove('hide');window.scrollTo(0,0);
+      rec.formB=correct;el('finalA').textContent=(rec.formA||0)+' / 8';el('finalB').textContent=correct+' / 8';
+      var aPass=(rec.formA||0)>=PASS,bPass=correct>=PASS,both=aPass&&bPass;
+      var gate=el('gate');gate.innerHTML='';
+      function gline(ok,label){var d=document.createElement('div');d.className='gitem '+(ok?'ok':'miss');d.innerHTML='<div class="mk">'+(ok?'✓':'!')+'</div><div>'+label+'</div>';gate.appendChild(d);}
+      gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
+      gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
+      if(both){el('cred').classList.add('show');rec.status='passed';rec.passedAt=Date.now();syncCloud();showMastery(rec.formA||0,correct);}
+      else{rec.status='formB-tried';}
+      save(app);
+    }
+  }
+  function showMastery(a,b){var sec=document.getElementById('masteryDone');if(!sec)return;
+    var ea=document.getElementById('msFormA');if(ea)ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB');if(eb)eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
+    var back=document.getElementById('msBack');if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secL.classList.add('hide');secC.classList.add('hide');secRA.classList.add('hide');
+    secRT.classList.add('hide');secW.classList.add('hide');
+    sec.classList.add('show');
+    try{sec.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){window.scrollTo(0,0);}
+  }
+  function showGate(){
+    secRA.classList.add('hide');secRT.classList.remove('hide');window.scrollTo(0,0);
+    var startBtn=el('startB'),cd=el('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){cd.textContent='Form B is ready.';startBtn.classList.remove('hide');return;}
+      startBtn.classList.add('hide');
+      var h=Math.floor(remain/3600000),m=Math.floor((remain%3600000)/60000),s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+  function resume(){
+    if(rec.status==='passed'){showMastery(rec.formA||0,rec.formB||0);return;}
+    if(rec.formAPassedAt&&(rec.formA||0)>=PASS&&(rec.formB||0)<PASS){secL.classList.add('hide');showGate();}
+  }
+  el('toCheck').addEventListener('click',startA);
+  el('toRetention').addEventListener('click',showGate);
+  el('retryA').addEventListener('click',function(){secRA.classList.add('hide');secL.classList.remove('hide');window.scrollTo(0,0);});
+  el('startB').addEventListener('click',startB);
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

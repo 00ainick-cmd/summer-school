@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Grade 8 scientific notation lesson. Convert between standard and scientific form, compare magnitudes, mastery check with 24-hour retention gate. Auto-graded, kid-independent.">
+<title>Session 10 &middot; Scientific Notation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(255,59,20,.08)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(36,81,166,.10)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(255,200,100,.05)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(255,59,20,.08);--bg-blob-2:rgba(36,81,166,.10);--bg-blob-3:rgba(255,200,100,.05);}
+:root{--paper:#f3f1ea;--card:#fff;--ink:#14171c;--ink2:#454b54;--mute:#828893;--line:#dcdcd2;
+  --accent:#ff3b14;--accent-d:#cf2c07;--red:#c0341d;--alt:#1f3b54;--blue:#1f6feb;--good:#0f7a3a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:-1;background:
+   linear-gradient(0deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/100% 28px,
+   linear-gradient(90deg,rgba(20,30,40,.05) 1px,transparent 1px) 0 0/28px 100%,
+   radial-gradient(50vmax 40vmax at 100% -10%,rgba(255,59,20,.06),transparent 60%),var(--paper);}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 80px;}
+h1,h2,.disp{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.005em;text-transform:uppercase;}
+.mono,.kicker,.labbar,.sno,.stdtag .l,.tick{font-family:'Spline Sans Mono',monospace;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+.labbar{background:#14171c;color:#ecede7;margin:0 -18px 22px;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+.labbar .dotg{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+.labbar b{color:#fff;} .labbar .chip{margin-left:auto;border:1px solid #3a3f47;border-radius:5px;padding:3px 9px;color:#c7cad0;}
+.kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);}
+h1{font-size:clamp(32px,7vw,54px);line-height:.98;margin:6px 0 10px;}
+.mission{color:var(--ink2);max-width:58ch;}
+.stdtag{margin-top:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 15px;font-size:14px;color:var(--ink2);}
+.stdtag .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-d);display:block;margin-bottom:4px;}
+.station{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:18px 0;box-shadow:0 18px 34px -30px rgba(20,30,40,.7);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.sno{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:6px;padding:4px 9px;letter-spacing:.08em;}
+.station h2{font-size:21px;} .station p.lead{color:var(--ink2);margin-top:2px;}
+.formdef{border:1px solid var(--line);border-radius:11px;padding:14px;background:#fafaf6;margin-top:12px;text-align:center;font-family:'Spline Sans Mono',monospace;}
+.formdef .form{font-size:24px;color:var(--ink);font-weight:600;}
+.formdef .label{font-size:12px;color:var(--ink2);margin-top:6px;letter-spacing:.06em;text-transform:uppercase;}
+.formdef .constraints{font-size:13.5px;color:var(--ink2);margin-top:8px;font-family:'Hanken Grotesk',sans-serif;}
+.formdef b{color:var(--accent-d);}
+.conv{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+@media (max-width:520px){.conv{grid-template-columns:1fr;}}
+.convc{border:1px solid var(--line);border-radius:11px;padding:14px;}
+.convc h3{font-family:'Anton',sans-serif;font-weight:400;font-size:16px;letter-spacing:.04em;margin-bottom:6px;text-transform:uppercase;color:var(--alt);}
+.convc p{font-size:14.5px;color:var(--ink2);}
+.convc .ex{display:block;margin-top:8px;font-family:'Spline Sans Mono',monospace;font-size:13.5px;color:var(--ink);}
+.worked{background:#fafaf6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;font-family:'Spline Sans Mono',monospace;font-size:15px;color:var(--ink);}
+.worked b{color:var(--accent-d);}
+.note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.note b{color:var(--alt);}
+.warn{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;font-size:14.5px;color:var(--ink2);margin-top:10px;}
+.warn b{color:var(--accent-d);}
+.practice .prow{display:grid;grid-template-columns:1fr;gap:8px;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fafaf6;margin-top:10px;}
+.practice .prq{font-family:'Spline Sans Mono',monospace;font-size:16px;color:var(--ink);font-weight:600;}
+.practice .pchoices{display:flex;flex-wrap:wrap;gap:6px;}
+.practice .pchoice{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:14px;border:1.5px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;min-height:40px;cursor:pointer;color:var(--ink);}
+.practice .pchoice:hover{border-color:var(--accent);}
+.practice .pchoice.ok{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.practice .pchoice.no{border-color:var(--red);background:#fdecea;color:var(--red);}
+.practice .pwhy{font-size:13.5px;color:var(--ink2);min-height:1em;}
+.scorerow{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-family:'Spline Sans Mono',monospace;font-size:14px;color:var(--ink2);}
+.resetb{font:inherit;font-family:'Spline Sans Mono',monospace;font-size:12px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 10px;cursor:pointer;color:var(--ink2);min-height:32px;}
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:52px;cursor:pointer;margin-top:8px;}
+.cta:hover{background:var(--accent-d);} .cta.alt{background:var(--alt);} .cta:disabled{opacity:.5;cursor:default;}
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+.tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+.tfill.low{background:var(--red);}
+.qtext{font-size:22px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt2{font:inherit;font-size:17px;font-weight:500;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:15px 16px;min-height:52px;cursor:pointer;color:var(--ink);}
+.opt2:hover{border-color:var(--accent);}
+.opt2.correct{border-color:var(--good);background:#e9f6ee;color:var(--good);}
+.opt2.bad{border-color:var(--red);background:#fdecea;color:var(--red);}
+.qwhy{margin-top:12px;font-size:14.5px;color:var(--ink2);min-height:1em;}
+.scoreband{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:8px;}
+.scoreband .s{font-family:'Anton';font-size:30px;}
+.gatebox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-family:'Spline Sans Mono',monospace;font-size:36px;font-weight:700;color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+.gate{margin-top:10px;}
+.gitem{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px;color:var(--ink2);}
+.gitem .mk{width:24px;height:24px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:var(--mute);font-family:'Spline Sans Mono',monospace;font-size:13px;}
+.gitem.ok .mk{background:var(--good);} .gitem.miss .mk{background:var(--accent-d);}
+.cred{display:none;text-align:center;padding:20px;border-radius:14px;background:#fff;border:1px solid var(--good);margin-top:12px;}
+.cred.show{display:block;} .cred .gem{font-family:'Anton';font-size:38px;color:var(--good);} .cred h3{font-family:'Anton';font-weight:400;font-size:22px;color:var(--good);margin:4px 0;}
+footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+.lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+.lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
+.lesson-hero .axis{stroke:var(--alt);stroke-width:1.6;}
+.lesson-hero .tick{stroke:var(--alt);stroke-width:1.2;}
+.lesson-hero .dot-s{fill:var(--accent);}
+.lesson-hero .dot-l{fill:var(--alt);}
+.lesson-hero .row-bg{fill:#fafaf6;stroke:var(--line);stroke-width:1;}
+.lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+.lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
+.lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
+.lesson-hero .ticklbl{font-family:'Spline Sans Mono',monospace;font-size:11px;fill:var(--ink2);}
+
+#masteryDone { display: none; margin: 16px 0; }
+#masteryDone.show { display: block; }
+.mastery-card { background: var(--card, #fff); border: 2px solid var(--good, #0f7a3a); border-radius: 16px; padding: 28px 22px; text-align: center; box-shadow: 0 16px 32px -28px rgba(15,122,58,.6); }
+.mastery-badge { margin: 0 auto 14px; width: 76px; height: 76px; }
+.mastery-badge svg { width: 100%; height: 100%; display: block; }
+.mastery-card h2 { font-family: 'Anton', system-ui, sans-serif; font-weight: 400; font-size: clamp(26px, 5vw, 36px); color: var(--good, #0f7a3a); margin: 8px 0; letter-spacing: .02em; text-transform: uppercase; }
+.mastery-msg { color: var(--ink2, #454b54); max-width: 46ch; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
+.mastery-stats { display: flex; justify-content: center; gap: 22px; margin: 14px 0 22px; flex-wrap: wrap; }
+.mastery-stats .stat { background: #e9f6ee; border: 2px solid #bce6cb; border-radius: 12px; padding: 12px 18px; min-width: 100px; }
+.mastery-stats .stat-num { display: block; font-family: 'Anton', system-ui, sans-serif; font-size: 32px; font-weight: 400; color: var(--good, #0f7a3a); line-height: 1; }
+.mastery-stats .stat-lbl { display: block; margin-top: 4px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2, #454b54); font-weight: 600; }
+.mastery-cta a.cta { display: inline-block; font: inherit; font-weight: 700; font-size: 17px; color: #fff; background: var(--accent, #ff3b14); text-decoration: none; border-radius: 12px; padding: 14px 22px; min-height: 48px; line-height: 1.2; }
+.mastery-cta a.cta:hover { background: var(--accent-d, #cf2c07); }
+.mastery-cta a.cta:focus-visible { outline: 3px solid var(--accent, #ff3b14); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="labbar"><span class="dotg" aria-hidden="true"></span>Training session &middot; <b>Grade 8</b><span class="chip">Standard 8.EEI.A.3</span></div>
+
+  <section id="lesson">
+    <div class="kicker">Session 10</div>
+    <h1>Scientific Notation</h1>
+    <p class="mission">A proton weighs about <span class="mono">1.7 &times; 10^-27</span> kilograms. The Sun weighs about <span class="mono">2 &times; 10^30</span> kilograms. Scientific notation is the tool that fits both into a single sentence and lets you compare them at a glance.</p>
+    <div class="stdtag"><span class="l">What this session teaches</span>Express very large and very small quantities in scientific notation and approximate how many times larger one is than the other.</div>
+
+    <!-- HERO: magnitude scale from atomic to astronomical -->
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 280" role="img" aria-label="A magnitude scale of masses from the proton at 1.7 times ten to the negative twenty-seven kilograms up to the Sun at 2 times ten to the thirtieth kilograms, showing several quantities placed along the scale.">
+        <rect class="panel" x="6" y="6" width="548" height="268" rx="10"/>
+        <text class="headlbl" x="22" y="26">Magnitude scale</text>
+        <text class="ticklbl" x="538" y="26" text-anchor="end">each tick is a factor of 10</text>
+
+        <line class="axis" x1="60" y1="220" x2="500" y2="220"/>
+        <g class="tick">
+          <line x1="80" y1="214" x2="80" y2="226"/>
+          <line x1="160" y1="214" x2="160" y2="226"/>
+          <line x1="240" y1="214" x2="240" y2="226"/>
+          <line x1="320" y1="214" x2="320" y2="226"/>
+          <line x1="400" y1="214" x2="400" y2="226"/>
+          <line x1="480" y1="214" x2="480" y2="226"/>
+        </g>
+        <g class="mono" font-size="12" fill="var(--ink2)">
+          <text x="80" y="244" text-anchor="middle">10^-27</text>
+          <text x="160" y="244" text-anchor="middle">10^-15</text>
+          <text x="240" y="244" text-anchor="middle">10^0</text>
+          <text x="320" y="244" text-anchor="middle">10^9</text>
+          <text x="400" y="244" text-anchor="middle">10^20</text>
+          <text x="480" y="244" text-anchor="middle">10^30</text>
+        </g>
+        <text class="ticklbl" x="60" y="262">smaller</text>
+        <text class="ticklbl" x="500" y="262" text-anchor="end">larger</text>
+
+        <g transform="translate(80 200)">
+          <circle class="dot-s" r="5"/>
+          <line x1="0" y1="-6" x2="0" y2="-30" stroke="var(--accent)" stroke-width="1"/>
+          <rect class="row-bg" x="-50" y="-72" width="100" height="40" rx="4"/>
+          <text class="mono" x="0" y="-56" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="600">proton</text>
+          <text class="mono" x="0" y="-42" text-anchor="middle" font-size="10.5" fill="var(--accent-d)">1.7 x 10^-27 kg</text>
+        </g>
+        <g transform="translate(180 200)">
+          <circle class="dot-s" r="5"/>
+          <line x1="0" y1="-6" x2="0" y2="-30" stroke="var(--accent)" stroke-width="1"/>
+          <rect class="row-bg" x="-46" y="-72" width="92" height="40" rx="4"/>
+          <text class="mono" x="0" y="-56" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="600">virus</text>
+          <text class="mono" x="0" y="-42" text-anchor="middle" font-size="10.5" fill="var(--accent-d)">1 x 10^-18 kg</text>
+        </g>
+        <g transform="translate(240 200)">
+          <circle class="dot-l" r="6"/>
+          <line x1="0" y1="-6" x2="0" y2="-110" stroke="var(--alt)" stroke-width="1"/>
+          <rect class="row-bg" x="-46" y="-150" width="92" height="40" rx="4"/>
+          <text class="mono" x="0" y="-134" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="600">person</text>
+          <text class="mono" x="0" y="-120" text-anchor="middle" font-size="10.5" fill="var(--alt)">7 x 10^1 kg</text>
+        </g>
+        <g transform="translate(330 200)">
+          <circle class="dot-l" r="6"/>
+          <line x1="0" y1="-6" x2="0" y2="-30" stroke="var(--alt)" stroke-width="1"/>
+          <rect class="row-bg" x="-50" y="-72" width="100" height="40" rx="4"/>
+          <text class="mono" x="0" y="-56" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="600">whale</text>
+          <text class="mono" x="0" y="-42" text-anchor="middle" font-size="10.5" fill="var(--alt)">1.5 x 10^5 kg</text>
+        </g>
+        <g transform="translate(410 200)">
+          <circle class="dot-l" r="6"/>
+          <line x1="0" y1="-6" x2="0" y2="-110" stroke="var(--alt)" stroke-width="1"/>
+          <rect class="row-bg" x="-50" y="-150" width="100" height="40" rx="4"/>
+          <text class="mono" x="0" y="-134" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="600">Mt Everest</text>
+          <text class="mono" x="0" y="-120" text-anchor="middle" font-size="10.5" fill="var(--alt)">8 x 10^14 kg</text>
+        </g>
+        <g transform="translate(480 200)">
+          <circle class="dot-l" r="7"/>
+          <line x1="0" y1="-7" x2="0" y2="-30" stroke="var(--alt)" stroke-width="1"/>
+          <rect class="row-bg" x="-44" y="-72" width="88" height="40" rx="4"/>
+          <text class="mono" x="0" y="-56" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="600">Sun</text>
+          <text class="mono" x="0" y="-42" text-anchor="middle" font-size="10.5" fill="var(--alt)">2 x 10^30 kg</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>The form</h2></div>
+      <p class="lead">Scientific notation writes a number as a coefficient times a power of ten. The form is strict, and the strictness is what makes the notation useful.</p>
+      <div class="formdef">
+        <div class="form">a &times; 10^n</div>
+        <div class="label">scientific notation</div>
+        <div class="constraints">where <b>1 &le; a &lt; 10</b> and <b>n</b> is an integer (positive, negative, or zero).</div>
+      </div>
+      <p class="lead" style="margin-top:10px;">The coefficient <span class="mono">a</span> must have exactly one nonzero digit before the decimal point. The exponent <span class="mono">n</span> tells you how many places the decimal would shift to recover the original number. Positive n means a large value; negative n means a small one.</p>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Convert in both directions</h2></div>
+      <div class="conv">
+        <div class="convc"><h3>Standard to scientific</h3><p>Move the decimal point until exactly one nonzero digit sits to its left. Count the moves. Left moves give a positive exponent; right moves give a negative one.</p><span class="ex">3,800,000 &rarr; 3.8 x 10^6</span><span class="ex">0.00042 &rarr; 4.2 x 10^-4</span></div>
+        <div class="convc"><h3>Scientific to standard</h3><p>Shift the decimal point by the exponent. Positive exponent shifts right (and you add zeros if needed); negative exponent shifts left.</p><span class="ex">6.1 x 10^5 &rarr; 610,000</span><span class="ex">9 x 10^-3 &rarr; 0.009</span></div>
+      </div>
+      <div class="warn"><b>Common error.</b> Writing <span class="mono">38 x 10^5</span> is not scientific notation, because 38 is not between 1 and 10. The correct form is <span class="mono">3.8 x 10^6</span>. Always check the coefficient first.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Compare magnitudes</h2></div>
+      <p class="lead">The standard asks you to approximate how many times larger one quantity is than another. For numbers in scientific notation, this reduces to comparing exponents.</p>
+      <p class="lead" style="margin-top:6px;">A difference of one in the exponent means roughly a factor of ten. A difference of three means about a factor of 1,000. To estimate, subtract the exponents; the result is the order of magnitude difference.</p>
+      <div class="worked"><b>How many times larger is the Sun than a person?</b></div>
+      <div class="worked">Sun: 2 x 10^30 kg. Person: 7 x 10^1 kg.</div>
+      <div class="worked">Order of magnitude: 30 - 1 = 29. The Sun is about <b>10^29</b> times more massive than a person.</div>
+      <div class="note"><b>When the coefficients differ.</b> A more precise comparison divides the coefficients too. (2 / 7) x 10^29 &#8776; 0.29 x 10^29 = 2.9 x 10^28. To the nearest order of magnitude, the Sun is about 10^28 to 10^29 times more massive. For grade-level work, comparing exponents alone is the expected method.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04 / DO</span><h2>Convert and compare</h2></div>
+      <p class="lead">Pick the equivalent expression. The page checks each tap.</p>
+      <div class="practice" id="practice"></div>
+      <div class="scorerow"><span id="pLine">0 of 5 answered</span><button class="resetb" id="pReset" type="button">Reset</button></div>
+    </div>
+
+    <button class="cta" id="toCheck">Start the Form A check (8 questions)</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="resultA" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM A RESULT</span><h2>How that landed</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="scoreA">0 / 8</span><span style="flex:1"></span><span id="statusA" style="font-weight:700;"></span></div>
+      <p class="lead" id="msgA" style="margin-top:10px;"></p>
+      <button class="cta" id="toRetention">Go to retention (Form B)</button>
+      <button class="cta alt hide" id="retryA">Reteach and try Form A again</button>
+    </div>
+  </section>
+
+  <section id="retention" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">FORM B</span><h2>Prove it stuck</h2></div>
+      <p class="lead">Eight new questions on the same skill, with different magnitudes. Best done at least a day after Form A.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B opens</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+    <div class="hide" id="bWrap">
+      <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+      <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+      <div class="qtext" id="qtextB"></div>
+      <div class="opts" id="optsB"></div>
+      <div class="qwhy" id="qwhyB"></div>
+    </div>
+  </section>
+
+  <section id="wrap" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">CREDENTIAL</span><h2>The mastery gate</h2></div>
+      <div class="scoreband"><span>Form A</span><span class="s" id="finalA">0 / 8</span><span style="flex:1"></span><span>Form B</span><span class="s" id="finalB">0 / 8</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="cred" id="cred"><div class="gem">&#9670;</div><h3>8.EEI.A.3 Mastered</h3><p>You convert between standard and scientific notation and compare magnitudes.</p></div>
+      <p class="lead" style="margin-top:10px;">Week 2 complete. The next unit uses scientific notation in real problems.</p>
+    </div>
+  </section>
+
+  <footer><span id="__sname">Julie</span> &middot; Math &middot; Day 5 &middot; Verbatim Missouri Learning Standard 8.EEI.A.3</footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#0f7a3a" stroke="#0a5527" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var __qk=(location.search.match(/[?&]kid=([^&]+)/)||[])[1];__qk=__qk?decodeURIComponent(__qk):null;
+  var __ar={};try{__ar=JSON.parse(localStorage.getItem('edu.app')||'{}');}catch(e){}
+  var __ks=(__ar.family&&__ar.family.kids)||[];var __rk=null;
+  if(__qk)__rk=__ks.filter(function(x){return x.id===__qk;})[0];
+  if(!__rk&&__ar.activeKid)__rk=__ks.filter(function(x){return x.id===__ar.activeKid;})[0];
+  if(!__rk)__rk=__ks.filter(function(x){return x.grade===8;})[0];
+  if(!__rk&&__ks.length)__rk=__ks[0];
+  if(!__rk)__rk={id:'julie',name:'Julie',grade:8};
+  __ar.activeKid=__rk.id;try{localStorage.setItem('edu.app',JSON.stringify(__ar));}catch(e){}
+  var KEY='edu.app',STUDENT=__rk.id,SUBJECT='math',DAY='8.EEI.A.3',SNAME=__rk.name;
+  document.addEventListener('DOMContentLoaded',function(){
+    var __fn=document.getElementById('__sname');if(__fn)__fn.textContent=SNAME;
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
+    var back=document.getElementById('msBack');if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+  });
+
+  var PASS=7, QTIME=25, GATE_MS=24*60*60*1000;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var app=load();
+  app.students=app.students||{};app.students[STUDENT]=app.students[STUDENT]||{name:SNAME};
+  app.progress=app.progress||{};app.progress[STUDENT]=app.progress[STUDENT]||{};
+  app.progress[STUDENT][SUBJECT]=app.progress[STUDENT][SUBJECT]||{};
+  var rec=app.progress[STUDENT][SUBJECT][DAY]||{status:'open',best:0,attempts:0,formA:0,formB:0,formAPassedAt:null,passedAt:null};
+  app.progress[STUDENT][SUBJECT][DAY]=rec;app.activeStudent=STUDENT;save(app);
+
+  var SUPA_URL='',SUPA_KEY='';
+  function syncCloud(){if(!SUPA_URL||!SUPA_KEY)return;try{
+    var row={student:STUDENT,subject:SUBJECT,day:DAY,status:rec.status,best:rec.best||0,attempts:rec.attempts||0,formA:rec.formA||0,formB:rec.formB||0,form_a_passed_at:rec.formAPassedAt||null,time_ms:rec.timeMs||0,updated_at:new Date().toISOString()};
+    fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day',{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(row),keepalive:true}).catch(function(){});
+  }catch(e){}}
+  var SEG=Date.now();
+  function commitTime(){rec.timeMs=(rec.timeMs||0)+(Date.now()-SEG);SEG=Date.now();rec.lastAt=Date.now();save(app);}
+  window.addEventListener('beforeunload',commitTime);
+  window.addEventListener('pagehide',commitTime);
+  syncCloud();
+
+  var PRAC=[
+    {q:'Write 56,000 in scientific notation.', o:['56 x 10^3','5.6 x 10^4','5.6 x 10^3','0.56 x 10^5'], a:1, why:'Move the decimal 4 places left so the coefficient is between 1 and 10.'},
+    {q:'Write 0.00072 in scientific notation.', o:['7.2 x 10^-4','72 x 10^-5','7.2 x 10^4','7.2 x 10^-3'], a:0, why:'Move the decimal 4 places right; right moves give a negative exponent.'},
+    {q:'Write 2.5 x 10^3 in standard form.', o:['250','2,500','25,000','0.0025'], a:1, why:'Shift the decimal 3 places right: 2.5 becomes 2,500.'},
+    {q:'Which is valid scientific notation?', o:['12 x 10^4','1.2 x 10^4','0.12 x 10^6','1.2 x 10'], a:1, why:'The coefficient must satisfy 1 &le; a &lt; 10. 1.2 qualifies; 12 and 0.12 do not.'},
+    {q:'How many times larger is 4 x 10^9 than 4 x 10^5?', a:3, o:['4','40','400','10,000'], why:'The coefficients match, so the ratio is 10^(9-5) = 10^4 = 10,000.'}
+  ];
+  var prac=document.getElementById('practice'), pLine=document.getElementById('pLine');
+  var pDone=0;
+  function renderPrac(){
+    prac.innerHTML=''; pDone=0; pLine.textContent='0 of '+PRAC.length+' answered';
+    PRAC.forEach(function(item){
+      var row=document.createElement('div'); row.className='prow';
+      var q=document.createElement('div'); q.className='prq'; q.innerHTML=item.q; row.appendChild(q);
+      var ch=document.createElement('div'); ch.className='pchoices';
+      var why=document.createElement('div'); why.className='pwhy';
+      item.o.forEach(function(txt,i){
+        var b=document.createElement('button'); b.type='button'; b.className='pchoice'; b.innerHTML=txt;
+        b.addEventListener('click',function(){
+          if(row.dataset.done)return; row.dataset.done='1';
+          var ok=(i===item.a);
+          Array.prototype.forEach.call(ch.children,function(c,idx){
+            if(idx===item.a)c.classList.add('ok');
+            if(idx===i&&!ok)c.classList.add('no');
+            c.style.pointerEvents='none';
+          });
+          why.innerHTML=(ok?'Correct. ':'Off. ')+item.why;
+          pDone++; pLine.textContent=pDone+' of '+PRAC.length+' answered';
+        });
+        ch.appendChild(b);
+      });
+      row.appendChild(ch); row.appendChild(why); prac.appendChild(row);
+    });
+  }
+  document.getElementById('pReset').addEventListener('click',renderPrac);
+  renderPrac();
+
+  var FORMA=[
+    {q:'Write <span class="mono">340,000</span> in scientific notation.', o:['34 x 10^4','3.4 x 10^5','0.34 x 10^6','3.4 x 10^4'], a:1, why:'Move the decimal 5 places left, so the exponent is 5. The coefficient is 3.4.'},
+    {q:'Write <span class="mono">0.000091</span> in scientific notation.', o:['9.1 x 10^-5','91 x 10^-6','9.1 x 10^5','9.1 x 10^-4'], a:0, why:'Move the decimal 5 places right; right moves give a negative exponent.'},
+    {q:'Write <span class="mono">8.2 x 10^4</span> in standard form.', o:['820','8,200','82,000','0.00082'], a:2, why:'Shift the decimal 4 places right: 8.2 becomes 82,000.'},
+    {q:'Write <span class="mono">5 x 10^-3</span> in standard form.', o:['0.005','0.0005','0.05','-5,000'], a:0, why:'Shift the decimal 3 places left: 5 becomes 0.005.'},
+    {q:'Which is <b>not</b> valid scientific notation?', o:['1.0 x 10^7','9.99 x 10^-2','3.5 x 10^0','15 x 10^3'], a:3, why:'The coefficient must satisfy 1 &le; a &lt; 10. 15 is too large.'},
+    {q:'How many times larger is <span class="mono">7 x 10^12</span> than <span class="mono">7 x 10^9</span>?', o:['3','30','300','1,000'], a:3, why:'Same coefficients, so the ratio is 10^(12-9) = 10^3 = 1,000.'},
+    {q:'Which quantity is the largest?', o:['4 x 10^8','9 x 10^7','2.1 x 10^8','5 x 10^9'], a:3, why:'5 x 10^9 has the largest exponent, so it has the greatest magnitude.'},
+    {q:'A bacterium has mass about <span class="mono">10^-12</span> kg. A blue whale has mass about <span class="mono">10^5</span> kg. About how many times more massive is the whale?', o:['10^7','10^17','10^-17','10^60'], a:1, why:'Subtract the exponents: 5 - (-12) = 17.'}
+  ];
+  var FORMB=[
+    {q:'Write <span class="mono">6,200,000</span> in scientific notation.', o:['62 x 10^5','0.62 x 10^7','6.2 x 10^5','6.2 x 10^6'], a:3, why:'Move the decimal 6 places left, so the exponent is 6. The coefficient is 6.2.'},
+    {q:'Write <span class="mono">0.0058</span> in scientific notation.', o:['5.8 x 10^-3','58 x 10^-4','5.8 x 10^3','5.8 x 10^-2'], a:0, why:'Move the decimal 3 places right; right moves give a negative exponent.'},
+    {q:'Write <span class="mono">1.07 x 10^5</span> in standard form.', o:['10,700','107,000','1,070','0.0000107'], a:1, why:'Shift the decimal 5 places right: 1.07 becomes 107,000.'},
+    {q:'Write <span class="mono">2 x 10^-4</span> in standard form.', o:['0.002','0.00002','0.0002','-2,000'], a:2, why:'Shift the decimal 4 places left: 2 becomes 0.0002.'},
+    {q:'Which is <b>valid</b> scientific notation?', o:['10 x 10^3','0.5 x 10^4','7.3 x 10^6','73 x 10^5'], a:2, why:'The coefficient must satisfy 1 &le; a &lt; 10. 7.3 qualifies.'},
+    {q:'How many times larger is <span class="mono">3 x 10^15</span> than <span class="mono">3 x 10^10</span>?', o:['5','50','100,000','10^25'], a:2, why:'Same coefficients, so the ratio is 10^(15-10) = 10^5 = 100,000.'},
+    {q:'Which quantity is the <b>smallest</b>?', o:['8 x 10^-6','3 x 10^-9','5 x 10^-7','1.2 x 10^-5'], a:1, why:'3 x 10^-9 has the most negative exponent, so it has the smallest magnitude.'},
+    {q:'Earth has mass about <span class="mono">6 x 10^24</span> kg. The Sun has mass about <span class="mono">2 x 10^30</span> kg. About how many times more massive is the Sun?', o:['10^6','10^54','10^-6','30'], a:0, why:'Subtract the exponents: 30 - 24 = 6, so about 10^6 times more massive.'}
+  ];
+
+  var qi=0,correct=0,timer=null,timeLeft=QTIME,locked=false,QS=FORMA,MODE='A';
+  var secL=document.getElementById('lesson'),secC=document.getElementById('check'),
+      secRA=document.getElementById('resultA'),secRT=document.getElementById('retention'),
+      secW=document.getElementById('wrap'),bWrap=document.getElementById('bWrap');
+  function el(id){return document.getElementById(id);}
+  function startA(){MODE='A';QS=FORMA;rec.attempts=(rec.attempts||0)+1;save(app);
+    secL.classList.add('hide');secRA.classList.add('hide');secC.classList.remove('hide');
+    qi=0;correct=0;window.scrollTo(0,0);showQ();}
+  function startB(){MODE='B';QS=FORMB;el('startB').classList.add('hide');bWrap.classList.remove('hide');
+    qi=0;correct=0;window.scrollTo(0,0);showQ();}
+  function showQ(){locked=false;var item=QS[qi];
+    var ids=MODE==='A'?{c:'qcount',t:'tlabel',f:'tfill',q:'qtext',o:'opts',w:'qwhy'}:{c:'qcountB',t:'tlabelB',f:'tfillB',q:'qtextB',o:'optsB',w:'qwhyB'};
+    el(ids.c).textContent='Question '+(qi+1)+' of '+QS.length;
+    el(ids.q).innerHTML=item.q;
+    var opts=el(ids.o);opts.innerHTML='';
+    item.o.forEach(function(txt,i){var b=document.createElement('button');b.className='opt2';b.type='button';b.innerHTML=txt;
+      b.addEventListener('click',function(){answer(i,b,opts,ids);});opts.appendChild(b);});
+    el(ids.w).textContent='';
+    timeLeft=QTIME;el(ids.f).style.width='100%';el(ids.f).classList.remove('low');el(ids.t).textContent=QTIME+'s';
+    clearInterval(timer);timer=setInterval(function(){timeLeft--;if(timeLeft<0)timeLeft=0;
+      el(ids.f).style.width=(timeLeft/QTIME*100)+'%';el(ids.t).textContent=timeLeft+'s';
+      if(timeLeft<=8)el(ids.f).classList.add('low');
+      if(timeLeft===0){clearInterval(timer);autoAdvance(opts,ids,item);}},1000);
+  }
+  function autoAdvance(opts,ids,item){if(locked)return;locked=true;
+    Array.prototype.forEach.call(opts.children,function(c,idx){if(idx===item.a)c.classList.add('correct');c.style.pointerEvents='none';});
+    el(ids.w).innerHTML='Time. '+item.why;
+    setTimeout(function(){qi++;if(qi<QS.length)showQ();else finish();},1100);}
+  function answer(i,btn,opts,ids){if(locked)return;locked=true;clearInterval(timer);
+    var item=QS[qi],ok=(i===item.a);
+    Array.prototype.forEach.call(opts.children,function(c,idx){if(idx===item.a)c.classList.add('correct');if(idx===i&&!ok)c.classList.add('bad');c.style.pointerEvents='none';});
+    el(ids.w).innerHTML=(ok?'Correct. ':'Not quite. ')+item.why;
+    if(ok)correct++;
+    setTimeout(function(){qi++;if(qi<QS.length)showQ();else finish();},ok?700:1300);}
+  function finish(){commitTime();
+    if(MODE==='A'){secC.classList.add('hide');secRA.classList.remove('hide');window.scrollTo(0,0);
+      rec.formA=correct;var passed=(correct>=PASS),pct=Math.round(correct/QS.length*100);
+      if(passed&&!rec.formAPassedAt)rec.formAPassedAt=Date.now();
+      rec.best=Math.max(rec.best||0,pct);
+      el('scoreA').textContent=correct+' / '+QS.length;
+      el('statusA').textContent=passed?'PASS':'NOT YET';el('statusA').style.color=passed?'var(--good)':'var(--accent-d)';
+      el('msgA').textContent=passed?('Strong. '+correct+' of '+QS.length+' correct. Form B opens in 24 hours.'):('You need '+PASS+' of '+QS.length+'. You got '+correct+'. Review the conversion steps.');
+      rec.status=passed?'formA-passed':'tried';
+      if(passed){el('retryA').classList.add('hide');syncCloud();}
+      else el('retryA').classList.remove('hide');
+      save(app);
+    }else{
+      bWrap.classList.add('hide');secRT.classList.add('hide');secW.classList.remove('hide');window.scrollTo(0,0);
+      rec.formB=correct;el('finalA').textContent=(rec.formA||0)+' / 8';el('finalB').textContent=correct+' / 8';
+      var aPass=(rec.formA||0)>=PASS,bPass=correct>=PASS,both=aPass&&bPass;
+      var gate=el('gate');gate.innerHTML='';
+      function gline(ok,label){var d=document.createElement('div');d.className='gitem '+(ok?'ok':'miss');d.innerHTML='<div class="mk">'+(ok?'✓':'!')+'</div><div>'+label+'</div>';gate.appendChild(d);}
+      gline(aPass,'Form A: '+(rec.formA||0)+' of 8 (need '+PASS+')');
+      gline(bPass,'Form B: '+correct+' of 8 (need '+PASS+'), delayed retention');
+      if(both){el('cred').classList.add('show');rec.status='passed';rec.passedAt=Date.now();syncCloud();showMastery(rec.formA||0,correct);}
+      else{rec.status='formB-tried';}
+      save(app);
+    }
+  }
+  function showMastery(a,b){var sec=document.getElementById('masteryDone');if(!sec)return;
+    var ea=document.getElementById('msFormA');if(ea)ea.textContent=a+' / 8';
+    var eb=document.getElementById('msFormB');if(eb)eb.textContent=b+' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){n.textContent=SNAME;});
+    var back=document.getElementById('msBack');if(back)back.href='dashboard.html?kid='+encodeURIComponent(STUDENT);
+    secL.classList.add('hide');secC.classList.add('hide');secRA.classList.add('hide');
+    secRT.classList.add('hide');secW.classList.add('hide');
+    sec.classList.add('show');
+    try{sec.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){window.scrollTo(0,0);}
+  }
+  function showGate(){
+    secRA.classList.add('hide');secRT.classList.remove('hide');window.scrollTo(0,0);
+    var startBtn=el('startB'),cd=el('countdown');
+    function tick(){
+      var elapsed=Date.now()-(rec.formAPassedAt||Date.now());
+      var remain=GATE_MS-elapsed;
+      if(remain<=0){cd.textContent='Form B is ready.';startBtn.classList.remove('hide');return;}
+      startBtn.classList.add('hide');
+      var h=Math.floor(remain/3600000),m=Math.floor((remain%3600000)/60000),s=Math.floor((remain%60000)/1000);
+      cd.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      setTimeout(tick,1000);
+    }
+    tick();
+  }
+  function resume(){
+    if(rec.status==='passed'){showMastery(rec.formA||0,rec.formB||0);return;}
+    if(rec.formAPassedAt&&(rec.formA||0)>=PASS&&(rec.formB||0)<PASS){secL.classList.add('hide');showGate();}
+  }
+  el('toCheck').addEventListener('click',startA);
+  el('toRetention').addEventListener('click',showGate);
+  el('retryA').addEventListener('click',function(){secRA.classList.add('hide');secL.classList.remove('hide');window.scrollTo(0,0);});
+  el('startB').addEventListener('click',startB);
+  document.addEventListener('DOMContentLoaded',resume);
+})();
+</script>
+</body>
+</html>

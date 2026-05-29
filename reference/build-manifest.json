@@ -3,6 +3,7 @@
   "generated": "2026-05-25",
   "week_1_status": "Complete. All 45 Week 1 slots wired (3 students x 5 days x 3 subjects: math, reading, enrichment rotation Sci/SS/Spelling/Sci/SS). 25 new lessons authored in this build; 20 carryover from prior batch. Spelling replaces Japanese on Day 3 in the paid product; the 3 Japanese lesson files remain in the repo as a side project (not surfaced in product UI).",
   "week_2_status": "Complete. All 45 Week 2 slots authored and wired into Week 2 Schedule.html. 6 parallel authoring agents using the lock-in stack (template + LESSON-CONTRACT.md + validator). First-build clean: every lesson passed the validator with 0 FAILs. Sam continues U4 (odd/even arrays) + enters U5 (measuring length); Amelia enters U2 multiplication and division; Julie enters U2 integer exponents and roots. Reading deepens comprehension monitoring + vocab (G2), story analysis + PIE (G3), informational ladder + literary devices (G8). Science enters life science (plant/animal interdependence G2/G3, cells + body systems G8). Social Studies enters geography + early US history (G2 physical world + transportation, G3 Louisiana Purchase + lawmaking, G8 Revolution + Early Republic). Spelling W2: contractions G2, doubled consonants G3, tricky academics G8.",
+  "week_3_status": "Complete. All 45 Week 3 slots authored and wired into Week 3 Schedule.html. Same 6-parallel-agent lock-in pattern; only blocking issue across the whole week was a one-time answer-key shuffle on 2 Julie Reading files. Sam math continues U5 measurement; Amelia math finishes U4 fluency + U5 patterns; Julie math enters U3 proportional + slope + first linear equation. Reading deepens vocabulary + grammar (G2 nouns/pronouns/collective/irregular), story + nonfiction analysis (G3 character interaction, text features, fact vs opinion), independent reading + research + revising (G8). Science: fast/slow Earth changes + land/water maps (G2), magnetic/electric + ecosystem survival (G3), matter+energy cycling + fossil record (G8). Social Studies: government branches + national symbols (G2), MO courts + MO Constitution (G3), US expansion + forced removal (G8). Spelling: capitalize days/months/holidays G2, y-to-ies plurals G3, more tricky academics G8.",
   "data_model": "localStorage key 'edu.app'; progress[studentId][subjectKey][STANDARDCODE]={status,best,attempts,formA,formB,formAPassedAt,passedAt,...}. The legacy 'explain' (free-text) and 'pt' / 'ptDone' / 'application' fields remain readable for backward compatibility but are no longer required and are not written by current lessons. studentId in sam/amelia/julie. subjectKey in math/reading/science/social/spelling. Pass = 7/8 on Form A then Form B (delayed, gated 24h on spelling). Status becomes 'passed' once both forms clear; the lesson then shows a mastery completion screen. Supabase sync baked, no-op until keys set.",
   "hard_rules": [
     "No em-dash or en-dash anywhere (grep U+2014 and U+2013 must be 0).",
@@ -23,13 +24,13 @@
   },
   "totals": {
     "math_atoms": 132,
-    "math_built": 37,
-    "math_to_build": 95,
-    "reading_built": 30,
+    "math_built": 52,
+    "math_to_build": 80,
+    "reading_built": 45,
     "reading_scoped_atoms": 26,
-    "science_built": 12,
-    "social_studies_built": 12,
-    "spelling_built": 6,
+    "science_built": 18,
+    "social_studies_built": 18,
+    "spelling_built": 9,
     "japanese_built": 3,
     "japanese_status": "side_project_not_in_paid_product",
     "subjects_with_week1_standards_pulled": [

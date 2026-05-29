@@ -408,32 +408,32 @@
 
   // Item banks
   var FORM_A=[
-    {q:'When you are not sure of an answer, the best move is to...',o:['guess and move on','look back at the text','close the book'],a:1,why:'Good readers go back and find the proof.'},
-    {q:'<b>Evidence</b> means the answer comes from...',o:['the book','your dreams','a friend'],a:0,why:'Evidence is the part of the text that proves it.'},
+    {q:'When you are not sure of an answer, the best move is to...',o:['look back at the text','guess and move on','close the book'],a:0,why:'Good readers go back and find the proof.'},
+    {q:'<b>Evidence</b> means the answer comes from...',o:['your dreams','the book','a friend'],a:1,why:'Evidence is the part of the text that proves it.'},
     {q:'Read: "Owen put on his green hat." What color is the hat?',o:['Blue','Red','Green'],a:2,why:'The book says green. That is the proof.'},
     {q:'Read: "It rained all day on Tuesday." What day did it rain?',o:['Tuesday','Sunday','Friday'],a:0,why:'The book says Tuesday.'},
-    {q:'Which is an <b>evidence answer</b>?',o:['It says so right in the text','I just feel it','My mom told me'],a:0,why:'Evidence answers come from the text.'},
-    {q:'Read: "Hana drank a glass of milk before bed." What did Hana drink?',o:['Juice','Milk','Water'],a:1,why:'The book says milk.'},
-    {q:'After you find the answer in the book, you should...',o:['ignore the book','point to the sentence and say it','make up a new ending'],a:1,why:'Point to the proof. Use the book\'s words.'},
-    {q:'Read: "Lin baked five cookies. She ate one." How many did Lin bake?',o:['Five','One','Four'],a:0,why:'She baked five. She ate one.'},
-    {q:'If the book does not say it, your answer is a...',o:['proven fact','guess','perfect answer'],a:1,why:'No proof means it is a guess.'},
-    {q:'Read: "Jay wore boots because the grass was wet." Why did Jay wear boots?',o:['He liked the color','The grass was wet','It was Tuesday'],a:1,why:'The book gives the reason: the wet grass.'},
+    {q:'Which is an <b>evidence answer</b>?',o:['I just feel it','It says so right in the text','My mom told me'],a:1,why:'Evidence answers come from the text.'},
+    {q:'Read: "Hana drank a glass of milk before bed." What did Hana drink?',o:['Juice','Water','Milk'],a:2,why:'The book says milk.'},
+    {q:'After you find the answer in the book, you should...',o:['point to the sentence and say it','ignore the book','make up a new ending'],a:0,why:'Point to the proof. Use the book\'s words.'},
+    {q:'Read: "Lin baked five cookies. She ate one." How many did Lin bake?',o:['One','Five','Four'],a:1,why:'She baked five. She ate one.'},
+    {q:'If the book does not say it, your answer is a...',o:['proven fact','perfect answer','guess'],a:2,why:'No proof means it is a guess.'},
+    {q:'Read: "Jay wore boots because the grass was wet." Why did Jay wear boots?',o:['The grass was wet','He liked the color','It was Tuesday'],a:0,why:'The book gives the reason: the wet grass.'},
     {q:'A good reader uses words from the text because...',o:['they sound cool','the text proves them','it is faster'],a:1,why:'The text has the proof.'},
-    {q:'Read: "Ben has two cats and one dog." How many cats?',o:['One','Two','Three'],a:1,why:'The book says two cats.'}
+    {q:'Read: "Ben has two cats and one dog." How many cats?',o:['One','Three','Two'],a:2,why:'The book says two cats.'}
   ];
   var FORM_B=[
     {q:'To <b>seek clarification</b> means to...',o:['ask or look until you understand','close the book','copy the page'],a:0,why:'You keep looking until it is clear.'},
-    {q:'Read: "Pia took her dog to the park on Saturday." Where did Pia go?',o:['School','The store','The park'],a:2,why:'The book says the park.'},
-    {q:'The best <b>proof</b> of an answer is...',o:['what your friend said','a sentence in the book','what you think'],a:1,why:'The sentence in the book proves it.'},
+    {q:'Read: "Pia took her dog to the park on Saturday." Where did Pia go?',o:['School','The park','The store'],a:1,why:'The book says the park.'},
+    {q:'The best <b>proof</b> of an answer is...',o:['what your friend said','what you think','a sentence in the book'],a:2,why:'The sentence in the book proves it.'},
     {q:'Read: "Sam ate three pancakes for breakfast." How many pancakes?',o:['Three','Five','Two'],a:0,why:'The book says three.'},
     {q:'Read: "The bus was late because of the snow." Why was the bus late?',o:['The driver was tired','The snow','It got a flat tire'],a:1,why:'The book gives the reason: the snow.'},
-    {q:'If the question word is <b>who</b>, you look in the text for a...',o:['place','person','time'],a:1,why:'Who asks about a person.'},
-    {q:'Read: "Aria has a pet rabbit named Snow." What is the rabbit\'s name?',o:['Lily','Snow','Bella'],a:1,why:'The book gives the name: Snow.'},
-    {q:'A reader who says "I just know" but cannot point to the text is making a...',o:['guess','proof','careful answer'],a:0,why:'No text proof = a guess.'},
+    {q:'If the question word is <b>who</b>, you look in the text for a...',o:['place','time','person'],a:2,why:'Who asks about a person.'},
+    {q:'Read: "Aria has a pet rabbit named Snow." What is the rabbit\'s name?',o:['Snow','Lily','Bella'],a:0,why:'The book gives the name: Snow.'},
+    {q:'A reader who says "I just know" but cannot point to the text is making a...',o:['proof','guess','careful answer'],a:1,why:'No text proof = a guess.'},
     {q:'Read: "Caleb wore a blue jacket and brown boots." What color were the boots?',o:['Blue','Black','Brown'],a:2,why:'The book says brown.'},
-    {q:'The best step <b>before</b> you answer is to...',o:['shut the book','look back at the text','change the question'],a:1,why:'Look back to find the proof.'},
-    {q:'Read: "The cake was sweet because Nora added honey." Why was the cake sweet?',o:['Nora added honey','It was Tuesday','It was a birthday'],a:0,why:'The book gives the reason: the honey.'},
-    {q:'When you answer with words <b>from the text</b>, your answer is...',o:['less correct','stronger because it has proof','too long'],a:1,why:'Words from the text bring the proof with them.'}
+    {q:'The best step <b>before</b> you answer is to...',o:['look back at the text','shut the book','change the question'],a:0,why:'Look back to find the proof.'},
+    {q:'Read: "The cake was sweet because Nora added honey." Why was the cake sweet?',o:['It was Tuesday','Nora added honey','It was a birthday'],a:1,why:'The book gives the reason: the honey.'},
+    {q:'When you answer with words <b>from the text</b>, your answer is...',o:['less correct','too long','stronger because it has proof'],a:2,why:'Words from the text bring the proof with them.'}
   ];
 
   var FORM_A_IDX=[0,1,2,3,4,5,6,7];

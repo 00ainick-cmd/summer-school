@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Mastery learning lesson on central idea and objective summary in informational texts, aligned to Missouri Learning Standard 8.RI.1.D. Auto-graded, kid-independent.">
-<title>Training Console &middot; Central Idea of Informational Text</title>
+<meta name="description" content="Mastery learning lesson on literary devices and how they develop setting, character, plot, and meaning, aligned to Missouri Learning Standard 8.RL.2.D. Auto-graded, kid-independent.">
+<title>Training Console &middot; Literary Devices</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -53,9 +53,10 @@ h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
 .lesson-hero{margin:14px 0 22px;display:flex;justify-content:center;}
 .lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
 .lesson-hero .panel{fill:#fff;stroke:var(--line);stroke-width:1.25;}
-.lesson-hero .thesis{fill:#14171c;stroke:none;}
-.lesson-hero .para{fill:rgba(31,59,84,.08);stroke:var(--alt);stroke-width:1.4;}
-.lesson-hero .thread{stroke:var(--accent);stroke-width:2;fill:none;stroke-dasharray:none;}
+.lesson-hero .core{fill:#14171c;stroke:var(--accent);stroke-width:2;}
+.lesson-hero .ring{fill:none;stroke:var(--alt);stroke-width:1;stroke-dasharray:3 3;opacity:.5;}
+.lesson-hero .devcard{fill:#fff;stroke:var(--alt);stroke-width:1.4;}
+.lesson-hero .spoke{stroke:var(--accent-d);stroke-width:1.4;fill:none;}
 .lesson-hero .anton{font-family:'Anton',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
 .lesson-hero .mono{font-family:'Spline Sans Mono',monospace;}
 .lesson-hero .headlbl{font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--alt);}
@@ -65,9 +66,7 @@ h1{font-size:clamp(30px,6.5vw,50px);line-height:1;margin:6px 0 10px;}
 .ftable th{background:#14171c;color:#ecede7;font-family:'Spline Sans Mono';font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
 .ftable td b{color:var(--accent-d);}
 
-.passage{background:#faf8f2;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:16px;color:var(--ink);}
-.passage p{margin-bottom:8px;}
-.passage p:last-child{margin-bottom:0;}
+.passage{background:#faf8f2;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:16px;color:var(--ink);font-style:italic;}
 .claim{margin-top:14px;font-weight:700;font-size:16.5px;}
 .claim span{color:var(--accent-d);}
 .evs{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
@@ -136,114 +135,111 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   <div class="labbar">
     <span class="dotg" aria-hidden="true"></span>
-    Session 04 &middot; <b>Grade 8</b>
-    <span class="chip">Standard 8.RI.1.D</span>
+    Session 05 &middot; <b>Grade 8</b>
+    <span class="chip">Standard 8.RL.2.D</span>
   </div>
 
   <section id="lesson">
 
-    <div class="kicker">Session 04</div>
-    <h1>Central Idea of Informational Text</h1>
-    <p class="opener">The central idea of an article is not the topic. The topic is what the text is about. The central idea is the controlling claim the text advances and refines, paragraph by paragraph, until the final line.</p>
-    <p class="mission">By the end of this session you will identify the central idea of an informational text, trace how it develops across paragraphs, and write an objective summary that excludes evaluative language and personal opinion.</p>
+    <div class="kicker">Session 05</div>
+    <h1>Literary Devices</h1>
+    <p class="opener">A literary device is not ornamentation. It is the writer&rsquo;s instrument for revealing what straight description cannot: the interior of a character, the shape of a setting, the meaning that hovers behind the plot.</p>
+    <p class="mission">By the end of this session you will recognize metaphor, simile, personification, foreshadowing, irony, and symbolism in literary text, and explain how each device develops setting, reveals character, advances plot, or contributes to the work&rsquo;s meaning.</p>
     <div class="stdtag">
       <span class="l">What this session teaches</span>
-      Explain the central/main idea(s) of a text and analyze its development over the course of a text; provide an objective summary of the text.
+      Analyze how literary devices are used to develop setting, reveal character, advance the plot and contribute to meaning.
     </div>
 
     <div class="lesson-hero" aria-hidden="true">
-      <svg viewBox="0 0 560 290" role="img" aria-label="An article structure diagram. A dark thesis panel sits at the top. Four body paragraph panels descend beneath it, each connected to the thesis by a red thread, illustrating that the central idea is developed through every paragraph.">
-        <rect class="panel" x="6" y="6" width="548" height="278" rx="10"/>
-        <text class="headlbl" x="22" y="26">How the central idea develops</text>
-        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mut);">thesis &#8594; supporting paragraphs</text>
-        <g transform="translate(150 44)">
-          <rect class="thesis" x="0" y="0" width="260" height="48" rx="8"/>
-          <text class="anton" x="14" y="20" font-size="11" fill="#9aa0a8" style="letter-spacing:.14em;">CENTRAL IDEA / THESIS</text>
-          <line x1="14" y1="26" x2="48" y2="26" stroke="var(--accent)" stroke-width="2"/>
-          <text x="14" y="40" font-family="'Spline Sans', sans-serif" font-size="12.5" fill="#fff" font-weight="600">Urban green space improves measurable public health.</text>
+      <svg viewBox="0 0 560 360" role="img" aria-label="A diagram with the word MEANING at the dark center. Six device cards are arranged around it: metaphor, simile, personification, foreshadowing, irony, and symbolism. Spokes connect each device to the center, illustrating that every device serves meaning.">
+        <rect class="panel" x="6" y="6" width="548" height="348" rx="10"/>
+        <text class="headlbl" x="22" y="26">Six devices, one center</text>
+        <text class="mono" x="538" y="26" text-anchor="end" style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;fill:var(--mut);">device &#8594; meaning</text>
+        <circle class="ring" cx="280" cy="184" r="130"/>
+        <line class="spoke" x1="280" y1="184" x2="120" y2="98"/>
+        <line class="spoke" x1="280" y1="184" x2="440" y2="98"/>
+        <line class="spoke" x1="280" y1="184" x2="80" y2="184"/>
+        <line class="spoke" x1="280" y1="184" x2="480" y2="184"/>
+        <line class="spoke" x1="280" y1="184" x2="120" y2="270"/>
+        <line class="spoke" x1="280" y1="184" x2="440" y2="270"/>
+        <circle class="core" cx="280" cy="184" r="50"/>
+        <text class="anton" x="280" y="180" text-anchor="middle" font-size="14" fill="#fff" style="letter-spacing:.06em;">MEANING</text>
+        <text class="mono" x="280" y="196" text-anchor="middle" font-size="8.5" fill="#9aa0a8" style="letter-spacing:.08em;">setting / character / plot</text>
+        <g transform="translate(40 72)">
+          <rect class="devcard" x="0" y="0" width="120" height="52" rx="8"/>
+          <text class="anton" x="60" y="22" text-anchor="middle" font-size="12" fill="var(--accent-d)">METAPHOR</text>
+          <text x="60" y="40" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)">"hope is a thing with feathers"</text>
         </g>
-        <path class="thread" d="M280 92 L280 116"/>
-        <path class="thread" d="M280 116 L70 162"/>
-        <path class="thread" d="M280 116 L210 162"/>
-        <path class="thread" d="M280 116 L350 162"/>
-        <path class="thread" d="M280 116 L490 162"/>
-        <g transform="translate(24 162)">
-          <rect class="para" x="0" y="0" width="92" height="92" rx="6"/>
-          <text class="anton" x="46" y="18" text-anchor="middle" font-size="10" fill="var(--alt)" style="letter-spacing:.08em;">PARA 1</text>
-          <text x="46" y="44" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">Defines</text>
-          <text x="46" y="58" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">"green space"</text>
-          <text x="46" y="78" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">and frames</text>
+        <g transform="translate(380 72)">
+          <rect class="devcard" x="0" y="0" width="120" height="52" rx="8"/>
+          <text class="anton" x="60" y="22" text-anchor="middle" font-size="12" fill="var(--accent-d)">SIMILE</text>
+          <text x="60" y="40" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)">"like a stone in a river"</text>
         </g>
-        <g transform="translate(164 162)">
-          <rect class="para" x="0" y="0" width="92" height="92" rx="6"/>
-          <text class="anton" x="46" y="18" text-anchor="middle" font-size="10" fill="var(--alt)" style="letter-spacing:.08em;">PARA 2</text>
-          <text x="46" y="44" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">Cites health</text>
-          <text x="46" y="58" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">data,</text>
-          <text x="46" y="78" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">stress study</text>
+        <g transform="translate(0 158)">
+          <rect class="devcard" x="0" y="0" width="120" height="52" rx="8"/>
+          <text class="anton" x="60" y="22" text-anchor="middle" font-size="12" fill="var(--accent-d)">PERSONIFICATION</text>
+          <text x="60" y="40" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)">"the wind argued back"</text>
         </g>
-        <g transform="translate(304 162)">
-          <rect class="para" x="0" y="0" width="92" height="92" rx="6"/>
-          <text class="anton" x="46" y="18" text-anchor="middle" font-size="10" fill="var(--alt)" style="letter-spacing:.08em;">PARA 3</text>
-          <text x="46" y="44" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">Cardio</text>
-          <text x="46" y="58" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">outcomes,</text>
-          <text x="46" y="78" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">CDC review</text>
+        <g transform="translate(420 158)">
+          <rect class="devcard" x="0" y="0" width="120" height="52" rx="8"/>
+          <text class="anton" x="60" y="22" text-anchor="middle" font-size="12" fill="var(--accent-d)">FORESHADOWING</text>
+          <text x="60" y="40" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)">"she would not see him again"</text>
         </g>
-        <g transform="translate(444 162)">
-          <rect class="para" x="0" y="0" width="92" height="92" rx="6"/>
-          <text class="anton" x="46" y="18" text-anchor="middle" font-size="10" fill="var(--alt)" style="letter-spacing:.08em;">PARA 4</text>
-          <text x="46" y="44" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">Counterargument</text>
-          <text x="46" y="58" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">and</text>
-          <text x="46" y="78" text-anchor="middle" font-family="'Spline Sans', sans-serif" font-size="9.5" fill="var(--ink)">restatement</text>
+        <g transform="translate(40 244)">
+          <rect class="devcard" x="0" y="0" width="120" height="52" rx="8"/>
+          <text class="anton" x="60" y="22" text-anchor="middle" font-size="12" fill="var(--accent-d)">IRONY</text>
+          <text x="60" y="40" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)">"the lifeguard could not swim"</text>
+        </g>
+        <g transform="translate(380 244)">
+          <rect class="devcard" x="0" y="0" width="120" height="52" rx="8"/>
+          <text class="anton" x="60" y="22" text-anchor="middle" font-size="12" fill="var(--accent-d)">SYMBOLISM</text>
+          <text x="60" y="40" text-anchor="middle" font-family="'Spline Sans Mono'" font-size="9" fill="var(--ink2)">"the green light at the dock"</text>
         </g>
       </svg>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">01 / LEARN</span><h2>Topic vs central idea</h2></div>
-      <p class="lead">The <b>topic</b> is the subject the writer is examining: urban green space, fast fashion, the gig economy. The <b>central idea</b> is the controlling claim the writer advances about that subject: that urban green space measurably improves public health, that fast fashion produces an externalized environmental cost, that the gig economy reorganizes the worker-employer relationship.</p>
+      <div class="shead"><span class="sno">01 / LEARN</span><h2>Figurative comparisons: metaphor, simile, personification</h2></div>
+      <p class="lead">Three closely related devices use figurative language to compare one thing to another so that the reader sees a familiar subject under a new aspect.</p>
       <table class="ftable">
-        <tr><th>Topic</th><th>Central idea</th></tr>
-        <tr><td>Urban green space</td><td>Urban green space measurably improves public health outcomes in the surrounding population.</td></tr>
-        <tr><td>Fast fashion</td><td>Fast fashion shifts environmental costs from the consumer to the global supply chain.</td></tr>
-        <tr><td>The gig economy</td><td>The gig economy weakens the traditional employer-worker contract while expanding individual flexibility.</td></tr>
+        <tr><th>Device</th><th>How it works</th><th>Example</th></tr>
+        <tr><td><b>Metaphor</b></td><td>States that one thing <i>is</i> another, without "like" or "as."</td><td>"Hope is a thing with feathers." (Dickinson)</td></tr>
+        <tr><td><b>Simile</b></td><td>Compares two things using <i>like</i> or <i>as</i>.</td><td>"She stood like a stone in a river of moving people."</td></tr>
+        <tr><td><b>Personification</b></td><td>Attributes human qualities to a nonhuman subject.</td><td>"The wind argued back through the cracks in the window."</td></tr>
       </table>
-      <p class="lead" style="margin-top:10px;">A central idea is always a complete claim, not a noun phrase. Test it: can it be argued for or against? If not, it is still a topic.</p>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">02 / LEARN</span><h2>How the central idea develops</h2></div>
-      <p class="lead">An informational text does not state its central idea once and abandon it. The central idea is introduced, then <b>developed</b>: each paragraph contributes a specific kind of support and the writer typically deepens, qualifies, or extends the claim as the text proceeds.</p>
+      <div class="shead"><span class="sno">02 / LEARN</span><h2>Structural devices: foreshadowing, irony, motif</h2></div>
+      <p class="lead">Three devices work at the level of structure rather than individual phrasing, shaping the reader&rsquo;s sense of what is coming, what is hidden, and what is being repeated.</p>
       <table class="ftable">
-        <tr><th>Paragraph role</th><th>What it contributes to the central idea</th></tr>
-        <tr><td><b>Framing</b></td><td>Defines key terms and announces the claim the text will defend.</td></tr>
-        <tr><td><b>Evidentiary</b></td><td>Supplies data, sources, examples that ground the claim.</td></tr>
-        <tr><td><b>Analytical</b></td><td>Interprets the evidence, explaining why it supports the central idea.</td></tr>
-        <tr><td><b>Counterargument</b></td><td>Acknowledges and answers a plausible objection.</td></tr>
-        <tr><td><b>Synthesis</b></td><td>Restates the central idea in light of the accumulated support.</td></tr>
+        <tr><th>Device</th><th>How it works</th><th>Example</th></tr>
+        <tr><td><b>Foreshadowing</b></td><td>Plants an early hint of a later development.</td><td>An opening chapter that mentions a locked drawer the protagonist will eventually open.</td></tr>
+        <tr><td><b>Irony</b></td><td>Reveals a gap between expectation and reality, between what is said and what is meant, or between what a character knows and what the reader knows.</td><td>A character described as the most reliable witness turns out to be the unreliable narrator.</td></tr>
+        <tr><td><b>Motif</b></td><td>Repeats an image, phrase, or object across the text to accumulate meaning.</td><td>A novel that returns to images of mirrors at every turning point.</td></tr>
       </table>
-      <p class="lead" style="margin-top:10px;">Tracing development means naming, for each paragraph, what work it is doing for the central idea.</p>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">03 / LEARN</span><h2>What an objective summary excludes</h2></div>
-      <p class="lead">A summary is <b>objective</b> when it reports what the text says without inserting the summarizer&rsquo;s judgment. Three kinds of language signal that a summary has drifted out of objectivity.</p>
+      <div class="shead"><span class="sno">03 / LEARN</span><h2>Symbolism: a thing that stands for more than itself</h2></div>
+      <p class="lead">A <b>symbol</b> is an object, image, or action in the text that signifies a larger idea beyond its literal sense. Symbolism becomes legible when the writer returns to the same object at key moments and the object accumulates significance across the text. A single mention is rarely enough; symbolism requires patterning.</p>
       <table class="ftable">
-        <tr><th>Drift</th><th>Example</th><th>Fix</th></tr>
-        <tr><td><b>Evaluation</b></td><td>"The author makes a compelling case for..."</td><td>"The author argues that..."</td></tr>
-        <tr><td><b>Personal reaction</b></td><td>"I think the strongest point is..."</td><td>"The text identifies as its strongest point..."</td></tr>
-        <tr><td><b>Editorial framing</b></td><td>"In a brilliant move, the writer cites..."</td><td>"The writer cites..."</td></tr>
+        <tr><th>Symbol in the text</th><th>What it comes to signify</th></tr>
+        <tr><td>The green light at the end of the dock (Fitzgerald)</td><td>The unreachable object of longing.</td></tr>
+        <tr><td>The conch in <i>Lord of the Flies</i> (Golding)</td><td>Civilizational order; its breakage signals collapse.</td></tr>
+        <tr><td>The recurring image of fog in a noir novel</td><td>Moral obscurity surrounding the investigation.</td></tr>
       </table>
-      <p class="lead" style="margin-top:10px;">A clean objective summary captures the central idea, the key supporting moves, and the conclusion, in your own words, without any "good," "great," "I felt," or "powerful."</p>
+      <p class="lead" style="margin-top:10px;">The standard asks you to do more than identify the device. You must explain <b>what work it does</b> in the text: revealing character, building setting, advancing plot, or contributing to meaning.</p>
     </div>
 
     <div class="station">
-      <div class="shead"><span class="sno">04 / DO</span><h2>Identify the central idea and the objective summary</h2></div>
-      <p class="lead">Read the article excerpt below, then identify (a) the central idea, and (b) the option that is the most objective summary.</p>
+      <div class="shead"><span class="sno">04 / DO</span><h2>Identify the device and its function</h2></div>
+      <p class="lead">Read each short passage. First identify the literary device at work, then identify what the device contributes to setting, character, plot, or meaning.</p>
       <div class="passage" id="passage"></div>
       <div class="claim" id="claim"></div>
       <div class="evs" id="evs"></div>
       <div class="fbline" id="evfb"></div>
-      <button class="cta rnext hide" id="rnext">Next item</button>
+      <button class="cta rnext hide" id="rnext">Next passage</button>
     </div>
 
     <button class="cta" id="toCheck">I am ready. Start Form A</button>
@@ -289,7 +285,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   <footer>
     <span id="__sname">Julie</span>
-    &middot; Reading &middot; Day 4 &middot; Standard 8.RI.1.D
+    &middot; Reading &middot; Day 5 &middot; Standard 8.RL.2.D
   </footer>
 
   <section id="masteryDone" class="mastery-complete" aria-live="polite">
@@ -335,7 +331,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   var KEY     = 'edu.app';
   var STUDENT = __rk.id;
   var SUBJECT = 'reading';
-  var DAY     = '8.RI.1.D';
+  var DAY     = '8.RL.2.D';
   var SNAME   = __rk.name;
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -401,21 +397,21 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
   /* Mid-lesson practice rounds */
   var ROUNDS = [
     {
-      passageHtml: '<p>Few questions in urban planning have produced as much recent data as the impact of green space on public health. A 2022 review across twelve cities found that residents within a ten-minute walk of a park reported 18 percent lower stress hormone levels than those farther away.</p><p>Cardiovascular studies have extended the finding. CDC data from 2020 through 2023 show measurable decreases in cardiac event rates in neighborhoods that gained at least one new park.</p><p>Critics argue that wealthier residents tend to cluster near green space, complicating any causal claim. Yet recent quasi-experimental work, in which parks were added to lower-income neighborhoods, has reproduced the health benefits across income brackets.</p>',
-      claim: 'Which option states the article\'s <b>central idea</b>?',
+      passage: '"The old house brooded at the edge of the field, its windows watching the road as cars passed indifferently."',
+      claimHtml: 'The dominant device here is <b>personification</b>. What does it do for the text?',
       evs: [
-        { t: 'Urban green space measurably improves public health outcomes in surrounding populations.', ok: true, why: 'Correct. This is a complete claim about the topic, supported by every paragraph in the excerpt.' },
-        { t: 'Parks are common features of modern cities.', ok: false, why: 'A statement about the topic, not a claim. The article advances a specific position about effects, not mere presence.' },
-        { t: 'The CDC is a federal agency that publishes data.', ok: false, why: 'A peripheral detail about one source, not the controlling claim of the article.' }
+        { t: 'It develops setting by giving the house an attentive, almost watchful presence that colors the rest of the scene.', ok: true, why: 'Correct. The verbs "brooded" and "watching" assign human interiority to the house, shaping the atmosphere of the setting.' },
+        { t: 'It advances the plot by introducing a new character.', ok: false, why: 'No new character has appeared. The house is the setting, not a character in the action.' },
+        { t: 'It reveals the protagonist\'s greatest fear.', ok: false, why: 'No protagonist or interior fear is named here. The work being done is atmospheric.' }
       ]
     },
     {
-      passageHtml: '<p>Few questions in urban planning have produced as much recent data as the impact of green space on public health. A 2022 review across twelve cities found that residents within a ten-minute walk of a park reported 18 percent lower stress hormone levels than those farther away.</p><p>Cardiovascular studies have extended the finding. CDC data from 2020 through 2023 show measurable decreases in cardiac event rates in neighborhoods that gained at least one new park.</p><p>Critics argue that wealthier residents tend to cluster near green space, complicating any causal claim. Yet recent quasi-experimental work, in which parks were added to lower-income neighborhoods, has reproduced the health benefits across income brackets.</p>',
-      claim: 'Which option is the most <b>objective summary</b> of the excerpt?',
+      passage: '"Marisol locked the door three times before she walked away. She would tell herself, later, that she had not heard the footsteps. But she had."',
+      claimHtml: 'Which device is most clearly at work, and what does it contribute?',
       evs: [
-        { t: 'The article makes a powerful and exciting case that parks save lives, and every city should rush to build more.', ok: false, why: 'Subjective. Words like "powerful," "exciting," and "should rush" inject evaluation and prescription.' },
-        { t: 'Drawing on a twelve-city review, CDC data, and quasi-experimental studies, the article argues that proximity to urban green space corresponds to measurable health benefits across income brackets.', ok: true, why: 'Correct. It reports the central claim and the supporting moves without inserting evaluative language or personal reaction.' },
-        { t: 'I felt the most important part was the CDC data because it really proves the point.', ok: false, why: 'Subjective. Begins in first person and inserts the summarizer\'s judgment about which evidence matters most.' }
+        { t: 'Foreshadowing. The final line plants that something connected to those footsteps will return.', ok: true, why: 'Correct. The phrase "she would tell herself, later" and the contradicted denial signal a future development.' },
+        { t: 'Simile. The passage compares two unlike things using "like" or "as."', ok: false, why: 'No simile is present. There is no "like" or "as" comparison.' },
+        { t: 'Symbolism. The locks stand for civilizational order.', ok: false, why: 'Symbolism requires patterning across the text. A single mention of locks is not enough to establish a symbol.' }
       ]
     }
   ];
@@ -426,8 +422,8 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
         rnext = document.getElementById('rnext');
     function loadRound(){
       var r = ROUNDS[rIdx];
-      passage.innerHTML = r.passageHtml;
-      claim.innerHTML = r.claim;
+      passage.textContent = r.passage;
+      claim.innerHTML = r.claimHtml;
       evfb.className = 'fbline'; evfb.textContent = '';
       rnext.classList.add('hide');
       evs.innerHTML = '';
@@ -438,7 +434,7 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
           Array.prototype.forEach.call(evs.children, function(c){ c.disabled = true; });
           if (e.ok){ b.classList.add('ok'); evfb.className = 'fbline ok'; evfb.textContent = e.why; }
           else { b.classList.add('no'); evfb.className = 'fbline try';
-            evfb.textContent = e.why + ' The central idea is a complete claim; an objective summary reports without evaluating.';
+            evfb.textContent = e.why + ' Identify the device first, then name precisely what it develops.';
             Array.prototype.forEach.call(evs.children, function(c, i){ if (r.evs[i].ok) c.classList.add('ok'); });
           }
           if (rIdx < ROUNDS.length - 1) rnext.classList.remove('hide');
@@ -452,68 +448,68 @@ footer{text-align:center;margin-top:30px;font-size:12px;letter-spacing:.08em;tex
 
   /* Item bank: 14 items. Answer positions balanced. */
   var ITEM_BANK = [
-    /* 0 a:2 */ { q: 'The <b>topic</b> and the <b>central idea</b> of an informational text differ in that the central idea is...',
-      o: ['always shorter than the topic','always the first sentence','a complete claim, not just a subject','a list of supporting facts'], a: 2,
-      why: 'A topic names the subject; a central idea advances an arguable claim about it.' },
+    /* 0 a:1 */ { q: 'A <b>metaphor</b> differs from a simile in that a metaphor...',
+      o: ['uses the word "like" or "as"','states one thing is another without "like" or "as"','always rhymes','is always short'], a: 1,
+      why: 'Metaphor asserts identity; simile asserts comparison using "like" or "as."' },
 
-    /* 1 a:0 */ { q: 'Which of these is most clearly a <b>central idea</b> rather than a topic?',
-      o: ['The gig economy weakens the traditional employer-worker contract while expanding flexibility.','Fast fashion in the global economy','The history of urban parks','Public health data sources'], a: 0,
-      why: 'Only the first is a complete arguable claim; the others name subjects.' },
+    /* 1 a:2 */ { q: 'Which is the clearest example of <b>personification</b>?',
+      o: ['"The room was empty and silent."','"The flowers were tall and red."','"The wind argued back through the cracks in the window."','"He felt nervous and uncertain."'], a: 2,
+      why: 'Attributing the human action "argued" to the wind is personification.' },
 
-    /* 2 a:3 */ { q: 'A test that distinguishes a central idea from a topic is...',
-      o: ['Is it the first sentence in the article?','Does it appear in italics?','Is it followed by a quotation?','Can it be argued for or against?'], a: 3,
-      why: 'Only claims can be argued; topics cannot.' },
+    /* 2 a:0 */ { q: '<b>Foreshadowing</b> most accurately functions by...',
+      o: ['planting an early hint of a later development','restating the central idea','translating figurative language','summarizing the plot'], a: 0,
+      why: 'Foreshadowing sets up later events through subtle early signals.' },
 
-    /* 3 a:1 */ { q: 'The <b>development</b> of a central idea over a text refers to...',
-      o: ['the order paragraphs appear in alphabetically','how each paragraph contributes specific support that deepens or qualifies the claim','the use of color in printed editions','the historical reception of the text'], a: 1,
-      why: 'Development is the cumulative paragraph-by-paragraph elaboration of the central claim.' },
+    /* 3 a:3 */ { q: 'A <b>symbol</b> in a literary work is best described as...',
+      o: ['a footnote at the bottom of the page','a list of characters','the same as the topic of the work','an object, image, or action that signifies a larger idea beyond its literal sense'], a: 3,
+      why: 'Symbolism extends an object\'s meaning beyond its literal level through patterned use.' },
 
-    /* 4 a:2 */ { q: 'A paragraph that <b>anticipates and answers an objection</b> to the central idea is doing what kind of work?',
-      o: ['framing','evidentiary','counterargument','synthesis'], a: 2,
-      why: 'Counterargument paragraphs answer an objection that would otherwise weaken the central claim.' },
+    /* 4 a:1 */ { q: '<b>Verbal irony</b> occurs when...',
+      o: ['the writer uses "like" or "as"','what is said is the opposite of what is meant','the plot moves quickly','a character is named after a place'], a: 1,
+      why: 'Verbal irony pivots on the gap between literal statement and intended meaning.' },
 
-    /* 5 a:0 */ { q: 'A paragraph that <b>cites a study</b> in support of the central idea is doing what kind of work?',
-      o: ['evidentiary','framing','synthesis','counterargument'], a: 0,
-      why: 'A paragraph that supplies data, sources, or examples is doing evidentiary work.' },
+    /* 5 a:2 */ { q: 'A <b>simile</b> can be identified by its use of...',
+      o: ['rhyme','alliteration','the word "like" or "as"','a question mark'], a: 2,
+      why: 'Similes are marked by an explicit "like" or "as" comparison.' },
 
-    /* 6 a:3 */ { q: 'An <b>objective summary</b> excludes which of the following?',
-      o: ['the central idea','the main supporting moves','the conclusion','evaluative or personal language'], a: 3,
-      why: 'An objective summary reports without inserting praise, judgment, or first-person reaction.' },
+    /* 6 a:0 */ { q: 'A repeated image of a broken clock that appears at every major turning point in a novel is functioning as a...',
+      o: ['motif','character','setting','dialogue tag'], a: 0,
+      why: 'Patterned repetition of an image across the text is a motif.' },
 
-    /* 7 a:1 */ { q: 'Which sentence below belongs in an <b>objective</b> summary?',
-      o: ['"The author makes a brilliant argument that..."','"The author argues that..."','"I really enjoyed this article because..."','"This is the most important essay I have read."'], a: 1,
-      why: 'Only "argues that" reports the author\'s move without evaluative language.' },
+    /* 7 a:3 */ { q: 'The phrase "her words landed like stones in still water" is which device?',
+      o: ['metaphor','personification','foreshadowing','simile'], a: 3,
+      why: 'The comparison "like stones in still water" uses "like," making it a simile.' },
 
-    /* 8 a:2 */ { q: 'A paragraph that <b>restates the central idea in light of accumulated evidence</b> is doing what work?',
-      o: ['framing','counterargument','synthesis','evidentiary'], a: 2,
-      why: 'Synthesis paragraphs gather what has been shown and recast the central claim accordingly.' },
+    /* 8 a:1 */ { q: 'When a character is described as "the most cautious driver in town" but is then revealed to cause an accident, the device most directly at work is...',
+      o: ['simile','irony','metaphor','motif'], a: 1,
+      why: 'The gap between expectation and reality is irony, often called situational irony.' },
 
-    /* 9 a:0 */ { q: 'Which of these is the <b>most objective</b> summary opener?',
-      o: ['"Drawing on three data sources, the article argues that..."','"In a moving and powerful tone, the writer claims..."','"I think the article shows..."','"Anyone who reads this will agree that..."'], a: 0,
-      why: 'It reports the argumentative move and identifies the supporting sources without evaluation.' },
+    /* 9 a:2 */ { q: 'The standard asks you to analyze how literary devices <b>contribute to meaning</b>. This phrase asks the reader to...',
+      o: ['list devices alphabetically','count devices on each page','explain what work the device does in the text','translate the devices into other languages'], a: 2,
+      why: 'Analysis of contribution means explaining the device\'s function in developing setting, character, plot, or theme.' },
 
-    /* 10 a:1 */ { q: 'The phrase <b>analyze its development over the course of a text</b> in the standard most directly asks the reader to...',
-      o: ['count the paragraphs','trace how the central idea is built across paragraphs','find the longest sentence','identify quoted sources'], a: 1,
-      why: 'Development analysis tracks the paragraph-by-paragraph elaboration of the central idea.' },
+    /* 10 a:0 */ { q: 'A passage describes a coastal town as "a place that held its breath each evening as the tide pulled out." The dominant device develops...',
+      o: ['setting, by making the town feel quietly tense and waiting','plot, by introducing a chase','character, by listing a character\'s memories','dialogue, by quoting a speech'], a: 0,
+      why: 'The personification ("held its breath") atmospherically characterizes the setting.' },
 
-    /* 11 a:3 */ { q: 'An article on fast fashion opens with the claim that <i>fast fashion shifts environmental costs from consumer to global supply chain</i>. The body paragraphs cite shipping emissions data, water-use studies in textile factories, and a quasi-experimental comparison of fast and slow fashion supply chains. The central idea is...',
-      o: ['fast fashion is the most important issue facing teenagers','the writer dislikes fast fashion','consumers should never buy clothing online','fast fashion externalizes its environmental costs onto the global supply chain'], a: 3,
-      why: 'The supplied claim from the opening and the supporting evidence types confirm the central idea.' },
+    /* 11 a:3 */ { q: 'A novel returns to the image of an unfinished painting at the end of every chapter. The device is most likely...',
+      o: ['simile','personification','metaphor','motif'], a: 3,
+      why: 'Patterned repetition of an image across chapters is the defining mark of a motif.' },
 
-    /* 12 a:2 */ { q: 'An article\'s opening paragraph defines key terms and announces the position the writer will defend. This paragraph is doing which kind of work?',
-      o: ['evidentiary','synthesis','framing','counterargument'], a: 2,
-      why: 'Framing paragraphs define terms and set up the claim to be defended.' },
+    /* 12 a:2 */ { q: 'The line "He was a stone wall when the questions came." is which device?',
+      o: ['simile','personification','metaphor','foreshadowing'], a: 2,
+      why: 'The sentence states that he <b>was</b> a stone wall, asserting identity without "like" or "as," making it a metaphor.' },
 
-    /* 13 a:0 */ { q: 'A reader who can name <b>what work each paragraph does</b> for the central idea is most directly demonstrating...',
-      o: ['analysis of development over the course of a text','memorization of vocabulary','recognition of figurative language','identification of the author\'s tone'], a: 0,
-      why: 'Naming the role of each paragraph is precisely what "analyze its development" requires.' }
+    /* 13 a:0 */ { q: 'The most accurate test of whether something in a text is functioning as a <b>symbol</b> is whether...',
+      o: ['the writer returns to it at key moments and it accumulates significance','it is described in detail once','it is a noun','it has more than one syllable'], a: 0,
+      why: 'Symbolism requires patterning; a single mention is rarely enough for an object to become symbolic.' }
   ];
 
-  /* Bank answers: [2,0,3,1,2,0,3,1,2,0,1,3,2,0] -> 0:4, 1:3, 2:4, 3:3 - balanced */
-  /* Form A indices [0,1,2,3,4,5,6,7] -> [2,0,3,1,2,0,3,1] -> 0:2, 1:2, 2:2, 3:2 */
+  /* Bank answer positions: [1,2,0,3,1,2,0,3,1,2,0,3,2,0] -> 0:4, 1:3, 2:4, 3:3 - balanced */
+  /* Form A indices [0,1,2,3,4,5,6,7] -> [1,2,0,3,1,2,0,3] -> 0:2, 1:2, 2:2, 3:2 */
   var FORM_A_IDX = [0,1,2,3,4,5,6,7];
-  /* Form B indices [8,9,10,11,12,13,2,4] -> [2,0,1,3,2,0,3,2] -> 0:2, 1:1, 2:3, 3:2 */
-  var FORM_B_IDX = [8,9,10,11,12,13,2,4];
+  /* Form B indices [8,9,10,11,12,13,5,3] -> [1,2,0,3,2,0,2,3] -> 0:2, 1:1, 2:3, 3:2 */
+  var FORM_B_IDX = [8,9,10,11,12,13,5,3];
 
   var FORM_A = FORM_A_IDX.map(function(i){ return ITEM_BANK[i]; });
   var FORM_B = FORM_B_IDX.map(function(i){ return ITEM_BANK[i]; });

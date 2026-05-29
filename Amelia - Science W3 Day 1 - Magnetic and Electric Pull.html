@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Amelia, Grade 3 Science Lab. Plan and conduct investigations to determine cause and effect of electric or magnetic interactions between objects not in contact. Auto-graded mastery lesson aligned to Missouri 3.PS2.B.1.">
+<title>Science Lab . Magnetic and Electric Pull</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lesson-bg-art{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.lesson-bg-art .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.32;will-change:transform;}
+.lesson-bg-art .blob.b1{width:60vmax;height:60vmax;top:-22vmax;right:-15vmax;background:radial-gradient(circle,var(--bg-blob-1, rgba(31,122,168,.10)),transparent 65%);animation:lessonDrift1 32s ease-in-out infinite;}
+.lesson-bg-art .blob.b2{width:50vmax;height:50vmax;bottom:-18vmax;left:-12vmax;background:radial-gradient(circle,var(--bg-blob-2, rgba(31,157,107,.08)),transparent 65%);animation:lessonDrift2 38s ease-in-out infinite;}
+.lesson-bg-art .blob.b3{width:35vmax;height:35vmax;top:40%;left:50%;background:radial-gradient(circle,var(--bg-blob-3, rgba(224,115,26,.06)),transparent 70%);animation:lessonDrift3 44s ease-in-out infinite;}
+@keyframes lessonDrift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3vmax,4vmax) scale(1.06);}}
+@keyframes lessonDrift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4vmax,-3vmax) scale(1.08);}}
+@keyframes lessonDrift3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-2vmax,2vmax) scale(.96);}}
+@media (prefers-reduced-motion:reduce){.lesson-bg-art .blob{animation:none !important;}}
+.lesson-bg-art{--bg-blob-1:rgba(31,122,168,.10);--bg-blob-2:rgba(31,157,107,.08);--bg-blob-3:rgba(224,115,26,.06);}
+
+:root{
+  --paper:#f2f0fb;--card:#fff;--ink:#1d1736;--ink2:#4a4566;--mut:#857ea3;--line:#e2def2;
+  --accent:#1f7aa8;--accent-d:#155879;--alt:#e0731a;--good:#1f9d6b;--bad:#c2410c;--red:#c2410c;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Mulish',system-ui,sans-serif;font-size:18px;line-height:1.55;min-height:100vh;position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(40vmax 40vmax at 90% -10%,rgba(31,122,168,.10),transparent 60%),radial-gradient(40vmax 40vmax at -5% 110%,rgba(31,157,107,.10),transparent 60%),linear-gradient(180deg,#faf9ff,var(--paper));}
+.wrap{max-width:780px;margin:0 auto;padding:0 18px 90px;}
+h1,h2,h3,.disp{font-family:'Baloo 2',cursive;font-weight:700;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.hide{display:none !important;}
+
+.labbar{background:var(--ink);color:#e7e3fb;margin:0 -18px 20px;padding:12px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:'Baloo 2';font-size:13px;letter-spacing:.04em;}
+.labbar .dotg{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+.labbar .chip{margin-left:auto;border:1px solid #4a4170;border-radius:6px;padding:3px 9px;color:#b9b2e0;font-size:12px;}
+.labbar b{color:#fff;}
+
+.kicker{font-family:'Baloo 2';font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-d);}
+h1{font-size:clamp(28px,5.6vw,42px);line-height:1.04;margin:6px 0 8px;}
+.opener{font-size:17.5px;color:var(--ink);}
+.mission{color:var(--ink2);max-width:56ch;margin-top:6px;}
+.stdtag{margin-top:16px;background:#eaf3f8;border:1px solid var(--line);border-left:4px solid var(--alt);border-radius:8px;padding:11px 14px;font-size:13.5px;color:var(--ink2);}
+.stdtag .l{font-family:'Baloo 2';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--alt);display:block;margin-bottom:3px;}
+
+.lesson-hero{margin:14px 0 20px;display:flex;justify-content:center;}
+.lesson-hero svg{width:100%;max-width:560px;height:auto;display:block;}
+
+.station{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:16px 0;box-shadow:0 16px 32px -28px rgba(21,88,121,.4);}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.sno{font-family:'Baloo 2';font-size:12px;font-weight:700;color:#fff;background:var(--accent);border-radius:7px;padding:3px 9px;letter-spacing:.04em;}
+.station h2{font-size:22px;}
+.station p.lead{color:var(--ink2);margin-top:2px;}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+@media (max-width:520px){.compare{grid-template-columns:1fr;}}
+.column{background:#fafaff;border:2px solid var(--line);border-radius:12px;padding:14px;}
+.column.att{border-color:#88b4d0;background:#eef6fb;}
+.column.rep{border-color:#f0b888;background:#fcf2e8;}
+.column h3{font-family:'Baloo 2';font-size:18px;color:var(--accent-d);margin-bottom:6px;}
+.column.rep h3{color:#a8550c;}
+.column ul{margin:0 0 0 18px;color:var(--ink2);font-size:14.5px;}
+.column ul li{margin:5px 0;}
+
+.note{background:#fffbe9;border:2px solid #f0d97a;border-radius:12px;padding:13px 15px;font-size:15.5px;margin-top:10px;}
+.note b{color:#a17500;}
+
+.examples{margin-top:12px;display:flex;flex-direction:column;gap:8px;}
+.exr{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:2px solid var(--line);border-radius:10px;padding:11px 14px;background:#fff;font-size:15px;}
+.exr .txt{color:var(--ink);}
+.exr .tag{font-family:'Baloo 2';font-weight:700;font-size:12px;letter-spacing:.06em;border-radius:6px;padding:3px 9px;text-transform:uppercase;}
+.exr .tag.att{background:#eef6fb;color:var(--accent-d);border:1.5px solid #88b4d0;}
+.exr .tag.rep{background:#fcf2e8;color:#a8550c;border:1.5px solid #f0b888;}
+
+.predict{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.pcard{font:inherit;font-weight:600;border:2px solid var(--line);background:#fff;border-radius:12px;padding:13px 14px;min-height:48px;cursor:pointer;color:var(--ink);text-align:left;}
+.pcard:hover{border-color:var(--accent);}
+.pcard.ok{border-color:var(--good);background:#e8f7f0;color:#13683a;}
+.pcard.no{border-color:var(--red);background:#fdeee4;color:var(--red);}
+.reveal{margin-top:10px;font-size:15.5px;color:var(--ink2);display:none;}
+.reveal.show{display:block;}
+
+.cta{display:block;width:100%;font:inherit;font-weight:700;font-size:18px;color:#fff;background:var(--accent);border:none;border-radius:12px;padding:16px;min-height:54px;cursor:pointer;margin-top:14px;font-family:'Baloo 2';}
+.cta:hover{background:var(--accent-d);}
+.cta.go{background:var(--good);}
+.cta.alt{background:var(--alt);}
+
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:6px;font-family:'Baloo 2';}
+.timer{margin-left:auto;}
+.tbar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px;}
+.tfill{height:100%;width:100%;background:var(--accent);transition:width 1s linear;}
+.tfill.low{background:var(--bad);}
+.qtext{font-size:20px;font-weight:700;line-height:1.3;margin-bottom:14px;font-family:'Baloo 2';}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt2{font:inherit;font-size:17px;font-weight:600;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;min-height:52px;cursor:pointer;color:var(--ink);font-family:'Baloo 2';}
+.opt2:hover{border-color:var(--accent);}
+.opt2.correct{border-color:var(--good);background:#e8f7f0;color:#13683a;}
+.opt2.bad{border-color:var(--bad);background:#fdeee4;color:var(--bad);}
+.qwhy{margin-top:12px;font-size:15px;color:var(--ink2);min-height:1em;}
+
+.result{text-align:center;padding:14px 0;}
+.scorebig{font-size:56px;font-weight:700;line-height:1;color:var(--accent-d);font-family:'Baloo 2',cursive;}
+.result h2{font-size:24px;font-weight:700;margin:10px 0 4px;font-family:'Baloo 2';}
+
+.gatebox{background:#eaf3f8;border:2px solid var(--line);border-radius:12px;padding:18px;margin-top:14px;text-align:center;}
+.gatebox .cd{font-size:34px;font-weight:700;font-family:'Baloo 2';color:var(--accent-d);letter-spacing:.04em;margin:8px 0;}
+.gatebox .lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);}
+
+footer{text-align:center;margin-top:28px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);}
+
+@media (prefers-reduced-motion:reduce){.tfill{transition:none;}*{animation:none!important;}}
+
+#masteryDone{display:none;margin:16px 0;}
+#masteryDone.show{display:block;}
+.mastery-card{background:var(--card);border:2px solid var(--good);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 16px 32px -28px rgba(31,157,107,.6);}
+.mastery-badge{margin:0 auto 14px;width:76px;height:76px;}
+.mastery-badge svg{width:100%;height:100%;display:block;}
+.mastery-card h2{font-family:'Baloo 2',cursive;font-size:clamp(26px,5vw,36px);color:var(--good);margin:8px 0;}
+.mastery-msg{color:var(--ink2);max-width:46ch;margin:0 auto 18px;font-size:16px;line-height:1.5;}
+.mastery-stats{display:flex;justify-content:center;gap:22px;margin:14px 0 22px;flex-wrap:wrap;}
+.mastery-stats .stat{background:#e8f7f0;border:2px solid #bce6d8;border-radius:12px;padding:12px 18px;min-width:100px;}
+.mastery-stats .stat-num{display:block;font-family:'Baloo 2',cursive;font-size:32px;font-weight:700;color:var(--good);line-height:1;}
+.mastery-stats .stat-lbl{display:block;margin-top:4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600;}
+.mastery-cta a.cta{display:inline-block;text-decoration:none;width:auto;padding:14px 22px;}
+</style>
+</head>
+<body>
+
+<div class="lesson-bg-art" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="bg" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <div class="labbar">
+    <span class="dotg" aria-hidden="true"></span>
+    <i>Science lab</i> . <b>Grade 3</b>
+    <span class="chip">Standard 3.PS2.B.1</span>
+  </div>
+
+  <section id="lesson">
+
+    <div class="kicker">Day 1 . Week 3</div>
+    <h1>Magnetic and electric pull</h1>
+    <p class="opener">Some things pull on each other without touching. Magnets do this. So does static from a balloon. The force jumps across the gap.</p>
+    <p class="mission">By the end you can name the cause and the effect when magnets or static act across a space.</p>
+    <div class="stdtag">
+      <span class="l">What this lesson teaches</span>
+      Plan and conduct investigations to determine the cause and effect relationship of electric or magnetic interactions between two objects not in contact with each other.
+    </div>
+
+    <div class="lesson-hero" aria-hidden="true">
+      <svg viewBox="0 0 560 300" role="img" aria-label="Two bar magnets with north and south poles facing each other showing attract and repel, plus a small inset of a balloon attracting hair through static electricity.">
+        <text x="280" y="22" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#155879">Forces that work across a gap</text>
+
+        <g transform="translate(60 60)">
+          <text x="100" y="-8" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="13" fill="#1f9d6b">ATTRACT</text>
+          <rect x="0" y="10" width="80" height="36" fill="#c2410c" stroke="#7a2806" stroke-width="2"/>
+          <rect x="80" y="10" width="80" height="36" fill="#1f7aa8" stroke="#0e3a52" stroke-width="2"/>
+          <text x="40" y="34" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">N</text>
+          <text x="120" y="34" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">S</text>
+
+          <g transform="translate(180 28)">
+            <rect x="0" y="-18" width="80" height="36" fill="#1f7aa8" stroke="#0e3a52" stroke-width="2"/>
+            <rect x="80" y="-18" width="80" height="36" fill="#c2410c" stroke="#7a2806" stroke-width="2"/>
+            <text x="40" y="6" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">S</text>
+            <text x="120" y="6" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">N</text>
+          </g>
+
+          <g stroke="#1f9d6b" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M162 28 L178 28" marker-end="url(#arrR1)"/>
+            <path d="M178 28 L162 28" marker-end="url(#arrL1)"/>
+          </g>
+          <defs>
+            <marker id="arrR1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0 0 L8 5 L0 10 z" fill="#1f9d6b"/>
+            </marker>
+            <marker id="arrL1" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0 L8 5 L0 10 z" fill="#1f9d6b"/>
+            </marker>
+          </defs>
+
+          <text x="170" y="62" text-anchor="middle" font-family="Mulish,sans-serif" font-size="11" fill="#1f9d6b" font-weight="700">N + S pull together</text>
+        </g>
+
+        <g transform="translate(60 150)">
+          <text x="100" y="-8" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="13" fill="#c2410c">REPEL</text>
+          <rect x="0" y="10" width="80" height="36" fill="#c2410c" stroke="#7a2806" stroke-width="2"/>
+          <rect x="80" y="10" width="80" height="36" fill="#1f7aa8" stroke="#0e3a52" stroke-width="2"/>
+          <text x="40" y="34" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">N</text>
+          <text x="120" y="34" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">S</text>
+
+          <g transform="translate(220 28)">
+            <rect x="0" y="-18" width="80" height="36" fill="#c2410c" stroke="#7a2806" stroke-width="2"/>
+            <rect x="80" y="-18" width="80" height="36" fill="#1f7aa8" stroke="#0e3a52" stroke-width="2"/>
+            <text x="40" y="6" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">N</text>
+            <text x="120" y="6" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="16" fill="#fff">S</text>
+          </g>
+
+          <g stroke="#c2410c" stroke-width="3" fill="none" stroke-linecap="round">
+            <path d="M170 28 L160 28" marker-end="url(#arrL2)"/>
+            <path d="M210 28 L220 28" marker-end="url(#arrR2)"/>
+          </g>
+          <defs>
+            <marker id="arrR2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0 0 L8 5 L0 10 z" fill="#c2410c"/>
+            </marker>
+            <marker id="arrL2" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0 L8 5 L0 10 z" fill="#c2410c"/>
+            </marker>
+          </defs>
+
+          <text x="190" y="62" text-anchor="middle" font-family="Mulish,sans-serif" font-size="11" fill="#c2410c" font-weight="700">N + N push apart</text>
+        </g>
+
+        <g transform="translate(430 70)">
+          <rect x="-10" y="-10" width="120" height="140" rx="8" fill="#fafaff" stroke="#88b4d0" stroke-width="1.5"/>
+          <text x="50" y="6" text-anchor="middle" font-family="Baloo 2,cursive" font-weight="700" font-size="11" fill="#155879">STATIC</text>
+          <ellipse cx="30" cy="50" rx="20" ry="26" fill="#e0731a" stroke="#7a2806" stroke-width="1.5"/>
+          <path d="M30 76 L26 86 L34 86 Z" fill="#e0731a" stroke="#7a2806" stroke-width="1.5"/>
+          <g stroke="#1d1736" stroke-width="2" fill="none">
+            <path d="M82 40 Q70 50 80 64"/>
+            <path d="M86 50 Q72 60 84 74"/>
+            <path d="M88 62 Q74 72 86 86"/>
+            <path d="M86 76 Q72 84 82 96"/>
+          </g>
+          <g stroke="#155879" stroke-width="2" fill="none" stroke-dasharray="3 3">
+            <path d="M52 56 Q66 50 76 54"/>
+          </g>
+        </g>
+
+        <text x="280" y="284" text-anchor="middle" font-family="Mulish,sans-serif" font-size="13" fill="#4a4566">A gap. A force. No touch needed.</text>
+      </svg>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">01</span><h2>Forces that act at a distance</h2></div>
+      <p class="lead">Most pushes and pulls need touching. You push a door. Your hand has to touch it. But some forces can act across a gap. A magnet can pull on a paper clip from an inch away. A balloon you just rubbed on your hair can stick to a wall without glue.</p>
+      <div class="note"><b>Big idea.</b> Two objects do not have to touch for a force to act between them.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">02</span><h2>Magnets have two ends</h2></div>
+      <p class="lead">A bar magnet has a north pole (N) and a south pole (S). Put two magnets near each other. They will pull together or push apart, based on the poles you face.</p>
+      <div class="compare">
+        <div class="column att">
+          <h3>Attract: pull together</h3>
+          <ul>
+            <li>N to S pulls in</li>
+            <li>S to N pulls in</li>
+            <li>The magnets snap together when close</li>
+          </ul>
+        </div>
+        <div class="column rep">
+          <h3>Repel: push apart</h3>
+          <ul>
+            <li>N to N pushes out</li>
+            <li>S to S pushes out</li>
+            <li>The magnets shove away when close</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note"><b>Rule.</b> Opposite poles attract. Same poles repel. The closer the magnets, the stronger the force.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">03</span><h2>Static can pull too</h2></div>
+      <p class="lead">Rub a balloon on your hair for ten seconds. Hold the balloon near your hair. Your hair will lift up and reach for the balloon. The two never touched, but a force pulled them. That force is called static electricity. It is an electric pull across a gap.</p>
+      <div class="note"><b>How.</b> Rubbing moves tiny charges from your hair to the balloon. Once the charges are split, the balloon and your hair pull on each other.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">04</span><h2>Plan a test: cause and effect</h2></div>
+      <p class="lead">A good test changes one thing and watches what happens. The thing you change is the cause. The thing that happens is the effect.</p>
+      <div class="examples">
+        <div class="exr"><div class="txt">Change: bring magnet closer. Watch: paper clip jumps to magnet.</div><span class="tag att">ATTRACT</span></div>
+        <div class="exr"><div class="txt">Change: flip second magnet so N faces N. Watch: magnets push apart.</div><span class="tag rep">REPEL</span></div>
+        <div class="exr"><div class="txt">Change: rub balloon on hair, then hold near small paper bits. Watch: bits jump up to the balloon.</div><span class="tag att">ATTRACT</span></div>
+        <div class="exr"><div class="txt">Change: line up S to N on two magnets. Watch: they snap together.</div><span class="tag att">ATTRACT</span></div>
+        <div class="exr"><div class="txt">Change: line up S to S on two magnets. Watch: they slide away.</div><span class="tag rep">REPEL</span></div>
+      </div>
+      <div class="note"><b>Why one thing at a time.</b> If you change two things, you cannot tell which one caused the effect.</div>
+    </div>
+
+    <div class="station">
+      <div class="shead"><span class="sno">05</span><h2>Try one</h2></div>
+      <p class="lead">You hold two bar magnets with their N poles facing each other. You push them closer. What happens?</p>
+      <div class="predict" id="tryRow">
+        <button class="pcard" type="button" data-ok="false">They snap together</button>
+        <button class="pcard" type="button" data-ok="false">They sit still</button>
+        <button class="pcard" type="button" data-ok="true">They push apart</button>
+      </div>
+      <div class="reveal" id="tryRv">Same poles repel. N facing N pushes away. The closer you push them, the harder they fight back.</div>
+    </div>
+
+    <button class="cta" id="toCheck">I am ready. Start Form A</button>
+  </section>
+
+  <section id="check" class="hide">
+    <div class="progress"><span id="qcount">Question 1 of 8</span><span class="timer" id="tlabel">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfill"></div></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+    <div class="qwhy" id="qwhy"></div>
+  </section>
+
+  <section id="gate" class="hide">
+    <div class="station">
+      <div class="shead"><span class="sno">GATE</span><h2>Form B opens in 24 hours</h2></div>
+      <p class="lead">You passed Form A. Come back tomorrow for Form B. Same skill, new questions.</p>
+      <div class="gatebox">
+        <div class="lbl">Time until Form B</div>
+        <div class="cd" id="countdown">24:00:00</div>
+        <button class="cta hide" id="startB">Start Form B</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkB" class="hide">
+    <div class="progress"><span id="qcountB">Question 1 of 8</span><span class="timer" id="tlabelB">25s</span></div>
+    <div class="tbar"><div class="tfill" id="tfillB"></div></div>
+    <div class="qtext" id="qtextB"></div>
+    <div class="opts" id="optsB"></div>
+    <div class="qwhy" id="qwhyB"></div>
+  </section>
+
+  <section id="result" class="hide">
+    <div class="result">
+      <div class="scorebig" id="scorebig">0%</div>
+      <h2 id="rtitle">Done</h2>
+      <p id="rmsg" style="color:var(--ink2);max-width:46ch;margin:0 auto;"></p>
+    </div>
+    <button class="cta alt hide" id="retry">Try again</button>
+    <button class="cta hide" id="toGate">Next: 24-hour gate</button>
+  </section>
+
+  <footer>
+    <span id="__sname">friend</span>
+    . Science . Day 1 . Standard 3.PS2.B.1
+  </footer>
+
+  <section id="masteryDone" class="mastery-complete" aria-live="polite">
+    <div class="mastery-card">
+      <div class="mastery-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="38,4 70,38 38,72 6,38" fill="#1f9d6b" stroke="#13683a" stroke-width="3" stroke-linejoin="round"/>
+          <polyline points="22,40 34,52 56,28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You did it!</h2>
+      <p class="mastery-msg">You showed it on Form A and Form B. <span class="__sname">friend</span>, this one is yours.</p>
+      <div class="mastery-stats">
+        <div class="stat"><span class="stat-num" id="msFormA">8</span><span class="stat-lbl">Form A</span></div>
+        <div class="stat"><span class="stat-num" id="msFormB">8</span><span class="stat-lbl">Form B</span></div>
+      </div>
+      <div class="mastery-cta">
+        <a class="cta" id="msBack" href="dashboard.html">Back to dashboard</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var __qk = (location.search.match(/[?&]kid=([^&]+)/)||[])[1];
+  __qk = __qk ? decodeURIComponent(__qk) : null;
+  var __ar = {};
+  try { __ar = JSON.parse(localStorage.getItem('edu.app')||'{}'); } catch(e) {}
+  var __ks = (__ar.family && __ar.family.kids) || [];
+  var __rk = null;
+  if (__qk) __rk = __ks.filter(function(x){ return x.id===__qk; })[0];
+  if (!__rk && __ar.activeKid) __rk = __ks.filter(function(x){ return x.id===__ar.activeKid; })[0];
+  if (!__rk) __rk = __ks.filter(function(x){ return x.grade===3; })[0];
+  if (!__rk && __ks.length) __rk = __ks[0];
+  if (!__rk) __rk = { id:'amelia', name:'Amelia', grade:3 };
+  __ar.activeKid = __rk.id;
+  try { localStorage.setItem('edu.app', JSON.stringify(__ar)); } catch(e) {}
+
+  var KEY     = 'edu.app';
+  var STUDENT = __rk.id;
+  var SUBJECT = 'science';
+  var DAY     = '3.PS2.B.1';
+  var SNAME   = __rk.name;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var __fn = document.getElementById('__sname');
+    if (__fn) __fn.textContent = SNAME;
+    document.querySelectorAll('.__snameInline, #masteryDone .__sname').forEach(function(n){
+      n.textContent = SNAME;
+    });
+    var back = document.getElementById('msBack');
+    if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+  });
+
+  var PASS = 7;
+  var QTIME = 25;
+  var GATE_MS = 24 * 60 * 60 * 1000;
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){ return {}; } }
+  function save(o){ try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {} }
+
+  var app = load();
+  app.students = app.students || {};
+  app.students[STUDENT] = app.students[STUDENT] || { name: SNAME };
+  app.progress = app.progress || {};
+  app.progress[STUDENT] = app.progress[STUDENT] || {};
+  app.progress[STUDENT][SUBJECT] = app.progress[STUDENT][SUBJECT] || {};
+  var rec = app.progress[STUDENT][SUBJECT][DAY] || {
+    status: 'open', best: 0, attempts: 0,
+    formA: 0, formB: 0,
+    formAPassedAt: null, passedAt: null
+  };
+  app.progress[STUDENT][SUBJECT][DAY] = rec;
+  app.activeStudent = STUDENT;
+  save(app);
+
+  var SUPA_URL = '', SUPA_KEY = '';
+  function syncCloud(){
+    if (!SUPA_URL || !SUPA_KEY) return;
+    try {
+      var row = {
+        student: STUDENT, subject: SUBJECT, day: DAY,
+        status: rec.status, best: rec.best||0, attempts: rec.attempts||0,
+        formA: rec.formA||0, formB: rec.formB||0,
+        form_a_passed_at: rec.formAPassedAt||null,
+        time_ms: rec.timeMs||0,
+        updated_at: new Date().toISOString()
+      };
+      fetch(SUPA_URL+'/rest/v1/lesson_results?on_conflict=student,subject,day', {
+        method:'POST',
+        headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},
+        body: JSON.stringify(row),
+        keepalive: true
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
+  var SEG = Date.now();
+  function commitTime(){ rec.timeMs = (rec.timeMs||0) + (Date.now()-SEG); SEG = Date.now(); rec.lastAt = Date.now(); save(app); }
+  window.addEventListener('beforeunload', commitTime);
+  window.addEventListener('pagehide', commitTime);
+
+  syncCloud();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var row = document.getElementById('tryRow');
+    var rv = document.getElementById('tryRv');
+    if (!row) return;
+    row.querySelectorAll('.pcard').forEach(function(b){
+      b.addEventListener('click', function(){
+        var ok = b.getAttribute('data-ok') === 'true';
+        row.querySelectorAll('.pcard').forEach(function(x){ x.classList.remove('ok','no'); });
+        b.classList.add(ok ? 'ok' : 'no');
+        rv.classList.add('show');
+      });
+    });
+  });
+
+  /* Item bank: 14 items. Distribution: a:0 x5, a:1 x4, a:2 x4, a:3 x1 */
+  var ITEM_BANK = [
+    { q: 'Two bar magnets are placed N to N. What happens when you push them closer?',
+      o: ['They push apart','They snap together','Nothing changes','They get hot'], a: 0, why: 'Same poles repel. North facing north pushes apart.' },
+    { q: 'A balloon is rubbed on hair and held near small bits of paper. The bits jump to the balloon. What force did the work?',
+      o: ['Gravity pulling them down','Static electricity pulling them across the gap','A spring pushing them up','Wind blowing them'], a: 1, why: 'Rubbing splits charges. Static pull works across a gap.' },
+    { q: 'Which rule fits magnets?',
+      o: ['All poles attract','Opposite poles attract; same poles repel','Same poles attract; opposite poles repel','All poles repel'], a: 1, why: 'Opposite poles pull together. Same poles push apart.' },
+    { q: 'A paper clip jumps to a magnet held just above it. The paper clip and the magnet ...',
+      o: ['need batteries','need a wire between them','can act across a small gap','must be touching to act'], a: 2, why: 'Magnets pull on iron objects across a small gap with no touch.' },
+    { q: 'Why does a scientist change only one thing at a time when testing magnets?',
+      o: ['To save batteries','To make it look cool','So she knows what caused the effect','Because it is a rule from a book'], a: 2, why: 'Change one cause. Watch one effect. Then you can tell what did it.' },
+    { q: 'A scientist wants to find out if distance changes magnetic pull. The best plan is to ...',
+      o: ['move the same magnet closer and farther from one clip and watch','use ten magnets at once','swap magnets each time','rub a balloon on the magnet'], a: 0, why: 'Change only the distance. Watch what happens to the clip.' },
+    { q: 'Two magnets snap together when held close. Which poles are facing each other?',
+      o: ['N and S (opposite)','N and N (same)','S and S (same)','None, they snap by chance'], a: 0, why: 'Opposite poles attract. They pull in together.' },
+    { q: 'A balloon sticks to a wall without glue right after it was rubbed on hair. The best reason is ...',
+      o: ['the wall is sticky','the balloon is wet','static electricity pulls the balloon to the wall','gravity pulls it sideways'], a: 2, why: 'Charges on the balloon pull on the wall. The force acts across the gap.' },
+    { q: 'Which is the cause and which is the effect in this test? "I moved the magnet closer; the paper clip jumped."',
+      o: ['The clip jumping is the cause','Moving the magnet closer is the cause; the clip jumping is the effect','There is no cause, only an effect','Both events are causes'], a: 1, why: 'The change you make is the cause. What happens next is the effect.' },
+    { q: 'Two magnets are pushed S to S. What is the effect?',
+      o: ['They turn into one magnet','They push apart','They attract and snap together','They glue together'], a: 1, why: 'Same poles repel. S facing S pushes apart.' },
+    { q: 'Which of these acts across a gap without touch?',
+      o: ['A magnet pulling a paper clip','A hammer hitting a nail','A foot kicking a ball','A hand pushing a door'], a: 0, why: 'A magnet pulls without touch. The others all need contact.' },
+    { q: 'Two scientists test the same setup. They get the same result twice. This means the test is ...',
+      o: ['broken','probably wrong','easy to repeat, which is a sign of a good test','only good for one try'], a: 2, why: 'A good test gives the same result when repeated.' },
+    { q: 'When you rub a balloon on your hair, what causes the static pull?',
+      o: ['The balloon is heavy','The colors mix','Charges move between the balloon and the hair','Air gets in the balloon'], a: 2, why: 'Rubbing moves tiny charges. Once they split, the two objects pull on each other.' },
+    { q: 'You want to test if a stronger magnet pulls a paper clip from farther away. The thing you should change is the ...',
+      o: ['kind of clip each time','color of the table','strength of the magnet, while keeping the clip the same','number of people watching'], a: 2, why: 'Change only the strength of the magnet. Keep the clip the same so you know what caused the change.' }
+  ];
+
+  var FORM_A_IDX = [0,1,2,3,4,5,6,7];
+  var FORM_B_IDX = [8,9,10,11,12,13,1,4];
+
+  var FORM_A = FORM_A_IDX.map(function(i){ return ITEM_BANK[i]; });
+  var FORM_B = FORM_B_IDX.map(function(i){ return ITEM_BANK[i]; });
+
+  var secLesson = document.getElementById('lesson'),
+      secCheck  = document.getElementById('check'),
+      secGate   = document.getElementById('gate'),
+      secCheckB = document.getElementById('checkB'),
+      secResult = document.getElementById('result');
+
+  var elQtext = document.getElementById('qtext'), elOpts = document.getElementById('opts'), elQwhy = document.getElementById('qwhy'),
+      elCount = document.getElementById('qcount'), elTlabel = document.getElementById('tlabel'), elTfill = document.getElementById('tfill');
+
+  var phase='A', qi=0, correct=0, timer=null, timeLeft=QTIME, locked=false, currentBank=FORM_A;
+
+  function startCheck(form){
+    commitTime();
+    phase = form;
+    currentBank = (form==='A') ? FORM_A : FORM_B;
+    qi = 0; correct = 0;
+    if (form==='A'){
+      rec.attempts = (rec.attempts||0) + 1; save(app);
+      secLesson.classList.add('hide'); secResult.classList.add('hide'); secCheck.classList.remove('hide');
+    } else {
+      secGate.classList.add('hide'); secResult.classList.add('hide'); secCheckB.classList.remove('hide');
+    }
+    window.scrollTo(0,0);
+    showQ();
+  }
+
+  function showQ(){
+    locked = false;
+    var item = currentBank[qi];
+    var isA = (phase==='A');
+    var qtext = isA ? elQtext : document.getElementById('qtextB');
+    var opts  = isA ? elOpts  : document.getElementById('optsB');
+    var why   = isA ? elQwhy  : document.getElementById('qwhyB');
+    var count = isA ? elCount : document.getElementById('qcountB');
+    var label = isA ? elTlabel: document.getElementById('tlabelB');
+    var fill  = isA ? elTfill : document.getElementById('tfillB');
+    count.textContent = 'Question ' + (qi+1) + ' of ' + currentBank.length;
+    qtext.innerHTML = item.q;
+    opts.innerHTML = ''; why.textContent = '';
+    item.o.forEach(function(txt, i){
+      var b = document.createElement('button');
+      b.className = 'opt2'; b.type = 'button'; b.innerHTML = txt;
+      b.addEventListener('click', function(){ answer(i, b, opts, why, item); });
+      opts.appendChild(b);
+    });
+    timeLeft = QTIME; fill.style.width='100%'; fill.classList.remove('low');
+    label.textContent = QTIME + 's';
+    clearInterval(timer);
+    timer = setInterval(function(){
+      timeLeft--;
+      if (timeLeft < 0) timeLeft = 0;
+      fill.style.width = (timeLeft/QTIME*100) + '%';
+      label.textContent = timeLeft + 's';
+      if (timeLeft <= 8) fill.classList.add('low');
+      if (timeLeft === 0){ clearInterval(timer); autoAdvance(opts, why, item); }
+    }, 1000);
+  }
+
+  function autoAdvance(opts, why, item){
+    if (locked) return; locked = true;
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      c.style.pointerEvents = 'none';
+    });
+    why.style.color = 'var(--accent-d)';
+    why.textContent = 'Time. ' + item.why;
+    setTimeout(next, 1100);
+  }
+
+  function answer(i, btn, opts, why, item){
+    if (locked) return; locked = true; clearInterval(timer);
+    var ok = (i === item.a);
+    Array.prototype.forEach.call(opts.children, function(c, idx){
+      if (idx === item.a) c.classList.add('correct');
+      if (idx === i && !ok) c.classList.add('bad');
+      c.style.pointerEvents = 'none';
+    });
+    if (ok){ correct++; why.style.color='var(--good)'; why.textContent = 'Yes. ' + item.why; }
+    else   {            why.style.color='var(--accent-d)'; why.textContent = 'Not quite. ' + item.why; }
+    setTimeout(next, ok ? 700 : 1200);
+  }
+
+  function next(){ qi++; if (qi < currentBank.length) showQ(); else finish(); }
+
+  function finish(){
+    commitTime();
+    if (phase === 'A'){
+      secCheck.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passed = (correct >= PASS), pct = Math.round(correct/FORM_A.length*100);
+      document.getElementById('scorebig').textContent = pct + '%';
+      rec.formA = correct; rec.best = Math.max(rec.best||0, pct);
+      var rtitle = document.getElementById('rtitle'), rmsg = document.getElementById('rmsg'),
+          retry  = document.getElementById('retry'),  toGate = document.getElementById('toGate');
+      retry.classList.add('hide'); toGate.classList.add('hide');
+      if (passed){
+        rec.status = 'formA-passed';
+        if (!rec.formAPassedAt) rec.formAPassedAt = Date.now();
+        save(app);
+        syncCloud();
+        rtitle.textContent = 'Form A passed!';
+        rmsg.textContent = 'You got ' + correct + ' of ' + FORM_A.length + ' right. Form B opens in 24 hours.';
+        toGate.classList.remove('hide');
+      } else {
+        rec.status = 'tried'; save(app);
+        rtitle.textContent = 'So close!';
+        rmsg.textContent = 'You need 7 of 8 to pass. You got ' + correct + '. Look back at the stations, then try again.';
+        retry.classList.remove('hide');
+      }
+    } else {
+      secCheckB.classList.add('hide'); secResult.classList.remove('hide'); window.scrollTo(0,0);
+      var passedB = (correct >= PASS), pctB = Math.round(correct/FORM_B.length*100);
+      document.getElementById('scorebig').textContent = pctB + '%';
+      rec.formB = correct;
+      var rtitleB = document.getElementById('rtitle'), rmsgB = document.getElementById('rmsg');
+      document.getElementById('retry').classList.add('hide');
+      document.getElementById('toGate').classList.add('hide');
+      if (passedB){
+        rec.status = 'passed';
+        rec.passedAt = Date.now();
+        save(app);
+        syncCloud();
+        showMastery(rec.formA||0, rec.formB||0);
+      } else {
+        rec.status = 'formB-tried'; save(app);
+        rtitleB.textContent = 'Almost there.';
+        rmsgB.textContent = 'You got ' + correct + ' of ' + FORM_B.length + ' on Form B. Reread the stations and try again.';
+        document.getElementById('retry').classList.remove('hide');
+      }
+    }
+  }
+
+  function showGate(){
+    secResult.classList.add('hide');
+    secGate.classList.remove('hide');
+    window.scrollTo(0,0);
+    var startBtn = document.getElementById('startB');
+    var cd = document.getElementById('countdown');
+    function tick(){
+      var elapsed = Date.now() - (rec.formAPassedAt || Date.now());
+      var remain = GATE_MS - elapsed;
+      if (remain <= 0){
+        cd.textContent = 'Form B is ready.';
+        startBtn.classList.remove('hide');
+        return;
+      } else {
+        startBtn.classList.add('hide');
+      }
+      var h = Math.floor(remain/3600000),
+          m = Math.floor((remain%3600000)/60000),
+          s = Math.floor((remain%60000)/1000);
+      cd.textContent = (h<10?'0':'') + h + ':' + (m<10?'0':'') + m + ':' + (s<10?'0':'') + s;
+      setTimeout(tick, 1000);
+    }
+    tick();
+  }
+
+  function showMastery(a, b){
+    var sec = document.getElementById('masteryDone'); if (!sec) return;
+    var ea = document.getElementById('msFormA'); if (ea) ea.textContent = a + ' / 8';
+    var eb = document.getElementById('msFormB'); if (eb) eb.textContent = b + ' / 8';
+    document.querySelectorAll('#masteryDone .__sname').forEach(function(n){ n.textContent = SNAME; });
+    var back = document.getElementById('msBack'); if (back) back.href = 'dashboard.html?kid=' + encodeURIComponent(STUDENT);
+    secLesson.classList.add('hide'); secCheck.classList.add('hide'); secCheckB.classList.add('hide');
+    secGate.classList.add('hide'); secResult.classList.add('hide');
+    sec.classList.add('show');
+    try { sec.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e) { window.scrollTo(0,0); }
+  }
+
+  function resume(){
+    if (rec.status === 'passed'){
+      showMastery(rec.formA||0, rec.formB||0);
+      return;
+    }
+    if (rec.formAPassedAt && (rec.formA||0) >= PASS && (rec.formB||0) < PASS){
+      secLesson.classList.add('hide'); showGate();
+    }
+  }
+
+  document.getElementById('toCheck').addEventListener('click', function(){ startCheck('A'); });
+  document.getElementById('retry').addEventListener('click', function(){
+    secResult.classList.add('hide');
+    if (phase === 'A') startCheck('A'); else startCheck('B');
+  });
+  document.getElementById('toGate').addEventListener('click', showGate);
+  document.getElementById('startB').addEventListener('click', function(){ startCheck('B'); });
+
+  document.addEventListener('DOMContentLoaded', resume);
+
+})();
+</script>
+</body>
+</html>
